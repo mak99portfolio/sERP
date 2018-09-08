@@ -1,0 +1,85 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Model\Pocurement\CommercialInvoice;
+use Illuminate\Http\Request;
+
+class CommercialInvoiceController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @return \Illuminate\Http\Response
+     */
+    public function show(CommercialInvoice $commercialInvoice)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(CommercialInvoice $commercialInvoice)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, CommercialInvoice $commercialInvoice)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(CommercialInvoice $commercialInvoice)
+    {
+        //
+    }
+}

@@ -1,0 +1,43 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateReceiveReturnsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('receive_returns', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('receive_id');
+            $table->foreign('receive_id')->references('id')->on('receives')->onDelete('cascade');
+            $table->integer('requisition_id');
+            $table->foreign('requisition_id')->references('id')->on('requisitions')->onDelete('cascade');
+            $table->integer('issue_id');
+            $table->foreign('issue_id')->references('id')->on('issues')->onDelete('cascade');
+            $table->integer('challan_id');
+            $table->foreign('challan_id')->references('id')->on('challans')->onDelete('cascade');
+            $table->integer('receive_from');
+            $table->foreign('receive_from')->references('id')->on('working_units')->onDelete('cascade');
+            $table->boolean('has_pattern');
+            $table->text('remarks');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('receive_returns');
+    }
+}

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\Receive;
+use App\Receive;
 use Illuminate\Http\Request;
 
 class ReceiveController extends Controller

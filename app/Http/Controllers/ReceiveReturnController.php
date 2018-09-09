@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\ReceiveReturn;
+use App\ReceiveReturn;
 use Illuminate\Http\Request;
 
 class ReceiveReturnController extends Controller

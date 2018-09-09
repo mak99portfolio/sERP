@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\ReceivePurchase;
+use App\ReceivePurchase;
 use Illuminate\Http\Request;
 
 class ReceivePurchaseController extends Controller

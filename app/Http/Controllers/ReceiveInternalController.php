@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\ReceiveInternal;
+use App\ReceiveInternal;
 use Illuminate\Http\Request;
 
 class ReceiveInternalController extends Controller

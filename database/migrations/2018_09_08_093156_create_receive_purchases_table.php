@@ -15,7 +15,7 @@ class CreateReceivePurchasesTable extends Migration
     {
         Schema::create('receive_purchases', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('commercial_invoice_id');
+            $table->integer('commercial_invoice_id')->unsigned();
             $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->timestamps();
         });

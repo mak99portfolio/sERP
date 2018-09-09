@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\WorkingUnit;
+use App\WorkingUnit;
 use Illuminate\Http\Request;
 
 class WorkingUnitController extends Controller

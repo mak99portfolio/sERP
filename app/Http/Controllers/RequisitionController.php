@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\Requisition;
+use App\Requisition;
 use Illuminate\Http\Request;
 
 class RequisitionController extends Controller

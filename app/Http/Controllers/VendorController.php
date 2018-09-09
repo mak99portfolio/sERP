@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\ReceiveItem;
+use App\Vendor;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ReceiveItemController extends Controller
+class VendorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +42,10 @@ class ReceiveItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceiveItem $receiveItem)
+    public function show(Vendor $vendor)
     {
         //
     }
@@ -52,10 +53,10 @@ class ReceiveItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiveItem $receiveItem)
+    public function edit(Vendor $vendor)
     {
         //
     }
@@ -64,10 +65,10 @@ class ReceiveItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiveItem $receiveItem)
+    public function update(Request $request, Vendor $vendor)
     {
         //
     }
@@ -75,10 +76,10 @@ class ReceiveItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\Vendor  $vendor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceiveItem $receiveItem)
+    public function destroy(Vendor $vendor)
     {
         //
     }

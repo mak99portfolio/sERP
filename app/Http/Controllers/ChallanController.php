@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\inventory\Challan;
+use App\Challan;
 use Illuminate\Http\Request;
 
 class ChallanController extends Controller

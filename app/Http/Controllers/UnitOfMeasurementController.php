@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ReceiveItem;
+use App\UnitOfMeasurement;
 use Illuminate\Http\Request;
 
-class ReceiveItemController extends Controller
+class UnitOfMeasurementController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ReceiveItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\UnitOfMeasurement  $unitOfMeasurement
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceiveItem $receiveItem)
+    public function show(UnitOfMeasurement $unitOfMeasurement)
     {
         //
     }
@@ -52,10 +52,10 @@ class ReceiveItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\UnitOfMeasurement  $unitOfMeasurement
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiveItem $receiveItem)
+    public function edit(UnitOfMeasurement $unitOfMeasurement)
     {
         //
     }
@@ -64,10 +64,10 @@ class ReceiveItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\UnitOfMeasurement  $unitOfMeasurement
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiveItem $receiveItem)
+    public function update(Request $request, UnitOfMeasurement $unitOfMeasurement)
     {
         //
     }
@@ -75,10 +75,10 @@ class ReceiveItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\UnitOfMeasurement  $unitOfMeasurement
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceiveItem $receiveItem)
+    public function destroy(UnitOfMeasurement $unitOfMeasurement)
     {
         //
     }

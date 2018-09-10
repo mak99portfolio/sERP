@@ -62,8 +62,8 @@ class CreateVendorsTable extends Migration
             $table->string('business_nature');
             $table->string('credit_period');
             $table->string('credit_limit');
-            $table->integer('payment_term_id');
-            $table->integer('bank_information_id');
+            $table->integer('payment_term_id')->unsigned();
+            $table->integer('bank_information_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('payment_term_id')->references('id')->on('payment_terms')->onDelete('cascade');
@@ -97,8 +97,8 @@ class CreateVendorsTable extends Migration
         Schema::create('enclosure_vendor', function (Blueprint $table){
         	
             $table->increments('id');
-            $table->integer('enclosure_id');
-            $table->integer('vendor_id');
+            $table->integer('enclosure_id')->unsigned();
+            $table->integer('vendor_id')->unsigned();
             
             $table->foreign('enclosure_id')->references('id')->on('vendor_enclosures')->onDelete('cascade');
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');

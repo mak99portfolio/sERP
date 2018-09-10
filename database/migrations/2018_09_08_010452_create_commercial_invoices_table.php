@@ -42,7 +42,7 @@ class CreateCommercialInvoicesTable extends Migration
             $table->string('consignee_id');
             $table->integer('agreed_by');
             $table->integer('approved_by');
-            $table->stirng('container_no');
+            $table->string('container_no');
             $table->string('kind_of_package');
             $table->double('freight');
             $table->double('grand_total');

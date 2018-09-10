@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Pocurement\CommercialInvoice;
 use App\ReceivePurchase;
 use Illuminate\Http\Request;
 
@@ -81,5 +82,8 @@ class ReceivePurchaseController extends Controller
     public function destroy(ReceivePurchase $receivePurchase)
     {
         //
+    }
+    public function getCommercialInvoice($ci_no){
+        return CommercialInvoice::where('ci_no', $ci_no)->first();
     }
 }

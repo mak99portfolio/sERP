@@ -16,4 +16,12 @@ class Vendor extends Model{
 		return $this->hasOne('App\BankInformation');
 	}
 
+	public function vendor_contacts(){
+		return $this->hasMany('App\VendorContact')
+	}
+
+	public function vendor_enclosures(){
+		return $this->hasMany('App\VendorEnclosure');
+	}
+
 }

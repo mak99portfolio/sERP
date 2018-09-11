@@ -39,23 +39,25 @@ class CreateVendorsTable extends Migration
             $table->string('business_nature');
             $table->string('credit_period');
             $table->string('credit_limit');
+            $table->softDeletes();
             $table->timestamps();
 
         });
 
-        Schema::create('payment_terms', function (Blueprint $table) {
+        Schema::create('vendor_payment_terms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
             $table->integer('net_days')->unsigned();
             $table->decimal('payment_discount')->default(0.00);
             $table->decimal('other_discount')->default(0.00);
             $table->text('discount_terms')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
 
         });
 
-        Schema::create('bank_information', function (Blueprint $table) {
+        Schema::create('vendor_bank_informations', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
             $table->string('ac_no')->nullable();
@@ -64,6 +66,7 @@ class CreateVendorsTable extends Migration
             $table->string('branch_name')->nullable();
             $table->string('swift_code')->nullable();
             $table->text('address')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
 
@@ -79,6 +82,7 @@ class CreateVendorsTable extends Migration
             $table->string('email')->nullable();
             $table->string('role')->nullable();
             $table->text('mobile')->nullable();
+            $table->softDeletes();
             $table->timestamps();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
 
@@ -88,6 +92,7 @@ class CreateVendorsTable extends Migration
         	
             $table->increments('id');
             $table->string('name')->unique();
+            $table->softDeletes();
             $table->timestamps();
 
         });
@@ -115,8 +120,8 @@ class CreateVendorsTable extends Migration
         Schema::dropIfExists('enclosure_vendor');
         Schema::dropIfExists('vendor_enclosures');
         Schema::dropIfExists('vendor_contacts');
-        Schema::dropIfExists('bank_information');
-        Schema::dropIfExists('payment_terms');
+        Schema::dropIfExists('vendor_payment_terms');
+        Schema::dropIfExists('vendor_bank_informations');
         Schema::dropIfExists('vendors');
     }
 }

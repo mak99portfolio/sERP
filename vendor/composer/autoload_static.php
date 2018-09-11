@@ -14,6 +14,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
@@ -33,6 +34,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
+            'Watson\\BootstrapForm\\' => 21,
         ),
         'T' => 
         array (
@@ -105,6 +107,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
         ),
         'B' => 
         array (
@@ -134,6 +137,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Watson\\BootstrapForm\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/watson/bootstrap-form/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -279,6 +286,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'BeyondCode\\DumpServer\\' => 
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
@@ -333,6 +344,8 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
     );
 
     public static $classMap = array (
+        'App\\BankInformation' => __DIR__ . '/../..' . '/app/BankInformation.php',
+        'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -342,6 +355,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\ChallanController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChallanController.php',
         'App\\Http\\Controllers\\CommercialInvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommercialInvoiceController.php',
+        'App\\Http\\Controllers\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompanyController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\IssueController' => __DIR__ . '/../..' . '/app/Http/Controllers/IssueController.php',
         'App\\Http\\Controllers\\ProductBrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductBrandController.php',
@@ -353,11 +367,15 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Http\\Controllers\\ReceivePurchaseController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceivePurchaseController.php',
         'App\\Http\\Controllers\\ReceiveReturnController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceiveReturnController.php',
         'App\\Http\\Controllers\\RequisitionController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequisitionController.php',
+        'App\\Http\\Controllers\\UnitOfMeasurementController' => __DIR__ . '/../..' . '/app/Http/Controllers/UnitOfMeasurementController.php',
+        'App\\Http\\Controllers\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/VendorController.php',
         'App\\Http\\Controllers\\WorkingUnitController' => __DIR__ . '/../..' . '/app/Http/Controllers/WorkingUnitController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
+        'App\\Http\\Middleware\\Cors' => __DIR__ . '/../..' . '/app/Http/Middleware/Cors.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
+        'App\\Http\\Middleware\\HasPermission' => __DIR__ . '/../..' . '/app/Http/Middleware/HasPermission.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
@@ -371,7 +389,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Model\\inventory\\ReceivePurchase' => __DIR__ . '/../..' . '/app/ReceivePurchase.php',
         'App\\Model\\inventory\\ReceiveReturn' => __DIR__ . '/../..' . '/app/ReceiveReturn.php',
         'App\\Model\\inventory\\Requisition' => __DIR__ . '/../..' . '/app/Requisition.php',
-        'App\\Model\\inventory\\WorkingUnit' => __DIR__ . '/../..' . '/app/WorkingUnit.php',
+        'App\\PaymentTerm' => __DIR__ . '/../..' . '/app/PaymentTerm.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\ProductBrand' => __DIR__ . '/../..' . '/app/ProductBrand.php',
         'App\\ProductCategory' => __DIR__ . '/../..' . '/app/ProductCategory.php',
@@ -383,6 +401,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\UnitOfMeasurement' => __DIR__ . '/../..' . '/app/UnitOfMeasurement.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\Vendor' => __DIR__ . '/../..' . '/app/Vendor.php',
+        'App\\VendorContact' => __DIR__ . '/../..' . '/app/VendorContact.php',
+        'App\\VendorEnclosure' => __DIR__ . '/../..' . '/app/VendorEnclosure.php',
+        'App\\WorkingUnit' => __DIR__ . '/../..' . '/app/WorkingUnit.php',
+        'App\\WorkingUnitType' => __DIR__ . '/../..' . '/app/WorkingUnitType.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
@@ -393,6 +415,13 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -3699,6 +3728,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Watson\\BootstrapForm\\BootstrapForm' => __DIR__ . '/..' . '/watson/bootstrap-form/src/BootstrapForm.php',
+        'Watson\\BootstrapForm\\BootstrapFormServiceProvider' => __DIR__ . '/..' . '/watson/bootstrap-form/src/BootstrapFormServiceProvider.php',
+        'Watson\\BootstrapForm\\Facades\\BootstrapForm' => __DIR__ . '/..' . '/watson/bootstrap-form/src/Facades/BootstrapForm.php',
+        'Watson\\BootstrapForm\\Type' => __DIR__ . '/..' . '/watson/bootstrap-form/src/Type.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

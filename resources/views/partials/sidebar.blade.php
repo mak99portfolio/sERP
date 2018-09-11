@@ -40,7 +40,7 @@
           <li><a href="typography.html">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li class="sub_menu"><a href="level2.html">Working Unit</a></li>
+            <li class="sub_menu"><a href="{{route('working-unit.index')}}">Working Unit</a></li>
               <li><a href="#level2_1">Item Status</a></li>
               <li><a href="#level2_2">Adjustment Purpose</a></li>
               <li><a href="#level2_2">Return Reason</a></li>

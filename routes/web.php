@@ -24,6 +24,8 @@ Route::resource('packing-list', 'PackingListController');
 Route::resource('bill-of-lading', 'BillOfLadingController');
 Route::resource('cnf', 'CnfController');
 
+//Inventory
+Route::resource('working-unit', 'WorkingUnitController');
 
 Route::get('/test', 'TestController@index');
 

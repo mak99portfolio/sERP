@@ -14,7 +14,10 @@ class WorkingUnitController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/inventory/working_unit');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

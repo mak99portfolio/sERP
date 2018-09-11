@@ -6,9 +6,10 @@ use Closure;
 
 class HasPermission{
 
-    public function handle($request, Closure $next){
+    public function handle($request, Closure $next, $name){
 
-        return $next($request);
+    	if(\Auth::check() && \Auth::user()->hasPermissionTo($name)) return $next($request);
+    	return abort(404);
 
     }
 

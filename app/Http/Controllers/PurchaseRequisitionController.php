@@ -14,7 +14,10 @@ class PurchaseRequisitionController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/purchase_requisition');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

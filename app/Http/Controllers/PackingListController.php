@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Pocurement\CommercialInvoice;
+use App\PackingList;
 use Illuminate\Http\Request;
 
-class CommercialInvoiceController extends Controller
+class PackingListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CommercialInvoiceController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/commercial_invoice');
+        $view = view('modules/procurement/packing_list');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +44,10 @@ class CommercialInvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function show(CommercialInvoice $commercialInvoice)
+    public function show(PackingList $packingList)
     {
         //
     }
@@ -55,10 +55,10 @@ class CommercialInvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function edit(CommercialInvoice $commercialInvoice)
+    public function edit(PackingList $packingList)
     {
         //
     }
@@ -67,10 +67,10 @@ class CommercialInvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommercialInvoice $commercialInvoice)
+    public function update(Request $request, PackingList $packingList)
     {
         //
     }
@@ -78,10 +78,10 @@ class CommercialInvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommercialInvoice $commercialInvoice)
+    public function destroy(PackingList $packingList)
     {
         //
     }

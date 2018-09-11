@@ -3,9 +3,9 @@
 namespace App\Model\Pocurement;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDelets;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class CommercialInvoice extends Model
 {
-   use SoftDelets;
+   use softDeletes;
 }

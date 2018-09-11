@@ -1,11 +1,11 @@
 @extends('layout')
-@section('title', 'Lc Details')
+@section('title', 'Purchase Requisition')
 @section('content')
 <div class="right_col" role="main">
   <div class="">
     <div class="page-title">
       <div class="title_left">
-        <h3>Dashboard</h3>
+        <h3>Purchase Requisition</h3>
       </div>
     </div>
     <div class="clearfix"></div>

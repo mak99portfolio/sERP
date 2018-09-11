@@ -21,4 +21,6 @@ Route::get('/form', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);

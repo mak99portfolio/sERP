@@ -27,10 +27,10 @@ class CreateProductsTable extends Migration
             $table->string('model');
             $table->string('serial');
             $table->string('part_number');
-            $table->integer('country_of_origin_id')->unsigned();
-            $table->foreign('country_of_origin_id')->references('id')->on('country_of_origins')->onDelete('restrict');
-            $table->integer('country_of_manufacture_id')->unsigned();
-            $table->foreign('country_of_manufacture_id')->references('id')->on('country_of_manufactures')->onDelete('restrict');
+            $table->integer('country_of_origin_country_id')->unsigned();
+            $table->foreign('country_of_origin_country_id')->references('id')->on('countries')->onDelete('restrict');
+            $table->integer('country_of_manufacture_country_id')->unsigned();
+            $table->foreign('country_of_manufacture_country_id')->references('id')->on('countries')->onDelete('restrict');
             $table->integer('unit_of_measurement_id')->unsigned();
             $table->foreign('unit_of_measurement_id')->references('id')->on('unit_of_measurements')->onDelete('restrict');
             $table->integer('product_status_id')->unsigned();
@@ -43,6 +43,8 @@ class CreateProductsTable extends Migration
             $table->integer('pack_size');
             $table->integer('shipper_carton_size');
             $table->text('description');
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
             $table->softDeletes();
             $table->timestamps();
         });

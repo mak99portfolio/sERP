@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Company;
+use App\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CompanyController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(City $city)
     {
         //
     }
@@ -53,10 +53,10 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Company  $company
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(City $city)
     {
         //
     }
@@ -65,10 +65,10 @@ class CompanyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Company  $company
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, City $city)
     {
         //
     }
@@ -76,10 +76,10 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Company  $company
+     * @param  \App\City  $city
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(City $city)
     {
         //
     }

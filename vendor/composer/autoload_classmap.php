@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\BankInformation' => $baseDir . '/app/BankInformation.php',
+    'App\\Company' => $baseDir . '/app/Company.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -16,6 +17,7 @@ return array(
     'App\\Http\\Controllers\\Auth\\VerificationController' => $baseDir . '/app/Http/Controllers/Auth/VerificationController.php',
     'App\\Http\\Controllers\\ChallanController' => $baseDir . '/app/Http/Controllers/ChallanController.php',
     'App\\Http\\Controllers\\CommercialInvoiceController' => $baseDir . '/app/Http/Controllers/CommercialInvoiceController.php',
+    'App\\Http\\Controllers\\CompanyController' => $baseDir . '/app/Http/Controllers/CompanyController.php',
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\IssueController' => $baseDir . '/app/Http/Controllers/IssueController.php',
     'App\\Http\\Controllers\\ProductBrandController' => $baseDir . '/app/Http/Controllers/ProductBrandController.php',
@@ -49,7 +51,6 @@ return array(
     'App\\Model\\inventory\\ReceivePurchase' => $baseDir . '/app/ReceivePurchase.php',
     'App\\Model\\inventory\\ReceiveReturn' => $baseDir . '/app/ReceiveReturn.php',
     'App\\Model\\inventory\\Requisition' => $baseDir . '/app/Requisition.php',
-    'App\\Model\\inventory\\WorkingUnit' => $baseDir . '/app/WorkingUnit.php',
     'App\\PaymentTerm' => $baseDir . '/app/PaymentTerm.php',
     'App\\Product' => $baseDir . '/app/Product.php',
     'App\\ProductBrand' => $baseDir . '/app/ProductBrand.php',
@@ -64,6 +65,8 @@ return array(
     'App\\Vendor' => $baseDir . '/app/Vendor.php',
     'App\\VendorContact' => $baseDir . '/app/VendorContact.php',
     'App\\VendorEnclosure' => $baseDir . '/app/VendorEnclosure.php',
+    'App\\WorkingUnit' => $baseDir . '/app/WorkingUnit.php',
+    'App\\WorkingUnitType' => $baseDir . '/app/WorkingUnitType.php',
     'BeyondCode\\DumpServer\\DumpServerCommand' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
     'BeyondCode\\DumpServer\\DumpServerServiceProvider' => $vendorDir . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
     'BeyondCode\\DumpServer\\Dumper' => $vendorDir . '/beyondcode/laravel-dump-server/src/Dumper.php',

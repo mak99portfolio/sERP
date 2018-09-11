@@ -345,6 +345,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
 
     public static $classMap = array (
         'App\\BankInformation' => __DIR__ . '/../..' . '/app/BankInformation.php',
+        'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
@@ -354,6 +355,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\ChallanController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChallanController.php',
         'App\\Http\\Controllers\\CommercialInvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommercialInvoiceController.php',
+        'App\\Http\\Controllers\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompanyController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\IssueController' => __DIR__ . '/../..' . '/app/Http/Controllers/IssueController.php',
         'App\\Http\\Controllers\\ProductBrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductBrandController.php',
@@ -387,7 +389,6 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Model\\inventory\\ReceivePurchase' => __DIR__ . '/../..' . '/app/ReceivePurchase.php',
         'App\\Model\\inventory\\ReceiveReturn' => __DIR__ . '/../..' . '/app/ReceiveReturn.php',
         'App\\Model\\inventory\\Requisition' => __DIR__ . '/../..' . '/app/Requisition.php',
-        'App\\Model\\inventory\\WorkingUnit' => __DIR__ . '/../..' . '/app/WorkingUnit.php',
         'App\\PaymentTerm' => __DIR__ . '/../..' . '/app/PaymentTerm.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\ProductBrand' => __DIR__ . '/../..' . '/app/ProductBrand.php',
@@ -402,6 +403,8 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Vendor' => __DIR__ . '/../..' . '/app/Vendor.php',
         'App\\VendorContact' => __DIR__ . '/../..' . '/app/VendorContact.php',
         'App\\VendorEnclosure' => __DIR__ . '/../..' . '/app/VendorEnclosure.php',
+        'App\\WorkingUnit' => __DIR__ . '/../..' . '/app/WorkingUnit.php',
+        'App\\WorkingUnitType' => __DIR__ . '/../..' . '/app/WorkingUnitType.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',

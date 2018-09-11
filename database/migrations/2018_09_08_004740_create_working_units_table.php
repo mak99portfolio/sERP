@@ -11,12 +11,16 @@ class CreateWorkingUnitsTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
+    public function up(){
+
         Schema::create('working_units', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id');
+            $table->increments('company_id');
+            $table->string('name');
             $table->timestamps();
         });
+
     }
 
     /**

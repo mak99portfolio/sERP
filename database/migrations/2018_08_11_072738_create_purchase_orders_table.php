@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCountryOfOriginsTable extends Migration
+class CreatePurchaseOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCountryOfOriginsTable extends Migration
      */
     public function up()
     {
-        Schema::create('country_of_origins', function (Blueprint $table) {
+        Schema::create('purchase_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateCountryOfOriginsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('country_of_origins');
+        Schema::dropIfExists('purchase_orders');
     }
 }

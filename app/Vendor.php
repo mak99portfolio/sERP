@@ -17,7 +17,7 @@ class Vendor extends Model{
 	}
 
 	public function vendor_contacts(){
-		return $this->hasMany('App\VendorContact')
+		return $this->hasMany('App\VendorContact');
 	}
 
 	public function vendor_enclosures(){

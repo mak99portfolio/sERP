@@ -11,15 +11,14 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/form', function () {
-    return view('form');
-});
+Route::get('/test', 'TestController@index');
 
-Auth::routes();
 
 
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);

@@ -14,30 +14,7 @@ class CreateVendorsTable extends Migration
     public function up()
     {
 
-        Schema::create('payment_terms', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('vendor_id')->unsigned();
-            $table->integer('net_days')->unsigned();
-            $table->decimal('payment_discount')->default(0.00);
-            $table->decimal('other_discount')->default(0.00);
-            $table->text('discount_terms')->nullable();
-            $table->timestamps();
-
-        });
-
-        Schema::create('bank_information', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('ac_no')->nullable();
-            $table->string('ac_name')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('branch_name')->nullable();
-            $table->string('swift_code')->nullable();
-            $table->text('address')->nullable();
-            $table->timestamps();
-
-        });
-
-        Schema::create('vendors', function (Blueprint $table){
+    	Schema::create('vendors', function (Blueprint $table){
 
             $table->increments('id');
             $table->string('vendor_id')->unique();
@@ -62,12 +39,33 @@ class CreateVendorsTable extends Migration
             $table->string('business_nature');
             $table->string('credit_period');
             $table->string('credit_limit');
-            $table->integer('payment_term_id')->unsigned();
-            $table->integer('bank_information_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('payment_term_id')->references('id')->on('payment_terms')->onDelete('cascade');
-            $table->foreign('bank_information_id')->references('id')->on('bank_information')->onDelete('cascade');
+        });
+
+        Schema::create('payment_terms', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('vendor_id')->unsigned();
+            $table->integer('net_days')->unsigned();
+            $table->decimal('payment_discount')->default(0.00);
+            $table->decimal('other_discount')->default(0.00);
+            $table->text('discount_terms')->nullable();
+            $table->timestamps();
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+
+        });
+
+        Schema::create('bank_information', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('vendor_id')->unsigned();
+            $table->string('ac_no')->nullable();
+            $table->string('ac_name')->nullable();
+            $table->string('bank_name')->nullable();
+            $table->string('branch_name')->nullable();
+            $table->string('swift_code')->nullable();
+            $table->text('address')->nullable();
+            $table->timestamps();
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
 
         });
 
@@ -117,8 +115,8 @@ class CreateVendorsTable extends Migration
         Schema::dropIfExists('enclosure_vendor');
         Schema::dropIfExists('vendor_enclosures');
         Schema::dropIfExists('vendor_contacts');
-        Schema::dropIfExists('vendors');
         Schema::dropIfExists('bank_information');
         Schema::dropIfExists('payment_terms');
+        Schema::dropIfExists('vendors');
     }
 }

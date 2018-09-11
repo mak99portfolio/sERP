@@ -12,3 +12,8 @@ yarn-error.log
 .env
 .phpunit.result.cache
 vendor
+<<<<<<< HEAD
+=======
+.dropbox
+desktop.ini
+>>>>>>> 56104970d9e359afe39a74eaa4f7f32cb8c2cfe1

@@ -14,6 +14,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         '0d8253363903f0ac7b0978dcde4e28a0' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/helpers.php',
@@ -33,6 +34,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         array (
             'Whoops\\' => 7,
             'Webmozart\\Assert\\' => 17,
+            'Watson\\BootstrapForm\\' => 21,
         ),
         'T' => 
         array (
@@ -105,6 +107,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
         ),
         'B' => 
         array (
@@ -134,6 +137,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Watson\\BootstrapForm\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/watson/bootstrap-form/src',
         ),
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
@@ -279,6 +286,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'BeyondCode\\DumpServer\\' => 
         array (
             0 => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src',
@@ -406,6 +417,8 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Vendor' => __DIR__ . '/../..' . '/app/Vendor.php',
         'App\\VendorContact' => __DIR__ . '/../..' . '/app/VendorContact.php',
         'App\\VendorEnclosure' => __DIR__ . '/../..' . '/app/VendorEnclosure.php',
+        'App\\WorkingUnit' => __DIR__ . '/../..' . '/app/WorkingUnit.php',
+        'App\\WorkingUnitType' => __DIR__ . '/../..' . '/app/WorkingUnitType.php',
         'BeyondCode\\DumpServer\\DumpServerCommand' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerCommand.php',
         'BeyondCode\\DumpServer\\DumpServerServiceProvider' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/DumpServerServiceProvider.php',
         'BeyondCode\\DumpServer\\Dumper' => __DIR__ . '/..' . '/beyondcode/laravel-dump-server/src/Dumper.php',
@@ -416,6 +429,13 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
         'Carbon\\Laravel\\ServiceProvider' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Laravel/ServiceProvider.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -3722,6 +3742,10 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'Watson\\BootstrapForm\\BootstrapForm' => __DIR__ . '/..' . '/watson/bootstrap-form/src/BootstrapForm.php',
+        'Watson\\BootstrapForm\\BootstrapFormServiceProvider' => __DIR__ . '/..' . '/watson/bootstrap-form/src/BootstrapFormServiceProvider.php',
+        'Watson\\BootstrapForm\\Facades\\BootstrapForm' => __DIR__ . '/..' . '/watson/bootstrap-form/src/Facades/BootstrapForm.php',
+        'Watson\\BootstrapForm\\Type' => __DIR__ . '/..' . '/watson/bootstrap-form/src/Type.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',

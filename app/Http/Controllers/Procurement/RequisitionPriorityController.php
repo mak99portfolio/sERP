@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\ReceiveReturn;
+use App\Http\Controllers\Controller;
+use App\RequisitionPriority;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ReceiveReturnController extends Controller
+class RequisitionPriorityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class ReceiveReturnController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceiveReturn $receiveReturn)
+    public function show(RequisitionPriority $requisitionPriority)
     {
         //
     }
@@ -52,10 +54,10 @@ class ReceiveReturnController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiveReturn $receiveReturn)
+    public function edit(RequisitionPriority $requisitionPriority)
     {
         //
     }
@@ -64,10 +66,10 @@ class ReceiveReturnController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiveReturn $receiveReturn)
+    public function update(Request $request, RequisitionPriority $requisitionPriority)
     {
         //
     }
@@ -75,10 +77,10 @@ class ReceiveReturnController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceiveReturn $receiveReturn)
+    public function destroy(RequisitionPriority $requisitionPriority)
     {
         //
     }

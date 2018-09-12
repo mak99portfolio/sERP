@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\ReceiveItem;
+use App\Http\Controllers\Controller;
+use App\RequisitionPurpose;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ReceiveItemController extends Controller
+class RequisitionPurposeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class ReceiveItemController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\RequisitionPurpose  $requisitionPurpose
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceiveItem $receiveItem)
+    public function show(RequisitionPurpose $requisitionPurpose)
     {
         //
     }
@@ -52,10 +54,10 @@ class ReceiveItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\RequisitionPurpose  $requisitionPurpose
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiveItem $receiveItem)
+    public function edit(RequisitionPurpose $requisitionPurpose)
     {
         //
     }
@@ -64,10 +66,10 @@ class ReceiveItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\RequisitionPurpose  $requisitionPurpose
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiveItem $receiveItem)
+    public function update(Request $request, RequisitionPurpose $requisitionPurpose)
     {
         //
     }
@@ -75,10 +77,10 @@ class ReceiveItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
+     * @param  \App\RequisitionPurpose  $requisitionPurpose
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceiveItem $receiveItem)
+    public function destroy(RequisitionPurpose $requisitionPurpose)
     {
         //
     }

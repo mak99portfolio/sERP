@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\CostSheet;
+use App\Http\Controllers\Controller;
+use App\LetterOfCredit;
 use Illuminate\Http\Request;
 
-class CostSheetController extends Controller
+class LetterOfCreditController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class CostSheetController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/cost_sheet');
+        $view = view('modules/procurement/letter_of_credit');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +45,10 @@ class CostSheetController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CostSheet  $costSheet
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function show(CostSheet $costSheet)
+    public function show(LetterOfCredit $letterOfCredit)
     {
         //
     }
@@ -55,10 +56,10 @@ class CostSheetController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CostSheet  $costSheet
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function edit(CostSheet $costSheet)
+    public function edit(LetterOfCredit $letterOfCredit)
     {
         //
     }
@@ -67,10 +68,10 @@ class CostSheetController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CostSheet  $costSheet
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CostSheet $costSheet)
+    public function update(Request $request, LetterOfCredit $letterOfCredit)
     {
         //
     }
@@ -78,10 +79,10 @@ class CostSheetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CostSheet  $costSheet
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CostSheet $costSheet)
+    public function destroy(LetterOfCredit $letterOfCredit)
     {
         //
     }

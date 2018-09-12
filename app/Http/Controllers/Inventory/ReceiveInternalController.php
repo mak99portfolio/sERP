@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\PurchaseRequisition;
+use App\ReceiveInternal;
 use Illuminate\Http\Request;
 
-class PurchaseRequisitionController extends Controller
+class ReceiveInternalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class PurchaseRequisitionController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/purchase_requisition');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseRequisition $purchaseRequisition)
+    public function show(ReceiveInternal $receiveInternal)
     {
         //
     }
@@ -55,10 +52,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseRequisition $purchaseRequisition)
+    public function edit(ReceiveInternal $receiveInternal)
     {
         //
     }
@@ -67,10 +64,10 @@ class PurchaseRequisitionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseRequisition $purchaseRequisition)
+    public function update(Request $request, ReceiveInternal $receiveInternal)
     {
         //
     }
@@ -78,10 +75,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseRequisition $purchaseRequisition)
+    public function destroy(ReceiveInternal $receiveInternal)
     {
         //
     }

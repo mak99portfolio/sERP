@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model{
 
-   use SoftDelets;
+   use softDeletes;
 
    protected $gaurded=['id'];
 

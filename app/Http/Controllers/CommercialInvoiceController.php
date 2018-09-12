@@ -14,7 +14,10 @@ class CommercialInvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/commercial_invoice');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

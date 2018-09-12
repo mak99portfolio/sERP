@@ -15,7 +15,10 @@ class ProformaInvoiceController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/proforma_invoice');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

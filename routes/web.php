@@ -12,10 +12,20 @@
 */
 
 Auth::routes();
+//Procurement
+Route::resource('purchase-requisition', 'PurchaseRequisitionController');
+Route::resource('purchase-order', 'PurchaseOrderController');
+Route::resource('proforma-invoice', 'ProformaInvoiceController');
+Route::resource('letter-of-credit', 'LetterOfCreditController');
+Route::resource('cost-sheet', 'CostSheetController');
+Route::resource('insurance-cover-note', 'InsuranceCoverNoteController');
+Route::resource('commercial-invoice', 'CommercialInvoiceController');
+Route::resource('packing-list', 'PackingListController');
+Route::resource('bill-of-lading', 'BillOfLadingController');
+Route::resource('cnf', 'CnfController');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Inventory
+Route::resource('working-unit', 'WorkingUnitController');
 
 Route::get('/test', 'TestController@index');
 

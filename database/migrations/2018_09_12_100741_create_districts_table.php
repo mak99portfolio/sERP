@@ -12,7 +12,9 @@ class CreateDistrictsTable extends Migration{
             $table->increments('id');
             $table->integer('country_id')->unsigned();
             $table->integer('division_id')->unsigned();
-            $table->string('name');
+            $table->string('name')->unique();
+            $table->double('latitute')->nullable();
+            $table->double('longitude')->nullable();
             $table->timestamps();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');

@@ -1,0 +1,6 @@
+.nav li li.current-page a, .nav.child_menu li li a.active {
+    color: rgb(248, 190, 123);
+}
+.nav.child_menu li li a:hover {
+    color: rgb(245, 219, 189);
+}

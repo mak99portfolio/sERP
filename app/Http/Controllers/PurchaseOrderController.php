@@ -15,7 +15,10 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/purchase_order');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

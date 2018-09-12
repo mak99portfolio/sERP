@@ -30,6 +30,8 @@
 
     <!-- Custom Theme Style -->
     <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
+
+    <link href="{{asset('assets/style.css')}}" rel="stylesheet">
     @yield('style')
   </head>
 

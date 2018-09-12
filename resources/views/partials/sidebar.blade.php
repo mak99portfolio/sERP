@@ -2,23 +2,23 @@
  <!-- sidebar menu -->
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
   <div class="menu_section">
-    <h3>General</h3>
+    {{-- <h3>General</h3> --}}
     <ul class="nav side-menu">
     <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
       <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li class="sub_menu"><a href="level2.html">Requisition</a></li>
-              <li><a href="#level2_1">Purchase Order</a></li>
-              <li><a href="#level2_2">Proforma Invoice</a></li>
-              <li><a href="#level2_2">LC Details</a></li>
-              <li><a href="#level2_2">Cost Sheet</a></li>
-              <li><a href="#level2_2">Insurance Cover Note</a></li>
-              <li><a href="#level2_2">Commercial Invoice</a></li>
-              <li><a href="#level2_2">Packing List</a></li>
-              <li><a href="#level2_2">Bill of Lading</a></li>
-              <li><a href="#level2_2">Duty Tax, Vat, CNF Bill</a></li>
+            <li class="sub_menu"><a href="{{route('purchase-requisition.index')}}">Purchase Requisition</a></li>
+            <li><a href="{{route('purchase-order.index')}}">Purchase Order</a></li>
+              <li><a href="{{route('proforma-invoice.index')}}">Proforma Invoice</a></li>
+              <li><a href="{{route('letter-of-credit.index')}}">LC Details</a></li>
+              <li><a href="{{route('cost-sheet.index')}}">Cost Sheet</a></li>
+              <li><a href="{{route('insurance-cover-note.index')}}">Insurance Cover Note</a></li>
+              <li><a href="{{route('commercial-invoice.index')}}">Commercial Invoice</a></li>
+              <li><a href="{{route('packing-list.index')}}">Packing List</a></li>
+              <li><a href="{{route('bill-of-lading.index')}}">Bill of Lading</a></li>
+              <li><a href="{{route('cnf.index')}}">Duty Tax, Vat, CNF Bill</a></li>
             </ul>
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
@@ -40,7 +40,7 @@
           <li><a href="typography.html">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li class="sub_menu"><a href="level2.html">Working Unit</a></li>
+            <li class="sub_menu"><a href="{{route('working-unit.index')}}">Working Unit</a></li>
               <li><a href="#level2_1">Item Status</a></li>
               <li><a href="#level2_2">Adjustment Purpose</a></li>
               <li><a href="#level2_2">Return Reason</a></li>

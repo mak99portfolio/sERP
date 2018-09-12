@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
 use App\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Country;
+use App\VendorCategory;
 
 class VendorController extends Controller
 {
@@ -15,7 +18,10 @@ class VendorController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/vendor');
+        $view->with('country_list', Country::all());
+        $view->with('vendor_category_list', VendorCategory::all());
+        return $view;
     }
 
     /**

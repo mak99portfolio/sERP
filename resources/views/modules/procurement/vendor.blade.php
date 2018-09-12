@@ -137,58 +137,256 @@
                                     <input class="form-control input-sm" type="text">
                                 </div>
                             </div>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Type of Business</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="col-md-2 col-sm-2 col-xs-2">
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label class="i-checks">
-                                                            <input type="checkbox"><i></i> Ltd. Company
-                                                        </label>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Type of Business</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-group pull-in clearfix">
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Ltd. Company
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Partnership
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Proprietorship
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-3 col-xs-12">
+                                                        <div class="col-sm-2">
+                                                            <div class="checkbox">
+                                                                <label class="i-checks">
+                                                                    <input type="checkbox"><i></i> Other
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control input-sm" type="text">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-xs-2">
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label class="i-checks">
-                                                            <input type="checkbox"><i></i> Partnership
-                                                        </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Nature of Business</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="form-group pull-in clearfix">
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Manufacturer
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Trader
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Service Provide
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Contractor
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-3">
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox"><i></i> Agent/Distributor
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="col-sm-2">
+                                                            <div class="checkbox">
+                                                                <label class="i-checks">
+                                                                    <input type="checkbox"><i></i> Other
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6">
+                                                            <input class="form-control input-sm" type="text">
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-xs-2">
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label class="i-checks">
-                                                            <input type="checkbox"><i></i> Proprietorship
-                                                        </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Credit Information</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Credit Period</label>
+                                                        <input class="form-control input-sm" type="text">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-2 col-sm-2 col-xs-2">
-                                                <div class="form-group">
-                                                    <div class="checkbox">
-                                                        <label class="i-checks">
-                                                            <input type="checkbox"><i></i> Other
-                                                        </label>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Credit Limit</label>
+                                                        <input class="form-control input-sm" type="text">
                                                     </div>
-                                                    <input class="form-control input-sm" type="text">
                                                 </div>
-                                            </div>
-                                            
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Acceptance of payment terms and other discounts (if applicable)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="col-md-2 col-sm-4">
+                                                    <div class="form-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><strong>Net</strong></div>
+                                                            <input type="text" class="form-control input-sm">
+                                                            <div class="input-group-addon">Day</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-4">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-6 text-right">
+                                                            <div class="checkbox">
+                                                                <label class="i-checks">
+                                                                    <input type="checkbox"><i></i> Prompt payment discount
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 m-t-xs">
+                                                            <input class="form-control input-sm" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                                    <div class="form-group">
+                                                        <div class="col-sm-6 text-right">
+                                                            <div class="checkbox">
+                                                                <label class="i-checks">
+                                                                    <input type="checkbox"><i></i> Other discounts
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-6 m-t-xs">
+                                                            <input class="form-control input-sm" type="text">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Specify Discount Terms</label>
+                                                        <textarea class="form-control input-sm" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Bank Information</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>A/C No</label>
+                                                        <input class="form-control input-sm" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>A/C Name</label>
+                                                        <input class="form-control input-sm" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Bank</label>
+                                                        <input class="form-control input-sm" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Branch</label>
+                                                        <input class="form-control input-sm" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>SWIFT Code</label>
+                                                        <input class="form-control input-sm" type="text">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Bank Address</label>
+                                                        <textarea class="form-control input-sm" rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </form>
 
                     </div>
@@ -212,189 +410,6 @@
             <form class="form-horizontal form-label-left">
 
 
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nature of Business</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group pull-in clearfix">
-                                    <div class="col-sm-2">
-                                        <div class="checkbox">
-                                            <label class="i-checks">
-                                                <input type="checkbox"><i></i> Manufacturer
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="checkbox">
-                                            <label class="i-checks">
-                                                <input type="checkbox"><i></i> Trader
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="checkbox">
-                                            <label class="i-checks">
-                                                <input type="checkbox"><i></i> Service Provide
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="checkbox">
-                                            <label class="i-checks">
-                                                <input type="checkbox"><i></i> Contractor
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <div class="checkbox">
-                                            <label class="i-checks">
-                                                <input type="checkbox"><i></i> Agent/Distributor
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="col-sm-6 text-right">
-                                            <div class="checkbox">
-                                                <label class="i-checks">
-                                                    <input type="checkbox"><i></i> Other
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 m-t-xs">
-                                            <input class="form-control input-sm" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Credit Information</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group pull-in clearfix">
-                                    <div class="col-sm-6">
-                                        <label>Credit Period</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Credit Limit</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Acceptance of payment terms and other discounts (if applicable)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group pull-in clearfix">
-                                    <div class="col-sm-2">
-                                        <div class="form-group m-t-xs">
-                                            <!-- <label class="sr-only">Amount (in dollars)</label> -->
-                                            <div class="input-group">
-                                                <div class="input-group-addon"><strong>Net</strong></div>
-                                                <input type="text" class="form-control input-sm">
-                                                <div class="input-group-addon">Day</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="col-sm-6 text-right">
-                                            <div class="checkbox">
-                                                <label class="i-checks">
-                                                    <input type="checkbox"><i></i> Prompt payment discount
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 m-t-xs">
-                                            <input class="form-control input-sm" type="text">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <div class="col-sm-6 text-right">
-                                            <div class="checkbox">
-                                                <label class="i-checks">
-                                                    <input type="checkbox"><i></i> Other discounts
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-6 m-t-xs">
-                                            <input class="form-control input-sm" type="text">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group pull-in clearfix m-t-n-sm">
-                                    <div class="col-sm-12">
-                                        <label>Specify Discount Terms</label>
-                                        <textarea class="form-control input-sm" rows="2"></textarea>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Bank Information</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <div class="form-group pull-in clearfix">
-                                    <div class="col-sm-6">
-                                        <label>A/C No</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>A/C Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group pull-in clearfix">
-                                    <div class="col-sm-6">
-                                        <label>Bank</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Branch</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                </div>
-                                <div class="form-group pull-in clearfix">
-                                    <div class="col-sm-6">
-                                        <label>SWIFT Code</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Bank Address</label>
-                                        <textarea class="form-control input-sm" rows="2"></textarea>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
                 <table class="table table-bordered">
                     <thead>
                         <tr>

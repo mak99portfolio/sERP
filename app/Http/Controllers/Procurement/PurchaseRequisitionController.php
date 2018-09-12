@@ -39,7 +39,11 @@ class PurchaseRequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pr = new PurchaseRequisition;
+        $pr->fill($request->all());
+        $pr->created_by_user_id = Auth::id;
+        $pr->company_id = Auth::user()->getUserCompanyId();
+        $pr->save();
     }
 
     /**

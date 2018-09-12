@@ -33,7 +33,11 @@ class WorkingUnitController extends Controller{
     	//dd($request->all());
 
     	$request->validate([
-    		'name'=>'required|exists:working_units'
+    		'name'=>'required|exists:working_units',
+    		'working_unit_type_id'=>'required|integer',
+    		'parent_unit_id'=>'required|integer',
+    		'in_charge'=>'required|integer',
+    		'address'=>'required|max:500',
     	]);
 
 

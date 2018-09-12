@@ -4,3 +4,6 @@
 .nav.child_menu li li a:hover {
     color: rgb(245, 219, 189);
 }
+textarea{
+    resize: vertical;
+}

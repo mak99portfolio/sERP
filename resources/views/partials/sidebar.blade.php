@@ -9,8 +9,8 @@
         <ul class="nav child_menu">
           <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-            <li class="sub_menu"><a href="{{route('purchase-requisition.index')}}">Purchase Requisition</a></li>
-            <li><a href="{{route('purchase-order.index')}}">Purchase Order</a></li>
+              <li><a href="{{route('purchase-requisition.index')}}">Purchase Requisition</a></li>
+              <li><a href="{{route('purchase-order.index')}}">Purchase Order</a></li>
               <li><a href="{{route('proforma-invoice.index')}}">Proforma Invoice</a></li>
               <li><a href="{{route('letter-of-credit.index')}}">LC Details</a></li>
               <li><a href="{{route('cost-sheet.index')}}">Cost Sheet</a></li>
@@ -23,12 +23,16 @@
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li class="sub_menu"><a href="level2.html">Requisition</a>
-              </li>
               <li><a href="#level2_1">Quatation</a>
               </li>
               <li><a href="#level2_2">Purchase Order</a>
               </li>
+            </ul>
+          </li>
+          <li><a>Setting<span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="{{route('vendor.index')}}">Vendor</a></li>
+              <li><a href="{{route('vendor-category.index')}}">Vendor Category</a></li>
             </ul>
           </li>
         </ul>
@@ -53,7 +57,7 @@
         <ul class="nav child_menu">
           <li><a href="tables.html">Product</a></li>
           <li><a href="tables_dynamic.html">Product Category</a></li>
-          <li><a href="tables_dynamic.html">Country</a></li>
+        <li><a href="{{route('country.index')}}">Country</a></li>
         </ul>
       </li>
     </ul>

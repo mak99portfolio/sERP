@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Core;
 
 use App\Country;
 use Illuminate\Http\Request;
@@ -15,7 +15,9 @@ class CountryController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/core/country');
+
+        return $view;
     }
 
     /**
@@ -36,7 +38,11 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $country = new Country;
+        $country->fill($request->input());
+        $country->creator_id = Auth::id();
+        $country->save();
+        return redirect()->route('country.index');
     }
 
     /**

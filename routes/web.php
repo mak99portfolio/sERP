@@ -1,8 +1,9 @@
 <?php
 
 Route::get('/test', 'TestController@index');
-Route::namespace('Dev')->prefix('dev')->group(function(){
 
+Route::namespace('Dev')->prefix('dev')->group(function(){
+    Route::resource('access-matrix', 'AccessMatrixController');
 });
 
 //Common
@@ -13,6 +14,7 @@ Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboa
 //Core
 Route::namespace('Core')->prefix('core')->group(function(){
     Route::get('cities', 'CityController@index')->name('core.cities');
+    Route::resource('country', 'CountryController');
 });
 
 //Procurement
@@ -27,6 +29,10 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('packing-list', 'PackingListController');
     Route::resource('bill-of-lading', 'BillOfLadingController');
     Route::resource('cnf', 'CnfController');
+    //Procurement Setting
+    Route::resource('vendor', 'VendorController');
+    Route::resource('vendor-category', 'VendorCategoryController');
+
 });
 
 //Inventory

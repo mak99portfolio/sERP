@@ -21,7 +21,7 @@ class CreateCountriesTable extends Migration
             $table->integer('updator_user_id')->unsigned();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->tinyInteger('status');
-            $table->softDelets();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

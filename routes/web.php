@@ -33,3 +33,16 @@ Route::get('/test', 'TestController@index');
 
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
+
+
+Route::namespace('Core')->prefix('core')->group(function(){
+
+    Route::get('cities', 'CityController@index')->name('core.cities');
+
+});
+
+Route::namespace('Procurement')->prefix('procurement')->group(function(){
+
+    Route::get('packing-list', 'PackingController@index')->name('procurement.packing_list');
+
+});

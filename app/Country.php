@@ -10,6 +10,6 @@ class Country extends Model
     use SoftDeletes;
     protected $fillable = [
         'name',
-        'shortname'
+        'short_name'
     ];
 }

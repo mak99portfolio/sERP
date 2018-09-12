@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Core;
 use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 
 class CountryController extends Controller
 {
@@ -16,7 +17,7 @@ class CountryController extends Controller
     public function index()
     {
         $view = view('modules/core/country');
-
+        $view->with('country_list', Country::all());
         return $view;
     }
 
@@ -38,9 +39,13 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:countries',
+            'short_name' => 'required|unique:countries',
+        ]);
         $country = new Country;
         $country->fill($request->input());
-        $country->creator_id = Auth::id();
+        $country->creator_user_id = Auth::id();
         $country->save();
         return redirect()->route('country.index');
     }

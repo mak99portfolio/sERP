@@ -42,10 +42,12 @@
                                 <th>Country Name</th>
                                 <th>Shortname</th>
                             </tr>
+                            @foreach ($country_list as $item)
                             <tr>
-                                <td>bangladesh</td>
-                                <td>bd</td>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->short_name}}</td>
                             </tr>
+                            @endforeach
                         </thead>
                     </table>
                 </div>

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
@@ -10,18 +9,38 @@ class WorkingUnitController extends Controller{
 
     public function index(){
 
-    	$data['working_unit_types']=\App\WorkingUnitType::pluck('name', 'id');
-        return view('modules.inventory.working_unit', $data);
+    	echo 'Moved to http://localhost:8000/inventory/working-unit/create url';
 
     }
 
 
     public function create(){
 
+    	$data=[
+    		'working_unit'=>new \App\WorkingUnit,
+    		'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+    		'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
+    		'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
+    	];
+
+        return view('modules.inventory.working_unit', $data);
+
     }
 
 
     public function store(Request $request){
+
+    	//dd($request->all());
+
+    	$request->validate([
+    		'name'=>'required|exists:working_units',
+    		'working_unit_type_id'=>'required|integer',
+    		'parent_unit_id'=>'required|integer',
+    		'in_charge'=>'required|integer',
+    		'address'=>'required|max:500',
+    	]);
+
+
 
     }
 

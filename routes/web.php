@@ -1,8 +1,9 @@
 <?php
 
 Route::get('/test', 'TestController@index');
-Route::namespace('Dev')->prefix('dev')->group(function(){
 
+Route::namespace('Dev')->prefix('dev')->group(function(){
+    Route::resource('access-matrix', 'AccessMatrixController');
 });
 
 //Common

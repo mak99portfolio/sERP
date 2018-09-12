@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Inventory;
 
-use App\Model\Pocurement\CommercialInvoice;
+use App\Http\Controllers\Controller;
 use App\ReceivePurchase;
 use Illuminate\Http\Request;
 

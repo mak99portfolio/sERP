@@ -21,7 +21,8 @@
                                     <div class="x_content">
                                         <br />
                                         
-                                        <form class="form-horizontal form-label-left">
+                                        {{-- <form class="form-horizontal form-label-left"> --}}
+                                        {{ BootForm::horizontal() }}
                                             
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
@@ -33,7 +34,7 @@
                                             </div>
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types) }}
+                                            {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types, 2, ['class'=>'form-control input-sm']) }}
                                             </div>
                                            
                                             

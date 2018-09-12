@@ -12,5 +12,7 @@ class WorkingUnitTypeSeeder extends Seeder{
         	['name'=>'Warehouse'],
         ];
 
+        \DB::table('working_unit_types')->insert($data);
+
     }
 }

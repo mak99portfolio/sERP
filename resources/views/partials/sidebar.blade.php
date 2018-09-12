@@ -32,6 +32,7 @@
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{route('vendor.index')}}">Vendor</a></li>
+              <li><a href="{{route('vendor-category.index')}}">Vendor Category</a></li>
             </ul>
           </li>
         </ul>
@@ -56,7 +57,7 @@
         <ul class="nav child_menu">
           <li><a href="tables.html">Product</a></li>
           <li><a href="tables_dynamic.html">Product Category</a></li>
-          <li><a href="tables_dynamic.html">Country</a></li>
+        <li><a href="{{route('country.index')}}">Country</a></li>
         </ul>
       </li>
     </ul>

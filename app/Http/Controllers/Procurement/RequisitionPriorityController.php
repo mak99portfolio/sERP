@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\Issue;
+use App\Http\Controllers\Controller;
+use App\RequisitionPriority;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class IssueController extends Controller
+class RequisitionPriorityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +43,10 @@ class IssueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function show(Issue $issue)
+    public function show(RequisitionPriority $requisitionPriority)
     {
         //
     }
@@ -52,10 +54,10 @@ class IssueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function edit(Issue $issue)
+    public function edit(RequisitionPriority $requisitionPriority)
     {
         //
     }
@@ -64,10 +66,10 @@ class IssueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Issue $issue)
+    public function update(Request $request, RequisitionPriority $requisitionPriority)
     {
         //
     }
@@ -75,10 +77,10 @@ class IssueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\RequisitionPriority  $requisitionPriority
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Issue $issue)
+    public function destroy(RequisitionPriority $requisitionPriority)
     {
         //
     }

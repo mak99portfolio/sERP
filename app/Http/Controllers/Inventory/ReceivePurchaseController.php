@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\RequisitionPurpose;
+use App\Model\Pocurement\CommercialInvoice;
+use App\ReceivePurchase;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class RequisitionPurposeController extends Controller
+class ReceivePurchaseController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
      * @return \Illuminate\Http\Response
      */
-    public function show(RequisitionPurpose $requisitionPurpose)
+    public function show(ReceivePurchase $receivePurchase)
     {
         //
     }
@@ -53,10 +53,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequisitionPurpose $requisitionPurpose)
+    public function edit(ReceivePurchase $receivePurchase)
     {
         //
     }
@@ -65,10 +65,10 @@ class RequisitionPurposeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequisitionPurpose $requisitionPurpose)
+    public function update(Request $request, ReceivePurchase $receivePurchase)
     {
         //
     }
@@ -76,11 +76,14 @@ class RequisitionPurposeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequisitionPurpose $requisitionPurpose)
+    public function destroy(ReceivePurchase $receivePurchase)
     {
         //
+    }
+    public function getCommercialInvoice($ci_no){
+        return CommercialInvoice::where('ci_no', $ci_no)->first();
     }
 }

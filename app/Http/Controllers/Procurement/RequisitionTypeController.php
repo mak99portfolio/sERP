@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\Model\Pocurement\CommercialInvoice;
-use App\ReceivePurchase;
+use App\Http\Controllers\Controller;
+use App\RequisitionType;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ReceivePurchaseController extends Controller
+class RequisitionTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +43,10 @@ class ReceivePurchaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\RequisitionType  $requisitionType
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceivePurchase $receivePurchase)
+    public function show(RequisitionType $requisitionType)
     {
         //
     }
@@ -53,10 +54,10 @@ class ReceivePurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\RequisitionType  $requisitionType
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceivePurchase $receivePurchase)
+    public function edit(RequisitionType $requisitionType)
     {
         //
     }
@@ -65,10 +66,10 @@ class ReceivePurchaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\RequisitionType  $requisitionType
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceivePurchase $receivePurchase)
+    public function update(Request $request, RequisitionType $requisitionType)
     {
         //
     }
@@ -76,14 +77,11 @@ class ReceivePurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\RequisitionType  $requisitionType
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceivePurchase $receivePurchase)
+    public function destroy(RequisitionType $requisitionType)
     {
         //
-    }
-    public function getCommercialInvoice($ci_no){
-        return CommercialInvoice::where('ci_no', $ci_no)->first();
     }
 }

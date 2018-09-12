@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\WorkingUnit;
+use App\Http\Controllers\Controller;
+use App\PackingList;
 use Illuminate\Http\Request;
 
-class WorkingUnitController extends Controller
+class PackingListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class WorkingUnitController extends Controller
      */
     public function index()
     {
-        $view = view('modules/inventory/working_unit');
+        $view = view('modules/procurement/packing_list');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +45,10 @@ class WorkingUnitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function show(WorkingUnit $workingUnit)
+    public function show(PackingList $packingList)
     {
         //
     }
@@ -55,10 +56,10 @@ class WorkingUnitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function edit(WorkingUnit $workingUnit)
+    public function edit(PackingList $packingList)
     {
         //
     }
@@ -67,10 +68,10 @@ class WorkingUnitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, WorkingUnit $workingUnit)
+    public function update(Request $request, PackingList $packingList)
     {
         //
     }
@@ -78,10 +79,10 @@ class WorkingUnitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
+     * @param  \App\PackingList  $packingList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(WorkingUnit $workingUnit)
+    public function destroy(PackingList $packingList)
     {
         //
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\PackingList;
+use App\Receive;
 use Illuminate\Http\Request;
 
-class PackingListController extends Controller
+class ReceiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class PackingListController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/packing_list');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class PackingListController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PackingList  $packingList
+     * @param  \App\Model\inventory\Receive  $receive
      * @return \Illuminate\Http\Response
      */
-    public function show(PackingList $packingList)
+    public function show(Receive $receive)
     {
         //
     }
@@ -55,10 +52,10 @@ class PackingListController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PackingList  $packingList
+     * @param  \App\Model\inventory\Receive  $receive
      * @return \Illuminate\Http\Response
      */
-    public function edit(PackingList $packingList)
+    public function edit(Receive $receive)
     {
         //
     }
@@ -67,10 +64,10 @@ class PackingListController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PackingList  $packingList
+     * @param  \App\Model\inventory\Receive  $receive
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PackingList $packingList)
+    public function update(Request $request, Receive $receive)
     {
         //
     }
@@ -78,10 +75,10 @@ class PackingListController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PackingList  $packingList
+     * @param  \App\Model\inventory\Receive  $receive
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PackingList $packingList)
+    public function destroy(Receive $receive)
     {
         //
     }

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\PurchaseOrder;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\ProformaInvoice;
+use Illuminate\Http\Request;
 
-class PurchaseOrderController extends Controller
+class ProformaInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class PurchaseOrderController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/purchase_order');
+        $view = view('modules/procurement/proforma_invoice');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -45,10 +45,10 @@ class PurchaseOrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PurchaseOrder  $purchaseOrder
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseOrder $purchaseOrder)
+    public function show(ProformaInvoice $proformaInvoice)
     {
         //
     }
@@ -56,10 +56,10 @@ class PurchaseOrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PurchaseOrder  $purchaseOrder
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseOrder $purchaseOrder)
+    public function edit(ProformaInvoice $proformaInvoice)
     {
         //
     }
@@ -68,10 +68,10 @@ class PurchaseOrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PurchaseOrder  $purchaseOrder
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseOrder $purchaseOrder)
+    public function update(Request $request, ProformaInvoice $proformaInvoice)
     {
         //
     }
@@ -79,10 +79,10 @@ class PurchaseOrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PurchaseOrder  $purchaseOrder
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseOrder $purchaseOrder)
+    public function destroy(ProformaInvoice $proformaInvoice)
     {
         //
     }

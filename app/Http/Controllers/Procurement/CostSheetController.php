@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\ReceiveReturn;
+use App\Http\Controllers\Controller;
+use App\CostSheet;
 use Illuminate\Http\Request;
 
-class ReceiveReturnController extends Controller
+class CostSheetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class ReceiveReturnController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/cost_sheet');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**
@@ -41,10 +45,10 @@ class ReceiveReturnController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\CostSheet  $costSheet
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceiveReturn $receiveReturn)
+    public function show(CostSheet $costSheet)
     {
         //
     }
@@ -52,10 +56,10 @@ class ReceiveReturnController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\CostSheet  $costSheet
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceiveReturn $receiveReturn)
+    public function edit(CostSheet $costSheet)
     {
         //
     }
@@ -64,10 +68,10 @@ class ReceiveReturnController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\CostSheet  $costSheet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceiveReturn $receiveReturn)
+    public function update(Request $request, CostSheet $costSheet)
     {
         //
     }
@@ -75,10 +79,10 @@ class ReceiveReturnController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
+     * @param  \App\CostSheet  $costSheet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceiveReturn $receiveReturn)
+    public function destroy(CostSheet $costSheet)
     {
         //
     }

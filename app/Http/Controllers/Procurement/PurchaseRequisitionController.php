@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\Challan;
+use App\Http\Controllers\Controller;
+use App\PurchaseRequisition;
 use Illuminate\Http\Request;
 
-class ChallanController extends Controller
+class PurchaseRequisitionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class ChallanController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/purchase_requisition');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**
@@ -41,10 +45,10 @@ class ChallanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\Challan  $challan
+     * @param  \App\PurchaseRequisition  $purchaseRequisition
      * @return \Illuminate\Http\Response
      */
-    public function show(Challan $challan)
+    public function show(PurchaseRequisition $purchaseRequisition)
     {
         //
     }
@@ -52,10 +56,10 @@ class ChallanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\Challan  $challan
+     * @param  \App\PurchaseRequisition  $purchaseRequisition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Challan $challan)
+    public function edit(PurchaseRequisition $purchaseRequisition)
     {
         //
     }
@@ -64,10 +68,10 @@ class ChallanController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Challan  $challan
+     * @param  \App\PurchaseRequisition  $purchaseRequisition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Challan $challan)
+    public function update(Request $request, PurchaseRequisition $purchaseRequisition)
     {
         //
     }
@@ -75,10 +79,10 @@ class ChallanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\Challan  $challan
+     * @param  \App\PurchaseRequisition  $purchaseRequisition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Challan $challan)
+    public function destroy(PurchaseRequisition $purchaseRequisition)
     {
         //
     }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\Receive;
+use App\Http\Controllers\Controller;
+use App\PurchaseOrder;
 use Illuminate\Http\Request;
 
-class ReceiveController extends Controller
+class PurchaseOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class ReceiveController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/purchase_order');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**
@@ -41,10 +45,10 @@ class ReceiveController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\Receive  $receive
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(Receive $receive)
+    public function show(PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -52,10 +56,10 @@ class ReceiveController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\Receive  $receive
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Receive $receive)
+    public function edit(PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -64,10 +68,10 @@ class ReceiveController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Receive  $receive
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Receive $receive)
+    public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -75,10 +79,10 @@ class ReceiveController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\Receive  $receive
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Receive $receive)
+    public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
     }

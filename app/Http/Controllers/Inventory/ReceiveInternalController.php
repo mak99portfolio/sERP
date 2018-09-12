@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\RequisitionPriority;
+use App\ReceiveInternal;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class RequisitionPriorityController extends Controller
+class ReceiveInternalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class RequisitionPriorityController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequisitionPriority  $requisitionPriority
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function show(RequisitionPriority $requisitionPriority)
+    public function show(ReceiveInternal $receiveInternal)
     {
         //
     }
@@ -53,10 +52,10 @@ class RequisitionPriorityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequisitionPriority  $requisitionPriority
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequisitionPriority $requisitionPriority)
+    public function edit(ReceiveInternal $receiveInternal)
     {
         //
     }
@@ -65,10 +64,10 @@ class RequisitionPriorityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequisitionPriority  $requisitionPriority
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequisitionPriority $requisitionPriority)
+    public function update(Request $request, ReceiveInternal $receiveInternal)
     {
         //
     }
@@ -76,10 +75,10 @@ class RequisitionPriorityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequisitionPriority  $requisitionPriority
+     * @param  \App\Model\inventory\ReceiveInternal  $receiveInternal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequisitionPriority $requisitionPriority)
+    public function destroy(ReceiveInternal $receiveInternal)
     {
         //
     }

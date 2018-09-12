@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\Requisition;
+use App\Http\Controllers\Controller;
+use App\Model\Pocurement\CommercialInvoice;
 use Illuminate\Http\Request;
 
-class RequisitionController extends Controller
+class CommercialInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class RequisitionController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/commercial_invoice');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**
@@ -41,10 +45,10 @@ class RequisitionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\Requisition  $requisition
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function show(Requisition $requisition)
+    public function show(CommercialInvoice $commercialInvoice)
     {
         //
     }
@@ -52,10 +56,10 @@ class RequisitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\Requisition  $requisition
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(Requisition $requisition)
+    public function edit(CommercialInvoice $commercialInvoice)
     {
         //
     }
@@ -64,10 +68,10 @@ class RequisitionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Requisition  $requisition
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Requisition $requisition)
+    public function update(Request $request, CommercialInvoice $commercialInvoice)
     {
         //
     }
@@ -75,10 +79,10 @@ class RequisitionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\Requisition  $requisition
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Requisition $requisition)
+    public function destroy(CommercialInvoice $commercialInvoice)
     {
         //
     }

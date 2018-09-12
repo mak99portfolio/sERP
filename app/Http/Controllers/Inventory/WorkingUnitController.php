@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\Cnf;
+use App\WorkingUnit;
 use Illuminate\Http\Request;
 
-class CnfController extends Controller
+class WorkingUnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class CnfController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/cnf');
+        $view = view('modules/inventory/working_unit');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +44,10 @@ class CnfController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Cnf  $cnf
+     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
      * @return \Illuminate\Http\Response
      */
-    public function show(Cnf $cnf)
+    public function show(WorkingUnit $workingUnit)
     {
         //
     }
@@ -55,10 +55,10 @@ class CnfController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Cnf  $cnf
+     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cnf $cnf)
+    public function edit(WorkingUnit $workingUnit)
     {
         //
     }
@@ -67,10 +67,10 @@ class CnfController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Cnf  $cnf
+     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cnf $cnf)
+    public function update(Request $request, WorkingUnit $workingUnit)
     {
         //
     }
@@ -78,10 +78,10 @@ class CnfController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Cnf  $cnf
+     * @param  \App\Model\inventory\WorkingUnit  $workingUnit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cnf $cnf)
+    public function destroy(WorkingUnit $workingUnit)
     {
         //
     }

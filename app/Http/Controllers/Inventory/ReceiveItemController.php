@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\RequisitionType;
+use App\ReceiveItem;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class RequisitionTypeController extends Controller
+class ReceiveItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +41,10 @@ class RequisitionTypeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequisitionType  $requisitionType
+     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
      * @return \Illuminate\Http\Response
      */
-    public function show(RequisitionType $requisitionType)
+    public function show(ReceiveItem $receiveItem)
     {
         //
     }
@@ -53,10 +52,10 @@ class RequisitionTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequisitionType  $requisitionType
+     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequisitionType $requisitionType)
+    public function edit(ReceiveItem $receiveItem)
     {
         //
     }
@@ -65,10 +64,10 @@ class RequisitionTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequisitionType  $requisitionType
+     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequisitionType $requisitionType)
+    public function update(Request $request, ReceiveItem $receiveItem)
     {
         //
     }
@@ -76,10 +75,10 @@ class RequisitionTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequisitionType  $requisitionType
+     * @param  \App\Model\inventory\ReceiveItem  $receiveItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequisitionType $requisitionType)
+    public function destroy(ReceiveItem $receiveItem)
     {
         //
     }

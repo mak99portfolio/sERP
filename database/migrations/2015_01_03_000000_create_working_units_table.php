@@ -18,6 +18,7 @@ class CreateWorkingUnitsTable extends Migration
             $table->integer('company_id');
             $table->integer('parent_unit_id')->unsigned();
             $table->integer('working_unit_type_id')->unsigned();
+            $table->string('name')->unique();
             $table->integer('in_charge')->unsigned();
             $table->text('address')->nullable();
             $table->text('geo_location')->nullable();

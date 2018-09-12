@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\PurchaseRequisition;
+use App\Http\Controllers\Controller;
+use App\LetterOfCredit;
 use Illuminate\Http\Request;
 
-class PurchaseRequisitionController extends Controller
+class LetterOfCreditController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class PurchaseRequisitionController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/purchase_requisition');
+        $view = view('modules/procurement/letter_of_credit');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +45,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseRequisition $purchaseRequisition)
+    public function show(LetterOfCredit $letterOfCredit)
     {
         //
     }
@@ -55,10 +56,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseRequisition $purchaseRequisition)
+    public function edit(LetterOfCredit $letterOfCredit)
     {
         //
     }
@@ -67,10 +68,10 @@ class PurchaseRequisitionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseRequisition $purchaseRequisition)
+    public function update(Request $request, LetterOfCredit $letterOfCredit)
     {
         //
     }
@@ -78,10 +79,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\LetterOfCredit  $letterOfCredit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseRequisition $purchaseRequisition)
+    public function destroy(LetterOfCredit $letterOfCredit)
     {
         //
     }

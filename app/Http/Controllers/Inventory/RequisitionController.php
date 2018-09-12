@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\Issue;
+use App\Requisition;
 use Illuminate\Http\Request;
 
-class IssueController extends Controller
+class RequisitionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class IssueController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\Model\inventory\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function show(Issue $issue)
+    public function show(Requisition $requisition)
     {
         //
     }
@@ -52,10 +52,10 @@ class IssueController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\Model\inventory\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function edit(Issue $issue)
+    public function edit(Requisition $requisition)
     {
         //
     }
@@ -64,10 +64,10 @@ class IssueController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\Model\inventory\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Issue $issue)
+    public function update(Request $request, Requisition $requisition)
     {
         //
     }
@@ -75,10 +75,10 @@ class IssueController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\Issue  $issue
+     * @param  \App\Model\inventory\Requisition  $requisition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Issue $issue)
+    public function destroy(Requisition $requisition)
     {
         //
     }

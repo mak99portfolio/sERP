@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
+use App\Http\Controllers\Controller;
 use App\Model\Pocurement\CommercialInvoice;
-use App\ReceivePurchase;
 use Illuminate\Http\Request;
 
-class ReceivePurchaseController extends Controller
+class CommercialInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class ReceivePurchaseController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/commercial_invoice');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**
@@ -42,10 +45,10 @@ class ReceivePurchaseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function show(ReceivePurchase $receivePurchase)
+    public function show(CommercialInvoice $commercialInvoice)
     {
         //
     }
@@ -53,10 +56,10 @@ class ReceivePurchaseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(ReceivePurchase $receivePurchase)
+    public function edit(CommercialInvoice $commercialInvoice)
     {
         //
     }
@@ -65,10 +68,10 @@ class ReceivePurchaseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ReceivePurchase $receivePurchase)
+    public function update(Request $request, CommercialInvoice $commercialInvoice)
     {
         //
     }
@@ -76,14 +79,11 @@ class ReceivePurchaseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\inventory\ReceivePurchase  $receivePurchase
+     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ReceivePurchase $receivePurchase)
+    public function destroy(CommercialInvoice $commercialInvoice)
     {
         //
-    }
-    public function getCommercialInvoice($ci_no){
-        return CommercialInvoice::where('ci_no', $ci_no)->first();
     }
 }

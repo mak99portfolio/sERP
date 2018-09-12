@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\ProformaInvoice;
+use App\Challan;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class ProformaInvoiceController extends Controller
+class ChallanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +14,7 @@ class ProformaInvoiceController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/proforma_invoice');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -45,10 +41,10 @@ class ProformaInvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ProformaInvoice  $proformaInvoice
+     * @param  \App\Model\inventory\Challan  $challan
      * @return \Illuminate\Http\Response
      */
-    public function show(ProformaInvoice $proformaInvoice)
+    public function show(Challan $challan)
     {
         //
     }
@@ -56,10 +52,10 @@ class ProformaInvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ProformaInvoice  $proformaInvoice
+     * @param  \App\Model\inventory\Challan  $challan
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProformaInvoice $proformaInvoice)
+    public function edit(Challan $challan)
     {
         //
     }
@@ -68,10 +64,10 @@ class ProformaInvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProformaInvoice  $proformaInvoice
+     * @param  \App\Model\inventory\Challan  $challan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProformaInvoice $proformaInvoice)
+    public function update(Request $request, Challan $challan)
     {
         //
     }
@@ -79,10 +75,10 @@ class ProformaInvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ProformaInvoice  $proformaInvoice
+     * @param  \App\Model\inventory\Challan  $challan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProformaInvoice $proformaInvoice)
+    public function destroy(Challan $challan)
     {
         //
     }

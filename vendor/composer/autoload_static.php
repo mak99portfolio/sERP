@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
+class ComposerStaticInitcce8352dbcd3ccb26c9ec3b3f1e93daf
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -346,9 +346,12 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
     public static $classMap = array (
         'App\\Bank' => __DIR__ . '/../..' . '/app/Bank.php',
         'App\\BankInformation' => __DIR__ . '/../..' . '/app/BankInformation.php',
+        'App\\BillOfLading' => __DIR__ . '/../..' . '/app/BillOfLading.php',
         'App\\City' => __DIR__ . '/../..' . '/app/City.php',
+        'App\\Cnf' => __DIR__ . '/../..' . '/app/Cnf.php',
         'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\CostSheet' => __DIR__ . '/../..' . '/app/CostSheet.php',
         'App\\Country' => __DIR__ . '/../..' . '/app/Country.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exporter' => __DIR__ . '/../..' . '/app/Exporter.php',
@@ -358,21 +361,28 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
         'App\\Http\\Controllers\\BankController' => __DIR__ . '/../..' . '/app/Http/Controllers/BankController.php',
+        'App\\Http\\Controllers\\BillOfLadingController' => __DIR__ . '/../..' . '/app/Http/Controllers/BillOfLadingController.php',
         'App\\Http\\Controllers\\ChallanController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChallanController.php',
         'App\\Http\\Controllers\\CityController' => __DIR__ . '/../..' . '/app/Http/Controllers/CityController.php',
+        'App\\Http\\Controllers\\CnfController' => __DIR__ . '/../..' . '/app/Http/Controllers/CnfController.php',
         'App\\Http\\Controllers\\CommercialInvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommercialInvoiceController.php',
         'App\\Http\\Controllers\\CompanyController' => __DIR__ . '/../..' . '/app/Http/Controllers/CompanyController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\CostSheetController' => __DIR__ . '/../..' . '/app/Http/Controllers/CostSheetController.php',
         'App\\Http\\Controllers\\CountryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CountryController.php',
         'App\\Http\\Controllers\\ExporterController' => __DIR__ . '/../..' . '/app/Http/Controllers/ExporterController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\InsuranceCoverNoteController' => __DIR__ . '/../..' . '/app/Http/Controllers/InsuranceCoverNoteController.php',
         'App\\Http\\Controllers\\IssueController' => __DIR__ . '/../..' . '/app/Http/Controllers/IssueController.php',
+        'App\\Http\\Controllers\\LetterOfCreditController' => __DIR__ . '/../..' . '/app/Http/Controllers/LetterOfCreditController.php',
+        'App\\Http\\Controllers\\PackingListController' => __DIR__ . '/../..' . '/app/Http/Controllers/PackingListController.php',
         'App\\Http\\Controllers\\PortController' => __DIR__ . '/../..' . '/app/Http/Controllers/PortController.php',
         'App\\Http\\Controllers\\ProductBrandController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductBrandController.php',
         'App\\Http\\Controllers\\ProductCategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductCategoryController.php',
         'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Controllers\\ProformaInvoiceController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProformaInvoiceController.php',
         'App\\Http\\Controllers\\PurchaseOrderController' => __DIR__ . '/../..' . '/app/Http/Controllers/PurchaseOrderController.php',
+        'App\\Http\\Controllers\\PurchaseRequisitionController' => __DIR__ . '/../..' . '/app/Http/Controllers/PurchaseRequisitionController.php',
         'App\\Http\\Controllers\\ReceiveController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceiveController.php',
         'App\\Http\\Controllers\\ReceiveInternalController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceiveInternalController.php',
         'App\\Http\\Controllers\\ReceiveItemController' => __DIR__ . '/../..' . '/app/Http/Controllers/ReceiveItemController.php',
@@ -381,6 +391,8 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Http\\Controllers\\RequisitionController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequisitionController.php',
         'App\\Http\\Controllers\\RequisitionPriorityController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequisitionPriorityController.php',
         'App\\Http\\Controllers\\RequisitionPurposeController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequisitionPurposeController.php',
+        'App\\Http\\Controllers\\RequisitionTypeController' => __DIR__ . '/../..' . '/app/Http/Controllers/RequisitionTypeController.php',
+        'App\\Http\\Controllers\\TestController' => __DIR__ . '/../..' . '/app/Http/Controllers/TestController.php',
         'App\\Http\\Controllers\\UnitOfMeasurementController' => __DIR__ . '/../..' . '/app/Http/Controllers/UnitOfMeasurementController.php',
         'App\\Http\\Controllers\\VendorController' => __DIR__ . '/../..' . '/app/Http/Controllers/VendorController.php',
         'App\\Http\\Controllers\\WorkingUnitController' => __DIR__ . '/../..' . '/app/Http/Controllers/WorkingUnitController.php',
@@ -394,6 +406,8 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\InsuranceCoverNote' => __DIR__ . '/../..' . '/app/InsuranceCoverNote.php',
+        'App\\LetterOfCredit' => __DIR__ . '/../..' . '/app/LetterOfCredit.php',
         'App\\Model\\Pocurement\\CommercialInvoice' => __DIR__ . '/../..' . '/app/CommercialInvoice.php',
         'App\\Model\\inventory\\Challan' => __DIR__ . '/../..' . '/app/Challan.php',
         'App\\Model\\inventory\\Issue' => __DIR__ . '/../..' . '/app/Issue.php',
@@ -403,6 +417,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Model\\inventory\\ReceivePurchase' => __DIR__ . '/../..' . '/app/ReceivePurchase.php',
         'App\\Model\\inventory\\ReceiveReturn' => __DIR__ . '/../..' . '/app/ReceiveReturn.php',
         'App\\Model\\inventory\\Requisition' => __DIR__ . '/../..' . '/app/Requisition.php',
+        'App\\PackingList' => __DIR__ . '/../..' . '/app/PackingList.php',
         'App\\PaymentTerm' => __DIR__ . '/../..' . '/app/PaymentTerm.php',
         'App\\Port' => __DIR__ . '/../..' . '/app/Port.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
@@ -415,6 +430,7 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\PurchaseOrder' => __DIR__ . '/../..' . '/app/PurchaseOrder.php',
+        'App\\PurchaseRequisition' => __DIR__ . '/../..' . '/app/PurchaseRequisition.php',
         'App\\RequisitionPriority' => __DIR__ . '/../..' . '/app/RequisitionPriority.php',
         'App\\RequisitionPurpose' => __DIR__ . '/../..' . '/app/RequisitionPurpose.php',
         'App\\RequisitionType' => __DIR__ . '/../..' . '/app/RequisitionType.php',
@@ -3845,11 +3861,11 @@ class ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit9b4cef321b305ad6b8fb29ea7911cc9f::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcce8352dbcd3ccb26c9ec3b3f1e93daf::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcce8352dbcd3ccb26c9ec3b3f1e93daf::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitcce8352dbcd3ccb26c9ec3b3f1e93daf::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitcce8352dbcd3ccb26c9ec3b3f1e93daf::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitcce8352dbcd3ccb26c9ec3b3f1e93daf::$classMap;
 
         }, null, ClassLoader::class);
     }

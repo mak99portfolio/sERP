@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\InsuranceCoverNote;
+use App\Http\Controllers\Controller;
+use App\Cnf;
 use Illuminate\Http\Request;
 
-class InsuranceCoverNoteController extends Controller
+class CnfController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class InsuranceCoverNoteController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/insurance_cover_note');
+        $view = view('modules/procurement/cnf');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +45,10 @@ class InsuranceCoverNoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\InsuranceCoverNote  $insuranceCoverNote
+     * @param  \App\Cnf  $cnf
      * @return \Illuminate\Http\Response
      */
-    public function show(InsuranceCoverNote $insuranceCoverNote)
+    public function show(Cnf $cnf)
     {
         //
     }
@@ -55,10 +56,10 @@ class InsuranceCoverNoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\InsuranceCoverNote  $insuranceCoverNote
+     * @param  \App\Cnf  $cnf
      * @return \Illuminate\Http\Response
      */
-    public function edit(InsuranceCoverNote $insuranceCoverNote)
+    public function edit(Cnf $cnf)
     {
         //
     }
@@ -67,10 +68,10 @@ class InsuranceCoverNoteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\InsuranceCoverNote  $insuranceCoverNote
+     * @param  \App\Cnf  $cnf
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, InsuranceCoverNote $insuranceCoverNote)
+    public function update(Request $request, Cnf $cnf)
     {
         //
     }
@@ -78,10 +79,10 @@ class InsuranceCoverNoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\InsuranceCoverNote  $insuranceCoverNote
+     * @param  \App\Cnf  $cnf
      * @return \Illuminate\Http\Response
      */
-    public function destroy(InsuranceCoverNote $insuranceCoverNote)
+    public function destroy(Cnf $cnf)
     {
         //
     }

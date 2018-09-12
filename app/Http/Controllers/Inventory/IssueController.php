@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\BillOfLading;
+use App\Issue;
 use Illuminate\Http\Request;
 
-class BillOfLadingController extends Controller
+class IssueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class BillOfLadingController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/bill_of_lading');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class BillOfLadingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\BillOfLading  $billOfLading
+     * @param  \App\Model\inventory\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function show(BillOfLading $billOfLading)
+    public function show(Issue $issue)
     {
         //
     }
@@ -55,10 +52,10 @@ class BillOfLadingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\BillOfLading  $billOfLading
+     * @param  \App\Model\inventory\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function edit(BillOfLading $billOfLading)
+    public function edit(Issue $issue)
     {
         //
     }
@@ -67,10 +64,10 @@ class BillOfLadingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BillOfLading  $billOfLading
+     * @param  \App\Model\inventory\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, BillOfLading $billOfLading)
+    public function update(Request $request, Issue $issue)
     {
         //
     }
@@ -78,10 +75,10 @@ class BillOfLadingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\BillOfLading  $billOfLading
+     * @param  \App\Model\inventory\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function destroy(BillOfLading $billOfLading)
+    public function destroy(Issue $issue)
     {
         //
     }

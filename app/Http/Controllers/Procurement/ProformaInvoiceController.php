@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\LetterOfCredit;
+use App\Http\Controllers\Controller;
+use App\ProformaInvoice;
 use Illuminate\Http\Request;
 
-class LetterOfCreditController extends Controller
+class ProformaInvoiceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,7 @@ class LetterOfCreditController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/letter_of_credit');
+        $view = view('modules/procurement/proforma_invoice');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -44,10 +45,10 @@ class LetterOfCreditController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\LetterOfCredit  $letterOfCredit
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function show(LetterOfCredit $letterOfCredit)
+    public function show(ProformaInvoice $proformaInvoice)
     {
         //
     }
@@ -55,10 +56,10 @@ class LetterOfCreditController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\LetterOfCredit  $letterOfCredit
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function edit(LetterOfCredit $letterOfCredit)
+    public function edit(ProformaInvoice $proformaInvoice)
     {
         //
     }
@@ -67,10 +68,10 @@ class LetterOfCreditController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LetterOfCredit  $letterOfCredit
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LetterOfCredit $letterOfCredit)
+    public function update(Request $request, ProformaInvoice $proformaInvoice)
     {
         //
     }
@@ -78,10 +79,10 @@ class LetterOfCreditController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LetterOfCredit  $letterOfCredit
+     * @param  \App\ProformaInvoice  $proformaInvoice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LetterOfCredit $letterOfCredit)
+    public function destroy(ProformaInvoice $proformaInvoice)
     {
         //
     }

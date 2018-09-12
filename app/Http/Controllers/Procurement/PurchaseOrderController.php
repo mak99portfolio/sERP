@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
-use App\RequisitionPurpose;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\PurchaseOrder;
+use Illuminate\Http\Request;
 
-class RequisitionPurposeController extends Controller
+class PurchaseOrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,10 @@ class RequisitionPurposeController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/procurement/purchase_order');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**
@@ -42,10 +45,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function show(RequisitionPurpose $requisitionPurpose)
+    public function show(PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -53,10 +56,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequisitionPurpose $requisitionPurpose)
+    public function edit(PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -65,10 +68,10 @@ class RequisitionPurposeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequisitionPurpose $requisitionPurpose)
+    public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         //
     }
@@ -76,10 +79,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\PurchaseOrder  $purchaseOrder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequisitionPurpose $requisitionPurpose)
+    public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
     }

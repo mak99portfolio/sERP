@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 
-use App\Model\Pocurement\CommercialInvoice;
+use App\ReceiveReturn;
 use Illuminate\Http\Request;
 
-class CommercialInvoiceController extends Controller
+class ReceiveReturnController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,7 @@ class CommercialInvoiceController extends Controller
      */
     public function index()
     {
-        $view = view('modules/procurement/commercial_invoice');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -44,10 +41,10 @@ class CommercialInvoiceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
      * @return \Illuminate\Http\Response
      */
-    public function show(CommercialInvoice $commercialInvoice)
+    public function show(ReceiveReturn $receiveReturn)
     {
         //
     }
@@ -55,10 +52,10 @@ class CommercialInvoiceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
      * @return \Illuminate\Http\Response
      */
-    public function edit(CommercialInvoice $commercialInvoice)
+    public function edit(ReceiveReturn $receiveReturn)
     {
         //
     }
@@ -67,10 +64,10 @@ class CommercialInvoiceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CommercialInvoice $commercialInvoice)
+    public function update(Request $request, ReceiveReturn $receiveReturn)
     {
         //
     }
@@ -78,10 +75,10 @@ class CommercialInvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
+     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CommercialInvoice $commercialInvoice)
+    public function destroy(ReceiveReturn $receiveReturn)
     {
         //
     }

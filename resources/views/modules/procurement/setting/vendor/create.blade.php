@@ -135,13 +135,13 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Incorporation Date</label>
-                                    <input class="form-control input-sm" type="date" name="">
+                                    <input class="form-control input-sm" type="date" name="incorporation_date">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>VAT No</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">

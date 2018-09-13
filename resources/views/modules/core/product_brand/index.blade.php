@@ -27,6 +27,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Brand Name</th>
+                                        <th>Short Name</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -34,6 +35,7 @@
                                     <tr>
                                         <td>01</td>
                                         <td>brand_name</td>
+                                        <td>Short</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
                                         </td>

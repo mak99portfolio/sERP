@@ -22,6 +22,7 @@
             </div>
             <div class="x_content">
                 <br />
+                  @include('partials.flash_msg')
 
                 {{-- <form class="form-horizontal form-label-left"> --}}
                     {{ BootForm::open(['model'=>$working_unit, 'store'=>'working-unit.store', 'update'=>'working-unit.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}

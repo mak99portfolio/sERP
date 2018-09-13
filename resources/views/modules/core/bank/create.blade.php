@@ -52,6 +52,7 @@
                           <hr>
                           <div class="col-md-12">
                               <button type="submit" class="btn btn-success">Save</button>
+                              <a class="btn btn-default btn-sm" href="{{route('bank.index')}}">Cancel</a>
                           </div>
                       </form>
 

@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class WorkingUnitController extends Controller{
 
+    protected function path(string $suffix){
+        return "modules.inventory.working_unit.{$suffix}";
+    }
+
     public function index(){
     	
     	$data=[
@@ -17,7 +21,7 @@ class WorkingUnitController extends Controller{
 
     	dd($data['paginate']);
 
-    	return view('modulles.inventory.working_units', $data);
+    	return view($this->path('index'), $data);
 
 
     }
@@ -32,10 +36,11 @@ class WorkingUnitController extends Controller{
     		'countries'=>\App\Country::pluck('name', 'id'),
     		'divisions'=>\App\Division::pluck('name', 'id'),
     		'districts'=>\App\District::pluck('name', 'id'),
+            'companies'=>\App\Company::pluck('name', 'id'),
     		'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
     	];
 
-        return view('modules.inventory.working_unit_form', $data);
+        return view($this->path('create'), $data);
 
     }
 
@@ -46,11 +51,11 @@ class WorkingUnitController extends Controller{
 
     	$request->validate([
     		'name'=>'required|unique:working_units,name',
-    		'sort_name'=>'required|unique:working_units,sort_name',
+    		'short_name'=>'required|unique:working_units,short_name',
     		'working_unit_type_id'=>'required|integer',
     		'parent_unit_id'=>'nullable|integer',
     		'in_charge'=>'required|integer',
-    		'company_id'=>'required|integer',
+    		'company_id'=>'nullable|integer',
     		'country_id'=>'required|integer',
     		'division_id'=>'required|integer',
     		'district_id'=>'required|integer',
@@ -58,7 +63,9 @@ class WorkingUnitController extends Controller{
     	]);
 
     	$workingUnit=\App\WorkingUnit::create($request->all());
-    	return back()->with('success', 'Form submitted successfully');
+        return back()->with('alert-success', 'Form submitted successfully');
+        //if($workingUnit->save()) return back()->with('success', 'Form submitted successfully');
+        //return back()->with('danger', 'Sorry, form submission failed');
 
     }
 

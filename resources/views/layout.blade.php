@@ -57,7 +57,7 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        @include('partials/flash_msg')
+        {{-- @include('partials/flash_msg') --}}
         @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

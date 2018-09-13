@@ -24,7 +24,7 @@
                 <br />
 
                 {{-- <form class="form-horizontal form-label-left"> --}}
-                    {{ BootForm::horizontal(['model'=>$working_unit, 'store'=>'working-unit.store', 'update'=>'working-unit.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
+                    {{ BootForm::open(['model'=>$working_unit, 'store'=>'working-unit.store', 'update'=>'working-unit.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
 
 <div class="row">
 
@@ -49,6 +49,11 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {{ BootForm::select('parent_unit_id', 'Parent Working Unit', $working_units, null, ['class'=>'form-control input-sm']) }}
                     </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ BootForm::select('company_id', 'Select Company', $companies, null, ['class'=>'form-control input-sm']) }}
+                    </div>
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {{ BootForm::select('in_charge', 'Select In-charge', $users, null, ['class'=>'form-control input-sm']) }}
                     </div>

@@ -15,8 +15,8 @@ class CreateForeignRequisitionItemsTable extends Migration
     {
         Schema::create('foreign_requisition_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_requisition_id')->unsigned();
-            $table->foreign('purchase_requisition_id')->references('id')->on('purchase_requisitions')->onDelete('restrict');
+            $table->integer('foreign_requisition_id')->unsigned();
+            $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('restrict');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->integer('product_quantity');

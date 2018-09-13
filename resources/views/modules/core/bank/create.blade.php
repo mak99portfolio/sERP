@@ -17,14 +17,14 @@
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="form-group">
                                   <label>Bank Name</label>
-                                  <input class="form-control input-sm" type="text" name="bank_name">
+                                  <input class="form-control input-sm" type="text" name="name">
                               </div>
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="form-group">
                                     <label>Country</label>
                                     <div>
-                                        <select class="form-control input-sm" name="country">
+                                        <select class="form-control input-sm" name="country_id">
                                             @foreach ($country_list as $item)
                                             <option value="" disabled>Choose..</option>
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -43,7 +43,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Bank Description</label>
-                                    <textarea class="form-control input-sm" name="bank_description" id="" cols="30" rows="2"></textarea>
+                                    <textarea class="form-control input-sm" name="description" id="" cols="30" rows="2"></textarea>
                                 </div>
                             </div>
                         </div>

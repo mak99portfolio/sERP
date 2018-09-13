@@ -49,10 +49,10 @@ class BankController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'bank_name' => 'required|unique:banks',
-            'country' => 'required|unique:banks',
+            'name' => 'required|unique:banks',
+            'country_id' => 'required',
             'short_name' => 'required|unique:banks',
-            'bank_description' => 'required|unique:banks'
+            'description' => 'required'
         ]);
 
         $bank = new Bank;

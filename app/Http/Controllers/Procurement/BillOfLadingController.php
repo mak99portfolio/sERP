@@ -13,9 +13,10 @@ class BillOfLadingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/bill_of_lading/';
     public function index()
     {
-        $view = view('modules/procurement/bill_of_lading');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

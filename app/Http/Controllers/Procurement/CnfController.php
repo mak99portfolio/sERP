@@ -13,9 +13,10 @@ class CnfController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/cnf/';
     public function index()
     {
-        $view = view('modules/procurement/cnf');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

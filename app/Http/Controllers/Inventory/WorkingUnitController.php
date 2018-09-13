@@ -3,13 +3,13 @@ namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
 use App\WorkingUnit;
-use Illuminate\Http\Request;
 use App\Helpers\Paginate;
+use Illuminate\Http\Request;
 
 class WorkingUnitController extends Controller{
 
     public function index(){
-
+    	
     	$data=[
     		'paginate'=>new Paginate('\App\WorkingUnit', ['id'=>'ID','name'=>'Name']),
     		'carbon'=>new \Carbon\Carbon
@@ -18,6 +18,7 @@ class WorkingUnitController extends Controller{
     	dd($data['paginate']);
 
     	return view('modulles.inventory.working_units', $data);
+
 
     }
 
@@ -82,5 +83,23 @@ class WorkingUnitController extends Controller{
 
     public function destroy(WorkingUnit $workingUnit){
 
+    }
+
+    function district_search(\App\Division $division, Request $request){
+
+
+        return response()->json($division->districts);
+    
+        $data = DB::table('districts')
+        ->where('division_id', $division_id)
+        ->get();
+
+
+        $output = '<option value="">Select</option>';
+        foreach($data as $row)
+        {
+        $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+        echo $output;
     }
 }

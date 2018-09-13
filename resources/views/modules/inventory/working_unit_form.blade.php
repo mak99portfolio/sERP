@@ -16,7 +16,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Working Unit <small>Form</small></h2>
-                <a href="" class="btn btn-primary btn-sm pull-right">Working List</a>
+                <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Working Unit List</a>
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -34,6 +35,14 @@
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types, null, ['class'=>'form-control input-sm']) }}
                     </div>
+                    </div>
+<div class="row">
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ BootForm::text('short_name','Short Name', null, ['class'=>'form-control input-sm']) }}
+                    </div>
+
+                   
                     </div>
                     
 <div class="row">
@@ -54,7 +63,7 @@
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
-                        {{ BootForm::select('division_id', 'Division', $divisions, ['class'=>'form-control input-sm']) }}
+                        {{ BootForm::select('division_id', 'Division', $divisions, ['class'=>'form-control input-sm','id'=>'division_id']) }}
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -78,6 +87,7 @@
 
 
                            <button type="submit" class="btn btn-primary">Submit</button>
+                           {!! btnCustom(["url"=>url()->current(), "title"=>"reset"]) !!}
                        </div>
 
                    </div>
@@ -95,4 +105,24 @@
 {{-- Content end --}}
 </div>
 </div>
+@endsection
+@section('script')
+<script>
+	$(document).ready(function(){
+
+$('#division_id').change(function(){
+
+  var division_id = $('#division_id').val();
+
+ 
+ $.get("{{ url('inventory/district-search') }}/" + division_id, function(data){
+    console.log(data);
+  });
+
+
+});
+
+});
+
+</script>
 @endsection

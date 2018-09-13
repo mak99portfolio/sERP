@@ -13,9 +13,10 @@ class ProformaInvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/proforma_invoice/';
     public function index()
     {
-        $view = view('modules/procurement/proforma_invoice');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

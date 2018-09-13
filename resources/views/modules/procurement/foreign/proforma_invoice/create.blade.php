@@ -220,8 +220,26 @@
                                             </tbody>
                                             <tfoot class="font-bold">
                                                 <tr>
-                                                    <td colspan="5">Total</td>
+                                                    <td colspan="5">Sub Total</td>
                                                     <td>324</td>
+                                                    
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">Add freight</td>
+                                                    <td>520</td>
+                                                    
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">Grand Total</td>
+                                                    <td>520</td>
+                                                    
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">Amount in Word</td>
+                                                    <td>one thousand five hundred </td>
                                                     
                                                     <td colspan="2"></td>
                                                 </tr>
@@ -232,12 +250,7 @@
                                 </div>
                             </div>
                              <!--end table-->
-                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Letter Footer</label>
-                                    <input class="form-control input-sm" type="text" >
-                                </div>
-                            </div>
+                             
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Notes</label>

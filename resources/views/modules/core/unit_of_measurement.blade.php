@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Country</h2>
+                    <h2>Unit Of Measurement </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -16,7 +16,7 @@
                     {{csrf_field()}}
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label>Country Name</label>
+                                <label>Unit Of Measurement Name</label>
                                 <input class="form-control input-sm" type="text" name="name">
                             </div>
                         </div>
@@ -39,15 +39,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Country Name</th>
+                                <th>Unit Of Measurement Name</th>
                                 <th>Shortname</th>
                             </tr>
-                            @foreach ($country_list as $item)
-                            <tr>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->short_name}}</td>
-                            </tr>
-                            @endforeach
                         </thead>
                     </table>
                 </div>

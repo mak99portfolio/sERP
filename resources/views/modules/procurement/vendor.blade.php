@@ -137,7 +137,7 @@
                                     <input class="form-control input-sm" type="text">
                                 </div>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -187,7 +187,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -251,7 +251,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12  table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -278,7 +278,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12  table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -336,7 +336,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12  table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -387,6 +387,217 @@
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>Contact Person Information</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Contact Person-1</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Contact Name</label>
+                                                                        <input class="form-control input-sm" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Designation</label>
+                                                                        <input class="form-control input-sm" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Tel. No</label>
+                                                                        <input class="form-control input-sm" type="tel">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>E-Mail</label>
+                                                                        <input class="form-control input-sm" type="email">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Job Role</label>
+                                                                        <input class="form-control input-sm" type="tel">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Coll No</label>
+                                                                        <input class="form-control input-sm" type="email">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Contact Person-2</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Contact Name</label>
+                                                                        <input class="form-control input-sm" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Designation</label>
+                                                                        <input class="form-control input-sm" type="text">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Tel. No</label>
+                                                                        <input class="form-control input-sm" type="tel">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>E-Mail</label>
+                                                                        <input class="form-control input-sm" type="email">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Job Role</label>
+                                                                        <input class="form-control input-sm" type="tel">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Coll No</label>
+                                                                        <input class="form-control input-sm" type="email">
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Enclosures Information</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="col-md-offset-3 col-md-6 col-sm-12 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Enclosure Line</label>
+                                                                        <select class="select form-control m-b input-sm">
+                                                                            <option value="" disabled selected>Select Product Line</option>
+                                                                            <option>option1</option>
+                                                                            <option>option2</option>
+                                                                            <option>option3</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 text-center">
+                                                                    <div class="form-group">
+                                                                        <button type="button" class="btn btn-default btn-sm">Add to List</button>
+                                                                    </div>
+                                                                </div>
+                                                                <!-- /end save -->
+                                                                <table class="table table-bordered">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th colspan="3">Enclosure LIst</th>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <th>SL No</th>
+                                                                            <th>Enclosure Name</th>
+                                                                            <th>Attachment</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>01</td>
+                                                                            <td>Trade License</td>
+                                                                            <td>
+                                                                                <input type="file" accept="image/png, image/jpeg" />
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="4">Product LIst</th>
+                                        </tr>
+                                        <tr>
+                                            <th>#SL</th>
+                                            <th>Item Name</th>
+                                            <th>CI Quantity</th>
+                                            <th>PO Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>ABC</td>
+                                            <td>09</td>
+                                            <td>04</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2">Total:</td>
+                                            <td>09</td>
+                                            <td>04</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Remarks</label>
+                                    <textarea class="form-control input-sm" rows="2"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                                <br />
+
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <button type="submit" class="btn btn-default">Cancel</button>
+                                </div>
+                            </div>
                         </form>
 
                     </div>
@@ -396,208 +607,4 @@
     </div>
 </div>
 <!-- /page content -->
-
-
-<div class="right_col" role="main">
-    <div style="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Vendor</h3>
-            </div>
-        </div>
-        <div class="x_content">
-            <hr />
-            <form class="form-horizontal form-label-left">
-
-
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Contact Person Information</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Contact Person-1</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6">
-                                                        <label>Contact Name</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label>Designation</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6">
-                                                        <label>Tel. No</label>
-                                                        <input class="form-control input-sm" type="tel">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label>E-Mail</label>
-                                                        <input class="form-control input-sm" type="email">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6">
-                                                        <label>Job Role</label>
-                                                        <input class="form-control input-sm" type="tel">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label>Coll No</label>
-                                                        <input class="form-control input-sm" type="email">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Contact Person-2</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6">
-                                                        <label>Contact Name</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label>Designation</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6">
-                                                        <label>Tel. No</label>
-                                                        <input class="form-control input-sm" type="tel">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label>E-Mail</label>
-                                                        <input class="form-control input-sm" type="email">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6">
-                                                        <label>Job Role</label>
-                                                        <input class="form-control input-sm" type="tel">
-                                                    </div>
-                                                    <div class="col-sm-6">
-                                                        <label>Coll No</label>
-                                                        <input class="form-control input-sm" type="email">
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Enclosures Information</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-offset-3 col-sm-6">
-                                                        <label>Enclosure Line</label>
-                                                        <select class="select form-control m-b input-sm" style="width: 100%">
-                                                            <option value="" disabled selected>Select Product Line</option>
-                                                            <option>option1</option>
-                                                            <option>option2</option>
-                                                            <option>option3</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group pull-in clearfix">
-                                                    <div class="col-sm-6 col-md-offset-3 text-center">
-                                                        <button type="button" class="btn btn-success">Add to List</button>
-                                                    </div>
-                                                </div>
-                                                <!-- /end save -->
-                                                <table class="table table-bordered">
-                                                    <thead>
-                                                        <tr>
-                                                            <th colspan="3">Enclosure LIst</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th>SL No</th>
-                                                            <th>Enclosure Name</th>
-                                                            <th>Attachment</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <td>01</td>
-                                                            <td>Trade License</td>
-                                                            <td>
-                                                                <input type="file" accept="image/png, image/jpeg" />
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th colspan="4">Product LIst</th>
-                        </tr>
-                        <tr>
-                            <th>#SL</th>
-                            <th>Item Name</th>
-                            <th>CI Quantity</th>
-                            <th>PO Quantity</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>ABC</td>
-                            <td>09</td>
-                            <td>04</td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="2">Total:</td>
-                            <td>09</td>
-                            <td>04</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="form-group pull-in clearfix m-t-n-sm">
-                    <div class="col-sm-12">
-                        <label>Remarks</label>
-                        <textarea class="form-control input-sm" rows="2"></textarea>
-                    </div>
-                </div>
-            </form>
-        </div>
-        <div class="clearfix"></div>
-    </div>
-</div>
 @endsection

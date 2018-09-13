@@ -19,6 +19,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $view = view($this->view_root.'index');
+        $view->with('product_category', ProductCategory::all());
         return $view;
     }
 
@@ -30,6 +31,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
+        $view->with('product_category', ProductCategory::all());
         return $view;
     }
 
@@ -42,16 +44,16 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_categorie_id' => 'required|unique:unit_of_measurements',
-            'name' => 'required|unique:unit_of_measurements',
-            'short_name' => 'required|unique:unit_of_measurements',
+            'product_categorie_id' => 'required',
+            'name' => 'required|unique:product_categories',
+            'short_name' => 'required|unique:product_categories',
         ]);
-        $umo = new UnitOfMeasurement;
-        $umo->fill($request->input());
-        $umo->creator_user_id = Auth::id();
-        $umo->save();
-        Session::put('alert-success', $umo->name . ' created successfully');
-        return redirect()->route('unit-of-measurement.create');
+        $pc = new ProductCategory;
+        $pc->fill($request->input());
+        $pc->creator_user_id = Auth::id();
+        $pc->save();
+        Session::put('alert-success', $pc->name . ' created successfully');
+        return redirect()->route('product-category.create');
     }
 
     /**

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Procurement;
 
-use App\Http\Controllers\Controller;
 use App\RequisitionPriority;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,9 +13,13 @@ class RequisitionPriorityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/setting/requisition_priority/';
     public function index()
     {
-        //
+        $view = view($this->view_root . 'index');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

@@ -13,9 +13,13 @@ class VendorCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/setting/vendor_category/';
     public function index()
     {
-        //
+        $view = view($this->view_root . 'index');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

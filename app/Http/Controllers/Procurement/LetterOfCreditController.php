@@ -13,9 +13,10 @@ class LetterOfCreditController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/letter_of_credit/';
     public function index()
     {
-        $view = view('modules/procurement/letter_of_credit');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

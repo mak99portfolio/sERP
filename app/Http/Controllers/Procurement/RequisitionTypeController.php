@@ -13,9 +13,13 @@ class RequisitionTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/setting/requisition_type/';
     public function index()
     {
-        //
+        $view = view($this->view_root . 'index');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

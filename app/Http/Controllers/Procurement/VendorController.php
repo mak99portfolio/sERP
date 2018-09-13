@@ -16,9 +16,10 @@ class VendorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/setting/vendor/';
     public function index()
     {
-        $view = view('modules/procurement/vendor');
+        $view = view($this->view_root . 'index');
         $view->with('country_list', Country::all());
         $view->with('vendor_category_list', VendorCategory::all());
         return $view;

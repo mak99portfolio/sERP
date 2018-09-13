@@ -30,6 +30,12 @@
                         <hr>
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-success">Save</button>
+                            <button class="btn btn-default source" onclick="new PNotify({
+                                title: 'Regular Success',
+                                text: 'That thing that you were trying to do worked!',
+                                type: 'success',
+                                styling: 'bootstrap3'
+                            });">Success</button>
                         </div>
                     </form>
                     

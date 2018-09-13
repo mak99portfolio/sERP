@@ -6,6 +6,7 @@ use App\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
+use Session;
 
 class CountryController extends Controller
 {
@@ -14,9 +15,10 @@ class CountryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/country/';
     public function index()
     {
-        $view = view('modules/core/country');
+        $view = view($this->view_root.'index');
         $view->with('country_list', Country::all());
         return $view;
     }
@@ -47,6 +49,7 @@ class CountryController extends Controller
         $country->fill($request->input());
         $country->creator_user_id = Auth::id();
         $country->save();
+        Session::put('alert-success', $country->name . ' created successfully');
         return redirect()->route('country.index');
     }
 

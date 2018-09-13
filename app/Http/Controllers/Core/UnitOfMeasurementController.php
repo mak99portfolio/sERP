@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\core;
 
 use App\UnitOfMeasurement;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class UnitOfMeasurementController extends Controller
 {
@@ -14,7 +15,8 @@ class UnitOfMeasurementController extends Controller
      */
     public function index()
     {
-        //
+        $view = view('modules/core/unit_of_measurement');
+        return $view;
     }
 
     /**

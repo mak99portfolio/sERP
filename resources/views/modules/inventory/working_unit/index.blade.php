@@ -28,6 +28,7 @@
                     <thead>
                         <tr class='primary'>
                             <th>Name</th>
+                            <th>Short Name</th>
                             <th>Company</th>
                             <th>Parent Unit</th>
                             <th>Unit Type</th>
@@ -43,6 +44,7 @@
                     @foreach($paginate->table as $row)
                         <tr>
                             <td>{{ $row->name }}</td>
+                            <td>{{ $row->short_name }}</td>
                             <td>{{ empty($row->company->name)?'':$row->company->name }}</td>
                             <td>{{ empty($row->parent->name)?'':$row->parent->name }}</td>
                             <td>{{ empty($row->type->name)?'':$row->type->name }}</td>

@@ -70,3 +70,11 @@ function btnAddNew($args=[]){
 function Xedit($args=[]){
 	return \App\Helpers\Xedit::render($args);
 }
+
+function btnSubmitGroup(){
+	return "<div class='btn-group'>
+	<button class='btn btn-default' type='submit'><i class='fa text-info fa-rocket fa-lg'></i> Submit</button>
+	<a class='btn btn-default' href='".url()->current()."' title='Reset' onclick='return action_confirm()'><i class='fa fa-exclamation-circle fa-lg text-warning' aria-hidden='true'></i> Reset</a>
+	<button type='button' class='btn btn-default' onclick='window.history.back();'/><i class='fa text-info fa-reply fa-lg'></i> Go Back</button>
+	</div>";
+}

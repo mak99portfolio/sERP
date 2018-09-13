@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Country;
 use Auth;
+use Session;
 
 class BankController extends Controller
 {
@@ -24,7 +25,8 @@ class BankController extends Controller
         //     'countries' => \App\Country::pluck( 'name', 'id')
         // ];
 
-        $view = view($this->view_root . 'create');
+        $view = view($this->view_root . 'index');
+        $view->with('bank_list', Bank::all());
         $view->with('country_list', Country::all());
 
         return $view;
@@ -37,7 +39,9 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        $view->with('country_list', Country::all());
+        return $view;
     }
 
     /**
@@ -59,6 +63,7 @@ class BankController extends Controller
         $bank->fill($request->input());
         $bank->creator_user_id = Auth::id();
         $bank->save();
+        Session::put('alert-success', $bank->name . " successfully created");
         return redirect()->route('bank.index');
     }
 

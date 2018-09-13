@@ -46,7 +46,7 @@
                             <td>{{ empty($row->company->name)?'':$row->company->name }}</td>
                             <td>{{ empty($row->parent->name)?'':$row->parent->name }}</td>
                             <td>{{ empty($row->type->name)?'':$row->type->name }}</td>
-                            <td>{{ empty($row->in_charge->name)?'':$row->in_charge->name }}</td>
+                            <td>{{ empty($row->user_in_charge->name)?'':$row->user_in_charge->name }}</td>
                             <td>{{ empty($row->country->name)?'':$row->country->name }}</td>
                             <td>{{ empty($row->division->name)?'':$row->division->name }}</td>
                             <td>{{ empty($row->district->name)?'':$row->district->name }}</td>

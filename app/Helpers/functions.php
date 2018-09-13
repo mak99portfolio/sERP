@@ -67,32 +67,6 @@ function btnAddNew($args=[]){
 	return "<a href='$attr[url]' class='$attr[class]'><i class='fa $attr[icon]'></i> $attr[title]</a>";
 }
 
-function commitFinancialTransaction($approver,$transactionType,$relatedUser=NULL,$amount=0){
-
-	$transactName=$transactionType->name;
-	$newTransaction=new \App\Transaction;
-	$newTransaction->transactionType()->associate($transactionType);
-	if($relatedUser) $newTransaction->user()->associate($relatedUser);
-	$newTransaction->amount=$amount;
-	$newTransaction->approver()->associate($approver);
-	$newTransaction->save();
-
-	if($transactName=='fns_clients_bill_received'){
-
-		$journalEntries=[
-			['transaction_id'=>$newTransaction->id,'account_id'=>5,'debit'=>$amount,'credit'=>0],
-			['transaction_id'=>$newTransaction->id,'account_id'=>1,'debit'=>0,'credit'=>$amount]
-		];
-
-		foreach($journalEntries as $entry) {
-			\App\JournalEntry::create($entry);
-		}
-
-	}elseif($transactName='fns_clients_service_provided'){
-		return TRUE;
-	}else return FALSE;
-}
-
 function Xedit($args=[]){
 	return \App\Helpers\Xedit::render($args);
 }

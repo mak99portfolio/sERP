@@ -12,8 +12,8 @@
                 </div>
                 <div class="x_content">
                     <br />
-                <form class="form-horizontal form-label-left" action="{{route('country.store')}}" method="POST">
-                    {{csrf_field()}}
+                <form class="form-horizontal form-label-left" action="{{ route('country.store') }}" method="POST">
+                    {{ csrf_field() }}
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label>Country Name</label>
@@ -32,7 +32,7 @@
                             <button type="submit" class="btn btn-success">Save</button>
                         </div>
                     </form>
-                    
+
                 </div>
                 <div class="x_content">
                     <br />
@@ -44,8 +44,8 @@
                             </tr>
                             @foreach ($country_list as $item)
                             <tr>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->short_name}}</td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->short_name }}</td>
                             </tr>
                             @endforeach
                         </thead>

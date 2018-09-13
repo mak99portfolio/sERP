@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Core;
 use App\Bank;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Country;
+use Auth;
 
 class BankController extends Controller
 {
@@ -13,12 +15,18 @@ class BankController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     private $view_root = 'modules/core/bank/';
+
     public function index()
     {
-        $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        // $data = [
+        //     'countries' => \App\Country::pluck( 'name', 'id')
+        // ];
+
+        $view = view($this->view_root . 'create');
+        $view->with('country_list', Country::all());
+
         return $view;
     }
 
@@ -40,7 +48,18 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'bank_name' => 'required|unique:banks',
+            'country' => 'required|unique:banks',
+            'short_name' => 'required|unique:banks',
+            'bank_description' => 'required|unique:banks'
+        ]);
+
+        $bank = new Bank;
+        $bank->fill($request->input());
+        $bank->creator_user_id = Auth::id();
+        $bank->save();
+        return redirect()->route('bank.index');
     }
 
     /**

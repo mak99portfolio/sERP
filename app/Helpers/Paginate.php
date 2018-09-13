@@ -30,7 +30,13 @@ class Paginate{
     		$this->descActiveFlag=NULL;
     	}
 
-    	$this->table=$this->model->where(request()->input('activeField','id'),'like', $wildCard.request('search').$wildCard)->orderBy(request()->input('activeField','id'),request()->input('order','ASC'))->paginate(request()->input('limit',10));
+        if(empty(request('search'))){
+
+            $this->table=$this->model->orderBy(request()->input('activeField','id'), request()->input('order', 'ASC'))->paginate(request()->input('limit', 10));
+        }else{
+            
+            $this->table=$this->model->where(request()->input('activeField','id'),'like', $wildCard.request('search').$wildCard)->orderBy(request()->input('activeField','id'), request()->input('order', 'ASC'))->paginate(request()->input('limit', 10));
+        }
 
         $this->totalPage=$this->table->lastPage();
 	}

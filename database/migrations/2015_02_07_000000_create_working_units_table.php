@@ -15,11 +15,11 @@ class CreateWorkingUnitsTable extends Migration
 
         Schema::create('working_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id');
-            $table->integer('parent_unit_id')->unsigned();
-            $table->integer('working_unit_type_id')->unsigned();
+            $table->integer('company_id')->unsigned()->nullable();
+            $table->integer('parent_unit_id')->unsigned()->nullable();
+            $table->integer('working_unit_type_id')->unsigned()->nullable();
             $table->string('name')->unique();
-            $table->string('sort_name')->unique()->nullabel();
+            $table->string('short_name')->unique()->nullable();
             $table->integer('in_charge')->unsigned();
             $table->text('address')->nullable();
             $table->integer('country_id')->nullable();

@@ -48,6 +48,22 @@ class HomeController extends Controller
                 'styling' => 'bootstrap3',
             ];
             return response()->json($data);
+        }else if(Session::has('alert-info')){
+            $data = [
+                'title' => 'Info',
+                'text' => Session::pull('alert-info'),
+                'type' => 'info',
+                'styling' => 'bootstrap3',
+            ];
+            return response()->json($data);
+        }else if(Session::has('alert-warning')){
+            $data = [
+                'title' => 'Warning',
+                'text' => Session::pull('alert-warning'),
+                'type' => 'notice',
+                'styling' => 'bootstrap3',
+            ];
+            return response()->json($data);
         }
 
     }

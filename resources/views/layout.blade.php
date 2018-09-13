@@ -118,10 +118,10 @@
     @yield('script')
     <script>
       function init(){
-        var jqxhr = $.ajax( "{{route('get_toaster_notification')}}")
-                            .done(function(data) {
-                              new PNotify(data);
-                            })
+        $.ajax( "{{route('get_toaster_notification')}}")
+              .done(function(data) {
+                new PNotify(data);
+              })
         
       }
     </script>

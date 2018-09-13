@@ -30,7 +30,8 @@ class CountryController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**

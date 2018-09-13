@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class UnitOfMeasurement extends Model
 {
     use SoftDeletes;
-    protected $fillable =[
+    protected $fillable = [
         'name',
         'short_name'
     ];

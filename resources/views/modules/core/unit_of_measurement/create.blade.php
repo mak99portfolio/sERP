@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Country')
+@section('title', 'Unit Of Measurement')
 @section('content')
 <div class="right_col" role="main">
   <div class="">
@@ -12,7 +12,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                <form class="form-horizontal form-label-left" action="{{route('country.store')}}" method="POST">
+                <form class="form-horizontal form-label-left" action="{{route('unit-of-measurement.store')}}" method="POST">
                     {{csrf_field()}}
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
@@ -26,29 +26,18 @@
                                 <input class="form-control input-sm" type="text" name="short_name">
                             </div>
                         </div>
-                        <br>
-                        <hr>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-success">Save</button>
+                        <div class="col-md-12 col-xs-12">
+                            <br />
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            </div>
                         </div>
                     </form>
-                    
-                </div>
-                <div class="x_content">
-                    <br />
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Unit Of Measurement Name</th>
-                                <th>Shortname</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>
-        </div>
-    <div class="clearfix"></div>
+    </div>
   </div>
 </div>
 @endsection

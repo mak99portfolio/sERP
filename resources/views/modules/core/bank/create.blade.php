@@ -26,8 +26,8 @@
                                     <label>Country</label>
                                     <div>
                                         <select class="form-control input-sm" name="country_id">
-                                            @foreach ($country_list as $item)
                                             <option value="" disabled>Choose..</option>
+                                            @foreach ($country_list as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         </select>

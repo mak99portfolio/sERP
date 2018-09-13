@@ -44,7 +44,7 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**

@@ -141,7 +141,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>VAT No</label>
-                                    <input class="form-control input-sm" type="text">
+                                    <input class="form-control input-sm" type="text" name="vat_no">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
@@ -158,21 +158,21 @@
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Ltd. Company
+                                                                <input type="checkbox" name="business_type"><i></i> Ltd. Company
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Partnership
+                                                                <input type="checkbox" name="business_type"><i></i> Partnership
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Proprietorship
+                                                                <input type="checkbox" name="business_type"><i></i> Proprietorship
                                                             </label>
                                                         </div>
                                                     </div>
@@ -180,7 +180,7 @@
                                                         <div class="col-sm-2">
                                                             <div class="checkbox">
                                                                 <label class="i-checks">
-                                                                    <input type="checkbox" name=""><i></i> Other
+                                                                    <input type="checkbox" name="business_type"><i></i> Other
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -208,35 +208,35 @@
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Manufacturer
+                                                                <input type="checkbox" name="business_nature"><i></i> Manufacturer
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Trader
+                                                                <input type="checkbox" name="business_nature"><i></i> Trader
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Service Provide
+                                                                <input type="checkbox" name="business_nature"><i></i> Service Provide
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Contractor
+                                                                <input type="checkbox" name="business_nature"><i></i> Contractor
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-2 col-sm-3">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name=""><i></i> Agent/Distributor
+                                                                <input type="checkbox" name="business_nature"><i></i> Agent/Distributor
                                                             </label>
                                                         </div>
                                                     </div>
@@ -244,7 +244,7 @@
                                                         <div class="col-sm-2">
                                                             <div class="checkbox">
                                                                 <label class="i-checks">
-                                                                    <input type="checkbox" name=""><i></i> Other
+                                                                    <input type="checkbox" name="business_nature"><i></i> Other
                                                                 </label>
                                                             </div>
                                                         </div>
@@ -271,13 +271,13 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Credit Period</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="credit_period">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Credit Limit</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="credit_limit">
                                                     </div>
                                                 </div>
                                             </td>
@@ -299,7 +299,7 @@
                                                     <div class="form-group">
                                                         <div class="input-group">
                                                             <div class="input-group-addon"><strong>Net</strong></div>
-                                                            <input type="text" class="form-control input-sm" name="">
+                                                            <input type="text" class="form-control input-sm" name="net_days">
                                                             <div class="input-group-addon">Day</div>
                                                         </div>
                                                     </div>
@@ -314,7 +314,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6 m-t-xs">
-                                                            <input class="form-control input-sm" type="text" name="">
+                                                            <input class="form-control input-sm" type="text" name="payment_discount">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -328,14 +328,14 @@
                                                             </div>
                                                         </div>
                                                         <div class="col-sm-6 m-t-xs">
-                                                            <input class="form-control input-sm" type="text" name="">
+                                                            <input class="form-control input-sm" type="text" name="other_discount">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Specify Discount Terms</label>
-                                                        <textarea class="form-control input-sm" rows="2" name=""></textarea>
+                                                        <textarea class="form-control input-sm" rows="2" name="discount_terms"></textarea>
                                                     </div>
                                                 </div>
                                             </td>
@@ -356,37 +356,37 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>A/C No</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="ac_no">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>A/C Name</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="ac_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Bank</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="bank_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Branch</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="branch_name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>SWIFT Code</label>
-                                                        <input class="form-control input-sm" type="text" name="">
+                                                        <input class="form-control input-sm" type="text" name="swift_code">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Bank Address</label>
-                                                        <textarea class="form-control input-sm" rows="2" name=""></textarea>
+                                                        <textarea class="form-control input-sm" rows="2" name="address"></textarea>
                                                     </div>
                                                 </div>
                                             </td>
@@ -416,37 +416,37 @@
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Contact Name</label>
-                                                                        <input class="form-control input-sm" type="text" name="">
+                                                                        <input class="form-control input-sm" type="text" name="name[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Designation</label>
-                                                                        <input class="form-control input-sm" type="text" name="">
+                                                                        <input class="form-control input-sm" type="text" name="designation[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Tel. No</label>
-                                                                        <input class="form-control input-sm" type="tel" name="">
+                                                                        <input class="form-control input-sm" type="tel" name="telephone[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>E-Mail</label>
-                                                                        <input class="form-control input-sm" type="email" name="">
+                                                                        <input class="form-control input-sm" type="email" name="email[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Job Role</label>
-                                                                        <input class="form-control input-sm" type="tel" name="">
+                                                                        <input class="form-control input-sm" type="tel" name="role[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Coll No</label>
-                                                                        <input class="form-control input-sm" type="email" name="">
+                                                                        <input class="form-control input-sm" type="email" name="mobile[]">
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -465,37 +465,37 @@
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Contact Name</label>
-                                                                        <input class="form-control input-sm" type="text" name="">
+                                                                        <input class="form-control input-sm" type="text" name="name[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Designation</label>
-                                                                        <input class="form-control input-sm" type="text" name="">
+                                                                        <input class="form-control input-sm" type="text" name="designation[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Tel. No</label>
-                                                                        <input class="form-control input-sm" type="tel" name="">
+                                                                        <input class="form-control input-sm" type="tel" name="telephone[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>E-Mail</label>
-                                                                        <input class="form-control input-sm" type="email" name="">
+                                                                        <input class="form-control input-sm" type="email" name="email[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Job Role</label>
-                                                                        <input class="form-control input-sm" type="tel" name="">
+                                                                        <input class="form-control input-sm" type="tel" name="role[]">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                                     <div class="form-group">
                                                                         <label>Coll No</label>
-                                                                        <input class="form-control input-sm" type="email" name="">
+                                                                        <input class="form-control input-sm" type="email" name="mobile[]">
                                                                     </div>
                                                                 </div>
                                                             </td>
@@ -559,7 +559,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
+                            {{-- <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
@@ -588,13 +588,13 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            </div> --}}
+                            {{-- <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Remarks</label>
                                     <textarea class="form-control input-sm" rows="2"></textarea>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                 <br />
@@ -602,7 +602,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">Save</button>
-                                <a class="btn btn-default" href="{{route('vendor.index')}}">Cancel</button>
+                                    <a class="btn btn-default" href="{{route('vendor.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </form>

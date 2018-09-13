@@ -3,13 +3,22 @@ namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
 use App\WorkingUnit;
+use App\Helpers\Paginate;
 use Illuminate\Http\Request;
 
 class WorkingUnitController extends Controller{
 
     public function index(){
+    	
+    	$data=[
+    		'paginate'=>new Paginate('\App\WorkingUnit', ['id'=>'ID','name'=>'Name']),
+    		'carbon'=>new \Carbon\Carbon
+    	];
 
-    	echo 'Moved to http://localhost:8000/inventory/working-unit/create url';
+    	dd($data['paginate']);
+
+    	return view('modulles.inventory.working_units', $data);
+
 
     }
 
@@ -26,7 +35,7 @@ class WorkingUnitController extends Controller{
     		'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
     	];
 
-        return view('modules.inventory.working_unit', $data);
+        return view('modules.inventory.working_unit_form', $data);
 
     }
 
@@ -36,14 +45,20 @@ class WorkingUnitController extends Controller{
     	//dd($request->all());
 
     	$request->validate([
-    		'name'=>'required|exists:working_units',
+    		'name'=>'required|unique:working_units,name',
+    		'sort_name'=>'required|unique:working_units,sort_name',
     		'working_unit_type_id'=>'required|integer',
-    		'parent_unit_id'=>'required|integer',
+    		'parent_unit_id'=>'nullable|integer',
     		'in_charge'=>'required|integer',
+    		'company_id'=>'required|integer',
+    		'country_id'=>'required|integer',
+    		'division_id'=>'required|integer',
+    		'district_id'=>'required|integer',
     		'address'=>'required|max:500',
     	]);
 
-
+    	$workingUnit=\App\WorkingUnit::create($request->all());
+    	return back()->with('success', 'Form submitted successfully');
 
     }
 
@@ -68,5 +83,23 @@ class WorkingUnitController extends Controller{
 
     public function destroy(WorkingUnit $workingUnit){
 
+    }
+
+    function district_search(\App\Division $division, Request $request){
+
+
+        return response()->json($division->districts);
+    
+        $data = DB::table('districts')
+        ->where('division_id', $division_id)
+        ->get();
+
+
+        $output = '<option value="">Select</option>';
+        foreach($data as $row)
+        {
+        $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+        echo $output;
     }
 }

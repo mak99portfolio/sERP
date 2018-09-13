@@ -20,8 +20,6 @@ class VendorController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        $view->with('country_list', Country::all());
-        $view->with('vendor_category_list', VendorCategory::all());
         return $view;
     }
 
@@ -34,6 +32,7 @@ class VendorController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('country_list', Country::all());
+        $view->with('vendor_category_list', VendorCategory::all());
         return $view;
     }
 

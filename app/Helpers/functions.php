@@ -21,7 +21,7 @@ function btnEdit($args=[]){
 		'class'=>'text-primary'
 	];
 	$attr=array_merge($attr,$args);
-	return "<a class='btn btn-default' href='$attr[url]' title='Edit' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i></a>";
+	return "<a class='btn btn-default btn-xs btn-block' href='$attr[url]' title='Edit' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i></a>";
 }
 function btnDelete($args=[]){
 	$attr=[
@@ -30,7 +30,7 @@ function btnDelete($args=[]){
 		'class'=>'text-danger'
 	];
 	$attr=array_merge($attr,$args);
-	return "<form method='POST' action='$attr[url]'>".csrf_field().method_field('DELETE')."<button type='submit' class='btn btn-default btn-xs' title='Delete' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true' title='Delete'></i></button></form>";
+	return "<form method='POST' action='$attr[url]'>".csrf_field().method_field('DELETE')."<button type='submit' class='btn btn-default btn-xs btn-block' title='Delete' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true' title='Delete'></i></button></form>";
 }
 function btnCustom($args=[]){
 	$attr=[
@@ -58,7 +58,7 @@ function goBack($args=[]){
 }
 function btnAddNew($args=[]){
 	$attr=[
-		'class'=>'pull-right btn btn-default btn-xs',
+		'class'=>'pull-right btn btn-default',
 		'icon'=>'text-info fa-plus-circle fa-lg',
 		'title'=>'Add New',
 		'url'=>'#'

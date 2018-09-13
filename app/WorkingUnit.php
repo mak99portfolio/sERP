@@ -9,7 +9,7 @@ class WorkingUnit extends Model{
 	protected $guarded = ['id'];
 
 	public function parent(){
-		return $this->belongsTo('App\WorkingUnit');
+		return $this->belongsTo('App\WorkingUnit', 'parent_unit_id');
 	}
 
 	public function type(){
@@ -21,7 +21,7 @@ class WorkingUnit extends Model{
 	}
 
 	public function in_charge(){
-		return $this->belongsTo('App\User');
+		return $this->belongsTo('App\User','in_charge');
 	}
 
 	public function country(){

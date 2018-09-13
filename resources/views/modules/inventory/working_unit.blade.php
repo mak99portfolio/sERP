@@ -49,8 +49,20 @@
 
 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                        {{ BootForm::text('geo_location','Geo Location',null,['class'=>'form-control input-sm']) }}
+
+                        {{ BootForm::select('country_id', 'Country', $countries, ['class'=>'form-control input-sm']) }}
                     </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        {{ BootForm::select('division_id', 'Division', $divisions, ['class'=>'form-control input-sm']) }}
+                    </div>
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+
+                        {{ BootForm::select('district_id', 'District', $districts, ['class'=>'form-control input-sm']) }}
+                    </div>
+
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         {{ BootForm::textarea('address','Address',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                     </div>

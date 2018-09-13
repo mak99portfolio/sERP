@@ -1,0 +1,1 @@
+{{ $paginate->table->appends(['activeField'=>request()->input('activeField','id'),'wholeWord'=>request('wholeWord'),'search'=>request('search'),'order'=>request()->input('order','ASC'),'limit'=>request()->input('limit',10)])->links() }}

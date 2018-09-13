@@ -58,6 +58,7 @@
           <li><a href="tables.html">Product</a></li>
           <li><a href="tables_dynamic.html">Product Category</a></li>
         <li><a href="{{route('country.index')}}">Country</a></li>
+        <li><a href="{{route('unit-of-measurement.index')}}">Unit Of Measurement</a></li>
         </ul>
       </li>
     </ul>

@@ -15,6 +15,7 @@ Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboa
 Route::namespace('Core')->prefix('core')->group(function(){
     Route::get('cities', 'CityController@index')->name('core.cities');
     Route::resource('country', 'CountryController');
+    Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
 });
 
 //Procurement

@@ -20,6 +20,9 @@ class WorkingUnitController extends Controller{
     		'working_unit'=>new \App\WorkingUnit,
     		'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
     		'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
+    		'countries'=>\App\Country::pluck('name', 'id'),
+    		'divisions'=>\App\Division::pluck('name', 'id'),
+    		'districts'=>\App\District::pluck('name', 'id'),
     		'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
     	];
 

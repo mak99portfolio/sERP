@@ -16,7 +16,8 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Working Unit <small>Form</small></h2>
-                <a href="" class="btn btn-primary btn-sm pull-right">Working List</a>
+                <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Working Unit List</a>
+
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -83,4 +84,7 @@
 {{-- Content end --}}
 </div>
 </div>
+@endsection
+@section('script')
+
 @endsection

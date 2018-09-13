@@ -9,7 +9,8 @@ class WorkingUnitController extends Controller{
 
     public function index(){
 
-    	echo 'Moved to http://localhost:8000/inventory/working-unit/create url';
+        $working_unit_list=\App\WorkingUnit::all();
+    	return view('modules.inventory.working_unit_list',compact('working_unit_list'));
 
     }
 

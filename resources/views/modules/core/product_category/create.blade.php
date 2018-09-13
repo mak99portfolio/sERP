@@ -19,7 +19,10 @@
                                 <label>Product Category</label>
                                 <select class="form-control input-sm" name="product_categorie_id">
                                         <option value="" disabled selected>Select Category</option>
-                                        <option value="0"> Master Category</option>
+
+                            @foreach ($product_category as $item)
+                                        <option value="{{$item->id}}"> {{$item->name}}</option>
+                            @endforeach
                                     </select>
                             </div>
                         </div>

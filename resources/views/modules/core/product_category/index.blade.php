@@ -19,7 +19,12 @@
                                 <th>Country Name</th>
                                 <th>Shortname</th>
                             </tr>
-                            
+                            @foreach ($product_category as $item)
+                            <tr>
+                                <td>{{$item->name}}</td>
+                                <td>{{$item->short_name}}</td>
+                            </tr>
+                            @endforeach
                         </thead>
                     </table>
                 </div>

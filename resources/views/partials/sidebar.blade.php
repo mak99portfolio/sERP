@@ -9,7 +9,7 @@
         <ul class="nav child_menu">
           <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{route('purchase-requisition.index')}}">Purchase Requisition</a></li>
+              <li><a href="{{route('foreign-requisition.index')}}">Foreign Requisition</a></li>
               <li><a href="{{route('purchase-order.index')}}">Purchase Order</a></li>
               <li><a href="{{route('proforma-invoice.index')}}">Proforma Invoice</a></li>
               <li><a href="{{route('letter-of-credit.index')}}">LC Details</a></li>
@@ -33,6 +33,9 @@
             <ul class="nav child_menu">
               <li><a href="{{route('vendor.index')}}">Vendor</a></li>
               <li><a href="{{route('vendor-category.index')}}">Vendor Category</a></li>
+              <li><a href="{{route('requisition-type.index')}}">Requisition Type</a></li>
+              <li><a href="{{route('requisition-purpose.index')}}">Requisition Purpose</a></li>
+              <li><a href="{{route('requisition-priority.index')}}">Requisition Priority</a></li>
             </ul>
           </li>
         </ul>
@@ -55,10 +58,15 @@
       </li>
       <li><a><i class="fa fa-cogs"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="tables.html">Product</a></li>
-          <li><a href="tables_dynamic.html">Product Category</a></li>
-        <li><a href="{{route('country.index')}}">Country</a></li>
-        <li><a href="{{route('unit-of-measurement.index')}}">Unit Of Measurement</a></li>
+          <li><a href="{{route('country.index')}}">Country</a></li>
+          <li><a href="{{route('city.index')}}">City</a></li>
+          <li><a href="{{route('port.index')}}">Port</a></li>
+          <li><a href="{{route('unit-of-measurement.index')}}">Unit Of Measurement</a></li>
+          <li><a href="{{route('product-category.index')}}">Product Category</a></li>
+          <li><a href="{{route('product-brand.index')}}">Product Brand</a></li>
+          <li><a href="{{route('product.index')}}">Product</a></li>
+          <li><a href="{{route('bank.index')}}">Bank</a></li>
+          <li><a href="{{route('bank-account.index')}}">Bank Account</a></li>
         </ul>
       </li>
     </ul>

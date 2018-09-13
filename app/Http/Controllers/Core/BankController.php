@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Core;
 
 use App\Bank;
 use Illuminate\Http\Request;
@@ -13,9 +13,13 @@ class BankController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/bank/';
     public function index()
     {
-        //
+        $view = view($this->view_root . 'index');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

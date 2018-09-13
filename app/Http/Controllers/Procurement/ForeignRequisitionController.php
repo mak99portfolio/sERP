@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers\Procurement;
 
-use App\Http\Controllers\Controller;
-use App\PurchaseRequisition;
+use App\ForeignRequisition;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class PurchaseRequisitionController extends Controller
+class ForeignRequisitionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/foreign_requisition/';
     public function index()
     {
-        $view = view('modules/procurement/purchase_requisition');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -39,20 +40,16 @@ class PurchaseRequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        $pr = new PurchaseRequisition;
-        $pr->fill($request->all());
-        $pr->created_by_user_id = Auth::id;
-        $pr->company_id = Auth::user()->getUserCompanyId();
-        $pr->save();
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\ForeignRequisition  $foreignRequisition
      * @return \Illuminate\Http\Response
      */
-    public function show(PurchaseRequisition $purchaseRequisition)
+    public function show(ForeignRequisition $foreignRequisition)
     {
         //
     }
@@ -60,10 +57,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\ForeignRequisition  $foreignRequisition
      * @return \Illuminate\Http\Response
      */
-    public function edit(PurchaseRequisition $purchaseRequisition)
+    public function edit(ForeignRequisition $foreignRequisition)
     {
         //
     }
@@ -72,10 +69,10 @@ class PurchaseRequisitionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\ForeignRequisition  $foreignRequisition
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PurchaseRequisition $purchaseRequisition)
+    public function update(Request $request, ForeignRequisition $foreignRequisition)
     {
         //
     }
@@ -83,10 +80,10 @@ class PurchaseRequisitionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\PurchaseRequisition  $purchaseRequisition
+     * @param  \App\ForeignRequisition  $foreignRequisition
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PurchaseRequisition $purchaseRequisition)
+    public function destroy(ForeignRequisition $foreignRequisition)
     {
         //
     }

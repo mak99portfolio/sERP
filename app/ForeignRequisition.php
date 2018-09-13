@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PurchaseRequisition extends Model
+class ForeignRequisition extends Model
 {
     protected $fillable = [
         'requisition_type_id',

@@ -65,72 +65,71 @@
                                         @foreach($country_list as $item)
                                         <option value="{{$item->id}}">{{$item->name}}</option>
                                         @endforeach
-                                        <option>Foreign</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Vendor Category</label>
-                                    <select class="select form-control input-sm" name="">
+                                    <select class="select form-control input-sm" name="vendor_category_id">
                                         <option value="" disabled selected>Select Requisition Type</option>
-                                        <option>Local</option>
-                                        <option>Foreign</option>
+                                        <option value="1">Local</option>
+                                        <option value="2">Foreign</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Zip Code</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text" name="zip_code">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Tel. No.</label>
-                                    <input class="form-control input-sm" type="tel" name="">
+                                    <input class="form-control input-sm" type="tel" name="telephone">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Fax</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text" name="fax">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Web Site</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text" name="website">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input class="form-control input-sm" type="email" name="">
+                                    <input class="form-control input-sm" type="email" name="email">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>TIN Number</label>
-                                    <input class="form-control input-sm" type="tel" name="">
+                                    <input class="form-control input-sm" type="tel" name="tin_no">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Trade License No</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text" name="trade_license_no">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Trade License Issue Date</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text" name="trade_license_issue_date">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Certificate of Incorporation</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <input class="form-control input-sm" type="text" name="certificate_of_incorporation">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">

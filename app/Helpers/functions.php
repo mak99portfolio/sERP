@@ -21,7 +21,7 @@ function btnEdit($args=[]){
 		'class'=>'text-primary'
 	];
 	$attr=array_merge($attr,$args);
-	return "<a class='btn btn-default btn-xs' href='$attr[url]' title='Edit' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i></a>";
+	return "<a class='btn btn-default' href='$attr[url]' title='Edit' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i></a>";
 }
 function btnDelete($args=[]){
 	$attr=[
@@ -32,13 +32,13 @@ function btnDelete($args=[]){
 	$attr=array_merge($attr,$args);
 	return "<form method='POST' action='$attr[url]'>".csrf_field().method_field('DELETE')."<button type='submit' class='btn btn-default btn-xs' title='Delete' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true' title='Delete'></i></button></form>";
 }
-function btnCustome($args=[]){
+function btnCustom($args=[]){
 	$attr=[
 		'url'=>'#',
 		'icon'=>'fa-exclamation-circle',
 		'class'=>'text-primary',
 		'title'=>'',
-		'btnClass'=>'btn btn-default btn-xs'
+		'btnClass'=>'btn btn-default'
 	];
 	$attr=array_merge($attr,$args);
 	return "<a class='$attr[btnClass]' href='$attr[url]' title='$attr[title]' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i> $attr[title]</a>";

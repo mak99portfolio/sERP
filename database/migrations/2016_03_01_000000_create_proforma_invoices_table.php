@@ -53,8 +53,8 @@ class CreateProformaInvoicesTable extends Migration
             $table->double('add_freight');
             $table->double('grand_total');
             $table->text('notes');
-            $table->integer('purchase_requisition_id');
-            $table->foreign('purchase_requisition_id')->references('id')->on('purchase_requisitions')->onDelete('restrict');
+            $table->integer('foreign_requisition_id');
+            $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('restrict');
             $table->integer('total_quantity');
             $table->double('total_amount');
             $table->double('total_discount');

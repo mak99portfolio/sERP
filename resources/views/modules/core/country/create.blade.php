@@ -7,7 +7,8 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Unit Of Measurement </h2>
+                    <h2>Country</h2>
+                    <a class="btn btn-primary btn-sm pull-right" href="{{route('country.index')}}"><i class="fa fa-list-ul"></i> Country List</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -16,7 +17,7 @@
                     {{csrf_field()}}
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label>Unit Of Measurement Name</label>
+                                <label>Country Name</label>
                                 <input class="form-control input-sm" type="text" name="name">
                             </div>
                         </div>
@@ -26,24 +27,11 @@
                                 <input class="form-control input-sm" type="text" name="short_name">
                             </div>
                         </div>
-                        <br>
-                        <hr>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            <a class="btn btn-default btn-sm" href="{{route('country.index')}}">Cancel</a>
                         </div>
                     </form>
-                    
-                </div>
-                <div class="x_content">
-                    <br />
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Unit Of Measurement Name</th>
-                                <th>Shortname</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>

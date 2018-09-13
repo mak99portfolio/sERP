@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateForeignRequisitionItemsTable extends Migration
+class CreateEmployeeProfilesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateForeignRequisitionItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('foreign_requisition_items', function (Blueprint $table) {
+        Schema::create('employee_profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_requisition_id')->unsigned();
-            $table->foreign('purchase_requisition_id')->references('id')->on('purchase_requisitions')->onDelete('restrict');
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
-            $table->integer('product_quantity');
-            $table->double('product_tax');
+            $table->string('name');
+            $table->text('present_address')->nullable();
+            $table->text('permanent_address')->nullable();
+            $table->integer('blood_group_id')->unsigned();
+            $table->string('nationality');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned();
@@ -38,6 +37,6 @@ class CreateForeignRequisitionItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('foreign_requisition_items');
+        Schema::dropIfExists('employee_profiles');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitOfMeasurementsTable extends Migration
+class CreateForeignRequisitionItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,19 @@ class CreateUnitOfMeasurementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_of_measurements', function (Blueprint $table) {
+        Schema::create('foreign_requisition_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('short_name');
+            $table->integer('foreign_requisition_id')->unsigned();
+            $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('restrict');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->integer('product_quantity');
+            $table->double('product_tax');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->integer('updator_user_id')->unsigned();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +38,6 @@ class CreateUnitOfMeasurementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit_of_measurements');
+        Schema::dropIfExists('foreign_requisition_items');
     }
 }

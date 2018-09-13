@@ -9,7 +9,7 @@ class Company extends Model{
 
    use softDeletes;
 
-   protected $gaurded=['id'];
+   protected $guarded=['id'];
 
    public function creator(){
    		$this->belongsTo('App\User');

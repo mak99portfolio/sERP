@@ -15,10 +15,11 @@ class CreateWorkingUnitsTable extends Migration
 
         Schema::create('working_units', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('company_id');
-            $table->integer('parent_unit_id')->nullable()->unsigned();
-            $table->integer('working_unit_type_id')->unsigned();
+            $table->integer('company_id')->unsigned()->nullable();
+            $table->integer('parent_unit_id')->unsigned()->nullable();
+            $table->integer('working_unit_type_id')->unsigned()->nullable();
             $table->string('name')->unique();
+            $table->string('short_name')->unique()->nullable();
             $table->integer('in_charge')->unsigned();
             $table->text('address')->nullable();
             $table->integer('country_id')->nullable();
@@ -28,6 +29,10 @@ class CreateWorkingUnitsTable extends Migration
             $table->timestamps();
             $table->foreign('parent_unit_id')->references('id')->on('working_units')->onDelete('cascade');
             $table->foreign('working_unit_type_id')->references('id')->on('working_unit_types')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('division_id')->references('id')->on('divisions')->onDelete('cascade');
+            $table->foreign('district_id')->references('id')->on('districts')->onDelete('cascade');
         });
 
     }

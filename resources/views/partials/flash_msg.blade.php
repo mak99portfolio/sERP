@@ -26,6 +26,11 @@
     <div class='alert alert-danger flash'>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
         <span class='font-breeSerif'><i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i> <strong>Form submission failed!</strong> Please insert all required information.</span>
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
     </div>
 @endif
 <script>

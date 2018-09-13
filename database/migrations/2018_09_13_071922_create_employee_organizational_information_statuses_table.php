@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUnitOfMeasurementsTable extends Migration
+class CreateEmployeeOrganizationalInformationStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateUnitOfMeasurementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('unit_of_measurements', function (Blueprint $table) {
+        Schema::create('employee_organizational_information_statuses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('short_name');
+            $table->string('name')->unique();
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->integer('updator_user_id')->unsigned();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -33,6 +33,6 @@ class CreateUnitOfMeasurementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit_of_measurements');
+        Schema::dropIfExists('employee_organizational_information_statuses');
     }
 }

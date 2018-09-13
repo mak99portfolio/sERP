@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Core;
 
 use App\Product;
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\http\Controllers\Controller;
+=======
+use App\Http\Controllers\Controller;
+>>>>>>> 4b5748db3faed7657168649bb61901c011f7ffa7
 
 class ProductController extends Controller
 {
@@ -13,9 +17,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/product/';
     public function index()
     {
-        //
+        $view = view($this->view_root.'index');
+        $view->with('product_list', Product::all());
+        return $view;
     }
 
     /**
@@ -25,7 +32,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**

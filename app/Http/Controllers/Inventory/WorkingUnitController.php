@@ -19,7 +19,7 @@ class WorkingUnitController extends Controller{
     		'carbon'=>new \Carbon\Carbon
     	];
 
-    	dd($data['paginate']);
+    	//dd($data['paginate']);
 
     	return view($this->path('index'), $data);
 
@@ -62,8 +62,8 @@ class WorkingUnitController extends Controller{
     		'address'=>'required|max:500',
     	]);
 
-    	$workingUnit=\App\WorkingUnit::create($request->all());
-        return back()->with('alert-success', 'Form submitted successfully');
+    	\App\WorkingUnit::create($request->all());
+        return back()->with('success', 'Form submitted successfully');
         //if($workingUnit->save()) return back()->with('success', 'Form submitted successfully');
         //return back()->with('danger', 'Sorry, form submission failed');
 

@@ -137,55 +137,47 @@
                                 </div>
                                 <!-- end modal -->
                             </div>
-                            <div class="form-group pull-in clearfix">
-                                <div class="col-sm-12">
-                                    <label>Purchase Order Items</label>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
-                                            <thead class="bg-primary">
-                                                <tr>
-                                                    <th>SL NO</th>
-                                                    <th>H.S. CODE</th>
-                                                    <th>Product Name</th>
-                                                    <th>Quantity</th>
-                                                    <th>UOM</th>
-                                                    <th class="text-right">
-                                                        <i class="fa fa-trash"></i>
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class="text-right">123</td>
-                                                    <td class="text-center">123</td>
-                                                    <td>
-                                                        <img src="img/product.jpg" alt="product name" class="img-responsive">
-                                                    </td>
-                                                    <td>
-                                                        <input class="form-control input-sm" type="number">
-                                                    </td>
-                                                    <td>
-                                                        123
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <button type="button" class="btn btn-xs btn-default">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot class="font-bold">
-                                                <tr>
-                                                    <td colspan="3">Total</td>
-                                                    <td class="text-right">324</td>
-                                                    <td></td>
-                                                    <td colspan="2"></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                    <!--end table-->
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th colspan="7">Purchase Order Items</th>
+                                            </tr>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>action</th>
+                                                <th>action</th>
+                                                <th>action</th>
+                                                <th>action</th>
+                                                <th>action</th>
+                                                <th>action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>01</td>
+                                                <td>5645</td>
+                                                <td>5645</td>
+                                                <td>5645</td>
+                                                <td>5645</td>
+                                                <td>5645</td>
+                                                <td>5645</td>
+                                        </tbody>
+                                        <tfoot class="font-bold">
+                                            <tr>
+                                                <td>Total</td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
                                 </div>
+                                <!--end table-->
                             </div>
 
 

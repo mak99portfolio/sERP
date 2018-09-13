@@ -13,9 +13,10 @@ class CommercialInvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/commercial_invoice/';
     public function index()
     {
-        $view = view('modules/procurement/commercial_invoice');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

@@ -13,14 +13,20 @@ Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboa
 
 //Core
 Route::namespace('Core')->prefix('core')->group(function(){
-    Route::get('cities', 'CityController@index')->name('core.cities');
     Route::resource('country', 'CountryController');
+    Route::resource('city', 'CityController');
+    Route::resource('port', 'PortController');
+    Route::resource('product-brand', 'ProductBrandController');
+    Route::resource('product-category', 'ProductCategoryController');
     Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
+    Route::resource('product', 'ProductController');
+    Route::resource('bank', 'BankController');
+    Route::resource('bank-account', 'BankAccountController');
 });
 
 //Procurement
 Route::namespace('Procurement')->prefix('procurement')->group(function(){
-    Route::resource('purchase-requisition', 'PurchaseRequisitionController');
+    Route::resource('foreign-requisition', 'ForeignRequisitionController');
     Route::resource('purchase-order', 'PurchaseOrderController');
     Route::resource('proforma-invoice', 'ProformaInvoiceController');
     Route::resource('letter-of-credit', 'LetterOfCreditController');
@@ -33,6 +39,9 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');
+    Route::resource('requisition-type', 'RequisitionTypeController');
+    Route::resource('requisition-purpose', 'RequisitionPurposeController');
+    Route::resource('requisition-priority', 'RequisitionPriorityController');
 
 });
 

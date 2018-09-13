@@ -13,9 +13,10 @@ class InsuranceCoverNoteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/insurance_cover_note/';
     public function index()
     {
-        $view = view('modules/procurement/insurance_cover_note');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

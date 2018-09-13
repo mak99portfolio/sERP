@@ -13,9 +13,10 @@ class PurchaseOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/foreign/purchase_order/';
     public function index()
     {
-        $view = view('modules/procurement/purchase_order');
+        $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
         // your code here
         return $view;

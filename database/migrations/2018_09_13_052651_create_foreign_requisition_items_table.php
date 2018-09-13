@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchaseRequisitionItemsTable extends Migration
+class CreateForeignRequisitionItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePurchaseRequisitionItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_requisition_items', function (Blueprint $table) {
+        Schema::create('foreign_requisition_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_requisition_id')->unsigned();
             $table->foreign('purchase_requisition_id')->references('id')->on('purchase_requisitions')->onDelete('restrict');
@@ -38,6 +38,6 @@ class CreatePurchaseRequisitionItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_requisition_items');
+        Schema::dropIfExists('foreign_requisition_items');
     }
 }

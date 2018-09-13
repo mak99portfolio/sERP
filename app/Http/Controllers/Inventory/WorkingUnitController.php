@@ -77,17 +77,5 @@ class WorkingUnitController extends Controller{
 
 
         return response()->json($division->districts);
-    
-        $data = DB::table('districts')
-        ->where('division_id', $division_id)
-        ->get();
-
-
-        $output = '<option value="">Select</option>';
-        foreach($data as $row)
-        {
-        $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
-        }
-        echo $output;
     }
 }

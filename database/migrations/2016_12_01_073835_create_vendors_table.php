@@ -28,7 +28,7 @@ class CreateVendorsTable extends Migration
             $table->string('vat_no');
             $table->integer('status_id')->unsigned();
             $table->date('establishment_date');
-            $table->string('country');
+            $table->integer('country_id');
             $table->integer('vendor_category_id');
             $table->string('telephone');
             $table->string('website');

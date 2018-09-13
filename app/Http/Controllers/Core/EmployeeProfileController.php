@@ -1,28 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Procurement;
+namespace App\Http\Controllers\Core;
 
-use App\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-use App\Country;
-use App\VendorCategory;
 
-class VendorController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private $view_root = 'modules/procurement/setting/vendor/';
+class EmployeeProfileController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules.core.employee_profile.{$suffix}";
+    }
+
     public function index()
     {
-        $view = view($this->view_root . 'index');
-        $view->with('country_list', Country::all());
-        $view->with('vendor_category_list', VendorCategory::all());
-        return $view;
+        //
     }
 
     /**
@@ -32,9 +23,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        $view = view($this->view_root . 'create');
-        $view->with('country_list', Country::all());
-        return $view;
+        //
     }
 
     /**
@@ -51,10 +40,10 @@ class VendorController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Vendor $vendor)
+    public function show($id)
     {
         //
     }
@@ -62,10 +51,10 @@ class VendorController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Vendor $vendor)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +63,10 @@ class VendorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Vendor $vendor)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +74,10 @@ class VendorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Vendor  $vendor
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vendor $vendor)
+    public function destroy($id)
     {
         //
     }

@@ -16,7 +16,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Working Unit <small>List</small></h2>
-                <a href="" class="btn btn-primary btn-sm pull-right">Working Unit List</a>
+                {!! btnAddNew(['url'=>route('working-unit.create')]) !!}
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class='success'>
+                        <tr class='primary'>
                             <th>Name</th>
                             <th>Company</th>
                             <th>Parent Unit</th>
@@ -41,37 +41,20 @@
                     </thead>
                     <tbody>
                     @foreach($paginate->table as $row)
-                        @if($row->hasRole('super_admin'))
-                            @continue
-                        @endif
                         <tr>
                             <td>{{ $row->name }}</td>
-                            <td>{{ $row->company->name }}</td>
-                            <td>{{ $row->email }}</td>
-                            <td>{{ $row->employeesProfile->district->bn_name or '' }}</td>
-                            <td>{{ $row->employeesProfile->designation or '' }}</td>
+                            <td>{{ empty($row->company->name)?'':$row->company->name }}</td>
+                            <td>{{ empty($row->parent->name)?'':$row->parent->name }}</td>
+                            <td>{{ empty($row->type->name)?'':$row->type->name }}</td>
+                            <td>{{ empty($row->user_in_charge->name)?'':$row->user_in_charge->name }}</td>
+                            <td>{{ empty($row->country->name)?'':$row->country->name }}</td>
+                            <td>{{ empty($row->division->name)?'':$row->division->name }}</td>
+                            <td>{{ empty($row->district->name)?'':$row->district->name }}</td>
+                            <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                             <td>
-                            @if($row->employeesProfile->joining)
-                                {{ $carbon->parse($row->employeesProfile->joining)->toFormattedDateString() }}
-                            @endif
+                                {!! btnEdit(['url'=>route('working-unit.edit', ['working_unit'=>$row->id])]) !!}
+                                {!! btnDelete(['url'=>route('working-unit.destroy', ['working_unit'=>$row->id])]) !!}
                             </td>
-                            <td>{{ $row->employeesProfile->mobile or '' }}</td>
-                            <td>
-                            @if($row->employeesProfile->on_duty==1)
-                                <span class='label label-success'>Yes</span>
-                            @elseif($row->employeesProfile->on_duty==0)
-                                <span class='label label-danger'>No</span>
-                            @endif
-                            </td>
-
-                            <td>{{ $row->employeesProfile->monthly_salary or '' }}</td>
-                            <td>{{ $row->employeesProfile->mailing_address or '' }}</td>
-
-                            @if(Auth::user()->hasAnyRole(['admin','super_admin']))
-                            <td>
-                                {!! btnEdit(['url'=>url("employees/{$row->id}/edit")]) !!}
-                            </td>
-                            @endif
                         </tr>
                     @endforeach
                     </tbody>

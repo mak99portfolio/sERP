@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Product List</h2>
-                        <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Product</a>
+                        <a href="{{route('product.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Product</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -25,7 +25,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>SL NO</th>
+                                        <th>#</th>
                                         <th>Product Name</th>
                                         <th>Pattern</th>
                                         <th>Brand</th>
@@ -33,7 +33,7 @@
                                         <th>Product Model</th>
                                         <th>Pant No</th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -45,8 +45,9 @@
                                         <td>123</td>
                                         <td>123</td>
                                         <td>123</td>
-                                        <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
+                                        <td>123</td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -8,6 +8,7 @@
               <div class="x_panel">
                   <div class="x_title">
                       <h2>Bank</h2>
+                      <a class="btn btn-primary btn-sm pull-right" href="{{route('bank.index')}}"><i class="fa fa-list-ul"></i> Country List</a>
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -51,6 +52,7 @@
                           <hr>
                           <div class="col-md-12">
                               <button type="submit" class="btn btn-success">Save</button>
+                              <a class="btn btn-default btn-sm" href="{{route('bank.index')}}">Cancel</a>
                           </div>
                       </form>
 

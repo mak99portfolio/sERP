@@ -16,7 +16,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>General Information<small>Form</small></h2>
-                <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Working Unit List</a>
+                <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
 
                 <div class="clearfix"></div>
             </div>
@@ -28,7 +28,7 @@
     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
         <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">General Information</a>
         </li>
-        <li role="presentation" class=""><a href="{{route('employee-profile.index')}}">Organizational Information</a>
+        <li role="presentation" class=""><a href="{{route('employee-profile.organizational-info')}}">Organizational Information</a>
         </li>
        
     </ul>
@@ -81,7 +81,7 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="ln_solid"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-sm">Save</button>
+                        <button type="submit" class="btn btn-success">Save</button>
                     </div>
                 </div>
             </form>

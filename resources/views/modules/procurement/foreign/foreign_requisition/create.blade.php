@@ -65,16 +65,35 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default bg-light m-t-15">
                                     <div class="panel-heading">
-                                        <label>Search <a href="#"><strong>Product</strong></a></label>
-                                        <button class="btn btn-sm btn-default btn-addon pull-right" data-toggle="modal"
-                                                data-target="#myModal"><i class="fa fa-eye"></i><b>See Product Lists</b></button>
+                                        <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12"><label>Search <a href="#"><strong>Product</strong></a></label></div>
+                                        <div class="col-md-8 col-sm-8 col-xs-12">
+                                            <div class="btn-group pull-right">
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                                                        Select Product Group <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="#">Tablet</a></li>
+                                                        <li><a href="#">Tablet2</a></li>
+                                                        <li><a href="#">Tablet3</a></li>
+                                                    </ul>
+                                                </div>
+                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                          data-target="#myModal"><i class="fa fa-eye"></i><b>See Product Lists</b></button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <!--<button class="btn btn-sm btn-default btn-addon pull-right" data-toggle="modal"
+                                          data-target="#myModal"><i class="fa fa-eye"></i><b>See Product Lists</b></button>-->
                                     </div>
                                     <div class="panel-body">
-                                        <div class="input-group m-b">
-                                            <span class="input-group-addon">
-                                                <i class="fa fa-barcode fa-2x"></i>
-                                            </span>
-                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list">
+                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <div class="input-group m-b">
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-barcode fa-2x"></i>
+                                                </span>
+                                                <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -179,8 +198,14 @@
                                 </div>
                                 <!--end table-->
                             </div>
-
-
+                            
+                            
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Notes</label>
+                                    <textarea class="form-control input-sm" rows="2"></textarea>
+                                </div>
+                            </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\core;
+namespace App\Http\Controllers\Core;
 
 use App\UnitOfMeasurement;
 use Illuminate\Http\Request;

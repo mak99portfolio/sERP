@@ -21,27 +21,28 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left">
+                        <form class="form-horizontal form-label-left" action="{{route('product.store')}}" method="POST">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Product Name</label>
-                                    <input class="form-control input-sm" type="text">
+                                    <input class="form-control input-sm" type="text" name='name'>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Category</label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm" name='product_category_id'>
                                         <option value="" disabled selected>Select Category</option>
-                                        <option>option1</option>
-                                        <option>option2</option>
+                                         @foreach ($product_category_list as $product_category)
+                                        <option value="{{$product_category->id}}">{{$product_category->name}}</option>
+                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Pattern</label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm" name="product_pattern_id">
                                         <option value="" disabled selected>Select Pattern</option>
                                         <option>Finished</option>
                                         <option>Sample</option>
@@ -64,35 +65,35 @@
                                                     <div class="col-sm-2">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox"><i></i> Sample
+                                                                <input type="checkbox" name="product_group_id" value="1"><i></i> Sample
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox"><i></i> Service
+                                                                <input type="checkbox" name="product_group_id" value="2"><i></i> Service
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox"><i></i> Barcode
+                                                                <input type="checkbox" name="product_group_id" value="3"><i></i> Barcode
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox"><i></i> Saleable
+                                                                <input type="checkbox" name="product_group_id" value="4"><i></i> Saleable
                                                             </label>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-2">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox"><i></i> Maintenance
+                                                                <input type="checkbox" name="product_group_id" value="5"><i></i> Maintenance
                                                             </label>
                                                         </div>
                                                     </div>
@@ -105,45 +106,47 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Brand</label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm" name="product_brand_id">
                                         <option value="" disabled selected>Select Brand</option>
-                                        <option>option1</option>
-                                        <option>option2</option>
+                                         @foreach($product_brand_list as $product_brand)
+                                        <option value="{{$product_brand->id}}">{{$product_brand->name}}</option>
+                                         @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Product Serial</label>
-                                    <input class="form-control input-sm" type="text">
+                                    <input class="form-control input-sm" type="text" name='serial'>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Product Model</label>
-                                    <input class="form-control input-sm" type="text">
+                                    <input class="form-control input-sm" type="text" name="model">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>Pant No</label>
-                                    <input class="form-control input-sm" type="text">
+                                    <label>Part No</label>
+                                    <input class="form-control input-sm" type="text" name="part_number">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Country of Origin</label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm" name="country_of_origin_country_id">
                                         <option value="" disabled selected>Select Origin</option>
-                                        <option>option1</option>
-                                        <option>option2</option>
+                                       @foreach($country_list as $country)
+                                        <option> {{$country->name}} </option>
+                                       @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Country of Manufacture</label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm" name="country_of_manufacture_country_id">
                                         <option value="" disabled selected>Select Manufacture</option>
                                         <option>option1</option>
                                         <option>option2</option>
@@ -153,7 +156,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Unit of Measurement</label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm" name="unit_of_measurement_id">
                                         <option value="" disabled selected>Select Measurement</option>
                                         <option>option1</option>
                                         <option>option2</option>
@@ -174,7 +177,7 @@
                                                     <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
-                                                                <input type="radio" name="a" value="option1">
+                                                                <input type="radio" name="product_status_id" value="1">
                                                                 <i></i>
                                                                 Active
                                                             </label>
@@ -183,7 +186,7 @@
                                                     <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
-                                                                <input type="radio" name="a" value="option1">
+                                                                <input type="radio" name="product_status_id" value="2">
                                                                 <i></i>
                                                                 Inactive
                                                             </label>
@@ -192,7 +195,7 @@
                                                     <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
-                                                                <input type="radio" name="a" value="option1">
+                                                                <input type="radio" name="product_status_id" value="3">
                                                                 <i></i>
                                                                 Provision
                                                             </label>
@@ -217,37 +220,37 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>TP</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="tp_rate">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>MRP</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="mrp_rate">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Flat</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="flat_rate">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Special Rate</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name=special_rate>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Distributor Rate</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="distribution_rate">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Other</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="other">
                                                     </div>
                                                 </div>
                                             </td>
@@ -268,13 +271,13 @@
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Pack Size</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="pack_size">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Sheper Cartor Size</label>
-                                                        <input class="form-control input-sm" type="number">
+                                                        <input class="form-control input-sm" type="number" name="shipper_carton_size">
                                                     </div>
                                                 </div>
                                             </td>
@@ -285,7 +288,7 @@
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control input-sm" rows="2"></textarea>
+                                    <textarea class="form-control input-sm" rows="2" name="description"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Core;
 use App\ProductBrand;
 use Illuminate\Http\Request;
 use App\http\Controllers\Controller;
+use Auth;
+use Session;
 
 class ProductBrandController extends Controller
 {
@@ -17,6 +19,7 @@ class ProductBrandController extends Controller
     public function index()
     {
         $view = view($this->view_root.'index');
+        $view->with('product_brand', ProductBrand::all());
         return $view;
     }
 
@@ -39,7 +42,16 @@ class ProductBrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:product_brands',
+            'short_name' => 'required|unique:product_brands',
+        ]);
+        $pb = new ProductBrand;
+        $pb->fill($request->input());
+        $pb->creator_user_id = Auth::id();
+        $pb->save();
+        Session::put('alert-success', $pb->name . ' created successfully');
+        return redirect()->route('product-brand.create');
     }
 
     /**

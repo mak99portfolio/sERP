@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Vendor List</h2>
-                        <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Vendor</a>
+                    <a href="{{route('vendor.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Vendor</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

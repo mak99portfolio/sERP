@@ -33,7 +33,7 @@ class VendorController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        
+        $view->with('vendor', new Vendor());
         return $view;
     }
 

@@ -3,16 +3,22 @@ namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
 use App\WorkingUnit;
-
+use App\Helpers\Paginate;
 use Illuminate\Http\Request;
-use App\District;
-use DB;
+
 class WorkingUnitController extends Controller{
 
     public function index(){
+    	
+    	$data=[
+    		'paginate'=>new Paginate('\App\WorkingUnit', ['id'=>'ID','name'=>'Name']),
+    		'carbon'=>new \Carbon\Carbon
+    	];
 
-        $working_unit_list=\App\WorkingUnit::all();
-    	return view('modules.inventory.working_unit_list',compact('working_unit_list'));
+    	dd($data['paginate']);
+
+    	return view('modulles.inventory.working_units', $data);
+
 
     }
 
@@ -29,7 +35,7 @@ class WorkingUnitController extends Controller{
     		'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
     	];
 
-        return view('modules.inventory.working_unit', $data);
+        return view('modules.inventory.working_unit_form', $data);
 
     }
 
@@ -39,14 +45,20 @@ class WorkingUnitController extends Controller{
     	//dd($request->all());
 
     	$request->validate([
-    		'name'=>'required|exists:working_units',
+    		'name'=>'required|unique:working_units,name',
+    		'sort_name'=>'required|unique:working_units,sort_name',
     		'working_unit_type_id'=>'required|integer',
-    		'parent_unit_id'=>'required|integer',
+    		'parent_unit_id'=>'nullable|integer',
     		'in_charge'=>'required|integer',
+    		'company_id'=>'required|integer',
+    		'country_id'=>'required|integer',
+    		'division_id'=>'required|integer',
+    		'district_id'=>'required|integer',
     		'address'=>'required|max:500',
     	]);
 
-
+    	$workingUnit=\App\WorkingUnit::create($request->all());
+    	return back()->with('success', 'Form submitted successfully');
 
     }
 

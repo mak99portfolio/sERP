@@ -16,4 +16,24 @@ class WorkingUnit extends Model{
 		return $this->belongsTo('App\WorkingUnitType');
 	}
 
+	public function company(){
+		return $this->belongsTo('App\Company');
+	}
+
+	public function in_charge(){
+		return $this->belongsTo('App\User');
+	}
+
+	public function country(){
+		return $this->belongsTo('App\Country');
+	}
+
+	public function division(){
+		return $this->belongsTo('App\Division');
+	}
+
+	public function district(){
+		return $this->belongsTo('App\District');
+	}
+
 }

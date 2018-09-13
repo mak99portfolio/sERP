@@ -27,7 +27,10 @@
     <link href="{{asset('assets/vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
     <!-- bootstrap-daterangepicker -->
     <link href="{{asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
-
+    <!-- PNotify -->
+    <link href="{{asset('assets/vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
@@ -35,7 +38,7 @@
     @yield('style')
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" onload="init()">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -106,7 +109,21 @@
     <!-- starrr -->
     <script src="{{asset('assets/vendors/starrr/dist/starrr.js')}}"></script>
     <!-- Custom Theme Scripts -->
-    <script src="{{asset('assets/build/js/custom.min.js')}}"></script>
+    <!-- PNotify -->
+    <script src="{{asset('assets/vendors/pnotify/dist/pnotify.js')}}"></script>
+    <script src="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
+    <script src="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
+
+    <script src="{{asset('assets/build/js/custom.js')}}"></script>
     @yield('script')
+    <script>
+      function init(){
+        var jqxhr = $.ajax( "{{route('get_toaster_notification')}}")
+                            .done(function(data) {
+                              new PNotify(data);
+                            })
+        
+      }
+    </script>
   </body>
 </html>

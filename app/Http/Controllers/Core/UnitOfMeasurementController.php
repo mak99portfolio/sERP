@@ -37,7 +37,15 @@ class UnitOfMeasurementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:unitofmeasurement',
+            'short_name' => 'required|unique:unitofmeasurement',
+        ]);
+        $country = new Country;
+        $country->fill($request->input());
+        $country->creator_user_id = Auth::id();
+        $country->save();
+        return redirect()->route('country.index');
     }
 
     /**

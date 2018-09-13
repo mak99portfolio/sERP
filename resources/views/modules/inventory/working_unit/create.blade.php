@@ -89,17 +89,13 @@
                         <div class="ln_solid"></div>
 
                         <div class="form-group">
-
-
-
-                           <button type="submit" class="btn btn-primary">Submit</button>
-                           {!! btnCustom(["url"=>url()->current(), "title"=>"reset"]) !!}
+                          {!! btnSubmitGroup() !!}
                        </div>
 
                    </div>
                    </div>
 
-               </form>
+               {{ BootForm::close() }}
 
            </div>
 

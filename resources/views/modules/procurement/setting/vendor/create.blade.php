@@ -48,19 +48,25 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Establishment Date</label>
-                                    <input class="form-control input-sm" type="date" name="">
+                                    <input class="form-control input-sm" type="text" name="establishment_date">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Address</label>
-                                    <textarea class="form-control input-sm" rows="2" name=""></textarea>
+                                    <textarea class="form-control input-sm" rows="2" name="address"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Country</label>
-                                    <input class="form-control input-sm" type="text" name="">
+                                    <select class="select form-control input-sm" name="country_id">
+                                        <option value="" disabled selected>Select Country</option>
+                                        @foreach($country_list as $item)
+                                        <option value="{{$item->id}}">{{$item->name}}</option>
+                                        @endforeach
+                                        <option>Foreign</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">

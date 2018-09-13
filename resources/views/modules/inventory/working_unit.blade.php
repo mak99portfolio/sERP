@@ -36,6 +36,14 @@
                         {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types, null, ['class'=>'form-control input-sm']) }}
                     </div>
                     </div>
+<div class="row">
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        {{ BootForm::text('short_name','Short Name', null, ['class'=>'form-control input-sm']) }}
+                    </div>
+
+                   
+                    </div>
                     
 <div class="row">
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -55,7 +63,7 @@
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
 
-                        {{ BootForm::select('division_id', 'Division', $divisions, ['class'=>'form-control input-sm']) }}
+                        {{ BootForm::select('division_id', 'Division', $divisions, ['class'=>'form-control input-sm','id'=>'division_id']) }}
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-xs-12">
@@ -98,5 +106,22 @@
 </div>
 @endsection
 @section('script')
+<script>
+	$(document).ready(function(){
 
+$('#division_id').change(function(){
+
+  var division_id = $('#division_id').val();
+
+ 
+ $.get("{{ url('inventory/district-search') }}/" + division_id, function(data){
+    console.log(data);
+  });
+
+
+});
+
+});
+
+</script>
 @endsection

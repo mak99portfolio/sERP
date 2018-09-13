@@ -3,8 +3,10 @@ namespace App\Http\Controllers\Inventory;
 
 use App\Http\Controllers\Controller;
 use App\WorkingUnit;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
+use App\District;
+use DB;
 class WorkingUnitController extends Controller{
 
     public function index(){
@@ -69,5 +71,23 @@ class WorkingUnitController extends Controller{
 
     public function destroy(WorkingUnit $workingUnit){
 
+    }
+
+    function district_search(\App\Division $division, Request $request){
+
+
+        return response()->json($division->districts);
+    
+        $data = DB::table('districts')
+        ->where('division_id', $division_id)
+        ->get();
+
+
+        $output = '<option value="">Select</option>';
+        foreach($data as $row)
+        {
+        $output .= '<option value="'.$row->id.'">'.$row->name.'</option>';
+        }
+        echo $output;
     }
 }

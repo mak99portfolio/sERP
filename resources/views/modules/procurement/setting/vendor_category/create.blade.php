@@ -16,23 +16,28 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Product Brand</h2>
-                        <a href="{{route('product-brand.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Product Brand Lists</a>
+                        <a href="{{route('vendor-category.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Category Lists</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left" action="{{route('product-brand.store')}}" method="POST">
-                    {{csrf_field()}}
+                        <form class="form-horizontal form-label-left">
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>Brand Name</label>
-                                    <input class="form-control input-sm" type="text" name=name>
+                                    <label>Category Title</label>
+                                    <input class="form-control input-sm" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>Short Name</label>
-                                    <input class="form-control input-sm" type="text" name="short_name">
+                                    <label>Short Title</label>
+                                    <input class="form-control input-sm" type="text">
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label> Category Description</label>
+                                    <textarea class="form-control input-sm"></textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -40,7 +45,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('product-brand.index')}}">Cancel</a>
+                                    <a class="btn btn-default btn-sm" href="{{route('vendor-category.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </form>

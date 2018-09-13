@@ -40,11 +40,14 @@ class CreateProductsTable extends Migration
             $table->double('flat_rate');
             $table->double('special_rate');
             $table->double('distribution_rate');
+            $table->text('other');
             $table->integer('pack_size');
             $table->integer('shipper_carton_size');
             $table->text('description');
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
+            $table->integer('creator_user_id')->unsigned();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Core;
-
 use App\Product;
+use App\ProductBrand;
+use App\ProductCategory;
+use App\Country;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
-
+use Auth;
+use Session;
 class ProductController extends Controller
 {
     /**
@@ -30,6 +32,9 @@ class ProductController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
+        $view->with('product_brand_list', ProductBrand::all());
+        $view->with('product_category_list', ProductCategory::all());
+        $view->with('country_list', Country::all());
         return $view;
     }
 
@@ -41,7 +46,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = new Product;
+        $product->fill($request->input());
+        $product->creator_user_id = Auth::id();
+        dd($product);
+        $product->save();
+        Session::put('alert-success', $product->name . ' created successfully');
+        return redirect()->route('product.create');
     }
 
     /**

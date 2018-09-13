@@ -236,8 +236,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12">
-                                <br />
-                                <div class="ln_solid"></div>
+                              
                                 <div class="form-group">
 
                                     <button type="submit" class="btn btn-primary">Save</button>

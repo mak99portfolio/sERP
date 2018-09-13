@@ -8,6 +8,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Country</h2>
+                    <a class="btn btn-primary btn-sm pull-right" href="{{route('country.index')}}"><i class="fa fa-list-ul"></i> Country List</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -26,30 +27,11 @@
                                 <input class="form-control input-sm" type="text" name="short_name">
                             </div>
                         </div>
-                        <br>
-                        <hr>
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-success">Save</button>
+                            <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            <a class="btn btn-default btn-sm" href="{{route('country.index')}}">Cancel</a>
                         </div>
                     </form>
-                    
-                </div>
-                <div class="x_content">
-                    <br />
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Country Name</th>
-                                <th>Shortname</th>
-                            </tr>
-                            @foreach ($country_list as $item)
-                            <tr>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->short_name}}</td>
-                            </tr>
-                            @endforeach
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>

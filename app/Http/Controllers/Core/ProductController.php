@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Core;
 
 use App\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -12,9 +13,12 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/product/';
     public function index()
     {
-        //
+        $view = view($this->view_root.'index');
+        $view->with('product_list', Product::all());
+        return $view;
     }
 
     /**
@@ -24,7 +28,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**

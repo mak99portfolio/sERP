@@ -23,7 +23,6 @@ class CreateWorkingUnitsTable extends Migration
             $table->text('address')->nullable();
             $table->integer('country_id')->nullable();
             $table->integer('division_id')->nullable();
-            $table->integer('state_id')->nullable();
             $table->integer('district_id')->nullable();
             $table->softDeletes();
             $table->timestamps();

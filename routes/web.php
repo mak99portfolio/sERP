@@ -50,6 +50,4 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
 //Inventory
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('working-unit', 'WorkingUnitController');
-    Route::get('district-search/{division}', 'WorkingUnitController@district_search');
-
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\core;
+namespace App\Http\Controllers\Core;
 
 use App\UnitOfMeasurement;
 use Illuminate\Http\Request;
@@ -18,6 +18,7 @@ class UnitOfMeasurementController extends Controller
     public function index()
     {
         $view = view($this->view_root.'index');
+        $view->with('uom_list', UnitOfMeasurement::all());
         return $view;
     }
 
@@ -28,7 +29,8 @@ class UnitOfMeasurementController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**
@@ -39,17 +41,6 @@ class UnitOfMeasurementController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name' => 'required|unique:unitofmeasurement',
-        //     'short_name' => 'required|unique:unitofmeasurement',
-        // ]);
-        // $country = new UnitOfMeasurement;
-        // $country->fill($request->input());
-        // $country->creator_user_id = Auth::id();
-        // $country->save();
-        // return redirect()->route('unit-of-measurement.index');
-
-
         $request->validate([
             'name' => 'required|unique:unit_of_measurements',
             'short_name' => 'required|unique:unit_of_measurements',
@@ -59,7 +50,7 @@ class UnitOfMeasurementController extends Controller
         $umo->creator_user_id = Auth::id();
         $umo->save();
         Session::put('alert-success', $umo->name . ' created successfully');
-        return redirect()->route('unit-of-measurement.index');
+        return redirect()->route('unit-of-measurement.create');
     }
 
     /**

@@ -24,7 +24,8 @@ class BankController extends Controller
         //     'countries' => \App\Country::pluck( 'name', 'id')
         // ];
 
-        $view = view($this->view_root . 'create');
+        $view = view($this->view_root . 'index');
+        $view->with('bank_list', Bank::all());
         $view->with('country_list', Country::all());
 
         return $view;
@@ -37,7 +38,9 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        $view->with('country_list', Country::all());
+        return $view;
     }
 
     /**

@@ -13,8 +13,8 @@ class EmployeeProfileController extends Controller{
 
     public function index()
     {
-        //
-    }
+        return view($this->path('index'));
+        }
 
     /**
      * Show the form for creating a new resource.
@@ -23,7 +23,8 @@ class EmployeeProfileController extends Controller{
      */
     public function create()
     {
-     
+        //return view('category.create');
+        return view($this->path('create'));
     }
 
     /**

@@ -13,9 +13,11 @@ class ProductBrandController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/product_brand/';
     public function index()
     {
-        //
+        $view = view($this->view_root.'index');
+        return $view;
     }
 
     /**
@@ -25,7 +27,8 @@ class ProductBrandController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**

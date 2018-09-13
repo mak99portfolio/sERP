@@ -26,29 +26,18 @@
                                 <input class="form-control input-sm" type="text" name="short_name">
                             </div>
                         </div>
-                        <br>
-                        <hr>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-success">Save</button>
+                        <div class="col-md-12 col-xs-12">
+                            <br />
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            </div>
                         </div>
                     </form>
-                    
-                </div>
-                <div class="x_content">
-                    <br />
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Unit Of Measurement Name</th>
-                                <th>Shortname</th>
-                            </tr>
-                        </thead>
-                    </table>
                 </div>
             </div>
         </div>
-        </div>
-    <div class="clearfix"></div>
+    </div>
   </div>
 </div>
 @endsection

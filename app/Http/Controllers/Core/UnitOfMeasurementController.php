@@ -5,7 +5,8 @@ namespace App\Http\Controllers\core;
 use App\UnitOfMeasurement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Auth;
+use Session;
 class UnitOfMeasurementController extends Controller
 {
     /**
@@ -13,9 +14,10 @@ class UnitOfMeasurementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/unit_of_measurement/';
     public function index()
     {
-        $view = view('modules/core/unit_of_measurement');
+        $view = view($this->view_root.'index');
         return $view;
     }
 
@@ -37,15 +39,27 @@ class UnitOfMeasurementController extends Controller
      */
     public function store(Request $request)
     {
+        // $request->validate([
+        //     'name' => 'required|unique:unitofmeasurement',
+        //     'short_name' => 'required|unique:unitofmeasurement',
+        // ]);
+        // $country = new UnitOfMeasurement;
+        // $country->fill($request->input());
+        // $country->creator_user_id = Auth::id();
+        // $country->save();
+        // return redirect()->route('unit-of-measurement.index');
+
+
         $request->validate([
-            'name' => 'required|unique:unitofmeasurement',
-            'short_name' => 'required|unique:unitofmeasurement',
+            'name' => 'required|unique:unit_of_measurements',
+            'short_name' => 'required|unique:unit_of_measurements',
         ]);
-        $country = new Country;
-        $country->fill($request->input());
-        $country->creator_user_id = Auth::id();
-        $country->save();
-        return redirect()->route('country.index');
+        $umo = new UnitOfMeasurement;
+        $umo->fill($request->input());
+        $umo->creator_user_id = Auth::id();
+        $umo->save();
+        Session::put('alert-success', $umo->name . ' created successfully');
+        return redirect()->route('unit-of-measurement.index');
     }
 
     /**
@@ -56,7 +70,7 @@ class UnitOfMeasurementController extends Controller
      */
     public function show(UnitOfMeasurement $unitOfMeasurement)
     {
-        //
+      
     }
 
     /**

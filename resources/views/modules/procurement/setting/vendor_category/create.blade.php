@@ -35,6 +35,12 @@
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <label> Category Description</label>
+                                    <textarea class="form-control input-sm"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">

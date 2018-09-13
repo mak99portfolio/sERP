@@ -1,14 +1,13 @@
 @extends('layout')
-@section('title', 'Product List')
+@section('title', 'Purchase Requisition')
 @section('content')
 
-
+<!-- page content -->
 <div class="right_col" role="main">
-
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Purchase Requisition</h3>
+                <h3>Procurement</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,7 +16,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Requisition <small>Form</small></h2>
+                        <h2>Requisition</h2>
+                        <a href="{{route('foreign-requisition.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Requisition Lists</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -63,8 +63,8 @@
                             </div>
 
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="panel panel-default bg-light">
-                                    <div class="panel-heading" style="padding: 5px 17px;">
+                                <div class="panel panel-default bg-light m-t-15">
+                                    <div class="panel-heading">
                                         <label>Search <a href="#"><strong>Product</strong></a></label>
                                         <button class="btn btn-sm btn-default btn-addon pull-right" data-toggle="modal"
                                                 data-target="#myModal"><i class="fa fa-eye"></i><b>See Product Lists</b></button>
@@ -189,12 +189,12 @@
                             </div>
 
 
-                            <div class="col-md-12">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-
-                                    <button type="submit" class="btn btn-default">Save1</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                    <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -212,5 +212,6 @@
     <div class="clearfix"></div>
 
 </div>
+<!-- /page content -->
 
 @endsection

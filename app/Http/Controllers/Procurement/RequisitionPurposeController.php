@@ -29,10 +29,13 @@ class RequisitionPurposeController extends Controller
      */
     public function create()
     {
-        $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        $data=[
+            'requisitionPurpose'=>RequisitionPurpose
+        ];
+
+        return view($this->path('create'), $data);
+       
+  
     }
 
     /**
@@ -43,7 +46,14 @@ class RequisitionPurposeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+    		'name'=>'required|unique:requisition_purposes,name',
+    		'short_name'=>'required|unique:requisition_purposes,short_name',
+    		
+    	]);
+
+    	\App\WorkingUnit::create($request->all());
+        return back()->with('success', 'Form submitted successfully');
     }
 
     /**
@@ -65,7 +75,11 @@ class RequisitionPurposeController extends Controller
      */
     public function edit(RequisitionPurpose $requisitionPurpose)
     {
-        //
+        $data=[
+            'requisitionPurpose'=>$requisitionPurpose
+        ];
+
+        return view($this->path('create'), $data);
     }
 
     /**

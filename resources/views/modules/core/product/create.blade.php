@@ -31,6 +31,12 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
+                                    <label>Product HS Code</label>
+                                    <input class="form-control input-sm" type="text" name='hs_code'>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
                                     <label>Category</label>
                                     <select class="form-control input-sm" name='product_category_id'>
                                         <option value="" disabled selected>Select Category</option>
@@ -150,16 +156,19 @@
                                         <tr>
                                             <td>
                                                 <div class="form-group pull-in clearfix">
+                                                    
+                                                    @foreach($product_status_list as $product_status)
                                                     <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
-                                                                <input type="radio" name="product_status_id" value="1">
+                                                                <input type="radio" name="product_status_id" value="{{$product_status->id}}">
                                                                 <i></i>
-                                                                Active
+                                                                {{$product_status->name}}
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
+                                                    @endforeach
+                                                    <!-- <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
                                                                 <input type="radio" name="product_status_id" value="2">
@@ -176,7 +185,7 @@
                                                                 Provision
                                                             </label>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </td>
                                         </tr>

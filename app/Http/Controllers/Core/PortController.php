@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Core;
 use App\Port;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\City;
+use App\Country;
+use Auth;
+use Session;
 
 class PortController extends Controller
 {
@@ -13,9 +17,21 @@ class PortController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $view_root = 'modules/core/port/';
+
     public function index()
     {
-        //
+        // $data = [
+        //     'countries' => \App\Country::pluck( 'name', 'id')
+        // ];
+
+        $view = view($this->view_root . 'index');
+        $view->with('port_list', Port::all());
+        $view->with('city_list', City::all());
+        $view->with('country_list', Country::all());
+
+        return $view;
     }
 
     /**
@@ -25,7 +41,10 @@ class PortController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        $view->with('country_list', Country::all());
+        $view->with('city_list', City::all());
+        return $view;
     }
 
     /**
@@ -36,7 +55,20 @@ class PortController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:ports',
+            'contact_person' => 'required|unique:ports',
+            'contact_person_number' => 'required|unique:ports',
+            'city_id' => 'required',
+            'country_id' => 'required'
+        ]);
+
+        $port = new Port;
+        $port->fill($request->input());
+        $port->creator_user_id = Auth::id();
+        $port->save();
+        Session::put('alert-success', $port->name . " successfully created");
+        return redirect()->route('port.index');
     }
 
     /**

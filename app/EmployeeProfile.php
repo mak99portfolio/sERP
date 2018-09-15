@@ -12,12 +12,16 @@ class EmployeeProfile extends Model{
 		return $this->belongsTo('App\User', 'creator_user_id');
 	}
 
-	public function updator(){
+	public function editor(){
 		return $this->belongsTo('App\User', 'updator_user_id');
 	}
 
 	public function organizational_information(){
-		return $this->belongsTo('App\EmployeeProfile');
+		return $this->hasOne('App\EmployeeOrganizationalInformation');
+	}
+
+	public function blood_group(){
+		return $this->belongsTo('App\BloodGroup');
 	}
 
 }

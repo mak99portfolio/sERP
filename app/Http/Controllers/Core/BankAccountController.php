@@ -2,34 +2,19 @@
 
 namespace App\Http\Controllers\Core;
 
-use App\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Country;
-use Auth;
-use Session;
 
-class CityController extends Controller
+class BankAccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    private $view_root = 'modules/core/city/';
-
     public function index()
     {
-        // $data = [
-        //     'countries' => \App\Country::pluck( 'name', 'id')
-        // ];
-
-        $view = view($this->view_root . 'index');
-        $view->with('city_list', City::all());
-        $view->with('country_list', Country::all());
-
-        return $view;
+        //
     }
 
     /**
@@ -39,9 +24,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        $view = view($this->view_root.'create');
-        $view->with('country_list', Country::all());
-        return $view;
+        //
     }
 
     /**
@@ -52,26 +35,16 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|unique:cities',
-            'country_id' => 'required'
-        ]);
-
-        $city = new City;
-        $city->fill($request->input());
-        $city->creator_user_id = Auth::id();
-        $city->save();
-        Session::put('alert-success', $city->name . " successfully created");
-        return redirect()->route('city.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\City  $city
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(City $city)
+    public function show($id)
     {
         //
     }
@@ -79,10 +52,10 @@ class CityController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\City  $city
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(City $city)
+    public function edit($id)
     {
         //
     }
@@ -91,10 +64,10 @@ class CityController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\City  $city
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, City $city)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -102,10 +75,10 @@ class CityController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\City  $city
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(City $city)
+    public function destroy($id)
     {
         //
     }

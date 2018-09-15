@@ -4,11 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\ProcutCategory;
+// use App\ProductCategory;
 
 class Product extends Model
 {
     use SoftDeletes;
+    protected $guarded = ['id'];
     protected $fillable = [
         'name',
         'hs_code',
@@ -34,9 +35,9 @@ class Product extends Model
         'description'
     ];
     function product_category(){
-        return $this->hasMany('ProductCategory');
+        return $this->belongsTo('App\ProductCategory');
     }
     function status(){
-        return $this->hasOne('product_statuses');
+        return DB::table('product_statuses')->where('id', $this->product_status_id)->first();
     }
 }

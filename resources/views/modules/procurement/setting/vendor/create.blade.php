@@ -82,10 +82,13 @@
                                             {{ BootForm::text('certificate_of_incorporation','Certificate of Incorporation', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            {{ BootForm::date('incorporation_date','Incorporation Date', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('incorporation_date','Incorporation Date', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             {{ BootForm::text('vat_no','VAT No', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::textarea('address','Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
                                         </div>
                                     </div>
                                 </div>

@@ -115,7 +115,7 @@
                                                             <table class="table table-bordered table-hover">
                                                                 <thead class="bg-primary">
                                                                     <tr>
-                                                                        <th class="text-center">SL No</th>
+                                                                        <th class="text-center">#</th>
                                                                         <th class="text-center">Product Image</th>
                                                                         <th class="text-center">Product Name</th>
                                                                         <th class="text-center">Product HS Code</th>
@@ -165,12 +165,12 @@
                                             </tr>
                                             <tr>
                                                 <th>#</th>
-                                                <th>action</th>
-                                                <th>action</th>
-                                                <th>action</th>
-                                                <th>action</th>
-                                                <th>action</th>
-                                                <th>action</th>
+                                                <th>Product Name</th>
+                                                <th>Physical stock</th>
+                                                <th>Goods in Transit</th>
+                                                <th>Pending</th>
+                                                <th>Total Quantity</th>
+                                                <th>Requisition Quantity</th>
                                             </tr>
                                         </thead>
                                         <tbody>

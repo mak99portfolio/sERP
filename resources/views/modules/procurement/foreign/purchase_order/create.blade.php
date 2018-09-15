@@ -150,6 +150,7 @@
                                 </tr>
                             </tbody>
                         </table>
+                        </div>
                        
                         <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -191,10 +192,10 @@
                                                         <img src="img/product.jpg" alt="product name" class="img-responsive">
                                                     </td>
                                                     <td>
-                                                        <input class="form-control input-sm" type="number">
+                                                        PCs
                                                     </td>
                                                     <td>
-                                                        123
+                                                    <input class="form-control input-sm" type="number">
                                                     </td>
                                                     <td>
                                                         123

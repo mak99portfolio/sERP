@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Procurement;
 use App\VendorCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class VendorCategoryController extends Controller
 {
@@ -43,7 +45,13 @@ class VendorCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->input());
+        $vendor_category = new VendorCategory();
+        $vendor_category->fill($request->input());
+        $vendor_category->creator_user_id = Auth::id();
+        $vendor_category->save();
+        Session::put('alert-success', $vendor_category->name .' created successfully.');
+        return redirect()->route('vendor-category.index');
     }
 
     /**

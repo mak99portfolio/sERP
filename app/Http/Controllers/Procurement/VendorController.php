@@ -32,8 +32,8 @@ class VendorController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('country_list', Country::all());
-        $view->with('vendor_category_list', VendorCategory::all());
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
+        $view->with('vendor_category_list', VendorCategory::pluck('name', 'id')->prepend('--select vendor--', ''));
         return $view;
     }
 

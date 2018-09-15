@@ -22,7 +22,7 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-                        {{ BootForm::open(['store'=>'requisition-purpose.store', 'update'=>'working-unit.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
+                        {{ BootForm::open(['model'=>$requisitionPurpose, 'store'=>'requisition-purpose.store', 'update'=>'requisition-purpose.update']) }}
 
  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">

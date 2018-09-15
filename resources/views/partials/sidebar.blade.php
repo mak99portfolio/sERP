@@ -25,7 +25,7 @@
             <ul class="nav child_menu">
               <li><a href="#level2_1">Quatation</a>
               </li>
-              <li><a href="#level2_2">Purchase Order</a>
+              <li><a href="{{route('local-purchase-order.index')}}">Purchase Order</a>
               </li>
             </ul>
           </li>

@@ -16,7 +16,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Employee Profile<small>Form</small></h2>
-                    <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
+                    <a href="{{route('employee-profile.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
 
                     <div class="clearfix"></div>
                 </div>
@@ -28,7 +28,7 @@
 
                 <ul class="wizard_steps anchor">
                     <li>
-                        <a href="#">
+                        <a href="#" class="done">
                             <span class="step_no">1</span>
                             <span class="step_descr">
                               Step 1<br>
@@ -104,16 +104,16 @@
 
     <div id="step-2" class="content">
         @include('partials.flash_msg')
-        {{ BootForm::open(['model'=>$organizationalInfo, 'store'=>'employee-profile.store', 'update'=>'employee-profile.update']) }}
+        {{ BootForm::open(['model'=>$organizational_info, 'update'=>'employee-profile.update-organizational-info']) }}
 
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('depertment_id', 'Select Department', null, $depatrments) }}
+                            {{ BootForm::select('depertment_id', 'Select Department', $depatrments) }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('depertment_id', 'Select Designation', null, $designations) }}
+                            {{ BootForm::select('depertment_id', 'Select Designation', $designations) }}
                         </div>
 
                     </div>
@@ -121,19 +121,19 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('working_unit_id', 'Select Working Unit', null, $workingUnits) }}
+                            {{ BootForm::select('working_unit_id', 'Select Working Unit', $workingUnits) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('employee_organizational_information_status_id', 'Select Status', null, $statuses) }}
+                            {{ BootForm::select('employee_organizational_information_status_id', 'Select Status', $statuses) }}
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('employee_organizational_information_type_id', 'Select Type', null, $types) }}
+                            {{ BootForm::select('employee_organizational_information_type_id', 'Select Type', $types) }}
                         </div>
                     </div>
                 </div>
@@ -143,8 +143,8 @@
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="ln_solid"></div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Submit {!! fa('fa-rocket') !!}</button>
-                        <a href='{{ route('employee-profile.edit', ['employeeProfile'=>$organizationalInfo->employee_profile]) }}' class="btn btn-info">Previous {!! fa('fa-rocket') !!}</a>
+                        <button type="submit" class="btn btn-success">{!! fa('fa-rocket') !!} Submit</button>
+                        <a href='{{ route('employee-profile.edit', ['employee_profile'=>$organizational_info->employee_profile]) }}' class="btn btn-info">{!! fa('fa-undo') !!} Previous</a>
                         {!! btnCustom(['url'=>url()->current(), 'title'=>'Reset', 'icon'=>'fa-refresh']) !!}
                     </div>
                 </div>

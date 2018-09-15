@@ -16,7 +16,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Employee Profile<small>Form</small></h2>
-                    <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
+                    <a href="{{route('employee-profile.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
 
                     <div class="clearfix"></div>
                 </div>
@@ -104,7 +104,7 @@
 
     <div id="step-1" class="content">
         @include('partials.flash_msg')
-        {{ BootForm::open(['model'=>$employeeProfile, 'store'=>'employee-profile.store', 'update'=>'employee-profile.update']) }}
+        {{ BootForm::open(['model'=>$employee_profile, 'store'=>'employee-profile.store', 'update'=>'employee-profile.update']) }}
 
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">

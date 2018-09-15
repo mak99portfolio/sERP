@@ -15,12 +15,14 @@ class CreateEmployeeProfilesTable extends Migration
     {
         Schema::create('employee_profiles', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('employee_id');
             $table->string('name');
-            $table->text('present_address')->nullable();
-            $table->text('permanent_address')->nullable();
             $table->integer('blood_group_id')->unsigned();
             $table->string('nationality');
-            $table->integer('creator_user_id')->unsigned();
+            $table->string('national_id');
+            $table->text('present_address')->nullable();
+            $table->text('permanent_address')->nullable();
+            $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');

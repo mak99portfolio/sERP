@@ -5,34 +5,35 @@ namespace App\Http\Controllers\Procurement;
 use App\RequisitionPurpose;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\Paginate;
 
-class RequisitionPurposeController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private $view_root = 'modules/procurement/setting/requisition_purpose/';
-    public function index()
-    {
-        $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+class RequisitionPurposeController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules/procurement/setting/requisition_purpose/.{$suffix}";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+    public function index(){
+
+        $data=[
+    		'paginate'=>new Paginate('\App\RequisitionPurpose', ['name'=>'Name', 'short_name'=>'Short Name']),
+    		'carbon'=>new \Carbon\Carbon
+    	];
+
+    	//dd($data['paginate']);
+
+    	return view($this->path('index'), $data);
+
+    }
+
+
+    public function create(){
+
+        $data=[
+            'requisitionPurpose'=>new RequisitionPurpose
+        ];
+
+        return view($this->path('create'), $data);  
     }
 
     /**
@@ -43,7 +44,17 @@ class RequisitionPurposeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+    		'name'=>'required|unique:requisition_purposes,name',
+    		'short_name'=>'required|unique:requisition_purposes,short_name',
+    		
+    	]);
+
+    	$requisitionPurpose=RequisitionPurpose::create($request->all());
+        $requisitionPurpose->creator()->associate(auth()->user());
+        $requisitionPurpose->save();
+
+        return back()->with('success', 'Form submitted successfully');
     }
 
     /**
@@ -65,29 +76,29 @@ class RequisitionPurposeController extends Controller
      */
     public function edit(RequisitionPurpose $requisitionPurpose)
     {
-        //
+        $data=[
+            'requisitionPurpose'=>$requisitionPurpose
+        ];
+
+        return view($this->path('create'), $data);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, RequisitionPurpose $requisitionPurpose)
     {
-        //
+        $request->validate([
+            'name'=>'required|unique:requisition_purposes,name,'.$requisitionPurpose->id,
+            'short_name'=>'required|unique:requisition_purposes,short_name,'.$requisitionPurpose->id,
+           
+        ]);
+
+        $requisitionPurpose->fill($request->all());
+        if($requisitionPurpose->save()) return back()->with('success', 'Form edited successfully');
+        return back()->with('danger', 'Form Submission failed!.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(RequisitionPurpose $requisitionPurpose)
     {
-        //
+        if($requisitionPurpose->delete()) return back()->with('success', 'Form submitted successfully');
+        return back()->with('danger', 'Form Submission failed!.');
     }
 }

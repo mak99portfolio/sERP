@@ -28,11 +28,12 @@
     <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
         <li role="presentation" class=""><a href="{{route('employee-profile.create')}}">General Information</a>
         </li>
-        <li role="presentation" class="active"><a href="{{route('employee-profile.index', ['organizationalInfo'=>1])}}">Organizational Information</a>
+        <li role="presentation" class="active"><a href="{{route('employee-profile.index')}}">Organizational Information</a>
         </li>
        
     </ul>
     <div id="myTabContent" class="tab-content">
+        
        
         <div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="profile-tab">
         <form class="form-horizontal form-label-left">
@@ -117,6 +118,21 @@
 @endsection
 @section('script')
 <script>
+	$(document).ready(function(){
+
+$('#division_id').change(function(){
+
+  var division_id = $('#division_id').val();
+
+ 
+ $.get("{{ url('inventory/district-search') }}/" + division_id, function(data){
+    console.log(data);
+  });
+
+
+});
+
+});
 
 </script>
 @endsection

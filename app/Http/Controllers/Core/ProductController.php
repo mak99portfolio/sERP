@@ -5,10 +5,14 @@ use App\Product;
 use App\ProductBrand;
 use App\ProductCategory;
 use App\Country;
+use App\UnitOfMeasurement;
+use App\ProductPattern;
+use App\ProductGroup;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
+use DB;
 class ProductController extends Controller
 {
     /**
@@ -35,6 +39,10 @@ class ProductController extends Controller
         $view->with('product_brand_list', ProductBrand::all());
         $view->with('product_category_list', ProductCategory::all());
         $view->with('country_list', Country::all());
+        $view->with('unit_of_measurement_list', UnitOfMeasurement::all());
+        $view->with('product_pattern_list', ProductPattern::all());
+        $view->with('product_group_list', ProductGroup::all());
+        $view->with('product_status_list', DB::table('product_statuses')->get());
         return $view;
     }
 
@@ -49,7 +57,7 @@ class ProductController extends Controller
         $product = new Product;
         $product->fill($request->input());
         $product->creator_user_id = Auth::id();
-        dd($product);
+        // dd($product);
         $product->save();
         Session::put('alert-success', $product->name . ' created successfully');
         return redirect()->route('product.create');

@@ -11,75 +11,49 @@ class EmployeeProfileController extends Controller{
         return "modules.core.employee_profile.{$suffix}";
     }
 
-    public function index()
-    {
-        return view($this->path('index'));
-        }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //return view('category.create');
-        return view($this->path('create'));
+    public function index(){
+        //return view($this->path('index'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function create(){
+
+        $data=[
+            'employeeProfile'=>new \App\EmployeeProfile
+        ];
+
+        return view($this->path('create'), $data);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function organizational_info_form(/*\App\EmployeeProfile $employeeProfile*/){
+
+        //dd($this->path('organizational_info_form'));
+        return view($this->path('edit_organizational_info'));
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+
+    public function store(Request $request){
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+
+    public function show($id){
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+    public function edit($id){
+        
+    }
+
+    public function update(Request $request, $id){
+        
+    }
+
+
+    public function destroy($id){
+        
     }
 }

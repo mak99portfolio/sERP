@@ -32,16 +32,25 @@ function btnDelete($args=[]){
 	$attr=array_merge($attr,$args);
 	return "<form method='POST' action='$attr[url]'>".csrf_field().method_field('DELETE')."<button type='submit' class='btn btn-default btn-xs btn-block' title='Delete' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true' title='Delete'></i></button></form>";
 }
-function btnCustom($args=[]){
+function btnCustom($args=[], Array $customeAttr=[]){
+
 	$attr=[
 		'url'=>'#',
 		'icon'=>'fa-exclamation-circle',
 		'class'=>'text-primary',
 		'title'=>'',
-		'btnClass'=>'btn btn-default'
+		'btnClass'=>'btn btn-default',
 	];
+
+	$attributesStr='';
+
+	foreach($customeAttr as $key=>$value){
+		$attributesStr.="{$key}='{$value}' ";
+	}
+
 	$attr=array_merge($attr,$args);
-	return "<a class='$attr[btnClass]' href='$attr[url]' title='$attr[title]' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i> $attr[title]</a>";
+	return "<a class='$attr[btnClass]' href='$attr[url]' title='$attr[title]' onclick='return action_confirm()' {$attributesStr}><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true'></i> $attr[title]</a>";
+
 }
 function in($urls=[]){
 	$currentUrl=url()->current();

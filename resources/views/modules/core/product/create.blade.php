@@ -22,10 +22,17 @@
                     <div class="x_content">
                         <br />
                         <form class="form-horizontal form-label-left" action="{{route('product.store')}}" method="POST">
+                        {{csrf_field()}}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Product Name</label>
                                     <input class="form-control input-sm" type="text" name='name'>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label>Product HS Code</label>
+                                    <input class="form-control input-sm" type="text" name='hs_code'>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -44,10 +51,9 @@
                                     <label>Pattern</label>
                                     <select class="form-control input-sm" name="product_pattern_id">
                                         <option value="" disabled selected>Select Pattern</option>
-                                        <option>Finished</option>
-                                        <option>Sample</option>
-                                        <option>Gift</option>
-                                        <option>Other</option>
+                                        @foreach ($product_pattern_list as $product_pattern)
+                                        <option value="{{$product_pattern->id}}">{{$product_pattern->name}}</option>
+                                         @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -62,41 +68,15 @@
                                         <tr>
                                             <td>
                                                 <div class="form-group pull-in clearfix">
+                                                     @foreach($product_group_list as $product_group)
                                                     <div class="col-sm-2">
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" name="product_group_id" value="1"><i></i> Sample
+                                                                <input type="checkbox" name="product_group_id" value="{{$product_group->id}}"><i></i> {{$product_group->name}}
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="checkbox">
-                                                            <label class="i-checks">
-                                                                <input type="checkbox" name="product_group_id" value="2"><i></i> Service
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="checkbox">
-                                                            <label class="i-checks">
-                                                                <input type="checkbox" name="product_group_id" value="3"><i></i> Barcode
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="checkbox">
-                                                            <label class="i-checks">
-                                                                <input type="checkbox" name="product_group_id" value="4"><i></i> Saleable
-                                                            </label>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-2">
-                                                        <div class="checkbox">
-                                                            <label class="i-checks">
-                                                                <input type="checkbox" name="product_group_id" value="5"><i></i> Maintenance
-                                                            </label>
-                                                        </div>
-                                                    </div>
+                                                      @endforeach
                                                 </div>
                                             </td>
                                         </tr>
@@ -138,7 +118,7 @@
                                     <select class="form-control input-sm" name="country_of_origin_country_id">
                                         <option value="" disabled selected>Select Origin</option>
                                        @foreach($country_list as $country)
-                                        <option> {{$country->name}} </option>
+                                        <option value="{{$country->id}}"> {{$country->name}} </option>
                                        @endforeach
                                     </select>
                                 </div>
@@ -148,8 +128,9 @@
                                     <label>Country of Manufacture</label>
                                     <select class="form-control input-sm" name="country_of_manufacture_country_id">
                                         <option value="" disabled selected>Select Manufacture</option>
-                                        <option>option1</option>
-                                        <option>option2</option>
+                                        @foreach($country_list as $country)
+                                        <option value="{{$country->id}}"> {{$country->name}} </option>
+                                       @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -158,8 +139,9 @@
                                     <label>Unit of Measurement</label>
                                     <select class="form-control input-sm" name="unit_of_measurement_id">
                                         <option value="" disabled selected>Select Measurement</option>
-                                        <option>option1</option>
-                                        <option>option2</option>
+                                        @foreach($unit_of_measurement_list as $unit_of_measurement)
+                                        <option value="{{$unit_of_measurement->id}}"> {{$unit_of_measurement->name}} </option>
+                                       @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -174,16 +156,19 @@
                                         <tr>
                                             <td>
                                                 <div class="form-group pull-in clearfix">
+                                                    
+                                                    @foreach($product_status_list as $product_status)
                                                     <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
-                                                                <input type="radio" name="product_status_id" value="1">
+                                                                <input type="radio" name="product_status_id" value="{{$product_status->id}}">
                                                                 <i></i>
-                                                                Active
+                                                                {{$product_status->name}}
                                                             </label>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-2">
+                                                    @endforeach
+                                                    <!-- <div class="col-sm-2">
                                                         <div class="radio">
                                                             <label class="i-checks">
                                                                 <input type="radio" name="product_status_id" value="2">
@@ -200,7 +185,7 @@
                                                                 Provision
                                                             </label>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
                                                 </div>
                                             </td>
                                         </tr>

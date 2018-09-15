@@ -6,36 +6,29 @@ use App\RequisitionPurpose;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class RequisitionPurposeController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    private $view_root = 'modules/procurement/setting/requisition_purpose/';
-    public function index()
-    {
-        $view = view($this->view_root . 'index');
+class RequisitionPurposeController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules/procurement/setting/requisition_purpose/.{$suffix}";
+    }
+
+    public function index(){
+
+        $view = view($this->path('index'));
         // $view->with('foo', 'bar');
         // your code here
         return $view;
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
+
+    public function create(){
+
         $data=[
-            'requisitionPurpose'=>RequisitionPurpose
+            'requisitionPurpose'=>new RequisitionPurpose
         ];
 
-        return view($this->path('create'), $data);
-       
-  
+        return view($this->path('create'), $data);  
     }
 
     /**
@@ -52,7 +45,10 @@ class RequisitionPurposeController extends Controller
     		
     	]);
 
-    	\App\WorkingUnit::create($request->all());
+    	$requisitionPurpose=RequisitionPurpose::create($request->all());
+        $requisitionPurpose->creator()->associate(auth()->user());
+        $requisitionPurpose->save();
+
         return back()->with('success', 'Form submitted successfully');
     }
 

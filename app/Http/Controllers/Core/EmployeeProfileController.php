@@ -35,7 +35,13 @@ class EmployeeProfileController extends Controller{
         //dd($request->all());
 
         $request->validate([
-            'employee_id'=>'required|unique:employee_profiles'
+            'employee_id'=>'required|unique:employee_profiles',
+            'name'=>'required',
+            'blood_group_id'=>'required',
+            'nationality'=>'required',
+            'national_id'=>'required',
+            'present_address'=>'required',
+            'permanent_address'=>'required',
         ]);
 
         

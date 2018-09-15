@@ -13,7 +13,7 @@ class VendorCategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $view_root = 'modules/procurement/foreign/setting/vendor_category/';
+    private $view_root = 'modules/procurement/setting/vendor_category/';
     public function index()
     {
         $view = view($this->view_root . 'index');
@@ -29,7 +29,10 @@ class VendorCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root . 'create');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

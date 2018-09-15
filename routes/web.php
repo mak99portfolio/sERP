@@ -24,6 +24,10 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('bank', 'BankController');
     Route::resource('bank-account', 'BankAccountController');
     Route::resource('employee-profile', 'EmployeeProfileController');
+    Route::get(
+        'employee-organizational-info/{organizationalInfo}',
+        'EmployeeProfileController@organizational_info_form'
+    )->name('employee-profile.organizational-info');
 });
 
 //Procurement

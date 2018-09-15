@@ -1,20 +1,20 @@
 {!! Form::open(['method'=>'GET','url'=>url()->current(),'class'=>'form-inline vert-offset-bottom-1']) !!}
 	<strong class='hidden-sm hidden-md'>Search by:</strong>
 	<div class="form-group">
-		{!! Form::select('activeField',$paginate->fields,null,['class'=>'form-control selectpicker', 'onchange'=>'this.form.submit()']) !!}
+		{!! Form::select('activeField',$paginate->fields, request()->get('activeField'),['class'=>'form-control selectpicker', 'onchange'=>'this.form.submit()']) !!}
 	</div>
 
 	<div class="form-group">
 		<div class="btn-group" data-toggle="buttons">
 			<label class="btn btn-default {{ $paginate->wholeWordActiveFlag }}" title='Match whole line'>
-				{!! Form::checkbox('wholeWord',null,null,['onchange'=>'this.form.submit()']) !!} Match line
+				{!! Form::checkbox('wholeWord',null, request()->get('wholeWord'),['onchange'=>'this.form.submit()']) !!} Match line
 			</label>
 		</div>
 	</div>
 
 	<div class='form-group'>
 		<div class='input-group'>
-			{!! Form::text('search',null,['class'=>'form-control']) !!}
+			{!! Form::text('search', request()->get('search'),['class'=>'form-control']) !!}
 			<span class='input-group-btn'>
 				<button class='btn btn-default' type='submit'><i class='fa fa-search'></i></button>
 			</span>
@@ -37,7 +37,7 @@
 
 	<strong class='hidden-sm hidden-md'>Limit:</strong>
 	<div class='form-group'>
-		{!! Form::select('limit',[10=>10,20=>20,50=>50,100=>100],null,['class'=>'form-control selectpicker','onchange'=>'this.form.submit()']) !!}
+		{!! Form::select('limit',[10=>10,20=>20,50=>50,100=>100], request()->get('limit'), ['class'=>'form-control selectpicker','onchange'=>'this.form.submit()']) !!}
 	</div>
 
 	<strong class='hidden-sm hidden-md'>Go to:</strong>

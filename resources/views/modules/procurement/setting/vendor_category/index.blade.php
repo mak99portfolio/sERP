@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Requisition List')
+@section('title', 'Vendor Category List')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Foreign Requisition List</h2>
-                        <a href="{{route('foreign-requisition.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Requisition</a>
+                        <h2>Vendor Category List</h2>
+                        <a href="{{route('vendor-category.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Category</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

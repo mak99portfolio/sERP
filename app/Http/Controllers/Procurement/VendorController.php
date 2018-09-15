@@ -6,6 +6,7 @@ use App\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Session;
 use App\Country;
 use App\VendorCategory;
 
@@ -44,7 +45,13 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $vendor = new Vendor;
+        $vendor->fill($request->input());
+        $vendor->business_type = serialize($request->business_type);
+        $vendor->business_nature = serialize($request->business_nature);
+        $vendor->save();
+        Session::put('alert-success', 'vendor created successfully');
+        return redirect()->route('vendor.index');
     }
 
     /**

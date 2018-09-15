@@ -13,6 +13,7 @@
                   </div>
                   <div class="x_content">
                       <br />
+                      @include('partials.flash_msg')
                   <form class="form-horizontal form-label-left" action="{{ route('city.store') }}" method="POST">
                       {{ csrf_field() }}
                           <div class="col-md-6 col-sm-6 col-xs-12">
@@ -26,7 +27,7 @@
                                     <label>Country</label>
                                     <div>
                                         <select class="form-control input-sm" name="country_id">
-                                            <option value="" disabled>Choose..</option>
+                                            <option value="" disabled selected>Choose..</option>
                                             @foreach ($country_list as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach

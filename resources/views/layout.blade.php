@@ -33,7 +33,7 @@
     <link href="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
     <!-- Custom Theme Style -->
     <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
-
+    
     <link href="{{asset('assets/style.css')}}" rel="stylesheet">
     @yield('style')
   </head>
@@ -109,13 +109,13 @@
     <!-- starrr -->
     <script src="{{asset('assets/vendors/starrr/dist/starrr.js')}}"></script>
     <!-- angularjs -->
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-    <!-- Custom Theme Scripts -->
+    <script src="{{asset('assets/vendors/angular/angular.min.js')}}"></script>
     <!-- PNotify -->
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.js')}}"></script>
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
-
+    
+    <!-- Custom Theme Scripts -->
     <script src="{{asset('assets/build/js/custom.js')}}"></script>
     @yield('script')
     <script>

@@ -32,14 +32,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($vendor_category_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>brand_name</td>
-                                        <td>Short</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->short_name}}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
+                                        <a href="{{route('vendor-category.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

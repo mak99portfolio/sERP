@@ -21,6 +21,7 @@
                     </div>
                     <div class="x_content">
                         <br />
+                        @include('partials.flash_msg')
                         <form class="form-horizontal form-label-left" action="{{route('vendor-category.store')}}" method="POST">
                         {{ BootForm::open(['store'=>'vendor-category.store', 'update'=>'vendor-category.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
                             <div class="col-md-6 col-sm-6 col-xs-12">

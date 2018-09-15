@@ -10,6 +10,9 @@
     </div>
     <div class="clearfix"></div>
     {{-- Content here --}}
+Hello
+
+    {{--end Content --}}
     
   </div>
 </div>

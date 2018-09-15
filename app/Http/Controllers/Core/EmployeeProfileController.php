@@ -44,6 +44,21 @@ class EmployeeProfileController extends Controller{
             'permanent_address'=>'required',
         ]);
 
+        $employeeProfile=\App\EmployeeProfile::create($request->all());
+        $employeeProfile->creator()->associate(auth()->user());
+
+        if($employeeProfile->save()){
+
+            $organizationalInformation=\App\EmployeeOrganizationalInformation::create([]);
+            $organizationalInformation->employee_profile()->associate($employeeProfile);
+            return redirect()->route(
+                'employee-profile.organizational-info',
+                ['organizationalInfo'=>$organizationalInformation]
+            );
+
+        }
+
+        return back()->with('danger', 'Sorry!, form submission failed.');
         
     }
 
@@ -53,12 +68,45 @@ class EmployeeProfileController extends Controller{
     }
 
 
-    public function edit($id){
+    public function edit(\App\EmployeeProfile $employeeProfile){
         
+        $data=[
+            'employeeProfile'=>$employeeProfile,
+            'bloodGroups'=>\App\BloodGroup::pluck('name', 'id')
+        ];
+
+        return view($this->path('create'), $data);
+
     }
 
-    public function update(Request $request, $id){
-        
+    public function update(Request $request, \App\EmployeeProfile $employeeProfile){
+
+        $request->validate([
+            'employee_id'=>'required|unique:employee_profiles,employee_id,'.$employeeProfile->id,
+            'name'=>'required',
+            'blood_group_id'=>'required',
+            'nationality'=>'required',
+            'national_id'=>'required',
+            'present_address'=>'required',
+            'permanent_address'=>'required',
+        ]);
+
+        $employeeProfile->fill($request->all());
+        $employeeProfile->editor()->associate(auth()->user());
+
+        if($employeeProfile->save()){
+
+            $organizationalInformation=\App\EmployeeOrganizationalInformation::create([]);
+            $organizationalInformation->employee_profile()->associate($employeeProfile);
+            return redirect()->route(
+                'employee-profile.organizational-info',
+                ['organizationalInfo'=>$employeeProfile->organizational_information]
+            );
+
+        }
+
+        return back()->with('danger', 'Sorry!, form submission failed.');
+
     }
 
 
@@ -66,10 +114,18 @@ class EmployeeProfileController extends Controller{
         
     }
 
-    public function organizational_info_form(/*\App\EmployeeProfile $employeeProfile*/){
+    public function organizational_info_form(\App\EmployeeOrganizationalInformation $organizationalInfo){
 
-        //dd($this->path('organizational_info_form'));
-        return view($this->path('edit_organizational_info'));
+        $data=[
+            'organizationalInfo'=>$organizationalInfo,
+            'depatrments'=>\App\Department::pluck('name', 'id'),
+            'designations'=>\App\Designation::pluck('name', 'id'),
+            'workingUnits'=>\App\WorkingUnit::pluck('name', 'id'),
+            'statuses'=>\App\EmployeeOrganizationalInformationStatus::pluck('name', 'id'),
+            'types'=>\App\EmployeeOrganizationalInformationType::pluck('name', 'id'),
+        ];
+
+        return view($this->path('edit_organizational_info'), $data);
         
     }
 }

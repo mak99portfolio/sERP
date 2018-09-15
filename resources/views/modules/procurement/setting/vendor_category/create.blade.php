@@ -21,24 +21,16 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left">
+                        <form class="form-horizontal form-label-left" action="{{route('vendor-category.store')}}" method="POST">
+                        {{ BootForm::open(['store'=>'vendor-category.store', 'update'=>'vendor-category.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Category Title</label>
-                                    <input class="form-control input-sm" type="text">
-                                </div>
+                                {{ BootForm::text('name','Category Title', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Short Title</label>
-                                    <input class="form-control input-sm" type="text">
-                                </div>
+                                {{ BootForm::text('short_name','Short Title', null, ['class'=>'form-control input-sm']) }}
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label> Category Description</label>
-                                    <textarea class="form-control input-sm"></textarea>
-                                </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::textarea('description','Category Description', null, ['class'=>'form-control input-sm', 'rows' => 5]) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
@@ -48,7 +40,7 @@
                                     <a class="btn btn-default btn-sm" href="{{route('vendor-category.index')}}">Cancel</a>
                                 </div>
                             </div>
-                        </form>
+                        {{ BootForm::close() }}
                     </div>
                 </div>
             </div>

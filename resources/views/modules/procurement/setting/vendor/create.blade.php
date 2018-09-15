@@ -21,129 +21,90 @@
                     </div>
                     <div class="x_content">
                         <br />
-                    <form class="form-horizontal form-label-left" action="{{route('vendor.store')}}" method="POST">
-                            @csrf 
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Vendor Id</label>
-                                    <input class="form-control input-sm" type="text" readonly name="vendor_id">
+                        <form class="form-horizontal form-label-left" action="{{route('vendor.store')}}" method="POST">
+                            @csrf
+
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('vendor_id','Vendor Id', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::select('vendor_category_id', 'Vendor Category', $vendor_category_list, null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('zip_code','Zip Code', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::tel('telephone','Tel. No.', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('fax','Fax', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('website','Web Site', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::email('email','Email', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                             {{ BootForm::tel('tin_no','TIN Number', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                             {{ BootForm::text('trade_license_no','Trade License No', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('trade_license_issue_date','Trade License Issue Date', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('certificate_of_incorporation','Certificate of Incorporation', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('incorporation_date','Incorporation Date', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::text('vat_no','VAT No', null, ['class'=>'form-control input-sm']) }}
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            {{ BootForm::textarea('address','Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <textarea class="form-control input-sm" rows="2" name="address"></textarea>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Status </label>
-                                    <select class="form-control input-sm" name="status_id">
-                                        <option value="" disabled selected>Select Requisition Type</option>
-                                        <option value="1">Active</option>
-                                        <option value="2">Inactive</option>
-                                    </select>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Vendor Name</label>
-                                    <input class="form-control input-sm" type="text" name="name">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Establishment Date</label>
-                                    <input class="form-control input-sm" type="text" name="establishment_date">
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Address</label>
-                                    <textarea class="form-control input-sm" rows="2" name="address"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Country</label>
-                                    <select class="select form-control input-sm" name="country_id">
-                                        <option value="" disabled selected>Select Country</option>
-                                        @foreach($country_list as $item)
-                                        <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Vendor Category</label>
-                                    <select class="select form-control input-sm" name="vendor_category_id">
-                                        <option value="" disabled selected>Select Requisition Type</option>
-                                        <option value="1">Local</option>
-                                        <option value="2">Foreign</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Zip Code</label>
-                                    <input class="form-control input-sm" type="text" name="zip_code">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Tel. No.</label>
-                                    <input class="form-control input-sm" type="tel" name="telephone">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Fax</label>
-                                    <input class="form-control input-sm" type="text" name="fax">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Web Site</label>
-                                    <input class="form-control input-sm" type="text" name="website">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Email</label>
-                                    <input class="form-control input-sm" type="email" name="email">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>TIN Number</label>
-                                    <input class="form-control input-sm" type="tel" name="tin_no">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Trade License No</label>
-                                    <input class="form-control input-sm" type="text" name="trade_license_no">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Trade License Issue Date</label>
-                                    <input class="form-control input-sm" type="text" name="trade_license_issue_date">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Certificate of Incorporation</label>
-                                    <input class="form-control input-sm" type="text" name="certificate_of_incorporation">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Incorporation Date</label>
-                                    <input class="form-control input-sm" type="date" name="incorporation_date">
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>VAT No</label>
-                                    <input class="form-control input-sm" type="text" name="vat_no">
-                                </div>
-                            </div>
+
                             <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
                                 <table class="table table-bordered">
                                     <thead>
@@ -414,41 +375,41 @@
                                                         <tr>
                                                             <td>
                                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="form-group">
-                                                                            <label>Contact Name</label>
-                                                                            <input class="form-control input-sm" type="text" name="person[0]['name']">
-                                                                        </div>
+                                                                    <div class="form-group">
+                                                                        <label>Contact Name</label>
+                                                                        <input class="form-control input-sm" type="text" name="person[0]['name']">
                                                                     </div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="form-group">
-                                                                            <label>Designation</label>
-                                                                            <input class="form-control input-sm" type="text" name="person[0]['designation']">
-                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Designation</label>
+                                                                        <input class="form-control input-sm" type="text" name="person[0]['designation']">
                                                                     </div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="form-group">
-                                                                            <label>Tel. No</label>
-                                                                            <input class="form-control input-sm" type="tel" name="person[0]['telephone']">
-                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Tel. No</label>
+                                                                        <input class="form-control input-sm" type="tel" name="person[0]['telephone']">
                                                                     </div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="form-group">
-                                                                            <label>E-Mail</label>
-                                                                            <input class="form-control input-sm" type="email" name="person[0]['email']">
-                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>E-Mail</label>
+                                                                        <input class="form-control input-sm" type="email" name="person[0]['email']">
                                                                     </div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="form-group">
-                                                                            <label>Job Role</label>
-                                                                            <input class="form-control input-sm" type="tel" name="person[0]['role']">
-                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Job Role</label>
+                                                                        <input class="form-control input-sm" type="tel" name="person[0]['role']">
                                                                     </div>
-                                                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                                                        <div class="form-group">
-                                                                            <label>Coll No</label>
-                                                                            <input class="form-control input-sm" type="email" name="person[0]['mobile']">
-                                                                        </div>
+                                                                </div>
+                                                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                    <div class="form-group">
+                                                                        <label>Coll No</label>
+                                                                        <input class="form-control input-sm" type="email" name="person[0]['mobile']">
                                                                     </div>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </tbody>
@@ -559,42 +520,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            {{-- <div class="col-md-12 col-sm-12 col-xs-12 table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="4">Product LIst</th>
-                                        </tr>
-                                        <tr>
-                                            <th>#SL</th>
-                                            <th>Item Name</th>
-                                            <th>CI Quantity</th>
-                                            <th>PO Quantity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>01</td>
-                                            <td>ABC</td>
-                                            <td>09</td>
-                                            <td>04</td>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="2">Total:</td>
-                                            <td>09</td>
-                                            <td>04</td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div> --}}
-                            {{-- <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Remarks</label>
-                                    <textarea class="form-control input-sm" rows="2"></textarea>
-                                </div>
-                            </div> --}}
 
                             <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                                 <br />

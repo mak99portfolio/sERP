@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
+use DB;
 class ProductController extends Controller
 {
     /**
@@ -41,6 +42,7 @@ class ProductController extends Controller
         $view->with('unit_of_measurement_list', UnitOfMeasurement::all());
         $view->with('product_pattern_list', ProductPattern::all());
         $view->with('product_group_list', ProductGroup::all());
+        $view->with('product_status_list', DB::table('product_statuses')->get());
         return $view;
     }
 

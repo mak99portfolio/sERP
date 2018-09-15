@@ -1,25 +1,20 @@
 <?php
 
-namespace App\Http\Controllers\Procurement;
+namespace App\Http\Controllers;
 
-use App\RequisitionPurpose;
+use App\ProductPattern;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class RequisitionPurposeController extends Controller
+class ProductPatternController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $view_root = 'modules/procurement/setting/requisition_purpose/';
     public function index()
     {
-        $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -29,10 +24,7 @@ class RequisitionPurposeController extends Controller
      */
     public function create()
     {
-        $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -49,10 +41,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function show(RequisitionPurpose $requisitionPurpose)
+    public function show(ProductPattern $productPattern)
     {
         //
     }
@@ -60,10 +52,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function edit(RequisitionPurpose $requisitionPurpose)
+    public function edit(ProductPattern $productPattern)
     {
         //
     }
@@ -72,10 +64,10 @@ class RequisitionPurposeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, RequisitionPurpose $requisitionPurpose)
+    public function update(Request $request, ProductPattern $productPattern)
     {
         //
     }
@@ -83,10 +75,10 @@ class RequisitionPurposeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RequisitionPurpose  $requisitionPurpose
+     * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RequisitionPurpose $requisitionPurpose)
+    public function destroy(ProductPattern $productPattern)
     {
         //
     }

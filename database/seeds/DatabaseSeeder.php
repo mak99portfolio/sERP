@@ -19,5 +19,10 @@ class DatabaseSeeder extends Seeder
         $this->call(DivisionsTableSeeder::class);
         $this->call(DistrictsTableSeeder::class);
         $this->call(ProductCategoryTableSeeder::class);
+        $this->call(ProductGroupSeeder::class);
+        $this->call(ProductPatternSeeder::class);
+        $this->call(ProductBrandTableSeeder::class);
+        $this->call(ProductUnitOfMeasurementTableSeeder::class);
+        $this->call(ProductStatusTableSeeder::class);
     }
 }

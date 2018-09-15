@@ -116,7 +116,7 @@
                             {{ BootForm::text('name') }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{ BootForm::text('Nationality') }}
+                        {{ BootForm::text('nationality') }}
                         </div>
                     </div>
                 </div>
@@ -149,6 +149,7 @@
                     <div class="ln_solid"></div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Next {!! fa('fa-arrow-right') !!} Organizational Information</button>
+                        {!! btnCustom(['url'=>url()->current(), 'title'=>'Reset', 'icon'=>'fa-refresh']) !!}
                     </div>
                 </div>
             </div>

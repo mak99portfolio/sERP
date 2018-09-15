@@ -22,7 +22,7 @@ class CreateEmployeeProfilesTable extends Migration
             $table->string('national_id');
             $table->text('present_address')->nullable();
             $table->text('permanent_address')->nullable();
-            $table->integer('creator_user_id')->unsigned();
+            $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');

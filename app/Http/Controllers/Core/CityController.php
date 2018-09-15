@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Core;
 use App\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Country;
+use Auth;
+use Session;
 
 class CityController extends Controller
 {
@@ -13,9 +16,20 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $view_root = 'modules/core/city/';
+
     public function index()
     {
-        //
+        // $data = [
+        //     'countries' => \App\Country::pluck( 'name', 'id')
+        // ];
+
+        $view = view($this->view_root . 'index');
+        $view->with('city_list', City::all());
+        $view->with('country_list', Country::all());
+
+        return $view;
     }
 
     /**
@@ -25,7 +39,9 @@ class CityController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        $view->with('country_list', Country::all());
+        return $view;
     }
 
     /**
@@ -36,7 +52,17 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:cities',
+            'country_id' => 'required'
+        ]);
+
+        $city = new City;
+        $city->fill($request->input());
+        $city->creator_user_id = Auth::id();
+        $city->save();
+        Session::put('alert-success', $city->name . " successfully created");
+        return redirect()->route('city.index');
     }
 
     /**

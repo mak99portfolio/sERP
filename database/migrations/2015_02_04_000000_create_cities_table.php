@@ -20,9 +20,8 @@ class CreateCitiesTable extends Migration
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('restrict');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->integer('updator_user_id')->unsigned();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });

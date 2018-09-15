@@ -22,12 +22,13 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
+                            @include('partials.paginate_header')
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
                                         <th>Product Name</th>
-                                        <th>Pattern</th>
+                                        <th>HS Code</th>
                                         <th>Brand</th>
                                         <th>Product Serial</th>
                                         <th>Product Model</th>
@@ -37,19 +38,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                  @foreach($paginate->table as $product)
                                     <tr>
                                         <td>01</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->hs_code}}</td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->product_category->name}}</td>
+                                        <td>{{$product->name}}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

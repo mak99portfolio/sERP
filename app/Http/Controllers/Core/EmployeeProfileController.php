@@ -118,7 +118,11 @@ class EmployeeProfileController extends Controller{
 
         $data=[
             'organizationalInfo'=>$organizationalInfo,
-            'companies'=>\App\Company::pluck('name', 'id'),
+            'depatrments'=>\App\Department::pluck('name', 'id'),
+            'designations'=>\App\Designation::pluck('name', 'id'),
+            'workingUnits'=>\App\WorkingUnit::pluck('name', 'id'),
+            'statuses'=>\App\EmployeeOrganizationalInformationStatus::pluck('name', 'id'),
+            'types'=>\App\EmployeeOrganizationalInformationType::pluck('name', 'id'),
         ];
 
         return view($this->path('edit_organizational_info'), $data);

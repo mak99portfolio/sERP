@@ -22,12 +22,15 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
     Route::resource('product', 'ProductController');
     Route::resource('bank', 'BankController');
-    Route::resource('bank-account', 'BankAccountController');
     Route::resource('employee-profile', 'EmployeeProfileController');
     Route::get(
-        'employee-organizational-info/{organizationalInfo}',
+        'employee-organizational-info/{organizational_info}',
         'EmployeeProfileController@organizational_info_form'
     )->name('employee-profile.organizational-info');
+    Route::put(
+        'employee-organizational-info/{organizational_info}',
+        'EmployeeProfileController@update_organizational_info'
+    )->name('employee-profile.update-organizational-info');
 });
 
 //Procurement

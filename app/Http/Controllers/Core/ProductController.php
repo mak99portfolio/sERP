@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Core;
 use App\Product;
+use App\Helpers\Paginate;
 use App\ProductBrand;
 use App\ProductCategory;
 use App\Country;
@@ -23,9 +24,17 @@ class ProductController extends Controller
     private $view_root = 'modules/core/product/';
     public function index()
     {
-        $view = view($this->view_root.'index');
-        $view->with('product_list', Product::all());
-        return $view;
+
+
+        $data=[
+    		'paginate'=>new Paginate('\App\Product', ['name'=>'Name', 'hs_code'=>'HS Code']),
+    		'carbon'=>new \Carbon\Carbon
+    	];
+
+        return view(($this->view_root.'index'), $data);
+        // $view = view($this->view_root.'index');
+        // $view->with('product_list', Product::all());
+        // return $view;
     }
 
     /**

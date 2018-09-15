@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class ProductCategory extends Model
@@ -12,4 +12,7 @@ class ProductCategory extends Model
         'name',
         'short_name'
     ];
+    function product(){
+        return $this->belongsTo('Product');
+    }
 }

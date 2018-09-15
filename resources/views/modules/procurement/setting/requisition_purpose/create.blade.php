@@ -16,7 +16,9 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Requisition Purpose</h2>
-                        <a href="{{route('requisition-purpose.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Lists</a>
+
+                         {!! btnAddNew(['url'=>route('requisition-purpose.index')]) !!}
+                       
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

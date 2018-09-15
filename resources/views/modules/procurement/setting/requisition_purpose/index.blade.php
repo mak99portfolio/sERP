@@ -21,29 +21,35 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
-                                <thead class="bg-primary">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Name</th>
-                                        <th>Short Name</th>
-                                        <th class="text-center">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>brand_name</td>
-                                        <td>Short</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <!--end table-->
+                        {{-- Main content area --}}
+            @include('partials.paginate_header')
+            <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr class='primary'>
+                            <th>Name</th>
+                            <th>Short Name</th>
+                            <th>Created At</th>
+                            <th>Edit / Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($paginate->table as $row)
+                        <tr>
+                            <td>{{ $row->name }}</td>
+                            <td>{{ $row->short_name }}</td>
+                            <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
+                            <td>
+                                {!! btnEdit(['url'=>route('requisition-purpose.edit', ['requisition_purpose'=>$row->id])]) !!}
+                                {!! btnDelete(['url'=>route('requisition-purpose.destroy', ['requisition_purpose'=>$row->id])]) !!}
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+            @include('partials.paginate_footer')
+            {{-- End of Main content area --}}
                     </div>
                 </div>
             </div>

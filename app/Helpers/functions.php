@@ -56,6 +56,7 @@ function in($urls=[]){
 	$currentUrl=url()->current();
 	foreach($urls as $url) if($currentUrl==url($url)) return 'in';
 }
+
 function goBack($args=[]){
 	$attr=[
 		'class'=>'btn btn-default',
@@ -65,6 +66,7 @@ function goBack($args=[]){
 	$attr=array_merge($attr,$args);
 	return "<buton type='button' class='$attr[class]' onclick='window.history.back();'/><i class='fa $attr[icon]'></i> $attr[title]</buton>";
 }
+
 function btnAddNew($args=[]){
 	$attr=[
 		'class'=>'pull-right btn btn-default',

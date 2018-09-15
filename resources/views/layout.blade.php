@@ -108,6 +108,8 @@
     <script src="{{asset('assets/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
     <!-- starrr -->
     <script src="{{asset('assets/vendors/starrr/dist/starrr.js')}}"></script>
+    <!-- angularjs -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <!-- Custom Theme Scripts -->
     <!-- PNotify -->
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.js')}}"></script>
@@ -120,7 +122,9 @@
       function init(){
         $.ajax( "{{route('get_toaster_notification')}}")
               .done(function(data) {
-                new PNotify(data);
+                if(data){
+                  new PNotify(data);
+                }
               })
         
       }

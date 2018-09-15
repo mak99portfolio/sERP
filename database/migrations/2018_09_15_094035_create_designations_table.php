@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmployeeProfilesTable extends Migration
+class CreateDesignationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,15 @@ class CreateEmployeeProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('employee_profiles', function (Blueprint $table) {
+        Schema::create('designations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('employee_id');
+            $table->string('designation_id')->nullable();
             $table->string('name');
-            $table->integer('blood_group_id')->unsigned();
-            $table->string('nationality');
-            $table->string('national_id');
-            $table->text('present_address')->nullable();
-            $table->text('permanent_address')->nullable();
+            $table->string('short_name')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -38,6 +33,6 @@ class CreateEmployeeProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('employee_profiles');
+        Schema::dropIfExists('designations');
     }
 }

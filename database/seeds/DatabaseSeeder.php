@@ -25,5 +25,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductUnitOfMeasurementTableSeeder::class);
         $this->call(ProductStatusTableSeeder::class);
         $this->call(BloodGroupTableSeeder::class);
+        $this->call(CompaniesTableSeeder::class);
+        $this->call(DesignationTableSeeder::class);
+        
     }
 }

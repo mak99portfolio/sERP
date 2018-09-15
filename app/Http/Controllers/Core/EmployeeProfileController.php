@@ -18,9 +18,11 @@ class EmployeeProfileController extends Controller{
 
     public function create(){
 
+        $data=[
+            'employeeProfile'=>new \App\EmployeeProfile
+        ];
 
-
-        return view($this->path('create'));
+        return view($this->path('create'), $data);
 
     }
 

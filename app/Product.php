@@ -4,13 +4,14 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
+use App\ProcutCategory;
 
 class Product extends Model
 {
     use SoftDeletes;
     protected $fillable = [
         'name',
+        'hs_code',
         'product_category_id',
         'product_pattern_id',
         'product_group_id',
@@ -32,4 +33,10 @@ class Product extends Model
         'shipper_carton_size',
         'description'
     ];
+    function product_category(){
+        return $this->hasMany('ProductCategory');
+    }
+    function status(){
+        return $this->hasOne('product_statuses');
+    }
 }

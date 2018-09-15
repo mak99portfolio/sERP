@@ -13,7 +13,7 @@ class RequisitionPurposeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $view_root = 'modules/procurement/foreign/setting/requisition_purpose/';
+    private $view_root = 'modules/procurement/setting/requisition_purpose/';
     public function index()
     {
         $view = view($this->view_root . 'index');
@@ -29,7 +29,10 @@ class RequisitionPurposeController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root . 'create');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

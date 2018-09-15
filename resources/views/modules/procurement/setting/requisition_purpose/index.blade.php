@@ -40,8 +40,8 @@
                             <td>{{ $row->short_name }}</td>
                             <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                             <td>
-                                {!! btnEdit(['url'=>route('requisition-purpose.edit', ['working_unit'=>$row->id])]) !!}
-                                {!! btnDelete(['url'=>route('requisition-purpose.destroy', ['working_unit'=>$row->id])]) !!}
+                                {!! btnEdit(['url'=>route('requisition-purpose.edit', ['requisition_purpose'=>$row->id])]) !!}
+                                {!! btnDelete(['url'=>route('requisition-purpose.destroy', ['requisition_purpose'=>$row->id])]) !!}
                             </td>
                         </tr>
                     @endforeach

@@ -45,6 +45,7 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('packing-list', 'PackingListController');
     Route::resource('bill-of-lading', 'BillOfLadingController');
     Route::resource('cnf', 'CnfController');
+    Route::resource('local-purchase-order', 'LocalPurchaseOrderController');
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');

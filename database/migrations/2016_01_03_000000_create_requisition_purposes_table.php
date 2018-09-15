@@ -15,6 +15,13 @@ class CreateRequisitionPurposesTable extends Migration
     {
         Schema::create('requisition_purposes', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('short_name')->unique()->nullable();
+            $table->integer('creator_user_id')->unsigned();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

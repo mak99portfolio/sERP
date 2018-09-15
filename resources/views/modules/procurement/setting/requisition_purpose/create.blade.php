@@ -16,12 +16,13 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Requisition Purpose</h2>
-                        <a href="{{route('requisition-purpose.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Category Lists</a>
+                        <a href="{{route('requisition-purpose.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Lists</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        {{ BootForm::open(['model'=>$working_unit, 'store'=>'requisition-purpose.store', 'update'=>'working-unit.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
+                        @include('partials.flash_msg')
+                        {{ BootForm::open(['store'=>'requisition-purpose.store', 'update'=>'working-unit.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
 
  <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
@@ -42,11 +43,10 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('vendor-category.index')}}">Cancel</a>
+                                {!! btnSubmitGroup() !!}
                                 </div>
                             </div>
-                        </form>
+                            {{ BootForm::close() }}
                     </div>
                 </div>
             </div>

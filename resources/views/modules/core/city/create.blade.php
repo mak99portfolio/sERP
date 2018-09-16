@@ -8,7 +8,7 @@
               <div class="x_panel">
                   <div class="x_title">
                       <h2>City</h2>
-                      <a class="btn btn-primary btn-sm pull-right" href="{{route('city.index')}}"><i class="fa fa-list-ul"></i> Country List</a>
+                      <a class="btn btn-primary btn-sm pull-right" href="{{route('city.index')}}"><i class="fa fa-list-ul"></i> City List</a>
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

@@ -112,11 +112,10 @@ class CreateVendorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enclosure_vendor');
-        Schema::dropIfExists('vendor_enclosures');
+        Schema::dropIfExists('enclosure_vendors');
         Schema::dropIfExists('vendor_contacts');
+        Schema::dropIfExists('vendor_banks');
         Schema::dropIfExists('vendor_payment_terms');
-        Schema::dropIfExists('vendor_bank_informations');
         Schema::dropIfExists('vendors');
     }
 }

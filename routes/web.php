@@ -53,6 +53,8 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('requisition-purpose', 'RequisitionPurposeController');
     Route::resource('requisition-priority', 'RequisitionPriorityController');
+    Route::resource('cost-particular', 'CostParticularController');
+    Route::resource('consignment-particular', 'ConsignmentParticularController');
 
 });
 

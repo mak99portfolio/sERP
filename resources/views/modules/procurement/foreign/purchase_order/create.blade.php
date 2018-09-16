@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Purchase order')
+@section('title', 'Foreign Purchase order')
 @section('content')
 
 <!-- page content -->
@@ -15,184 +15,82 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Purchase Order</h2>
+                        <h2>Foreign Purchase Order</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Requisition No.</label>
-                                    <input class="form-control input-sm" type="text" readonly>
+                        <form class="form-horizontal form-label-left" action="{{route('purchase-order.store')}}" method="POST">
+                        @csrf
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Requisition No.</label>
+                                        <select class="form-control input-sm" name="requisition_no">
+                                            <option>258</option>
+                                            <option>852</option>
+                                            <option>456</option>
+                                            <option>951</option>
+                                            <option>963</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('purchase_order_no','Purchase Order No.', null, ['class'=>'form-control input-sm','readonly' ]) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('requisition_date','Requisition date', null, ['class'=>'form-control input-sm','id'=>"single_cal4" ]) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::text('purchase_order_date','Purchase Order date', null, ['class'=>'form-control input-sm','id'=>"single_cal3" ]) }}
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Requisition date</label>
-                                    <!-- <input class="form-control input-sm" type="text" > -->
-                                    <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="First Name" aria-describedby="2">
-                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                            <span id="2" class="sr-only">(success)</span>
-                                        </div>
-                                        </div>
+                            <fieldset class="m-t-20">
+                                <legend>Table of Terms and Conditions:</legend>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Purchase Order No.</label>
-                                    <input class="form-control input-sm" type="text" readonly>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Purchase Order date</label>
-                                    <!-- <input class="form-control input-sm" type="text" > -->
-                                    <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="3">
-                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                            <span id="3" class="sr-only">(success)</span>
-                                        </div>
-                                        </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                    </fieldset>
-                                </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Vendor </label>
-                                    <select class="form-control input-sm js-example-basic-single">
-                                        <option value="" disabled selected> Select Vendor</option>
-                                        <option>Active</option>
-                                        <option>Inactive</option>
-                                    </select>
-                                </div>
-                                <br>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12  table-responsive">
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>Table of Terms and Conditions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Port of Loading </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected> Select port of loading</option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('country_of_final_destination_countru_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('final_destination_countru_id', 'Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('country_of_origin_of_goods_countru_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('p', 'Shipment Allow', [''=>'Select shipment allow',1=>'Multi shipment',2=>'Partial'], null, ['class'=>'form-control input-sm']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('payment_type', 'Payment Type', [''=>'Select payment type',1=>'Cash'], null, ['class'=>'form-control input-sm']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', [''=>'Select pre carriage by',1=>'Ship',2=>'Air'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Port of Discharge </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select port of discharge </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
+                            </fieldset>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{ BootForm::text('subject','Subject', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Country of Final Destination </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select country of final destination </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{ BootForm::text('letter_header','Letter Header', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label> Final Destination </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select  final destination </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label> Country of Origin of Goods </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select country of origin of goods </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Shipment Allow  </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select shipment allow </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Payment Type  </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select payment type </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Pre Carriage By  </label>
-                                        <select class="form-control input-sm">
-                                            <option value="" disabled selected>Select pre carriage by </option>
-                                            <option>Active</option>
-                                            <option>Inactive</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                       
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Subject</label>
-                                    <input class="form-control input-sm" type="text" >
-                                </div>
-                        </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Letter Header</label>
-                                    <input class="form-control input-sm" type="text" >
-                                </div>
-                            </div>
-                             <!-- start table -->
-                             <div class="form-group pull-in clearfix">
-                                 <div class="col-sm-12">
-                                    <label>Product Table</label>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered table-hover">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive m-t-15">
+                                    <table class="table table-bordered table-hover">
                                             <thead class="bg-primary">
+                                                <tr>
+                                                    <th colspan="8">Product Table</th>
+                                                </tr>
                                                 <tr>
                                                     <th>SL NO</th>
                                                     <th>H.S. CODE</th>
@@ -236,37 +134,27 @@
                                                 <tr>
                                                     <td colspan="6">Total</td>
                                                     <td>324</td>
-                                                    
+
                                                     <td colspan="2"></td>
                                                 </tr>
                                             </tfoot>
-                                        </table>
+                                    </table>
+                                </div>
+                                </div>
+                                 <!--end table-->
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{ BootForm::text('letter_footer','Letter Footer', null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                   
-                                </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        {{ BootForm::textarea('notes','Notes', null, ['class'=>'form-control input-sm','rows'=>2]) }}
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary">Save</button>
+                                        </div>
+                                    </div>
                             </div>
-                             <!--end table-->
-                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Letter Footer</label>
-                                    <input class="form-control input-sm" type="text" >
-                                </div>
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Notes</label>
-                                    <textarea class="form-control input-sm" rows="2"></textarea>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                              
-                                <div class="form-group">
-
-                                    <button type="submit" class="btn btn-primary">Save</button>
-                                </div>
-                            </div>
-                    </div>
-                </form>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -277,6 +165,8 @@
 @endsection
 @section('script')
 <script>
-
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
 </script>
 @endsection

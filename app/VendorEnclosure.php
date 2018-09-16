@@ -9,7 +9,7 @@ class VendorEnclosure extends Model{
 	protected $guarded=['id'];
 
 	public function vendors(){
-		return $this->hasMany('App\Vendor');
+		return $this->hasOne('App\Vendor');
 	}
 
 }

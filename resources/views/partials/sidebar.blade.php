@@ -67,6 +67,7 @@
           <li><a href="{{route('product.index')}}">Product</a></li>
           <li><a href="{{route('bank.index')}}">Bank</a></li>
           <li><a href="{{route('employee-profile.index')}}">Employee Profile</a></li>
+          <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
         </ul>
       </li>
     </ul>

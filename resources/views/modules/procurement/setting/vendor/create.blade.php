@@ -26,10 +26,10 @@
                                     {{ BootForm::text('vendor_id','Vendor Id', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm']) }}
@@ -235,29 +235,29 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('person[\'name\'][]','Contact Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('person[<% $index %>][\'name\']','Contact Name', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('person[\'designation\'][]','Designation', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('person[<% $index %>][\'designation\']','Designation', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::tel('person[\'telephone\'][]','Designation', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::tel('person[<% $index %>][\'telephone\']','Designation', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::email('person[\'email\'][]','E-Mail', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::email('person[<% $index %>][\'email\']','E-Mail', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('person[\'role\'][]','Job Role', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('person[<% $index %>][\'role\']','Job Role', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::tel('person[\'mobile\'][]','Cell No', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::tel('person[<% $index %>][\'mobile\']','Cell No', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="increasePerson()"><i class="fa fa-plus"></i> Add Person</button>
-                                    <button type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreasePerson()"><i class="fa fa-minus"></i> Remove Person</button>
+                                    <button ng-disabled="person.length>=5" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="increasePerson()"><i class="fa fa-plus"></i> Add Person</button>
+                                    <button ng-disabled="person.length<=1" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreasePerson()"><i class="fa fa-minus"></i> Remove Person</button>
                                 </div>
                             </fieldset>
                             <fieldset>
@@ -315,7 +315,10 @@
 
 @section('script')
 <script>
-        var app = angular.module('myApp',[]);
+        var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
         app.controller('myCtrl',function($scope){
             $scope.minPerson = 1;
             $scope.maxPerson = 5;

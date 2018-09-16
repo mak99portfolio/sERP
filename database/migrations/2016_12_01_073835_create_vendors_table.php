@@ -91,22 +91,28 @@ class CreateVendorsTable extends Migration
         Schema::create('vendor_enclosures', function (Blueprint $table){
         	
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->integer('vendor_id')->unsigned();
+            $table->integer('enclosure_id')->unsigned();
+            $table->string('file_directory');
+            $table->string('file_name');
             $table->softDeletes();
             $table->timestamps();
-
-        });
-
-        Schema::create('enclosure_vendor', function (Blueprint $table){
-        	
-            $table->increments('id');
-            $table->integer('enclosure_id')->unsigned();
-            $table->integer('vendor_id')->unsigned();
-            
-            $table->foreign('enclosure_id')->references('id')->on('vendor_enclosures')->onDelete('cascade');
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+            $table->foreign('enclosure_id')->references('id')->on('enclosures')->onDelete('cascade');
+
 
         });
+
+        // Schema::create('enclosure_vendor', function (Blueprint $table){
+        	
+        //     $table->increments('id');
+        //     $table->integer('enclosure_id')->unsigned();
+        //     $table->integer('vendor_id')->unsigned();
+            
+        //     $table->foreign('enclosure_id')->references('id')->on('vendor_enclosures')->onDelete('cascade');
+        //     $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+
+        // });
 
     }
 

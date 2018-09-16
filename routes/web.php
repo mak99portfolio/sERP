@@ -22,6 +22,7 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
     Route::resource('product', 'ProductController');
     Route::resource('bank', 'BankController');
+    Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
     Route::get(
         'employee-organizational-info/{organizational_info}',

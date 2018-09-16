@@ -24,13 +24,10 @@ class ProductController extends Controller
     private $view_root = 'modules/core/product/';
     public function index()
     {
-
-
         $data=[
     		'paginate'=>new Paginate('\App\Product', ['name'=>'Name', 'hs_code'=>'HS Code']),
     		'carbon'=>new \Carbon\Carbon
     	];
-
         return view(($this->view_root.'index'), $data);
         // $view = view($this->view_root.'index');
         // $view->with('product_list', Product::all());

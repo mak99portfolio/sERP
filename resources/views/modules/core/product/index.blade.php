@@ -57,6 +57,7 @@
                             </table>
                         </div>
                         <!--end table-->
+                        @include('partials.paginate_footer')
                     </div>
                 </div>
             </div>

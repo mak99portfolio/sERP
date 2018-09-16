@@ -27,14 +27,10 @@
                    
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                        <div class="form-group">
                                         <label>LC No.</label>
                                         <input class="form-control input-sm" type="text">
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label>LC Date</label>
                                         <!-- <input class="form-control input-sm" type="text"> -->
@@ -50,19 +46,13 @@
                                     </div>
                                     </fieldset>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label>LC Value</label>
                                         <input class="form-control input-sm" type="text">
-                                    </div>
-                                </div>
-                            </div>
+</div>   
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                        <div class="form-group">
                                     <label>Vendor </label>
                                     <select class="form-control input-sm">
                                         <option value="" disabled selected> Select vendor</option>
@@ -70,9 +60,7 @@
                                         <option>Inactive</option>
                                     </select>
                                 </div>
-                            </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                                <div class="form-group">
                                         <label>LC Expire Date</label>
                                         <!-- <input class="form-control input-sm" type="text"> -->
                                         <fieldset>
@@ -87,9 +75,11 @@
                                     </div>
                                     </fieldset>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                                    
+
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
                                         <label>LC Shipment Date</label>
                                         <!-- <input class="form-control input-sm" type="text"> -->
                                         <fieldset>
@@ -104,13 +94,7 @@
                                     </div>
                                     </fieldset>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                                    <div class="form-group">
                                     <label>Currency </label>
                                     <select class="form-control input-sm">
                                         <option value="" disabled selected> Select currency</option>
@@ -119,10 +103,10 @@
                                     </select>
                                 </div>
                             </div>
-                       
-                            </div>
-                        </div>
+                        
                     </div>
+
+
                     <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 <div class ="table-responsive">

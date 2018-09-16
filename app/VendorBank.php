@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VendorBankInformation extends Model
+class VendorBank extends Model
 {
     protected $guarded = ['id'];
     protected $fillable = [

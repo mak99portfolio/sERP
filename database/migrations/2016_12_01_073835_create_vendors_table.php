@@ -47,7 +47,7 @@ class CreateVendorsTable extends Migration
         Schema::create('vendor_payment_terms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
-            $table->integer('net_days')->unsigned();
+            $table->integer('net_days')->unsigned()->nullable();
             $table->decimal('payment_discount')->default(0.00);
             $table->decimal('other_discount')->default(0.00);
             $table->text('discount_terms')->nullable();
@@ -57,7 +57,7 @@ class CreateVendorsTable extends Migration
 
         });
 
-        Schema::create('vendor_bank_informations', function (Blueprint $table) {
+        Schema::create('vendor_banks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
             $table->string('ac_no')->nullable();

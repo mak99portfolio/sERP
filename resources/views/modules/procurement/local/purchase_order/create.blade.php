@@ -25,33 +25,13 @@
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Vendor </label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Vendor</option>
-                                                <option>Active</option>
-                                                <option>Inactive</option>
-                                            </select>
-                                        </div>
-                                          {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                        {{ BootForm::select('vendor_selection_criteria', 'Select Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm']) }}   
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Vendor Selection Criteria</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Vendor Selection Criteria</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Reference No.</label>
-                                            <input class="form-control input-sm" type="text" >
-                                        </div>
+                                        {{ BootForm::text('reference_no','Reference No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         {{ BootForm::textarea('additional_information','Additional Information',null,['class'=>'form-control input-sm','rows'=>'2']) }}
@@ -67,93 +47,34 @@
                                 <legend>Genaral PO Information:</legend>
                                 <div class="row"> 
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Purchase Oder No</label>
-                                            <input class="form-control input-sm" type="text" >
-                                        </div>
+                                        {{ BootForm::text('purchase_oder_no','Purchase Oder No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Inco-Terms</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Inco-Terms</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
+                                        {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">   
+                                        {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Purchase Oder Date</label>
-                                            <input class="form-control input-sm" type="text" >
-                                        </div>
+                                        {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Inco-Term Info</label>
-                                            <input class="form-control input-sm" type="text" >
-                                        </div>
+                                        {{ BootForm::select('procurement_type', 'Select Procurement Type', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Procurement Type</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Procurement Type</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
+                                        {{ BootForm::select('purchase_order_type', 'Select Purchase Order Type', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Purchase Order Type</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Purchase Order Type</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
+                                        {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <input class="form-control input-sm" type="text" >
-                                        </div>
+                                        {{ BootForm::select('shipping_method', 'Select Shipping Method', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Shipping Method</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Shipping Method</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
+                                        {{ BootForm::select('payment_method', 'Select Payment Method', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label>Payment Method</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" disabled selected> Select Payment Method</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            {{ BootForm::textarea('remark','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
-                                        </div>
+                                        {{ BootForm::textarea('remark','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                                     </div>
                                 </div>
                             </fieldset>

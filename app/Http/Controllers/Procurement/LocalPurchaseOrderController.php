@@ -14,10 +14,7 @@ class LocalPurchaseOrderController extends Controller
   
     public function index()
     {
-        $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+          return view($this->path('index'));
 
      }
     public function create()

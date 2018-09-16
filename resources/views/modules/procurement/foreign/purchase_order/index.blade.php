@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Purchase List')
+@section('title', 'Foreign Purchase List')
 @section('content')
 
 <!-- page content -->
@@ -15,7 +15,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Purchase order List</h2>
+                        <h2>Foreign Purchase order List</h2>
                     <a href="{{route('purchase-order.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
                         <div class="clearfix"></div>
                     </div>

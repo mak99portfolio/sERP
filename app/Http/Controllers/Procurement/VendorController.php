@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Vendor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use DB;
 use Session;
 use App\Country;
@@ -13,6 +14,7 @@ use App\VendorCategory;
 use App\VendorBank;
 use App\VendorPaymentTerm;
 use App\VendorContact;
+use App\VendorEnclosure;
 
 class VendorController extends Controller
 {
@@ -67,6 +69,20 @@ class VendorController extends Controller
             array_push($contacts, new VendorContact($contact));
         }
         $vendor->contacts()->saveMany($contacts);
+        $enclosures = Array();
+        foreach($request->enclosures as $enclosure){
+            if (Input::hasFile($enclosure['enclosure_file'])) {
+                $file = Input::file('attach_file');
+                $file_directory = 'storage/';
+                $file_name = $file_directory . time() . $file->getClientOriginalName();
+                $file->move($file_directory, $file_name);
+                $enclosure = new VendorEnclosure;
+                $enclosure->file_directory = $file_directory;
+                $enclosure->file_name = $file_name;
+                array_push($enclosures, $enclosure);
+            }
+        }
+        
         Session::put('alert-success', 'vendor created successfully');
         return redirect()->route('vendor.index');
     }

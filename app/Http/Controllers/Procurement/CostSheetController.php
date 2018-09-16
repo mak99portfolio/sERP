@@ -13,7 +13,9 @@ class CostSheetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     private $view_root = 'modules/procurement/foreign/cost_sheet/';
+
     public function index()
     {
         $view = view($this->view_root . 'index');

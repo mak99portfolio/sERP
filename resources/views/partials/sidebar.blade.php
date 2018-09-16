@@ -36,6 +36,8 @@
               <li><a href="{{route('requisition-type.index')}}">Requisition Type</a></li>
               <li><a href="{{route('requisition-purpose.index')}}">Requisition Purpose</a></li>
               <li><a href="{{route('requisition-priority.index')}}">Requisition Priority</a></li>
+              <li><a href="{{route('cost-particular.index')}}">Cost Particulars</a></li>
+              <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
             </ul>
           </li>
         </ul>

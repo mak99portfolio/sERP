@@ -15,3 +15,6 @@ yarn-error.log
 .dropbox
 desktop.ini
 composer.lock
+/nbproject/private/
+/nbproject/project.xml
+/nbproject/project.properties

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Country')
+@section('title', 'Consignment Particular')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Country</h2>
-                        <a href="{{ route('country.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+                        <h2>Consignment Particular</h2>
+                        <a href="{{ route('consignment-particular.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -26,12 +26,12 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
-                                        <th>Country Name</th>
+                                        <th>Consignment Particular Name</th>
                                         <th>Short Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($country_list as $key => $item)
+                                    @foreach ($consignment_particular_list as $key => $item)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->name }}</td>

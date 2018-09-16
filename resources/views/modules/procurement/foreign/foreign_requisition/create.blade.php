@@ -1,5 +1,8 @@
 @extends('layout')
 @section('title', 'Purchase Requisition')
+@section('style')
+<link rel="stylesheet" href="{{asset('assets/vendors/jquery-ui/jquery-ui.css')}}">
+@endsection
 @section('content')
 
 <!-- page content -->
@@ -14,53 +17,30 @@
         <!--{{-- Content here --}}-->
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Requisition</h2>
                         <a href="{{route('foreign-requisition.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Requisition Lists</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
                         <form class="form-horizontal form-label-left">
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Requisition Title</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Issued Date</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Expected Date</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Requisition Purpose</label>
-                                        <select class="form-control input-sm">
-                                            <option value="">Choose..</option>
-                                            <option value="press">Press</option>
-                                            <option value="net">Internet</option>
-                                        </select>
-                                    </div>
+                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', [''=>'select purpose'] ,['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Requisition Priority</label>
-                                        <select class="form-control input-sm">
-                                            <option value="">Choose..</option>
-                                            <option value="press">Press</option>
-                                            <option value="net">Internet</option>
-                                        </select>
-                                    </div>
+                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', [''=>'select priority'] , ['class'=>'form-control input-sm']) }}
                                 </div>
                             </div>
 
@@ -79,7 +59,7 @@
                                                         <li><a href="#">Tablet3</a></li>
                                                     </ul>
                                                 </div>
-                                                <button type="button" class="btn btn-default btn-sm"<i class="fa fa-eye"></i><b>See Product Lists</b></button>
+                                                <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i><b>See Product Lists</b></button>
                                             </div>
                                         </div>
                                     </div>
@@ -88,20 +68,20 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">
-                                                <i class="fa fa-barcode fa-2x"></i>
+                                                <i class="fa fa-search"></i>
                                             </span>
-                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list">
+                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!--start Purchase Order Items table-->
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
-                                    <thead class="bg-primary">
+                                <table class="table table-bordered table-hover" ng-if="itemlist.length >=1">
+                                    <thead class="bg-default">
                                         <tr>
-                                            <th colspan="7">Purchase Order Items</th>
+                                            <th colspan="8">Purchase Order Items</th>
                                         </tr>
                                         <tr>
                                             <th>#</th>
@@ -111,21 +91,25 @@
                                             <th>Pending</th>
                                             <th>Total Quantity</th>
                                             <th>Requisition Quantity</th>
+                                            <th class="text-center">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr ng-repeat="item in itemlist">
                                             <td>01</td>
+                                            <td><% item.value %></td>
                                             <td>5645</td>
                                             <td>5645</td>
                                             <td>5645</td>
                                             <td>5645</td>
                                             <td>5645</td>
-                                            <td>5645</td>
+                                            <td class="text-center"><button class="btn btn-default" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
+                                        </tr>
                                     </tbody>
                                     <tfoot class="font-bold">
                                         <tr>
                                             <td>Total</td>
+                                            <td></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -139,10 +123,7 @@
                             <!--end table-->
                             <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Notes</label>
-                                    <textarea class="form-control input-sm" rows="2"></textarea>
-                                </div>
+                                {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2]) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <br />
@@ -159,14 +140,35 @@
             </div>
         </div>
         {{-- Content end --}}
-
     </div>
-
-
-
     <div class="clearfix"></div>
-
 </div>
 <!-- /page content -->
+@endsection
+@section('script')
+<script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
 
+        $('#search_product').autocomplete({
+            source: "{{route('search-product')}}",
+            minlength: 1,
+            autoFocus: true,
+            select: function (e, ui) {
+                $scope.itemlist.push(ui.item);
+                $scope.$apply();
+                console.log($scope.itemlist);
+            }
+        });
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index);
+        }
+    });
+</script>
 @endsection

@@ -14,7 +14,7 @@ use App\VendorCategory;
 use App\VendorBank;
 use App\VendorPaymentTerm;
 use App\VendorContact;
-use App\VendorEnclosure;
+use App\EnclosureVendor;
 
 class VendorController extends Controller
 {
@@ -27,6 +27,7 @@ class VendorController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+        $view->with('vendor_list', Vendor::all());
         return $view;
     }
 
@@ -70,19 +71,22 @@ class VendorController extends Controller
         }
         $vendor->contacts()->saveMany($contacts);
         $enclosures = Array();
-        foreach($request->enclosures as $enclosure){
-            if (Input::hasFile($enclosure['enclosure_file'])) {
-                $file = Input::file('attach_file');
-                $file_directory = 'storage/';
-                $file_name = $file_directory . time() . $file->getClientOriginalName();
-                $file->move($file_directory, $file_name);
-                $enclosure = new VendorEnclosure;
-                $enclosure->file_directory = $file_directory;
-                $enclosure->file_name = $file_name;
-                array_push($enclosures, $enclosure);
+        if($request->enclosures){
+            foreach($request->enclosures as $key => $item){
+                if ($item['enclosure_file']) {
+                    $file = $item['enclosure_file'];
+                    $file_directory = 'storage/';
+                    $file_name = $vendor->vendor_id . "-" . $file->getClientOriginalName();
+                    $file->move($file_directory, $file_directory . $file_name);
+                    $enclosure = new EnclosureVendor;
+                    $enclosure->file_directory = $file_directory;
+                    $enclosure->file_name = $file_name;
+                    $enclosure->enclosure_id = $item['enclosure_id'];
+                    array_push($enclosures, $enclosure);
+                }
             }
         }
-        
+        $vendor->enclosures()->saveMany($enclosures);
         Session::put('alert-success', 'vendor created successfully');
         return redirect()->route('vendor.index');
     }

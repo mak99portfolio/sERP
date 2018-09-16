@@ -14,12 +14,12 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Vendor</h2>
-                        <a href="{{route('vendor.index')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Vendor Lists</a>
+                        <a href="{{route('vendor.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Vendor List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form class="form-horizontal form-label-left" action="{{route('vendor.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" action="{{route('vendor.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -271,7 +271,6 @@
                                                 </tr>
                                                 <tr>
                                                     <th style="width: 60px;">SL No</th>
-                                                    <th class="text-center">Select</th>
                                                     <th>Enclosure Name</th>
                                                     <th>Attachment</th>
                                                 </tr>
@@ -280,10 +279,15 @@
                                                 @foreach($enclosure_list as $item)
                                                 <tr>
                                                     <td class="text-center">{{$loop->iteration}}</td>
-                                                    <td class="text-center"><input type="checkbox" ng-model="{{$item->name}}"></td>
-                                                    <td>{{$item->name}} <input type="hidden" value="{{$item->id}}" name="enclosure[{{$loop->index}}]['enclosure_id']" ng-disabled="!{{$item->name}}"> </td>
                                                     <td>
-                                                        <input ng-disabled="!{{$item->name}}" type="file" accept="image/png, image/jpeg"  name="enclosure[{{$loop->index}}]['enclosure_file']" />
+                                                        <div class="checkbox">
+                                                            <label class="i-checks">
+                                                                <input type="checkbox" ng-model="enclosure{{$item->id}}"> {{$item->name}} 
+                                                                <input type="hidden" value="{{$item->id}}" name="enclosures[{{$loop->index}}][enclosure_id]" ng-disabled="!enclosure{{$item->id}}"> </td>
+                                                            </label>
+                                                        </div>
+                                                    <td>
+                                                        <input ng-disabled="!enclosure{{$item->id}}" type="file"  name="enclosures[{{$loop->index}}][enclosure_file]" />
                                                     </td>
                                                 </tr>
                                                 @endforeach

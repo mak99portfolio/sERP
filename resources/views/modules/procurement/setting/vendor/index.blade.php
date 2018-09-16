@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Vendor List</h2>
-                    <a href="{{route('vendor.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Vendor</a>
+                    <a href="{{route('vendor.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Vendor</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -27,27 +27,25 @@
                                     <tr>
                                         <th>SL NO</th>
                                         <th>Vendor Id</th>
-                                        <th>Status</th>
                                         <th>Vendor Name</th>
-                                        <th>Country</th>
-                                        <th>Vendor Category</th>
-                                        <th>Email</th>
+                                        <th>Status</th>
+                                        <!-- <th>Country</th>
+                                        <th>Vendor Category</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($vendor_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
-                                        <td>123</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->vendor_id}}</td>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->status_id}}</td>
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

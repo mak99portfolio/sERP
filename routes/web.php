@@ -27,11 +27,12 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::get(
         'employee-organizational-info/{organizational_info}',
         'EmployeeProfileController@organizational_info_form'
-    )->name('employee-profile.organizational-info');
-    Route::put(
-        'employee-organizational-info/{organizational_info}',
-        'EmployeeProfileController@update_organizational_info'
-    )->name('employee-profile.update-organizational-info');
+        )->name('employee-profile.organizational-info');
+        Route::put(
+            'employee-organizational-info/{organizational_info}',
+            'EmployeeProfileController@update_organizational_info'
+            )->name('employee-profile.update-organizational-info');
+    Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ProductController@searchProduct']);
 });
 
 //Procurement

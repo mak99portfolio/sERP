@@ -23,7 +23,7 @@
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="#level2_1">Quatation</a>
+              <li><a href="{{Route('local-requisition.index')}}">Local Requisition</a>
               </li>
               <li><a href="{{route('local-purchase-order.index')}}">Purchase Order</a>
               </li>

@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Enclosure</h2>
-                        <a href="{{ route('enclosure.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Enclosure</a>
+                        <a href="{{ route('enclosure.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

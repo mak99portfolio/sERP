@@ -13,18 +13,19 @@
                     </div>
                     <div class="x_content">
                         <br />
+                        @include('partials.flash_msg')
                         <form class="form-horizontal form-label-left" action="{{route('country.store')}}" method="POST">
                             {{csrf_field()}}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Country Name</label>
-                                    <input class="form-control input-sm" type="text" name="name">
+                                    <input class="form-control input-sm" type="text" name="name"  value="{{ old('name') }}">
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Shortname</label>
-                                    <input class="form-control input-sm" type="text" name="short_name">
+                                    <input class="form-control input-sm" type="text" name="short_name" value="{{ old('short_name') }}">
                                 </div>
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">

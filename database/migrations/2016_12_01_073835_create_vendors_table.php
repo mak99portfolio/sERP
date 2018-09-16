@@ -48,8 +48,8 @@ class CreateVendorsTable extends Migration
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
             $table->integer('net_days')->unsigned()->nullable();
-            $table->decimal('payment_discount')->default(0.00);
-            $table->decimal('other_discount')->default(0.00);
+            $table->decimal('payment_discount')->default(0.00)->nullable();
+            $table->decimal('other_discount')->default(0.00)->nullable();
             $table->text('discount_terms')->nullable();
             $table->softDeletes();
             $table->timestamps();

@@ -161,7 +161,7 @@
                                             <tr>
                                                 <th>SL NO</th>
                                                 <th>Item Code</th>
-                                                <th>Spec Description</th>
+                                                <th>Item Description</th>
                                                 <th>Qty</th>
                                                 <th>MOU</th>
                                                 <th>Price</th>
@@ -181,11 +181,11 @@
                                                 <td>2018</td>
                                                 <td>123</td>
                                                 <td>123</td>
-                                                <td><input class="form-control input-sm" type="text"></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
                                                 <td>123</td>
-                                                <td>123</td>
-                                                <td><input class="form-control input-sm" type="text"></td>
-                                                <td>123</td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
                                                 <td>123</td>
                                                 <td>123</td>
                                                 <td  class="text-center">
@@ -198,9 +198,9 @@
                                                 <td colspan="6">Total</td>
                                                 <td>9123</td>
                                                 <td></td>
-                                                <td>31.25</td>
-                                                <td></td>
-                                                <td>23</td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td>343</td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
                                                 <td>245.30</td>
                                                 <td></td>
                                             </tr>

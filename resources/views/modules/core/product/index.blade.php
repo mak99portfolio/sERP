@@ -32,8 +32,7 @@
                                         <th>Brand</th>
                                         <th>Product Serial</th>
                                         <th>Product Model</th>
-                                        <th>Pant No</th>
-                                        <th>Status</th>
+                                        <th>Part No</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -43,11 +42,10 @@
                                         <td>01</td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->hs_code}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->name}}</td>
-                                        <td>{{$product->product_category->name}}</td>
-                                        <td>{{$product->name}}</td>
+                                        <td>{{$product->product_brand->name}}</td>
+                                        <td>{{$product->serial}}</td>
+                                        <td>{{$product->model}}</td>
+                                        <td>{{$product->part_number}}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
                                         </td>

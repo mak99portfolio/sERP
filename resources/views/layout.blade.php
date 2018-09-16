@@ -119,6 +119,9 @@
     <script src="{{asset('assets/build/js/custom.js')}}"></script>
     @yield('script')
     <script>
+    $(document).ready(function() {
+    $('.js-example-basic-single').select2();
+});
       function init(){
         $.ajax( "{{route('get_toaster_notification')}}")
               .done(function(data) {

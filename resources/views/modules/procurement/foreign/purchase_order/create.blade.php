@@ -48,7 +48,7 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Vendor </label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm js-example-basic-single">
                                         <option value="" disabled selected> Select Vendor</option>
                                         <option>Active</option>
                                         <option>Inactive</option>
@@ -252,4 +252,9 @@
     </div>
 </div>
 <!-- /page content -->
+@endsection
+@section('script')
+<script>
+
+</script>
 @endsection

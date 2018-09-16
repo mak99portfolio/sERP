@@ -9,7 +9,7 @@ use DB;
 use Session;
 use App\Country;
 use App\VendorCategory;
-use App\VendorEnclosure;
+use App\Enclosure;
 
 class VendorController extends Controller
 {
@@ -35,7 +35,7 @@ class VendorController extends Controller
         $view = view($this->view_root . 'create');
         $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
         $view->with('vendor_category_list', VendorCategory::pluck('name', 'id')->prepend('--select vendor--', ''));
-        $view->with('vendor_enclosure_list', VendorEnclosure::all());
+        $view->with('enclosure_list', Enclosure::all());
         return $view;
     }
 
@@ -47,7 +47,7 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        // dd($request->input());
         $request->validate([
             'name' => 'required',
             'fax' => 'required',

@@ -31,8 +31,6 @@ class CreatePurchaseOrdersTable extends Migration
             $table->text('letter_header');
             $table->text('letter_footer');
             $table->text('notes');
-            $table->increments('id');
-            $table->increments('id');
             $table->timestamps();
         });
     }

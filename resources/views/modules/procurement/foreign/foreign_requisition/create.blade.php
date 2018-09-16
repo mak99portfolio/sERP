@@ -23,49 +23,50 @@
                     <div class="x_content">
                         <br />
                         <form class="form-horizontal form-label-left">
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Requisition Title</label>
-                                    <input class="form-control input-sm" type="text">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Requisition Title</label>
+                                        <input class="form-control input-sm" type="text">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Issued Date</label>
-                                    <input class="form-control input-sm" type="text">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Issued Date</label>
+                                        <input class="form-control input-sm" type="text">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Expected Date</label>
-                                    <input class="form-control input-sm" type="text">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Expected Date</label>
+                                        <input class="form-control input-sm" type="text">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Requisition Purpose</label>
-                                    <select class="form-control input-sm">
-                                        <option value="">Choose..</option>
-                                        <option value="press">Press</option>
-                                        <option value="net">Internet</option>
-                                    </select>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Requisition Purpose</label>
+                                        <select class="form-control input-sm">
+                                            <option value="">Choose..</option>
+                                            <option value="press">Press</option>
+                                            <option value="net">Internet</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Requisition Priority</label>
-                                    <select class="form-control input-sm">
-                                        <option value="">Choose..</option>
-                                        <option value="press">Press</option>
-                                        <option value="net">Internet</option>
-                                    </select>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Requisition Priority</label>
+                                        <select class="form-control input-sm">
+                                            <option value="">Choose..</option>
+                                            <option value="press">Press</option>
+                                            <option value="net">Internet</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="panel panel-default bg-light m-t-15">
-                                    <div class="panel-heading">
-                                        <div class="row">
+                            <div class="panel panel-default bg-light m-t-15">
+                                <div class="panel-heading">
+                                    <div class="row">
                                         <div class="col-md-4 col-sm-4 col-xs-12"><label>Search <a href="#"><strong>Product</strong></a></label></div>
                                         <div class="col-md-8 col-sm-8 col-xs-12">
                                             <div class="btn-group pull-right">
@@ -78,135 +79,72 @@
                                                         <li><a href="#">Tablet3</a></li>
                                                     </ul>
                                                 </div>
-                                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
-                                          data-target="#myModal"><i class="fa fa-eye"></i><b>See Product Lists</b></button>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        <!--<button class="btn btn-sm btn-default btn-addon pull-right" data-toggle="modal"
-                                          data-target="#myModal"><i class="fa fa-eye"></i><b>See Product Lists</b></button>-->
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
-                                            <div class="input-group m-b">
-                                                <span class="input-group-addon">
-                                                    <i class="fa fa-barcode fa-2x"></i>
-                                                </span>
-                                                <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list">
+                                                <button type="button" class="btn btn-default btn-sm"<i class="fa fa-eye"></i><b>See Product Lists</b></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Modal -->
-                                <div class="modal fade" id="myModal" role="dialog">
-                                    <div class="modal-dialog modal-lg">
-                                        <!-- Modal content-->
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title">All Product Lists</h4>
-                                            </div>
-                                            <div class="modal-body" style="height: 75vh; overflow-y: auto">
-                                                <div class="wrapper-md">
-                                                    <div id='DivIdToPrint'>
-                                                        <!-- class="panel panel-default" -->
-                                                        <!-- <div class="panel-body"> -->
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered table-hover">
-                                                                <thead class="bg-primary">
-                                                                    <tr>
-                                                                        <th class="text-center">#</th>
-                                                                        <th class="text-center">Product Image</th>
-                                                                        <th class="text-center">Product Name</th>
-                                                                        <th class="text-center">Product HS Code</th>
-                                                                        <th class="text-center">Product UOM</th>
-                                                                        <th class="text-center">Product Sub Category</th>
-                                                                        <th class="text-center">Product Category</th>
-                                                                        <th class="text-center">Company</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td class="text-center">01</td>
-                                                                        <td class="text-center">
-                                                                            <div class="product_images">
-                                                                                <img src="img/product.jpg" alt="product name" class="img-responsive">
-                                                                            </div>
-                                                                        </td>
-                                                                        <td class="text-center">2323</td>
-                                                                        <td class="text-center">2323</td>
-                                                                        <td class="text-center">2323</td>
-                                                                        <td class="text-center">2323</td>
-                                                                        <td class="text-center">2323</td>
-                                                                        <td class="text-center">2323</td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                        <!--/end table-->
-                                                        <!-- </div> -->
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
+                                <div class="panel-body">
+                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="input-group m-b">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-barcode fa-2x"></i>
+                                            </span>
+                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list">
                                         </div>
                                     </div>
                                 </div>
-                                <!-- end modal -->
-                            </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
-                                        <thead class="bg-primary">
-                                            <tr>
-                                                <th colspan="7">Purchase Order Items</th>
-                                            </tr>
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Product Name</th>
-                                                <th>Physical stock</th>
-                                                <th>Goods in Transit</th>
-                                                <th>Pending</th>
-                                                <th>Total Quantity</th>
-                                                <th>Requisition Quantity</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>5645</td>
-                                                <td>5645</td>
-                                                <td>5645</td>
-                                                <td>5645</td>
-                                                <td>5645</td>
-                                                <td>5645</td>
-                                        </tbody>
-                                        <tfoot class="font-bold">
-                                            <tr>
-                                                <td>Total</td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                            </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                                <!--end table-->
                             </div>
                             
-                            
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <!--start Purchase Order Items table-->
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead class="bg-primary">
+                                        <tr>
+                                            <th colspan="7">Purchase Order Items</th>
+                                        </tr>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Product Name</th>
+                                            <th>Physical stock</th>
+                                            <th>Goods in Transit</th>
+                                            <th>Pending</th>
+                                            <th>Total Quantity</th>
+                                            <th>Requisition Quantity</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>01</td>
+                                            <td>5645</td>
+                                            <td>5645</td>
+                                            <td>5645</td>
+                                            <td>5645</td>
+                                            <td>5645</td>
+                                            <td>5645</td>
+                                    </tbody>
+                                    <tfoot class="font-bold">
+                                        <tr>
+                                            <td>Total</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                            <!--end table-->
+                            <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Notes</label>
                                     <textarea class="form-control input-sm" rows="2"></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
@@ -214,8 +152,8 @@
                                     <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
                                 </div>
                             </div>
+                            </div>
                         </form>
-
                     </div>
                 </div>
             </div>

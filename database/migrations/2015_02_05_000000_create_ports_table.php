@@ -17,13 +17,15 @@ class CreatePortsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('contact_person');
+            $table->string('contact_person_number');
+            $table->integer('country_id')->unsigned();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('restrict');
             $table->integer('city_id')->unsigned();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('restrict');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->integer('updator_user_id')->unsigned();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->tinyInteger('status');
             $table->softDeletes();
             $table->timestamps();
         });

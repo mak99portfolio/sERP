@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Vendor Category List')
+@section('title', 'Port')
 @section('content')
 
 <!-- page content -->
@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Procurement</h3>
+                <h3>Master Data</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Vendor Category List</h2>
-                        <a href="{{route('vendor-category.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Category</a>
+                        <h2>Port</h2>
+                        <a href="{{ route('port.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Port</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -26,20 +26,22 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
-                                        <th>Category Title</th>
-                                        <th>Short Title</th>
-                                        <th class="text-center">Action</th>
+                                        <th>Port Name</th>
+                                        <th>Contact Person Name</th>
+                                        <th>Contact Person Phone Number</th>
+                                        <th>Country</th>
+                                        <th>City</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($vendor_category_list as $item)
+                                    @foreach ($port_list as $key => $item)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->name}}</td>
-                                        <td>{{$item->short_name}}</td>
-                                        <td class="text-center">
-                                        <a href="{{route('vendor-category.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">View</a>
-                                        </td>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->contact_person }}</td>
+                                        <td>{{ $item->contact_person_number }}</td>
+                                        <td>{{ $item->country->name }}</td>
+                                        <td>{{ $item->city->name }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

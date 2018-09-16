@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Core;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\Paginate;
 
 class EmployeeProfileController extends Controller{
 
@@ -12,14 +13,27 @@ class EmployeeProfileController extends Controller{
     }
 
     public function index(){
-        //return view($this->path('index'));
+
+        $data=[
+            'paginate'=>new Paginate('\App\EmployeeProfile', [
+                'employee_id'=>'Employee ID',
+                'name'=>'Name',
+                'nationality'=>'Nationality',
+                'Present Address'=>'present_address',
+                'Permanent Address'=>'permanent_address',
+            ]),
+            'carbon'=>new \Carbon\Carbon
+        ];
+
+        //dd($data['paginate']);
+        return view($this->path('index'), $data);
     }
 
 
     public function create(){
 
         $data=[
-            'employeeProfile'=>new \App\EmployeeProfile,
+            'employee_profile'=>new \App\EmployeeProfile,
             'bloodGroups'=>\App\BloodGroup::pluck('name', 'id')
         ];
 
@@ -51,9 +65,10 @@ class EmployeeProfileController extends Controller{
 
             $organizationalInformation=\App\EmployeeOrganizationalInformation::create([]);
             $organizationalInformation->employee_profile()->associate($employeeProfile);
+            $organizationalInformation->save();
             return redirect()->route(
                 'employee-profile.organizational-info',
-                ['organizationalInfo'=>$organizationalInformation]
+                ['organizational_info'=>$organizationalInformation]
             );
 
         }
@@ -68,10 +83,10 @@ class EmployeeProfileController extends Controller{
     }
 
 
-    public function edit(\App\EmployeeProfile $employeeProfile){
+    public function edit(\App\EmployeeProfile $employee_profile){
         
         $data=[
-            'employeeProfile'=>$employeeProfile,
+            'employee_profile'=>$employee_profile,
             'bloodGroups'=>\App\BloodGroup::pluck('name', 'id')
         ];
 
@@ -79,10 +94,10 @@ class EmployeeProfileController extends Controller{
 
     }
 
-    public function update(Request $request, \App\EmployeeProfile $employeeProfile){
+    public function update(Request $request, \App\EmployeeProfile $employee_profile){
 
         $request->validate([
-            'employee_id'=>'required|unique:employee_profiles,employee_id,'.$employeeProfile->id,
+            'employee_id'=>'required|unique:employee_profiles,employee_id,'.$employee_profile->id,
             'name'=>'required',
             'blood_group_id'=>'required',
             'nationality'=>'required',
@@ -91,16 +106,14 @@ class EmployeeProfileController extends Controller{
             'permanent_address'=>'required',
         ]);
 
-        $employeeProfile->fill($request->all());
-        $employeeProfile->editor()->associate(auth()->user());
+        $employee_profile->fill($request->all());
+        $employee_profile->editor()->associate(auth()->user());
 
-        if($employeeProfile->save()){
+        if($employee_profile->save()){
 
-            $organizationalInformation=\App\EmployeeOrganizationalInformation::create([]);
-            $organizationalInformation->employee_profile()->associate($employeeProfile);
             return redirect()->route(
                 'employee-profile.organizational-info',
-                ['organizationalInfo'=>$employeeProfile->organizational_information]
+                ['organizational_info'=>$employee_profile->organizational_information]
             );
 
         }
@@ -114,10 +127,10 @@ class EmployeeProfileController extends Controller{
         
     }
 
-    public function organizational_info_form(\App\EmployeeOrganizationalInformation $organizationalInfo){
+    public function organizational_info_form(\App\EmployeeOrganizationalInformation $organizational_info){
 
         $data=[
-            'organizationalInfo'=>$organizationalInfo,
+            'organizational_info'=>$organizational_info,
             'depatrments'=>\App\Department::pluck('name', 'id'),
             'designations'=>\App\Designation::pluck('name', 'id'),
             'workingUnits'=>\App\WorkingUnit::pluck('name', 'id'),
@@ -125,7 +138,32 @@ class EmployeeProfileController extends Controller{
             'types'=>\App\EmployeeOrganizationalInformationType::pluck('name', 'id'),
         ];
 
+        //dd($data);
+
         return view($this->path('edit_organizational_info'), $data);
         
     }
+
+    public function update_organizational_info(Request $request, \App\EmployeeOrganizationalInformation $organizational_info){
+
+        $request->validate([
+            'department_id'=>'required',
+            'designation_id'=>'required',
+            'working_unit_id'=>'required',
+            'employee_organizational_information_status_id'=>'required',
+            'employee_organizational_information_type_id'=>'required'
+        ]);
+
+        $organizational_info->fill($request->all());
+
+        if($organizational_info->save()){
+
+            return back()->with('success', 'Success!, form submitted successfully');
+
+        }
+
+        return back()->with('danger', 'Sorry!, form submission failed.');
+
+    }
+
 }

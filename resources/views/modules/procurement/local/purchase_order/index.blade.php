@@ -1,26 +1,34 @@
 @extends('layout')
-@section('title', 'LC Details')
+@section('title', 'Purchase List')
 @section('content')
+
+<!-- page content -->
 <div class="right_col" role="main">
-  <div class="">
-    <div class="page-title">
-    <div class="x_title">
-                        <h2>LC List</h2>
-                    <a href="{{route('letter-of-credit.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New LC</a>
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Procurement</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Local Purchase order List</h2>
+                    <a href="{{route('local-purchase-order.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
                         <div class="clearfix"></div>
                     </div>
-    </div>
-    <div class="clearfix"></div>
-    <div class="x_content">
+                    <div class="x_content">
                         <br />
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
-                                        <th>LC No</th>
-                                        <th>LC Date</th>
-                                        <th>LC Value</th>
+                                        <th>Purchase Order No</th>
+                                        <th>Purchase Order Date</th>
+                                        <th>Create time</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -30,7 +38,7 @@
                                         <td>01</td>
                                         <td>123</td>
                                         <td>12-6-18</td>
-                                        <td>224</td>    
+                                        <td>12-6-18</td>    
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>
@@ -89,6 +97,5 @@
         </div>
     </div>
 </div>
-  </div>
-</div>
+<!-- /page content -->
 @endsection

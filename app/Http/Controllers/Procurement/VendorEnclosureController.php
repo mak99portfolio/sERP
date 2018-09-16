@@ -2,24 +2,22 @@
 
 namespace App\Http\Controllers\Procurement;
 
-use App\VendorCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
-
-class VendorCategoryController extends Controller
+class VendorEnclosureController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $view_root = 'modules/procurement/setting/vendor_category/';
+    private $view_root = 'modules/procurement/setting/vendor_enclosure/';
     public function index()
     {
         $view = view($this->view_root . 'index');
-        $view->with('vendor_category_list', VendorCategory::all());
+        $view->with('vendor_category_list', VendorEnclosure::all());
         // your code here
         return $view;
     }
@@ -31,10 +29,7 @@ class VendorCategoryController extends Controller
      */
     public function create()
     {
-        $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        //
     }
 
     /**
@@ -45,24 +40,16 @@ class VendorCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=> 'required'
-        ]);
-        $vendor_category = new VendorCategory;
-        $vendor_category->fill($request->input());
-        $vendor_category->creator_user_id = Auth::id();
-        $vendor_category->save();
-        Session::put('alert-success', $vendor_category->name .' created successfully.');
-        return redirect()->route('vendor-category.index');
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\VendorCategory  $vendorCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(VendorCategory $vendorCategory)
+    public function show($id)
     {
         //
     }
@@ -70,10 +57,10 @@ class VendorCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\VendorCategory  $vendorCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(VendorCategory $vendorCategory)
+    public function edit($id)
     {
         //
     }
@@ -82,10 +69,10 @@ class VendorCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\VendorCategory  $vendorCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, VendorCategory $vendorCategory)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -93,10 +80,10 @@ class VendorCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\VendorCategory  $vendorCategory
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(VendorCategory $vendorCategory)
+    public function destroy($id)
     {
         //
     }

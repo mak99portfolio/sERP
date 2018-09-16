@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Procurement;
 
 use App\ConsignmentParticular;
 use Illuminate\Http\Request;
-
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class ConsignmentParticularController extends Controller
 {
@@ -15,12 +16,12 @@ class ConsignmentParticularController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $view_root = 'modules/procurement/setting/consignment_particulars/';
+    private $view_root = 'modules/procurement/setting/consignment_particular/';
 
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('consignment_particulars', ConsignmentParticulars::all());
+        $view->with('consignment_particular_list', ConsignmentParticular::all());
 
         return $view;
     }
@@ -32,7 +33,8 @@ class ConsignmentParticularController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**
@@ -43,7 +45,16 @@ class ConsignmentParticularController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:consignment_particulars',
+            'short_name' => 'required|unique:consignment_particulars',
+        ]);
+        $consignment_particular = new ConsignmentParticular;
+        $consignment_particular->fill($request->input());
+        $consignment_particular->creator_user_id = Auth::id();
+        $consignment_particular->save();
+        Session::put('alert-success', $consignment_particular->name . ' created successfully');
+        return redirect()->route('consignment-particular.index');
     }
 
     /**

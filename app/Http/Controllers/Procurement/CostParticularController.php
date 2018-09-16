@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Procurement;
 use App\CostParticular;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class CostParticularController extends Controller
 {
@@ -14,13 +16,13 @@ class CostParticularController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    private $view_root = 'modules/procurement/setting/cost_particulars/';
+    private $view_root = 'modules/procurement/setting/cost_particular/';
 
     public function index()
     {
 
         $view = view($this->view_root . 'index');
-        // // $view->with('cost_particulars', CostParticulars::all());
+        $view->with('cost_particular_list', CostParticular::all());
 
         return $view;
     }
@@ -32,7 +34,8 @@ class CostParticularController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**
@@ -43,7 +46,16 @@ class CostParticularController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:cost_particulars',
+            'short_name' => 'required|unique:cost_particulars',
+        ]);
+        $cost_particular = new CostParticular;
+        $cost_particular->fill($request->input());
+        $cost_particular->creator_user_id = Auth::id();
+        $cost_particular->save();
+        Session::put('alert-success', $cost_particular->name . ' created successfully');
+        return redirect()->route('cost-particular.index');
     }
 
     /**

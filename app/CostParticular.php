@@ -10,7 +10,7 @@ class CostParticular extends Model
     use SoftDeletes;
     protected $fillable = [
         'name',
-        'country_id'
+        'short_name'
     ];
 
 }

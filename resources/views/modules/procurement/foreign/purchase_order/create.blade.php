@@ -35,9 +35,9 @@
                                     <div class="control-group">
                                         <div class="controls">
                                         <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="First Name" aria-describedby="inputSuccess2Status4">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="First Name" aria-describedby="2">
                                             <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                            <span id="inputSuccess2Status4" class="sr-only">(success)</span>
+                                            <span id="2" class="sr-only">(success)</span>
                                         </div>
                                         </div>
                                     </div>
@@ -55,22 +55,22 @@
                                     <label>Purchase Order date</label>
                                     <!-- <input class="form-control input-sm" type="text" > -->
                                     <fieldset>
-                          <div class="control-group">
-                            <div class="controls">
-                              <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="inputSuccess2Status2">
-                                <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                <span id="inputSuccess2Status2" class="sr-only">(success)</span>
-                              </div>
-                            </div>
-                          </div>
-                        </fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </fieldset>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Vendor </label>
-                                    <select class="form-control input-sm">
+                                    <select class="form-control input-sm js-example-basic-single">
                                         <option value="" disabled selected> Select Vendor</option>
                                         <option>Active</option>
                                         <option>Inactive</option>
@@ -274,4 +274,9 @@
     </div>
 </div>
 <!-- /page content -->
+@endsection
+@section('script')
+<script>
+
+</script>
 @endsection

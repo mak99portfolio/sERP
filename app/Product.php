@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 // use App\ProductCategory;
+use DB;
 
 class Product extends Model
 {
@@ -36,6 +37,9 @@ class Product extends Model
     ];
     function product_category(){
         return $this->belongsTo('App\ProductCategory');
+    }
+    function product_brand(){
+        return $this->belongsTo('App\ProductBrand');
     }
     function status(){
         return DB::table('product_statuses')->where('id', $this->product_status_id)->first();

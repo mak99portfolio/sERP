@@ -88,7 +88,7 @@ class CreateVendorsTable extends Migration
 
         });
 
-        Schema::create('vendor_enclosures', function (Blueprint $table){
+        Schema::create('enclosure_vendors', function (Blueprint $table){
         	
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
@@ -102,17 +102,6 @@ class CreateVendorsTable extends Migration
 
 
         });
-
-        // Schema::create('enclosure_vendor', function (Blueprint $table){
-        	
-        //     $table->increments('id');
-        //     $table->integer('enclosure_id')->unsigned();
-        //     $table->integer('vendor_id')->unsigned();
-            
-        //     $table->foreign('enclosure_id')->references('id')->on('vendor_enclosures')->onDelete('cascade');
-        //     $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
-
-        // });
 
     }
 

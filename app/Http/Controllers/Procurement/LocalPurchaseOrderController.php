@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 
 class LocalPurchaseOrderController extends Controller
 {
+   protected function path(string $suffix){
+        return "modules.procurement.local.purchase_order.{$suffix}";
+    }
   
-    private $view_root = 'modules/procurement/local/purchase_order/';
     public function index()
     {
         $view = view($this->view_root . 'index');
@@ -20,10 +22,13 @@ class LocalPurchaseOrderController extends Controller
      }
     public function create()
     {
-        $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
-        return $view;
+        $data=[
+    		
+    		'vendor_list'=> \App\Vendor::pluck('name', 'id'),
+    		
+    	];
+
+         return view($this->path('create'), $data);
     }
 
     /**

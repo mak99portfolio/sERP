@@ -33,6 +33,7 @@
                                                 <option>Inactive</option>
                                             </select>
                                         </div>
+                                          {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">

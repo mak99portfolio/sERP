@@ -30,7 +30,18 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Purchase Order date</label>
-                                    <input class="form-control input-sm" type="text" readonly>
+                                    <!-- <input class="form-control input-sm" type="text" readonly> -->
+                                    <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </fieldset>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -42,13 +53,35 @@
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Proforma Invoice date</label>
-                                    <input class="form-control input-sm" type="text" >
+                                    <!-- <input class="form-control input-sm" type="text" > -->
+                                    <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </fieldset>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Proforma Invoice receive date</label>
-                                    <input class="form-control input-sm" type="text" >
+                                    <!-- <input class="form-control input-sm" type="text" > -->
+                                    <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </fieldset>
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">

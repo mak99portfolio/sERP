@@ -22,6 +22,7 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
     Route::resource('product', 'ProductController');
     Route::resource('bank', 'BankController');
+    Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
     Route::get(
         'employee-organizational-info/{organizational_info}',
@@ -35,6 +36,7 @@ Route::namespace('Core')->prefix('core')->group(function(){
 
 //Procurement
 Route::namespace('Procurement')->prefix('procurement')->group(function(){
+    // Foreign
     Route::resource('foreign-requisition', 'ForeignRequisitionController');
     Route::resource('purchase-order', 'PurchaseOrderController');
     Route::resource('proforma-invoice', 'ProformaInvoiceController');
@@ -45,6 +47,8 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('packing-list', 'PackingListController');
     Route::resource('bill-of-lading', 'BillOfLadingController');
     Route::resource('cnf', 'CnfController');
+    //Local
+    Route::resource('local-requisition', 'LocalRequisitionController');
     Route::resource('local-purchase-order', 'LocalPurchaseOrderController');
     //Procurement Setting
     Route::resource('vendor', 'VendorController');

@@ -8,7 +8,7 @@
               <div class="x_panel">
                   <div class="x_title">
                       <h2>City</h2>
-                      <a class="btn btn-primary btn-sm pull-right" href="{{route('city.index')}}"><i class="fa fa-list-ul"></i> Country List</a>
+                      <a class="btn btn-primary btn-sm pull-right" href="{{route('city.index')}}"><i class="fa fa-list-ul"></i> City List</a>
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
@@ -19,7 +19,7 @@
                           <div class="col-md-6 col-sm-6 col-xs-12">
                               <div class="form-group">
                                   <label>City Name</label>
-                                  <input class="form-control input-sm" type="text" name="name">
+                                  <input class="form-control input-sm" type="text" name="name" value="{{ old('name') }}">
                               </div>
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">

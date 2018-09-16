@@ -47,9 +47,9 @@ class CreateVendorsTable extends Migration
         Schema::create('vendor_payment_terms', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
-            $table->integer('net_days')->unsigned();
-            $table->decimal('payment_discount')->default(0.00);
-            $table->decimal('other_discount')->default(0.00);
+            $table->integer('net_days')->unsigned()->nullable();
+            $table->decimal('payment_discount')->default(0.00)->nullable();
+            $table->decimal('other_discount')->default(0.00)->nullable();
             $table->text('discount_terms')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -57,7 +57,7 @@ class CreateVendorsTable extends Migration
 
         });
 
-        Schema::create('vendor_bank_informations', function (Blueprint $table) {
+        Schema::create('vendor_banks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
             $table->string('ac_no')->nullable();
@@ -88,23 +88,18 @@ class CreateVendorsTable extends Migration
 
         });
 
-        Schema::create('vendor_enclosures', function (Blueprint $table){
+        Schema::create('enclosure_vendors', function (Blueprint $table){
         	
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->integer('vendor_id')->unsigned();
+            $table->integer('enclosure_id')->unsigned();
+            $table->string('file_directory');
+            $table->string('file_name');
             $table->softDeletes();
             $table->timestamps();
-
-        });
-
-        Schema::create('enclosure_vendor', function (Blueprint $table){
-        	
-            $table->increments('id');
-            $table->integer('enclosure_id')->unsigned();
-            $table->integer('vendor_id')->unsigned();
-            
-            $table->foreign('enclosure_id')->references('id')->on('vendor_enclosures')->onDelete('cascade');
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+            $table->foreign('enclosure_id')->references('id')->on('enclosures')->onDelete('cascade');
+
 
         });
 
@@ -117,11 +112,10 @@ class CreateVendorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('enclosure_vendor');
-        Schema::dropIfExists('vendor_enclosures');
+        Schema::dropIfExists('enclosure_vendors');
         Schema::dropIfExists('vendor_contacts');
+        Schema::dropIfExists('vendor_banks');
         Schema::dropIfExists('vendor_payment_terms');
-        Schema::dropIfExists('vendor_bank_informations');
         Schema::dropIfExists('vendors');
     }
 }

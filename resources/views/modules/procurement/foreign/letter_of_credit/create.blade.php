@@ -27,31 +27,32 @@
                    
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                        <div class="form-group">
                                         <label>LC No.</label>
                                         <input class="form-control input-sm" type="text">
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label>LC Date</label>
-                                        <input class="form-control input-sm" type="text">
+                                        <!-- <input class="form-control input-sm" type="text"> -->
+                                        <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    </fieldset>
+                                    </div>
                                     <div class="form-group">
                                         <label>LC Value</label>
                                         <input class="form-control input-sm" type="text">
-                                    </div>
-                                </div>
-                            </div>
+</div>   
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                        <div class="form-group">
                                     <label>Vendor </label>
                                     <select class="form-control input-sm">
                                         <option value="" disabled selected> Select vendor</option>
@@ -59,25 +60,41 @@
                                         <option>Inactive</option>
                                     </select>
                                 </div>
-                            </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
+                                <div class="form-group">
                                         <label>LC Expire Date</label>
-                                        <input class="form-control input-sm" type="text">
+                                        <!-- <input class="form-control input-sm" type="text"> -->
+                                        <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>LC Shipment Date</label>
-                                        <input class="form-control input-sm" type="text">
+                                    </fieldset>
                                     </div>
-                                </div>
-                            </div>
+                                    
+
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
+                            <div class="form-group">
+                                        <label>LC Shipment Date</label>
+                                        <!-- <input class="form-control input-sm" type="text"> -->
+                                        <fieldset>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="3">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="3" class="sr-only">(success)</span>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </fieldset>
+                                    </div>
+                                    <div class="form-group">
                                     <label>Currency </label>
                                     <select class="form-control input-sm">
                                         <option value="" disabled selected> Select currency</option>
@@ -86,10 +103,10 @@
                                     </select>
                                 </div>
                             </div>
-                       
-                            </div>
-                        </div>
+                        
                     </div>
+
+
                     <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
 <div class ="table-responsive">

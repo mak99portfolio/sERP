@@ -117,6 +117,8 @@
     
     <!-- Custom Theme Scripts -->
     <script src="{{asset('assets/build/js/custom.js')}}"></script>
+    
+
     @yield('script')
     <script>
       function init(){

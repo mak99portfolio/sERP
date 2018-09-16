@@ -23,13 +23,13 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('vendor_id','Vendor Id', null, ['class'=>'form-control input-sm']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('vendor_id','Vendor Id', $vendor_id, ['class'=>'form-control input-sm', 'readonly'=>true]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm']) }}
@@ -189,16 +189,16 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-2 col-sm-2">
-                                            {{ BootForm::text('net_days','Net Day', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('payment_term[net_days]','Net Day', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-md-5 col-sm-5 col-xs-12">
-                                            {{ BootForm::text('payment_discount','Prompt payment discount', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('payment_term[payment_discount]','Prompt payment discount', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-md-5 col-sm-5 col-xs-12">
-                                            {{ BootForm::text('other_discount',' Other Discounts', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('payment_term[other_discount]',' Other Discounts', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">
-                                            {{ BootForm::textarea('discount_terms','Specify Discount Terms', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
+                                            {{ BootForm::textarea('payment_term[discount_terms]','Specify Discount Terms', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
                                         </div>
                                     </div>
                                 </div>
@@ -208,22 +208,22 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('ac_no','A/C No', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('bank[ac_no]','A/C No', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('ac_name','A/C Name', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('bank[ac_name]','A/C Name', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('bank_name','Bank', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('bank[bank_name]','Bank', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('branch_name','Branch', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('bank[branch_name]','Branch', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('swift_code','SWIFT Code', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('bank[swift_code]','SWIFT Code', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::textarea('address','Bank Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
+                                            {{ BootForm::textarea('bank[address]','Bank Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
                                         </div>
                                     </div>
                                 </div>
@@ -235,29 +235,29 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('person[\'name\'][]','Contact Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('contacts[<% $index %>][name]','Contact Name', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('person[\'designation\'][]','Designation', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('contacts[<% $index %>][designation]','Designation', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::tel('person[\'telephone\'][]','Designation', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::tel('contacts[<% $index %>][telephone]','Designation', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::email('person[\'email\'][]','E-Mail', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::email('contacts[<% $index %>][email]','E-Mail', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('person[\'role\'][]','Job Role', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('contacts[<% $index %>][role]','Job Role', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::tel('person[\'mobile\'][]','Cell No', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::tel('contacts[<% $index %>][mobile]','Cell No', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="increasePerson()"><i class="fa fa-plus"></i> Add Person</button>
-                                    <button type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreasePerson()"><i class="fa fa-minus"></i> Remove Person</button>
+                                    <button ng-disabled="person.length>=5" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="increasePerson()"><i class="fa fa-plus"></i> Add Person</button>
+                                    <button ng-disabled="person.length<=1" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreasePerson()"><i class="fa fa-minus"></i> Remove Person</button>
                                 </div>
                             </fieldset>
                             <fieldset>
@@ -277,11 +277,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($vendor_enclosure_list as $item)
+                                                @foreach($enclosure_list as $item)
                                                 <tr>
                                                     <td class="text-center">{{$loop->iteration}}</td>
-                                                    <td class="text-center"><input type="checkbox" ng-model="{{$item->name}}" name="enclosure[{{$loop->index}}]['checked']"></td>
-                                                    <td>{{$item->name}} <input type="hidden" value="{{$item->id}}" name="enclosure[{{$loop->index}}]['enclosure_id']"> </td>
+                                                    <td class="text-center"><input type="checkbox" ng-model="{{$item->name}}"></td>
+                                                    <td>{{$item->name}} <input type="hidden" value="{{$item->id}}" name="enclosure[{{$loop->index}}]['enclosure_id']" ng-disabled="!{{$item->name}}"> </td>
                                                     <td>
                                                         <input ng-disabled="!{{$item->name}}" type="file" accept="image/png, image/jpeg"  name="enclosure[{{$loop->index}}]['enclosure_file']" />
                                                     </td>
@@ -315,7 +315,10 @@
 
 @section('script')
 <script>
-        var app = angular.module('myApp',[]);
+        var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
         app.controller('myCtrl',function($scope){
             $scope.minPerson = 1;
             $scope.maxPerson = 5;

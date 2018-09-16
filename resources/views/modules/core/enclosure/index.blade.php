@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'City')
+@section('title', 'Enclosure')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>City</h2>
-                        <a href="{{ route('city.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+                        <h2>Enclosure</h2>
+                        <a href="{{ route('enclosure.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -26,16 +26,16 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
-                                        <th>City Name</th>
-                                        <th>Country</th>
+                                        <th>Enclosure Name</th>
+                                        <th>Short Name</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($city_list as $key => $item)
+                                    @foreach ($enclosure_list as $key => $item)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->country->name }}</td>
+                                        <td>{{ $item->short_name }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

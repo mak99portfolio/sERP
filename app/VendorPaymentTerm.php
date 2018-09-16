@@ -4,17 +4,16 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class VendorContact extends Model
+class VendorPaymentTerm extends Model
 {
+
     protected $guarded = ['id'];
     protected $fillable = [
         'vendor_id',
-        'name',
-        'designation',
-        'telephone',
-        'email',
-        'role',
-        'mobile',
+        'net_days',
+        'payment_discount',
+        'other_discount',
+        'discount_terms',
     ];
     public function vendor()
     {

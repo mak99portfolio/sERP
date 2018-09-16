@@ -8,8 +8,11 @@ use App\Http\Controllers\Controller;
 use DB;
 use Session;
 use App\Country;
-use App\VendorCategory;
 use App\Enclosure;
+use App\VendorCategory;
+use App\VendorBank;
+use App\VendorPaymentTerm;
+use App\VendorContact;
 
 class VendorController extends Controller
 {
@@ -33,6 +36,7 @@ class VendorController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('vendor_id', time());
         $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
         $view->with('vendor_category_list', VendorCategory::pluck('name', 'id')->prepend('--select vendor--', ''));
         $view->with('enclosure_list', Enclosure::all());
@@ -47,16 +51,22 @@ class VendorController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->input());
         $request->validate([
+            'vendor_id' => 'required|unique:vendors',
             'name' => 'required',
-            'fax' => 'required',
         ]);
         $vendor = new Vendor;
         $vendor->fill($request->input());
         $vendor->business_type = serialize($request->business_type);
         $vendor->business_nature = serialize($request->business_nature);
         $vendor->save();
+        $vendor->payment_term()->save(new VendorPaymentTerm($request->payment_term));
+        $vendor->bank()->save(new VendorBank($request->bank));
+        $contacts = Array();
+        foreach($request->contacts as $contact){
+            array_push($contacts, new VendorContact($contact));
+        }
+        $vendor->contacts()->saveMany($contacts);
         Session::put('alert-success', 'vendor created successfully');
         return redirect()->route('vendor.index');
     }

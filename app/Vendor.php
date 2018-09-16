@@ -34,15 +34,15 @@ class Vendor extends Model
 
     public function payment_term()
     {
-        return $this->hasOne('App\PaymentTerm');
+        return $this->hasOne('App\VendorPaymentTerm');
     }
 
-    public function bank_information()
+    public function bank()
     {
-        return $this->hasOne('App\BankInformation');
+        return $this->hasOne('App\VendorBank');
     }
 
-    public function vendor_contacts()
+    public function contacts()
     {
         return $this->hasMany('App\VendorContact');
     }

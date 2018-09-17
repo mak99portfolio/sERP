@@ -12,6 +12,13 @@ class LocalPurchaseOrderController extends Controller
         return "modules.procurement.local.purchase_order.{$suffix}";
     }
   
+    
+    public function search_msg(Request $request){
+       $purchase_requisition_no = $request->purchase_requisition_no;
+      // dd($purchase_requisition_no);
+       $data['purchase_requisition_no']=$purchase_requisition_no;
+       return response()->json($data);
+   }
     public function index()
     {
           return view($this->path('index'));

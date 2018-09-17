@@ -146,9 +146,17 @@ class ProductController extends Controller
 
         $results = array();
         foreach ($products as $product) {
+            $physical_stock = 4354;
+            $goods_in_transit = 45;
+            $pending = 243;
+
             $results = [
                 'id' => $product->id, 
-                'value' => $product->name
+                'value' => $product->name,
+                'physical_stock' => $physical_stock,
+                'goods_in_transit' => $goods_in_transit,
+                'pending' => $pending,
+                'total_quantity' => $physical_stock+$goods_in_transit+$pending,
             ];
         }
         return response()->json($results);

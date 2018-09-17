@@ -101,11 +101,10 @@
                                         <tr ng-repeat="item in itemlist">
                                             <td>01</td>
                                             <td><% item.value %></td>
-                                            <td>5645</td>
-                                            <td>5645</td>
-                                            <td>5645</td>
-                                            <td>5645</td>
-                                            <td>5645</td>
+                                            <td><% item.physical_stock %></td>
+                                            <td><% item.goods_in_transit %></td>
+                                            <td><% item.pending %></td>
+                                            <td><% item.total_quantity %></td>
                                             <td class="text-center"><button class="btn btn-default" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>

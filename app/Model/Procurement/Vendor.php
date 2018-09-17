@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Model\Procurement;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -33,15 +33,15 @@ class Vendor extends Model
             'credit_limit',
     ];
     public function country(){
-        return $this->belongsTo('App\Country');
+        return $this->belongsTo('App\Model\Core\Country');
     }
     public function category(){
-        return $this->belongsTo('App\VendorCategory');
+        return $this->belongsTo('App\Model\Procurement\VendorCategory');
     }
 
     public function payment_term()
     {
-        return $this->hasOne('App\VendorPaymentTerm');
+        return $this->hasOne('App\Model\Procurement\VendorPaymentTerm');
     }
 
     public function bank()

@@ -16,7 +16,7 @@ class VendorTableSeeder extends Seeder
                 'name'=>'MRF',
                 'vendor_id'=>'123456789',
                 'status_id'=>'1',
-                'establishment_date'=> '17-9-2018',
+                'establishment_date'=> \Carbon\Carbon::now(),
                 'country_id'=>'2',
                 'vendor_category_id'=>'2',
                 'zip_code'=>'1205',
@@ -26,9 +26,9 @@ class VendorTableSeeder extends Seeder
                 'email'=>'mrf@gmail.com',
                 'tin_no'=>'tin-551546',
                 'trade_license_no'=>'trade-5985464',
-                'trade_license_issue_date'=>'17-9-2018',
+                'trade_license_issue_date'=> \Carbon\Carbon::now(),
                 'certificate_of_incorporation'=>'certificate',
-                'incorporation_date'=>'17-9-2018',
+                'incorporation_date'=> \Carbon\Carbon::now(),
                 'vat_no'=>'vat-98845646',
                 'business_type'=>'Ltd. Company',
                 'business_nature'=>'Service Provide',
@@ -72,17 +72,10 @@ class VendorTableSeeder extends Seeder
             ]
         ];
 
-        $data5 = [
-            [
-               'vendor_id' => '1',
-               'enclosure_id'=> '1'
-            ]
-        ];
 
         \DB::table('vendors')->insert($data1);
         \DB::table('vendor_payment_terms')->insert($data2);
         \DB::table('vendor_banks')->insert($data3);
         \DB::table('vendor_contacts')->insert($data4);
-        \DB::table('enclosure_vendors')->insert($data5);
     }
 }

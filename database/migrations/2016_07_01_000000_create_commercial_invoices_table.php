@@ -17,8 +17,9 @@ class CreateCommercialInvoicesTable extends Migration
             $table->increments('id');
             $table->string('number');
             $table->string('date');
-            $table->integer('po_id');
-            $table->integer('lc_id');
+            $table->string('commercial_invoice_id')->unique();
+            $table->integer('purchase_order_id');
+            $table->integer('latter_of_credit_id');
             $table->integer('proforma_invoice_id');
             $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('restrict');
             $table->text('description');

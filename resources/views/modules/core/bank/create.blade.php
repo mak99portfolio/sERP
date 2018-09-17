@@ -17,36 +17,16 @@
                   <form class="form-horizontal form-label-left" action="{{ route('bank.store') }}" method="POST">
                       {{ csrf_field() }}
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                  <label>Bank Name</label>
-                                  <input class="form-control input-sm" type="text" name="name" value="{{ old('name') }}">
-                              </div>
+                                {{ BootForm::text('name','Bank Name', null, ['class'=>'form-control input-sm']) }}
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                    <label>Country</label>
-                                    <div>
-                                        <select class="form-control input-sm" name="country_id">
-                                            <option value="" disabled>Choose..</option>
-                                            @foreach ($country_list as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                {{-- {{ BootForm::select('country', null, $countries) }} --}}
+                                {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm']) }}
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                              <div class="form-group">
-                                  <label>Short Name</label>
-                                  <input class="form-control input-sm" type="text" name="short_name" value="{{ old('short_name') }}">
-                                </div>
+                                {{ BootForm::text('short_name','Short Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Bank Description</label>
-                                    <textarea class="form-control input-sm" name="description" id="" cols="30" rows="2"></textarea>
-                                </div>
+                                {{ BootForm::textarea('description','Bank Description', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
                             </div>
                         </div>
                           <br>

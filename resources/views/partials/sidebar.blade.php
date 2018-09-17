@@ -33,9 +33,7 @@
             <ul class="nav child_menu">
               <li><a href="{{route('vendor.index')}}">Vendor</a></li>
               <li><a href="{{route('vendor-category.index')}}">Vendor Category</a></li>
-              <li><a href="{{route('requisition-type.index')}}">Requisition Type</a></li>
               <li><a href="{{route('requisition-purpose.index')}}">Requisition Purpose</a></li>
-              <li><a href="{{route('requisition-priority.index')}}">Requisition Priority</a></li>
               <li><a href="{{route('cost-particular.index')}}">Cost Particulars</a></li>
               <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
             </ul>
@@ -57,6 +55,7 @@
               <li><a href="{{ route('item-status.index') }}">Item Status List</a></li>
               <li><a href="{{ route('adjustment-purpose.index') }}">Adjustment Purpose List</a></li>
               <li><a href="{{ route('return-reason.index') }}">Return Reason List</a></li>
+              <li><a href="{{ route('requisition-type.index') }}">Requisition Type List</a></li>
               <li><a href="{{ route('record-type.index') }}">Record Type List</a></li>
             </ul>
           </li>

@@ -112,10 +112,19 @@
                                 <legend>PR Information:</legend>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
+                                       
+                                        
+                                        
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
-                                            <input type="text" name="purchase_requisition_no" id="purchase_requisition_no" class="form-control" placeholder="Purchase Requisition No" aria-describedby="basic-addon2">
-                                            <span class="input-group-addon btn btn-primary" onclick="search_purchase_requisition_no()" id="">Add</span>
+                                            <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search">
+                                             <input type="hidden" name="" value="<?php echo csrf_token() ?>" id="t">
+                                            <div class="input-group-btn">
+                                                <span class="btn btn-default" onclick="abc()">Add</span>
+                                            </div>
+                                        </div>
+                                        <div id="msg">
+                                            
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -220,10 +229,9 @@
                                         <div class="form-group">
                                             <select class="form-control input-sm">
                                                 <option value="" disabled selected> Select type</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
+                                                <option>Fixed</option>
+                                                <option>Percentage</option>
+                                              
                                             </select>
                                         </div>
                                     </div>
@@ -277,10 +285,10 @@
                                             <label>Terms and Condition Type</label>
                                             <select class="form-control input-sm">
                                                 <option value="" disabled selected> Select..</option>
-                                                <option>Agrement</option>
-                                                <option>Record</option>
-                                                <option>Quatation</option>
-                                                <option>Others</option>
+                                                <option>Delivery Terms</option>
+                                                <option>Payment Condition</option>
+                                                <option>Warranty Terms</option>
+                                                <option>Security Terms</option>
                                             </select>
                                         </div>
                                     </div>
@@ -332,15 +340,23 @@
 @endsection
 @section('script')
 <script>
-    
-        function search_purchase_requisition_no(){
-        
-        
-        alert('ioii');
+
+    function abc() {
+        var purchase_requisition_no = $('#purchase_requisition_no').val();
+        alert(purchase_requisition_no);
+           $.ajax({
+            type: 'POST',
+            url: '{{url("/getmsg")}}',
+            data: {_token: $('#t').val(), purchase_requisition_no: purchase_requisition_no}
+        }).done(function (data) {
+            console.log(data.purchase_requisition_no);
+              $('div#msg').val(data.purchase_requisition_no);
+           
+        });
+
     }
 
 
-    });
 
 </script>
 @endsection

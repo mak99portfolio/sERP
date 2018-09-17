@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(InventoryRecordTypesSeeder::class);
         $this->call(InventoryRequisitionTypesSeeder::class);
         $this->call(InventoryItemStatusesSeeder::class);
-        
+        $this->call(RequisitionPurposeTableSeeder::class);
+        $this->call(EmployeeProfileTableSeeder::class);
     }
 }

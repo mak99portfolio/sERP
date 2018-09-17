@@ -39,6 +39,10 @@ class CreateVendorsTable extends Migration
             $table->string('business_nature')->nullable();
             $table->string('credit_period')->nullable();
             $table->string('credit_limit')->nullable();
+            $table->integer('creator_user_id')->unsigned();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->softDeletes();
             $table->timestamps();
 
@@ -89,7 +93,7 @@ class CreateVendorsTable extends Migration
         });
 
         Schema::create('enclosure_vendors', function (Blueprint $table){
-        	
+
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
             $table->integer('enclosure_id')->unsigned();

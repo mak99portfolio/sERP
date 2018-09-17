@@ -49,29 +49,30 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('purchase_oder_no','Purchase Oder No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
-                                    </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">   
                                         {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('procurement_type', 'Select Procurement Type', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
+                                        {{ BootForm::select('procurement_type', 'Select Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm']) }}        
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('purchase_order_type', 'Select Purchase Order Type', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('purchase_order_type', 'Select Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipping_method', 'Select Shipping Method', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('shipping_method', 'Select Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_method', 'Select Payment Method', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('payment_method', 'Select Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::textarea('remark','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
@@ -113,8 +114,8 @@
                                     <div class="col-md-6 col-md-offset-3">
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Purchase Requisition No" aria-describedby="basic-addon2">
-                                            <span class="input-group-addon btn btn-primary" id="basic-addon2">Add</span>
+                                            <input type="text" name="purchase_requisition_no" id="purchase_requisition_no" class="form-control" placeholder="Purchase Requisition No" aria-describedby="basic-addon2">
+                                            <span class="input-group-addon btn btn-primary" onclick="search_purchase_requisition_no()" id="">Add</span>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -328,4 +329,18 @@
     </div>
 </div>
 <!-- /page content -->
+@endsection
+@section('script')
+<script>
+    
+        function search_purchase_requisition_no(){
+        
+        
+        alert('ioii');
+    }
+
+
+    });
+
+</script>
 @endsection

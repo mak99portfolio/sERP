@@ -27,7 +27,7 @@ class BankController extends Controller
 
         $view = view($this->view_root . 'index');
         $view->with('bank_list', Bank::all());
-        $view->with('country_list', Country::all());
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
 
         return $view;
     }
@@ -40,7 +40,7 @@ class BankController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
-        $view->with('country_list', Country::all());
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
         return $view;
     }
 

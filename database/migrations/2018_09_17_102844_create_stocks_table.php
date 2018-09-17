@@ -25,13 +25,12 @@ class CreateStocksTable extends Migration{
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('restrict');
-            $table->foreign('receive_from')->references('id')->on('vendors')->onDelete('restrict');
-            $table->foreign('inventory_item_status_id')->references('id')->on('inventory_item_statuses')->onDelete('restrict');
             $table->foreign('working_unit_id')->references('id')->on('working_units')->onDelete('restrict');
+            $table->foreign('inventory_item_status_id')->references('id')->on('inventory_item_statuses')->onDelete('restrict');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('restrict');
             $table->foreign('inventory_issue_id')->references('id')->on('inventory_issues')->onDelete('restrict');
 
         });

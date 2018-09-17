@@ -12,7 +12,7 @@ class ProductCategory extends Model
         'name',
         'short_name'
     ];
-    function product(){
-        return $this->belongsTo('Product');
+    function products(){
+        return $this->hasMany('Product');
     }
 }

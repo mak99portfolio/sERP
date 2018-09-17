@@ -33,6 +33,8 @@ class DatabaseSeeder extends Seeder
         $this->call(PortTableSeeder::class);
         $this->call(CostParticularTableSeeder::class);
         $this->call(ConsignmentParticularTableSeeder::class);
+        $this->call(VendorCategoryTableSeeder::class);
+        $this->call(VendorTableSeeder::class);
 
     }
 }

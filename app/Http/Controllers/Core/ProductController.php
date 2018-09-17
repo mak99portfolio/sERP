@@ -146,19 +146,25 @@ class ProductController extends Controller
 
         $results = array();
         foreach ($products as $product) {
-            $physical_stock = 4354;
-            $goods_in_transit = 45;
-            $pending = 243;
-
-            $results = [
+            $results[] = [
                 'id' => $product->id, 
                 'value' => $product->name,
-                'physical_stock' => $physical_stock,
-                'goods_in_transit' => $goods_in_transit,
-                'pending' => $pending,
-                'total_quantity' => $physical_stock+$goods_in_transit+$pending,
             ];
         }
         return response()->json($results);
+    }
+    public function getReqProduct($id){
+        $product = Product::find($id);
+        $physical_stock = 0;
+        $goods_in_transit = 0;
+        $pending = 0;
+        $data = [
+            'product' => $product,
+            'physical_stock' => $physical_stock,
+            'goods_in_transit' => $goods_in_transit,
+            'pending' => $pending,
+            'total_quantity' => $physical_stock+$goods_in_transit+$pending,
+        ];
+        return response()->json($data);
     }
 }

@@ -31,10 +31,10 @@
                                     {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('purpose_id', 'Requisition Purpose', [''=>'select purpose'] ,['class'=>'form-control input-sm']) }}
@@ -100,12 +100,13 @@
                                     <tbody>
                                         <tr ng-repeat="item in itemlist">
                                             <td>01</td>
-                                            <td><% item.value %></td>
+                                            <td><% item.product.name %></td>
                                             <td><% item.physical_stock %></td>
                                             <td><% item.goods_in_transit %></td>
                                             <td><% item.pending %></td>
                                             <td><% item.total_quantity %></td>
-                                            <td class="text-center"><button class="btn btn-default" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
+                                            <td><input type="number" class="form-control" min="1"></td>
+                                            <td class="text-center"><button class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
                                     <tfoot class="font-bold">
@@ -169,8 +170,12 @@
             }
         });
         $scope.addToItemList = function(item){
-            // alert(item.id);
-            $scope.itemlist.push(item);
+            let url = "{{URL::to('core/get-req-product')}}/" + item.id;
+            $http.get(url)
+                    .then(function(response) {
+                        // console.log('response_data--------', response.data);
+                        $scope.itemlist.push(response.data);
+                    });
             // if(!$scope.search(item.id, $scope.itemlist, id)){
             // }
         }

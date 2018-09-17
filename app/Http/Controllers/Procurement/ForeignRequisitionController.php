@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Procurement;
 
 use App\ForeignRequisition;
+use App\RequisitionPurpose;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -30,6 +31,7 @@ class ForeignRequisitionController extends Controller
     public function create()
     {
        $view = view($this->view_root.'create');
+       $view->with('requisition_purpose_list', RequisitionPurpose::pluck('name', 'id')->prepend('--select purpose--'));
         return $view;
     }
 
@@ -41,7 +43,7 @@ class ForeignRequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**

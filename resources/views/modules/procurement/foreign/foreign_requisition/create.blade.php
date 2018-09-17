@@ -37,7 +37,7 @@
                                     {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', [''=>'select purpose'] ,['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('requisition_priority_id', 'Requisition Priority', [''=>'select priority'] , ['class'=>'form-control input-sm']) }}
@@ -99,13 +99,13 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in itemlist">
-                                            <td>01</td>
+                                            <td><% $index+1 %> <input type="hidden" class="form-control" name="item[<% $index %>][product_id]" value="<% item.product.id %>"></td>
                                             <td><% item.product.name %></td>
                                             <td><% item.physical_stock %></td>
                                             <td><% item.goods_in_transit %></td>
                                             <td><% item.pending %></td>
                                             <td><% item.total_quantity %></td>
-                                            <td><input type="number" class="form-control" min="1"></td>
+                                            <td><input type="number" class="form-control" min="1" name="item[<% $index %>][quantity]"></td>
                                             <td class="text-center"><button class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>

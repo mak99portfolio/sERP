@@ -28,6 +28,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CompaniesTableSeeder::class);
         $this->call(DesignationTableSeeder::class);
         $this->call(EnclosureTableSeeder::class);
+        factory(App\ProductCategory::class, 50)->create();
+      //  factory(App\Product::class, 50)->create();
 
     }
 }

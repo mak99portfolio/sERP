@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Procurement;
 
 use App\ForeignRequisition;
 use App\RequisitionPurpose;
+use App\RequisitionPriority;
+use App\ForeignRequisitionItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class ForeignRequisitionController extends Controller
 {
@@ -18,7 +22,7 @@ class ForeignRequisitionController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
+        $view->with('requisition_list', ForeignRequisition::all());
         // your code here
         return $view;
     }
@@ -32,6 +36,7 @@ class ForeignRequisitionController extends Controller
     {
        $view = view($this->view_root.'create');
        $view->with('requisition_purpose_list', RequisitionPurpose::pluck('name', 'id')->prepend('--select purpose--'));
+       $view->with('requisition_priority_list', RequisitionPriority::pluck('name', 'id')->prepend('--select priority--'));
         return $view;
     }
 
@@ -43,7 +48,20 @@ class ForeignRequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        // dd($request->items);
+        $requisition = new ForeignRequisition;
+        $requisition->fill($request->input());
+        $requisition->creator_user_id = Auth::id();
+        $requisition->company_id = 1;
+        $requisition->requisition_no = time();
+        $requisition->save();
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new ForeignRequisitionItem($item));
+        }
+        $requisition->items()->saveMany($items);
+        Session::put('alert-success', 'Requisition created successfully. Requisition No: ' . $requisition->requisition_no);
+        return redirect()->route('foreign-requisition.index');
     }
 
     /**

@@ -62,7 +62,7 @@ class CreateCommercialInvoicesTable extends Migration
             $table->integer('sub_total_quantity');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->integer('updator_user_id')->unsigned();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');

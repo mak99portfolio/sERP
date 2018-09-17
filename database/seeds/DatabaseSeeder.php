@@ -36,5 +36,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VendorCategoryTableSeeder::class);
         $this->call(VendorTableSeeder::class);
         $this->call(ProductTableSeeder::class);
+        $this->call(RequisitionPurposeTableSeeder::class);
+        $this->call(EmployeeProfileTableSeeder::class);
     }
 }

@@ -35,6 +35,31 @@ class VendorTableSeeder extends Seeder
                 'credit_period'=>'3',
                 'credit_limit'=>'500000',
                 'address'=>'Kolkata'
+            ],
+        	[
+                'creator_user_id'=>1,
+                'name'=>'Oman Oil',
+                'vendor_id'=>'456545789',
+                'status_id'=>'1',
+                'establishment_date'=> \Carbon\Carbon::now(),
+                'country_id'=>'1',
+                'vendor_category_id'=>'1',
+                'zip_code'=>'1523',
+                'telephone'=>'984523121',
+                'fax'=>'fax-43246',
+                'website'=>'oman.oil.com',
+                'email'=>'oman.oil@gmail.com',
+                'tin_no'=>'tin-345546',
+                'trade_license_no'=>'trade-3235464',
+                'trade_license_issue_date'=> \Carbon\Carbon::now(),
+                'certificate_of_incorporation'=>'certificate',
+                'incorporation_date'=> \Carbon\Carbon::now(),
+                'vat_no'=>'vat-845445646',
+                'business_type'=>'Partnership',
+                'business_nature'=>'Contractor',
+                'credit_period'=>'5',
+                'credit_limit'=>'300000',
+                'address'=>'Khulna'
             ]
         ];
 
@@ -45,6 +70,13 @@ class VendorTableSeeder extends Seeder
                 'payment_discount'=>'5',
                 'other_discount'=>'0',
                 'discount_terms'=>'nothing'
+            ],
+        	[
+                'vendor_id'=>'2',
+                'net_days'=>'45',
+                'payment_discount'=>'2',
+                'other_discount'=>'0',
+                'discount_terms'=>'no'
             ]
         ];
 
@@ -57,6 +89,15 @@ class VendorTableSeeder extends Seeder
                 'branch_name' => 'Kolkata branch',
                 'swift_code' => 'LIC-123',
                 'address' => 'Kolkata',
+            ],
+            [
+               'vendor_id' => '2',
+                'ac_no' => 'AC-23416568984',
+                'ac_name' => 'Oman Oil Account',
+                'bank_name' => 'DBBL Bank',
+                'branch_name' => 'Khulna branch',
+                'swift_code' => 'DBBL-123',
+                'address' => 'Khulna',
             ]
         ];
 
@@ -69,6 +110,15 @@ class VendorTableSeeder extends Seeder
                'email'=> 'libon@gmail.com',
                'role'=> 'Laravel Developer',
                'mobile'=> '01956974156'
+            ],
+            [
+               'vendor_id' => '2',
+               'name'=> 'Atik Rahman',
+               'designation'=> 'UI Designer',
+               'telephone'=> '20155656',
+               'email'=> 'atik@gmail.com',
+               'role'=> 'UI',
+               'mobile'=> '01617415654'
             ]
         ];
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryReceivePo extends Model
+class InventoryIssue extends Model
 {
     //
 }

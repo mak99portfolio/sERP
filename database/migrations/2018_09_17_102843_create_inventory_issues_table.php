@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoryReceivePosTable extends Migration
+class CreateInventoryIssuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateInventoryReceivePosTable extends Migration
      */
     public function up()
     {
-        Schema::create('inventory_receive_pos', function (Blueprint $table) {
+        Schema::create('inventory_issues', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateInventoryReceivePosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('inventory_receive_pos');
+        Schema::dropIfExists('inventory_issues');
     }
 }

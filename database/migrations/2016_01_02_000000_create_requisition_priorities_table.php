@@ -15,6 +15,8 @@ class CreateRequisitionPrioritiesTable extends Migration
     {
         Schema::create('requisition_priorities', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name')->unique();
+            $table->string('short_name')->nullable();
             $table->timestamps();
         });
     }

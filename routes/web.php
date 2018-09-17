@@ -54,9 +54,7 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');
-    Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('requisition-purpose', 'RequisitionPurposeController');
-    Route::resource('requisition-priority', 'RequisitionPriorityController');
     Route::resource('cost-particular', 'CostParticularController');
     Route::resource('consignment-particular', 'ConsignmentParticularController');
 
@@ -73,5 +71,6 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('item-status', 'ItemStatusController');
     Route::resource('adjustment-purpose', 'AdjustmentPurposeController');
     Route::resource('return-reason', 'ReturnReasonController');
+    Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
 });

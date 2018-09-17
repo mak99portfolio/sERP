@@ -33,13 +33,14 @@ class VendorTableSeeder extends Seeder
                 'vat_no'=>'vat-98845646',
                 'business_type'=>'Ltd. Company',
                 'business_nature'=>'Service Provide',
+                'credit_period'=>'3',
+                'credit_limit'=>'500000',
                 'address'=>'Kolkata'
             ]
         ];
 
         $data2=[
         	[
-                'creator_user_id'=>1,
                 'vendor_id'=>'1',
                 'net_days'=>'15',
                 'payment_discount'=>'5',

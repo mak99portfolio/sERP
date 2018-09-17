@@ -57,6 +57,7 @@
               <li><a href="{{ route('item-status.index') }}">Item Status List</a></li>
               <li><a href="{{ route('adjustment-purpose.index') }}">Adjustment Purpose List</a></li>
               <li><a href="{{ route('return-reason.index') }}">Return Reason List</a></li>
+              <li><a href="{{ route('requisition-type.index') }}">Requisition Type List</a></li>
               <li><a href="{{ route('record-type.index') }}">Record Type List</a></li>
             </ul>
           </li>

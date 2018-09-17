@@ -73,5 +73,6 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('item-status', 'ItemStatusController');
     Route::resource('adjustment-purpose', 'AdjustmentPurposeController');
     Route::resource('return-reason', 'ReturnReasonController');
+    Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
 });

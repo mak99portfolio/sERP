@@ -29,8 +29,8 @@
                                         <th>Vendor Id</th>
                                         <th>Vendor Name</th>
                                         <th>Status</th>
-                                        <!-- <th>Country</th>
-                                        <th>Vendor Category</th> -->
+                                        <th>Country</th>
+                                        <!-- <th>Vendor Category</th> -->
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -41,6 +41,7 @@
                                         <td>{{$item->vendor_id}}</td>
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->status_id}}</td>
+                                        <td>{{$item->country->name}}</td>
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>

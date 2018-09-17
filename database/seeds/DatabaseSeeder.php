@@ -28,6 +28,13 @@ class DatabaseSeeder extends Seeder
         $this->call(CompaniesTableSeeder::class);
         $this->call(DesignationTableSeeder::class);
         $this->call(EnclosureTableSeeder::class);
-
+        $this->call(BankTableSeeder::class);
+        $this->call(CityTableSeeder::class);
+        $this->call(PortTableSeeder::class);
+        $this->call(CostParticularTableSeeder::class);
+        $this->call(ConsignmentParticularTableSeeder::class);
+        $this->call(VendorCategoryTableSeeder::class);
+        $this->call(VendorTableSeeder::class);
+        $this->call(ProductTableSeeder::class);
     }
 }

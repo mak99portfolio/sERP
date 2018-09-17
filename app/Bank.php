@@ -14,4 +14,8 @@ class Bank extends Model
         'short_name',
         'description'
     ];
+
+    public function country(){
+        return $this->belongsTo('App\Country');
+    }
 }

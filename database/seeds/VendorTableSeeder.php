@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Vendor;
 class VendorTableSeeder extends Seeder
 {
     /**

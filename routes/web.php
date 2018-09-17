@@ -63,4 +63,13 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
 //Inventory
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('working-unit', 'WorkingUnitController');
+    Route::resource('requisition', 'RequisitionController');
+    Route::resource('issue', 'IssueController');
+    Route::resource('receive', 'ReceiveController');
+    Route::resource('status-adjustment', 'StatusAdjustmentController');
+    Route::resource('stock-adjustment', 'StockAdjustmentController');
+    Route::resource('item-status', 'ItemStatusController');
+    Route::resource('adjustment-purpose', 'AdjustmentPurposeController');
+    Route::resource('return-reason', 'ReturnReasonController');
+    Route::resource('record-type', 'RecordTypeController');
 });

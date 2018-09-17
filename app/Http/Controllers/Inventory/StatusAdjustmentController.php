@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Inventory;
 
-use App\Receive;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ReceiveController extends Controller{
+class StatusAdjustmentController extends Controller{
 
     protected function path(string $suffix){
-        return "modules.inventory.receive.{$suffix}";
+        return "modules.inventory.status_adjustment.{$suffix}";
     }
 
     public function index(){
@@ -26,28 +26,27 @@ class ReceiveController extends Controller{
         
     }
 
-
     public function store(Request $request){
         
     }
 
 
-    public function show(Receive $receive){
+    public function show($id){
         
     }
 
 
-    public function edit(Receive $receive){
+    public function edit($id){
         
     }
 
 
-    public function update(Request $request, Receive $receive){
+    public function update(Request $request, $id){
         
     }
 
 
-    public function destroy(Receive $receive){
+    public function destroy($id){
         
     }
 }

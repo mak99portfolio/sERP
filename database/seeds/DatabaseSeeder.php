@@ -35,6 +35,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ConsignmentParticularTableSeeder::class);
         $this->call(VendorCategoryTableSeeder::class);
         $this->call(VendorTableSeeder::class);
+        factory(App\ProductCategory::class, 50)->create();
+        factory(App\Product::class, 50)->create();
 
     }
 }

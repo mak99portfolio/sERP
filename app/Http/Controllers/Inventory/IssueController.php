@@ -5,81 +5,49 @@ namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 use App\Issue;
 use Illuminate\Http\Request;
 
-class IssueController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class IssueController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules.inventory.issue.{$suffix}";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function index(){
+        
+        $data=[];
+        return view($this->path('index'), $data);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function create(){
+
+        $data=[];
+        return view($this->path('create'), $data);
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\inventory\Issue  $issue
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Issue $issue)
-    {
-        //
+
+    public function store(Request $request){
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\inventory\Issue  $issue
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Issue $issue)
-    {
-        //
+
+    public function show(Issue $issue){
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Issue  $issue
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Issue $issue)
-    {
-        //
+
+    public function edit(Issue $issue){
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\inventory\Issue  $issue
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Issue $issue)
-    {
-        //
+
+    public function update(Request $request, Issue $issue){
+        
+    }
+
+
+    public function destroy(Issue $issue){
+        
     }
 }

@@ -42,16 +42,20 @@
       </li>
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="general_elements.html">Requisition</a></li>
-          <li><a href="media_gallery.html">Issue</a></li>
-          <li><a href="typography.html">Receive Item</a></li>
+          <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
+          <li><a href="{{ route('issue.index') }}">Issue</a></li>
+          <li><a href="{{ route('receive.index') }}">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-            <li class="sub_menu"><a href="{{route('working-unit.index')}}">Working Unit</a></li>
-              <li><a href="#level2_1">Item Status</a></li>
-              <li><a href="#level2_2">Adjustment Purpose</a></li>
-              <li><a href="#level2_2">Return Reason</a></li>
-              <li><a href="#level2_2">Record Type</a></li>
+            <li class="sub_menu">
+            	<a href="{{ route('working-unit.index') }}">Working Unit</a>
+            </li>
+              <li><a href="{{ route('status-adjustment.index') }}">Item Status Adjustment</a></li>
+              <li><a href="{{ route('stock-adjustment.index') }}">Item Stock Adjustment</a></li>
+              <li><a href="{{ route('item-status.index') }}">Item Status List</a></li>
+              <li><a href="{{ route('adjustment-purpose.index') }}">Adjustment Purpose List</a></li>
+              <li><a href="{{ route('return-reason.index') }}">Return Reason List</a></li>
+              <li><a href="{{ route('record-type.index') }}">Record Type List</a></li>
             </ul>
           </li>
         </ul>

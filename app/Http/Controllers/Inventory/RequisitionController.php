@@ -5,81 +5,50 @@ namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 use App\Requisition;
 use Illuminate\Http\Request;
 
-class RequisitionController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class RequisitionController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules.inventory.requisition.{$suffix}";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function index(){
+        
+        $data=[];
+        return view($this->path('index'), $data);
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function create(){
+
+        $data=[];
+        return view($this->path('create'), $data);
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\inventory\Requisition  $requisition
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Requisition $requisition)
-    {
-        //
+
+    public function store(Request $request){
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\inventory\Requisition  $requisition
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Requisition $requisition)
-    {
-        //
+
+    public function show(Requisition $requisition){
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\Requisition  $requisition
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Requisition $requisition)
-    {
-        //
+
+    public function edit(Requisition $requisition){
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\inventory\Requisition  $requisition
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Requisition $requisition)
-    {
-        //
+
+    public function update(Request $request, Requisition $requisition){
+        
     }
+
+
+    public function destroy(Requisition $requisition){
+        
+    }
+
 }

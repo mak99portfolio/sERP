@@ -146,7 +146,10 @@ class ProductController extends Controller
 
         $results = array();
         foreach ($products as $product) {
-            $results[] = ['id' => $product->id, 'value' => $product->name];
+            $results = [
+                'id' => $product->id, 
+                'value' => $product->name
+            ];
         }
         return response()->json($results);
     }

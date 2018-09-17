@@ -56,9 +56,33 @@ textarea{
 }
 
 
-.help-block{
-    position: absolute;
-    bottom: -18px;
-    font-size: 12px;
+/*Home dashboard*/
+.application{
+    margin: 25px 12%;
+    /*padding-bottom: 50px !important;*/
 }
+.application .action_ap{
+    background-color: #885C5B;
+    border-radius: 0.5em;
+}
+
+.application a .action_ap{
+    color: white;
+    text-align: center !important;
+    /*padding: 10px 5px !important;*/
+}
+.application  a:hover .action_ap{
+    color: white;
+    text-decoration: none;
+}
+.application a .action_ap i{
+    padding: 15px 5px !important;
+}
+.application .discuss{
+    color: #000;
+    padding: 10px 10px 30px 10px;
+}
+
+/*end dashboard*/
+
 

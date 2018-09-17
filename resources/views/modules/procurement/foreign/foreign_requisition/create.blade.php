@@ -47,9 +47,9 @@
                             <div class="panel panel-default bg-light m-t-15">
                                 <div class="panel-heading">
                                     <div class="row">
-                                        <div class="col-md-4 col-sm-4 col-xs-12"><label>Search <a href="#"><strong>Product</strong></a></label></div>
+                                        <div class="col-md-4 col-sm-4 col-xs-12"><label>Search <a href="{{route('product.index')}}"><strong>Product</strong></a></label></div>
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <div class="btn-group pull-right">
+                                            <!-- <div class="btn-group pull-right">
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
                                                         Select Product Group <span class="caret"></span></button>
@@ -60,7 +60,7 @@
                                                     </ul>
                                                 </div>
                                                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-eye"></i><b>See Product Lists</b></button>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -68,9 +68,12 @@
                                     <div class="col-md-12 col-sm-12 col-xs-12">
                                         <div class="input-group m-b">
                                             <span class="input-group-addon">
-                                                <i class="fa fa-search"></i>
+                                                <i class="fa fa-search"></i> Search
                                             </span>
                                             <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
+                                            <span class="input-group-addon">
+                                                <a href=""><i class="fa fa-list-ul"></i> Product List</a>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -81,7 +84,7 @@
                                 <table class="table table-bordered table-hover" ng-if="itemlist.length >=1">
                                     <thead class="bg-default">
                                         <tr>
-                                            <th colspan="8">Purchase Order Items</th>
+                                            <th colspan="8">Purchase Requistion Items</th>
                                         </tr>
                                         <tr>
                                             <th>#</th>
@@ -161,14 +164,28 @@
             minlength: 1,
             autoFocus: true,
             select: function (e, ui) {
-                $scope.itemlist.push(ui.item);
+                $scope.addToItemList(ui.item);
                 $scope.$apply();
                 console.log($scope.itemlist);
             }
         });
+        $scope.addToItemList = function(item){
+            // alert(item.id);
+            $scope.itemlist.push(item);
+            // if(!$scope.search(item.id, $scope.itemlist, id)){
+            // }
+        }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
         }
+        $scope.search = function (nameKey, myArray, indexName) {
+        for (var i = 0; i < myArray.length; i++) {
+          if (myArray[i][indexName] == nameKey) {
+            return i;
+          }
+        }
+        return null;
+      }
     });
 </script>
 @endsection

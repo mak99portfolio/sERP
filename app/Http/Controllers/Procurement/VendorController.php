@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers\Procurement;
 
-use App\Vendor;
+use App\Model\Procurement\Vendor;
+use App\Model\Procurement\VendorCategory;
+use App\Model\Procurement\VendorBank;
+use App\Model\Procurement\VendorPaymentTerm;
+use App\Model\Procurement\VendorContact;
+use App\Model\Procurement\EnclosureVendor;
+use App\Model\Core\Country;
+use App\Model\Core\Enclosure;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Input;
 use DB;
 use Session;
-use App\Country;
-use App\Enclosure;
-use App\VendorCategory;
-use App\VendorBank;
-use App\VendorPaymentTerm;
-use App\VendorContact;
-use App\EnclosureVendor;
 
 class VendorController extends Controller
 {
@@ -57,6 +56,8 @@ class VendorController extends Controller
         $request->validate([
             'vendor_id' => 'required|unique:vendors',
             'name' => 'required',
+            'country_id' => 'required',
+            'vendor_category_id' => 'required',
         ]);
         $vendor = new Vendor;
         $vendor->fill($request->input());

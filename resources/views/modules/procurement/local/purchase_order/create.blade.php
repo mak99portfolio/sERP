@@ -112,10 +112,15 @@
                                 <legend>PR Information:</legend>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
+                                       
+                                        
+                                        
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
-                                            <input type="text" name="purchase_requisition_no" id="purchase_requisition_no" class="form-control" placeholder="Purchase Requisition No" aria-describedby="basic-addon2">
-                                            <span class="input-group-addon btn btn-primary" onclick="search_purchase_requisition_no()" id="">Add</span>
+                                            <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search">
+                                            <div class="input-group-btn">
+                                                <span class="btn btn-default" onclick="abc()">Add</span>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -332,15 +337,15 @@
 @endsection
 @section('script')
 <script>
-    
-        function search_purchase_requisition_no(){
-        
-        
-        alert('ioii');
+
+    function abc() {
+        var division_id = $('#purchase_requisition_no').val();
+        alert(division_id);
+
+
     }
 
 
-    });
 
 </script>
 @endsection

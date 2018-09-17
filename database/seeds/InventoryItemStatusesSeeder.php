@@ -13,7 +13,7 @@ class InventoryItemStatusesSeeder extends Seeder{
         	['name'=>'Expired', 'short_name'=>'EP']
         ];
 
-        \DB::table('inventory_item_status')->insert($data);
+        \DB::table('inventory_item_statuses')->insert($data);
 
     }
 

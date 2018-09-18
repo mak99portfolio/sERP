@@ -8,6 +8,7 @@ use App\ForeignRequisition;
 use App\Port;
 use App\Country;
 use App\Vendor;
+use App\PurchaseOrderItem;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -70,6 +71,13 @@ class PurchaseOrderController extends Controller
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();
         $purchase_order->save();
+
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new PurchaseOrderItem($item));
+        }
+        $purchase_order->items()->saveMany($items);
+
         Session::put('alert-success', 'Purchase order created successfully');
         return redirect()->route('purchase-order.create');
     }
@@ -123,6 +131,7 @@ class PurchaseOrderController extends Controller
         $items = $req->items;
         foreach($items as $item){
             $data[] = [
+                'product_id' => $item->product->id,
                 'name' => $item->product->name,
                 'hs_code' => $item->product->hs_code,
                 'uom' => $item->product->unit_of_measurement->name,

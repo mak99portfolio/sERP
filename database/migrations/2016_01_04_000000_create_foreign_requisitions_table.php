@@ -24,6 +24,8 @@ class CreateForeignRequisitionsTable extends Migration
             $table->string('issued_date')->nullable();
             $table->string('date_expected')->nullable();
             $table->text('note')->nullable();
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable()->nullable();

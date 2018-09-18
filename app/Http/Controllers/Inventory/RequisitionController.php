@@ -21,7 +21,12 @@ class RequisitionController extends Controller{
 
     public function create(){
 
-        $data=[];
+        $data=[
+            'inventory_requisition'=>new \App\InventoryRequisition,
+        ];
+
+        dd($data);
+
         return view($this->path('create'), $data);
         
     }

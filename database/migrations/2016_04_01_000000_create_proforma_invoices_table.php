@@ -15,7 +15,7 @@ class CreateProformaInvoicesTable extends Migration
     {
         Schema::create('proforma_invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('requisition_no');
+            $table->string('requisition_no')->nullable();
             $table->string('purchase_order_date')->nullable();
             $table->string('proforma_invoice_no')->nullable();
             $table->string('proforma_invoice_date')->nullable();
@@ -45,7 +45,7 @@ class CreateProformaInvoicesTable extends Migration
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
 use App\ProformaInvoice;
+use App\PurchaseOrder;
 use App\Port;
 use App\Country;
 use App\Vendor;
@@ -35,6 +36,7 @@ class ProformaInvoiceController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('purchase_orders', PurchaseOrder::all());
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
@@ -58,9 +60,9 @@ class ProformaInvoiceController extends Controller
             // 'vendor_id'=>'required',
             // 'port_of_loading_port_id'=>'required',
             // 'port_of_discharge_port_id'=>'required',
-            // 'country_of_final_destination_countru_id'=>'required',
-            // 'final_destination_countru_id'=>'required',
-            // 'country_of_origin_of_goods_countru_id'=>'required',
+            // 'country_of_final_destination_country_id'=>'required',
+            // 'final_destination_country_id'=>'required',
+            // 'country_of_origin_of_goods_country_id'=>'required',
             // 'shipment_allow'=>'required',
             // 'payment_type'=>'required',
             // 'pre_carriage_by'=>'required',
@@ -121,5 +123,19 @@ class ProformaInvoiceController extends Controller
     public function destroy(ProformaInvoice $proformaInvoice)
     {
         //
+    }
+    public function getPOByPOId($id){
+        $po = PurchaseOrder::find($id);
+        $items = $po->items;
+        foreach($items as $item){
+            $data[] = [
+                'name' => $item->product->name,
+                'hs_code' => $item->product->hs_code,
+                'uom' => $item->product->unit_of_measurement->name,
+                'quantity' => $item->quantity,
+                'unit_price' => $item->unit_price,
+            ];
+        }
+        return response()->json($data);
     }
 }

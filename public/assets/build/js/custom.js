@@ -1757,7 +1757,10 @@ if (typeof NProgress != 'undefined') {
 
 			$('.datepicker').daterangepicker({
 				singleDatePicker: true,
-			  singleClasses: "picker_3"
+			  singleClasses: "picker_3",
+			  locale: {
+				format: 'DD-MM-YYYY'
+			  }
 			}, function(start, end, label) {
 			  console.log(start.toString());
 			});

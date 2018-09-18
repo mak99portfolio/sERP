@@ -18,7 +18,7 @@ class CreateStocksTable extends Migration{
             $table->integer('receive_quantity')->unsigned()->default(0);
             $table->integer('inventory_issue_id')->unsigned()->nullable();
             $table->integer('issue_quantity')->unsigned()->default(0);
-            $table->integer('stock_balance')->unsigned()->default(0);
+            $table->integer('allocated_quantity')->unsigned()->default(0);
             $table->text('remarks')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullbale();
             $table->integer('updator_user_id')->unsigned()->nullbale();

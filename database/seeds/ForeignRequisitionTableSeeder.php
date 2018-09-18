@@ -16,7 +16,8 @@ class ForeignRequisitionTableSeeder extends Seeder
                 'purpose_id'=>'3',
                 'requisition_priority_id'=>'1',
                 'note'=>'test1',
-                'requisition_no'=>'25698451'
+                'requisition_no'=>'25698451',
+                'company_id'=>1
             ],
         	[
                 'creator_user_id'=>1,
@@ -26,7 +27,8 @@ class ForeignRequisitionTableSeeder extends Seeder
                 'purpose_id'=>'2',
                 'requisition_priority_id'=>'2',
                 'note'=>'test2',
-                'requisition_no'=>'4352525'
+                'requisition_no'=>'4352525',
+                'company_id'=>1
             ],
         	[
                 'creator_user_id'=>1,
@@ -36,7 +38,8 @@ class ForeignRequisitionTableSeeder extends Seeder
                 'purpose_id'=>'3',
                 'requisition_priority_id'=>'1',
                 'note'=>'test3',
-                'requisition_no'=>'95646544'
+                'requisition_no'=>'95646544',
+                'company_id'=>1
             ]
         ];
 

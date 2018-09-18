@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
 use App\PurchaseOrder;
+use App\ForeignRequisition;
 use App\Port;
 use App\Country;
 use App\Vendor;
@@ -22,8 +23,6 @@ class PurchaseOrderController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
         return $view;
     }
 
@@ -35,6 +34,7 @@ class PurchaseOrderController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('requisition_list', ForeignRequisition::all());
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));

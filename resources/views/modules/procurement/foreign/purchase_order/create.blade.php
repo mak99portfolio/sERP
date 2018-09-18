@@ -26,12 +26,11 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Requisition No.</label>
-                                        <select class="form-control input-sm" name="requisition_no">
-                                            <option>258</option>
-                                            <option>852</option>
-                                            <option>456</option>
-                                            <option>951</option>
-                                            <option>963</option>
+                                        <select data-placeholder="Select Req No" multiple class="form-control input-sm select2" name="requisition_no">
+                                            <option></option>
+                                            @foreach($requisition_list as $item)
+                                            <option value="{{$item->id}}">{{$item->requisition_no}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>

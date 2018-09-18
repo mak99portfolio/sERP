@@ -79,4 +79,5 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('return-reason', 'ReturnReasonController');
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
+    Route::get('get-product-info/{slug}', 'RequisitionController@get_product_info');
 });

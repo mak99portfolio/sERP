@@ -24,6 +24,7 @@ class PurchaseOrderController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+        $view->with('purchase_order_list', PurchaseOrder::all());
         return $view;
     }
 

@@ -38,6 +38,9 @@ class Product extends Model
     function product_category(){
         return $this->belongsTo('App\ProductCategory');
     }
+    function unit_of_measurement(){
+        return $this->belongsTo('App\UnitOfMeasurement');
+    }
     function product_brand(){
         return $this->belongsTo('App\ProductBrand');
     }

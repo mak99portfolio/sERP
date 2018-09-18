@@ -13,14 +13,19 @@
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Local Purchase Order</h2>
+
+                        <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> List Local Purchase</a>
+
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form class="form-horizontal form-label-left">
+
+                        <form class="form-horizontal form-label-left" action="{{route('local-purchase-order.store')}}" method="POST">
+                            @csrf
                             <fieldset>
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
@@ -50,7 +55,7 @@
                                         {{ BootForm::text('purchase_oder_no','Purchase Oder No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">   
-                                        {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
@@ -75,7 +80,7 @@
                                         {{ BootForm::select('payment_method', 'Select Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::textarea('remark','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                                     </div>
                                 </div>
                             </fieldset>
@@ -87,7 +92,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" class="flat" checked name="iCheck"> MAGNUM Enterprise Ltd.
+                                                <input type="radio" class="flat" checked name="ship_to_address"> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
@@ -95,7 +100,7 @@
                                         <div class="col-md-3 col-sm-4">
                                             <div class="radio pull-right">
                                                 <label>
-                                                    <input type="radio" class="flat" name="iCheck"> Other Ship to Address
+                                                    <input type="radio" class="flat" name="ship_to_address"> Other Ship to Address
                                                 </label>
                                             </div>
                                         </div>
@@ -112,19 +117,19 @@
                                 <legend>PR Information:</legend>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                       
-                                        
-                                        
+
+
+
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
                                             <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search">
-                                             <input type="hidden" name="" value="<?php echo csrf_token() ?>" id="t">
+                                            <input type="hidden" name="" value="<?php echo csrf_token() ?>" id="t">
                                             <div class="input-group-btn">
                                                 <span class="btn btn-default" onclick="abc()">Add</span>
                                             </div>
                                         </div>
                                         <div id="msg">
-                                            
+
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -231,13 +236,13 @@
                                                 <option value="" disabled selected> Select type</option>
                                                 <option>Fixed</option>
                                                 <option>Percentage</option>
-                                              
+
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive">
-                                             <table class="table table-bordered table-hover">
+                                            <table class="table table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Date</th>
@@ -250,8 +255,6 @@
                                                         <th><input class="form-control input-sm" type="text"></th>
                                                         <th  class="text-center"><button type="button" class="btn btn-xs btn-default">Add</button></th>
                                                     </tr>
-                                       
-                                                   
                                                     <tr>
                                                         <th>Date</th>
                                                         <th>Description</th>
@@ -284,7 +287,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Terms and Condition Type</label>
-                                            <select class="form-control input-sm" id="terms_and_condition">
+                                            <select class="form-control input-sm" id="terms_and_condition" ng-model="condition_type">
                                                 <option value="" disabled selected> Select..</option>
                                                 <option value="Delivery Terms">Delivery Terms</option>
                                                 <option value="Payment Condition">Payment Condition</option>
@@ -294,10 +297,10 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        {{ BootForm::textarea('description','Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1']) }}
+                                        {{ BootForm::textarea('description','Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <button type="button" onclick="terms_and_condition_select()" class="btn btn-md btn-info">Add</button>
+                                        <button type="button" ng-click="add_condition()" class="btn btn-md btn-info">Add</button>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive m-t-20">
@@ -311,7 +314,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="mytable1">
-                                                    
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -331,32 +334,40 @@
 <!-- /page content -->
 @endsection
 @section('script')
+<script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 <script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+    });
+    app.controller('myCtrl', function($scope, $http) {
 
-    function terms_and_condition_select() {
-        var terms_and_condition = $('#terms_and_condition').val();
-        var description = $('#description').val();
-     //  alert(description);
-         $("#mytable1").append("<tr><td>"+01+"</td><td>"+terms_and_condition+"</td><td>"+description+"</td><td class='text-center'>"+' <a href="#" class="btn btn-default btn-xs">Edit</a><button type="button"  class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>'+"</td></tr>");
-        
-    }
-    function abc() {
-        var purchase_requisition_no = $('#purchase_requisition_no').val();
-       // alert(purchase_requisition_no);
-          $('div#msg').html(purchase_requisition_no);
-           $.ajax({
-            type: 'POST',
-            url: '{{url("/getmsg")}}',
-            data: {_token: $('#t').val(), purchase_requisition_no: purchase_requisition_no}
-        }).done(function (data) {
-            console.log(data.purchase_requisition_no);
-              $('div#msg').val(data.purchase_requisition_no);
-           
-        });
-
+    $scope.add_condition = function(){
+        alert();
     }
 
 
 
+
+
+
+
+
+
+
+    
+    $scope.addToItemList = function(item){
+    let url = "{{URL::to('procurement/get-product')}}/" + item.id;
+    $http.get(url)
+            .then(function(response) {
+            // console.log('response_data--------', response.data);
+            $scope.itemlist.push(response.data);
+            });
+    // if(!$scope.search(item.id, $scope.itemlist, id)){
+    // }
+    }
+    $scope.removeItem = function(index){
+    $scope.itemlist.splice(index);
+    }
 </script>
 @endsection

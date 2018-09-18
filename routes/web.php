@@ -62,6 +62,7 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     //API
     Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ForeignRequisitionController@getProductByProductId']);
     Route::get('/get-requisition/{id}', ['as' => 'get-requisition', 'uses' => 'PurchaseOrderController@getRequisitionByRequisitionId']);
+    Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ProformaInvoiceController@getPOByPOId']);
 
 });
 

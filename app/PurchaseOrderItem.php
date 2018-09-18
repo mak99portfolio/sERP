@@ -14,4 +14,7 @@ class PurchaseOrderItem extends Model
         'purchase_order_id',
         'product_id'
     ];
+    public function product(){
+       return $this->belongsTo('App\Product'); 
+    }
 }

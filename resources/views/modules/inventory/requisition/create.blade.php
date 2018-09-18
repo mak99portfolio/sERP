@@ -22,11 +22,10 @@
                     </div>
                     <div class="x_content">
                         <br />
-						<form class="form-horizontal form-label-left">
-						{{ BootForm::open(['model'=>'inventory_requisition', 'store'=>'requisition.store', 'update'=>'requisition.update']) }}
+						{{ BootForm::open(['model'=>$inventory_requisition, 'store'=>'requisition.store', 'update'=>'requisition.update']) }}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_no', null, null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::text('requisition_no', null, $requisition_no, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">

@@ -101,7 +101,7 @@
                                     <tbody>
                                         <tr ng-repeat="item in itemlist">
                                             <td><% $index+1 %> <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product.id %>"></td>
-                                            <td><% item.product.name %></td>
+                                            <td><% item.name %></td>
                                             <td><% item.physical_stock %></td>
                                             <td><% item.goods_in_transit %></td>
                                             <td><% item.pending %></td>
@@ -171,7 +171,7 @@
             }
         });
         $scope.addToItemList = function(item){
-            let url = "{{URL::to('core/get-req-product')}}/" + item.id;
+            let url = "{{URL::to('procurement/get-product')}}/" + item.id;
             $http.get(url)
                     .then(function(response) {
                         // console.log('response_data--------', response.data);

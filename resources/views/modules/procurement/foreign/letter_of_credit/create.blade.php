@@ -27,81 +27,22 @@
                    
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                                        <label>LC No.</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>LC Date</label>
-                                        <!-- <input class="form-control input-sm" type="text"> -->
-                                        <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="single_cal3" placeholder="First Name" aria-describedby="3">
-                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                            <span id="3" class="sr-only">(success)</span>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </fieldset>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>LC Value</label>
-                                        <input class="form-control input-sm" type="text">
-</div>   
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                        <div class="form-group">
-                                    <label>Vendor </label>
-                                    <select class="form-control input-sm">
-                                        <option value="" disabled selected> Select vendor</option>
-                                        <option>Active</option>
-                                        <option>Inactive</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                        <label>LC Expire Date</label>
-                                        <!-- <input class="form-control input-sm" type="text"> -->
-                                        <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="single_cal4" placeholder="First Name" aria-describedby="3">
-                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                            <span id="3" class="sr-only">(success)</span>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </fieldset>
-                                    </div>
-                                    
+                                    {{ BootForm::text('letter_of_credit_no','LC No.', null, ['class'=>'form-control input-sm']) }}
+
+                                    {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','id'=>'single_cal3']) }}
+                                    {{ BootForm::text('letter_of_credit_value','LC Value', null, ['class'=>'form-control input-sm']) }}
 
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                        <label>LC Shipment Date</label>
-                                        <!-- <input class="form-control input-sm" type="text"> -->
-                                        <fieldset>
-                                    <div class="control-group">
-                                        <div class="controls">
-                                        <div class="col-md-12 xdisplay_inputx form-group has-feedback">
-                                            <input type="text" class="form-control has-feedback-left" id="single_cal2" placeholder="First Name" aria-describedby="3">
-                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
-                                            <span id="3" class="sr-only">(success)</span>
-                                        </div>
-                                        </div>
-                                    </div>
-                                    </fieldset>
-                                    </div>
-                                    <div class="form-group">
-                                    <label>Currency </label>
-                                    <select class="form-control input-sm">
-                                        <option value="" disabled selected> Select currency</option>
-                                        <option>Active</option>
-                                        <option>Inactive</option>
-                                    </select>
-                                </div>
+                            {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
+                            {{ BootForm::text('letter_of_credit_expire_date','LC Expire Date', null, ['class'=>'form-control input-sm','id'=>'single_cal4']) }}
+                                    
+                            {{ BootForm::select('letter_of_credit_status', 'LC Status', [''=>'-- Select Shipment --','1'=>'Open','2'=>'Close'], null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('letter_of_credit_shipment_date','LC Shipment Date', null, ['class'=>'form-control input-sm','id'=>'single_cal2']) }}
+
+                                    {{ BootForm::select('currency', 'Currency', [''=>'-- select currency --','1'=>'Doller'], null, ['class'=>'form-control input-sm']) }}
                             </div>
                         
                     </div>
@@ -119,29 +60,17 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>A/C No </label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                    
+                                    {{ BootForm::text('beneficiary_ac_no','A/C No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>A/C Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('beneficiary_ac_name','A/C Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Branch Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('beneficiary_branch_name','Branch Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Bank Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
 
                                     </td>
@@ -163,28 +92,16 @@
                                         <tr>
                                             <td>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>A/C No </label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('issue_ac_no','A/C No ', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>A/C Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Branch Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Bank Name</label>
-                                        <input class="form-control input-sm" type="text">
-                                    </div>
+                                    {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
 
                                     </td>
@@ -205,10 +122,7 @@
                             <!--Inline form-->
 
                     <form class="form-inline">
-                  <div class="form-group">
-                    <label for="ex3">LCA No.</label>
-                    <input type="text" id="ex3" class="form-control" placeholder=" ">
-                  </div>
+                  {{ BootForm::text('lac_no','LCA No.', null, ['class'=>'form-control input-sm']) }}
                   <button type="submit" class="btn btn-default">Add</button>
                 </form>
 <br>       
@@ -240,14 +154,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Partial Shipment </label>
-                                    <select class="form-control input-sm">
-                                        <option value="" disabled selected> Select Shipment</option>
-                                        <option>Allow</option>
-                                        <option>Not Allow</option>
-                                    </select>
-                                </div>
+                                {{ BootForm::select('partial_shipment', 'Partial Shipment', [''=>'-- Select Shipment --','1'=>'Allow','2'=>'Not Allow'], null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 
                             </div>
@@ -255,14 +162,7 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label>Transhipment Information </label>
-                                    <select class="form-control input-sm">
-                                        <option value="" disabled selected> Select Transhipment</option>
-                                        <option>Allow</option>
-                                        <option>Not Allow</option>
-                                    </select>
-                                </div>
+                                {{ BootForm::select('transhipment_information', 'Transhipment Information', [''=>'-- Select Transhipment --','1'=>'Allow','2'=>'Not Allow'], null, ['class'=>'form-control input-sm']) }}
                             </div>
                                
                                 
@@ -279,10 +179,7 @@
                             <!--Inline form-->
 
                     <form class="form-inline">
-                  <div class="form-group">
-                    <label for="ex3">PI No.</label>
-                    <input type="text" id="ex3" class="form-control" placeholder=" ">
-                  </div>
+                  {{ BootForm::text('proforma_invoice_no','PI No.', null, ['class'=>'form-control input-sm']) }}
                   <button type="submit" class="btn btn-default">Add</button>
                 </form>
 <br>       

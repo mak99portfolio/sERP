@@ -22,9 +22,9 @@ class CreateExportersTable extends Migration
             $table->text('address');
             $table->tinyInteger('gender');
             $table->integer('creator_id')->unsigned();
-            $table->foreign('creator_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_id')->unsigned();
-            $table->foreign('updator_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('updator_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

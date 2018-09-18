@@ -18,9 +18,9 @@ class CreatePurchaseOrderItemsTable extends Migration
             $table->integer('quantity');
             $table->double('unit_price');
             $table->integer('purchase_order_id')->unsigned();
-            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('restrict');
+            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

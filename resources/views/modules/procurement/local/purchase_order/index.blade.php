@@ -45,7 +45,6 @@
  
                             <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                             <td>
-                                {!! btnEdit(['url'=>route('local-purchase-order.edit', ['working_unit'=>$row->id])]) !!}
                                 {!! btnDelete(['url'=>route('local-purchase-order.destroy', ['working_unit'=>$row->id])]) !!}
                             </td>
                         </tr>

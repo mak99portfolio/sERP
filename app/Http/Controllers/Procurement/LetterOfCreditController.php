@@ -63,11 +63,11 @@ class LetterOfCreditController extends Controller
             'partial_shipment' => 'required',
             'transhipment_information' => 'required',
         ]);
-        $cost_particular = new CostParticular;
-        $cost_particular->fill($request->input());
-        $cost_particular->creator_user_id = Auth::id();
-        $cost_particular->save();
-        Session::put('alert-success', $cost_particular->name . ' created successfully');
+        $letter_of_credit = new CostParticular;
+        $letter_of_credit->fill($request->input());
+        $letter_of_credit->creator_user_id = Auth::id();
+        $letter_of_credit->save();
+        Session::put('alert-success', 'Letter of credit created successfully');
         return redirect()->route('cost-particular.index');
     }
 

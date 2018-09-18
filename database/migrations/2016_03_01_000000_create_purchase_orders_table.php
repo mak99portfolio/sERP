@@ -25,12 +25,12 @@ class CreatePurchaseOrdersTable extends Migration
             $table->foreign('port_of_loading_port_id')->references('id')->on('ports')->onDelete('cascade');
             $table->integer('port_of_discharge_port_id')->unsigned()->nullable();
             $table->foreign('port_of_discharge_port_id')->references('id')->on('ports')->onDelete('cascade');
-            $table->integer('country_of_final_destination_countru_id')->unsigned()->nullable();
-            $table->foreign('country_of_final_destination_countru_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->integer('final_destination_countru_id')->unsigned()->nullable();
-            $table->foreign('final_destination_countru_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->integer('country_of_origin_of_goods_countru_id')->unsigned()->nullable();
-            $table->foreign('country_of_origin_of_goods_countru_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->integer('country_of_final_destination_country_id')->unsigned()->nullable();
+            $table->foreign('country_of_final_destination_country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->integer('final_destination_country_id')->unsigned()->nullable();
+            $table->foreign('final_destination_country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->integer('country_of_origin_of_goods_country_id')->unsigned()->nullable();
+            $table->foreign('country_of_origin_of_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->integer('payment_type')->nullable();
             $table->integer('pre_carriage_by')->nullable();
             $table->text('subject')->nullable();

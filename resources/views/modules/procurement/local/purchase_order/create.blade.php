@@ -87,7 +87,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" class="flat" checked name="iCheck"> MAGNUM Enterprise Ltd.
+                                                <input type="radio" class="flat" checked name="ship_to_address"> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
@@ -95,7 +95,7 @@
                                         <div class="col-md-3 col-sm-4">
                                             <div class="radio pull-right">
                                                 <label>
-                                                    <input type="radio" class="flat" name="iCheck"> Other Ship to Address
+                                                    <input type="radio" class="flat" name="ship_to_address"> Other Ship to Address
                                                 </label>
                                             </div>
                                         </div>

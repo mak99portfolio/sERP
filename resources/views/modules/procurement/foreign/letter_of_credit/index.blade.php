@@ -6,7 +6,7 @@
     <div class="page-title">
     <div class="x_title">
                         <h2>LC List</h2>
-                    <a href="{{route('letter-of-credit.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New LC</a>
+                    <a href="{{route('letter-of-credit.create')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New LC</a>
                         <div class="clearfix"></div>
                     </div>
     </div>

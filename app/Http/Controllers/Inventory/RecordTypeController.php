@@ -36,14 +36,13 @@ class RecordTypeController extends Controller{
             'name' => 'required|unique:inventory_record_types',
             'short_name' => 'required|unique:inventory_record_types',
         ]);
-        $inventory_record_type = new InventoryRecordType;
-        $inventory_record_type->fill($request->input());
-        $inventory_record_type->creator_user_id = Auth::id();
-        $inventory_record_type->save();
-        Session::put('alert-success', $inventory_record_type->name . ' created successfully');
+        $record_type = new InventoryRecordType;
+        $record_type->fill($request->input());
+        $record_type->creator_user_id = Auth::id();
+        $record_type->save();
+        Session::put('alert-success', $record_type->name . ' created successfully');
         return redirect()->route('record-type.index');
     }
-
 
     public function show($id)
     {

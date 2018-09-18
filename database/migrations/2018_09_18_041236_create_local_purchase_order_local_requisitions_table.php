@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLocalPurchaseOrdersTable extends Migration
+class CreateLocalPurchaseOrderLocalRequisitionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,11 @@ class CreateLocalPurchaseOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('local_purchase_orders', function (Blueprint $table) {
+        Schema::create('local_purchase_order_local_requisitions', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_oder_no')->unsigned()->nullable();
-            $table->string('inco_terms')->nullable();
-            $table->string('inco_term_info')->nullable();
-            $table->string('procurement_type')->nullable();
-            $table->string('purchase_order_type')->nullable();
-            $table->string('purchase_oder_date')->nullable();
-            $table->string('status')->nullable();
-            $table->string('shipping_method')->nullable();
-            $table->string('payment_method')->nullable();
-            $table->string('remarks')->nullable();
+            $table->integer('local_requisition_id')->unsigned(); 
+            $table->integer('local_purchase_order_id')->unsigned();
+            $table->foreign('local_purchase_order_id')->references('id')->on('local_purchase_orders')->onDelete('restrict');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();
@@ -41,6 +34,6 @@ class CreateLocalPurchaseOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('local_purchase_orders');
+        Schema::dropIfExists('local_purchase_order_local_requisitions');
     }
 }

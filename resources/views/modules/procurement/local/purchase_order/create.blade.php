@@ -87,7 +87,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" class="flat" checked name="iCheck"> LEADS Corporation Ltd.
+                                                <input type="radio" class="flat" checked name="iCheck"> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
@@ -237,20 +237,21 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-hover">
+                                             <table class="table table-bordered table-hover">
                                                 <thead>
                                                     <tr>
                                                         <th>Date</th>
                                                         <th>Description</th>
-                                                        <th>% or Fixed Amount</th>
-                                                        <th  class="text-center">Action</th>
+                                                        <th colspan="2">% or Fixed Amount</th>
                                                     </tr>
                                                     <tr>
-                                                        <th>20/02/2018</th>
+                                                        <th><input class="form-control input-sm" type="text" value="20/02/2018"></th>
                                                         <th><input class="form-control input-sm" type="text"></th>
                                                         <th><input class="form-control input-sm" type="text"></th>
                                                         <th  class="text-center"><button type="button" class="btn btn-xs btn-default">Add</button></th>
                                                     </tr>
+                                       
+                                                   
                                                     <tr>
                                                         <th>Date</th>
                                                         <th>Description</th>
@@ -283,24 +284,24 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Terms and Condition Type</label>
-                                            <select class="form-control input-sm">
+                                            <select class="form-control input-sm" id="terms_and_condition">
                                                 <option value="" disabled selected> Select..</option>
-                                                <option>Delivery Terms</option>
-                                                <option>Payment Condition</option>
-                                                <option>Warranty Terms</option>
-                                                <option>Security Terms</option>
+                                                <option value="Delivery Terms">Delivery Terms</option>
+                                                <option value="Payment Condition">Payment Condition</option>
+                                                <option value="Warranty Terms">Warranty Terms</option>
+                                                <option value="Security Terms">Security Terms</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6">
-                                        {{ BootForm::textarea('address','Description',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('description','Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <button type="button" class="btn btn-md btn-info">Add</button>
+                                        <button type="button" onclick="terms_and_condition_select()" class="btn btn-md btn-info">Add</button>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive m-t-20">
-                                            <table class="table table-bordered table-hover">
+                                            <table id="mytable1" class="table table-bordered table-hover">
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th>#</th>
@@ -309,17 +310,8 @@
                                                         <th class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>01</td>
-                                                        <td>123</td>
-                                                        <td>123</td>
-                                                        <td  class="text-center">
-                                                            <a href="#" class="btn btn-default btn-xs">Edit</a>
-                                                            <button type="button" class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>
-
-                                                        </td>
-                                                    </tr>
+                                                <tbody id="mytable1">
+                                                    
                                                 </tbody>
                                             </table>
                                         </div>
@@ -328,7 +320,7 @@
                                 </div>
                             </fieldset>
                             <!---------Terms and Condition end-------->
-
+                            <button class="btn btn-primary">Save</button>
                         </form>
                     </div>
                 </div>
@@ -341,9 +333,17 @@
 @section('script')
 <script>
 
+    function terms_and_condition_select() {
+        var terms_and_condition = $('#terms_and_condition').val();
+        var description = $('#description').val();
+     //  alert(description);
+         $("#mytable1").append("<tr><td>"+01+"</td><td>"+terms_and_condition+"</td><td>"+description+"</td><td class='text-center'>"+' <a href="#" class="btn btn-default btn-xs">Edit</a><button type="button"  class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>'+"</td></tr>");
+        
+    }
     function abc() {
         var purchase_requisition_no = $('#purchase_requisition_no').val();
-        alert(purchase_requisition_no);
+       // alert(purchase_requisition_no);
+          $('div#msg').html(purchase_requisition_no);
            $.ajax({
             type: 'POST',
             url: '{{url("/getmsg")}}',

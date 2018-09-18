@@ -43,5 +43,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RequisitionPriorityTableSeeder::class);
         $this->call(ForeignRequisitionTableSeeder::class);
         $this->call(ForeignRequisitionItemTableSeeder::class);
+        $this->call(LocalRequisitionTableSeeder::class);
+
     }
 }

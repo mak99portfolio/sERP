@@ -16,6 +16,9 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Local Purchase Order</h2>
+                        
+                    <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> List Local Purchase</a>
+                        
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

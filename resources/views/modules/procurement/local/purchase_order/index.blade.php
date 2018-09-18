@@ -21,11 +21,13 @@
                     </div>
                     <div class="x_content">
                         <br />
+                        
+            @include('partials.paginate_header')
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                     
                                         <th>Purchase Order No</th>
                                         <th>Purchase Order Date</th>
                                         <th>Create time</th>
@@ -34,18 +36,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>01</td>
-                                        <td>123</td>
-                                        <td>12-6-18</td>
-                                        <td>12-6-18</td>    
-                                        <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
-                                        </td>
-                                    </tr>
+                                    
+                                  
+                           @foreach($paginate->table as $row)
+                        <tr>
+                            <td>{{ $row->purchase_oder_no }}</td>
+                            <td>{{ $row->purchase_oder_date }}</td>
+ 
+                            <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
+                            <td>
+                                {!! btnEdit(['url'=>route('local-purchase-order.edit', ['working_unit'=>$row->id])]) !!}
+                                {!! btnDelete(['url'=>route('local-purchase-order.destroy', ['working_unit'=>$row->id])]) !!}
+                            </td>
+                        </tr>
+                    @endforeach
                                 </tbody>
                             </table>
                         </div>
+                         @include('partials.paginate_footer')
                         <!--end table-->
                     </div>
                     <!-- Modal -->

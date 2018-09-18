@@ -7,6 +7,7 @@ use App\ProformaInvoice;
 use App\Port;
 use App\Country;
 use App\Vendor;
+use Auth;
 use Illuminate\Http\Request;
 
 class ProformaInvoiceController extends Controller
@@ -48,25 +49,32 @@ class ProformaInvoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'purchase_order_no'=>'required',
+            // 'purchase_order_no'=>'required',
             'purchase_order_date'=>'required',
-            'proforma_invoice_no'=>'required',
+            // 'proforma_invoice_no'=>'required',
             'proforma_invoice_date'=>'required',
-            'proforma_invoice_receive_date'=>'required',
-            'vendor_id'=>'required',
-            'port_of_loading_port_id'=>'required',
-            'port_of_discharge_port_id'=>'required',
-            'country_of_final_destination_countru_id'=>'required',
-            'final_destination_countru_id'=>'required',
-            'country_of_origin_of_goods_countru_id'=>'required',
-            'shipment_allow'=>'required',
-            'payment_type'=>'required',
-            'pre_carriage_by'=>'required',
-            'customer_code'=>'required',
-            'consignee'=>'required',
-            'beneficiary_bank_info'=>'required',
-            'notes'=>'required',
+            // 'proforma_invoice_receive_date'=>'required',
+            // 'vendor_id'=>'required',
+            // 'port_of_loading_port_id'=>'required',
+            // 'port_of_discharge_port_id'=>'required',
+            // 'country_of_final_destination_countru_id'=>'required',
+            // 'final_destination_countru_id'=>'required',
+            // 'country_of_origin_of_goods_countru_id'=>'required',
+            // 'shipment_allow'=>'required',
+            // 'payment_type'=>'required',
+            // 'pre_carriage_by'=>'required',
+            // 'customer_code'=>'required',
+            // 'consignee'=>'required',
+            // 'beneficiary_bank_info'=>'required',
+            // 'notes'=>'required',
         ]);
+        $proforma_invoice = new ProformaInvoice;
+        $proforma_invoice->fill($request->input());
+        $proforma_invoice->creator_user_id = Auth::id();
+        // dd($product);
+        $proforma_invoice->save();
+        Session::put('alert-success', 'Proforma invoice created successfully');
+        return redirect()->route('proforma-invoice.create');
     }
 
     /**

@@ -314,7 +314,12 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody id="mytable1">
-
+                                                    <tr ng-repeat="condition in conditions">
+                                                        <td><% $index+1 %></td>
+                                                        <td><% condition.type %><input name="conditions[<% $index %>][type]" type="hidden" value="<% condition.type %>"></td>
+                                                        <td><% condition.description %> <input name="conditions[<% $index %>][descripton]" type="hidden" value="<% condition.description %>"></td>
+                                                        <td><button ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -334,40 +339,22 @@
 <!-- /page content -->
 @endsection
 @section('script')
-<script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
     $interpolateProvider.endSymbol('%>');
     });
     app.controller('myCtrl', function($scope, $http) {
-
-    $scope.add_condition = function(){
-        alert();
-    }
-
-
-
-
-
-
-
-
-
-
-    
-    $scope.addToItemList = function(item){
-    let url = "{{URL::to('procurement/get-product')}}/" + item.id;
-    $http.get(url)
-            .then(function(response) {
-            // console.log('response_data--------', response.data);
-            $scope.itemlist.push(response.data);
-            });
-    // if(!$scope.search(item.id, $scope.itemlist, id)){
-    // }
-    }
-    $scope.removeItem = function(index){
-    $scope.itemlist.splice(index);
-    }
+        $scope.conditions = [];
+        $scope.add_condition = function(){
+            var condition = {};
+            condition.type = $scope.condition_type;
+            condition.description = $scope.condition_description;
+            $scope.conditions.push(condition);
+        }
+        $scope.removeCondition = function(index){
+            $scope.conditions.splice(index);
+        }
+    });
 </script>
 @endsection

@@ -17,8 +17,8 @@ class CreateForeignRequisitionsTable extends Migration
             $table->increments('id');
             $table->integer('requisition_priority_id')->unsigned();
             $table->foreign('requisition_priority_id')->references('id')->on('requisition_priorities')->onDelete('cascade');
-            $table->integer('purpose_id')->unsigned();
-            $table->foreign('purpose_id')->references('id')->on('requisition_purposes')->onDelete('cascade');
+            $table->integer('requisition_purpose_id')->unsigned();
+            $table->foreign('requisition_purpose_id')->references('id')->on('requisition_purposes')->onDelete('cascade');
             $table->string('requisition_no')->nullable();
             $table->string('requisition_title')->nullable();
             $table->string('issued_date')->nullable();

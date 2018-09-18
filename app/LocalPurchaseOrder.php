@@ -15,13 +15,13 @@ class LocalPurchaseOrder extends Model
         return $this->hasMany('App\LocalPurchaseOrderLocalRequisition');
     }
     public function paymentterms(){
-        return $this->hasMany('App\LocalPurchaseOrderLocalRequisition');
+        return $this->hasMany('App\LocalPurchaseOrderPaymentTerm');
     }
     public function termsconditions(){
-        return $this->hasMany('App\LocalPurchaseOrderLocalRequisition');
+        return $this->hasMany('App\LocalPurchaseOrderTermsCondition');
     }
-    public function vendors(){
-        return $this->hasMany('App\LocalPurchaseOrderLocalRequisition');
+    public function vendor(){
+        return $this->hasOne('App\LocalPurchaseOrderVendor');
     }
     
 

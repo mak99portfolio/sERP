@@ -52,6 +52,7 @@ class LocalPurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->input());
          $request->validate([
            // 'requisition_no'=>'required',
             'vendor_id'=>'required',
@@ -61,6 +62,9 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->fill($request->input());
         $local_purchase_order->creator_user_id = Auth::id();
         $local_purchase_order->save();
+        $vendor = new Vendor;
+        $vendor->vendor_id = $request->vendor_id;
+        $local_purchase_order->vendor->save($vendor);
         Session::put('alert-success', 'Local Purchase order created successfully');
         return redirect()->route('local-purchase-order.create');
     }

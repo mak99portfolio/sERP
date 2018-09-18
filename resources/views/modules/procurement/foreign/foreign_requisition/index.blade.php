@@ -26,20 +26,22 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
-                                        <th>Category Title</th>
-                                        <th>Short Title</th>
+                                        <th>Requisition Title</th>
+                                        <th>Requisition No</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($requisition_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>brand_name</td>
-                                        <td>Short</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->requisition_title}}</td>
+                                        <td>{{$item->requisition_no}}</td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -11,7 +11,7 @@ Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
-
+Route::post('/getmsg','LocalPurchaseOrderController@search_msg');
 //Core
 Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('country', 'CountryController');
@@ -24,6 +24,9 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('bank', 'BankController');
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
+    Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ProductController@searchProduct']);
+    Route::get('/get-req-product/{id}', ['as' => 'get-req-product', 'uses' => 'ProductController@getReqProduct']);
+
     Route::get(
         'employee-organizational-info/{organizational_info}',
         'EmployeeProfileController@organizational_info_form'
@@ -32,7 +35,6 @@ Route::namespace('Core')->prefix('core')->group(function(){
             'employee-organizational-info/{organizational_info}',
             'EmployeeProfileController@update_organizational_info'
             )->name('employee-profile.update-organizational-info');
-    Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ProductController@searchProduct']);
 });
 
 //Procurement

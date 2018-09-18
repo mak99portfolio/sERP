@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class ForeignRequisition extends Model
 {
     use SoftDeletes;
+    protected $guarded = ['id'];
     protected $fillable = [
         'requisition_priority_id',
         'purpose_id',
@@ -16,4 +17,7 @@ class ForeignRequisition extends Model
         'date_expected',
         'note'
     ];
+    public function items(){
+        return $this->hasMany('App\ForeignRequisitionItem');
+    }
 }

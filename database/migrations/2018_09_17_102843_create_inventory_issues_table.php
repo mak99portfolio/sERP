@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequisitionPrioritiesTable extends Migration
+class CreateInventoryIssuesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateRequisitionPrioritiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisition_priorities', function (Blueprint $table) {
+        Schema::create('inventory_issues', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
-            $table->string('short_name')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateRequisitionPrioritiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisition_priorities');
+        Schema::dropIfExists('inventory_issues');
     }
 }

@@ -26,7 +26,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         <form class="form-horizontal form-label-left" action="{{route('foreign-requisition.store')}}" method="POST">
-                        @csrf
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm']) }}
@@ -73,7 +73,7 @@
                                             </span>
                                             <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
                                             <span class="input-group-addon">
-                                                <a href=""><i class="fa fa-list-ul"></i> Product List</a>
+                                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-list-ul"></i> Product List</a>
                                             </span>
                                         </div>
                                     </div>
@@ -82,7 +82,7 @@
 
                             <!--start Purchase Order Items table-->
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover" ng-if="itemlist.length >=1">
+                                <table class="table table-bordered table-hover" ng-if="itemlist.length >= 1">
                                     <thead class="bg-default">
                                         <tr>
                                             <th colspan="8">Purchase Requistion Items</th>
@@ -126,21 +126,68 @@
                             </div>
                             <!--end table-->
                             <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2]) }}
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <br />
-                                <div class="ln_solid"></div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2]) }}
                                 </div>
-                            </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                        <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Product List</h4>
+                    </div>
+                    <div class="modal-body" style="height: 75vh; overflow-y: auto">
+                        <table class="table" id="datatable-checkbox" table-bordered m-t-lg table-hover">
+                            <thead class="bg-default">
+                                <tr>
+                                    <th>#</th>
+                                    <th></th>
+                                    <th>Product Name</th>
+                                    <th>HS Code</th>
+                                    <th>Brand</th>
+                                    <th>Product Serial</th>
+                                    <th>Product Model</th>
+                                    <th>Part No</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>01</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat" />
+                                    </td>
+                                    <td>werr</td>
+                                    <td>321</td>
+                                    <td>rkr</td>
+                                    <td>42221</td>
+                                    <td>werr</td>
+                                    <td>8342</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
             </div>
         </div>
         {{-- Content end --}}
@@ -153,44 +200,43 @@
 <script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
-            $interpolateProvider.startSymbol('<%');
-            $interpolateProvider.endSymbol('%>');
-        });
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+    });
     app.controller('myCtrl', function($scope, $http) {
-        
-        $scope.itemlist = [];
 
-        $('#search_product').autocomplete({
-            source: "{{route('search-product')}}",
+    $scope.itemlist = [];
+    $('#search_product').autocomplete({
+    source: "{{route('search-product')}}",
             minlength: 1,
             autoFocus: true,
             select: function (e, ui) {
-                $scope.addToItemList(ui.item);
-                $scope.$apply();
-                console.log($scope.itemlist);
+            $scope.addToItemList(ui.item);
+            $scope.$apply();
+            console.log($scope.itemlist);
             }
-        });
-        $scope.addToItemList = function(item){
-            let url = "{{URL::to('procurement/get-product')}}/" + item.id;
-            $http.get(url)
-                    .then(function(response) {
-                        // console.log('response_data--------', response.data);
-                        $scope.itemlist.push(response.data);
-                    });
-            // if(!$scope.search(item.id, $scope.itemlist, id)){
-            // }
-        }
-        $scope.removeItem = function(index){
-            $scope.itemlist.splice(index);
-        }
-        $scope.search = function (nameKey, myArray, indexName) {
-        for (var i = 0; i < myArray.length; i++) {
-          if (myArray[i][indexName] == nameKey) {
-            return i;
-          }
-        }
-        return null;
-      }
+    });
+    $scope.addToItemList = function(item){
+    let url = "{{URL::to('procurement/get-product')}}/" + item.id;
+    $http.get(url)
+            .then(function(response) {
+            // console.log('response_data--------', response.data);
+            $scope.itemlist.push(response.data);
+            });
+    // if(!$scope.search(item.id, $scope.itemlist, id)){
+    // }
+    }
+    $scope.removeItem = function(index){
+    $scope.itemlist.splice(index);
+    }
+    $scope.search = function (nameKey, myArray, indexName) {
+    for (var i = 0; i < myArray.length; i++) {
+    if (myArray[i][indexName] == nameKey) {
+    return i;
+    }
+    }
+    return null;
+    }
     });
 </script>
 @endsection

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Procurement;
 use App\LocalPurchaseOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Illuminate\Support\Facades\Session;
 
 class LocalPurchaseOrderController extends Controller
 {
@@ -43,7 +45,17 @@ class LocalPurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+           // 'requisition_no'=>'required',
+            'vendor_id'=>'required',
+          
+        ]);
+        $local_purchase_order = new LocalPurchaseOrder;
+        $local_purchase_order->fill($request->input());
+        $local_purchase_order->creator_user_id = Auth::id();
+        $local_purchase_order->save();
+        Session::put('alert-success', 'Local Purchase order created successfully');
+        return redirect()->route('purchase-order.create');
     }
 
     /**

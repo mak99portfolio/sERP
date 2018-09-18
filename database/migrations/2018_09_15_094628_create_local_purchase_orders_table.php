@@ -24,8 +24,7 @@ class CreateLocalPurchaseOrdersTable extends Migration
             $table->string('status')->nullable();
             $table->string('shipping_method')->nullable();
             $table->string('payment_method')->nullable();
-            $table->string('remarks')->nullable();
-            $table->string('remarks')->nullable();
+            $table->string('remarks')->nullable();         
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();

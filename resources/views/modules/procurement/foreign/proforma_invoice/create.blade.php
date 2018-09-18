@@ -40,12 +40,12 @@
                                 {{ BootForm::text('proforma_invoice_receive_date','Proforma Invoice receive date', null, ['class'=>'form-control input-sm','id'=>"single_cal2" ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                
+
                                 {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
                                 </div>
 
                             </div>
-                            
+
                             <fieldset class="m-t-20">
                                 <legend>Table of Terms and Conditions:</legend>
                                 <div class="row">
@@ -87,7 +87,7 @@
                                     {{ BootForm::text('beneficiary_bank_info','Beneficiary Bank Info', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                             </div>
-                       
+
                             <fieldset>
                                 <legend>Product Table:</legend>
                                 <div class="table-responsive">
@@ -121,7 +121,7 @@
                                                         <td>
                                                             123
                                                         </td>
-                                                        
+
                                                         <td class="text-right">
                                                             <button type="button" class="btn btn-xs btn-default">
                                                                 <i class="fa fa-times"></i>
@@ -133,25 +133,25 @@
                                                     <tr>
                                                         <td colspan="5">Sub Total</td>
                                                         <td>324</td>
-                                                        
+
                                                         <td colspan="2"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="5">Add freight</td>
                                                         <td>520</td>
-                                                        
+
                                                         <td colspan="2"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="5">Grand Total</td>
                                                         <td>520</td>
-                                                        
+
                                                         <td colspan="2"></td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="5">Amount in Word</td>
                                                         <td>one thousand five hundred </td>
-                                                        
+
                                                         <td colspan="2"></td>
                                                     </tr>
                                                 </tfoot>
@@ -179,3 +179,4 @@
 </div>
 <!-- /page content -->
 @endsection
+

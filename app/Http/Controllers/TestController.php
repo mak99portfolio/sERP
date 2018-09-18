@@ -9,7 +9,7 @@ use Spatie\Permission\Models\Role;
 class TestController extends Controller{
 
 	public function __construct(){
-		$this->middleware('hasPermission:can_test');
+		//$this->middleware('hasPermission:can_test');
 	}
 
     public function index(){
@@ -19,7 +19,8 @@ class TestController extends Controller{
         //$role=Role::where(['name'=>'super_admin'])->first();
         //$role->givePermissionTo($permission);
         //\Auth::user()->assignRole($role);
-        echo 'passed permission middleware';
+        //echo 'passed permission middleware';
+        dd(uCode('working_units.working_unit_id', 'WU'));
     }
 
 }

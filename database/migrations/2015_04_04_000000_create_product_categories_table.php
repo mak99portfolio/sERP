@@ -18,11 +18,11 @@ class CreateProductCategoriesTable extends Migration
             $table->string('name');
             $table->string('short_name');
             $table->integer('product_categorie_id')->unsigned();
-            $table->foreign('product_categorie_id')->references('id')->on('product_categories')->onDelete('restrict');
+            $table->foreign('product_categorie_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->integer('creator_user_id')->unsigned();
-            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();
-            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

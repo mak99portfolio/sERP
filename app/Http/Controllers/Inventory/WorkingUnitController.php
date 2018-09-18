@@ -62,10 +62,11 @@ class WorkingUnitController extends Controller{
     		'address'=>'required|max:500',
     	]);
 
-    	\App\WorkingUnit::create($request->all());
-        return back()->with('success', 'Form submitted successfully');
+    	$working_unit=\App\WorkingUnit::create($request->all());
+        $working_unit->working_unit_id=uCode('working_units.working_unit_id', 'WU');
+        if($working_unit->save()) return back()->with('success', 'Form submitted successfully');
         //if($workingUnit->save()) return back()->with('success', 'Form submitted successfully');
-        //return back()->with('danger', 'Sorry, form submission failed');
+        return back()->with('danger', 'Sorry, form submission failed');
 
     }
 

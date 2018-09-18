@@ -13,12 +13,12 @@
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Foreign Purchase Order</h2>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
                         <form class="form-horizontal form-label-left" action="{{route('purchase-order.store')}}" method="POST">
                         @csrf
@@ -26,7 +26,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Requisition No.</label>
-                                        <select data-placeholder="Select Req No" multiple class="form-control input-sm select2" name="requisition_no">
+                                        <select data-placeholder="Select Req No" multiple class="form-control input-sm select2" name="requisition_no" ng-model="req_id" ng-change="searchReqNo()">
                                             <option></option>
                                             @foreach($requisition_list as $item)
                                             <option value="{{$item->id}}">{{$item->requisition_no}}</option>
@@ -85,58 +85,45 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="table-responsive m-t-15">
-                                    <table class="table table-bordered table-hover">
-                                            <thead class="bg-primary">
+                                    <table class="table table-bordered table-hover" ng-if="itemlist.length >=1">
+                                            <thead class="bg-default">
                                                 <tr>
                                                     <th colspan="8">Product Table</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>SL NO</th>
-                                                    <th>H.S. CODE</th>
+                                                    <th>#</th>
                                                     <th>Product Name</th>
                                                     <th>UOM</th>
                                                     <th>Quantity</th>
                                                     <th>Unit Price</th>
                                                     <th>Total Amount</th>
-                                                    <th class="text-right">
-                                                        <i class="fa fa-trash"></i>
-                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td class="text-right">123</td>
-                                                    <td class="text-center">123</td>
-                                                    <td>
-                                                        <img src="img/product.jpg" alt="product name" class="img-responsive">
+                                                <tr ng-repeat="item in itemlist">
+                                                    <td class="text-center"><% $index+1 %></td>
+                                                    <td class="checkbox">
+                                                        <label class="i-checks">
+                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                        </label>
                                                     </td>
+                                                    <td><% item.uom %></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>
-                                                        PCs
-                                                    </td>
-                                                    <td>
-                                                    <input class="form-control input-sm" type="number">
-                                                    </td>
-                                                    <td>
-                                                        123
-                                                    </td>
-                                                    <td>
-                                                        123
-                                                    </td>
-                                                    <td class="text-right">
-                                                        <button type="button" class="btn btn-xs btn-default">
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
+                                                    <% quantity[$index]*unit_price[$index] %>
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            <tfoot class="font-bold">
+                                            <!-- <tfoot class="font-bold">
                                                 <tr>
-                                                    <td colspan="6">Total</td>
+                                                    <td colspan="3">Total</td>
+                                                    <td>324</td>
                                                     <td>324</td>
 
-                                                    <td colspan="2"></td>
+                                                    <td colspan="1"></td>
                                                 </tr>
-                                            </tfoot>
+                                            </tfoot> -->
                                     </table>
                                 </div>
                                 </div>
@@ -163,9 +150,34 @@
 <!-- /page content -->
 @endsection
 @section('script')
+<script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 <script>
-$(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-});
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
+        $scope.searchReqNo = function () {
+            $scope.itemlist = [];
+            for(i=0; i<$scope.req_id.length; i++){
+                $scope.addToItemList($scope.req_id[i]);
+            }
+        }
+        $scope.addToItemList = function(id){
+            let url = "{{URL::to('procurement/get-requisition')}}/" + id;
+            $http.get(url)
+                    .then(function(response) {
+                        // console.log('data-----------', response.data);
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.itemlist.push(value);
+                        });
+                    });
+        }
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index);
+        }
+    });
 </script>
 @endsection

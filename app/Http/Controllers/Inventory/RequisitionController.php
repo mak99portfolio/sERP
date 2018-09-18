@@ -21,7 +21,13 @@ class RequisitionController extends Controller{
 
     public function create(){
 
-        $data=[];
+        $data=[
+            'inventory_requisition'=>new \App\InventoryRequisition,
+            'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_id', 'IR')
+        ];
+
+        //dd($data);
+
         return view($this->path('create'), $data);
         
     }

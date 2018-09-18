@@ -69,7 +69,6 @@ class PurchaseOrderController extends Controller
         $purchase_order = new PurchaseOrder;
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();
-        // dd($product);
         $purchase_order->save();
         Session::put('alert-success', 'Purchase order created successfully');
         return redirect()->route('purchase-order.create');
@@ -118,5 +117,18 @@ class PurchaseOrderController extends Controller
     public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
+    }
+    public function getRequisitionByRequisitionId($id){
+        $req = ForeignRequisition::find($id);
+        $items = $req->items;
+        foreach($items as $item){
+            $data[] = [
+                'name' => $item->product->name,
+                'hs_code' => $item->product->hs_code,
+                'uom' => $item->product->unit_of_measurement->name,
+                'quantity' => $item->quantity,
+            ];
+        }
+        return response()->json($data);
     }
 }

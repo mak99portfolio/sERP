@@ -18,9 +18,9 @@ class CreateProformaInvoiceItemsTable extends Migration
             $table->integer('quantity');
             $table->double('unit_price');
             $table->integer('proforma_invoice_id')->unsigned();
-            $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('restrict');
+            $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
             $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

@@ -89,3 +89,12 @@ function btnSubmitGroup(){
 	<button type='button' class='btn btn-default' onclick='window.history.back();'/><i class='fa text-info fa-reply fa-lg'></i> Go Back</button>
 	</div>";
 }
+
+function uCode(string $tableField, string $prefix){
+
+	list($table, $field)=explode('.', $tableField);
+	$prefix=strtoupper($prefix);
+	$latestValue=\DB::table($table)->select($field)->latest()->first();
+	return $latestValue;
+
+}

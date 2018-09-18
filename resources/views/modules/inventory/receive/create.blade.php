@@ -140,14 +140,14 @@
                                     </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                                    <form class="form-horizontal form-label-left">
+                                    {{ BootForm::open(['model'=>$inventory_receive, 'store'=>'receive.store', 'update'=>'receive.update']) }}
                                         <div class="row">
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 
                                                     <label>CI No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control input-sm" placeholder="Search for...">
+                                                        {{ Form::text('ci_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number']) }}
                                                         <span class="input-group-btn">
                                                             <button class="btn btn-default btn-sm" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
                                                         </span>
@@ -156,31 +156,25 @@
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>Date</label>
-                                                    <input class="form-control input-sm" type="text">
+                                                    {{--<label>Date</label>
+                                                    <input class="form-control input-sm" type="text"> --}}
+                                                    {{ BootForm::text('receive_date', 'Select Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>PR No</label>
-                                                    <input class="form-control input-sm" type="text" readonly>
+                                                    {{ BootForm::text('pr_no', 'PO No', null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                                 </div>
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>PO No</label>
-                                                    <input class="form-control input-sm" type="text" readonly>
-                                                </div>
+                                                {{ BootForm::text('po_no', 'PO No', null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                             </div>
                                             
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label>LC No</label>
-                                                    <input class="form-control input-sm" type="text" readonly>
-                                                </div>
+                                                {{ BootForm::text('lc_no', 'LC No', null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('purpose_id', 'Working Unit', [''=>'select purpose'] ,['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">
@@ -322,4 +316,17 @@
         {{-- Content end --}}
     </div>
 </div>
+@endsection
+
+@section('style')
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/eonasdan-bootstrap-datetimepicker@4.17.47/build/css/bootstrap-datetimepicker-standalone.min.css"> --}}
+@endsection
+
+@section('script')
+{{-- <script src="https://cdn.jsdelivr.net/combine/npm/moment@2.22.2/min/moment.min.js,npm/eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min.js"></script> --}}
+<script>
+//$(function(){
+    //$('#receive_date').datetimepicker();
+//});//End of jquery after load
+</script>
 @endsection

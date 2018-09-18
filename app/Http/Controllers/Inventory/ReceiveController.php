@@ -21,7 +21,11 @@ class ReceiveController extends Controller{
 
     public function create(){
 
-        $data=[];
+        $data=[
+            'inventory_receive'=>new \App\InventoryReceive,
+            'working_units'=>\App\WorkingUnit::pluck('name', 'id') //Need to filter in future
+        ];
+        
         return view($this->path('create'), $data);
         
     }

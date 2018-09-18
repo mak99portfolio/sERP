@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Procurement;
 
 use App\LocalPurchaseOrder;
 use Illuminate\Http\Request;
+use App\Helpers\Paginate;
 use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Support\Facades\Session;
@@ -23,8 +24,14 @@ class LocalPurchaseOrderController extends Controller
    }
     public function index()
     {
-          return view($this->path('index'));
+       $data=[
+    		'paginate'=>new Paginate('\App\LocalPurchaseOrder'),
+    		'carbon'=>new \Carbon\Carbon
+    	];
 
+    	//dd($data['paginate']);
+
+    	return view($this->path('index'), $data);
      }
     public function create()
     {
@@ -55,7 +62,7 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->creator_user_id = Auth::id();
         $local_purchase_order->save();
         Session::put('alert-success', 'Local Purchase order created successfully');
-        return redirect()->route('purchase-order.create');
+        return redirect()->route('local-purchase-order.create');
     }
 
     /**

@@ -18,7 +18,7 @@
                             {{csrf_field()}}
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label>Requisition Type Name</label>
+                                    <label>Requisition Type</label>
                                     <input class="form-control input-sm" type="text" name="name" value="{{ old('name') }}">
                                 </div>
                             </div>

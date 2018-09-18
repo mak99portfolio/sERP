@@ -24,12 +24,12 @@ class CreateForeignRequisitionsTable extends Migration
             $table->string('issued_date');
             $table->string('date_expected');
             $table->text('note');
+            $table->integer('company_id')->unsigned();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->integer('company_id')->unsigned();
-            $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
             $table->tinyInteger('status')->nullable();
             $table->softDeletes();
             $table->timestamps();

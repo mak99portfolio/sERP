@@ -20,7 +20,9 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left">
+                    
+                             <form class="form-horizontal form-label-left" action="{{route('local-purchase-order.store')}}" method="POST">
+                        @csrf
                             <fieldset>
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
@@ -75,7 +77,7 @@
                                         {{ BootForm::select('payment_method', 'Select Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::textarea('remark','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                                     </div>
                                 </div>
                             </fieldset>

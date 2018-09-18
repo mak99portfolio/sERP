@@ -17,9 +17,9 @@ class CreateBloodGroupsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('creator_user_id')->unsigned();
-            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();
-            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

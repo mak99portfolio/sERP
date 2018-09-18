@@ -22,7 +22,7 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
@@ -38,7 +38,7 @@
                                         <td>{{$item->requisition_title}}</td>
                                         <td>{{$item->requisition_no}}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
+                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

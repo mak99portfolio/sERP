@@ -12,4 +12,7 @@ class ForeignRequisitionItem extends Model
         'product_id',
         'quantity',
     ];
+    public function product(){
+        return $this->belongsTo('App\Product');
+    }
 }

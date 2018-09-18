@@ -20,13 +20,13 @@ class CreateInventoryReceivePurchaseOrdersTable extends Migration{
             $table->integer('updator_user_id')->unsigned()->nullbale();
             $table->softDeletes();
             $table->timestamps();
-            $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('restrict');
-            $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('restrict');
-            $table->foreign('receive_from')->references('id')->on('vendors')->onDelete('restrict');
-            $table->foreign('inventory_item_status_id')->references('id')->on('inventory_item_statuses')->onDelete('restrict');
-            $table->foreign('working_unit_id')->references('id')->on('working_units')->onDelete('restrict');
-            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('restrict');
-            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('restrict');
+            $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('cascade');
+            $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
+            $table->foreign('receive_from')->references('id')->on('vendors')->onDelete('cascade');
+            $table->foreign('inventory_item_status_id')->references('id')->on('inventory_item_statuses')->onDelete('cascade');
+            $table->foreign('working_unit_id')->references('id')->on('working_units')->onDelete('cascade');
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
 
         });
 

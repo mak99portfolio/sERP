@@ -89,3 +89,31 @@ function btnSubmitGroup(){
 	<button type='button' class='btn btn-default' onclick='window.history.back();'/><i class='fa text-info fa-reply fa-lg'></i> Go Back</button>
 	</div>";
 }
+
+function uCode(string $tableField, string $prefix, int $pointer=1){
+
+	list($table, $field)=explode('.', $tableField);
+	$prefix=strtoupper($prefix);
+	$row=\DB::table($table)->select($field)->whereNotNull($field)->latest()->first();
+
+	if(empty($row->$field)){
+
+		return $prefix.$pointer;
+
+	}else{
+
+		$latestValue=intVal(preg_replace("/[^0-9\.]/", '', $row->$field));
+
+		if($pointer <= $latestValue) $pointer=++$latestValue;
+		
+		$nextValue=$prefix.$pointer;
+
+		if(\DB::table($table)->where($field, $nextValue)->exists()){
+
+			return uCode($tableField, $prefix, ++$pointer);
+
+		}else return $nextValue;
+
+	}
+
+}

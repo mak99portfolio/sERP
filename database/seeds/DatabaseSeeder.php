@@ -41,5 +41,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RequisitionPurposeTableSeeder::class);
         $this->call(EmployeeProfileTableSeeder::class);
         $this->call(RequisitionPriorityTableSeeder::class);
+        $this->call(ForeignRequisitionTableSeeder::class);
+        $this->call(ForeignRequisitionItemTableSeeder::class);
     }
 }

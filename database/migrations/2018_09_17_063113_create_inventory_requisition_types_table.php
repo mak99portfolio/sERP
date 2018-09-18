@@ -12,6 +12,10 @@ class CreateInventoryRequisitionTypesTable extends Migration{
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('short_name')->unique();
+            $table->integer('creator_user_id')->unsigned();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -22,6 +26,6 @@ class CreateInventoryRequisitionTypesTable extends Migration{
     public function down(){
 
         Schema::dropIfExists('inventory_requisition_types');
-        
+
     }
 }

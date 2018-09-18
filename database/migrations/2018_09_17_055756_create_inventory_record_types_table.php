@@ -13,6 +13,10 @@ class CreateInventoryRecordTypesTable extends Migration{
             $table->string('record_type_id')->nullable()->unique();
             $table->string('name')->unique();
             $table->string('short_name')->unique();
+            $table->integer('creator_user_id')->unsigned();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

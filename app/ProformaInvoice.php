@@ -17,9 +17,9 @@ class ProformaInvoice extends Model
         'vendor_id',
         'port_of_loading_port_id',
         'port_of_discharge_port_id',
-        'country_of_final_destination_countru_id',
-        'final_destination_countru_id',
-        'country_of_origin_of_goods_countru_id',
+        'country_of_final_destination_country_id',
+        'final_destination_country_id',
+        'country_of_origin_of_goods_country_id',
         'shipment_allow',
         'payment_type',
         'pre_carriage_by',
@@ -28,4 +28,7 @@ class ProformaInvoice extends Model
         'beneficiary_bank_info',
         'notes',
     ];
+    public function items(){
+        return $this->hasMany('App\ProformaInvoiceItem');
+    }
 }

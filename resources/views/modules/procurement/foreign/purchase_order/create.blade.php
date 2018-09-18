@@ -26,7 +26,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Requisition No.</label>
-                                        <select data-placeholder="Select Req No" multiple class="form-control input-sm select2" name="requisition_no" ng-model="req_id" ng-change="searchReqNo()">
+                                        <select data-placeholder="Select Req No" multiple class="form-control input-sm select2" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
                                             <option></option>
                                             @foreach($requisition_list as $item)
                                             <option value="{{$item->id}}">{{$item->requisition_no}}</option>
@@ -57,13 +57,13 @@
                                     {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('country_of_final_destination_countru_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('country_of_final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('final_destination_countru_id', 'Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('final_destination_country_id', 'Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('country_of_origin_of_goods_countru_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('shipment_allow', 'Shipment Allow', [''=>'Select shipment allow',1=>'Multi shipment',2=>'Partial'], null, ['class'=>'form-control input-sm']) }}
@@ -108,7 +108,7 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>
                                                     <% quantity[$index]*unit_price[$index] %>
@@ -150,7 +150,6 @@
 <!-- /page content -->
 @endsection
 @section('script')
-<script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
             $interpolateProvider.startSymbol('<%');

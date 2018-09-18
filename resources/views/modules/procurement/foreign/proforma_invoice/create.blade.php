@@ -13,18 +13,26 @@
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Proforma Invoice</h2>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
                         <form class="form-horizontal form-label-left" action="{{route('proforma-invoice.store')}}" method="POST">
                         @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('purchase_order_no','Purchase Order No.', null, ['class'=>'form-control input-sm','readonly' ]) }}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label>Requisition No.</label>
+                                        <select data-placeholder="Select PO No" multiple class="form-control input-sm select2" name="purchase_order_id" ng-model="po_id" ng-change="searchPO()">
+                                            <option></option>
+                                            @foreach($purchase_orders as $item)
+                                            <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm','id'=>"single_cal4" ]) }}
@@ -56,13 +64,13 @@
                                     {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('country_of_final_destination_countru_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('country_of_final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('final_destination_countru_id', 'Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('final_destination_country_id', 'Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('country_of_origin_of_goods_countru_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::select('shipment_allow', 'Shipment Allow', [''=>'Select shipment allow',1=>'Multi shipment',2=>'Partial'], null, ['class'=>'form-control input-sm']) }}
@@ -91,7 +99,7 @@
                             <fieldset>
                                 <legend>Product Table:</legend>
                                 <div class="table-responsive">
-                                            <table class="table table-bordered table-hover">
+                                            <table class="table table-bordered table-hover" ng-if="itemlist.length >=1">
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th>SL NO</th>
@@ -106,28 +114,20 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td class="text-right">123</td>
-                                                        <td class="text-center">123</td>
-                                                        <td>
-                                                            <img src="img/product.jpg" alt="product name" class="img-responsive">
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control input-sm" type="number">
-                                                        </td>
-                                                        <td>
-                                                            123
-                                                        </td>
-                                                        <td>
-                                                            123
-                                                        </td>
-
-                                                        <td class="text-right">
-                                                            <button type="button" class="btn btn-xs btn-default">
-                                                                <i class="fa fa-times"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                <tr ng-repeat="item in itemlist">
+                                                    <td class="text-center"><% $index+1 %></td>
+                                                    <td class="checkbox">
+                                                        <label class="i-checks">
+                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                        </label>
+                                                    </td>
+                                                    <td><% item.uom %></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
+                                                    <td>
+                                                    <% quantity[$index]*unit_price[$index] %>
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                                 <tfoot class="font-bold">
                                                     <tr>
@@ -179,4 +179,34 @@
 </div>
 <!-- /page content -->
 @endsection
-
+@section('script')
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
+        $scope.searchPO = function () {
+            $scope.itemlist = [];
+            for(i=0; i<$scope.po_id.length; i++){
+                $scope.addToItemList($scope.po_id[i]);
+            }
+        }
+        $scope.addToItemList = function(id){
+            let url = "{{URL::to('procurement/get-po')}}/" + id;
+            $http.get(url)
+                    .then(function(response) {
+                        // console.log('data-----------', response.data);
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.itemlist.push(value);
+                        });
+                    });
+        }
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index);
+        }
+    });
+</script>
+@endsection

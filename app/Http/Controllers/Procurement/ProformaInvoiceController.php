@@ -126,7 +126,7 @@ class ProformaInvoiceController extends Controller
     }
     public function getPOByPOId($id){
         $po = PurchaseOrder::find($id);
-        dd($po);
+        // dd($po);
         $items = $po->items;
         foreach($items as $item){
             $data[] = [

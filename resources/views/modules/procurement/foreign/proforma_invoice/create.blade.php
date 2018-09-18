@@ -123,7 +123,7 @@
                                                     </td>
                                                     <td><% item.uom %></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" value="<% item.unit_price %>" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>
                                                     <% quantity[$index]*unit_price[$index] %>
                                                     </td>

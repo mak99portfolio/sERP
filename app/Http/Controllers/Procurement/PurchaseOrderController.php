@@ -50,8 +50,9 @@ class PurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->input());
         $request->validate([
-            'requisition_no'=>'required',
+            'foreign_requisition_id'=>'required',
             // 'purchase_order_no'=>'required',
             'vendor_id'=>'required',
             // 'requisition_date'=>'required',
@@ -70,8 +71,8 @@ class PurchaseOrderController extends Controller
         $purchase_order = new PurchaseOrder;
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();
+        $purchase_order->purchase_order_no = time();
         $purchase_order->save();
-
         $items = Array();
         foreach($request->items as $item){
             array_push($items, new PurchaseOrderItem($item));
@@ -79,7 +80,7 @@ class PurchaseOrderController extends Controller
         $purchase_order->items()->saveMany($items);
 
         Session::put('alert-success', 'Purchase order created successfully');
-        return redirect()->route('purchase-order.create');
+        return redirect()->route('purchase-order.index');
     }
 
     /**

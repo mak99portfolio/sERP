@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class LocalRequisition extends Model
 {
-    //
+    protected $fillable = [
+        'requisition_priority_id',
+        'purpose_id',
+        'requisition_no',
+        'requisition_title',
+        'issued_date',
+        'date_expected',
+        'note',
+        'status',
+    ];
+    public function items(){
+        return $this->hasMany('App\LocalRequisitionItem');
+    }
 }

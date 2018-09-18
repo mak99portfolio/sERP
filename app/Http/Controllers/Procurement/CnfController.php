@@ -29,7 +29,10 @@ class CnfController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root . 'create');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

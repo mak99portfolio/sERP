@@ -25,7 +25,6 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
     Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ProductController@searchProduct']);
-    Route::get('/get-req-product/{id}', ['as' => 'get-req-product', 'uses' => 'ProductController@getReqProduct']);
 
     Route::get(
         'employee-organizational-info/{organizational_info}',
@@ -59,6 +58,10 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('requisition-purpose', 'RequisitionPurposeController');
     Route::resource('cost-particular', 'CostParticularController');
     Route::resource('consignment-particular', 'ConsignmentParticularController');
+
+    //API
+    Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ForeignRequisitionController@getProductByProductId']);
+    Route::get('/get-requisition/{id}', ['as' => 'get-requisition', 'uses' => 'PurchaseOrderController@getRequisitionByRequisitionId']);
 
 });
 

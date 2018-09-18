@@ -25,4 +25,7 @@ class PurchaseOrder extends Model
         'letter_footer',
         'notes'
     ];
+    public function items(){
+        return $this->hasMany('App\PurchaseOrderItem');
+    }
 }

@@ -23,9 +23,10 @@ class RequisitionController extends Controller{
 
         $data=[
             'inventory_requisition'=>new \App\InventoryRequisition,
+            'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_id', 'IR')
         ];
 
-        dd($data);
+        //dd($data);
 
         return view($this->path('create'), $data);
         

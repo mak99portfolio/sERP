@@ -26,8 +26,8 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->timestamps();
 
             $table->foreign('inventory_requisition_type_id')->references('id')->on('inventory_requisition_types')->onDelete('cascade');
-            $table->foreign('sender_depot_id')->references('id')->on('working_unit_id')->onDelete('cascade');
-            $table->foreign('requested_depot_id')->references('id')->on('working_unit_id')->onDelete('cascade');
+            $table->foreign('sender_depot_id')->references('id')->on('working_units')->onDelete('cascade');
+            $table->foreign('requested_depot_id')->references('id')->on('working_units')->onDelete('cascade');
             $table->foreign('inventory_item_status_id')->references('id')->on('inventory_item_statuses')->onDelete('cascade');
             $table->foreign('initial_approver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('final_approver_id')->references('id')->on('users')->onDelete('cascade');

@@ -7,7 +7,7 @@ class InventoryRecordTypesSeeder extends Seeder{
     public function run(){
         
         $data=[
-        	['record_type_id'=>1 ,'Internal Depot Issue'=>'', 'short_name'=>'IDI'],
+        	['record_type_id'=>1 ,'name'=>'Internal Depot Issue', 'short_name'=>'IDI'],
         	['record_type_id'=>2 ,'name'=>'Factory issue', 'short_name'=>'FI'],
         	['record_type_id'=>3 ,'name'=>'Invoice issue', 'short_name'=>'IIS'],
         	['record_type_id'=>4 ,'name'=>'PO Receive', 'short_name'=>'PR'],

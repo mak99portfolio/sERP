@@ -14,7 +14,7 @@ class ProductTableSeeder extends Seeder
         $data=[
             [
                 'name' => 'Tyre',
-                'hs_code' => 'Ogd',
+                'hs_code' => 'Ogsdfsdfghfhd',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
                 'product_group_id' => 1,
@@ -39,7 +39,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'Tube',
-                'hs_code' => 'sdfsdf',
+                'hs_code' => 'sdfsdfhgf',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
                 'product_group_id' => 1,
@@ -64,7 +64,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => '6" Tyre',
-                'hs_code' => 'Ogdfgdfgd',
+                'hs_code' => 'sdffsdfkjl',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
                 'product_group_id' => 1,
@@ -89,7 +89,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'Arif',
-                'hs_code' => 'Ogdfgdfgd',
+                'hs_code' => 'Ogdfgdfghfgd',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
                 'product_group_id' => 1,
@@ -114,7 +114,7 @@ class ProductTableSeeder extends Seeder
             ],
             [
                 'name' => 'Atik',
-                'hs_code' => 'fghfgh',
+                'hs_code' => 'fghghjfgh',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
                 'product_group_id' => 1,

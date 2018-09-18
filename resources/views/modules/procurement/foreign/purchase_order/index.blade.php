@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Foreign Purchase order List</h2>
-                    <a href="{{route('purchase-order.create')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
+                    <a href="{{route('purchase-order.create')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -34,15 +34,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($purchase_order_list as $purchase_order)
                                     <tr>
-                                        <td>01</td>
-                                        <td>123</td>
-                                        <td>12-6-18</td>
-                                        <td>12-6-18</td>    
+                                    <td>{{$purchase_order->id}}</td>
+                                        <td>{{$purchase_order->id}}</td>
+                                        <td>{{$purchase_order->purchase_order_date}}</td>
+                                        <td>{{$purchase_order->requisition_date}}</td>    
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                     @endforeach
                                 </tbody>
                             </table>
                         </div>

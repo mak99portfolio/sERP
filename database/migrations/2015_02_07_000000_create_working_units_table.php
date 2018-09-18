@@ -15,6 +15,7 @@ class CreateWorkingUnitsTable extends Migration
 
         Schema::create('working_units', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('working_unit_id')->nullable();
             $table->integer('company_id')->unsigned()->nullable();
             $table->integer('parent_unit_id')->unsigned()->nullable();
             $table->integer('working_unit_type_id')->unsigned()->nullable();

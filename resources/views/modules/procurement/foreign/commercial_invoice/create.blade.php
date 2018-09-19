@@ -20,149 +20,87 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <form class="form-horizontal form-label-left input_mask">
+
+                        <form class="form-horizontal form-label-left" action="{{route('commercial-invoice.store')}}" method="POST">
+                            @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Commercial Invoice No</label>
-                                        <input type="text" class="form-control" name="commercial_invoice_no">
-                                    </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Date</label>
-                                        <input type="date" class="form-control" name="commercial_invoice_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC No</label>
-                                        <input type="text" class="form-control" name="lc_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                     {{ BootForm::select('lc_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
+                                     
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC Date</label>
-                                        <input type="date" class="form-control" name="lc_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('lc_date','LC Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
-                                        <div class="panel-heading">Benefeciary Bank Info</div>
+                                        <div class="panel-heading">Beneficiary Bank Info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account No</label>
-                                                    <input type="text" class="form-control" name="benefeciary_account_no">
-                                                </div>
+                                                {{ BootForm::text('beneficiary_account_no','Account No', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account Name</label>
-                                                    <input type="text" class="form-control" name="benefeciary_account_name">
-                                                </div>
+                                                {{ BootForm::text('beneficiary_account_name','Account Name', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Name</label>
-                                                    <input type="text" class="form-control" name="benefeciary_bank_name">
-                                                </div>
+                                                {{ BootForm::text('bank_name','Bank Name', null, ['class'=>'form-control input-sm']) }}
                                             </div>
+
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Address</label>
-                                                    <textarea name="benefeciary_bank_address" class="form-control" id="" cols="30" rows="1"></textarea>
-                                                </div>
+                                                {{ BootForm::textarea('beneficiary_bank_address','Bank Address',null,['class'=>'form-control input-sm','rows'=>'1']) }}
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Bl No</label>
-                                        <input type="text" class="form-control" name="bl_no">
-                                    </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bl_no','Bl No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Bl Date</label>
-                                        <input type="date" class="form-control" name="bl_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bl_date','Bl Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Vessel No / Flight No</label>
-                                        <input type="text" class="form-control" name="vessel_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Container No</label>
-                                        <input type="text" class="form-control" name="container_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset class="m-t-20">
                                         <legend>Table of Terms and Conditions:</legend>
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Port of Loading</label>
-                                                    <select name="port_of_loading" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('port_of_loading', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Port of Discharge</label>
-                                                    <select name="port_of_discharge" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('port_of_discharge', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Country of Final Destination</label>
-                                                    <select name="country_of_final_destination" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('country_of_final_destination', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Final Destination</label>
-                                                    <select name="final_destination" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('final_destination', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Country of Origin of Goods</label>
-                                                    <select name="Country_of_Origin_of_Goods" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('Country_of_Origin_of_Goods', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                         </div>
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Notes</label>
-                                        <textarea name="notes" class="form-control" rows="2"></textarea>
-                                    </div>
+
+                                    {{ BootForm::textarea('notes','Notes',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="table-responsive">
@@ -211,7 +149,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-success btn-sm">Submit</a>
+                                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
                                         <a href="{{route('commercial-invoice.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                     </div>
                                 </div>

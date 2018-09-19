@@ -15,7 +15,7 @@ class CreateCommercialInvoiceTrackingTable extends Migration
     {
         Schema::create('commercial_invoice_tracking', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('commercial_invoice_id');
+            $table->integer('commercial_invoice_id');
             $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->string('bl_issue_date')->nullable();
             $table->string('document_arrived_at_bank_date')->nullable();

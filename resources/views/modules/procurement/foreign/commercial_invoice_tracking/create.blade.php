@@ -97,7 +97,7 @@
                                         <th scope="row">Document Value Payment</th>
                                         <td>
                                             <div class="input-group">
-                                                <input type="text" name="document_value_payment" class="form-control" placeholder="Document Value Payment">
+                                                <input type="text" name="document_value_payment" class="form-control datepicker" placeholder="Document Value Payment">
                                                 <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button">Save</button>
                                                     </span>
@@ -113,7 +113,7 @@
                                         <th scope="row">Container Arrived At Port</th>
                                         <td>
                                             <div class="input-group">
-                                                <input type="text" name="container_arrived_at_port" class="form-control" datepicker >
+                                                <input type="text" name="container_arrived_at_port" class="form-control datepicker" datepicker >
                                                 <span class="input-group-btn">
                                                         <button class="btn btn-default" type="button">Save</button>
                                                     </span>

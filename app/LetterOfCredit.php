@@ -27,4 +27,7 @@ class LetterOfCredit extends Model
         'partial_shipment',
         'transhipment_information'
     ];
+    public function items(){
+        return $this->hasMany('App\LetterOfCreditItem');
+    }
 }

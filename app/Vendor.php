@@ -58,5 +58,9 @@ class Vendor extends Model
     {
         return $this->hasMany('App\EnclosureVendor');
     }
-
+    public function proforma_invoice()
+    {
+        return $this->hasMany('App\ProformaInvoice');
+    }
+    
 }

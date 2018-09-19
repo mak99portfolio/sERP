@@ -7,6 +7,7 @@ use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\Port;
 use App\Country;
+use App\City;
 use App\Vendor;
 use Illuminate\Http\Request;
 use Auth;
@@ -40,6 +41,7 @@ class ProformaInvoiceController extends Controller
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
+        $view->with('city_list', City::pluck('name','id')->prepend('-- Select City --', ''));
         return $view;
     }
 

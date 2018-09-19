@@ -26,4 +26,12 @@ class Port extends Model
     public function po_of_loading(){
         return $this->hasMany('App\PurchaseOrder','port_of_loading_port_id');
     }
+    public function pi_of_loading()
+    {
+        return $this->hasMany('App\ProformaInvoice','port_of_loading_port_id');
+    }
+    public function pi_of_discharge()
+    {
+        return $this->hasMany('App\ProformaInvoice','port_of_discharge_port_id');
+    }
 }

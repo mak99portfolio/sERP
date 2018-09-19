@@ -21,6 +21,8 @@ class CreateProformaInvoiceItemsTable extends Migration
             $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 

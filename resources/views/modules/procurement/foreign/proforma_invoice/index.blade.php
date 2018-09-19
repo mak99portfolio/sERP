@@ -34,15 +34,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($proforma_invoice_list as $proforma_invoice)
                                     <tr>
-                                        <td>01</td>
-                                        <td>123</td>
-                                        <td>12-6-18</td>
-                                        <td>12-6-18</td>    
+                                        <td>{{$proforma_invoice->id}}</td>
+                                        <td>{{$proforma_invoice->proforma_invoice_no}}</td>
+                                        <td>{{$proforma_invoice->proforma_invoice_date}}</td>
+                                        <td>{{$proforma_invoice->created_at}}</td>    
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

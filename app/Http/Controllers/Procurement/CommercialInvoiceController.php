@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
-use App\Model\Pocurement\CommercialInvoice;
 use Illuminate\Http\Request;
 use App\Country;
 use App\City;
 use App\Port;
 use App\LetterOfCredit;
+use App\CommercialInvoice;
+use Auth;
+use Session;
 
 class CommercialInvoiceController extends Controller
 {
@@ -17,6 +19,7 @@ class CommercialInvoiceController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+         $view->with('commercial_invoice_list', CommercialInvoice::all());
         // $view->with('foo', 'bar');
         // your code here
         return $view;
@@ -38,7 +41,18 @@ class CommercialInvoiceController extends Controller
  
     public function store(Request $request)
     {
-        //
+        // dd($request->input());
+         $request->validate([
+           // 'requisition_no'=>'required',
+            'commercial_invoice_no'=>'required',
+          
+        ]);
+        $commercial_invoice = new CommercialInvoice;
+        $commercial_invoice->fill($request->input());
+        $commercial_invoice->creator_user_id = Auth::id();
+        $commercial_invoice->save();
+        Session::put('alert-success', 'Commercial Invoice created successfully');
+        return redirect()->route('commercial-invoice.create');
     }
 
     public function show(CommercialInvoice $commercialInvoice)

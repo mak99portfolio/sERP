@@ -117,3 +117,12 @@ function uCode(string $tableField, string $prefix, int $pointer=1){
 	}
 
 }
+
+function stock_balance(\App\WorkingUnit $working_unit, \App\Product $product){
+
+    $receive_quantity=$working_unit->stocks()->where('product_id', $product->id)->sum('receive_quantity');
+    $issue_quantity=$working_unit->stocks()->where('product_id', $product->id)->sum('issue_quantity');
+    $allocated_quantity=$working_unit->stocks()->where('product_id', $product->id)->sum('allocated_quantity');
+    return $receive_quantity - $issue_quantity - $allocated_quantity;
+
+}

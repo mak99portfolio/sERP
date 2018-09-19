@@ -7,6 +7,7 @@ use App\PurchaseOrder;
 use App\ForeignRequisition;
 use App\Port;
 use App\Country;
+use App\City;
 use App\Vendor;
 use App\PurchaseOrderItem;
 use Illuminate\Http\Request;
@@ -40,6 +41,7 @@ class PurchaseOrderController extends Controller
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
+        $view->with('city_list', City::pluck('name','id')->prepend('-- Select City --', ''));
         return $view;
     }
 
@@ -61,7 +63,7 @@ class PurchaseOrderController extends Controller
             // 'port_of_loading_port_id'=>'required',
             // 'port_of_discharge_port_id'=>'required',
             // 'country_of_final_destination_country_id'=>'required',
-            // 'final_destination_country_id'=>'required',
+            // 'final_destination_city_id'=>'required',
             // 'country_of_origin_of_goods_country_id'=>'required',
             // 'payment_type'=>'required',
             // 'pre_carriage_by'=>'required',

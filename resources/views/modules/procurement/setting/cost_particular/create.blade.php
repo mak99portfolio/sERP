@@ -17,16 +17,10 @@
                         <form class="form-horizontal form-label-left" action="{{route('cost-particular.store')}}" method="POST">
                             {{csrf_field()}}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Cost Particular Name</label>
-                                    <input class="form-control input-sm" type="text" name="name"  value="{{ old('name') }}">
-                                </div>
+                                {{ BootForm::text('name', 'Cost Particular Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label>Short Name</label>
-                                    <input class="form-control input-sm" type="text" name="short_name" value="{{ old('short_name') }}">
-                                </div>
+                                {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />

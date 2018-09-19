@@ -63,6 +63,7 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ForeignRequisitionController@getProductByProductId']);
     Route::get('/get-requisition/{id}', ['as' => 'get-requisition', 'uses' => 'PurchaseOrderController@getRequisitionByRequisitionId']);
     Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ProformaInvoiceController@getPOByPOId']);
+    Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'CommercialInvoiceController@getLcByLcId']);
 
 });
 
@@ -79,5 +80,6 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('return-reason', 'ReturnReasonController');
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
-    Route::get('get-product-info/{slug}', 'RequisitionController@get_product_info');
+    Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
+    Route::get('vue-old-products', 'RequisitionController@vue_old_products');
 });

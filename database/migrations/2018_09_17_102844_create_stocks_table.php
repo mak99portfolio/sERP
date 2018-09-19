@@ -20,8 +20,8 @@ class CreateStocksTable extends Migration{
             $table->integer('issue_quantity')->unsigned()->default(0);
             $table->integer('allocated_quantity')->unsigned()->default(0);
             $table->text('remarks')->nullable();
-            $table->integer('creator_user_id')->unsigned()->nullbale();
-            $table->integer('updator_user_id')->unsigned()->nullbale();
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
 

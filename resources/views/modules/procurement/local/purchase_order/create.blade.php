@@ -250,7 +250,7 @@
                                                         <th colspan="2">% or Fixed Amount</th>
                                                     </tr>
                                                     <tr>
-                                                        <th><input class="form-control input-sm" type="text" value="20/02/2018"></th>
+                                                        <th><input class="form-control input-sm datepicker" type="text"></th>
                                                         <th><input class="form-control input-sm" type="text"></th>
                                                         <th><input class="form-control input-sm" type="text"></th>
                                                         <th  class="text-center"><button type="button" class="btn btn-xs btn-default">Add</button></th>

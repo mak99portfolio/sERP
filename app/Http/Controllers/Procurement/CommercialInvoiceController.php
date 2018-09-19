@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\Model\Pocurement\CommercialInvoice;
 use Illuminate\Http\Request;
+use App\Country;
+use App\City;
+use App\Port;
+use App\LetterOfCredit;
 
 class CommercialInvoiceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     private $view_root = 'modules/procurement/foreign/commercial_invoice/';
     public function index()
     {
@@ -22,72 +22,59 @@ class CommercialInvoiceController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function create()
     {
+        
+        
         $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
+       $view->with('country_list',Country ::pluck('name', 'id')->prepend('--Select Country--'));
+       $view->with('port_list',Port ::pluck('name', 'id')->prepend('--Select Port--'));
+       $view->with('city_list',City ::pluck('name', 'id')->prepend('--Select City--'));
+       $view->with('lc_list', LetterOfCredit::pluck('letter_of_credit_no', 'id')->prepend('--Select LC--'));
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
-     * @return \Illuminate\Http\Response
-     */
     public function show(CommercialInvoice $commercialInvoice)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
-     * @return \Illuminate\Http\Response
-     */
+  
     public function edit(CommercialInvoice $commercialInvoice)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, CommercialInvoice $commercialInvoice)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\Pocurement\CommercialInvoice  $commercialInvoice
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function destroy(CommercialInvoice $commercialInvoice)
     {
         //
+    }
+        public function getLcByLcId($id) {
+        $lc = LetterOfCredit::find($id);
+//      $items = $lc->items;
+//        foreach($items as $item){
+//            $data[] = [
+//                'product_id' => $item->product->id,
+//                'name' => $item->product->name,
+//                'hs_code' => $item->product->hs_code,
+//                'uom' => $item->product->unit_of_measurement->name,
+//                'quantity' => $item->quantity,
+//            ];
+//        }
+        return response()->json($lc);
     }
 }

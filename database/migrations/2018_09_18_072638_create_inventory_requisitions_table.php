@@ -19,8 +19,8 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->integer('inventory_item_status_id')->unsigned();
             $table->integer('initial_approver_id')->unsigned();
             $table->integer('final_approver_id')->unsigned();
-            $table->integer('creator_user_id')->unsigned();
-            $table->integer('updator_user_id')->unsigned();
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->text('remarks')->nullable();
             $table->softDeletes();
             $table->timestamps();

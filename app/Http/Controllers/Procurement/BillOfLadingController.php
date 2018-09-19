@@ -54,7 +54,9 @@ class BillOfLadingController extends Controller
      */
     public function show(BillOfLading $billOfLading)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with($billOfLading);
+        return $view;
     }
 
     /**

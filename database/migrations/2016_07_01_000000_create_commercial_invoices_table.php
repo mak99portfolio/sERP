@@ -16,8 +16,8 @@ class CreateCommercialInvoicesTable extends Migration {
             $table->increments('id');
             $table->string('commercial_invoice_no')->unique();
             $table->string('date');
-            $table->integer('latter_of_credit_id')->unsigned();
-            $table->foreign('latter_of_credit_id')->references('id')->on('latter_of_credits')->onDelete('cascade');
+            $table->integer('letter_of_credit_id')->unsigned();
+            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->string('bill_no');
             $table->string('bill_date');
             $table->string('vessel_no');

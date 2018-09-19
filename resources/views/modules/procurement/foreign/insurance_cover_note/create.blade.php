@@ -39,13 +39,15 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">ICN Date</label>
-                                        <input type="date" class="form-control input-sm" name="icn_date">
+                                        <input type="text" class="form-control input-sm datepicker" name="icn_date">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">ICN Agency Name</label>
-                                        <input type="text" class="form-control input-sm" name="icn_agency_name">
+                                        <select name="vendor_id" class="form-control input-sm">
+                                            <option value="one" selected>One</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>

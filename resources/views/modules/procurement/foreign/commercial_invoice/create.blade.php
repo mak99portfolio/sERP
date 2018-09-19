@@ -32,7 +32,7 @@
                                     {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::select('lc_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
+                                     {{ BootForm::select('latter_of_credit_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
                                      
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

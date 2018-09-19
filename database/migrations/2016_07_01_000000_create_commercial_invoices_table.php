@@ -15,25 +15,13 @@ class CreateCommercialInvoicesTable extends Migration
     {
         Schema::create('commercial_invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('number');
+            $table->string('commercial_invoice_no')->unique();
             $table->string('date');
-            $table->string('commercial_invoice_id')->unique();
-            $table->integer('purchase_order_id');
             $table->integer('latter_of_credit_id');
-            $table->integer('proforma_invoice_id');
-            $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
-            $table->text('description');
-            $table->string('other_reference_no');
-            $table->integer('exporter_id');
-            $table->foreign('exporter_id')->references('id')->on('exporters')->onDelete('cascade');
-            $table->string('bill_of_lading_no');
-            $table->string('bill_of_lading_date');
-            $table->string('vessel');
-            $table->string('place_receipt_pre_carrier');
-            $table->integer('local_bank_id');
-            $table->foreign('local_bank_id')->references('id')->on('banks')->onDelete('cascade');
-            $table->integer('foreign_bank_id');
-            $table->foreign('foreign_bank_id')->references('id')->on('banks')->onDelete('cascade');
+            $table->string('bill_no');
+            $table->string('bill_date');
+            $table->string('vessel_no');
+            $table->string('container_no');
             $table->integer('country_goods_country_id');
             $table->foreign('country_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->integer('destination_country_id');
@@ -54,7 +42,6 @@ class CreateCommercialInvoicesTable extends Migration
             $table->foreign('agreed_by_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('approved_by_user_id')->unsigned();
             $table->foreign('approved_by_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->string('container_no');
             $table->string('kind_of_package');
             $table->double('freight');
             $table->double('grand_total');

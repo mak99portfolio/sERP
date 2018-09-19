@@ -23,26 +23,26 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
-
+                        @include('partials/flash_msg')
                         <form class="form-horizontal form-label-left" action="{{route('local-purchase-order.store')}}" method="POST">
                             @csrf
                             <fieldset>
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('vendor[vendor_id]', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select vendor']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                        {{ BootForm::select('vendor_selection_criteria', 'Select Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm']) }}   
+                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Select Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm']) }}   
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::text('reference_no','Reference No', null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        {{ BootForm::textarea('additional_information','Additional Information',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('vendor[additional_information]','Additional Information',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        {{ BootForm::textarea('address','Address',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('vendor[address]','Address',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                                     </div>
                                 </div>
                             </fieldset>
@@ -92,7 +92,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio">
                                             <label>
-                                                <input type="radio" class="flat" checked name="ship_to_address"> MAGNUM Enterprise Ltd.
+                                                <input type="radio" class="flat" name="ship_to_address" value="magnum"> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
@@ -105,7 +105,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-8">
-                                            <input class="form-control input-sm" type="text" >
+                                            <input class="form-control input-sm" type="text" name="ship_to_address">
                                         </div>
                                     </div>
                                 </div>

@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class InventoryRequisitionDetail extends Model
-{
-    //
+class InventoryRequisitionItem extends Model{
+
+	protected $gaurded=['id'];
+
 }

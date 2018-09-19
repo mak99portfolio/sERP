@@ -36,4 +36,8 @@ class WorkingUnit extends Model{
 		return $this->belongsTo('App\District');
 	}
 
+	public function stocks(){
+		return $this->hasMany('App\Stock');
+	}
+
 }

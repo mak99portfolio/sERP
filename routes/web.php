@@ -80,5 +80,5 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
     Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
-    Route::get('vue-old-products', 'RequisitionController@vue_old_products');
+    Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
 });

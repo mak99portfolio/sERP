@@ -29,6 +29,8 @@
                                         <th>Purchase Order No</th>
                                         <th>Purchase Order Date</th>
                                         <th>Create time</th>
+                                        <th>Port of loading</th>
+                                        <th>Port of discharge</th>
                                         <th>Action</th>
                                         
                                     </tr>
@@ -37,9 +39,11 @@
                                     @foreach($purchase_order_list as $purchase_order)
                                     <tr>
                                     <td>{{$purchase_order->id}}</td>
-                                        <td>{{$purchase_order->id}}</td>
+                                        <td>{{$purchase_order->foreign_requisition_id}}</td>
                                         <td>{{$purchase_order->purchase_order_date}}</td>
-                                        <td>{{$purchase_order->requisition_date}}</td>    
+                                        <td>{{$purchase_order->requisition_date}}</td>   
+                                        <td>{{$purchase_order->loading->name}}</td>   
+                                        <td>{{$purchase_order->discharge->name}}</td>   
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>

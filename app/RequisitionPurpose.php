@@ -15,5 +15,11 @@ class RequisitionPurpose extends Model{
 	public function updator(){
 		return $this->belongsTo('App\User', 'updator_user_id');
 	}
+	public function local_requisitions(){
+		return $this->hasMany('App\LocalRequisition');
+	}
+	public function foreign_requisitions(){
+		return $this->hasMany('App\ForeignRequisition');
+	}
 
 }

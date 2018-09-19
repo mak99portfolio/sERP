@@ -17,13 +17,14 @@
             <div class="x_title">
                 <h2>LC Detail</h2>
                 <a href="{{route('letter-of-credit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;LC Detail List</a>
-
+              
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
                 <br />
                  
                 <form class="form-horizontal form-label-left" action="{{route('letter-of-credit.store')}}" method="POST">
+                        @csrf
                     <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             {{ BootForm::text('letter_of_credit_no','LC No.', null, ['class'=>'form-control input-sm']) }}

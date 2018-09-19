@@ -16,6 +16,7 @@
               <li><a href="{{route('cost-sheet.index')}}">Cost Sheet</a></li>
               <li><a href="{{route('insurance-cover-note.index')}}">Insurance Cover Note</a></li>
               <li><a href="{{route('commercial-invoice.index')}}">Commercial Invoice</a></li>
+              <li><a href="{{route('commercial-invoice-tracking.index')}}">CI Tracking</a></li>
               <li><a href="{{route('packing-list.index')}}">Packing List</a></li>
               <li><a href="{{route('bill-of-lading.index')}}">Bill of Lading</a></li>
               <li><a href="{{route('cnf.index')}}">Duty Tax, Vat, CNF Bill</a></li>

@@ -32,7 +32,7 @@
                                     {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::select('lc_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
+                                     {{ BootForm::select('latter_of_credit_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
                                      
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -80,19 +80,19 @@
                                         <div class="row">
 
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('port_of_loading', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('port_of_discharge', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('country_of_final_destination', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('final_destination', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('Country_of_Origin_of_Goods', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                         </div>
                                     </fieldset>
@@ -133,7 +133,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Add Fright =</td>
-                                                    <td></td>
+                                                    <td> <input type="text" name="amount" class="form-control input-sm"></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Grand Total =</td>

@@ -63,4 +63,18 @@ class CommercialInvoiceController extends Controller
     {
         //
     }
+        public function getLcByLcId($id) {
+        $lc = LetterOfCredit::find($id);
+//      $items = $lc->items;
+//        foreach($items as $item){
+//            $data[] = [
+//                'product_id' => $item->product->id,
+//                'name' => $item->product->name,
+//                'hs_code' => $item->product->hs_code,
+//                'uom' => $item->product->unit_of_measurement->name,
+//                'quantity' => $item->quantity,
+//            ];
+//        }
+        return response()->json($lc);
+    }
 }

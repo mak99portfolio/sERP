@@ -9,6 +9,19 @@
             </div>
         </div>
         <div class="clearfix"></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>LC No:</th>
+                    <tr>{{ $insuranceCoverNote->letter_of_credit->letter_of_credit_no }}</tr>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection

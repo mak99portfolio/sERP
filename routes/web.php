@@ -46,6 +46,7 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('cost-sheet', 'CostSheetController');
     Route::resource('insurance-cover-note', 'InsuranceCoverNoteController');
     Route::resource('commercial-invoice', 'CommercialInvoiceController');
+    Route::resource('commercial-invoice-tracking', 'CommercialInvoiceTrackingController');
     Route::resource('packing-list', 'PackingListController');
     Route::resource('bill-of-lading', 'BillOfLadingController');
     Route::resource('cnf', 'CnfController');

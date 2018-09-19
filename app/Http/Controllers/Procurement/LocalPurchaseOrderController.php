@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Procurement;
 
 use App\LocalPurchaseOrder;
+use App\Vendor;
+use App\LocalPurchaseOrderVendor;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
 use App\Http\Controllers\Controller;
 use Auth;
-use Illuminate\Support\Facades\Session;
+use Session;
 
 class LocalPurchaseOrderController extends Controller
 {
@@ -37,7 +39,7 @@ class LocalPurchaseOrderController extends Controller
     {
         $data=[
     		
-    		'vendor_list'=> \App\Vendor::pluck('name', 'id'),
+    		'vendor_list'=> \App\Vendor::pluck('name', 'id')->prepend('--select vendor--'),
     		
     	];
 
@@ -52,19 +54,16 @@ class LocalPurchaseOrderController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+    //    dd($request->input());
          $request->validate([
            // 'requisition_no'=>'required',
-            'vendor_id'=>'required',
           
         ]);
         $local_purchase_order = new LocalPurchaseOrder;
         $local_purchase_order->fill($request->input());
         $local_purchase_order->creator_user_id = Auth::id();
         $local_purchase_order->save();
-        $vendor = new Vendor;
-        $vendor->vendor_id = $request->vendor_id;
-        $local_purchase_order->vendor->save($vendor);
+        $local_purchase_order->vendor()->save(new LocalPurchaseOrderVendor($request->vendor));
         Session::put('alert-success', 'Local Purchase order created successfully');
         return redirect()->route('local-purchase-order.create');
     }

@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Designation extends Model{
-
-	protected $guarded=['id'];
-
+class InventoryIssueItem extends Model
+{
+    //
 }

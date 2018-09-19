@@ -47,4 +47,7 @@ class Product extends Model
     function status(){
         return DB::table('product_statuses')->where('id', $this->product_status_id)->first();
     }
+    function stocks(){
+        return $this->hasMany('App\Stock');
+    }
 }

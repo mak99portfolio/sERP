@@ -22,10 +22,11 @@
                     </div>
                     <div class="x_content">
                         <br />
+                        @include('partials.flash_msg')
 						{{ BootForm::open(['model'=>$inventory_requisition, 'store'=>'requisition.store', 'update'=>'requisition.update']) }}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_no', null, $requisition_no, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::text('inventory_requisition_id', 'Requisition No', $requisition_no, ['class'=>'form-control input-sm'/*, 'readonly'=>'true'*/]) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('inventory_requisition_type_id', 'Select Requisition Type', $inventory_requisition_types, null, ['class'=>'form-control input-sm']) }}
@@ -37,7 +38,7 @@
                                     {{ BootForm::select('requested_depot_id', 'Requested Depot', $working_units, null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('inventory_item_status', 'Item Status', $inventory_item_statuses, null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('inventory_item_status_id', 'Item Status', $inventory_item_statuses, null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('date', 'Select Date', null, ['class'=>'form-control input-sm datepicker']) }}
@@ -80,11 +81,11 @@
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Requested Quantity</label>
-                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity'>
+                                            <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity'>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <button class="btn btn-success btn-md m-t-20">Add</button>
+                                        <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
                                     </div>
                                 </div>
                             </div>
@@ -103,7 +104,7 @@
   										<td v-html='product.stock'></td>
   										<td>
 	                                        <div class="form-group">
-	                                            <input class="form-control input-sm" type="number" v-model='product.quantity' min="0">
+	                                            <input v-bind:name="'products['+product.id+']'" class="form-control input-sm" type="number" v-model='product.quantity' min="0">
 	                                        </div>
   										</td>
                                     	<td>
@@ -120,7 +121,11 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
+                                  @if($inventory_requisition->initial_approver()->exists())
+                                    <button type="submit" class="btn btn-warning btn-sm">Submit Final Approval</button>
+                                  @else
                                     {!! btnSubmitGroup() !!}
+                                  @endif
                                 </div>
                             </div>
                             {{ BootForm::close() }}
@@ -139,15 +144,19 @@
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
 <script>
 $(function(){
 	var vue=new Vue({
   		el: '#vue_app',
   		data:{
-  			base_url: "{{ url('inventory/get-product-info/') }}",
-  			products:[
+        config:{
+          base_url: "{{ url('inventory/get-product-info/') }}",
+          old_data_url: "{{ url('inventory/vue-old-products') }}"
+        },
+  			products:[/*
   				{id:1, name:'First Table', stock:10, quantity:8},
-  				{id:2, name:'Second Table', stock:15, quantity:10}
+  				{id:2, name:'Second Table', stock:15, quantity:10}*/
   			],
   			active_record:{
   				hs_code:'',
@@ -165,20 +174,70 @@ $(function(){
   			},
   			fetch_product:function(slug){
 
-  				var self=this;
+  				var vm=this;
+          var loading = $.loading();
+          loading.open(3000);
+          vm.remote_data=null;
+          vm.reset_active_record();
 
-  				axios.get(this.base_url +'/'+ slug).then(function(response){
+          requested_depot_id=$('#requested_depot_id').val();
 
-  					console.log(response.data);
-  					self.remote_data=response.data;
-  					//alert(self.remote_data);
-  				});
+          if(slug && requested_depot_id){
+
+            axios.get(this.config.base_url + '/' + requested_depot_id + '/' +slug).then(function(response){
+
+              vm.remote_data=response.data;
+              vm.active_record=vm.remote_data;
+              vm.active_record.quantity=0
+                
+              loading.close();
+
+            }).catch(function(){
+
+              loading.close();
+
+            });
+
+          }else loading.close();
 
   			},
   			delete_product:function(product){
 			    this.products.splice(this.products.indexOf(product), 1);
-			}
-  		}
+  			 },
+         reset_active_record:function(){
+          this.active_record={hs_code:'', id:'', name:'', stock:'', quantity:''};
+         },
+         add_product:function(){
+          if(this.active_record.stock > 0 && this.active_record.quantity > 0 && this.active_record.quantity <= this.active_record.stock){
+            this.products.push(this.active_record);
+            this.reset_active_record();
+          }
+         },
+         load_old:function(){
+            var vm=this;
+            var loading=$.loading();
+            requested_depot_id=$('#requested_depot_id').val();
+            loading.open(3000);
+            axios.get(this.config.old_data_url + '/' + requested_depot_id).then(function(response){
+
+              vm.products=response.data;                
+              loading.close();
+
+            }).catch(function(){
+
+              loading.close();
+
+            });
+         }
+  		},
+      watch:{
+        remote_data:function(){
+
+        }
+      },
+      beforeMount(){
+        this.load_old();
+      }
 	})//End of vue js
 
 });

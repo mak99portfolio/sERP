@@ -38,7 +38,7 @@
                                     {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , ['class'=>'form-control input-sm']) }}
@@ -99,7 +99,7 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in itemlist">
-                                            <td><% $index+1 %> <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product.id %>"></td>
+                                            <td><% $index+1 %> <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
                                             <td><% item.name %></td>
                                             <td><% item.physical_stock %></td>
                                             <td><% item.pending %></td>
@@ -151,7 +151,7 @@
                         <h4 class="modal-title">Product List</h4>
                     </div>
                     <div class="modal-body" style="height: 75vh; overflow-y: auto">
-                        <table class="table" id="datatable-checkbox" table-bordered m-t-lg table-hover">
+                        <table class="table table-bordered m-t-lg table-hover" id="datatable-checkbox">
                             <thead class="bg-default">
                                 <tr>
                                     <th>#</th>

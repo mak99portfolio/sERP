@@ -23,4 +23,7 @@ class Port extends Model
     public function city(){
         return $this->belongsTo('App\City');
     }
+    public function po_of_loading(){
+        return $this->hasMany('App\PurchaseOrder','port_of_loading_port_id');
+    }
 }

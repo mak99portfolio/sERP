@@ -28,10 +28,10 @@ class PurchaseOrder extends Model
     public function items(){
         return $this->hasMany('App\PurchaseOrderItem');
     }
-    public function port_of_loading(){
+    public function loading(){
         return $this->belongsTo('App\Port','port_of_loading_port_id');
     }
-    public function port_of_discharge(){
+    public function discharge(){
         return $this->belongsTo('App\Port','port_of_discharge_port_id');
     }
     public function country_of_final_destination(){

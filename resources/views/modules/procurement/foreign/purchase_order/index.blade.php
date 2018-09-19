@@ -42,8 +42,8 @@
                                         <td>{{$purchase_order->foreign_requisition_id}}</td>
                                         <td>{{$purchase_order->purchase_order_date}}</td>
                                         <td>{{$purchase_order->requisition_date}}</td>   
-                                        <td>{{$purchase_order->port_of_loading->name}}</td>   
-                                        <td>{{$purchase_order->port_of_discharge->name}}</td>   
+                                        <td>{{$purchase_order->loading->name}}</td>   
+                                        <td>{{$purchase_order->discharge->name}}</td>   
                                         <td class="text-right">
                                             <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
                                         </td>

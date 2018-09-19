@@ -16,4 +16,8 @@ class City extends Model
     public function country(){
         return $this->belongsTo('App\Country');
     }
+    public function pi_final_destination_city()
+    {
+        return $this->hasMany('App\ProformaInvoice','final_destination_city_id');
+    }
 }

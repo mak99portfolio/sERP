@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\ProformaInvoice;
 use App\PurchaseOrder;
+use App\ProformaInvoiceItem;
 use App\Port;
 use App\Country;
 use App\City;
@@ -24,8 +25,7 @@ class ProformaInvoiceController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('proforma_invoice_list', ProformaInvoice::all());
         return $view;
     }
 
@@ -76,8 +76,14 @@ class ProformaInvoiceController extends Controller
         $proforma_invoice = new ProformaInvoice;
         $proforma_invoice->fill($request->input());
         $proforma_invoice->creator_user_id = Auth::id();
-        // dd($product);
+        $proforma_invoice->proforma_invoice_no = time();
+        // dd($request->input());
         $proforma_invoice->save();
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new ProformaInvoiceItem($item));
+        }
+        $proforma_invoice->items()->saveMany($items);
         Session::put('alert-success', 'Proforma invoice created successfully');
         return redirect()->route('proforma-invoice.create');
     }
@@ -132,6 +138,7 @@ class ProformaInvoiceController extends Controller
         $items = $po->items;
         foreach($items as $item){
             $data[] = [
+                'product_id' => $item->product->id,
                 'name' => $item->product->name,
                 'hs_code' => $item->product->hs_code,
                 'uom' => $item->product->unit_of_measurement->name,

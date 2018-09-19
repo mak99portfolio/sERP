@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Stock extends Model{
-    
+class InventoryRequisitionItem extends Model{
+
 	protected $guarded=['id'];
 
-	public function working_unit(){
-		return $this->belongsTo('App\WorkingUnit');
+	public function requisition(){
+		return $this->belongsTo('App\InventoryRequisition');
 	}
 
 	public function product(){

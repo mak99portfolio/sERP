@@ -15,6 +15,10 @@ class CreateLetterOfCreditItemsTable extends Migration
     {
         Schema::create('letter_of_credit_items', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('letter_of_credit_id');
+            $table->integer('product_id');
+            $table->integer('quantity');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

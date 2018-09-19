@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class LocalPurchaseOrder extends Model
 {
+     use SoftDeletes;
+    protected $fillable = [
+        'purchase_oder_no',
+        'inco_terms',
+        'inco_term_info',
+        'procurement_type',
+        'purchase_order_type',
+        'status',
+        'remarks',
+        'purchase_oder_date'
+    ];
      protected $guarded=['id'];
 
     public function items(){
@@ -23,17 +34,4 @@ class LocalPurchaseOrder extends Model
     public function vendor(){
         return $this->hasOne('App\LocalPurchaseOrderVendor');
     }
-    
-
-     use SoftDeletes;
-    protected $fillable = [
-        'purchase_oder_no',
-        'inco_terms',
-        'inco_term_info',
-        'procurement_type',
-        'purchase_order_type',
-        'status',
-        'remarks',
-        'purchase_oder_date'
-    ];
 }

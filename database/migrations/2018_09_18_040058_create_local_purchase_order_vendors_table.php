@@ -16,7 +16,7 @@ class CreateLocalPurchaseOrderVendorsTable extends Migration
         Schema::create('local_purchase_order_vendors', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('vendor_id')->unsigned();
-            $table->string('vendor_selection_criteria');
+            $table->string('vendor_selection_criteria')->nullable();
             $table->string('reference_no')->nullable();
             $table->text('additional_information')->nullable();
             $table->text('address')->nullable();

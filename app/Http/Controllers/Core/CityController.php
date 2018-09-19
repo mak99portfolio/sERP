@@ -27,7 +27,7 @@ class CityController extends Controller
 
         $view = view($this->view_root . 'index');
         $view->with('city_list', City::all());
-        $view->with('country_list', Country::all());
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
 
         return $view;
     }
@@ -40,7 +40,7 @@ class CityController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
-        $view->with('country_list', Country::all());
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
         return $view;
     }
 

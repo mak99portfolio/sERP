@@ -28,8 +28,8 @@ class PortController extends Controller
 
         $view = view($this->view_root . 'index');
         $view->with('port_list', Port::all());
-        $view->with('city_list', City::all());
-        $view->with('country_list', Country::all());
+        $view->with('city_list', City::pluck('name', 'id')->prepend('--select country--', ''));
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
 
         return $view;
     }
@@ -42,8 +42,8 @@ class PortController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
-        $view->with('country_list', Country::all());
-        $view->with('city_list', City::all());
+        $view->with('city_list', City::pluck('name', 'id')->prepend('--select country--', ''));
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
         return $view;
     }
 

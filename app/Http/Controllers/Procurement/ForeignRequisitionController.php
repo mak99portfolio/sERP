@@ -73,7 +73,9 @@ class ForeignRequisitionController extends Controller
      */
     public function show(ForeignRequisition $foreignRequisition)
     {
-        //
+        $view = view($this->view_root.'show');
+        $view->with('foreignRequisition', $foreignRequisition);
+        return $view;
     }
 
     /**
@@ -115,6 +117,7 @@ class ForeignRequisitionController extends Controller
         $goods_in_transit = 0;
         $pending = 0;
         $data = [
+            'id' => $product->id,
             'name' => $product->name,
             'hs_code' => $product->hs_code,
             'uom' => $product->unit_of_measurement->name,

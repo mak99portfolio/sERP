@@ -9,7 +9,7 @@ class LocalRequisition extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'requisition_priority_id',
-        'purpose_id',
+        'requisition_purpose_id',
         'requisition_no',
         'requisition_title',
         'issued_date',

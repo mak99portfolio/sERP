@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Foreign Requisition')
+@section('title', 'Commercial Invoice Tracking')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -9,6 +9,7 @@
             </div>
         </div>
         <div class="clearfix"></div>
+        
     </div>
 </div>
 @endsection

@@ -32,7 +32,7 @@ class CreateCommercialInvoicesTable extends Migration {
             $table->foreign('country_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->integer('destination_country_id');
             $table->foreign('destination_country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->text('notes');
+            $table->text('notes')->nullable();
             $table->integer('agreed_by_user_id')->unsigned()->nullable();
             $table->foreign('agreed_by_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('approved_by_user_id')->unsigned()->nullable();

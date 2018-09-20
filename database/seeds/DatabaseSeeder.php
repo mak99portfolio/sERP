@@ -47,6 +47,8 @@ class DatabaseSeeder extends Seeder
         $this->call(ForeignPurchaseOrderTableSeeder::class);
         $this->call(LetterOfCreditTableSeeder::class);
         $this->call(LetterOfCreditItemTableSeeder::class);
+        $this->call(CommercialInvoiceTableSeeder::class);
+        $this->call(CommercialInvoiceItemTableSeeder::class);
 
     }
 }

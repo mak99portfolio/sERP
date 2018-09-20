@@ -154,7 +154,7 @@
       }
       // print script
       $(function () {
-        $(".btn").click(function () {
+        $(".print-btn").click(function () {
             var contents = $(".DivIdToPrint").html();
             var frame1 = $('<iframe />');
             frame1[0].name = "frame1";

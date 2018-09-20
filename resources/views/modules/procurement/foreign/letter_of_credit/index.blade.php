@@ -33,7 +33,7 @@
                                     <td>{{$letter_of_credit->letter_of_credit_date}}</td>    
                                     <td>{{$letter_of_credit->letter_of_credit_value}}</td>    
                                         <td class="text-right">
-                                            <a href="{{route('letter-of-credit.show')}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('letter-of-credit.show',$letter_of_credit)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -30,4 +30,7 @@ class LetterOfCredit extends Model
     public function items(){
         return $this->hasMany('App\LetterOfCreditItem');
     }
+    public function vendor(){
+        return $this->belongsTo('App\Vendor'); 
+     }
 }

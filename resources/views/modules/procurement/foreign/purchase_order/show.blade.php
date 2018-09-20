@@ -16,8 +16,6 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Foreign Purchase Order Details</h2>
-                        
-
                         <div class="btn-group pull-right">
                             <button class="btn btn-sm btn-info btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                             <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Purchase Order List</a>
@@ -29,16 +27,16 @@
                         <div class="table-responsive DivIdToPrint">
                             <table class="table table-bordered">
                                 <tbody>
-                                   <tr>
-                                       <td><strong>Requisition No:</strong> 125</td>
-                                       <td><strong>Purchase Order No:</strong> 125</td>
-                                       <td><strong>Vendor:</strong> 125</td>
-                                   </tr>
-                                   <tr>
-                                    <td><strong>Requisition date:</strong> 125</td>
-                                    <td><strong>Purchase Order date:</strong> 125</td>
-                                    <td></td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Requisition No:</strong> 125</td>
+                                        <td><strong>Purchase Order No:</strong> 125</td>
+                                        <td><strong>Vendor:</strong> 125</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Requisition date:</strong> 125</td>
+                                        <td><strong>Purchase Order date:</strong> 125</td>
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -48,12 +46,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                   <tr>
-                                       <td><strong>Port of Loading:</strong> 125</td>
-                                       <td><strong>Port of Discharge:</strong> 125</td>
-                                       <td><strong>Country of Final Destination:</strong> 125</td>
-                                   </tr>
-                                   <tr>
+                                    <tr>
+                                        <td><strong>Port of Loading:</strong> 125</td>
+                                        <td><strong>Port of Discharge:</strong> 125</td>
+                                        <td><strong>Country of Final Destination:</strong> 125</td>
+                                    </tr>
+                                    <tr>
                                         <td><strong>Final Destination:</strong> 125</td>
                                         <td><strong>Country of Origin of Goods:</strong> 125</td>
                                         <td><strong>Shipment Allow:</strong> 125</td>
@@ -67,47 +65,62 @@
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
-                                   <tr>
-                                       <td><strong>Subject:</strong> 125</td>
-                                       <td><strong>Letter Header:</strong> 125</td>
-                                   </tr>
+                                    <tr>
+                                        <td><strong>Subject:</strong> 125</td>
+                                        <td><strong>Letter Header:</strong> 125</td>
+                                    </tr>
                                 </tbody>
                             </table>
-                                <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="6">Product Table</th>
-                                        </tr>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Product Name</th>
-                                            <th>UOM</th>
-                                            <th>Quantity</th>
-                                            <th>Unit Price</th>
-                                            <th>Total Amount</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       <tr>
-                                           <td>01</td>
-                                           <td>125</td>
-                                           <td>125</td>
-                                           <td>125</td>
-                                           <td>125</td>
-                                           <td>125</td>
-                                       </tr>
-                                    </tbody>
-                                </table>
-                                <table class="table table-bordered">
-                                        <tbody>
-                                           <tr>
-                                               <td><strong>Letter Footer:</strong> 125</td>
-                                           </tr>
-                                           <tr>
-                                                <td><strong>Notes:</strong> 125</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th colspan="6">Product Table</th>
+                                    </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>UOM</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Total Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>01</td>
+                                        <td>125</td>
+                                        <td>125</td>
+                                        <td>125</td>
+                                        <td>125</td>
+                                        <td>125</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Letter Footer:</strong> 125</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Notes:</strong> 125</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!--start approved by-->
+                            <table style="position: absolute; bottom: 30px; width: 100%; display: none;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold;">
+                                        <span style="border-top: 2px solid black;"> Prepared By</span>
+                                    </td>
+                                    <td style="text-align: center; font-weight: bold;">
+                                        <span style="border-top: 2px solid black;"> Checked By</span>
+                                    </td>
+                                    <td style="text-align: center; font-weight: bold;">
+                                        <span style="border-top: 2px solid black;"> Approved By</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--end approved by-->
                         </div>
                         <!--end table-->
                     </div>

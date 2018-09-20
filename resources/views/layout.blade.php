@@ -163,7 +163,7 @@
             var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
             frameDoc.document.open();
             //Create a new HTML document.
-            frameDoc.document.write('<html><head><title>MAGNUM Enterprise Limited.</title>');
+            frameDoc.document.write('<html><head><title></title>');
             frameDoc.document.write('</head><body>');
             // address and logo
             frameDoc.document.write('<div>SHADOWHITE  ! Magnum</div>');
@@ -172,7 +172,7 @@
             //Append the DIV contents.
             frameDoc.document.write(contents);
             // footer
-            frameDoc.document.write('<div>SHADOWHITE!</div>');
+            frameDoc.document.write('<div></div>');
             frameDoc.document.write('</body></html>');
             frameDoc.document.close();
             setTimeout(function () {

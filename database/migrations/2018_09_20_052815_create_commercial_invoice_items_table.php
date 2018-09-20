@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLetterOfCreditItemsTable extends Migration
+class CreateCommercialInvoiceItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class CreateLetterOfCreditItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('letter_of_credit_items', function (Blueprint $table) {
+        Schema::create('commercial_invoice_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('letter_of_credit_id');
-            $table->integer('product_id');
+            $table->integer('commercial_invoice_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->integer('quantity');
             $table->double('unit_price');
-            $table->double('d_rate');
-            $table->double('discount');
-            $table->double('vat');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -34,6 +31,6 @@ class CreateLetterOfCreditItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('letter_of_credit_items');
+        Schema::dropIfExists('commercial_invoice_items');
     }
 }

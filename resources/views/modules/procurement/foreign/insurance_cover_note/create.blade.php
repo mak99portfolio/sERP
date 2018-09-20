@@ -24,16 +24,16 @@
                         <form class="form-horizontal form-label-left input_mask" action="{{ route('insurance-cover-note.store') }}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('insurance_cover_note_no','ICN No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list, ['class'=>'form-control input-sm']) }}
                                 </div>
                             </div>

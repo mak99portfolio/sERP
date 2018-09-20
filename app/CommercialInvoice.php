@@ -24,7 +24,10 @@ class CommercialInvoice extends Model {
         'country_goods_country_id',
         'destination_country_id',
         'notes'
-       
     ];
+
+    function items() {
+        return $this->hasMany('App\CommercialInvoiceItem');
+    }
 
 }

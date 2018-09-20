@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\LetterOfCredit;
 use App\Vendor;
+use App\ProformaInvoice;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -33,6 +34,7 @@ class LetterOfCreditController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
+        $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no','id')->prepend('-- Select proforma invoice --', ''));
         return $view;
     }
 
@@ -68,6 +70,13 @@ class LetterOfCreditController extends Controller
         $letter_of_credit->fill($request->input());
         $letter_of_credit->creator_user_id = Auth::id();
         $letter_of_credit->save();
+
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new LetterOfCreditItem($item));
+        }
+        $letter_of_credit->items()->saveMany($items);
+
         Session::put('alert-success', 'Letter of credit created successfully');
         return redirect()->route('letter-of-credit.index');
     }
@@ -118,5 +127,21 @@ class LetterOfCreditController extends Controller
     public function destroy(LetterOfCredit $letterOfCredit)
     {
         //
+    }
+    public function getPiByPiItem($id){
+        $pi = ProformaInvoice::find($id);
+        $data = [];
+        $items = $pi->items;
+        foreach($items as $item){
+            $data[] = [
+                'product_id' => $item->product->id,
+                'name' => $item->product->name,
+                'hs_code' => $item->product->hs_code,
+                'uom' => $item->product->unit_of_measurement->name,
+                'quantity' => $item->quantity,
+                'unit_price' => $item->unit_price,
+            ];
+        }
+        return response()->json($data);
     }
 }

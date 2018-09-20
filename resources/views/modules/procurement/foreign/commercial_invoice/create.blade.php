@@ -20,7 +20,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-
+                        @include("partials/flash_msg")
                         <form class="form-horizontal form-label-left" action="{{route('commercial-invoice.store')}}" method="POST">
                             @csrf
                             <div class="row">
@@ -32,8 +32,8 @@
                                     {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::select('latter_of_credit_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
-                                     
+                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
+
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('lc_date','LC Date', null, ['class'=>'form-control input-sm datepicker']) }}
@@ -62,10 +62,10 @@
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bl_no','Bl No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('bill_no','Bl No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bl_date','Bl Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('bill_date','Bl Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm']) }}

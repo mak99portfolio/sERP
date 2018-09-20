@@ -22,6 +22,7 @@
                     </div>
                     <div class="x_content">
                         <br />
+                        @include('partials.flash_msg')
 						{{ BootForm::open(['model'=>$inventory_requisition, 'store'=>'requisition.store', 'update'=>'requisition.update']) }}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -120,7 +121,11 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
+                                  @if($inventory_requisition->initial_approver()->exists())
+                                    <button type="submit" class="btn btn-warning btn-sm">Submit Final Approval</button>
+                                  @else
                                     {!! btnSubmitGroup() !!}
+                                  @endif
                                 </div>
                             </div>
                             {{ BootForm::close() }}
@@ -211,8 +216,9 @@ $(function(){
          load_old:function(){
             var vm=this;
             var loading=$.loading();
+            requested_depot_id=$('#requested_depot_id').val();
             loading.open(3000);
-            axios.get(this.config.old_data_url).then(function(response){
+            axios.get(this.config.old_data_url + '/' + requested_depot_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();

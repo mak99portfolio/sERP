@@ -127,20 +127,5 @@ class LetterOfCreditController extends Controller
     {
         //
     }
-    public function getPiByPiItem($id){
-        $pi = ProformaInvoice::find($id);
-        $data = [];
-        $items = $pi->items;
-        foreach($items as $item){
-            $data[] = [
-                'product_id' => $item->product->id,
-                'name' => $item->product->name,
-                'hs_code' => $item->product->hs_code,
-                'uom' => $item->product->unit_of_measurement->name,
-                'quantity' => $item->quantity,
-                'unit_price' => $item->unit_price,
-            ];
-        }
-        return response()->json($data);
-    }
+    
 }

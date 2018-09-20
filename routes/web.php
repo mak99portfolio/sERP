@@ -24,7 +24,6 @@ Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('bank', 'BankController');
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
-    Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ProductController@searchProduct']);
 
     Route::get(
         'employee-organizational-info/{organizational_info}',
@@ -60,13 +59,6 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
     Route::resource('cost-particular', 'CostParticularController');
     Route::resource('consignment-particular', 'ConsignmentParticularController');
 
-    //API
-    Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ForeignRequisitionController@getProductByProductId']);
-    Route::get('/get-requisition/{id}', ['as' => 'get-requisition', 'uses' => 'PurchaseOrderController@getRequisitionByRequisitionId']);
-    Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ProformaInvoiceController@getPOByPOId']);
-    Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'LetterOfCreditController@getPiByPiItem']);
-    Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'CommercialInvoiceController@getLcByLcId']);
-
 });
 
 //Inventory
@@ -85,3 +77,12 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
     Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
 });
+
+//API
+Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
+Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
+Route::get('/get-requisition/{id}', ['as' => 'get-requisition', 'uses' => 'ApiController@getRequisitionByRequisitionId']);
+Route::get('/get-local-requisition/{id}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getRequisitionByRequisitionId']);
+Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOId']);
+Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
+Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);

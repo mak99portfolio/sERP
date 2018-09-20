@@ -9,6 +9,7 @@ use App\City;
 use App\Port;
 use App\LetterOfCredit;
 use App\CommercialInvoice;
+use App\CommercialInvoiceItem;
 use Auth;
 use Session;
 
@@ -36,7 +37,7 @@ class CommercialInvoiceController extends Controller {
     }
 
     public function store(Request $request) {
-        // dd($request->input());
+  // dd($request->input());
         $request->validate([
             // 'requisition_no'=>'required',
             'commercial_invoice_no' => 'required',
@@ -45,6 +46,10 @@ class CommercialInvoiceController extends Controller {
         $commercial_invoice->fill($request->input());
         $commercial_invoice->creator_user_id = Auth::id();
         $commercial_invoice->save();
+        foreach ($request->items as $item){
+            $ci_items[] = new CommercialInvoiceItem($item);
+        }
+        $commercial_invoice->items()->saveMany($ci_items);
         Session::put('alert-success', 'Commercial Invoice created successfully');
         return redirect()->route('commercial-invoice.create');
     }

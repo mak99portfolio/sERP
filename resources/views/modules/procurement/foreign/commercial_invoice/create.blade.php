@@ -113,45 +113,49 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" ng-if="itemlist.length>0">
                                             <thead class="bg-primary">
                                                 <tr>
                                                     <th colspan="5">CI Product table</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Sl No</th>
+                                                    <th>#</th>
                                                     <th>Product Name</th>
                                                     <th>Qnantity</th>
                                                     <th>Unit Price Used ($)</th>
-                                                    <th>Amoiunt ($)</th>
+                                                    <th>Amount ($)</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th>1</th>
-                                                    <td>sas</td>
-                                                    <td>5</td>
-                                                    <td>80</td>
+                                                <tr ng-repeat="item in itemlist">
+                                                    <th><% $index+1 %> <input  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
+                                                    <th><% item.name %></th>
                                                     <td>
-                                                        <input type="text" name="amount" class="form-control input-sm">
+                                                        <input ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
+                                                    </td>
+                                                    <td>
+                                                        <input ng-model="unit_price[$index]" ng-init="unit_price[$index]=item.unit_price" type="text" name="items[<%$index%>][unit_price]" class="form-control input-sm" readonly>
+                                                    </td>
+                                                    <td>
+                                                        <input ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*unit_price[$index]" type="text" class="form-control input-sm" disabled>
                                                     </td>
                                                 </tr>
-                                                <tr>
+<!--                                                <tr>
                                                     <td colspan="4" class="text-right">Sub Total =</td>
-                                                    <td></td>
-                                                </tr>
+                                                    <td><% subtotal() %></td>
+                                                </tr>-->
                                                 <tr>
-                                                    <td colspan="4" class="text-right">Add Fright =</td>
-                                                    <td> <input type="text" name="amount" class="form-control input-sm"></td>
+                                                    <td colspan="4" class="text-right" name="freight">Add Fright =</td>
+                                                    <td> <input type="text" name="fright" class="form-control input-sm"></td>
                                                 </tr>
-                                                <tr>
+<!--                                                <tr>
                                                     <td colspan="4" class="text-right">Grand Total =</td>
                                                     <td></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Amount In word =</td>
                                                     <td></td>
-                                                </tr>
+                                                </tr>-->
                                             </tbody>
                                         </table>
                                     </div>
@@ -201,6 +205,16 @@
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
+        }
+        $scope.subtotal = function(){
+            return $scope.sum(amount);
+        }
+        $scope.sum = function(arr){
+            var sum = 0;
+            for(i=0; i<arr.length; i++){
+                sum += parseFloat(arr[i]);
+            }
+            return sum;
         }
     });
 </script>

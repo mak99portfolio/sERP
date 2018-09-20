@@ -46,7 +46,7 @@ class LetterOfCreditTableSeeder extends Seeder
                 'beneficiary_ac_no'=>23441,
                 'beneficiary_ac_name'=>"ribon",
                 'beneficiary_branch_name'=>"Panthopath branch",
-                'beneficiary_bank_name'=>1,
+                'beneficiary_bank_name'=>'Islami Bank',
                 'issue_ac_no'=>1,
                 'issue_ac_name'=>1,
                 'issue_branch_name'=>1,

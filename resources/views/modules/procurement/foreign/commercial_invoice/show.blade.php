@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Bill of Lading')
+@section('title', 'Commercial Invoice')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -9,6 +9,9 @@
             </div>
         </div>
         <div class="clearfix"></div>
+        
+        
+        {{$commercialInvoice->id}}
     </div>
 </div>
 @endsection

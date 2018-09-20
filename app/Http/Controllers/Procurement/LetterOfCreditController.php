@@ -89,7 +89,10 @@ class LetterOfCreditController extends Controller
      */
     public function show(LetterOfCredit $letterOfCredit)
     {
-        //
+         $view = view($this->view_root . 'show');
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     /**

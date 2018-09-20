@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\LetterOfCredit;
 use App\Vendor;
+use App\ProformaInvoice;
+use App\LetterOfCreditItem;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -19,8 +21,7 @@ class LetterOfCreditController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('letter_of_credit_list', LetterOfCredit::all());
         return $view;
     }
 
@@ -33,6 +34,7 @@ class LetterOfCreditController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
+        $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no','id')->prepend('-- Select proforma invoice --', ''));
         return $view;
     }
 
@@ -48,7 +50,7 @@ class LetterOfCreditController extends Controller
             'letter_of_credit_no' => 'required',
             'letter_of_credit_date' => 'required',
             // 'letter_of_credit_value' => 'required',
-            // 'vendor_id' => 'required',
+            'vendor_id' => 'required',
             // 'letter_of_credit_expire_date' => 'required',
             // 'letter_of_credit_status' => 'required',
             // 'letter_of_credit_shipment_date' => 'required',
@@ -68,6 +70,13 @@ class LetterOfCreditController extends Controller
         $letter_of_credit->fill($request->input());
         $letter_of_credit->creator_user_id = Auth::id();
         $letter_of_credit->save();
+
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new LetterOfCreditItem($item));
+        }
+        $letter_of_credit->items()->saveMany($items);
+
         Session::put('alert-success', 'Letter of credit created successfully');
         return redirect()->route('letter-of-credit.index');
     }
@@ -80,7 +89,9 @@ class LetterOfCreditController extends Controller
      */
     public function show(LetterOfCredit $letterOfCredit)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('letterOfCredit',$letterOfCredit);
+        return $view;
     }
 
     /**
@@ -116,4 +127,5 @@ class LetterOfCreditController extends Controller
     {
         //
     }
+    
 }

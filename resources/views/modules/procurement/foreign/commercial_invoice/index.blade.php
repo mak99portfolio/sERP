@@ -32,14 +32,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($commercial_invoice_list as $value)
+                                    @foreach($commercial_invoice_list as $item)
                                     <tr>
-                                        <td>{{$value->commercial_invoice_no}}</td>
-                                        <td>{{$value->date}}</td>
-                                        <td>{{$value->purchase_order_date}}</td>
-                                        <td>{{$value->requisition_date}}</td>   
+                                        <td>{{$item->commercial_invoice_no}}</td>
+                                        <td>{{$item->date}}</td>
+                                        <td>{{$item->letter_of_credit_id}}</td>
+                                        <td>{{$item->date}}</td>   
                                         <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('commercial-invoice.show',$item)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

@@ -8,7 +8,15 @@ use Illuminate\Database\Eloquent\softDeletes;
 class LetterOfCreditItem extends Model
 {
      use softDeletes;
+     protected $fillable = [
+        'product_id',
+        'quantity',
+        'unit_price',
+        'd_rate',
+        'discount',
+        'vat',
+    ];
      public function product(){
-        return $this->hasOne('App\Product');
+        return $this->belongsTo('App\Product');
     }
 }

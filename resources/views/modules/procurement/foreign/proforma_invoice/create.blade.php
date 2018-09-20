@@ -16,6 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Proforma Invoice</h2>
+                        <a href="{{route('proforma-invoice.index')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Proforma Invoice List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -25,8 +26,8 @@
                             <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label>Requisition No.</label>
-                                        <select data-placeholder="Select PO No" multiple class="form-control input-sm select2" name="purchase_order_id" ng-model="po_id" ng-change="searchPO()">
+                                        <label>Purchase Order No.</label>
+                                        <select data-placeholder="Select PO No"  class="form-control input-sm" name="purchase_order_id" ng-model="po_id" ng-change="searchPO()">
                                             <option></option>
                                             @foreach($purchase_orders as $item)
                                             <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>
@@ -37,11 +38,13 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm','id'=>"single_cal4" ]) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                               {{--<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('proforma_invoice_no','Proforma Invoice No.', null, ['class'=>'form-control input-sm','readonly' ]) }}
-                                </div>
+                                </div> --}}
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm','id'=>"single_cal4" ]) }}
+                                {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm','id'=>"single_cal3" ]) }}
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -73,13 +76,13 @@
                                         {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', [''=>'Select shipment allow',1=>'Multi shipment',2=>'Partial'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_type', 'Payment Type', [''=>'Select payment type',1=>'Cash'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', [''=>'Select pre carriage by',1=>'Ship',2=>'Air'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                 </div>
                             </fieldset>
@@ -108,9 +111,6 @@
                                                         <th>Quantity</th>
                                                         <th>Unit Price</th>
                                                         <th>Total Amount($USD)</th>
-                                                        <th class="text-right">
-                                                            <i class="fa fa-trash"></i>
-                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -122,17 +122,15 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" value="<% item.unit_price %>" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
-                                                    <td>
-                                                    <% quantity[$index]*unit_price[$index] %>
-                                                    </td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
+                                                    <td><% total[$index] = quantity[$index]*unit_price[$index] %></td>
                                                 </tr>
                                                 </tbody>
-                                                <tfoot class="font-bold">
+                                                <!-- <tfoot class="font-bold">
                                                     <tr>
                                                         <td colspan="5">Sub Total</td>
-                                                        <td>324</td>
+                                                        <td>520</td>
 
                                                         <td colspan="2"></td>
                                                     </tr>
@@ -154,7 +152,7 @@
 
                                                         <td colspan="2"></td>
                                                     </tr>
-                                                </tfoot>
+                                                </tfoot> -->
                                             </table>
                                         </div>
                             </fieldset>
@@ -195,18 +193,29 @@
             }
         }
         $scope.addToItemList = function(id){
-            let url = "{{URL::to('procurement/get-po')}}/" + id;
+            let url = "{{URL::to('get-po')}}/" + id;
             $http.get(url)
                     .then(function(response) {
                         // console.log('data-----------', response.data);
                         angular.forEach(response.data, function(value, key) {
                             $scope.itemlist.push(value);
+                            // console.log('itemlist', $scope.itemlist);
                         });
                     });
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
         }
+        $scope.number = function (str) {
+            return parseFloat(str);
+        }
+        $scope.sum = function (arr) {
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+          sum += parseFloat(arr[i]);
+        }
+        return sum;
+      }
     });
 </script>
 @endsection

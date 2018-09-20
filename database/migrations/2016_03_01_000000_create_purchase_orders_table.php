@@ -16,7 +16,7 @@ class CreatePurchaseOrdersTable extends Migration
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('foreign_requisition_id')->unsigned();
-            $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('cascade');
+            $table->foreign('foreign_requisition_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->string('purchase_order_no')->nullable();
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
@@ -32,7 +32,8 @@ class CreatePurchaseOrdersTable extends Migration
             $table->foreign('final_destination_city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->integer('country_of_origin_of_goods_country_id')->unsigned()->nullable();
             $table->foreign('country_of_origin_of_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->integer('payment_type')->nullable();
+            $table->string('shipment_allow')->nullable();
+            $table->string('payment_type')->nullable();
             $table->string('pre_carriage_by')->nullable();
             $table->text('subject')->nullable();
             $table->text('letter_header')->nullable();

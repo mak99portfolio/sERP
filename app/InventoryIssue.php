@@ -16,4 +16,12 @@ class InventoryIssue extends Model{
 		return $this->hasMany('App\InventoryIssueItem');
 	}
 
+	public function initial_approver(){
+		return $this->belongsTo('App\User', 'initial_approver_id');
+	}
+
+	public function final_approver(){
+		return $this->belongsTo('App\User', 'final_approver_id');
+	}
+
 }

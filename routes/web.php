@@ -11,7 +11,6 @@ Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
-Route::post('/getmsg','LocalPurchaseOrderController@search_msg');
 //Core
 Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('country', 'CountryController');
@@ -81,8 +80,8 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 //API
 Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
 Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
-Route::get('/get-requisition/{id}', ['as' => 'get-requisition', 'uses' => 'ApiController@getRequisitionByRequisitionId']);
-Route::get('/get-local-requisition/{id}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getRequisitionByRequisitionId']);
+Route::get('/get-foreign-requisition/{id}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionId']);
+Route::get('/get-local-requisition/{id}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getLocalRequisitionByRequisitionId']);
 Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOId']);
 Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);

@@ -29,5 +29,23 @@ class CommercialInvoice extends Model {
     function items() {
         return $this->hasMany('App\CommercialInvoiceItem');
     }
+    function LetterOfCredit() {
+        return $this->belongsTo('App\LetterOfCredit');
+    }
+    function loading_port() {
+        return $this->belongsTo('App\Port','port_of_loading_port_id');
+    }
+     function discharge_port() {
+        return $this->belongsTo('App\Port','port_of_discharge_port_id');
+    }
+    function city() {
+        return $this->belongsTo('App\City','destination_city_id');
+    }
+     public function destination_country(){
+        return $this->belongsTo('App\Country','destination_country_id');
+    }
+     public function country_goods(){
+        return $this->belongsTo('App\Country','country_goods_country_id');
+    }
 
 }

@@ -31,7 +31,7 @@ class CommercialInvoiceController extends Controller {
         $view->with('country_list', Country ::pluck('name', 'id')->prepend('--Select Country--'));
         $view->with('port_list', Port ::pluck('name', 'id')->prepend('--Select Port--'));
         $view->with('city_list', City ::pluck('name', 'id')->prepend('--Select City--'));
-        $view->with('lc_list', LetterOfCredit::pluck('letter_of_credit_no', 'id')->prepend('--Select LC--'));
+        $view->with('lc_list', LetterOfCredit::all());
         return $view;
     }
 
@@ -69,15 +69,21 @@ class CommercialInvoiceController extends Controller {
 
     public function getLcByLcId($id) {
         $lc = LetterOfCredit::find($id);
-        $items = $lc->items;
-        foreach ($items as $item) {
-            $data[] = [
-                'product_id' => $item->product_id,
-                'quantity' => $item->quantity,
-                'name' => $item->product->name,
-                'unit_price' => $item->unit_price,
+        $lc_items = $lc->items;
+        foreach ($lc_items as $lc_item) {
+            $items[] = [
+                'product_id' => $lc_item->product_id,
+                'quantity' => $lc_item->quantity,
+                'name' => $lc_item->product->name,
+                'unit_price' => $lc_item->unit_price,
             ];
         }
+        $data['items']=$items;
+        $data['letter_of_credit_date'] = $lc->letter_of_credit_date;
+        $data['beneficiary_ac_no'] = $lc->beneficiary_ac_no;
+        $data['beneficiary_ac_name'] = $lc->beneficiary_ac_name;
+        $data['beneficiary_bank_name'] = $lc->beneficiary_bank_name;
+        $data['beneficiary_branch_name'] = $lc->beneficiary_branch_name;
         return response()->json($data);
     }
 

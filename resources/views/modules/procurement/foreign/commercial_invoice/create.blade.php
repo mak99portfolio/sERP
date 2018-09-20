@@ -12,13 +12,13 @@
         {{-- Content here --}}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Commercial Invoice</h2>
                         <a href="{{route('commercial-invoice.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Commercial Invoice List</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include("partials/flash_msg")
                         <form class="form-horizontal form-label-left" action="{{route('commercial-invoice.store')}}" method="POST">
@@ -32,11 +32,20 @@
                                     {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm']) }}   
-
+                                 
+                                     <div class="form-group">
+                                        <label>LC No.</label>
+                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
+                                            <option value="">--Select LC No--</option>
+                                            @foreach($lc_list as $item)
+                                            <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('lc_date','LC Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -44,17 +53,17 @@
                                         <div class="panel-heading">Beneficiary Bank Info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('beneficiary_account_no','Account No', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('beneficiary_ac_no','Account No', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_no','readonly'=>'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('beneficiary_account_name','Account Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('beneficiary_ac_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_name','readonly'=>'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('bank_name','Bank Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_bank_name','readonly'=>'readonly']) }}
                                             </div>
 
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::textarea('beneficiary_bank_address','Bank Address',null,['class'=>'form-control input-sm','rows'=>'1']) }}
+                                                {{ BootForm::text('beneficiary_branch_name','Bank Branch',null,['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_branch_name','readonly'=>'readonly']) }}
                                             </div>
 
                                         </div>
@@ -162,4 +171,37 @@
         {{--end Content here --}}
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
+        $scope.getLc = function () {
+            $scope.itemlist = [];
+            $scope.addToItemList($scope.letter_of_credit_id);
+        }
+        $scope.addToItemList = function(id){
+            let url = "{{URL::to('procurement/get-lc')}}/" + id;
+            $http.get(url)
+                    .then(function(response) {
+                        angular.forEach(response.data.items, function(value, key) {
+                            $scope.itemlist.push(value);
+                        });
+                        $scope.letter_of_credit_date = response.data.letter_of_credit_date;
+                        $scope.beneficiary_ac_no = response.data.beneficiary_ac_no;
+                        $scope.beneficiary_ac_name = response.data.beneficiary_ac_name;
+                        $scope.beneficiary_bank_name = response.data.beneficiary_bank_name;
+                        $scope.beneficiary_branch_name = response.data.beneficiary_branch_name;
+                    });
+        }
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index);
+        }
+    });
+</script>
 @endsection

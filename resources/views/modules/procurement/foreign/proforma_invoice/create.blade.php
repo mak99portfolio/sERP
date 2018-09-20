@@ -108,9 +108,6 @@
                                                         <th>Quantity</th>
                                                         <th>Unit Price</th>
                                                         <th>Total Amount($USD)</th>
-                                                        <th class="text-right">
-                                                            <i class="fa fa-trash"></i>
-                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -122,17 +119,15 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" value="<% item.unit_price %>" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
-                                                    <td>
-                                                    <% quantity[$index]*unit_price[$index] %>
-                                                    </td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
+                                                    <td><% total[$index] = quantity[$index]*unit_price[$index] %></td>
                                                 </tr>
                                                 </tbody>
-                                                <tfoot class="font-bold">
+                                                <!-- <tfoot class="font-bold">
                                                     <tr>
                                                         <td colspan="5">Sub Total</td>
-                                                        <td>324</td>
+                                                        <td>520</td>
 
                                                         <td colspan="2"></td>
                                                     </tr>
@@ -154,7 +149,7 @@
 
                                                         <td colspan="2"></td>
                                                     </tr>
-                                                </tfoot>
+                                                </tfoot> -->
                                             </table>
                                         </div>
                             </fieldset>
@@ -201,12 +196,23 @@
                         // console.log('data-----------', response.data);
                         angular.forEach(response.data, function(value, key) {
                             $scope.itemlist.push(value);
+                            // console.log('itemlist', $scope.itemlist);
                         });
                     });
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
         }
+        $scope.number = function (str) {
+            return parseFloat(str);
+        }
+        $scope.sum = function (arr) {
+        var sum = 0;
+        for (var i = 0; i < arr.length; i++) {
+          sum += parseFloat(arr[i]);
+        }
+        return sum;
+      }
     });
 </script>
 @endsection

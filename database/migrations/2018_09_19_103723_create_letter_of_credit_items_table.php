@@ -19,6 +19,9 @@ class CreateLetterOfCreditItemsTable extends Migration
             $table->integer('product_id');
             $table->integer('quantity');
             $table->double('unit_price');
+            $table->double('d_rate');
+            $table->double('discount');
+            $table->double('vat');
             $table->softDeletes();
             $table->timestamps();
         });

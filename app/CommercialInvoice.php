@@ -29,5 +29,17 @@ class CommercialInvoice extends Model {
     function items() {
         return $this->hasMany('App\CommercialInvoiceItem');
     }
+    function LetterOfCredit() {
+        return $this->belongsTo('App\LetterOfCredit');
+    }
+    function port() {
+        return $this->belongsTo('App\Port');
+    }
+    function city() {
+        return $this->belongsTo('App\City');
+    }
+     public function country(){
+        return $this->belongsTo('App\Country');
+    }
 
 }

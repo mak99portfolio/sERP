@@ -13,7 +13,7 @@ class ProductTableSeeder extends Seeder
     {
         $data=[
             [
-                'name' => 'Tyre',
+                'name' => 'tyre',
                 'hs_code' => 'Ogsdfsdfghfhd',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
@@ -38,7 +38,7 @@ class ProductTableSeeder extends Seeder
                 'creator_user_id' => 1,
             ],
             [
-                'name' => 'Tube',
+                'name' => 'tube',
                 'hs_code' => 'sdfsdfhgf',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
@@ -63,7 +63,7 @@ class ProductTableSeeder extends Seeder
                 'creator_user_id' => 1,
             ],
             [
-                'name' => '6" Tyre',
+                'name' => 'oil',
                 'hs_code' => 'sdffsdfkjl',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
@@ -88,7 +88,7 @@ class ProductTableSeeder extends Seeder
                 'creator_user_id' => 1,
             ],
             [
-                'name' => 'Arif',
+                'name' => 'computer',
                 'hs_code' => 'Ogdfgdfghfgd',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,
@@ -113,7 +113,7 @@ class ProductTableSeeder extends Seeder
                 'creator_user_id' => 1,
             ],
             [
-                'name' => 'Atik',
+                'name' => 'table',
                 'hs_code' => 'fghghjfgh',
                 'product_category_id' => 1,
                 'product_pattern_id' => 1,

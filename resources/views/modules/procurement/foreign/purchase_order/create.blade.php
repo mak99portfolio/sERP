@@ -67,13 +67,13 @@
                                     {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('shipment_allow', 'Shipment Allow', ['shipment_allow'=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('shipment_allow', 'Shipment Allow', ['Multi shipment'=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', [''=>'Select pre carriage by',1=>'Ship',2=>'Air'], null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                 </div>
                             </fieldset>

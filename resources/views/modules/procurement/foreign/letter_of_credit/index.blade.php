@@ -26,15 +26,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($letter_of_credit_list as $key=>$letter_of_credit)
                                     <tr>
-                                        <td>01</td>
-                                        <td>123</td>
-                                        <td>12-6-18</td>
-                                        <td>224</td>    
+                                    <td>{{$key+1}}</td>    
+                                    <td>{{$letter_of_credit->letter_of_credit_no}}</td>    
+                                    <td>{{$letter_of_credit->letter_of_credit_date}}</td>    
+                                    <td>{{$letter_of_credit->letter_of_credit_value}}</td>    
                                         <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('letter-of-credit.show')}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

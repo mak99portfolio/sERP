@@ -28,12 +28,12 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Commercial Invoice No :</strong> 125</td>
-                                        <td><strong>Date:</strong> 125</td>
-                                        <td><strong>LC No :</strong> 125</td>
+                                        <td><strong>Commercial Invoice No :</strong> {{$commercialInvoice->commercial_invoice_no}}</td>
+                                        <td><strong>Date:</strong> {{$commercialInvoice->date}}</td>
+                                        <td><strong>LC No :</strong> {{$commercialInvoice->LetterOfCredit->letter_of_credit_no}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>LC Date :</strong> 125</td>
+                                        <td><strong>LC Date :</strong>  {{$commercialInvoice->LetterOfCredit->letter_of_credit_date}}</td>
                                         <td><strong></strong></td>
                                         <td><strong></strong></td>
                                     </tr>
@@ -47,12 +47,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> 125</td>
-                                        <td><strong>A/C Name :</strong> 125</td>
-                                        <td><strong>Branch Name :</strong> 125</td>
+                                        <td><strong>A/C No :</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_ac_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_ac_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Bank Address</strong> 125</td>
+                                        <td><strong>Bank Name</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_bank_name}}</td>
                                         <td><strong></strong></td>
                                         <td><strong></strong></td>
                                     </tr>
@@ -61,12 +61,12 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Bl No:</strong> 125</td>
-                                        <td><strong>Bl Date :</strong> 125</td>
-                                        <td><strong>Vessel No / Flight No :</strong> 125</td>
+                                        <td><strong>Bl No:</strong> {{$commercialInvoice->bill_no}}</td>
+                                        <td><strong>Bl Date :</strong> {{$commercialInvoice->bill_date}}</td>
+                                        <td><strong>Vessel No / Flight No :</strong> {{$commercialInvoice->vessel_no}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Container No:</strong> 125</td>
+                                        <td><strong>Container No:</strong> {{$commercialInvoice->container_no}}</td>
                                         <td><strong></strong></td>
                                         <td><strong></strong></td>
                                     </tr>
@@ -80,13 +80,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Port of Loading :</strong> 125</td>
-                                        <td><strong>Port of Discharge :</strong> 125</td>
-                                        <td><strong>Country of Final Destination :</strong> 125</td>
+                                        <td><strong>Port of Loading :</strong> {{$commercialInvoice->container_no}}</td>
+                                        <td><strong>Port of Discharge :</strong> {{$commercialInvoice->container_no}}</td>
+                                        <td><strong>Country of Final Destination :</strong> {{$commercialInvoice->container_no}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Final Destination :</strong> 125</td>
-                                        <td><strong>Country of Origin of Goods :</strong> 125</td>
+                                        <td><strong>Final Destination :</strong> {{$commercialInvoice->container_no}}</td>
+                                        <td><strong>Country of Origin of Goods :</strong> {{$commercialInvoice->container_no}}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tbody>
@@ -94,7 +94,7 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Notes:</strong> 125</td>
+                                        <td><strong>Notes:</strong> {{$commercialInvoice->container_no}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -112,11 +112,11 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Unit Price Used ($)	:</strong> 125</td>
-                                        <td><strong>Amoiunt ($) :</strong> 125</td>
+                                        <td><strong>Amount ($) :</strong> 125</td>
                                         <td><strong>Sub Total :</strong> 125</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Add Fright :</strong> 125</td>
+                                        <td><strong>Add Fright :</strong> {{$commercialInvoice->fright}}</td>
                                         <td><strong>Grand Total :</strong> 125</td>
                                         <td><strong>Amount In word :</strong> 125</td>
                                     </tr>

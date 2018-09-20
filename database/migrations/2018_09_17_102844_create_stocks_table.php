@@ -16,6 +16,7 @@ class CreateStocksTable extends Migration{
             $table->integer('inventory_item_status_id')->unsigned()->nullable();
             $table->integer('inventory_item_pattern_id')->unsigned()->nullable();
             $table->integer('inventory_receive_id')->unsigned()->nullable();
+            $table->integer('stock_adjustment_id')->unsigned()->nullable();
             $table->integer('receive_quantity')->unsigned()->default(0);
             $table->integer('inventory_issue_id')->unsigned()->nullable();
             $table->integer('issue_quantity')->unsigned()->default(0);
@@ -34,6 +35,7 @@ class CreateStocksTable extends Migration{
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('cascade');
             $table->foreign('inventory_issue_id')->references('id')->on('inventory_issues')->onDelete('cascade');
+            $table->foreign('stock_adjustment_id')->references('id')->on('inventory_stock_adjustments')->onDelete('cascade');
 
         });
 

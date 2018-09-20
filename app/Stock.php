@@ -16,4 +16,32 @@ class Stock extends Model{
 		return $this->belongsTo('App\Product');
 	}
 
+	public function stock_adjustment(){
+		return $this->belongsTo('App\InventoryStockAdjustment', 'stock_adjustment_id');
+	}
+
+    public function creator(){
+    	return $this->belongsTo('App\User', 'creator_user_id');
+    }
+
+    public function editor(){
+    	return $this->belongsTo('App\User', 'updator_user_id');
+    }
+
+    public function status(){
+    	return $this->belongsTo('App\InventoryItemStatus', 'inventory_item_status_id');
+    }
+
+    public function pattern(){
+    	return $this->belongsTo('App\InventoryItemPattern', 'inventory_item_pattern_id');
+    }
+
+    public function receive(){
+    	return $this->belongsTo('App\InventoryReceive', 'inventory_receive_id');
+    }
+
+    public function issue(){
+    	return $this->belongsTo('App\InventoryIssue', 'inventory_issue_id');
+    }
+
 }

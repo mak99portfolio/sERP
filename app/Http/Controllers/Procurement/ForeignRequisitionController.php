@@ -111,21 +111,5 @@ class ForeignRequisitionController extends Controller
     {
         //
     }
-    public function getProductByProductId($id){
-        $product = Product::find($id);
-        $physical_stock = 0;
-        $goods_in_transit = 0;
-        $pending = 0;
-        $data = [
-            'id' => $product->id,
-            'name' => $product->name,
-            'hs_code' => $product->hs_code,
-            'uom' => $product->unit_of_measurement->name,
-            'physical_stock' => $physical_stock,
-            'goods_in_transit' => $goods_in_transit,
-            'pending' => $pending,
-            'total_quantity' => $physical_stock+$goods_in_transit+$pending,
-        ];
-        return response()->json($data);
-    }
+    
 }

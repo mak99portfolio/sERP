@@ -129,15 +129,19 @@
                                             <tbody>
                                                 <tr ng-repeat="item in itemlist">
                                                     <th><% $index+1 %> <input  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
-                                                    <th><% item.name %></th>
-                                                    <td>
-                                                        <input ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
+                                                     <td class="checkbox">
+                                                        <label class="i-checks">
+                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                        </label>
                                                     </td>
                                                     <td>
-                                                        <input ng-model="unit_price[$index]" ng-init="unit_price[$index]=item.unit_price" type="text" name="items[<%$index%>][unit_price]" class="form-control input-sm" readonly>
+                                                        <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
                                                     </td>
                                                     <td>
-                                                        <input ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*unit_price[$index]" type="text" class="form-control input-sm" disabled>
+                                                        <input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=item.unit_price" type="text" name="items[<%$index%>][unit_price]" class="form-control input-sm" readonly>
+                                                    </td>
+                                                    <td>
+                                                        <input ng-disabled="!checked[$index]" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*unit_price[$index]" type="text" class="form-control input-sm" disabled>
                                                     </td>
                                                 </tr>
 <!--                                                <tr>
@@ -190,7 +194,7 @@
             $scope.addToItemList($scope.letter_of_credit_id);
         }
         $scope.addToItemList = function(id){
-            let url = "{{URL::to('procurement/get-lc')}}/" + id;
+            let url = "{{URL::to('get-lc')}}/" + id;
             $http.get(url)
                     .then(function(response) {
                         angular.forEach(response.data.items, function(value, key) {

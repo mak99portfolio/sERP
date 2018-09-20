@@ -119,13 +119,17 @@
                                     <div class="col-md-6 col-md-offset-3">
 
 
-
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
-                                            <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search">
-                                            <input type="hidden" name="" value="<?php echo csrf_token() ?>" id="t">
+                                            <!-- <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search"> -->
+                                            <select data-placeholder="Select Req No" ng-model="req_id" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id">
+                                                <option value=""></option>
+                                                @foreach($requisition_list as $item)
+                                                <option value="{{$item->id}}">{{$item->requisition_no}}</option>
+                                                @endforeach
+                                            </select>
                                             <div class="input-group-btn">
-                                                <span class="btn btn-default" onclick="abc()">Add</span>
+                                                <button type="button" class="btn btn-default" ng-click="searchReqNo()">Add</button>
                                             </div>
                                         </div>
                                         <div id="msg">
@@ -174,9 +178,9 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>SL NO</th>
-                                                <th>Item Code</th>
-                                                <th>Item Description</th>
+                                                <th>#</th>
+                                                <th>Item Name</th>
+                                                <th>HS Code</th>
                                                 <th>Qty</th>
                                                 <th>MOU</th>
                                                 <th>Price</th>
@@ -190,18 +194,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
+                                            <tr ng-repeat="item in itemlist">
+                                                <td><% $index+1 %></td>
+                                                <td><% item.name %></td>
+                                                <td><% item.hs_code %></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td><% item.uom %></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
                                                 <td>123</td>
-                                                <td>2018</td>
                                                 <td>123</td>
                                                 <td>123</td>
                                                 <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td>123</td>
                                                 <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td>123</td>
                                                 <td>123</td>
                                                 <td  class="text-center">
                                                     <button type="button" class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>
@@ -341,10 +345,31 @@
 @section('script')
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-    });
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
     app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
+        $scope.searchReqNo = function () {
+            $scope.itemlist = [];
+            for(i=0; i<$scope.req_id.length; i++){
+                $scope.addToItemList($scope.req_id[i]);
+            }
+        }
+        $scope.addToItemList = function(id){
+            let url = "{{URL::to('get-local-requisition')}}/" + id;
+            $http.get(url)
+                    .then(function(response) {
+                        // console.log('data-----------', response.data);
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.itemlist.push(value);
+                        });
+                    });
+        }
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index);
+        }
         $scope.conditions = [];
         $scope.add_condition = function(){
             var condition = {};

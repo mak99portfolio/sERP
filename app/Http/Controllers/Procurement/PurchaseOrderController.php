@@ -16,11 +16,7 @@ use Session;
 use DB;
 class PurchaseOrderController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     private $view_root = 'modules/procurement/foreign/purchase_order/';
     public function index()
     {
@@ -29,28 +25,17 @@ class PurchaseOrderController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', ForeignRequisition::all());
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
-        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
         $view->with('city_list', City::pluck('name','id')->prepend('-- Select City --', ''));
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // dd($request->input());
@@ -86,12 +71,6 @@ class PurchaseOrderController extends Controller
         return redirect()->route('purchase-order.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
     public function show(PurchaseOrder $purchaseOrder)
     {
         $view = view($this->view_root . 'show');
@@ -99,51 +78,22 @@ class PurchaseOrderController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(PurchaseOrder $purchaseOrder)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\PurchaseOrder  $purchaseOrder
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
     }
-    public function getRequisitionByRequisitionId($id){
-        $req = ForeignRequisition::find($id);
-        $items = $req->items;
-        foreach($items as $item){
-            $data[] = [
-                'product_id' => $item->product->id,
-                'name' => $item->product->name,
-                'hs_code' => $item->product->hs_code,
-                'uom' => $item->product->unit_of_measurement->name,
-                'quantity' => $item->quantity,
-            ];
-        }
-        return response()->json($data);
-    }
+    
 }

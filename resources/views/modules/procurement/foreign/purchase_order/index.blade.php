@@ -38,13 +38,13 @@
                                     @foreach($purchase_order_list as $purchase_order)
                                     <tr>
                                     <td>{{$purchase_order->id}}</td>
-                                        <td>{{$purchase_order->foreign_requisition_id}}</td>
+                                        <td>{{$purchase_order->purchase_order_no}}</td>
                                         <td>{{$purchase_order->purchase_order_date}}</td>
                                         <td>{{$purchase_order->requisition_date}}</td>   
                                         <td>{{$purchase_order->loading->name}}</td>   
                                         <td>{{$purchase_order->discharge->name}}</td>   
                                         <td class="text-right">
-                                            <a href="{{route('purchase-order.show',$purchase_order->id)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('purchase-order.show',$purchase_order)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                      @endforeach

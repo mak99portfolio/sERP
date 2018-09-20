@@ -17,7 +17,7 @@
                     <div class="x_title">
                         <h2>Foreign Purchase Order Details</h2>
                         <div class="btn-group pull-right">
-                            <button class="btn btn-sm btn-info btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                            <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                             <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Purchase Order List</a>
                         </div>
                         <div class="clearfix"></div>
@@ -27,16 +27,16 @@
                         <div class="table-responsive DivIdToPrint">
                             <table class="table table-bordered">
                                 <tbody>
-                                    <tr>
-                                        <td><strong>Requisition No:</strong> 125</td>
-                                        <td><strong>Purchase Order No:</strong> 125</td>
-                                        <td><strong>Vendor:</strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Requisition date:</strong> 125</td>
-                                        <td><strong>Purchase Order date:</strong> 125</td>
-                                        <td></td>
-                                    </tr>
+                                   <tr>
+                                       <td><strong>Requisition No:</strong> 125</td>
+                                   <td><strong>Purchase Order No:</strong> {{$purchaseOrder->purchase_order_no}}</td>
+                                       <td><strong>Vendor:</strong> {{$purchaseOrder->vendor->name}}</td>
+                                   </tr>
+                                   <tr>
+                                    <td><strong>Requisition date:</strong>  {{$purchaseOrder->requisition_date}}</td>
+                                    <td><strong>Purchase Order date:</strong>  {{$purchaseOrder->purchase_order_date}}</td>
+                                    <td></td>
+                                </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -46,15 +46,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><strong>Port of Loading:</strong> 125</td>
-                                        <td><strong>Port of Discharge:</strong> 125</td>
-                                        <td><strong>Country of Final Destination:</strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Final Destination:</strong> 125</td>
-                                        <td><strong>Country of Origin of Goods:</strong> 125</td>
-                                        <td><strong>Shipment Allow:</strong> 125</td>
+                                   <tr>
+                                       <td><strong>Port of Loading:</strong> {{$purchaseOrder->loading->name}}</td>
+                                       <td><strong>Port of Discharge:</strong> {{$purchaseOrder->discharge->name}}</td>
+                                       <td><strong>Country of Final Destination:</strong> {{$purchaseOrder->final_destination_country->name}}</td>
+                                   </tr>
+                                   <tr>
+                                        <td><strong>Final Destination:</strong> {{$purchaseOrder->final_destination_city->name}}</td>
+                                        <td><strong>Country of Origin of Goods:</strong> {{$purchaseOrder->origin_of_goods->name}}</td>
+                                        <td><strong>Shipment Allow:</strong> {{$purchaseOrder->purchase_order_date}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Payment Type:</strong> 125</td>

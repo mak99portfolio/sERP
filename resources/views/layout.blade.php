@@ -166,7 +166,21 @@
             frameDoc.document.write('<html><head><title></title>');
             frameDoc.document.write('</head><body>');
             // address and logo
-            frameDoc.document.write('<div>SHADOWHITE  ! Magnum</div>');
+            frameDoc.document.write('<div><div style="margin: 0 auto; padding-bottom: 10px;">
+                                            <img src="{{asset('assets/build/images/logo1.png')}}" alt="company logo" style="max-width: 200px;">
+                                        </div>
+                                        <table class="text-center" style="margin: 0 auto;">
+                                            <tr>
+                                                <td>531, Dhaur (Kamarpara), Turag, Dhaka-1230</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tel : (02)-8981941, Fax: +88-02-89819442, Mob: +88-01823-777992</td>
+                                            </tr>
+                                            <tr>
+                                                <td>E-mail: info@magnumenterprise.net, Web: www.magnumenterprise.net</td>
+                                            </tr>
+                                        </table>
+                                        </div>');
             //Append the external CSS file.
             frameDoc.document.write('<link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
             //Append the DIV contents.

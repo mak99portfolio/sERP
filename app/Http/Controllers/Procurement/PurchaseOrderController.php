@@ -58,15 +58,15 @@ class PurchaseOrderController extends Controller
             'foreign_requisition_id'=>'required',
             // 'purchase_order_no'=>'required',
             'vendor_id'=>'required',
-            // 'requisition_date'=>'required',
-            // 'purchase_order_date'=>'required',
-            // 'port_of_loading_port_id'=>'required',
-            // 'port_of_discharge_port_id'=>'required',
-            // 'country_of_final_destination_country_id'=>'required',
-            // 'final_destination_city_id'=>'required',
-            // 'country_of_origin_of_goods_country_id'=>'required',
-            // 'payment_type'=>'required',
-            // 'pre_carriage_by'=>'required',
+            'requisition_date'=>'required',
+            'purchase_order_date'=>'required',
+            'port_of_loading_port_id'=>'required',
+            'port_of_discharge_port_id'=>'required',
+            'country_of_final_destination_country_id'=>'required',
+            'final_destination_city_id'=>'required',
+            'country_of_origin_of_goods_country_id'=>'required',
+            'payment_type'=>'required',
+            'pre_carriage_by'=>'required',
             // 'subject'=>'required',
             // 'letter_header'=>'required',
             // 'letter_footer'=>'required',
@@ -94,7 +94,9 @@ class PurchaseOrderController extends Controller
      */
     public function show(PurchaseOrder $purchaseOrder)
     {
-       return $view = view($this->view_root . 'show');
+        $view = view($this->view_root . 'show');
+        $view->with('purchaseOrder',$purchaseOrder);
+        return $view;
     }
 
     /**

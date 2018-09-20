@@ -94,7 +94,7 @@ class PurchaseOrderController extends Controller
      */
     public function show(PurchaseOrder $purchaseOrder)
     {
-        //
+       return $view = view($this->view_root . 'show');
     }
 
     /**

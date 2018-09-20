@@ -45,7 +45,7 @@
                                         <td>{{$purchase_order->loading->name}}</td>   
                                         <td>{{$purchase_order->discharge->name}}</td>   
                                         <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs" data-toggle="modal" data-target="#myModal"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('purchase-order.show',$purchase_order->id)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                      @endforeach

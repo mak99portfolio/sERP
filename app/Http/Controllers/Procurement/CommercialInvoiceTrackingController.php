@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Procurement;
 use App\CommercialInvoiceTracking;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\CommercialInvoice;
+use DB;
+use Session;
+
 
 class CommercialInvoiceTrackingController extends Controller
 {
@@ -18,7 +22,7 @@ class CommercialInvoiceTrackingController extends Controller
     {
         $view = view($this->view_root . 'index');
         // $view->with('foo', 'bar');
-        // your code here
+        
         return $view;
     }
 
@@ -43,7 +47,14 @@ class CommercialInvoiceTrackingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'bl_issue_date' => 'required',
+            'bl_issue_date' => 'required',
+            'document_arrived_at_bank_date' => 'required',
+            'document_send_at_port_date' => 'required',
+            'document_value_payment_date' => 'required',
+            'document_value_payment_date' => 'required',
+        ]);
     }
 
     /**

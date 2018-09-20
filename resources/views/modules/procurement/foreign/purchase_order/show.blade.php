@@ -27,16 +27,16 @@
                         <div class="table-responsive DivIdToPrint">
                             <table class="table table-bordered">
                                 <tbody>
-                                   <tr>
-                                       <td><strong>Requisition No:</strong> 125</td>
-                                   <td><strong>Purchase Order No:</strong> {{$purchaseOrder->purchase_order_no}}</td>
-                                       <td><strong>Vendor:</strong> {{$purchaseOrder->vendor->name}}</td>
-                                   </tr>
-                                   <tr>
-                                    <td><strong>Requisition date:</strong>  {{$purchaseOrder->requisition_date}}</td>
-                                    <td><strong>Purchase Order date:</strong>  {{$purchaseOrder->purchase_order_date}}</td>
-                                    <td></td>
-                                </tr>
+                                    <tr>
+                                        <td><strong>Requisition No:</strong> 125</td>
+                                        <td><strong>Purchase Order No:</strong> 125</td>
+                                        <td><strong>Vendor:</strong> 125</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Requisition date:</strong> 125</td>
+                                        <td><strong>Purchase Order date:</strong> 125</td>
+                                        <td></td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -111,7 +111,7 @@
                                 </tbody>
                             </table>
                             <!--start approved by-->
-                            <table style="position: absolute; bottom: 30px; width: 100%; display: none;">
+                            <table id="print-footer" style="position: absolute; bottom: 30px; width: 100%; display: none;">
                                 <tr>
                                     <td style="text-align: center; font-weight: bold;">
                                         <span style="border-top: 2px solid black;"> Prepared By</span>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\LetterOfCredit;
 use App\Vendor;
 use App\ProformaInvoice;
+use App\LetterOfCreditItem;
 use Illuminate\Http\Request;
 use Auth;
 use Session;
@@ -20,8 +21,7 @@ class LetterOfCreditController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('letter_of_credit_list', LetterOfCredit::all());
         return $view;
     }
 

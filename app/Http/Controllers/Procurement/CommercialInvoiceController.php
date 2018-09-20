@@ -50,7 +50,11 @@ class CommercialInvoiceController extends Controller {
     }
 
     public function show(CommercialInvoice $commercialInvoice) {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('commercial_invoice_list', CommercialInvoice::all());
+        // $view->with('foo', 'bar');
+        // your code here
+        return $view;
     }
 
     public function edit(CommercialInvoice $commercialInvoice) {

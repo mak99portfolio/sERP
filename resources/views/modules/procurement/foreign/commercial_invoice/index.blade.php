@@ -39,7 +39,7 @@
                                         <td>{{$value->purchase_order_date}}</td>
                                         <td>{{$value->requisition_date}}</td>   
                                         <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('commercial-invoice.show',1)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

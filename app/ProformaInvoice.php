@@ -9,7 +9,7 @@ class ProformaInvoice extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'requisition_no',
+        'purchase_order_id',
         'purchase_order_date',
         'proforma_invoice_no',
         'proforma_invoice_date',
@@ -31,22 +31,25 @@ class ProformaInvoice extends Model
     public function items(){
         return $this->hasMany('App\ProformaInvoiceItem');
     }
+    public function purchase_order(){
+        return $this->belongsTo('App\PurchaseOrder');
+    }
     public function vendor(){
         return $this->belongsTo('App\Vendor');
     }
-    public function port_of_loading(){
+    public function loading(){
         return $this->belongsTo('App\Port','port_of_loading_port_id');
     }
-    public function port_of_discharge(){
+    public function discharge(){
         return $this->belongsTo('App\Port','port_of_discharge_port_id');
     }
-    public function country_of_final_destination(){
+    public function final_destination_country(){
         return $this->belongsTo('App\Country','country_of_final_destination_country_id');
     }
     public function final_destination_city(){
         return $this->belongsTo('App\City','final_destination_city_id');
     }
-    public function country_of_origin_of_goods(){
+    public function origin_of_goods_country(){
         return $this->belongsTo('App\Country','country_of_origin_of_goods_country_id');
     }
 }

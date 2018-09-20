@@ -54,7 +54,7 @@ class ProformaInvoiceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'purchase_order_no'=>'required',
+            'purchase_order_id'=>'required',
             'purchase_order_date'=>'required',
             // 'proforma_invoice_no'=>'required',
             'proforma_invoice_date'=>'required',
@@ -96,7 +96,9 @@ class ProformaInvoiceController extends Controller
      */
     public function show(ProformaInvoice $proformaInvoice)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('proformaInvoice',$proformaInvoice);
+        return $view;
     }
 
     /**

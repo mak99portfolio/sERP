@@ -117,7 +117,7 @@
                                        </tr>
                                        <tr>
                                            <td colspan="2"><strong>Grand Total</strong> </td>
-                                           <td>{{ $insuranceCoverNote->amount_of_grand_total }}</td>
+                                           <td>{{ $insuranceCoverNote->amount_of_grand_total() }}</td>
                                        </tr>
                                     </tbody>
                                 </table>

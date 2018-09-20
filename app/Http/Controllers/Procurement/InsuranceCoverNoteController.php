@@ -60,8 +60,7 @@ class InsuranceCoverNoteController extends Controller
             'percent_of_vat' => 'required',
             'amount_of_vat' => 'required',
             'percent_of_stamp_duty' => 'required',
-            'amount_of_stamp_duty' => 'required',
-            'amount_of_grand_total' => 'required'
+            'amount_of_stamp_duty' => 'required'
         ]);
 
         $insurance_cover_note = new InsuranceCoverNote;

@@ -283,7 +283,7 @@
             }
         }
         $scope.addToItemList = function (id) {
-            let url = "{{URL::to('procurement/get-pi')}}/" + id;
+            let url = "{{URL::to('get-pi')}}/" + id;
             $http.get(url)
                     .then(function (response) {
                         // console.log('data-----------', response.data);

@@ -122,14 +122,14 @@
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
                                             <!-- <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search"> -->
-                                            <select data-placeholder="Select Req No" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
+                                            <select data-placeholder="Select Req No" ng-model="req_id" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
                                                 <option value=""></option>
                                                 @foreach($requisition_list as $item)
                                                 <option value="{{$item->id}}">{{$item->requisition_no}}</option>
                                                 @endforeach
                                             </select>
                                             <div class="input-group-btn">
-                                                <button type="button" class="btn btn-default">Add</button>
+                                                <button type="button" class="btn btn-default" ng-click="searchReqNo()">Add</button>
                                             </div>
                                         </div>
                                         <div id="msg">
@@ -345,10 +345,31 @@
 @section('script')
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
-    });
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
     app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
+        $scope.searchReqNo = function () {
+            $scope.itemlist = [];
+            for(i=0; i<$scope.req_id.length; i++){
+                $scope.addToItemList($scope.req_id[i]);
+            }
+        }
+        $scope.addToItemList = function(id){
+            let url = "{{URL::to('get-local-requisition')}}/" + id;
+            $http.get(url)
+                    .then(function(response) {
+                        // console.log('data-----------', response.data);
+                        angular.forEach(response.data, function(value, key) {
+                            $scope.itemlist.push(value);
+                        });
+                    });
+        }
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index);
+        }
         $scope.conditions = [];
         $scope.add_condition = function(){
             var condition = {};

@@ -57,6 +57,21 @@ class LocalRequisitionTableSeeder extends Seeder {
                 'quantity' => '50'
             ],
             [
+                'local_requisition_id' => 3,
+                'product_id' => 3,
+                'quantity' => '50'
+            ],
+            [
+                'local_requisition_id' => 3,
+                'product_id' => 2,
+                'quantity' => '500'
+            ],
+            [
+                'local_requisition_id' => 3,
+                'product_id' => 1,
+                'quantity' => '80'
+            ],
+            [
                 'local_requisition_id' => 1,
                 'product_id' => 2,
                 'quantity' => '55'

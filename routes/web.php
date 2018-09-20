@@ -11,7 +11,6 @@ Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
-Route::post('/getmsg','LocalPurchaseOrderController@search_msg');
 //Core
 Route::namespace('Core')->prefix('core')->group(function(){
     Route::resource('country', 'CountryController');

@@ -34,7 +34,8 @@ class RequisitionController extends Controller{
             'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_id', 'IR'),
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
-            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id')
+            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id'),
+            'inventory_item_patterns'=>\App\InventoryItemPattern::pluck('name', 'id')
         ];
 
         //dd($data);
@@ -54,15 +55,16 @@ class RequisitionController extends Controller{
             'sender_depot_id'=>'required|integer',
             'requested_depot_id'=>'required|integer',
             'inventory_item_status_id'=>'required|integer',
+            'inventory_item_pattern_id'=>'required|integer',
             'date'=>'required|date',
             'products'=>'required|array'
         ]);
 
-        $inventory_requisition=\App\InventoryRequisition::create($request->except('products', 'date'));
-        $inventory_requisition->date=\Carbon\Carbon::parse($request->get('date'))->toDateString();
-        $inventory_requisition->initial_approver()->associate(\Auth::user());
-        $inventory_requisition->creator()->associate(\Auth::user());
-        $inventory_requisition->save();
+        $requisition=\App\InventoryRequisition::create($request->except('products', 'date'));
+        $requisition->date=\Carbon\Carbon::parse($request->get('date'))->toDateString();
+        $requisition->initial_approver()->associate(\Auth::user());
+        $requisition->creator()->associate(\Auth::user());
+        $requisition->save();
 
         $products=$request->get('products');
 
@@ -71,9 +73,11 @@ class RequisitionController extends Controller{
             $product=\App\Product::find($id);
 
             \App\InventoryRequisitionItem::create([
-                'inventory_requisition_id'=>$inventory_requisition->id,
+                'inventory_requisition_id'=>$requisition->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$quantity
+                'requested_quantity'=>$quantity,
+                'inventory_item_status_id'=>$requisition->inventory_item_status_id,
+                'inventory_item_pattern_id'=>$requisition->inventory_item_pattern_id
             ]);
 
         }
@@ -96,7 +100,8 @@ class RequisitionController extends Controller{
             'requisition_no'=>$requisition->inventory_requisition_id,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
-            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id')
+            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id'),
+            'inventory_item_patterns'=>\App\InventoryItemPattern::pluck('name', 'id'),
         ];
 
         $products=[];
@@ -124,6 +129,7 @@ class RequisitionController extends Controller{
             'sender_depot_id'=>'required|integer',
             'requested_depot_id'=>'required|integer',
             'inventory_item_status_id'=>'required|integer',
+            'inventory_item_pattern_id'=>'required|integer',
             'date'=>'required|date',
             'products'=>'required|array'
         ]);
@@ -149,13 +155,17 @@ class RequisitionController extends Controller{
             \App\InventoryRequisitionItem::create([
                 'inventory_requisition_id'=>$requisition->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$quantity
+                'requested_quantity'=>$quantity,
+                'inventory_item_status_id'=>$requisition->inventory_item_status_id,
+                'inventory_item_pattern_id'=>$requisition->inventory_item_pattern_id
             ]);
 
             \App\InventoryIssueItem::create([
                 'inventory_issue_id'=>$issue->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$quantity
+                'requested_quantity'=>$quantity,
+                'inventory_item_status_id'=>$requisition->inventory_item_status_id,
+                'inventory_item_pattern_id'=>$requisition->inventory_item_pattern_id
             ]);
 
         }

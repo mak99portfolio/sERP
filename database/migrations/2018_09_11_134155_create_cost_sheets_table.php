@@ -15,6 +15,7 @@ class CreateCostSheetsTable extends Migration
     {
         Schema::create('cost_sheets', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('cost_sheet_no');
             $table->integer('letter_of_credit_id')->unsigned();
             $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->integer('currency')->nullable();

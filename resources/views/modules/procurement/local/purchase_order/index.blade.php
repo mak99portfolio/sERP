@@ -21,8 +21,6 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        
-            @include('partials.paginate_header')
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
@@ -38,21 +36,20 @@
                                 <tbody>
                                     
                                   
-                           @foreach($paginate->table as $row)
+                           @foreach($purchase_order_list as $item)
                         <tr>
-                            <td>{{ $row->purchase_oder_no }}</td>
-                            <td>{{ $row->purchase_oder_date }}</td>
+                            <td>{{ $item->purchase_oder_no }}</td>
+                            <td>{{ $item->purchase_oder_date }}</td>
  
-                            <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
+                            <td>{{ $carbon->parse($item->created_at)->diffForHumans() }}</td>
                             <td>
-                                {!! btnDelete(['url'=>route('local-purchase-order.destroy', ['working_unit'=>$row->id])]) !!}
+                                {!! btnDelete(['url'=>route('local-purchase-order.destroy', ['working_unit'=>$item->id])]) !!}
                             </td>
                         </tr>
                     @endforeach
                                 </tbody>
                             </table>
                         </div>
-                         @include('partials.paginate_footer')
                         <!--end table-->
                     </div>
                     <!-- Modal -->

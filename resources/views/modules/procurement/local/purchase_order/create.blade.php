@@ -119,13 +119,17 @@
                                     <div class="col-md-6 col-md-offset-3">
 
 
-
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
-                                            <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search">
-                                            <input type="hidden" name="" value="<?php echo csrf_token() ?>" id="t">
+                                            <!-- <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search"> -->
+                                            <select data-placeholder="Select Req No" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
+                                                <option value=""></option>
+                                                @foreach($requisition_list as $item)
+                                                <option value="{{$item->id}}">{{$item->requisition_no}}</option>
+                                                @endforeach
+                                            </select>
                                             <div class="input-group-btn">
-                                                <span class="btn btn-default" onclick="abc()">Add</span>
+                                                <button type="button" class="btn btn-default">Add</button>
                                             </div>
                                         </div>
                                         <div id="msg">

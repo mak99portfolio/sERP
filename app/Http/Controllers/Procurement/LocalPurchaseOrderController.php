@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Procurement;
 
+use App\LocalRequisition;
 use App\LocalPurchaseOrder;
 use App\Vendor;
 use App\LocalPurchaseOrderVendor;
@@ -13,39 +14,26 @@ use Session;
 
 class LocalPurchaseOrderController extends Controller
 {
-   protected function path(string $suffix){
-        return "modules.procurement.local.purchase_order.{$suffix}";
-    }
-  
-    
+    private $view_root = 'modules/procurement/local/purchase_order/';
     public function search_msg(Request $request){
        $purchase_requisition_no = $request->purchase_requisition_no;
       // dd($purchase_requisition_no);
        $data['purchase_requisition_no']=$purchase_requisition_no;
        return response()->json($data);
    }
-    public function index()
+   public function index()
+   {
+       $view = view($this->view_root . 'index');
+       $view->with('purchase_order_list', LocalPurchaseOrder::all());
+       return $view;
+   }
+   public function create()
     {
-       $data=[
-    		'paginate'=>new Paginate('\App\LocalPurchaseOrder'),
-    		'carbon'=>new \Carbon\Carbon
-    	];
-
-    	//dd($data['paginate']);
-
-    	return view($this->path('index'), $data);
-     }
-    public function create()
-    {
-        $data=[
-    		
-    		'vendor_list'=> \App\Vendor::pluck('name', 'id')->prepend('--select vendor--'),
-    		
-    	];
-
-         return view($this->path('create'), $data);
+        $view = view($this->view_root . 'create');
+        $view->with('requisition_list', LocalRequisition::all());
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
+        return $view;
     }
-
     /**
      * Store a newly created resource in storage.
      *

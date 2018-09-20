@@ -12,4 +12,7 @@ class UnitOfMeasurement extends Model
         'name',
         'short_name'
     ];
+    public function product(){
+        return $this->hasMany('App\Product');
+    }
 }

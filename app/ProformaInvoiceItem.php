@@ -15,5 +15,7 @@ class ProformaInvoiceItem extends Model
         'proforma_invoice_id',
         'product_id'
     ];
-    
+    public function product(){
+        return $this->belongsTo('App\Product'); 
+     }
 }

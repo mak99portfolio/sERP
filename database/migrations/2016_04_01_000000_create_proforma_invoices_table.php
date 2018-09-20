@@ -15,7 +15,8 @@ class CreateProformaInvoicesTable extends Migration
     {
         Schema::create('proforma_invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('requisition_no')->nullable();
+            $table->integer('purchase_order_id')->nullable();
+            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->string('purchase_order_date')->nullable();
             $table->string('proforma_invoice_no')->nullable();
             $table->string('proforma_invoice_date')->nullable();
@@ -32,9 +33,9 @@ class CreateProformaInvoicesTable extends Migration
             $table->foreign('final_destination_city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->integer('country_of_origin_of_goods_country_id')->unsigned()->nullable();
             $table->foreign('country_of_origin_of_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->integer('shipment_allow')->nullable();
-            $table->integer('payment_type')->nullable();
-            $table->integer('pre_carriage_by')->nullable();
+            $table->string('shipment_allow')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('pre_carriage_by')->nullable();
             $table->string('customer_code')->nullable();
             $table->string('consignee')->nullable();
             $table->string('beneficiary_bank_info')->nullable();

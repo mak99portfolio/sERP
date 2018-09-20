@@ -16,8 +16,6 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Foreign Purchase Order Details</h2>
-                        
-
                         <div class="btn-group pull-right">
                             <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                             <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Purchase Order List</a>
@@ -110,6 +108,23 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                </tbody>
+                            </table>
+                            <!--start approved by-->
+                            <table style="position: absolute; bottom: 30px; width: 100%; display: none;">
+                                <tr>
+                                    <td style="text-align: center; font-weight: bold;">
+                                        <span style="border-top: 2px solid black;"> Prepared By</span>
+                                    </td>
+                                    <td style="text-align: center; font-weight: bold;">
+                                        <span style="border-top: 2px solid black;"> Checked By</span>
+                                    </td>
+                                    <td style="text-align: center; font-weight: bold;">
+                                        <span style="border-top: 2px solid black;"> Approved By</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <!--end approved by-->
                         </div>
                         <!--end table-->
                     </div>

@@ -194,7 +194,7 @@
             $scope.addToItemList($scope.letter_of_credit_id);
         }
         $scope.addToItemList = function(id){
-            let url = "{{URL::to('procurement/get-lc')}}/" + id;
+            let url = "{{URL::to('get-lc')}}/" + id;
             $http.get(url)
                     .then(function(response) {
                         angular.forEach(response.data.items, function(value, key) {

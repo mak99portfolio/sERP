@@ -50,7 +50,7 @@ class LetterOfCreditController extends Controller
             'letter_of_credit_no' => 'required',
             'letter_of_credit_date' => 'required',
             // 'letter_of_credit_value' => 'required',
-            // 'vendor_id' => 'required',
+            'vendor_id' => 'required',
             // 'letter_of_credit_expire_date' => 'required',
             // 'letter_of_credit_status' => 'required',
             // 'letter_of_credit_shipment_date' => 'required',
@@ -89,9 +89,8 @@ class LetterOfCreditController extends Controller
      */
     public function show(LetterOfCredit $letterOfCredit)
     {
-         $view = view($this->view_root . 'show');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view = view($this->view_root . 'show');
+        $view->with('letterOfCredit',$letterOfCredit);
         return $view;
     }
 
@@ -128,20 +127,5 @@ class LetterOfCreditController extends Controller
     {
         //
     }
-    public function getPiByPiItem($id){
-        $pi = ProformaInvoice::find($id);
-        $data = [];
-        $items = $pi->items;
-        foreach($items as $item){
-            $data[] = [
-                'product_id' => $item->product->id,
-                'name' => $item->product->name,
-                'hs_code' => $item->product->hs_code,
-                'uom' => $item->product->unit_of_measurement->name,
-                'quantity' => $item->quantity,
-                'unit_price' => $item->unit_price,
-            ];
-        }
-        return response()->json($data);
-    }
+    
 }

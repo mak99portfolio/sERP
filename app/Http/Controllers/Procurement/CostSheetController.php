@@ -34,7 +34,7 @@ class CostSheetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
+            'letter_of_credit_id' => 'required|unique:cost_sheets',
             'currency' => 'required',
             'exchange_rate' => 'required',
             'bdt_amount' => 'required',
@@ -75,7 +75,7 @@ class CostSheetController extends Controller
         $cost_sheet->cost_sheet_no = time();;
         $cost_sheet->save();
         Session::put('alert-success', $cost_sheet->cost_sheet_no . " successfully created");
-        return redirect()->route('insurance-cover-note.index');
+        return redirect()->route('cost-sheet.index');
     }
 
     public function show(CostSheet $costSheet)

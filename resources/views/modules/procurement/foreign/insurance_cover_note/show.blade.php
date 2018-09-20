@@ -92,27 +92,27 @@
                                     <tbody>
                                        <tr>
                                            <td><strong>Marine</strong> </td>
-                                           <td>{{ $insuranceCoverNote->percent_of_marine }} %</td>
+                                           <td>{{ $insuranceCoverNote->percent_of_marine }}%</td>
                                            <td>{{ $insuranceCoverNote->amount_of_marine }}</td>
                                        </tr>
                                        <tr>
                                            <td><strong>WAR & SRCC</strong> </td>
-                                           <td>{{ $insuranceCoverNote->percent_of_war }} %</td>
+                                           <td>{{ $insuranceCoverNote->percent_of_war }}%</td>
                                            <td>{{ $insuranceCoverNote->amount_of_war }}</td>
                                        </tr>
                                        <tr>
                                            <td><strong>Net Premium</strong> </td>
-                                           <td>{{ $insuranceCoverNote->percent_of_net_premium }} %</td>
+                                           <td>{{ $insuranceCoverNote->percent_of_net_premium }}%</td>
                                            <td>{{ $insuranceCoverNote->amount_of_net_premium }}</td>
                                        </tr>
                                        <tr>
                                            <td><strong>VAT</strong> </td>
-                                           <td>{{ $insuranceCoverNote->percent_of_vat }} %</td>
+                                           <td>{{ $insuranceCoverNote->percent_of_vat }}%</td>
                                            <td>{{ $insuranceCoverNote->amount_of_vat }}</td>
                                        </tr>
                                        <tr>
                                            <td><strong>Stamp Duty</strong> </td>
-                                           <td>{{ $insuranceCoverNote->percent_of_stamp_duty }} %</td>
+                                           <td>{{ $insuranceCoverNote->percent_of_stamp_duty }}%</td>
                                            <td>{{ $insuranceCoverNote->amount_of_stamp_duty }}</td>
                                        </tr>
                                        <tr>

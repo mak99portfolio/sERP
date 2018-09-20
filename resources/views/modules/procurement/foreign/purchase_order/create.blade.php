@@ -166,7 +166,7 @@
             }
         }
         $scope.addToItemList = function(id){
-            let url = "{{URL::to('get-requisition')}}/" + id;
+            let url = "{{URL::to('get-foreign-requisition')}}/" + id;
             $http.get(url)
                     .then(function(response) {
                         // console.log('data-----------', response.data);

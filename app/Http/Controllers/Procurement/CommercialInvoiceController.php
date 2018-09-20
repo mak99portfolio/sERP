@@ -72,6 +72,8 @@ class CommercialInvoiceController extends Controller {
             $data[] = [
                 'product_id' => $item->product_id,
                 'quantity' => $item->quantity,
+                'name' => $item->product->name,
+                'unit_price' => $item->unit_price,
             ];
         }
         return response()->json($data);

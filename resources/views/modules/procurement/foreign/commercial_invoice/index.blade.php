@@ -39,7 +39,7 @@
                                         <td>{{$value->letter_of_credit_id}}</td>
                                         <td>{{$value->date}}</td>   
                                         <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('commercial-invoice.show',$value->id)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

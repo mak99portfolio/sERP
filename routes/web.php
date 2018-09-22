@@ -45,7 +45,6 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::resource('cost-sheet', 'CostSheetController');
     Route::resource('insurance-cover-note', 'InsuranceCoverNoteController');
     Route::resource('commercial-invoice', 'CommercialInvoiceController');
-    Route::resource('commercial-invoice-tracking', 'CommercialInvoiceTrackingController');
     Route::resource('packing-list', 'PackingListController');
     Route::resource('bill-of-lading', 'BillOfLadingController');
     Route::resource('cnf', 'CnfController');
@@ -58,6 +57,9 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::resource('requisition-purpose', 'RequisitionPurposeController');
     Route::resource('cost-particular', 'CostParticularController');
     Route::resource('consignment-particular', 'ConsignmentParticularController');
+    //CI Tracking
+    Route::get('/commercial-invoice-tracking', ['as' => 'commercial-invoice-tracking.index', 'uses' => 'CommercialInvoiceTrackingController@index']);
+    Route::get('/commercial-invoice-tracking/get-ci-with-tracking/{ci_no}', ['as' => 'get-ci-with-tracking', 'uses' => 'CommercialInvoiceTrackingController@getCIWithTracking']);
 
 });
 

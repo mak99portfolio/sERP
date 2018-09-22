@@ -29,16 +29,16 @@
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td scope="row"><stong>Requisition No :</stong>PR-2018-09-4727</td>
-                                            <td><strong>Requisition Title :</strong> req-1</td>
+                                        <td scope="row"><strong>Requisition No :</strong>{{$foreignRequisition->requisition_no}}</td>
+                                            <td><strong>Requisition Title :</strong>{{$foreignRequisition->requisition_title}}</td>
                                         </tr>
                                         <tr>
-                                            <td scope="row"><strong>Requisition Type :</strong> Sellable Item</td>
-                                            <td><strong>Requisition Purpose :</strong> For Sell</td>
+                                            <td><strong>Requisition Purpose :</strong> {{$foreignRequisition->purpose->name}}</td>
+                                            <td scope="row"><strong></strong> </td>
                                         </tr>
                                         <tr>
-                                            <td scope="row"><strong>Requisition Priority :</strong> High</td>
-                                            <td><strong>Department :</strong> ADMIN</td>
+                                            <td scope="row"><strong>Requisition Priority :</strong> {{$foreignRequisition->priority->name}}</td>
+                                            <td><strong></strong></td>
                                         </tr>
                                         <tr>
                                             <th scope="row" colspan="2">Reference No : req-11</th>
@@ -62,25 +62,15 @@
                                             <th>Quantity</th>
                                             <th>UOM</th>
                                         </tr>
+                                        @foreach($foreignRequisition->items as $key=>$item)
                                         <tr>
-                                            <td>1</td>
-                                            <td>40119901</td>
-                                            <td>10.00R20 SLM PLUS R16</td>
-                                            <td>50</td>
-                                            <td>PCS</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>4011990010</td>
-                                            <td>10.00-20 M77 N16</td>
-                                            <td>100</td>
-                                            <td>PCS</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="3">Total</td>
-                                            <td>150</td>
-                                            <td></td>
-                                        </tr>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$item->product->hs_code}}</td>
+                                        <td>{{$item->product->name}}</td>
+                                        <td>{{$item->product->quantity}}</td>
+                                        <td>{{$item->product->unit_of_measurement->name}}</td>
+                                        </tr> 
+                                        @endforeach
                                         </tbody>
                                     </table>
                                 </div>
@@ -88,18 +78,14 @@
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th scope="col">Date Issued : 2018-09-06</th>
-                                            <th scope="col">Date expected : 2018-09-06</th>
+                                            <th scope="col">Date Issued : {{$foreignRequisition->issued_date}}</th>
+                                            <th scope="col">Date expected :{{$foreignRequisition->date_expected}}</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
-                                            <td>Warehouse :</td>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
                                             <td>Notes :</td>
-                                            <td></td>
+                                            <td>{{$foreignRequisition->note}}</td>
                                         </tr>
                                         </tbody>
                                     </table>

@@ -40,14 +40,14 @@ class InsuranceCoverNoteController extends Controller
         $request->validate([
             'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
             'insurance_cover_note_no' => 'required|unique:insurance_cover_notes',
-            'insurance_cover_note_date' => 'required|unique:insurance_cover_notes',
-            'vendor_id' => 'required|unique:insurance_cover_notes',
-            'icn_bank_account_no' => 'required|unique:insurance_cover_notes',
-            'icn_bank_account_name' => 'required|unique:insurance_cover_notes',
+            'insurance_cover_note_date' => 'required',
+            'vendor_id' => 'required',
+            'icn_bank_account_no' => 'required',
+            'icn_bank_account_name' => 'required',
             'icn_bank_name' => 'required',
             'icn_bank_address' => 'required',
-            'consignee_bank_account_no' => 'required|unique:insurance_cover_notes',
-            'consignee_bank_account_name' => 'required|unique:insurance_cover_notes',
+            'consignee_bank_account_no' => 'required',
+            'consignee_bank_account_name' => 'required',
             'consignee_bank_name' => 'required',
             'consignee_bank_address' => 'required',
             'note' => 'required',
@@ -60,8 +60,7 @@ class InsuranceCoverNoteController extends Controller
             'percent_of_vat' => 'required',
             'amount_of_vat' => 'required',
             'percent_of_stamp_duty' => 'required',
-            'amount_of_stamp_duty' => 'required',
-            'amount_of_grand_total' => 'required'
+            'amount_of_stamp_duty' => 'required'
         ]);
 
         $insurance_cover_note = new InsuranceCoverNote;

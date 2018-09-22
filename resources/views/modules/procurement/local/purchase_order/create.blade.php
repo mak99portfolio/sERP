@@ -122,7 +122,7 @@
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
                                             <!-- <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search"> -->
-                                            <select data-placeholder="Select Req No" ng-model="req_id" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
+                                            <select data-placeholder="Select Req No" ng-model="req_id" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id">
                                                 <option value=""></option>
                                                 @foreach($requisition_list as $item)
                                                 <option value="{{$item->id}}">{{$item->requisition_no}}</option>
@@ -178,9 +178,9 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>SL NO</th>
-                                                <th>Item Code</th>
-                                                <th>Item Description</th>
+                                                <th>#</th>
+                                                <th>Item Name</th>
+                                                <th>HS Code</th>
                                                 <th>Qty</th>
                                                 <th>MOU</th>
                                                 <th>Price</th>
@@ -194,18 +194,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
+                                            <tr ng-repeat="item in itemlist">
+                                                <td><% $index+1 %></td>
+                                                <td><% item.name %></td>
+                                                <td><% item.hs_code %></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td><% item.uom %></td>
+                                                <td><input class="form-control input-sm" value="345" type="text"></td>
                                                 <td>123</td>
-                                                <td>2018</td>
                                                 <td>123</td>
                                                 <td>123</td>
                                                 <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td>123</td>
                                                 <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td>123</td>
                                                 <td>123</td>
                                                 <td  class="text-center">
                                                     <button type="button" class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>

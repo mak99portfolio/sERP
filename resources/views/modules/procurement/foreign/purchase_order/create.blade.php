@@ -109,7 +109,7 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="<% quantity[$index]=item.quantity %>" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" required name="items[<% $index %>][unit_price]"></td>
                                                     <td>
                                                     <% quantity[$index]*unit_price[$index] %>
@@ -166,7 +166,7 @@
             }
         }
         $scope.addToItemList = function(id){
-            let url = "{{URL::to('get-requisition')}}/" + id;
+            let url = "{{URL::to('get-foreign-requisition')}}/" + id;
             $http.get(url)
                     .then(function(response) {
                         // console.log('data-----------', response.data);

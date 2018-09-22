@@ -9,6 +9,7 @@ use App\PurchaseOrder;
 use App\ProformaInvoice;
 use App\LetterOfCredit;
 use App\CommercialInvoice;
+use App\LocalRequisition;
 
 class ApiController extends Controller
 {
@@ -95,8 +96,22 @@ class ApiController extends Controller
         }
         return response()->json($data);
     }
-    public function getRequisitionByRequisitionId($id){
+    public function getForeignRequisitionByRequisitionId($id){
         $req = ForeignRequisition::find($id);
+        $items = $req->items;
+        foreach($items as $item){
+            $data[] = [
+                'product_id' => $item->product->id,
+                'name' => $item->product->name,
+                'hs_code' => $item->product->hs_code,
+                'uom' => $item->product->unit_of_measurement->name,
+                'quantity' => $item->quantity,
+            ];
+        }
+        return response()->json($data);
+    }
+    public function getLocalRequisitionByRequisitionId($id){
+        $req = LocalRequisition::find($id);
         $items = $req->items;
         foreach($items as $item){
             $data[] = [

@@ -12,28 +12,28 @@
         {{-- Content here --}}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Insurance Cover Note</h2>
                         <a href="{{route('insurance-cover-note.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Insurance Cover Note</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials.flash_msg')
                         <form class="form-horizontal form-label-left input_mask" action="{{ route('insurance-cover-note.store') }}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('insurance_cover_note_no','ICN No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list, ['class'=>'form-control input-sm']) }}
                                 </div>
                             </div>
@@ -100,36 +100,36 @@
                                                 <td>Marine</td>
                                                 <td>{{ Form::number('percent_of_marine', null, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
-                                                <td>{{ Form::number('amount_of_marine', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_marine" ng-model="amount_of_marine" ng-init="amount_of_marine = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>WAR & SRCC</td>
                                                 <td>{{ Form::number('percent_of_war', null, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
-                                                <td>{{ Form::number('amount_of_war', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_war" ng-model="amount_of_war" ng-init="amount_of_war = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>Net Premium</td>
                                                 <td>{{ Form::number('percent_of_net_premium', null, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
-                                                <td>{{ Form::number('amount_of_net_premium', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_net_premium" ng-model="amount_of_net_premium" ng-init="amount_of_net_premium = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>VAT</td>
                                                 <td>{{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
-                                                <td>{{ Form::number('amount_of_vat', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" ng-init="amount_of_vat = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>Stamp Duty</td>
                                                 <td>{{ Form::number('percent_of_stamp_duty', null, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
-                                                <td>{{ Form::number('amount_of_stamp_duty', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_stamp_duty" ng-model="amount_of_stamp_duty" ng-init="amount_of_stamp_duty = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">Grand Total</td>
                                                 <td>Tk</td>
-                                                <td>{{ Form::number('amount_of_grand_total', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td><% amount_of_grand_total() %></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -152,4 +152,23 @@
         {{--end Content here --}}
     </div>
 </div>
+@endsection
+
+
+@section('script')
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+    });
+    app.controller('myCtrl', function($scope, $http) {
+
+        $scope.amount_of_grand_total = function () {
+            var total = 0;
+            total = $scope.amount_of_marine + $scope.amount_of_war + $scope.amount_of_net_premium + $scope.amount_of_vat + $scope.amount_of_stamp_duty;
+            return total;
+        }
+
+    });
+</script>
 @endsection

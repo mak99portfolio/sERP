@@ -40,7 +40,6 @@ class CreateInsuranceCoverNotesTable extends Migration
             $table->double('amount_of_vat');
             $table->double('percent_of_stamp_duty');
             $table->double('amount_of_stamp_duty');
-            $table->double('amount_of_grand_total');
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('restrict');
             $table->integer('creator_user_id')->unsigned()->nullable();

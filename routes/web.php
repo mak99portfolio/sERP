@@ -12,7 +12,7 @@ Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
 //Core
-Route::namespace('Core')->prefix('core')->group(function(){
+Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('country', 'CountryController');
     Route::resource('city', 'CityController');
     Route::resource('port', 'PortController');
@@ -35,7 +35,7 @@ Route::namespace('Core')->prefix('core')->group(function(){
 });
 
 //Procurement
-Route::namespace('Procurement')->prefix('procurement')->group(function(){
+Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->group(function(){
     // Foreign
     Route::resource('foreign-requisition', 'ForeignRequisitionController');
     Route::resource('purchase-order', 'PurchaseOrderController');
@@ -61,18 +61,24 @@ Route::namespace('Procurement')->prefix('procurement')->group(function(){
 });
 
 //Inventory
-Route::namespace('Inventory')->prefix('inventory')->group(function(){
+Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(function(){
     Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
     Route::resource('receive', 'ReceiveController');
     Route::resource('status-adjustment', 'StatusAdjustmentController');
     Route::resource('stock-adjustment', 'StockAdjustmentController');
-    Route::resource('item-status', 'ItemStatusController');
+    //Route::resource('item-status', 'ItemStatusController');
     Route::resource('adjustment-purpose', 'AdjustmentPurposeController');
     Route::resource('return-reason', 'ReturnReasonController');
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
+    Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
+    Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
+});
+
+//Inventory without auth middleware
+Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
     Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
 });

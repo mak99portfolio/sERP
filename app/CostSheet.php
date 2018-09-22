@@ -21,7 +21,7 @@ class CostSheet extends Model
     }
 
     public function cost_sheet_particular(){
-        return $this->hasMany('App\CostSheetParticular');
+        return $this->hasOne('App\CostSheetParticular');
     }
 
     public function getBdtAmount(){

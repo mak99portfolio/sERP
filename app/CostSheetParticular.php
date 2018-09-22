@@ -39,7 +39,7 @@ class CostSheetParticular extends Model
     ];
 
     public function cost_sheet(){
-        return $this->belongsTo('App\CostSheet');
+        return $this->belongsTo('App\CostSheet', 'cost_sheet_id');
     }
 
     public function get_total_amount(){

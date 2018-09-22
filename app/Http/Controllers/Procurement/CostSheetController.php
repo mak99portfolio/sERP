@@ -67,22 +67,24 @@ class CostSheetController extends Controller
             'round_amount_of_others' => 'required'
         ]);
 
-        $cost_sheet_particular = new CostSheetParticular;
         $cost_sheet = new CostSheet;
         $cost_sheet->fill($request->input());
         $cost_sheet->creator_user_id = Auth::id();
         $cost_sheet->company_id = 1;
-        $cost_sheet->cost_sheet_no = time();;
+        $cost_sheet->cost_sheet_no = time();
         $cost_sheet->save();
+        $cost_sheet_particular = new CostSheetParticular;
+        $cost_sheet_particular->fill($request->input());
+        $cost_sheet->cost_sheet_particular()->save($cost_sheet_particular);
         Session::put('alert-success', $cost_sheet->cost_sheet_no . " successfully created");
         return redirect()->route('cost-sheet.index');
     }
 
-    public function show(CostSheet $costSheet, CostSheetParticular $costSheetParticular)
+    public function show(CostSheet $costSheet)
     {
+        // dd($costSheet->cost_sheet_particular);
         $view = view($this->view_root . 'show');
         $view->with('costSheet', $costSheet);
-        $view->with('costSheetParticular', $costSheetParticular);
         return $view;
     }
 

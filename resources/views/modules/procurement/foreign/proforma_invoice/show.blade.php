@@ -28,9 +28,16 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                        <tr>
-                                           <td><strong>Proforma Invoice_no No:</strong> {{$proformaInvoice->proforma_invoice_no}}</td>
-                                           <td><strong>Purchase Order No:</strong> {{$proformaInvoice->purchase_order->purchase_order_no}}</td>
-                                           <td><strong>Purchase Order Date:</strong> {{$proformaInvoice->purchase_order_date}} </td>
+                                           <td><strong>Proforma Invoice No:</strong> {{$proformaInvoice->proforma_invoice_no}}</td>
+                                           <td><strong>Purchase Order No:</strong>
+                                            @foreach($proformaInvoice->purchase_orders as $proformaInvoice_no)
+                                           {{$proformaInvoice_no->purchase_order_no}},
+                                            @endforeach
+                                        
+                                        </td>
+                                           <td><strong>Purchase Order Date:</strong>  @foreach($proformaInvoice->purchase_orders as $proformaInvoice_no)
+                                            {{date('Y-m-d',strtotime($proformaInvoice_no->purchase_order_date))}},
+                                            @endforeach</td>
                                            
                                        </tr>
                                        <tr>

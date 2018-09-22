@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\PurchaseOrder;
 use App\ForeignRequisition;
-use App\ForeignRequisitionPurchaseOrder;
+use App\PurchaseOrderProformaInvoice;
 use App\Port;
 use App\Country;
 use App\City;

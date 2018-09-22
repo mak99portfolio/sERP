@@ -1,6 +1,7 @@
 <?php
 
 Route::get('/test', 'TestController@index');
+Route::get('/design', 'TestController@design');
 
 Route::namespace('Dev')->prefix('dev')->group(function(){
     Route::resource('access-matrix', 'AccessMatrixController');
@@ -65,7 +66,12 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
-    Route::resource('receive', 'ReceiveController');
+
+    Route::resource('receive-internal', 'ReceiveInternalController');
+    Route::resource('receive-foreign-purchase', 'ReceiveForeignPurchaseController');
+    Route::resource('receive-local-purchase', 'ReceiveLocalPurchaseController');
+    Route::resource('receive-return', 'ReceiveReturnController');
+
     Route::resource('status-adjustment', 'StatusAdjustmentController');
     Route::resource('stock-adjustment', 'StockAdjustmentController');
     //Route::resource('item-status', 'ItemStatusController');

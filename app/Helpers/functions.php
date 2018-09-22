@@ -57,6 +57,22 @@ function in($urls=[]){
 	foreach($urls as $url) if($currentUrl==url($url)) return 'in';
 }
 
+function active($urls){
+
+	$currentUrl=url()->current();
+
+	if(is_array($urls)){
+		
+		foreach($urls as $url) if($currentUrl==url($url)) return 'active';
+
+	}elseif(is_string($urls)){
+
+		if($currentUrl==url($urls)) return 'active';
+		
+	}
+
+}
+
 function goBack($args=[]){
 	$attr=[
 		'class'=>'btn btn-default',

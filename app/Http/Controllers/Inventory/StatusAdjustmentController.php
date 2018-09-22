@@ -47,8 +47,8 @@ class StatusAdjustmentController extends Controller{
         $data=[
             'status_adjustment'=>$status_adjustment,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
-            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id'),
-            'inventory_item_patterns'=>\App\InventoryItemPattern::pluck('name', 'id')
+            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
+            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
         ];
 
         return view($this->path('create'), $data);
@@ -59,13 +59,13 @@ class StatusAdjustmentController extends Controller{
     public function update(Request $request, \App\Stock $status_adjustment){
 
         $request->validate([
-            'inventory_item_status_id'=>'required|integer',
-            'inventory_item_pattern_id'=>'required|integer',
+            'product_status_id'=>'required|integer',
+            'product_pattern_id'=>'required|integer',
         ]);
 
         $status_adjustment->fill($request->only(
-            'inventory_item_status_id',
-            'inventory_item_pattern_id',
+            'product_status_id',
+            'product_pattern_id',
             'remarks'
         ));
 

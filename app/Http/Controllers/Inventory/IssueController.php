@@ -49,8 +49,8 @@ class IssueController extends Controller{
             'requisition_no'=>$issue->requisition->inventory_requisition_id,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
-            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id'),
-            'inventory_item_patterns'=>\App\InventoryItemPattern::pluck('name', 'id'),
+            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
+            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
         ];
 
         $products=[];
@@ -109,8 +109,8 @@ class IssueController extends Controller{
                     'inventory_issue_id'=>$issue->id,
                     'product_id'=>$product->id,
                     'requested_quantity'=>$quantity,
-                    'inventory_item_status_id'=>$issue->requisition->inventory_item_status_id,
-                    'inventory_item_pattern_id'=>$issue->requisition->inventory_item_pattern_id
+                    'product_status_id'=>$issue->requisition->product_status_id,
+                    'product_pattern_id'=>$issue->requisition->product_pattern_id
                 ]);
 
                 if($approval=='final'){
@@ -120,8 +120,8 @@ class IssueController extends Controller{
                         'inventory_issue_id'=>$issue->id,
                         'product_id'=>$product->id,
                         'issue_quantity'=>$quantity,
-                        'inventory_item_status_id'=>$issue->requisition->inventory_item_status_id,
-                        'inventory_item_pattern_id'=>$issue->requisition->inventory_item_pattern_id
+                        'product_status_id'=>$issue->requisition->product_status_id,
+                        'product_pattern_id'=>$issue->requisition->product_pattern_id
                     ]);
 
                 }

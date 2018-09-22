@@ -12,6 +12,10 @@ class TestController extends Controller{
 		//$this->middleware('hasPermission:can_test');
 	}
 
+    protected function path(string $suffix){
+        return "test.{$suffix}";
+    }
+
     public function index(){
     	//Role::create(['name' => 'super_admin']);
         //Permission::create(['name' => 'can_test']);
@@ -21,6 +25,10 @@ class TestController extends Controller{
         //\Auth::user()->assignRole($role);
         //echo 'passed permission middleware';
         dd(uCode('working_units.working_unit_id', 'WU'));
+    }
+
+    public function design(){
+        return view($this->path('design'));
     }
 
 }

@@ -78,9 +78,12 @@ class CostSheetController extends Controller
         return redirect()->route('cost-sheet.index');
     }
 
-    public function show(CostSheet $costSheet)
+    public function show(CostSheet $costSheet, CostSheetParticular $costSheetParticular)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('costSheet', $costSheet);
+        $view->with('costSheetParticular', $costSheetParticular);
+        return $view;
     }
 
     public function edit(CostSheet $costSheet)

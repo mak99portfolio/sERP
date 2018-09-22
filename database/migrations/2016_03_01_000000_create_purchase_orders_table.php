@@ -15,16 +15,14 @@ class CreatePurchaseOrdersTable extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('foreign_requisition_id')->unsigned();
-            $table->foreign('foreign_requisition_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->string('purchase_order_no')->nullable();
-            $table->integer('vendor_id')->unsigned();
+            $table->integer('vendor_id')->unsigned()->nullable();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->string('requisition_date')->nullable();
             $table->string('purchase_order_date')->nullable();
-            $table->integer('port_of_loading_port_id')->unsigned()->nullable();
+            $table->integer('port_of_loading_port_id')->unsigned();
             $table->foreign('port_of_loading_port_id')->references('id')->on('ports')->onDelete('cascade');
-            $table->integer('port_of_discharge_port_id')->unsigned()->nullable();
+            $table->integer('port_of_discharge_port_id')->unsigned();
             $table->foreign('port_of_discharge_port_id')->references('id')->on('ports')->onDelete('cascade');
             $table->integer('country_of_final_destination_country_id')->unsigned()->nullable();
             $table->foreign('country_of_final_destination_country_id')->references('id')->on('countries')->onDelete('cascade');

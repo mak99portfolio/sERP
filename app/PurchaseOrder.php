@@ -8,8 +8,6 @@ class PurchaseOrder extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'requisition_no',
-        'foreign_requisition_id',
         'vendor_id',
         'requisition_date',
         'purchase_order_date',
@@ -45,5 +43,8 @@ class PurchaseOrder extends Model
     }
     public function origin_of_goods(){
         return $this->belongsTo('App\Country','country_of_origin_of_goods_country_id');
+    }
+    public function foreign_requisitions(){
+        return $this->belongsToMany('App\ForeignRequisition');
     }
 }

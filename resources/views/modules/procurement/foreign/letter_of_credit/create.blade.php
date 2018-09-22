@@ -27,9 +27,6 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'Vendor', $proforma_invoice_list, null, ['class'=>'form-control input-sm select2' ,'ng-model'=>'pi_id', 'ng-change'=>'searchPI()']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_no','LC No.', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -108,31 +105,29 @@
                                         <div class="col-md-6 col-md-offset-3">
                                             <label>LCA No</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control input-sm">
+                                                <input type="text" class="form-control input-sm" id="lca_no">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default btn-sm" type="button">Add</button>
+                                                    <button class="btn btn-default btn-sm" id="add" type="button">Add</button>
                                                 </span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered table.order-list" id="lca_no_table">
                                             <thead>
                                                 <tr>
                                                     <th>SL No.</th>
                                                     <th>LCA No</th>
-                                                    <th>Update</th>
                                                     <th class="text-right">Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                {{-- <tr>
                                                     <td scope="row">1</td>
                                                     <td>123547</td>
-                                                    <td><a href="" class="btn btn-info btn-xs">Update</a></td>
                                                     <td class="text-right"><a href="" class="btn btn-danger  btn-xs">Delete</a></td>
-                                                </tr>
+                                                </tr> --}}
                                             </tbody>
                                         </table>
                                     </div>
@@ -148,17 +143,11 @@
                                 </div>
                             </div>
                             <div class="panel panel-default">
-                                <div class="panel-heading"><h4>LCA Information</h4></div>
+                                <div class="panel-heading"><h4>PI Information</h4></div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-3">
-                                            <label>LCA No</label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control input-sm">
-                                                <span class="input-group-btn">
-                                                    <button class="btn btn-default btn-sm" type="button">Add</button>
-                                                </span>
-                                            </div>
+                                            {{ BootForm::select('proforma_invoice_id', 'Proforma Invoice NO', $proforma_invoice_list, null, ['class'=>'form-control input-sm select2' ,'multiple','ng-model'=>'pi_id', 'ng-change'=>'searchPI()']) }}
                                         </div>
                                     </div>
                                     <div class="table-responsive">
@@ -171,11 +160,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+
                                                 <tr>
-                                                    <td scope="row">1</td>
-                                                    <td>123547</td>
-                                                    <td class="text-right"><a href="#" class="btn btn-danger  btn-xs">Delete</a></td>
-                                                </tr>
+                                                    <td scope="row"><% $index+1 %></td>
+                                               </tr>
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -210,12 +199,12 @@
                                                     </label>
                                                 </td>
                                                 <td><% item.hs_code %></td>
-                                                <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index] = number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index] = number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="d_rate[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][d_rate]"></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="discount[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][discount]"></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="vat[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][vat]"></td>
+                                                <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>" required></td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index] = number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]" required></td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index] = number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required ></td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="d_rate[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][d_rate]" required></td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="discount[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][discount]" required></td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="vat[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][vat]" required></td>
                                                 <td><% total[$index] = quantity[$index]*unit_price[$index] %></td>
                                             </tr>
                                         </tbody>
@@ -307,5 +296,57 @@
             return sum;
         }
     });
+
+
+//     $('#add').on('click', function(e){
+//      var lca_no = $('#lca_no').val();
+//     $('#lca_no_table').prepend('<tr><td scope="row">1</td> <td>'+ lca_no +'</td><td class="text-right"><a href="" class="btn btn-danger  btn-xs">Delete</a></td> </tr>');
+// });
+
+// lca add value
+
+$(document).ready(function () {
+    var counter = 1;
+
+    $("#add").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+        var lca_no = $('#lca_no').val();
+
+        cols += '<td>'+ counter + '</td>';
+        cols += '<td><input type="text" class="form-control" id="lca_no_value' + counter + '" name="mail' + counter + '"/></td>';
+        cols += '<td><input type="button" class="ibtnDel btn btn-danger btn-sm"  value="Delete"></td>';
+         
+        newRow.append(cols);
+        $('#lca_no_table').append(newRow);
+        $("#lca_no_value" + counter).val(lca_no);
+        counter++;
+    });
+
+
+
+    $('#lca_no_table').on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();       
+        counter -= 1
+    });
+
+
+});
+
+
+
+// function calculateRow(row) {
+//     var price = +row.find('input[name^="price"]').val();
+
+// }
+
+// function calculateGrandTotal() {
+//     var grandTotal = 0;
+//     $("table.order-list").find('input[name^="price"]').each(function () {
+//         grandTotal += +$(this).val();
+//     });
+//     $("#grandtotal").text(grandTotal.toFixed(2));
+// }
+
 </script>
 @endsection

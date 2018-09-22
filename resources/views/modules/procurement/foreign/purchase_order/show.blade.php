@@ -28,13 +28,25 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Requisition No:</strong> 125</td>
-                                        <td><strong>Purchase Order No:</strong> 125</td>
-                                        <td><strong>Vendor:</strong> 125</td>
+                                        <td><strong>Requisition No:</strong> 
+                                        
+                                            @foreach($purchaseOrder->foreign_requisitions as $foreign_requisition)
+
+                                                 <strong>{{$foreign_requisition->requisition_no}},</strong> 
+                                            @endforeach
+                                        </td>
+                                        <td><strong>Purchase Order No:</strong> {{$purchaseOrder->purchase_order_no}}</td>
+                                        <td><strong>Vendor:</strong> {{$purchaseOrder->vendor->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Requisition date:</strong> 125</td>
-                                        <td><strong>Purchase Order date:</strong> 125</td>
+                                        <td><strong>Requisition date:</strong> 
+                                            @foreach($purchaseOrder->foreign_requisitions as $foreign_requisition)
+
+                                            <strong>{{date('Y-m-d', strtotime($foreign_requisition->issued_date))}},</strong> 
+                                       @endforeach
+                                        
+                                        </td>
+                                        <td><strong>Purchase Order date:</strong>{{$purchaseOrder->requisition_date}}</td>
                                         <td></td>
                                     </tr>
                                 </tbody>
@@ -111,7 +123,7 @@
                                 </tbody>
                             </table>
                             <!--start approved by-->
-                            <table id="print-footer" style="position: absolute; bottom: 30px; width: 100%; display: none;">
+                            <table id="print-footer" style="width: 100%; display: none; margin-bottom: 200px">
                                 <tr>
                                     <td style="text-align: center; font-weight: bold;">
                                         <span style="border-top: 2px solid black;"> Prepared By</span>

@@ -13,7 +13,6 @@ class ForeignPurchaseOrderTableSeeder extends Seeder
     {
         $data = [
             [
-                'foreign_requisition_id' => ' 1',
                 'purchase_order_no' => '5452145',
                 'vendor_id' => '1',
                 'requisition_date' => \Carbon\Carbon::now(),
@@ -33,7 +32,6 @@ class ForeignPurchaseOrderTableSeeder extends Seeder
                 'updator_user_id' => 1,
             ],
             [
-                'foreign_requisition_id' => ' 2',
                 'purchase_order_no' => '444444',
                 'vendor_id' => '2',
                 'requisition_date' => \Carbon\Carbon::now(),

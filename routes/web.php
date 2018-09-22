@@ -69,6 +69,7 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
 
+    Route::resource('receive', 'ReceiveController');
     Route::resource('receive-internal', 'ReceiveInternalController');
     Route::resource('receive-foreign-purchase', 'ReceiveForeignPurchaseController');
     Route::resource('receive-local-purchase', 'ReceiveLocalPurchaseController');
@@ -81,14 +82,23 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('return-reason', 'ReturnReasonController');
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
-    Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
-    Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
 });
 
 //Inventory without auth middleware
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
+
     Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
     Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
+
+    //routes for receive product info
+    Route::prefix('receive')->group(function(){
+
+        Route::get('vue-old-products', 'ReceiveController@vue_old_products');
+        Route::get('get-product-info/{slug}', 'ReceiveController@get_product_info');
+        Route::get('get-commercial-invoice/{slug}', 'ReceiveController@get_commercial_invoice');
+
+    });
+
 });
 
 //API

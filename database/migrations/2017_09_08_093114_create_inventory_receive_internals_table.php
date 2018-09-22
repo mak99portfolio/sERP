@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReceivePurchasesTable extends Migration
+class CreateInventoryReceiveInternalsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CreateReceivePurchasesTable extends Migration
      */
     public function up()
     {
-        Schema::create('receive_purchases', function (Blueprint $table) {
+        Schema::create('inventory_receive_internals', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('commercial_invoice_id')->unsigned();
-            $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ class CreateReceivePurchasesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('receive_purchases');
+        Schema::dropIfExists('inventory_receive_internals');
     }
 }

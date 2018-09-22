@@ -26,4 +26,7 @@ class ForeignRequisition extends Model
     public function priority(){
         return $this->belongsTo('App\RequisitionPriority','requisition_priority_id');
     }
+    public function purchase_orders(){
+        return $this->belongsToMany('App\PurchaseOrder');
+    }
 }

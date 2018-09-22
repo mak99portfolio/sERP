@@ -154,7 +154,7 @@
                                                     {{ BootForm::number('pack_size','Pack Size', null, ['class'=>'form-control input-sm']) }}
                                                 </div>
                                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                                    {{ BootForm::number('shipper_carton_size','Sheper Cartor Size', null, ['class'=>'form-control input-sm']) }}
+                                                    {{ BootForm::number('shipper_carton_size','Shipper Carton Size', null, ['class'=>'form-control input-sm']) }}
                                                 </div>
                                             </td>
                                         </tr>

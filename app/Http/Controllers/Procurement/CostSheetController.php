@@ -20,14 +20,13 @@ class CostSheetController extends Controller
     {
         $view = view($this->view_root . 'index');
         $view->with('cost_sheet_list', CostSheet::all());
-        $view->with('lc_list', LetterOfCredit::pluck('letter_of_credit_no', 'id')->prepend('--select lc--', ''));
         return $view;
     }
 
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('lc_list', LetterOfCredit::pluck('letter_of_credit_no', 'id')->prepend('--select lc--', ''));
+        $view->with('lc_list', LetterOfCredit::all());
         return $view;
     }
 
@@ -68,6 +67,7 @@ class CostSheetController extends Controller
             'round_amount_of_others' => 'required'
         ]);
 
+        $cost_sheet_particular = new CostSheetParticular;
         $cost_sheet = new CostSheet;
         $cost_sheet->fill($request->input());
         $cost_sheet->creator_user_id = Auth::id();

@@ -30,20 +30,26 @@
                                         <th>L/C Opening Date</th>
                                         <th>Currency</th>
                                         <th>L/C Amount</th>
+                                        <th>Exchange Rate</th>
+                                        <th>BDT Amount</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($cost_sheet_list as $key => $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td class="text-right">
-                                            <a href="#" class="btn btn-sm btn-default btn-xs" ><i class="fa fa-eye"></i>View</a>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $item->letter_of_credit->letter_of_credit_no }}</td>
+                                        <td>{{ $item->letter_of_credit->letter_of_credit_date }}</td>
+                                        <td>{{ $item->currency }}</td>
+                                        <td>{{ $item->letter_of_credit->letter_of_credit_value }}</td>
+                                        <td>{{ $item->exchange_rate }}</td>
+                                        <td>{{ $item->bdt_amount }}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('cost-sheet.show', $item) }}" class="btn btn-sm btn-default btn-xs" ><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

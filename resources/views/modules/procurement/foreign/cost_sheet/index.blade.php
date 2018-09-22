@@ -15,7 +15,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Proforma Invoice List</h2>
+                        <h2>Cost Sheet List</h2>
                         <a href="{{route('cost-sheet.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Cost Sheet</a>
                         <div class="clearfix"></div>
                     </div>

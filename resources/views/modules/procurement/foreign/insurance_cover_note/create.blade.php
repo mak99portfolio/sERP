@@ -98,31 +98,31 @@
                                         <tbody>
                                             <tr>
                                                 <td>Marine</td>
-                                                <td>{{ Form::number('percent_of_marine', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_marine', 0, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
                                                 <td><input type="number" class="form-control input-sm" name="amount_of_marine" ng-model="amount_of_marine" ng-init="amount_of_marine = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>WAR & SRCC</td>
-                                                <td>{{ Form::number('percent_of_war', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_war', 0, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
                                                 <td><input type="number" class="form-control input-sm" name="amount_of_war" ng-model="amount_of_war" ng-init="amount_of_war = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>Net Premium</td>
-                                                <td>{{ Form::number('percent_of_net_premium', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_net_premium', 0, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
                                                 <td><input type="number" class="form-control input-sm" name="amount_of_net_premium" ng-model="amount_of_net_premium" ng-init="amount_of_net_premium = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>VAT</td>
-                                                <td>{{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_vat', 0, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
                                                 <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" ng-init="amount_of_vat = 0"></td>
                                             </tr>
                                             <tr>
                                                 <td>Stamp Duty</td>
-                                                <td>{{ Form::number('percent_of_stamp_duty', null, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_stamp_duty', 0, ['class'=>'form-control input-sm']) }}</td>
                                                 <td>Tk</td>
                                                 <td><input type="number" class="form-control input-sm" name="amount_of_stamp_duty" ng-model="amount_of_stamp_duty" ng-init="amount_of_stamp_duty = 0"></td>
                                             </tr>

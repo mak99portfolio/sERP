@@ -29,7 +29,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm', 'required'=>'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker']) }}

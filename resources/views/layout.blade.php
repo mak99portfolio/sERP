@@ -121,6 +121,8 @@
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.js')}}"></script>
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
+    <!-- validator -->
+    <script src="{{asset('assets/vendors/validator/validator.js')}}"></script>
     <!-- Datatables -->
     <script src="{{asset('assets/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>

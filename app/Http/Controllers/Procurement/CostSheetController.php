@@ -80,7 +80,9 @@ class CostSheetController extends Controller
 
     public function show(CostSheet $costSheet)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('costSheet', $costSheet);
+        return $view;
     }
 
     public function edit(CostSheet $costSheet)

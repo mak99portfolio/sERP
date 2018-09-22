@@ -44,7 +44,7 @@
     @yield('style')
   </head>
 
-  <body class="nav-md" onload="init()">
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
@@ -143,7 +143,8 @@
 
     @yield('script')
     <script>
-      function init(){
+      toaster_notification();
+      function toaster_notification(){
         $.ajax( "{{route('get_toaster_notification')}}")
               .done(function(data) {
                 if(data){

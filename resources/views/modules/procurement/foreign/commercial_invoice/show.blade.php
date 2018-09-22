@@ -80,13 +80,13 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Port of Loading :</strong> {{$commercialInvoice->container_no}}</td>
-                                        <td><strong>Port of Discharge :</strong> {{$commercialInvoice->container_no}}</td>
-                                        <td><strong>Country of Final Destination :</strong> {{$commercialInvoice->container_no}}</td>
+                                        <td><strong>Port of Loading :</strong> {{$commercialInvoice->loading_port->name}}</td>
+                                        <td><strong>Port of Discharge :</strong> {{$commercialInvoice->discharge_port->name}}</td>
+                                        <td><strong>Country of Final Destination :</strong> {{$commercialInvoice->destination_country->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Final Destination :</strong> {{$commercialInvoice->container_no}}</td>
-                                        <td><strong>Country of Origin of Goods :</strong> {{$commercialInvoice->container_no}}</td>
+                                        <td><strong>Final Destination :</strong> {{$commercialInvoice->city->name}}</td>
+                                        <td><strong>Country of Origin of Goods :</strong> {{$commercialInvoice->country_goods->name}}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tbody>
@@ -94,7 +94,7 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Notes:</strong> {{$commercialInvoice->container_no}}</td>
+                                        <td><strong>Notes:</strong> {{$commercialInvoice->notes}}</td>
                                     </tr>
                                 </tbody>
                             </table>

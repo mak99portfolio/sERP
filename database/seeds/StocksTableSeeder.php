@@ -9,8 +9,8 @@ class StocksTableSeeder extends Seeder{
         	[
 				'working_unit_id'=>1,
 				'product_id'=>1,
-				'inventory_item_status_id'=>1,
-				'inventory_item_pattern_id'=>1,
+				'product_status_id'=>1,
+				'product_pattern_id'=>1,
 				'inventory_receive_id'=>null,
 				'receive_quantity'=>100,
 				'inventory_issue_id'=>null,

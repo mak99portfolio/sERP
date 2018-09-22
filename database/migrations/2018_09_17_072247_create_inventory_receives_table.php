@@ -18,8 +18,8 @@ class CreateInventoryReceivesTable extends Migration
             $table->string('inventory_receive_id')->unique()->nullable();
             $table->date('receive_date')->nullable();
             $table->string('receive_type')->nullable();
-            $table->integer('creator_id')->unsigned()->nullable();
-            $table->integer('editor_id')->unsigned()->nullable();
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

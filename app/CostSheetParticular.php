@@ -39,6 +39,30 @@ class CostSheetParticular extends Model
     ];
 
     public function cost_sheet(){
-        return $this->belongsTo('App\CostSheet');
+        return $this->belongsTo('App\CostSheet', 'cost_sheet_id');
+    }
+
+    public function get_total_amount(){
+        return $this->amount_of_lc_margin
+                + $this->amount_of_lc_commision
+                + $this->amount_of_vat
+                + $this->amount_of_swift
+                + $this->amount_of_stamp_charge
+                + $this->amount_of_lcaf_issue_charge
+                + $this->amount_of_imp
+                + $this->amount_of_lc_application_form
+                + $this->amount_of_others;
+    }
+
+    public function get_total_amount_round(){
+        return $this->round_amount_of_lc_margin
+                + $this->round_amount_of_lc_commision
+                + $this->round_amount_of_vat
+                + $this->round_amount_of_swift
+                + $this->round_amount_of_stamp_charge
+                + $this->round_amount_of_lcaf_issue_charge
+                + $this->round_amount_of_imp
+                + $this->round_amount_of_lc_application_form
+                + $this->round_amount_of_others;
     }
 }

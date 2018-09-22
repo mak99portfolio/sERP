@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@yield('title')</title>
-
+    <link rel="shortcut icon" href="{{asset('assets/build/images/magnum.ico')}}" type="image/x-icon" />
     <!-- Bootstrap -->
     <link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Font Awesome -->
@@ -44,13 +44,13 @@
     @yield('style')
   </head>
 
-  <body class="nav-md" onload="init()">
+  <body class="nav-md">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>ShadowERP</span></a>
+              <a href="{{route('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>ShadowERP</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -143,7 +143,8 @@
 
     @yield('script')
     <script>
-      function init(){
+      toaster_notification();
+      function toaster_notification(){
         $.ajax( "{{route('get_toaster_notification')}}")
               .done(function(data) {
                 if(data){

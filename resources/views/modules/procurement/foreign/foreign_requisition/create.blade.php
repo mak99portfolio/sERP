@@ -38,10 +38,10 @@
                                     {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2']) }}
                                 </div>
                             </div>
 

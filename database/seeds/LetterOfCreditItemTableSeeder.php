@@ -28,6 +28,24 @@ class LetterOfCreditItemTableSeeder extends Seeder {
                 'd_rate'=>1,
                 'discount'=>1,
                 'vat'=>1
+            ],
+            [
+                'letter_of_credit_id' => 2,
+                'product_id' => 1,
+                'quantity' => 30,
+                'unit_price' => 450,
+                'd_rate'=>1,
+                'discount'=>1,
+                'vat'=>1
+            ],
+            [
+                'letter_of_credit_id' => 2,
+                'product_id' => 2,
+                'quantity' => 100,
+                'unit_price' => 50,
+                'd_rate'=>1,
+                'discount'=>1,
+                'vat'=>1
             ]
         ];
 

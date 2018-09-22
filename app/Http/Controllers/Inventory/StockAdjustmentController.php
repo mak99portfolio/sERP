@@ -30,8 +30,8 @@ class StockAdjustmentController extends Controller{
             'stock_adjustment'=>new \App\InventoryRequisition,
             'stock_adjustment_no'=>uCode('inventory_stock_adjustments.inventory_stock_adjustment_id', 'ISA_'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
-            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id'),
-            'inventory_item_patterns'=>\App\InventoryItemPattern::pluck('name', 'id'),
+            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
+            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
             'inventory_adjustment_purposes'=>\App\InventoryAdjustmentPurpose::pluck('name', 'id')
         ];
 
@@ -51,8 +51,8 @@ class StockAdjustmentController extends Controller{
             'adjustment_type'=>'required|in:stock_in,stock_out',
             'inventory_adjustment_purpose_id'=>'required|integer',
             'working_unit_id'=>'required|integer',
-            'inventory_item_status_id'=>'required|integer',
-            'inventory_item_pattern_id'=>'required|integer',
+            'product_status_id'=>'required|integer',
+            'product_pattern_id'=>'required|integer',
             'products'=>'required|array'
         ]);
 
@@ -76,8 +76,8 @@ class StockAdjustmentController extends Controller{
                 'working_unit_id'=>$stock_adjustment->working_unit_id,
                 'stock_adjustment_id'=>$stock_adjustment->id,
                 'product_id'=>$product->id,
-                'inventory_item_status_id'=>$stock_adjustment->inventory_item_status_id,
-                'inventory_item_pattern_id'=>$stock_adjustment->inventory_item_pattern_id,
+                'product_status_id'=>$stock_adjustment->product_status_id,
+                'product_pattern_id'=>$stock_adjustment->product_pattern_id,
                 'creator_user_id'=>$stock_adjustment->creator_user_id,
                 'receive_quantity'=>$receive_quantity,
                 'issue_quantity'=>$issue_quantity
@@ -103,8 +103,8 @@ class StockAdjustmentController extends Controller{
             'stock_adjustment'=>$stock_adjustment,
             'stock_adjustment_no'=>$stock_adjustment->inventory_stock_adjustment_id,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
-            'inventory_item_statuses'=>\App\InventoryItemStatus::pluck('name', 'id'),
-            'inventory_item_patterns'=>\App\InventoryItemPattern::pluck('name', 'id'),
+            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
+            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
             'inventory_adjustment_purposes'=>\App\InventoryAdjustmentPurpose::pluck('name', 'id')
         ];
 
@@ -143,8 +143,8 @@ class StockAdjustmentController extends Controller{
             'adjustment_type'=>'required|in:stock_in,stock_out',
             'inventory_adjustment_purpose_id'=>'required|integer',
             'working_unit_id'=>'required|integer',
-            'inventory_item_status_id'=>'required|integer',
-            'inventory_item_pattern_id'=>'required|integer',
+            'product_status_id'=>'required|integer',
+            'product_pattern_id'=>'required|integer',
             'products'=>'required|array'
         ]);
 
@@ -169,8 +169,8 @@ class StockAdjustmentController extends Controller{
                 'working_unit_id'=>$stock_adjustment->working_unit_id,
                 'stock_adjustment_id'=>$stock_adjustment->id,
                 'product_id'=>$product->id,
-                'inventory_item_status_id'=>$stock_adjustment->inventory_item_status_id,
-                'inventory_item_pattern_id'=>$stock_adjustment->inventory_item_pattern_id,
+                'product_status_id'=>$stock_adjustment->product_status_id,
+                'product_pattern_id'=>$stock_adjustment->product_pattern_id,
                 'creator_user_id'=>$stock_adjustment->creator_user_id,
                 'receive_quantity'=>$receive_quantity,
                 'issue_quantity'=>$issue_quantity

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Inventory;
 
-use App\InventoryItemStatus;
+use App\ProductStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -15,7 +15,7 @@ class ItemStatusController extends Controller{
     public function index(){
 
         $view = view($this->view_root.'index');
-        $view->with('item_status_list', InventoryItemStatus::all());
+        $view->with('item_status_list', ProductStatus::all());
         return $view;
 
     }
@@ -35,7 +35,7 @@ class ItemStatusController extends Controller{
             'name' => 'required|unique:inventory_item_statuses',
             'short_name' => 'required|unique:inventory_item_statuses',
         ]);
-        $item_status = new InventoryItemStatus;
+        $item_status = new ProductStatus;
         $item_status->fill($request->input());
         $item_status->creator_user_id = Auth::id();
         $item_status->save();

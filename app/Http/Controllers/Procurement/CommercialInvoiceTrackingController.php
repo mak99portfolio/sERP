@@ -3,34 +3,38 @@
 namespace App\Http\Controllers\Procurement;
 
 use App\CommercialInvoiceTracking;
+use App\CommercialInvoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\CommercialInvoice;
-use DB;
 use Session;
 
 
 class CommercialInvoiceTrackingController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     private $view_root = 'modules/procurement/foreign/commercial_invoice_tracking/';
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getCIWithTracking($ci_no){
+        $ci = CommercialInvoice::where('commercial_invoice_no', $ci_no)->first();
+        $ci_tracking = null;
+        if($ci){
+            $ci_tracking = CommercialInvoiceTracking::where('commercial_invoice_id', $ci->id)->first();
+            // Session::put('alert-success', 'CI Found');
+        }else{
+            Session::put('alert-danger', 'Please insert correct CI no');
+        }
+        $data = [
+            'ci' => $ci, 
+            'ci_tracking' => $ci_tracking
+        ];
+        return response()->json($data);
+        
+    }
+
     public function create()
     {
         $view = view($this->view_root . 'create');

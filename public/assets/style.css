@@ -4,6 +4,19 @@
 .nav.child_menu li li a:hover {
     color: rgb(245, 219, 189);
 }
+/*select2*/
+.select2{
+    width: 100%!important;
+}
+.select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: 30px;
+    user-select: none;
+    -webkit-user-select: none;
+}
+/*end select2*/
 textarea{
     resize: vertical;
 }

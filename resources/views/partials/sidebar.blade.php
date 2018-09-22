@@ -45,7 +45,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
           <li><a href="{{ route('issue.index') }}">Issue</a></li>
-          <li><a href="{{ route('receive.index') }}">Receive Item</a></li>
+          <li><a href="{{ route('receive-internal.index') }}">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
             <li class="sub_menu">
@@ -53,7 +53,7 @@
             </li>
               <li><a href="{{ route('status-adjustment.index') }}">Item Status Adjustment</a></li>
               <li><a href="{{ route('stock-adjustment.index') }}">Item Stock Adjustment</a></li>
-              <li><a href="{{ route('item-status.index') }}">Item Status List</a></li>
+              {{-- <li><a href="{{ route('item-status.index') }}">Item Status List</a></li> --}}
               <li><a href="{{ route('adjustment-purpose.index') }}">Adjustment Purpose List</a></li>
               <li><a href="{{ route('return-reason.index') }}">Return Reason List</a></li>
               <li><a href="{{ route('requisition-type.index') }}">Requisition Type List</a></li>
@@ -134,8 +134,8 @@
   <a data-toggle="tooltip" data-placement="top" title="Lock">
     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
   </a>
-  <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
-    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+  <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+    <span class="glyphicon glyphicon-off" aria-hidden="true"></span> <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">{{ csrf_field() }}</form>
   </a>
 </div>
 <!-- /menu footer buttons -->

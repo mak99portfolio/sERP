@@ -17,11 +17,11 @@ class InventoryStockAdjustment extends Model{
     }
 
     public function item_status(){
-    	return $this->belongsTo('App\InventoryItemStatus', 'inventory_item_status_id');
+    	return $this->belongsTo('App\ProductStatus', 'product_status_id');
     }
 
     public function item_pattern(){
-    	return $this->belongsTo('App\InventoryItemPattern', 'inventory_item_pattern_id');
+    	return $this->belongsTo('App\ProductPattern', 'product_pattern_id');
     }
 
     public function creator(){

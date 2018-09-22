@@ -11,7 +11,7 @@ class ForeignRequisition extends Model
     protected $guarded = ['id'];
     protected $fillable = [
         'requisition_priority_id',
-        'purpose_id',
+        'requisition_purpose_id',
         'requisition_title',
         'issued_date',
         'date_expected',
@@ -19,5 +19,11 @@ class ForeignRequisition extends Model
     ];
     public function items(){
         return $this->hasMany('App\ForeignRequisitionItem');
+    }
+    public function purpose(){
+        return $this->belongsTo('App\RequisitionPurpose','requisition_purpose_id');
+    }
+    public function priority(){
+        return $this->belongsTo('App\RequisitionPriority','requisition_priority_id');
     }
 }

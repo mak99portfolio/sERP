@@ -18,11 +18,11 @@ class CommercialInvoiceItem extends Model {
     ];
 
     function commercial_invoice() {
-        return $this->brlongsTo('App\CommercialInvoice');
+        return $this->belongsTo('App\CommercialInvoice');
     }
 
     function product() {
-        return $this->brlongsTo('App\Product');
+        return $this->belongsTo('App\Product');
     }
 
 }

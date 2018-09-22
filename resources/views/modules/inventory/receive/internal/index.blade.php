@@ -16,7 +16,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Receive Item List</h2>
-                <a href="{{route('receive.create')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Add Receive Item</a>
+                <a href="{{route('receive-internal.create')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Add Receive Item</a>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">

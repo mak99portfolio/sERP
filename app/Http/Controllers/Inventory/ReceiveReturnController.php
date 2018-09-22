@@ -5,81 +5,56 @@ namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
 use App\ReceiveReturn;
 use Illuminate\Http\Request;
 
-class ReceiveReturnController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
+class ReceiveReturnController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules.inventory.receive.return.{$suffix}";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function index(){
+        $data=[
+            //'paginate'=>new Paginate('\App\InventoryIssue', ['id'=>'ID']),
+            //'carbon'=>new \Carbon\Carbon
+        ];
+
+        return view($this->path('index'), $data);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function create(){
+
+        $data=[
+            'inventory_receive'=>new \App\InventoryReceive,
+            'working_units'=>\App\WorkingUnit::pluck('name', 'id') //Need to filter in future
+        ];
+        
+        return view($this->path('create'), $data);
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
-     * @return \Illuminate\Http\Response
-     */
-    public function show(ReceiveReturn $receiveReturn)
-    {
-        //
+
+    public function store(Request $request){
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ReceiveReturn $receiveReturn)
-    {
-        //
+
+    public function show(ReceiveReturn $receiveReturn){
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
-     * @return \Illuminate\Http\Response
-     */
+
+    public function edit(ReceiveReturn $receiveReturn){
+        
+    }
+
+
     public function update(Request $request, ReceiveReturn $receiveReturn)
     {
-        //
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Model\inventory\ReceiveReturn  $receiveReturn
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(ReceiveReturn $receiveReturn)
     {
-        //
+        
     }
 }

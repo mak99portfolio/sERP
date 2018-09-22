@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>LC Detail</h2>
-                        <a href="{{route('letter-of-credit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;LC Detail List</a>
+                        <a href="{{route('letter-of-credit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-primary btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;LC Detail List</a>
 
                         <div class="clearfix"></div>
                     </div>

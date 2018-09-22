@@ -15,7 +15,7 @@ class CreateCommercialInvoiceTrackingsTable extends Migration
     {
         Schema::create('commercial_invoice_trackings', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('commercial_invoice_id');
+            $table->integer('commercial_invoice_id')->unique();
             $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->string('commercial_invoice_issue_date')->nullable();
             $table->string('bill_of_lading_issue_date')->nullable();
@@ -33,6 +33,7 @@ class CreateCommercialInvoiceTrackingsTable extends Migration
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

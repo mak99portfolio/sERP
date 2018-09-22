@@ -10,7 +10,8 @@ class CommercialInvoiceTracking extends Model
     use SoftDeletes;
     protected $fillable = [
         'commercial_invoice_id',
-        'bl_issue_date',
+        'commercial_invoice_issue_date',
+        'bill_of_lading_issue_date',
         'document_arrived_at_bank_date',
         'document_send_at_port_date',
         'document_value_payment_date',

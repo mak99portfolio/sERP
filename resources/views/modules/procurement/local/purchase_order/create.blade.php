@@ -17,7 +17,7 @@
                     <div class="x_title">
                         <h2>Local Purchase Order</h2>
 
-                        <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> List Local Purchase</a>
+                        <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> List Local Purchase</a>
 
                         <div class="clearfix"></div>
                     </div>
@@ -156,7 +156,7 @@
                                                         <td>123</td>
                                                         <td  class="text-center">
                                                             <a href="#" class="btn btn-default btn-xs">Edit</a>
-                                                            <button type="button" class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>
+                                                            <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>
 
                                                         </td>
                                                     </tr>
@@ -272,7 +272,7 @@
                                                         <td>12%</td>
                                                         <td  class="text-center">
                                                             <a href="#" class="btn btn-default btn-xs">Edit</a>
-                                                            <button type="button" class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>
+                                                            <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>
 
                                                         </td>
                                                     </tr>
@@ -288,10 +288,10 @@
                             <fieldset class="m-t-15">
                                 <legend>Terms and Condition:</legend>
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label>Terms and Condition Type</label>
-                                            <select class="form-control input-sm" id="terms_and_condition" ng-model="condition_type">
+                                            <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type">
                                                 <option value="" disabled selected> Select..</option>
                                                 <option value="Delivery Terms">Delivery Terms</option>
                                                 <option value="Payment Condition">Payment Condition</option>
@@ -300,11 +300,11 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                         {{ BootForm::textarea('description','Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <button type="button" ng-click="add_condition()" class="btn btn-md btn-info">Add</button>
+                                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                        <button type="button" ng-click="add_condition()" class="btn btn-sm btn-default m-t-20"><strong>Add</strong></button>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive m-t-20">
@@ -322,7 +322,7 @@
                                                         <td><% $index+1 %></td>
                                                         <td><% condition.type %><input name="conditions[<% $index %>][type]" type="hidden" value="<% condition.type %>"></td>
                                                         <td><% condition.description %> <input name="conditions[<% $index %>][descripton]" type="hidden" value="<% condition.description %>"></td>
-                                                        <td><button ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
+                                                        <td class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                     </tr>
                                                 </tbody>
                                             </table>

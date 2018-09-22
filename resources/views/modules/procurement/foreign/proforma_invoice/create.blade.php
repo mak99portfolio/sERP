@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Proforma Invoice</h2>
-                        <a href="{{route('proforma-invoice.index')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Proforma Invoice List</a>
+                        <a href="{{route('proforma-invoice.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Proforma Invoice List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">

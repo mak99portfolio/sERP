@@ -73,7 +73,10 @@
                                             </span>
                                             <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
                                             <span class="input-group-addon">
-                                                <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-list-ul"></i> Product List</a>
+                                                <a href="#" ng-click="searchProduct()"><i class="fa fa-plus"></i> Add</a>
+                                            </span>
+                                            <span class="input-group-addon">
+                                                <a href="#" data-toggle="modal" data-target="#myModal" ng-click="getAllProduct()"><i class="fa fa-list-ul"></i> Product List</a>
                                             </span>
                                         </div>
                                     </div>
@@ -110,7 +113,7 @@
                                             <td class="text-center"><button class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
-                                    <tfoot class="font-bold">
+                                    <!-- <tfoot class="font-bold">
                                         <tr>
                                             <td>Total</td>
                                             <td></td>
@@ -121,7 +124,7 @@
                                             <td></td>
                                             <td></td>
                                         </tr>
-                                    </tfoot>
+                                    </tfoot> -->
                                 </table>
                             </div>
                             <!--end table-->
@@ -139,57 +142,59 @@
                                 </div>
                             </div>
                         </form>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog modal-lg">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Product List</h4>
+                                    </div>
+                                    <div class="modal-body" style="height: 75vh; overflow-y: auto">
+                                        <table class="table table-bordered m-t-lg table-hover">
+                                            <thead class="bg-default">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>Product Name</th>
+                                                    <th>HS Code</th>
+                                                    <th>Brand</th>
+                                                    <th>Product Serial</th>
+                                                    <th>Product Model</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="product in productlist">
+                                                    <td><% $index+1 %></td>
+                                                    <td ng-click="checked[$index] = !checked[$index]"><% product.name %></td>
+                                                    <td><% product.hs_code %></td>
+                                                    <td>rkr</td>
+                                                    <td>42221</td>
+                                                    <td>werr</td>
+                                                    <td>
+                                                        <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)" disabled>Added</button>
+                                                        <button ng-if="!checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)">Add</button>
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-lg">
-
-                <!-- Modal content-->
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Product List</h4>
-                    </div>
-                    <div class="modal-body" style="height: 75vh; overflow-y: auto">
-                        <table class="table" id="datatable-checkbox" table-bordered m-t-lg table-hover">
-                            <thead class="bg-default">
-                                <tr>
-                                    <th>#</th>
-                                    <th></th>
-                                    <th>Product Name</th>
-                                    <th>HS Code</th>
-                                    <th>Brand</th>
-                                    <th>Product Serial</th>
-                                    <th>Product Model</th>
-                                    <th>Part No</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>01</td>
-                                    <td class="text-center">
-                                        <input type="checkbox" name="hobbies[]" id="hobby3" value="eat" class="flat" />
-                                    </td>
-                                    <td>werr</td>
-                                    <td>321</td>
-                                    <td>rkr</td>
-                                    <td>42221</td>
-                                    <td>werr</td>
-                                    <td>8342</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+        
         {{-- Content end --}}
     </div>
     <div class="clearfix"></div>
@@ -200,43 +205,75 @@
 <script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
-    $interpolateProvider.startSymbol('<%');
-    $interpolateProvider.endSymbol('%>');
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
     });
     app.controller('myCtrl', function($scope, $http) {
-
-    $scope.itemlist = [];
-    $('#search_product').autocomplete({
-    source: "{{route('search-product')}}",
-            minlength: 1,
-            autoFocus: true,
-            select: function (e, ui) {
-            $scope.addToItemList(ui.item);
-            $scope.$apply();
-            console.log($scope.itemlist);
+        $scope.itemlist = [];
+        $('#search_product').autocomplete({
+        source: "{{route('search-product')}}",
+                minlength: 1,
+                autoFocus: true,
+                select: function (e, ui) {
+                    $scope.product_id = ui.item.id;
+                // $scope.addToItemList(ui.item);
+                $scope.$apply();
+                console.log($scope.itemlist);
+                }
+        });
+        $scope.searchProduct = function(){
+            $('#search_product').val(null);
+            $scope.addToItemList($scope.product_id);
+        }
+        $scope.addToItemList = function(product_id){
+            if(!product_id){
+                $scope.warning('Please type and select a product first');
+                return;
             }
-    });
-    $scope.addToItemList = function(item){
-    let url = "{{URL::to('get-product')}}/" + item.id;
-    $http.get(url)
-            .then(function(response) {
-            // console.log('response_data--------', response.data);
-            $scope.itemlist.push(response.data);
-            });
-    // if(!$scope.search(item.id, $scope.itemlist, id)){
-    // }
-    }
-    $scope.removeItem = function(index){
-    $scope.itemlist.splice(index);
-    }
-    $scope.search = function (nameKey, myArray, indexName) {
-    for (var i = 0; i < myArray.length; i++) {
-    if (myArray[i][indexName] == nameKey) {
-    return i;
-    }
-    }
-    return null;
-    }
+            
+            index = $scope.itemlist.findIndex(item => item.id==product_id);
+            if(index < 0){
+                let url = "{{URL::to('get-product')}}/" + product_id;
+                $http.get(url)
+                        .then(function(response) {
+                            $scope.itemlist.push(response.data);
+                        });
+            }else{
+                $scope.warning('Item already exist');
+            }
+            product_id = null;
+        }
+        $scope.getAllProduct = function(){
+            let url = "{{URL::to('get-all-product')}}";
+                $http.get(url)
+                        .then(function(response) {
+                            $scope.productlist = response.data;
+                            // console.log($scope.productlist);
+                        });
+        }
+        $scope.addProducts = function(){
+            console.log($scope.product_ids);
+        }
+        $scope.checkAvailable = function(product_id){
+            index = $scope.itemlist.findIndex(item => item.id==product_id);
+            if(index < 0){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            new PNotify(data);
+        }
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index,1);
+        }
     });
 </script>
 @endsection

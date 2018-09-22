@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Procurement;
 
-use App\CommercialInvoiceTracking;
 use App\CommercialInvoice;
-use Illuminate\Http\Request;
+use App\CommercialInvoiceTracking;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Session;
-
 
 class CommercialInvoiceTrackingController extends Controller
 {
@@ -15,24 +14,87 @@ class CommercialInvoiceTrackingController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+
         return $view;
     }
 
-    public function getCIWithTracking($ci_no){
-        $ci = CommercialInvoice::where('commercial_invoice_no', $ci_no)->first();
+    public function getCIWithTracking(Request $request)
+    {
+        // dd('fdsfs');
+        $view = view($this->view_root . 'index');
+        $ci = CommercialInvoice::where('commercial_invoice_no', $request->ci_no)->first();
+        $view->with('ci', $ci);
+        // dd($ci);
         $ci_tracking = null;
-        if($ci){
+        if ($ci) {
             $ci_tracking = CommercialInvoiceTracking::where('commercial_invoice_id', $ci->id)->first();
-            // Session::put('alert-success', 'CI Found');
-        }else{
+            $view->with('ci_tracking', $ci_tracking);
+        } else {
             Session::put('alert-danger', 'Please insert correct CI no');
         }
-        $data = [
-            'ci' => $ci, 
-            'ci_tracking' => $ci_tracking
-        ];
-        return response()->json($data);
+        return $view;
+
+    }
+    public function saveDate(Request $request)
+    {
+        // dd($request->commercial_invoice_issue_date);
+
+        $request->commercial_invoice_issue_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'commercial_invoice_issue_date' => $request->commercial_invoice_issue_date,
+        ]) : null;
+
+        $request->bill_of_lading_issue_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'bill_of_lading_issue_date' => $request->bill_of_lading_issue_date,
+        ]) : null;
         
+        $request->document_arrived_at_bank_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'document_arrived_at_bank_date' => $request->document_arrived_at_bank_date,
+        ]) : null;
+
+        $request->document_send_at_port_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'document_send_at_port_date' => $request->document_send_at_port_date,
+        ]) : null;
+
+        $request->document_value_payment_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'document_value_payment_date' => $request->document_value_payment_date,
+        ]) : null;
+
+        $request->container_arrived_at_port_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'container_arrived_at_port_date' => $request->container_arrived_at_port_date,
+        ]) : null;
+
+        $request->container_birth_at_port_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'container_birth_at_port_date' => $request->container_birth_at_port_date,
+        ]) : null;
+        
+        $request->container_delivery_at_port_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'container_delivery_at_port_date' => $request->container_delivery_at_port_date,
+        ]) : null;
+
+        $request->receive_at_warehouse_date
+        ? CommercialInvoiceTracking::updateOrCreate([
+            'commercial_invoice_id' => $request->commercial_invoice_id], [
+            'receive_at_warehouse_date' => $request->receive_at_warehouse_date,
+        ]) : null;
+
+        Session::put('alert-success', 'Commercial Invoice Tracking updated');
+        return redirect()->back();
     }
 
     public function create()

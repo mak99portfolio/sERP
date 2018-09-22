@@ -32,7 +32,6 @@
                                     {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                 
                                      <div class="form-group">
                                         <label>LC No.</label>
                                         <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
@@ -42,12 +41,24 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
-
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                     <div class="form-group">
+                                        <label>PI No.</label>
+                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
+                                            <option value="">--Select LC No--</option>
+                                            @foreach($lc_list as $item)
+                                            <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('letter_of_credit_date','PI Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Beneficiary Bank Info</div>

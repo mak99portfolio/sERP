@@ -245,6 +245,37 @@
                                         <input type="text" class="form-control input-sm" name="gross-weight">
                                     </div>
                                 </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <th scope="col" colspan="3">Product List</th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Product Name</th>
+                                                    <th scope="col">Quantity</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td scope="col">01</td>
+                                                    <td scope="col">MEF Product</td>
+                                                    <td scope="col">5</td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                    <td scope="col" colspan="2" class="text-right">Total Quantity</td>
+                                                    <td scope="col">5</td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                    </div>
+                                    <!--end table-->
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <a href="#" class="btn btn-success btn-sm">Submit</a>

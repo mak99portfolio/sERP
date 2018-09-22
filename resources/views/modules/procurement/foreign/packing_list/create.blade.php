@@ -46,6 +46,18 @@
                                         <input type="date" class="form-control" name="lc_date">
                                     </div>
                                 </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">PI No</label>
+                                        <input type="text" class="form-control" name="lc_no">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">PI Date</label>
+                                        <input type="date" class="form-control" name="lc_date">
+                                    </div>
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Benefeciary Bank Info</div>

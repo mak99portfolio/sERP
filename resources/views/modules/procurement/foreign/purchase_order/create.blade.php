@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Foreign Purchase Order</h2>
-                        <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Purchase Order List</a>
+                        <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Purchase Order List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -27,7 +27,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Requisition No.</label>
-                                        <select data-placeholder="Select Req No" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
+                                        <select data-placeholder="Select Req No" class="form-control input-sm select2" style="width: 100%; line-height: 20px;" name="foreign_requisition_id" ng-model="req_id" ng-change="searchReqNo()">
                                             <option value=""></option>
                                             @foreach($requisition_list as $item)
                                             <option value="{{$item->id}}">{{$item->requisition_no}}</option>
@@ -109,7 +109,7 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="<% quantity[$index]=item.quantity %>" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" value="<% item.quantity %>" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" required name="items[<% $index %>][unit_price]"></td>
                                                     <td>
                                                     <% quantity[$index]*unit_price[$index] %>
@@ -179,5 +179,8 @@
             $scope.itemlist.splice(index);
         }
     });
+    
+   
+    
 </script>
 @endsection

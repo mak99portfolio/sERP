@@ -15,8 +15,6 @@ class CreateProformaInvoicesTable extends Migration
     {
         Schema::create('proforma_invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_order_id')->nullable();
-            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->string('purchase_order_date')->nullable();
             $table->string('proforma_invoice_no')->nullable();
             $table->string('proforma_invoice_date')->nullable();

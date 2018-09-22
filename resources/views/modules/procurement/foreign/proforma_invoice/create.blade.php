@@ -27,7 +27,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Purchase Order No.</label>
-                                        <select data-placeholder="Select PO No"  class="form-control input-sm" name="purchase_order_id" ng-model="po_id" ng-change="searchPO()">
+                                        <select data-placeholder="Select PO No" multiple  class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">
                                             <option></option>
                                             @foreach($purchase_orders as $item)
                                             <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\PurchaseOrder;
 use App\ForeignRequisition;
+use App\PurchaseOrderProformaInvoice;
 use App\Port;
 use App\Country;
 use App\City;
@@ -38,20 +39,20 @@ class PurchaseOrderController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->input());
+        // dd();
         $request->validate([
-            'foreign_requisition_id'=>'required',
+            // 'foreign_requisition_id'=>'required',
             // 'purchase_order_no'=>'required',
-            'vendor_id'=>'required',
-            'requisition_date'=>'required',
-            'purchase_order_date'=>'required',
-            'port_of_loading_port_id'=>'required',
-            'port_of_discharge_port_id'=>'required',
-            'country_of_final_destination_country_id'=>'required',
-            'final_destination_city_id'=>'required',
-            'country_of_origin_of_goods_country_id'=>'required',
-            'payment_type'=>'required',
-            'pre_carriage_by'=>'required',
+            // 'vendor_id'=>'required',
+            // 'requisition_date'=>'required',
+            // 'purchase_order_date'=>'required',
+            // 'port_of_loading_port_id'=>'required',
+            // 'port_of_discharge_port_id'=>'required',
+            // 'country_of_final_destination_country_id'=>'required',
+            // 'final_destination_city_id'=>'required',
+            // 'country_of_origin_of_goods_country_id'=>'required',
+            // 'payment_type'=>'required',
+            // 'pre_carriage_by'=>'required',
             // 'subject'=>'required',
             // 'letter_header'=>'required',
             // 'letter_footer'=>'required',
@@ -61,6 +62,15 @@ class PurchaseOrderController extends Controller
         $purchase_order->creator_user_id = Auth::id();
         $purchase_order->purchase_order_no = time();
         $purchase_order->save();
+        $requisitions = Array();
+
+        
+        // foreach($request->foreign_requisition_ids as $foreign_requisition_id){
+        //     array_push($requisitions, new ForeignRequisitionPurchaseOrder([
+        //         'foreign_requisition_id' => $foreign_requisition_id
+        //     ]));
+        // }
+        $purchase_order->foreign_requisitions()->sync($request->foreign_requisition_ids);
         $items = Array();
         foreach($request->items as $item){
             array_push($items, new PurchaseOrderItem($item));
@@ -73,6 +83,7 @@ class PurchaseOrderController extends Controller
 
     public function show(PurchaseOrder $purchaseOrder)
     {
+      
         $view = view($this->view_root . 'show');
         $view->with('purchaseOrder',$purchaseOrder);
         return $view;

@@ -28,47 +28,41 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>L/C No</strong> 125</td>
-                                        <td><strong>L/C Opening Date</strong> 125</td>
-                                        <td><strong>Currency</strong> 125</td>
+                                        <td><strong>L/C No: </strong> {{ $costSheet->letter_of_credit->letter_of_credit_no }}</td>
+                                        <td><strong>L/C Opening Date: </strong> {{ $costSheet->letter_of_credit->letter_of_credit_date }}</td>
+                                        <td><strong>Currency: </strong> {{ $costSheet->currency }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">Bank Info</th>
+                                        <th colspan="4">LC Bank Info</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> 125</td>
-                                        <td><strong>A/C Name :</strong> 125</td>
-                                        <td><strong>Branch Name :</strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Bank Name:</strong> 125</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
+                                        <td><strong>A/C No: </strong> {{ $costSheet->letter_of_credit->issue_ac_no }}</td>
+                                        <td><strong>A/C Name: </strong> {{ $costSheet->letter_of_credit->issue_ac_name }}</td>
+                                        <td><strong>Bank Name: </strong> {{ $costSheet->letter_of_credit->issue_bank_name }}</td>
+                                        <td><strong>Branch Name: </strong> {{ $costSheet->letter_of_credit->issue_branch_name }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>L/C Amount:</strong> 125</td>
-                                        <td><strong>Exchange Rate:</strong> 125</td>
-                                        <td><strong>BDT Amount:</strong> 125</td>
+                                        <td><strong>L/C Amount: </strong> {{ number_format($costSheet->letter_of_credit->letter_of_credit_value, 2) }}</td>
+                                        <td><strong>Exchange Rate: </strong> {{ $costSheet->exchange_rate }}</td>
+                                        <td><strong>BDT Amount: </strong> {{ number_format($costSheet->getBdtAmount(), 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Description:</strong> 125</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
+                                        <td colspan="3"><strong>Note: </strong> {{ $costSheet->note }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
-                                <thead class="bg-primary">
+                                <thead>
                                     <tr>
                                         <th colspan="5">Particulars</th>
                                     </tr>
@@ -82,72 +76,72 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>LC Margin</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>1</td>
+                                        <td><strong>LC Margin </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_margin }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_margin, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_margin, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>LC Commision	</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>2</td>
+                                        <td><strong>LC Commision </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_commision }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_commision, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_commision, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>VAT</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>3</td>
+                                        <td><strong>VAT </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_vat }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_vat, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_vat, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>SWIFT</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>4</td>
+                                        <td><strong>SWIFT </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_swift }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_swift, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_swift, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>Stamp Charge</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>5</td>
+                                        <td><strong>Stamp Charge </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_stamp_charge }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_stamp_charge, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_stamp_charge, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>LCAF Issue Charge</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>6</td>
+                                        <td><strong>LCAF Issue Charge </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lcaf_issue_charge }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lcaf_issue_charge, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lcaf_issue_charge, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>IMP</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>7</td>
+                                        <td><strong>IMP </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_imp }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_imp, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_imp, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>LC Application Form</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>8</td>
+                                        <td><strong>LC Application Form </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_application_form }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_application_form, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_application_form, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong>Other Charge(If any)</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td><strong></strong>9</td>
+                                        <td><strong>Other Charge(If any) </strong></td>
+                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_others }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_others, 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_others, 2) }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Total</strong></td>
-                                        <td><strong></strong> 125</td>
-                                        <td><strong></strong> 125</td>
+                                        <td colspan="3"><strong>Total </strong></td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->get_total_amount(), 2) }}</td>
+                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->get_total_amount_round(), 2) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

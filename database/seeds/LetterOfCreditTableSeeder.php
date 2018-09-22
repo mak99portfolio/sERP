@@ -34,7 +34,7 @@ class LetterOfCreditTableSeeder extends Seeder
                 'company_id'=>1,
                 'creator_user_id'=>1,
                 ],
-          [
+           [
                 'letter_of_credit_no'=>112,
                 'letter_of_credit_date'=>\Carbon\Carbon::now(),
                 'letter_of_credit_value'=>10000,
@@ -55,8 +55,8 @@ class LetterOfCreditTableSeeder extends Seeder
                 'transhipment_information'=>1,
                 'company_id'=>1,
                 'creator_user_id'=>1,
-                ]
-          
+            ]
+
         ];
 
         \DB::table('letter_of_credits')->insert($data);

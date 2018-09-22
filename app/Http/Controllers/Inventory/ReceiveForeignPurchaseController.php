@@ -37,6 +37,69 @@ class ReceiveForeignPurchaseController extends Controller{
 
 
     public function store(Request $request){
+
+        //dd($request->all());
+        //\Session::put('vue_products', $request->get('products'));
+
+        $request->validate([
+            'inventory_receive_id'=>'required',
+            'receive_date'=>'required|date',
+            'commercial_invoice_no'=>'required|integer',
+            'working_unit_id'=>'required|integer',
+            'product_status_id'=>'required|integer',
+            'product_pattern_id'=>'required|integer',
+            'products'=>'required|array'
+        ]);
+
+        $inventory_receive=\App\InventoryReceive::create($request->only(
+            'inventory_receive_id',
+            'receive_date'
+        ));
+
+
+        $inventory_receive->receive_type='foreign_purchase';
+        $inventory_receive->creator()->associate(\Auth::user());
+        $inventory_receive->save();
+
+
+        $foreign_purchase=new \App\InventoryReceiveForeign;
+
+        $commercial_invoice=\App\CommercialInvoice::where(
+            'commercial_invoice_no',
+            $request->get('commercial_invoice_no')
+        )->first();
+
+        $foreign_purchase->fill($request->only(
+            'working_unit_id',
+            'product_status_id',
+            'product_pattern_id',
+            'remarks'
+        ));
+
+        $foreign_purchase->commercial_invoice()->associate($commercial_invoice);
+        $foreign_purchase->inventory_receive()->associate($inventory_receive);
+        $foreign_purchase->save();
+
+        $products=$request->get('products');
+
+        foreach($products as $product){
+            
+            \App\Stock::create([
+                'working_unit_id'=>$foreign_purchase->working_unit_id,
+                'product_id'=>$product['id'],
+                'product_status_id'=>$foreign_purchase->product_status_id,
+                'product_pattern_id'=>$foreign_purchase->product_pattern_id,
+                'inventory_receive_id'=>$inventory_receive->id,
+                'receive_quantity'=>$product['quantity'],
+                'remarks'=>$foreign_purchase->remarks,
+                'creator_user_id'=>\Auth::id()
+            ]);
+
+        }
+
+        //\Session::forget('vue_products');
+
+        return back()->with('success', 'Form submitted successfully!.');
         
     }
 

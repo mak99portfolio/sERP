@@ -15,6 +15,8 @@ class CreateLetterOfCreditsTable extends Migration
     {
         Schema::create('letter_of_credits', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('proforma_invoice_id')->nullable();
+            $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
             $table->string('letter_of_credit_no');
             $table->string('letter_of_credit_date')->nullable();
             $table->string('letter_of_credit_value')->nullable();

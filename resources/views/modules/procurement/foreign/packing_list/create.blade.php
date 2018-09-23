@@ -101,11 +101,12 @@
                                                 {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::text('exporter','Exporter', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('currency', 'Currency', ['$'=>'$'], null, ['class'=>'form-control input-sm']) }}   
                                             </div>
+                                            
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
                                                 {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm']) }}
                                             </div>
@@ -128,8 +129,8 @@
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Product Name</th>
-                                                    <th>Qnantity</th>
-                                                    <th>Unit Weight</th>
+                                                    <th>Quantity</th>
+                                                    <th>Per Unit Weight</th>
                                                     <th>Total Weight</th>
                                                 </tr>
                                             </thead>
@@ -145,11 +146,11 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Net Total =</td>
-                                                    <td></td>
+                                                    <td><input type="text" name="amount" class="form-control input-sm"></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Gross Total =</td>
-                                                    <td></td>
+                                                    <td><input type="text" name="amount" class="form-control input-sm"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -157,7 +158,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-success btn-sm">Submit</a>
+                                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
                                         <a href="{{route('packing-list.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                     </div>
                                 </div>

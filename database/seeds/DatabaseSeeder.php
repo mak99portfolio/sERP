@@ -54,6 +54,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CommercialInvoiceTableSeeder::class);
         $this->call(CommercialInvoiceItemTableSeeder::class);
         $this->call(LocalPurchaseOrderTableSeeder::class);
+        $this->call(PackingListTableSeeder::class);
 
     }
 }

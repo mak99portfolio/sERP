@@ -188,19 +188,13 @@
         $scope.itemlist = [];
         $scope.searchPO = function () {
             $scope.itemlist = [];
-            for(i=0; i<$scope.po_id.length; i++){
-                $scope.addToItemList($scope.po_id[i]);
-            }
+            $scope.addToItemList($scope.po_id.join());
         }
         $scope.addToItemList = function(id){
             let url = "{{URL::to('get-po')}}/" + id;
             $http.get(url)
                     .then(function(response) {
-                        // console.log('data-----------', response.data);
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.itemlist.push(value);
-                            // console.log('itemlist', $scope.itemlist);
-                        });
+                        $scope.itemlist = response.data;
                     });
         }
         $scope.removeItem = function(index){

@@ -59,9 +59,9 @@
                                                     <label>Purchase Order No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice.commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice.commercial_invoice_no)"]) }}
+                                                        {{ Form::text('purchase_oder_no', null, ['class'=>'form-control input-sm', "v-model"=>"local_order.purchase_oder_no", "v-on:change"=>"fetch_local_order(local_order.purchase_oder_no)"]) }}
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(commercial_invoice.commercial_invoice_no)">
+                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(local_order.purchase_oder_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
@@ -69,9 +69,6 @@
                                                 
                                             </div>
                                             
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('letter_of_credit_id', 'Challan No', null, ['class'=>'form-control input-sm', 'readonly', "v-model"=>"commercial_invoice.letter_of_credit_id"]) }}
-                                            </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
                                             </div>
@@ -199,7 +196,7 @@ $(function(){
             config:{
                 base_url: "{{ url('inventory/api/get-product-info/') }}",
                 old_data_url: "{{ url('inventory/api/vue-old-products') }}",
-                get_commercial_invoice_url: "{{ url('inventory/api/get-commercial-invoice') }}",
+                get_local_order_url: "{{ url('inventory/api/get-purchase-order') }}",
                 old_inputs_url: "{{ url('inventory/api/vue-old-inputs') }}"
             },
             products:[],
@@ -210,14 +207,13 @@ $(function(){
                 quantity:''
             },
             remote_data:null,
-            commercial_invoice:{
-                commercial_invoice_no:'',
-                letter_of_credit_id:''
+            local_order:{
+                purchase_oder_no:''
             }
         },
         methods:{
 
-            fetch_commercial_invoice:function(slug){
+            fetch_local_order:function(slug){
 
                 var vm=this;
                 var loading = $.loading();
@@ -225,16 +221,15 @@ $(function(){
 
                 //reset models
                 vm.products=[];
-                vm.commercial_invoice={
-                    commercial_invoice_no:'',
-                    letter_of_credit_id:''
+                vm.local_order={
+                    purchase_oder_no:''
                 }
 
                 if(slug){
 
-                    axios.get(this.config.get_commercial_invoice_url + '/' + slug).then(function(response){
+                    axios.get(this.config.get_local_order_url + '/' + slug).then(function(response){
 
-                        vm.commercial_invoice=response.data.commercial_invoice;
+                        vm.local_order=response.data.local_order;
                         vm.products=response.data.products;                
                         loading.close();
 
@@ -306,7 +301,7 @@ $(function(){
 
                 axios.get(this.config.old_inputs_url).then(function(response){
 
-                    vm.commercial_invoice=response.data;                
+                    vm.local_order=response.data;                
                     loading.close();
 
                 }).catch(function(){

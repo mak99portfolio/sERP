@@ -49,7 +49,7 @@ class ForeignRequisitionController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->items);
+        // dd($request->input());
         $requisition = new ForeignRequisition;
         $requisition->fill($request->input());
         $requisition->creator_user_id = Auth::id();

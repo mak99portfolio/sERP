@@ -98,29 +98,59 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <h4>CI Product Table </h4>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">CI Product table :</th>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Unit Price Used ($)</th>
+                                        <th>Qnantity</th>
+                                        <th>Amount ($)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($commercialInvoice->items as $key=>$item)
                                     <tr>
-                                        <td><strong>Sl No:</strong> 125</td>
-                                        <td><strong>Product Name:</strong> 125</td>
-                                        <td><strong>Qnantity:</strong> 125</td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$item->product->name}}</td>
+                                        <td>{{$item->quantity}}</td>
+                                        <td>{{$item->unit_price}}</td>
+                                        <td>{{($item->quantity * $item->unit_price)}}</td>
+                                     
                                     </tr>
-                                    <tr>
-                                        <td><strong>Unit Price Used ($)	:</strong> 125</td>
-                                        <td><strong>Amount ($) :</strong> 125</td>
-                                        <td><strong>Sub Total :</strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Add Fright :</strong> {{$commercialInvoice->fright}}</td>
-                                        <td><strong>Grand Total :</strong> 125</td>
-                                        <td><strong>Amount In word :</strong> 125</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>Sub Total</b></td>
+                                        <td>$180</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>Add Fright</b></td>
+                                        <td>$180</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>Grand Total</b></td>
+                                        <td>$180</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><b>Amount In Word</b></td>
+                                        <td>$180</td>
+                                    </tr>
+                                </tfoot>
                             </table>
 
                             <!--start approved by-->

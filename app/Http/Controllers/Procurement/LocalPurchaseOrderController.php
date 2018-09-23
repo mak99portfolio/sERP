@@ -25,6 +25,7 @@ class LocalPurchaseOrderController extends Controller
    {
        $view = view($this->view_root . 'index');
        $view->with('purchase_order_list', LocalPurchaseOrder::all());
+       $view->with('carbon', new \Carbon\Carbon);
        return $view;
    }
    public function create()

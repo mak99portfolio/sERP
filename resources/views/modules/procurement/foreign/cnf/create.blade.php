@@ -12,186 +12,135 @@
         {{-- Content here --}}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Duty TAX, VAT and CNF Bill</h2>
                         <a href="{{route('cnf.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Duty TAX, VAT and CNF Bill List</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form class="form-horizontal form-label-left input_mask">
+                        @include('partials.flash_msg')
+                        <form class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Consignee</label>
-                                        <input type="text" class="form-control input-sm" name="consignee">
-                                    </div>
+                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bill_no','Bill No', null, ['class'=>'form-control input-sm']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Bill No</label>
-                                        <input type="text" class="form-control input-sm" name="bill_no">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Bill Date</label>
-                                        <input type="date" class="form-control input-sm" name="bill_date">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC No</label>
-                                        <select class="form-control input-sm">
-                                            <option value="" selected>Select CI No</option>
-                                            <option value="one">One</option>
-                                            <option value="one">One</option>
+                                        <label>LC No.</label>
+                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
+                                            <option value="">--Select LC No--</option>
+                                            @foreach($lc_list as $item)
+                                            <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC Opening Date</label>
-                                        <input type="date" class="form-control input-sm" name="lc_opening_date">
-                                    </div>
+                                    {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model'=>'letter_of_credit_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC Value</label>
-                                        <input type="text" class="form-control input-sm">
-                                    </div>
+                                    {{ BootForm::number('letter_of_credit_value','LC Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_value', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Commercial invoice No</label>
-                                        <select name="commercial_invoice_no" class="form-control input-sm">
-                                            <option value="" selected>Select CI No</option>
-                                            <option value="one">One</option>
-                                            <option value="one">One</option>
+                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id">
+                                            <option value="">--Select Commercial Invoice No--</option>
+                                            @foreach($commercial_invoice_list as $item)
+                                            <option value="{{$item->id}}">{{$item->commercial_invoice_no}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Commercial Invoice Date</label>
-                                        <input type="date" class="form-control input-sm" name="invoice_date">
-                                    </div>
+                                    {{ BootForm::text('date','Commercial Invoice Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model'=>'date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">B/L No</label>
-                                        <input type="text" class="form-control input-sm" name="">
-                                    </div>
+                                    {{ BootForm::text(null,'B/L No', null, ['class'=>'form-control input-sm', 'ng-model'=>'bill_no', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">B/L Date</label>
-                                        <input type="date" class="form-control input-sm" name="">
-                                    </div>
+                                    {{ BootForm::text(null,'B/L Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model'=>'bill_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">B/E No</label>
-                                        <input type="text" class="form-control input-sm" name="be_no">
-                                    </div>
+                                    {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">B/E Date</label>
-                                        <input type="date" class="form-control input-sm" name="be_date">
-                                    </div>
+                                    {{ BootForm::text('bill_of_entry_date','B/E Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Arrival Date</label>
-                                        <input type="date" class="form-control input-sm" name="arrival_date">
-                                    </div>
+                                    {{ BootForm::text('arrival_date','Arrival Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Delivery Date</label>
-                                        <input type="date" class="form-control input-sm" name="">
-                                    </div>
+                                    {{ BootForm::text('delivery_date','Delivery Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Job No</label>
-                                        <input type="text" class="form-control input-sm" name="job_no">
-                                    </div>
+                                    {{ BootForm::text('job_no','Job No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Exporter</label>
-                                        <select class="form-control input-sm">
-                                            <option value="" selected>Select Exporter No</option>
-                                            <option value="one">One</option>
-                                            <option value="one">One</option>
-                                        </select>
-                                    </div>
+                                    {{ BootForm::number('total_day','Total Days', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">C&F Value</label>
-                                        <input type="number" class="form-control input-sm" name="cf_value">
-                                    </div>
+                                    {{ BootForm::number('cnf_value','C&F Value', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">USD Amount</label>
-                                        <input type="number" class="form-control input-sm" name="usd_amount">
-                                    </div>
+                                    {{ BootForm::number('usd_amount','USD Amount', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Exchange Rate</label>
-                                        <input type="number" class="form-control input-sm" name="">
-                                    </div>
+                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">BDT Amount</label>
-                                        <input type="number" class="form-control input-sm" name="bd_amount">
-                                    </div>
+                                    {{ BootForm::number('bdt_amount','BDT Amount', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Total Days</label>
-                                        <input type="number" class="form-control input-sm" name="total_days">
-                                    </div>
+                                    {{ BootForm::select('vendor_id', 'Exporter', $vendor_list, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Duty Payment Date</label>
-                                        <input type="date" class="form-control input-sm" name="duty_payment_date">
-                                    </div>
+                                    {{ BootForm::select('cnf_agent_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Container No</label>
-                                        <input type="text" class="form-control input-sm" name="container_no">
-                                    </div>
+                                    {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="">Particulars of Consignments</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" selected>Select</option>
-                                                <option value="one">One</option>
-                                                <option value="one">One</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="">Amount</label>
-                                            <input type="number" class="form-control input-sm" name="">
-                                        </div>
-                                    </div>
+                                    {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm']) }}
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Particulars of Consignments Table</div>
                                         <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label>Particulars of Consignments</label>
+                                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id">
+                                                            <option value="">--Select Particulars of Consignments--</option>
+                                                            @foreach($consignment_partucular_list as $item)
+                                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for="">Amount</label>
+                                                        <input type="text" class="form-control input-sm" name="container_no">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                    <div class="form-group">
+                                                        <label for=""></label>
+                                                        <button class="form-control btn btn-primary  btn-sm">Add</button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="table-responsive">
                                                 <table class="table table-bordered">
                                                     <thead class="bg-primary">
@@ -199,7 +148,6 @@
                                                             <th scope="col" class="text-center">#</th>
                                                             <th scope="col" class="text-center">Particulars of Consignments</th>
                                                             <th scope="col" class="text-center">Taka</th>
-                                                            <th scope="col" class="text-center">Poisa</th>
                                                             <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
                                                         </tr>
                                                     </thead>
@@ -208,54 +156,37 @@
                                                             <th scope="row">01</th>
                                                             <th>Particulars</th>
                                                             <td>20</td>
-                                                            <td>10</td>
-                                                            <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Voucher Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
+                                                            <th class="text-right" colspan="2">Voucher Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Previous Due Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th colspan="2" class="text-right">Total Voucher Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
+                                                            <th class="text-right" colspan="2">Previous Due Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Cash Received/Pay Order Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
+                                                            <th class="text-right" colspan="2">Total Voucher Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Due Tk</th>
+                                                            <th class="text-right" colspan="2">Cash Received/Pay Order Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="text-right" colspan="2">Due Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
@@ -281,7 +212,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-success btn-sm">Submit</a>
+                                        <button type="submit" class="btn btn-success">Save</button>
                                         <a href="{{route('cnf.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                     </div>
                                 </div>
@@ -294,4 +225,31 @@
         {{--end Content here --}}
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+
+        $scope.getLc = function () {
+            $scope.getLcDetails($scope.letter_of_credit_id);
+        }
+
+        $scope.getLcDetails = function(id){
+            let url = "{{URL::to('get-lc')}}/" + id;
+            $http.get(url).then(function(response) {
+                $scope.letter_of_credit_date = response.data.letter_of_credit_date;
+                $scope.letter_of_credit_value = parseInt(response.data.letter_of_credit_value);
+                $scope.issue_ac_no = response.data.issue_ac_no;
+                $scope.issue_ac_name = response.data.issue_ac_name;
+                $scope.issue_bank_name = response.data.issue_bank_name;
+                $scope.issue_branch_name = response.data.issue_branch_name;
+            });
+        }
+
+    });
+</script>
 @endsection

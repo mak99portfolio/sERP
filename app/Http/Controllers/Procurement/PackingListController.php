@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
 use App\PackingList;
+use App\Country;
+use App\Port;
+use App\City;
+use App\LetterOfCredit;
 use Illuminate\Http\Request;
 
 class PackingListController extends Controller
@@ -30,8 +34,10 @@ class PackingListController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('country_list', Country ::pluck('name', 'id')->prepend('--Select Country--'));
+        $view->with('port_list', Port ::pluck('name', 'id')->prepend('--Select Port--'));
+        $view->with('city_list', City ::pluck('name', 'id')->prepend('--Select City--'));
+        $view->with('lc_list', LetterOfCredit::all());
         return $view;
     }
 

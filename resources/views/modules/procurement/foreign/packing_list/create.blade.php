@@ -117,55 +117,20 @@
                                     <fieldset class="m-t-20">
                                         <legend>Table of Terms and Conditions:</legend>
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Port of Loading</label>
-                                                    <select name="port_of_loading" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Port of Discharge</label>
-                                                    <select name="port_of_discharge" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Country of Final Destination</label>
-                                                    <select name="country_of_final_destination" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Final Destination</label>
-                                                    <select name="final_destination" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Country of Origin of Goods</label>
-                                                    <select name="Country_of_Origin_of_Goods" class="form-control">
-                                                        <option selected>--Select Port--</option>
-                                                        <option value="dhaka">Dhaka Port</option>
-                                                        <option value="Rangpur">Rangpur Port</option>
-                                                    </select>
-                                                </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
                                             </div>
                                         </div>
                                     </fieldset>

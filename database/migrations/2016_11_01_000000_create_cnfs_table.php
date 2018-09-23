@@ -34,6 +34,7 @@ class CreateCnfsTable extends Migration
             $table->double('cash_recieved_amount');
             $table->integer('consignment_particular_id')->unsigned();
             $table->foreign('consignment_particular_id')->references('id')->on('consignment_particulars')->onDelete('cascade');
+            $table->integer('cnf_agent_id');
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->text('note')->nullable();

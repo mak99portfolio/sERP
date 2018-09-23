@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Procurement;
 use App\Cnf;
 use App\ConsignmentParticularCnf;
 use App\ConsignmentParticular;
+use App\LetterOfCredit;
+use App\Vendor;
+use App\CommercialInvoice;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -24,8 +27,10 @@ class CnfController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        // $view->with('lc_list', LetterOfCredit::all());
-        // $view->with('vendor_list', Vendor::all());
+        $view->with('lc_list', LetterOfCredit::all());
+        $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('--select vendor--', ''));
+        $view->with('commercial_invoice_list', CommercialInvoice::all());
+        $view->with('consignment_partucular_list', ConsignmentParticular::all());
 
         return $view;
     }
@@ -67,7 +72,7 @@ class CnfController extends Controller
         $consignment_particular_cnf->fill($request->input());
         $cnf->consignment_particular_cnf()->save($consignment_particular_cnf);
         Session::put('alert-success', $cnf->cnf_no . " successfully created");
-        return redirect()->route('cost-sheet.index');
+        return redirect()->route('cnf.index');
     }
 
     public function show(Cnf $cnf)

@@ -90,34 +90,58 @@ class ApiController extends Controller
         }
         return response()->json($data);
     }
-    public function getPOByPOId($id){
-        $po = PurchaseOrder::find($id);
-        // dd($po);
+    public function getPOByPOIds($ids){
         $data = [];
-        $items = $po->items;
-        foreach($items as $item){
-            $data[] = [
-                'product_id' => $item->product->id,
-                'name' => $item->product->name,
-                'hs_code' => $item->product->hs_code,
-                'uom' => $item->product->unit_of_measurement->name,
-                'quantity' => $item->quantity,
-                'unit_price' => $item->unit_price,
-            ];
+        foreach(explode(',', $ids) as $id){
+            $po = PurchaseOrder::find($id);
+            $items = $po->items;
+            foreach($items as $item){
+                $item_exist = false;
+                foreach ($data as $key => $value) {
+                    if($value['product_id'] == $item->product->id){
+                        $data[$key]['quantity'] += $item->quantity;
+                        $item_exist = true;
+                        break;
+                    }
+                }
+                if(!$item_exist){
+                    $data[] = [
+                        'product_id' => $item->product->id,
+                        'name' => $item->product->name,
+                        'hs_code' => $item->product->hs_code,
+                        'uom' => $item->product->unit_of_measurement->name,
+                        'quantity' => $item->quantity,
+                        'unit_price' => $item->unit_price,
+                    ];
+                }
+            }
         }
         return response()->json($data);
     }
-    public function getForeignRequisitionByRequisitionId($id){
-        $req = ForeignRequisition::find($id);
-        $items = $req->items;
-        foreach($items as $item){
-            $data[] = [
-                'product_id' => $item->product->id,
-                'name' => $item->product->name,
-                'hs_code' => $item->product->hs_code,
-                'uom' => $item->product->unit_of_measurement->name,
-                'quantity' => $item->quantity,
-            ];
+    public function getForeignRequisitionByRequisitionIds($ids){
+        $data = [];
+        foreach(explode(',', $ids) as $id){
+            $req = ForeignRequisition::find($id);
+            $items = $req->items;
+            foreach($items as $item){
+                $item_exist = false;
+                foreach ($data as $key => $value) {
+                    if($value['product_id'] == $item->product->id){
+                        $data[$key]['quantity'] += $item->quantity;
+                        $item_exist = true;
+                        break;
+                    }
+                }
+                if(!$item_exist){
+                    $data[] = [
+                        'product_id' => $item->product->id,
+                        'name' => $item->product->name,
+                        'hs_code' => $item->product->hs_code,
+                        'uom' => $item->product->unit_of_measurement->name,
+                        'quantity' => $item->quantity,
+                    ];
+                }
+            }
         }
         return response()->json($data);
     }

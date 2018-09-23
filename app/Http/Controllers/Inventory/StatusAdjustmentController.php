@@ -26,8 +26,14 @@ class StatusAdjustmentController extends Controller{
 
     public function create(){
 
-        return redirect()->route('status-adjustment.index');
-        $data=[];
+        $data=[
+            'status_adjustment'=>$status_adjustment,
+            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
+            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
+        ];
+
+        return view($this->path('create'), $data);
         return view($this->path('create'), $data);
         
     }

@@ -149,4 +149,36 @@ class ReceiveController extends Controller{
         return response()->json(null, 404);
 
     }
+
+    public function get_purchase_order(string $slug){
+
+        $local_order=\App\LocalPurchaseOrder::where('purchase_oder_no', $slug)->first();
+
+        if($local_order){
+
+            $items=$local_order->items;
+            $products=[];
+
+            foreach($items as $item){
+
+                array_push($products, [
+                    'id'=>$item->product_id,
+                    'hs_code'=>$item->product->hs_code,
+                    'name'=>$item->product->name,
+                    'quantity'=>$item->quantity,
+                ]);
+                
+            }
+
+            return response()->json([
+                'local_order'=>$local_order,
+                'products'=>$products
+            ]);
+
+        }
+
+        return response()->json(null, 404);
+
+    }
+
 }

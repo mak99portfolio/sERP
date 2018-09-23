@@ -138,4 +138,31 @@ class ApiController extends Controller
     public function getAllProduct(){
         return response()->json(Product::all());
     }
+    public function getCiByCiId($id){
+        $lc = CommercialInvoice::find($id);
+        $lc_items = $lc->items;
+        foreach ($lc_items as $lc_item) {
+            $items[] = [
+                'product_id' => $lc_item->product_id,
+                'quantity' => $lc_item->quantity,
+                'name' => $lc_item->product->name,
+                'unit_price' => $lc_item->unit_price,
+            ];
+        }
+        $data['items']=$items;
+        $data['letter_of_credit_date'] = $lc->letter_of_credit_date;
+        $data['beneficiary_ac_no'] = $lc->beneficiary_ac_no;
+        $data['beneficiary_ac_name'] = $lc->beneficiary_ac_name;
+        $data['beneficiary_bank_name'] = $lc->beneficiary_bank_name;
+        $data['beneficiary_branch_name'] = $lc->beneficiary_branch_name;
+        
+        $data['letter_of_credit_value'] = $lc->letter_of_credit_value;
+        $data['issue_ac_no'] = $lc->issue_ac_no;
+        $data['issue_ac_name'] = $lc->issue_ac_name;
+        $data['issue_branch_name'] = $lc->issue_branch_name;
+        $data['issue_bank_name'] = $lc->issue_bank_name;
+        
+        
+        return response()->json($data);
+    }
 }

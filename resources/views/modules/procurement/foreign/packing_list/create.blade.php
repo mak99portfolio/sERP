@@ -22,96 +22,64 @@
                         <br />
                         <form class="form-horizontal form-label-left input_mask">
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Commercial Invoice No</label>
-                                        <input type="text" class="form-control" name="commercial_invoice_no">
+                                        <label>Commercial Invoice No.</label>
+                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getci()">
+                                            <option value="">--Select Commercial Invoice No--</option>
+                                            @foreach($ci_list as $item)
+                                            <option value="{{$item-> id}}">{{$item-> commercial_invoice_no}}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Date</label>
-                                        <input type="date" class="form-control" name="commercial_invoice_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('commercial_invoice_date','Commercial Invoice Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'commercial_invoice_date','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC No</label>
-                                        <input type="text" class="form-control" name="lc_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('lc_no','LC No', null, ['class'=>'form-control input-sm', 'ng-model'=>'lc_no','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">LC Date</label>
-                                        <input type="date" class="form-control" name="lc_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">PI No</label>
-                                        <input type="text" class="form-control" name="lc_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('pi_no','PI No', null, ['class'=>'form-control input-sm', 'ng-model'=>'pi_no','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">PI Date</label>
-                                        <input type="date" class="form-control" name="lc_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('pi_date','PI Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'pi_date','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Benefeciary Bank Info</div>
-                                        <div class="panel-body">
+                                      <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account No</label>
-                                                    <input type="text" class="form-control" name="benefeciary_account_no">
-                                                </div>
+                                                {{ BootForm::text('beneficiary_ac_no','Account No', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_no','readonly'=>'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account Name</label>
-                                                    <input type="text" class="form-control" name="benefeciary_account_name">
-                                                </div>
+                                                {{ BootForm::text('beneficiary_ac_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_name','readonly'=>'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Name</label>
-                                                    <input type="text" class="form-control" name="benefeciary_bank_name">
-                                                </div>
+                                                {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_bank_name','readonly'=>'readonly']) }}
                                             </div>
+
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Address</label>
-                                                    <textarea name="benefeciary_bank_address" class="form-control" id="" cols="30" rows="1"></textarea>
-                                                </div>
+                                                {{ BootForm::text('beneficiary_branch_name','Bank Branch Name',null,['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_branch_name','readonly'=>'readonly']) }}
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Bl No</label>
-                                        <input type="text" class="form-control" name="bl_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bill_no','Bl No', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Bl Date</label>
-                                        <input type="date" class="form-control" name="bl_date">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bill_date','Bl Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Vessel No / Flight No</label>
-                                        <input type="text" class="form-control" name="vessel_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Container No</label>
-                                        <input type="text" class="form-control" name="container_no">
-                                    </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset class="m-t-20">
@@ -131,6 +99,15 @@
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
                                                 {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                                {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                         </div>
                                     </fieldset>

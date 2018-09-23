@@ -111,3 +111,4 @@ Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPO
 Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
 Route::get('/get-all-product', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
+Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);

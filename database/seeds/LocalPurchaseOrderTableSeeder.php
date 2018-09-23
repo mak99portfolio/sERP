@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ForeignPurchaseOrderTableSeeder extends Seeder {
+class LocalPurchaseOrderTableSeeder extends Seeder {
 
     /**
      * Run the database seeds.
@@ -51,7 +51,7 @@ class ForeignPurchaseOrderTableSeeder extends Seeder {
                 'vat_rate' => rand(1, 20),
                 'total_discount' => rand(1, 20),
                 'total_vat' => rand(1, 20),
-                'purchase_order_id' => 1,
+                'local_purchase_order_id' => 1,
             ],
             [
                 'item_id' => 2,
@@ -62,7 +62,7 @@ class ForeignPurchaseOrderTableSeeder extends Seeder {
                 'vat_rate' => rand(1, 20),
                 'total_discount' => rand(1, 20),
                 'total_vat' => rand(1, 20),
-                'purchase_order_id' => 1,
+                'local_purchase_order_id' => 1,
             ],
             [
                 'item_id' => 3,
@@ -73,7 +73,7 @@ class ForeignPurchaseOrderTableSeeder extends Seeder {
                 'vat_rate' => rand(1, 20),
                 'total_discount' => rand(1, 20),
                 'total_vat' => rand(1, 20),
-                'purchase_order_id' => 1,
+                'local_purchase_order_id' => 1,
             ],
             [
                 'item_id' => 1,
@@ -84,7 +84,7 @@ class ForeignPurchaseOrderTableSeeder extends Seeder {
                 'vat_rate' => rand(1, 20),
                 'total_discount' => rand(1, 20),
                 'total_vat' => rand(1, 20),
-                'purchase_order_id' => 2,
+                'local_purchase_order_id' => 2,
             ],
             [
                 'item_id' => 2,
@@ -95,7 +95,7 @@ class ForeignPurchaseOrderTableSeeder extends Seeder {
                 'vat_rate' => rand(1, 20),
                 'total_discount' => rand(1, 20),
                 'total_vat' => rand(1, 20),
-                'purchase_order_id' => 2,
+                'local_purchase_order_id' => 2,
             ],
             [
                 'item_id' => 3,
@@ -106,7 +106,7 @@ class ForeignPurchaseOrderTableSeeder extends Seeder {
                 'vat_rate' => rand(1, 20),
                 'total_discount' => rand(1, 20),
                 'total_vat' => rand(1, 20),
-                'purchase_order_id' => 2,
+                'local_purchase_order_id' => 2,
             ],
            
           

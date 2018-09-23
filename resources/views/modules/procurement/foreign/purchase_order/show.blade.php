@@ -105,7 +105,7 @@
                                            <td>{{$item->product->unit_of_measurement->name}}</td>
                                            <td>{{$item->quantity}}</td>
                                            <td>{{$item->unit_price}}</td>
-                                           <td>{{$item->quantity * $item->unit_price}}</td>
+                                           <td>{{number_format($item->quantity * $item->unit_price,2)}}</td>
                                        </tr>
                                        @endforeach
                                     </tbody>

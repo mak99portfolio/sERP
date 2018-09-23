@@ -93,9 +93,10 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
 
     //routes for receive product info
-    Route::prefix('receive')->group(function(){
+    Route::prefix('api')->group(function(){
 
         Route::get('vue-old-products', 'ReceiveController@vue_old_products');
+        Route::get('vue-old-inputs', 'ReceiveController@vue_old_inputs');
         Route::get('get-product-info/{slug}', 'ReceiveController@get_product_info');
         Route::get('get-commercial-invoice/{slug}', 'ReceiveController@get_commercial_invoice');
 
@@ -112,3 +113,4 @@ Route::get('/get-po/{ids}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByP
 Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
 Route::get('/get-all-product', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
+Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);

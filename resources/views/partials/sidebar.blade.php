@@ -46,7 +46,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
           <li><a href="{{ route('issue.index') }}">Issue</a></li>
-          <li><a href="{{ route('receive-internal.index') }}">Receive Item</a></li>
+          <li><a href="{{ route('receive.index') }}">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
             <li class="sub_menu">

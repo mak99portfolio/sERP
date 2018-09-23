@@ -67,7 +67,7 @@
                                         <td>{{$key+1}}</td>
                                         <td>{{$item->product->hs_code}}</td>
                                         <td>{{$item->product->name}}</td>
-                                        <td>{{$item->product->quantity}}</td>
+                                        <td>{{$item->quantity}}</td>
                                         <td>{{$item->product->unit_of_measurement->name}}</td>
                                         </tr> 
                                         @endforeach

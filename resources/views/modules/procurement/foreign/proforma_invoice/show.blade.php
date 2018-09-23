@@ -91,7 +91,7 @@
                                                 <th>Product Name</th>
                                                 <th>Quantity</th>
                                                 <th>Unit Price</th>
-                                                <th>Total Amount</th>
+                                                <th class="text-right">Total Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -102,7 +102,7 @@
                                                <td>{{$item->product->name}}</td>
                                                <td>{{$item->quantity}}</td>
                                                <td>{{$item->unit_price}}</td>
-                                               <td>{{$item->unit_price * $item->quantity}}</td>
+                                               <td class="text-right">{{number_format($item->unit_price * $item->quantity,2)}}</td>
                                            </tr>
                                            @endforeach
                                         </tbody>

@@ -30,7 +30,7 @@
                                     <tr>
                                     <td><strong>LC No:</strong> {{$letterOfCredit->letter_of_credit_no}}</td>
                                         <td><strong>LC Date :</strong> {{$letterOfCredit->letter_of_credit_date}}</td>
-                                        <td><strong>LC Value :</strong> {{$letterOfCredit->letter_of_credit_value}}</td>
+                                        <td><strong>LC Value :</strong> {{number_format($letterOfCredit->letter_of_credit_value,2)}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Vendor:</strong> {{$letterOfCredit->vendor->name}}</td>
@@ -145,7 +145,7 @@
                                         <th><strong>Discount</strong></th>
                                         <th><strong>D.Rate</strong></th>
                                         <th><strong>Vat(%)</strong></th>
-                                        <th><strong>Sub Total</strong></th>
+                                        <th class="text-right"><strong>Sub Total</strong></th>
                                      </tr>
                                 </thead>
                                 <tbody>
@@ -160,7 +160,7 @@
                                         <td>{{$item->discount}}</td>
                                         <td>{{$item->d_rate}}</td>
                                         <td>{{$item->vat}}</td>
-                                        <td>{{($item->quantity * $item->unit_price)+($item->d_rate+$item->vat)-$item->discount}}</td>
+                                        <td class="text-right">{{number_format(($item->quantity * $item->unit_price)+($item->d_rate+$item->vat)-$item->discount,2)}}</td>
                                      
                                     </tr>
                                     @endforeach

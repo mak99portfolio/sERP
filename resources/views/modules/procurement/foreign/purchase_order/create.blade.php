@@ -25,22 +25,6 @@
                         @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Requisition No.</label>
-                                        <select data-placeholder="Select Req No" multiple  class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_ids[]" ng-model="req_id" ng-change="searchReqNo()">
-                                            <option value=""></option>
-                                            @foreach($requisition_list as $item)
-                                            <option value="{{$item->id}}">{{$item->requisition_no}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-                                    
-                                </div>
-                               {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('purchase_order_no','Purchase Order No.', null, ['class'=>'form-control input-sm','readonly' ]) }}
-                                </div>--}}
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -88,6 +72,21 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="table-responsive m-t-15">
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <div class="panel">
+                                            <div class="well">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">Select Req. No</span>
+                                                    <select data-placeholder="Select Req No" multiple  class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_ids[]" ng-model="req_id" ng-change="searchReqNo()">
+                                                        <option value=""></option>
+                                                        @foreach($requisition_list as $item)
+                                                        <option value="{{$item->id}}">{{$item->requisition_no}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <table class="table table-bordered table-hover" ng-if="itemlist.length >=1">
                                             <thead class="bg-default">
                                                 <tr>
@@ -111,7 +110,7 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="<% quantity[$index]=item.quantity %>" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>
                                                     <% quantity[$index]*unit_price[$index] %>
@@ -163,18 +162,13 @@
         $scope.itemlist = [];
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
-            for(i=0; i<$scope.req_id.length; i++){
-                $scope.addToItemList($scope.req_id[i]);
-            }
+            $scope.addToItemList($scope.req_id.join());
         }
-        $scope.addToItemList = function(id){
-            let url = "{{URL::to('get-foreign-requisition')}}/" + id;
+        $scope.addToItemList = function(ids){
+            let url = "{{URL::to('get-foreign-requisition')}}/" + ids;
             $http.get(url)
                     .then(function(response) {
-                        // console.log('data-----------', response.data);
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.itemlist.push(value);
-                        });
+                        $scope.itemlist = response.data;
                     });
         }
         $scope.removeItem = function(index){

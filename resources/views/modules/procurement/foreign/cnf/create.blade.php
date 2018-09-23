@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Invoice Date</label>
+                                        <label for="">Commercial Invoice Date</label>
                                         <input type="date" class="form-control input-sm" name="invoice_date">
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">BD Amount</label>
+                                        <label for="">BDT Amount</label>
                                         <input type="number" class="form-control input-sm" name="bd_amount">
                                     </div>
                                 </div>
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Duty Pament Date</label>
+                                        <label for="">Duty Payment Date</label>
                                         <input type="date" class="form-control input-sm" name="duty_payment_date">
                                     </div>
                                 </div>
@@ -173,21 +173,21 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Particulars of Consignments</label>
-                                        <select class="form-control input-sm">
-                                            <option value="" selected>Select</option>
-                                            <option value="one">One</option>
-                                            <option value="one">One</option>
-                                        </select>
+                                        <div class="form-group">
+                                            <label for="">Particulars of Consignments</label>
+                                            <select class="form-control input-sm">
+                                                <option value="" selected>Select</option>
+                                                <option value="one">One</option>
+                                                <option value="one">One</option>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Amount</label>
-                                        <input type="number" class="form-control input-sm" name="">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label for="">Amount</label>
+                                            <input type="number" class="form-control input-sm" name="">
+                                        </div>
                                     </div>
-                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Particulars of Consignments Table</div>
@@ -265,6 +265,12 @@
                                                 </table>
                                             </div>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Amount In Words</label>
+                                        <input type="text" class="form-control input-sm" name="amount_in_word">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">

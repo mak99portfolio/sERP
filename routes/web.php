@@ -107,9 +107,9 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 //API
 Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
 Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
-Route::get('/get-foreign-requisition/{id}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionId']);
-Route::get('/get-local-requisition/{id}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getLocalRequisitionByRequisitionId']);
-Route::get('/get-po/{id}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOId']);
+Route::get('/get-foreign-requisition/{ids}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionIds']);
+Route::get('/get-local-requisition/{ids}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getLocalRequisitionByRequisitionIds']);
+Route::get('/get-po/{ids}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOIds']);
 Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
 Route::get('/get-all-product', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);

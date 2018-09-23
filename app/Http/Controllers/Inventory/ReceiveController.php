@@ -152,7 +152,7 @@ class ReceiveController extends Controller{
 
     public function get_purchase_order(string $slug){
 
-        $local_order=\App\LocalPurchaseOrder::where('purchase_oder_no', $slug)->first();
+        $local_order=\App\LocalPurchaseOrder::where('purchase_order_no', $slug)->first();
 
         if($local_order){
 
@@ -162,7 +162,7 @@ class ReceiveController extends Controller{
             foreach($items as $item){
 
                 array_push($products, [
-                    'id'=>$item->product_id,
+                    'id'=>$item->product->id,
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->quantity,
@@ -172,6 +172,43 @@ class ReceiveController extends Controller{
 
             return response()->json([
                 'local_order'=>$local_order,
+                'products'=>$products
+            ]);
+
+        }
+
+        return response()->json(null, 404);
+
+    }
+
+    public function get_inventory_requisition(\App\WorkingUnit $working_unit, string $slug){
+
+        $requisition=$working_unit->outgoing_requisitions()->where('inventory_requisition_id', $slug)->first();
+
+        if($requisition && $requisition->issue()->exists()){
+
+            $items=$requisition->issue->items;
+
+            $products=[];
+
+            foreach($items as $item){
+
+                array_push($products, [
+                    'id'=>$item->product->id,
+                    'hs_code'=>$item->product->hs_code,
+                    'name'=>$item->product->name,
+                    'quantity'=>$item->requested_quantity,
+                    'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity
+                ]);
+
+                
+            }
+
+            return response()->json([
+                'requisition'=>[
+                    'inventory_requisition_id'=>$requisition->inventory_requisition_id,
+                    'receive_from'=>$requisition->requested_to->name
+                ],
                 'products'=>$products
             ]);
 

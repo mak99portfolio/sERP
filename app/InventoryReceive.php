@@ -12,6 +12,10 @@ class InventoryReceive extends Model{
 		return $this->hasOne('App\InventoryReceiveForeign', 'inventory_receive_id');
 	}
 
+	public function local(){
+		return $this->hasOne('App\InventoryReceiveLocal', 'inventory_receive_id');
+	}
+
 	public function stocks(){
 		return $this->hasMany('App\Stock', 'inventory_receive_id');
 	}

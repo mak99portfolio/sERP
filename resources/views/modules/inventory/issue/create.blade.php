@@ -124,14 +124,20 @@
                             </div>
                             </div> {{-- End of vue app --}}
 
+                            @if(!$issue->initial_approver()->exists())
+                            {{ BootForm::hidden('approval', 'initial') }}
+                            @elseif(!$issue->final_approver()->exists())
+                            {{ BootForm::hidden('approval', 'final') }}
+                            @endif
+
                             <div class="col-md-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                   @if(!$issue->initial_approver()->exists())
-                                    <button type="submit" name="approval" value="initial" class="btn btn-warning btn-sm">Submit Initial Approval</button>
+                                    <button type="submit" class="btn btn-warning btn-sm">Submit Initial Approval</button>
                                   @elseif(!$issue->final_approver()->exists())
-                                    <button type="submit" name="approval" value="final" class="btn btn-warning btn-sm">Submit Final Approval</button>
+                                    <button type="submit" class="btn btn-warning btn-sm">Submit Final Approval</button>
                                   @else
                                     {!! btnSubmitGroup() !!}
                                   @endif

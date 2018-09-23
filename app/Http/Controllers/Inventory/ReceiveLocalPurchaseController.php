@@ -40,8 +40,7 @@ class ReceiveLocalPurchaseController extends Controller{
         //dd($request->all());
 
         \Session::put('vue_inputs', [
-            'commercial_invoice_no'=>$request->get('commercial_invoice_no'),
-            'letter_of_credit_id'=>$request->get('letter_of_credit_id'),
+            'purchase_order_no'=>$request->get('purchase_order_no')
         ]);
 
         \Session::put('vue_products', $request->get('products'));
@@ -49,7 +48,7 @@ class ReceiveLocalPurchaseController extends Controller{
         $request->validate([
             'inventory_receive_id'=>'required|unique:inventory_receives',
             'receive_date'=>'required|date',
-            'commercial_invoice_no'=>'required|integer|exists:commercial_invoices',
+            'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
             'product_pattern_id'=>'required|integer',
@@ -65,21 +64,21 @@ class ReceiveLocalPurchaseController extends Controller{
         ));
 
         $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
-        $inventory_receive->receive_type='foreign_purchase';
+        $inventory_receive->receive_type='local_purchase';
         $inventory_receive->creator()->associate(\Auth::user());
         $inventory_receive->save();
 
 
-        $foreign_purchase=new \App\InventoryReceiveForeign;
+        $local_purchase=new \App\InventoryReceiveLocal;
 
-        $commercial_invoice=\App\CommercialInvoice::where(
-            'commercial_invoice_no',
-            $request->get('commercial_invoice_no')
+        $local_purchase_order=\App\LocalPurchaseOrder::where(
+            'purchase_order_no',
+            $request->get('purchase_order_no')
         )->first();
 
-        $foreign_purchase->commercial_invoice()->associate($commercial_invoice);
-        $foreign_purchase->inventory_receive()->associate($inventory_receive);
-        $foreign_purchase->save();
+        $local_purchase->purchase_order()->associate($local_purchase_order);
+        $local_purchase->inventory_receive()->associate($inventory_receive);
+        $local_purchase->save();
 
         $products=$request->get('products');
 
@@ -113,8 +112,8 @@ class ReceiveLocalPurchaseController extends Controller{
     public function edit(\App\InventoryReceive $receive_local_purchase){
 
         $data=[
-            'inventory_receive'=>$receive_foreign_purchase,
-            'inventory_receive_id'=>$receive_foreign_purchase->inventory_receive_id,
+            'inventory_receive'=>$receive_local_purchase,
+            'inventory_receive_id'=>$receive_local_purchase->inventory_receive_id,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
@@ -124,7 +123,7 @@ class ReceiveLocalPurchaseController extends Controller{
 
         $products=[];
 
-        foreach($receive_foreign_purchase->stocks as $row){
+        foreach($receive_local_purchase->stocks as $row){
 
             array_push($products, [
                 'id'=>$row->product_id,
@@ -137,11 +136,10 @@ class ReceiveLocalPurchaseController extends Controller{
 
         //dd($requisition->requested_items);
 
-        $commercial_invoice=\App\CommercialInvoice::find($receive_foreign_purchase->foreign->commercial_invoice_id);
+        $local_purchase_order=\App\LocalPurchaseOrder::find($receive_local_purchase->local->local_purchase_order_id);
 
         \Session::put('vue_inputs', [
-            'commercial_invoice_no'=>$commercial_invoice->commercial_invoice_no,
-            'letter_of_credit_id'=>$commercial_invoice->letter_of_credit_id
+            'purchase_order_no'=>$local_purchase_order->purchase_order_no
         ]);
         
         return view($this->path('create'), $data);
@@ -151,11 +149,10 @@ class ReceiveLocalPurchaseController extends Controller{
 
     public function update(Request $request, \App\InventoryReceive $receive_local_purchase){
 
-        $inventory_receive=$receive_foreign_purchase;
+        $inventory_receive=$receive_local_purchase;
 
         \Session::put('vue_inputs', [
-            'commercial_invoice_no'=>$request->get('commercial_invoice_no'),
-            'letter_of_credit_id'=>$request->get('letter_of_credit_id'),
+            'purchase_order_no'=>$request->get('purchase_order_no')
         ]);
 
         \Session::put('vue_products', $request->get('products'));
@@ -163,7 +160,7 @@ class ReceiveLocalPurchaseController extends Controller{
         $request->validate([
             'inventory_receive_id'=>'required|unique:inventory_receives,inventory_receive_id,'.$inventory_receive->id,
             'receive_date'=>'required|date',
-            'commercial_invoice_no'=>'required|integer|exists:commercial_invoices',
+            'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
             'product_pattern_id'=>'required|integer',
@@ -179,22 +176,21 @@ class ReceiveLocalPurchaseController extends Controller{
         ));
 
         $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
-        //$inventory_receive->receive_type='foreign_purchase';
         $inventory_receive->editor()->associate(\Auth::user());
         $inventory_receive->stocks()->delete();
         $inventory_receive->save();
 
 
-        $foreign_purchase=$inventory_receive->foreign;
+        $local_purchase=new \App\InventoryReceiveLocal;
 
-        $commercial_invoice=\App\CommercialInvoice::where(
-            'commercial_invoice_no',
-            $request->get('commercial_invoice_no')
+        $local_purchase_order=\App\LocalPurchaseOrder::where(
+            'purchase_order_no',
+            $request->get('purchase_order_no')
         )->first();
 
-        $foreign_purchase->commercial_invoice()->associate($commercial_invoice);
-        $foreign_purchase->inventory_receive()->associate($inventory_receive);
-        $foreign_purchase->save();
+        $local_purchase->purchase_order()->associate($local_purchase_order);
+        $local_purchase->inventory_receive()->associate($inventory_receive);
+        $local_purchase->save();
 
         $products=$request->get('products');
 
@@ -224,5 +220,5 @@ class ReceiveLocalPurchaseController extends Controller{
     public function destroy(\App\InventoryReceive $receive_local_purchase){
         
     }
-    
+
 }

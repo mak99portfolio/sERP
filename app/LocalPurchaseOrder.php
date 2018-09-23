@@ -20,7 +20,7 @@ class LocalPurchaseOrder extends Model
      protected $guarded=['id'];
 
     public function items(){
-        return $this->hasMany('App\LocalPurchaseOrderItem');
+        return $this->hasMany('App\LocalPurchaseOrderItem', 'local_purchase_order_id');
     }
     public function requisitions(){
         return $this->hasMany('App\LocalPurchaseOrderLocalRequisition');

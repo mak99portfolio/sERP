@@ -40,4 +40,12 @@ class WorkingUnit extends Model{
 		return $this->hasMany('App\Stock');
 	}
 
+	public function outgoing_requisitions(){
+		return $this->hasMany('App\InventoryRequisition', 'sender_depot_id');
+	}
+
+	public function incoming_requisitions(){
+		return $this->hasMany('App\InventoryRequisition', 'requested_depot_id');
+	}
+
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\inventory;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 

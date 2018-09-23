@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Receive Item</h2>
-                        <a href="{{route('receive-internal.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Receive Item List</a>
+                        <a href="{{route('receive.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Receive List</a>
 
                         <div class="clearfix"></div>
                     </div>
@@ -25,40 +25,70 @@
                         <!-- Nav tabs -->
 
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
+
                             @include('modules.inventory.receive._tab_header')
+                            
                             <div id="myTabContent" class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                    <form class="form-horizontal form-label-left">
+                               
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="profile-tab">
+
+                                    @include('partials.flash_msg')
+
+                                    {{ BootForm::open(['model'=>$inventory_receive, 'store'=>'receive-local-purchase.store', 'update'=>'receive-local-purchase.update']) }}
+                                        <div id="vue_app"> {{-- begining of vue app --}}
                                         <div class="row">
+
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>Date</label>
-                                                    <input class="form-control input-sm" type="text">
+                                                    {{--<label>Date</label>
+                                                    <input class="form-control input-sm" type="text"> --}}
+                                                    {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>Challan No</label>
-                                                    <input class="form-control input-sm" type="text">
+                                                    {{--<label>Date</label>
+                                                    <input class="form-control input-sm" type="text"> --}}
+                                                    {{ BootForm::text('receive_date', 'Select Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                
+                                                    <label>Requisition No</label>
+                                                    <!--<input class="form-control input-sm" type="text">-->
+                                                    <div class="input-group">
+                                                        {{ Form::text('inventory_requisition_id', null, ['class'=>'form-control input-sm', "v-model"=>"requisition.inventory_requisition_id", "v-on:change"=>"fetch_requisition(requisition.inventory_requisition_id)"]) }}
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_requisition(requisition.inventory_requisition_id)">
+                                                                <i class="fa fa-search" aria-hidden="true"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div><!-- /input-group -->
+                                                
+                                            </div>
+
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>Req No</label>
-                                                    <input class="form-control input-sm" type="text" readonly>
+                                                    {{ BootForm::text('challan_no', null, null, ['class'=>'form-control input-sm']) }}
                                                 </div>
                                             </div>
+
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    <label>Receive From</label>
-                                                    <input class="form-control input-sm" type="text" readonly>
+                                                    {{ BootForm::text('Receive From', null, null, ['class'=>'form-control input-sm', 'disabled', 'v-model'=>"requisition.receive_from"]) }}
                                                 </div>
                                             </div>
+                                            
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-<!--                                                <div class="form-group">
-                                                    <input class="form-control input-sm" type="text">
-                                                </div>-->
-                                                {{ BootForm::select('purpose_id', 'Working Unit', [''=>'select purpose'] ,['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('product_status_id', 'Product Status', $product_statuses, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('product_pattern_id', 'Product Pattern', $product_patterns, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">
@@ -67,60 +97,82 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
-                                            <div class="row">
-                                                <div class="col-lg-2 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>HS Code</label>
-                                                        <!--<input class="form-control input-sm" type="text">-->
-                                                        <div class="input-group">
-                                                        <input type="text" class="form-control input-sm" placeholder="Search for...">
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                                        </span>
-                                                    </div><!-- /input-group -->
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>Product</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>Issue/Challan Qty</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-6 col-sm-6">
-                                                    <div class="form-group">
-                                                        <label>Qty</label>
-                                                        <input class="form-control input-sm" type="text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-6 col-sm-6">
-                                                    <label></label>
-                                                    <button class="btn btn-success btn-md m-t-20">Add</button>
-                                                </div>
+
+
+                            <hr>
+                            <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
+                                <div class="row">
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>HS Code</label>
+                                            <!--<input class="form-control input-sm" type="text">-->
+                                            <div class="input-group">
+                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)'>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Product Name</label>
+                                            <!--<input class="form-control input-sm" type="text">-->
+                                            <div class="input-group">
+                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
+                                            </span>
+                                        </div><!-- /input-group -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>Quantity</label>
+                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity'>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                        <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive m-t-20">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>SL</th>
+                                        <th>HS Code</th>
+                                        <th>Item name</th>
+                                        <th>Requisition Quantity</th>
+                                        <th>Issue Quantity</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    <tr v-for="(product, index) in products">
+                                        <td v-html='index+1'></td>
+                                        <td v-html='product.hs_code'></td>
+                                        <td v-html='product.name'></td>
+                                        <td v-html='product.requisition_quantity'></td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
+                                                <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
                                             </div>
-                                        </div>
-                                        <div class="table-responsive m-t-20">
-                                            <table class="table table-bordered">
-                                                <tr>
-                                                    <th>HS Code</th>
-                                                    <th>Product</th>
-                                                    <th>Issue/Challan Qty</th>
-                                                    <th>Qty</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>23</td>
-                                                    <td>abc</td>
-                                                    <td>3223</td>
-                                                    <td>1313</td>
-                                                </tr>
-                                            </table>
-                                        </div>
+                                        </td>
+                                        <td>
+                                            <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
+                                                <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            </div> {{-- End of vue app --}}
+
+
+
+
+
+
 
                                         <div class="col-md-12">
                                             <br />
@@ -146,15 +198,155 @@
 </div>
 @endsection
 
-@section('style')
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/eonasdan-bootstrap-datetimepicker@4.17.47/build/css/bootstrap-datetimepicker-standalone.min.css"> --}}
-@endsection
-
 @section('script')
-{{-- <script src="https://cdn.jsdelivr.net/combine/npm/moment@2.22.2/min/moment.min.js,npm/eonasdan-bootstrap-datetimepicker@4.17.47/build/js/bootstrap-datetimepicker.min.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
 <script>
-//$(function(){
-    //$('#receive_date').datetimepicker();
-//});//End of jquery after load
+$(function(){
+    var vue=new Vue({
+        el: '#vue_app',
+        data:{
+            config:{
+                base_url: "{{ url('inventory/api/get-product-info/') }}",
+                old_data_url: "{{ url('inventory/api/vue-old-products') }}",
+                get_requisition_url: "{{ url('inventory/api/get-inventory-requisition') }}",
+                old_inputs_url: "{{ url('inventory/api/vue-old-inputs') }}"
+            },
+            products:[],
+            active_record:{
+                hs_code:'',
+                id:'',
+                name:'',
+                quantity:''
+            },
+            remote_data:null,
+            requisition:{
+                inventory_requisition_id:'',
+                receive_from: '' //Requested working units name
+            }
+        },
+        methods:{
+
+            fetch_requisition:function(slug){
+
+                var vm=this;
+                var loading = $.loading();
+                loading.open(3000);
+
+                //reset models
+                vm.products=[];
+                vm.requisition={
+                    inventory_requisition_id:'',
+                    receive_from: ''
+                }
+
+                if(slug){
+
+                    var working_unit=$('#working_unit_id').val();
+
+                    axios.get(this.config.get_requisition_url + '/' + working_unit + '/' + slug).then(function(response){
+
+                        vm.requisition=response.data.requisition;
+                        vm.products=response.data.products;                
+                        loading.close();
+
+                    }).catch(function(){
+
+                        loading.close();
+
+                    });
+
+                }else loading.close();
+
+            },
+            fetch_product:function(slug){
+
+                var vm=this;
+                var loading = $.loading();
+                loading.open(3000);
+                vm.remote_data=null;
+                vm.reset_active_record();
+
+                if(slug){
+
+                    axios.get(this.config.base_url + '/' + slug).then(function(response){
+
+                        vm.remote_data=response.data;
+                        vm.active_record=vm.remote_data;
+                        vm.active_record.quantity=0
+                
+                        loading.close();
+
+                    }).catch(function(){
+
+                        loading.close();
+
+                    });
+
+                }else loading.close();
+
+            },
+            delete_product:function(product){
+                this.products.splice(this.products.indexOf(product), 1);
+             },
+            reset_active_record:function(){
+                this.active_record={hs_code:'', id:'', name:'', quantity:''};
+            },
+            add_product:function(){
+                if(this.active_record.quantity > 0){
+                    this.products.push(this.active_record);
+                    this.reset_active_record();
+                }
+            },
+            load_old:function(){
+                var vm=this;
+                var loading=$.loading();
+                loading.open(3000);
+
+                axios.get(this.config.old_data_url).then(function(response){
+
+                    vm.products=response.data;                
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+
+                });//End of axios
+
+                loading.open(3000);
+
+                axios.get(this.config.old_inputs_url).then(function(response){
+
+                    vm.requisition=response.data;                
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+
+                });//End of axios
+         }
+        },
+        watch:{
+            remote_data:function(){
+
+            }
+        },
+        beforeMount(){
+            this.load_old();
+        }
+    })//End of vue js
+
+    $('.datepicker').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_3",
+        locale: {
+            format: 'DD-MM-YYYY'
+        }
+    });
+
+});//End of jquery
 </script>
 @endsection

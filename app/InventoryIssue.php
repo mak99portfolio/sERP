@@ -24,4 +24,8 @@ class InventoryIssue extends Model{
 		return $this->belongsTo('App\User', 'final_approver_id');
 	}
 
+	public function items(){
+		return $this->hasMany('App\InventoryIssueItem', 'inventory_issue_id');
+	}
+
 }

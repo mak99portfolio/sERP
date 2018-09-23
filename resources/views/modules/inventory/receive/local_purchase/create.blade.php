@@ -34,7 +34,7 @@
 
                                     @include('partials.flash_msg')
 
-                                    {{ BootForm::open(['model'=>$inventory_receive, 'store'=>'receive-foreign-purchase.store', 'update'=>'receive-foreign-purchase.update']) }}
+                                    {{ BootForm::open(['model'=>$inventory_receive, 'store'=>'receive-local-purchase.store', 'update'=>'receive-local-purchase.update']) }}
                                         <div id="vue_app"> {{-- begining of vue app --}}
                                         <div class="row">
 
@@ -59,9 +59,9 @@
                                                     <label>Purchase Order No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('purchase_oder_no', null, ['class'=>'form-control input-sm', "v-model"=>"local_order.purchase_oder_no", "v-on:change"=>"fetch_local_order(local_order.purchase_oder_no)"]) }}
+                                                        {{ Form::text('purchase_order_no', null, ['class'=>'form-control input-sm', "v-model"=>"local_order.purchase_order_no", "v-on:change"=>"fetch_local_order(local_order.purchase_order_no)"]) }}
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(local_order.purchase_oder_no)">
+                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_local_order(local_order.purchase_order_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
@@ -208,7 +208,7 @@ $(function(){
             },
             remote_data:null,
             local_order:{
-                purchase_oder_no:''
+                purchase_order_no:''
             }
         },
         methods:{
@@ -222,7 +222,7 @@ $(function(){
                 //reset models
                 vm.products=[];
                 vm.local_order={
-                    purchase_oder_no:''
+                    purchase_order_no:''
                 }
 
                 if(slug){

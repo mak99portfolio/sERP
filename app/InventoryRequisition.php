@@ -52,4 +52,8 @@ class InventoryRequisition extends Model{
 		return $this->hasOne('App\InventoryIssue');
 	}
 
+	public function items(){
+		return $this->hasMany('App\InventoryRequisitionItem', 'inventory_requisition_id');
+	}
+
 }

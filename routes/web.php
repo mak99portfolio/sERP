@@ -48,6 +48,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::resource('packing-list', 'PackingListController');
     Route::resource('bill-of-lading', 'BillOfLadingController');
     Route::resource('cnf', 'CnfController');
+    Route::resource('foreign-payment', 'ForeignPaymentController');
     //Local
     Route::resource('local-requisition', 'LocalRequisitionController');
     Route::resource('local-purchase-order', 'LocalPurchaseOrderController');

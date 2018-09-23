@@ -80,12 +80,6 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Invoice Value</label>
-                                        <input type="text" class="form-control input-sm">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
                                         <label for="">B/L No</label>
                                         <input type="text" class="form-control input-sm" name="">
                                     </div>

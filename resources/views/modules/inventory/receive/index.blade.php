@@ -39,20 +39,21 @@
                     @foreach($paginate->table as $row)
                         <tr>
                             <td>{{ $row->inventory_receive_id }}</td>
-                            <td>{{ title_case($row->type) }}</td>
-                            <td>{{ $row->sender->name }}</td>
-                            <td>{{ $row->requested_to->name }}</td>
-                            <td>{{ $row->item_status->name }}</td>
-                            <td>{{ $row->initial_approver->name }}</td>
+                            <td>{{ title_case($row->receive_type) }}</td>
+                            <td>{{ $row->working_unit->name }}</td>
+                            <td>{{ $carbon->parse($row->receive_date)->diffForHumans() }}</td>
+                            <td>Details</td>
                             <td>
-                            @if($row->final_approver()->exists())
-                                {{ $row->initial_approver->name }}
-                            @else
-                                {!! btnCustom(['title'=>'Final Submit', 'url'=>route('requisition.edit', ['requisition'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm btn-block']) !!}
+                            @if($row->receive_type=='foreign_purchase')
+                                {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-foreign-purchase.edit', ['receive_foreign_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='local_purchase')
+                                {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-local-purchase.edit', ['receive_local_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='internal_receive')
+                                {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-internal.edit', ['receive_internal'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='return_receive')
+                                {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-return.edit ', ['receive_return'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
                             @endif
                             </td>
-                            <td>{{ $row->remarks ?? 'Not Specified' }}</td>
-                            <td>{{ $carbon->parse($row->date)->diffForHumans() }}</td>
                         </tr>
                     @endforeach
                     </tbody>

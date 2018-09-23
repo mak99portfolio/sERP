@@ -7,6 +7,7 @@ use App\LetterOfCredit;
 use App\Vendor;
 use App\ProformaInvoice;
 use App\LetterOfCreditProformaInvoice;
+use App\LetterOfCreditApplicationNumber;
 use App\LetterOfCreditItem;
 use Illuminate\Http\Request;
 use Auth;
@@ -47,7 +48,7 @@ class LetterOfCreditController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->proforma_invoice_ids);
+        // dd($request->input());
         $request->validate([
             'letter_of_credit_no' => 'required',
             'letter_of_credit_date' => 'required',
@@ -75,6 +76,12 @@ class LetterOfCreditController extends Controller
 
         $letter_of_credit->proforma_invoices()->sync($request->proforma_invoice_ids);
 
+        $lca_nos = Array();
+        foreach($request->lca_nos as $lca_no){
+            array_push($lca_nos, new LetterOfCreditApplicationNumber($lca_no));
+        }
+        $letter_of_credit->application_numbers()->saveMany($lca_nos);
+       
         $items = Array();
         foreach($request->items as $item){
             array_push($items, new LetterOfCreditItem($item));

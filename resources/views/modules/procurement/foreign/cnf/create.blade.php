@@ -166,32 +166,39 @@
                                         <input type="date" class="form-control input-sm" name="duty_payment_date">
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Container No</label>
-                                        <input type="text" class="form-control input-sm" name="container_no">
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="">Particulars of Consignments</label>
-                                            <select class="form-control input-sm">
-                                                <option value="" selected>Select</option>
-                                                <option value="one">One</option>
-                                                <option value="one">One</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="">Amount</label>
-                                            <input type="number" class="form-control input-sm" name="">
-                                        </div>
-                                    </div>
+
+
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Particulars of Consignments Table</div>
                                         <div class="panel-body">
+                                            <div class="row">
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label for="">Particulars of Consignments</label>
+                                                                <select class="form-control input-sm">
+                                                                    <option value="" selected>Select</option>
+                                                                    <option value="one">One</option>
+                                                                    <option value="one">One</option>
+                                                                </select>
+                                                            </div>
+                                                    </div>
+
+                                                    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                                                            <div class="form-group">
+                                                                <label for="">Container No</label>
+                                                                <input type="text" class="form-control input-sm" name="container_no">
+                                                            </div>
+                                                    </div>
+                                                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label for=""></label>
+                                                                <button class="form-control btn btn-primary  btn-sm">Add</button>
+                                                            </div>
+                                                    </div>
+                                            </div>
+
                                             <div class="table-responsive">
                                                 <table class="table table-bordered">
                                                     <thead class="bg-primary">
@@ -199,7 +206,6 @@
                                                             <th scope="col" class="text-center">#</th>
                                                             <th scope="col" class="text-center">Particulars of Consignments</th>
                                                             <th scope="col" class="text-center">Taka</th>
-                                                            <th scope="col" class="text-center">Poisa</th>
                                                             <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
                                                         </tr>
                                                     </thead>
@@ -208,54 +214,42 @@
                                                             <th scope="row">01</th>
                                                             <th>Particulars</th>
                                                             <td>20</td>
-                                                            <td>10</td>
-                                                            <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Voucher Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
+                                                            <th scope="row">01</th>
+                                                            <th class="text-right">Voucher Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Previous Due Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
-                                                            <td></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th colspan="2" class="text-right">Total Voucher Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
+                                                            <th scope="row">01</th>
+                                                            <th class="text-right">Previous Due Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Cash Received/Pay Order Tk</th>
-                                                            <td>
-                                                                <input type="number" class="form-control input-sm">
-                                                            </td>
+                                                            <th scope="row">01</th>
+                                                            <th class="text-right">Total Voucher Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
                                                         </tr>
                                                         <tr>
-                                                            <th colspan="2" class="text-right">Due Tk</th>
+                                                            <th scope="row">01</th>
+                                                            <th class="text-right">Cash Received/Pay Order Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">01</th>
+                                                            <th class="text-right">Due Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>

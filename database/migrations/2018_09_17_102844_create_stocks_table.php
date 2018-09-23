@@ -17,6 +17,7 @@ class CreateStocksTable extends Migration{
             $table->integer('product_pattern_id')->unsigned()->nullable();
             $table->integer('inventory_receive_id')->unsigned()->nullable();
             $table->integer('stock_adjustment_id')->unsigned()->nullable();
+            $table->integer('status_adjustment_id')->unsigned()->nullable();
             $table->integer('receive_quantity')->unsigned()->default(0);
             $table->integer('inventory_issue_id')->unsigned()->nullable();
             $table->integer('issue_quantity')->unsigned()->default(0);

@@ -70,7 +70,7 @@
                                             </div>
                                             
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('lc_no', 'LC No', null, ['class'=>'form-control input-sm', 'disabled'=>'true', "v-model"=>"commercial_invoice.letter_of_credit_id"]) }}
+                                                {{ BootForm::text('letter_of_credit_id', 'LC No', null, ['class'=>'form-control input-sm', 'readonly', "v-model"=>"commercial_invoice.letter_of_credit_id"]) }}
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
@@ -197,9 +197,10 @@ $(function(){
         el: '#vue_app',
         data:{
             config:{
-                base_url: "{{ url('inventory/receive/get-product-info/') }}",
-                old_data_url: "{{ url('inventory/receive/vue-old-products') }}",
-                get_commercial_invoice_url: "{{ url('inventory/receive/get-commercial-invoice') }}"
+                base_url: "{{ url('inventory/api/get-product-info/') }}",
+                old_data_url: "{{ url('inventory/api/vue-old-products') }}",
+                get_commercial_invoice_url: "{{ url('inventory/api/get-commercial-invoice') }}",
+                old_inputs_url: "{{ url('inventory/api/vue-old-inputs') }}"
             },
             products:[],
             active_record:{
@@ -300,6 +301,19 @@ $(function(){
                     loading.close();
 
                 });//End of axios
+
+                loading.open(3000);
+
+                axios.get(this.config.old_inputs_url).then(function(response){
+
+                    vm.commercial_invoice=response.data;                
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+
+                });//End of axios
          }
         },
         watch:{
@@ -312,6 +326,14 @@ $(function(){
         }
     })//End of vue js
 
-});
+    $('.datepicker').daterangepicker({
+        singleDatePicker: true,
+        singleClasses: "picker_3",
+        locale: {
+            format: 'DD-MM-YYYY'
+        }
+    });
+
+});//End of jquery
 </script>
 @endsection

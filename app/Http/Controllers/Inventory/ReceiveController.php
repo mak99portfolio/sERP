@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Inventory;
 
-use App\Receive;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helpers\Paginate;
 
 class ReceiveController extends Controller{
 
@@ -13,7 +14,11 @@ class ReceiveController extends Controller{
 
     public function index(){
         
-        $data=[];
+        $data=[
+            'paginate'=>new Paginate('\App\InventoryReceive', ['inventory_receive_id'=>'Receive No']),
+            'carbon'=>new \Carbon\Carbon
+        ];
+
         return view($this->path('index'), $data);
 
     }
@@ -36,22 +41,22 @@ class ReceiveController extends Controller{
     }
 
 
-    public function show(Receive $receive){
+    public function show(\App\InventoryReceive $receive){
         
     }
 
 
-    public function edit(Receive $receive){
+    public function edit(\App\InventoryReceive $receive){
         
     }
 
 
-    public function update(Request $request, Receive $receive){
+    public function update(Request $request, \App\InventoryReceive $receive){
         
     }
 
 
-    public function destroy(Receive $receive){
+    public function destroy(\App\InventoryReceive $receive){
         
     }
 
@@ -84,15 +89,15 @@ class ReceiveController extends Controller{
 
             $data=[];
 
-            foreach($products as $product){
+            foreach($products as $row){
                 
-                $product=\App\Product::find($product['id']);
+                $product=\App\Product::find($row['id']);
                 
                 array_push($data, [
-                    'id'=>$product['id'],
+                    'id'=>$row['id'],
                     'hs_code'=>$product->hs_code,
                     'name'=>$product->name,
-                    'quantity'=>$product['quantity']
+                    'quantity'=>$row['quantity']
                 ]);
 
             }
@@ -101,6 +106,15 @@ class ReceiveController extends Controller{
 
         }
 
+        return response()->json(null, 404);
+
+    }
+
+    public function vue_old_inputs(){
+
+        $inputs=\Session::pull('vue_inputs');
+
+        if($inputs) return response()->json($inputs);
         return response()->json(null, 404);
 
     }

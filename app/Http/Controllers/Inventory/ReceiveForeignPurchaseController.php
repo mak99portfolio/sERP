@@ -39,7 +39,12 @@ class ReceiveForeignPurchaseController extends Controller{
     public function store(Request $request){
 
         //dd($request->all());
-        //\Session::put('vue_products', $request->get('products'));
+        \Session::put('vue_inputs', [
+            'commercial_invoice_no'=>$request->get('commercial_invoice_no'),
+            'letter_of_credit_id'=>$request->get('letter_of_credit_id'),
+        ]);
+
+        \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
             'inventory_receive_id'=>'required',
@@ -52,11 +57,14 @@ class ReceiveForeignPurchaseController extends Controller{
         ]);
 
         $inventory_receive=\App\InventoryReceive::create($request->only(
-            'inventory_receive_id',
-            'receive_date'
+            'inventory_receive_id'
+            'working_unit_id',
+            'product_status_id',
+            'product_pattern_id',
+            'remarks'
         ));
 
-
+        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
         $inventory_receive->receive_type='foreign_purchase';
         $inventory_receive->creator()->associate(\Auth::user());
         $inventory_receive->save();
@@ -68,13 +76,6 @@ class ReceiveForeignPurchaseController extends Controller{
             'commercial_invoice_no',
             $request->get('commercial_invoice_no')
         )->first();
-
-        $foreign_purchase->fill($request->only(
-            'working_unit_id',
-            'product_status_id',
-            'product_pattern_id',
-            'remarks'
-        ));
 
         $foreign_purchase->commercial_invoice()->associate($commercial_invoice);
         $foreign_purchase->inventory_receive()->associate($inventory_receive);
@@ -97,7 +98,8 @@ class ReceiveForeignPurchaseController extends Controller{
 
         }
 
-        //\Session::forget('vue_products');
+        \Session::forget('vue_products');
+        \Session::forget('vue_inputs');
 
         return back()->with('success', 'Form submitted successfully!.');
         

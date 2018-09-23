@@ -7,7 +7,7 @@ use App\RequisitionPurpose;
 use App\RequisitionPriority;
 use App\ForeignRequisitionItem;
 use App\Product;
-use Illuminate\Http\Request;
+use App\Http\Requests\ForeignRequisitionRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
@@ -36,8 +36,8 @@ class ForeignRequisitionController extends Controller
     public function create()
     {
        $view = view($this->view_root.'create');
-       $view->with('requisition_purpose_list', RequisitionPurpose::pluck('name', 'id')->prepend('--select purpose--'));
-       $view->with('requisition_priority_list', RequisitionPriority::pluck('name', 'id')->prepend('--select priority--'));
+       $view->with('requisition_purpose_list', RequisitionPurpose::pluck('name', 'id')->prepend('--select purpose--',''));
+       $view->with('requisition_priority_list', RequisitionPriority::pluck('name', 'id')->prepend('--select priority--',''));
         return $view;
     }
 
@@ -47,9 +47,11 @@ class ForeignRequisitionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ForeignRequisitionRequest $request)
     {
-        // dd($request->input());
+        if(!$request->item_validate()){
+            return redirect()->back();
+        }
         $requisition = new ForeignRequisition;
         $requisition->fill($request->input());
         $requisition->creator_user_id = Auth::id();

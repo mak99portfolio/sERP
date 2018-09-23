@@ -25,23 +25,24 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
+                        @include('partials/flash_msg')
                         <form class="form-horizontal form-label-left" action="{{route('foreign-requisition.store')}}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm', 'required'=>'required']) }}
+                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker', 'required'=>'required']) }}
+                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker', 'required'=>'required' ]) }}
+                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2', 'required'=>'required']) }}
+                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2', 'required'=>'required']) }}
+                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2','required']) }}
                                 </div>
                             </div>
 

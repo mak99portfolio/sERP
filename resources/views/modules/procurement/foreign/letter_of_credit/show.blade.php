@@ -90,15 +90,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>LCA No :</strong> 125</td>
-                                        <td><strong>SL No:</strong> 125</td>
-                                        <td><strong>LCA No:</strong> 125</td>
+                                        <td><strong>#</strong></td>
+                                        <td><strong>LCA No</strong></td>
                                     </tr>
+                                    @foreach($letterOfCredit->application_numbers as $key=>$application_numbers)
                                     <tr>
-                                        <td><strong>Update:</strong> 125</td>
-                                        <td><strong>Delete:</strong> 125</td>
-                                        <td><strong></strong></td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$application_numbers->lca_no}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -112,20 +112,22 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">LCA Information :</th>
+                                        <th colspan="3">PI Information :</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>LCA No :</strong> 125</td>
-                                        <td><strong>SL No:</strong> 125</td>
-                                        <td><strong>PI No:</strong> 125</td>
+                                        <td><strong>#</strong></td>
+                                        <td><strong>PI No </strong></td>
+                                        <td><strong>PI Date:</strong></td>
                                     </tr>
+                                    @foreach($letterOfCredit->proforma_invoices as $key=>$proforma_invoice_noand_date)
                                     <tr>
-                                        <td><strong>Delete:</strong> 125</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
+                                    <td>{{$key+1}}</td>
+                                        <td>{{$proforma_invoice_noand_date->proforma_invoice_no}}</td>
+                                        <td>{{$proforma_invoice_noand_date->proforma_invoice_date}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">

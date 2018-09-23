@@ -33,6 +33,9 @@ class LetterOfCredit extends Model
     public function vendor(){
         return $this->belongsTo('App\Vendor'); 
      }
+    public function application_numbers(){
+        return $this->hasMany('App\LetterOfCreditApplicationNumber'); 
+     }
      public function proforma_invoices(){
         return $this->belongsToMany('App\ProformaInvoice');
     }

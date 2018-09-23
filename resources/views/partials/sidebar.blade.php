@@ -20,6 +20,7 @@
               <li><a href="{{route('packing-list.index')}}">Packing List</a></li>
               <li><a href="{{route('bill-of-lading.index')}}">Bill of Lading</a></li>
               <li><a href="{{route('cnf.index')}}">Duty Tax, Vat, CNF Bill</a></li>
+              <li><a href="{{route('foreign-payment.index')}}">Payments</a></li>
             </ul>
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>

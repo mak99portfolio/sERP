@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>LC Detail</h2>
-                        <a href="{{route('letter-of-credit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-primary btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;LC Detail List</a>
+                        <a href="{{route('letter-of-credit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;LC Detail List</a>
 
                         <div class="clearfix"></div>
                     </div>
@@ -105,9 +105,9 @@
                                         <div class="col-md-6 col-md-offset-3">
                                             <label>LCA No</label>
                                             <div class="input-group">
-                                                <input type="text" class="form-control input-sm" id="lca_no">
+                                                <input type="text" class="form-control input-sm" ng-model="lca_no">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default btn-sm" id="add" type="button">Add</button>
+                                                    <button class="btn btn-default btn-sm" type="button" ng-click="addLca()">Add</button>
                                                 </span>
                                             </div>
                                         </div>
@@ -123,11 +123,11 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {{-- <tr>
-                                                    <td scope="row">1</td>
-                                                    <td>123547</td>
-                                                    <td class="text-right"><a href="" class="btn btn-danger  btn-xs">Delete</a></td>
-                                                </tr> --}}
+                                                <tr ng-repeat="lca in lcalist">
+                                                    <td scope="row"><% $index+1 %></td>
+                                                    <td><% lca.lca_no %><input type="hidden" value="<% lca.lca_no %>" name="lca_nos[<% $index %>][lca_no]"></td>
+                                                    <td class="text-right"><a href="" class="btn btn-danger  btn-xs" ng-click="removeLca($index)"><i class="fa fa-trash"></i></a></td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -150,7 +150,7 @@
                                             {{ BootForm::select('proforma_invoice_ids[]', 'Proforma Invoice NO', $proforma_invoice_list, null, ['class'=>'form-control input-sm select2' ,'multiple','ng-model'=>'pi_id', 'ng-change'=>'searchPI()']) }}
                                         </div>
                                     </div>
-                                    <div class="table-responsive">
+                                    {{-- <div class="table-responsive">
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
@@ -160,14 +160,12 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-
                                                 <tr>
                                                     <td scope="row"><% $index+1 %></td>
                                                </tr>
-
                                             </tbody>
                                         </table>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
 
@@ -265,6 +263,7 @@
     app.controller('myCtrl', function ($scope, $http) {
 
         $scope.itemlist = [];
+        $scope.lcalist = [];
         $scope.searchPI = function () {
             $scope.itemlist = [];
             for (i = 0; i < $scope.pi_id.length; i++) {
@@ -283,17 +282,38 @@
                     });
         }
         $scope.removeItem = function (index) {
-            $scope.itemlist.splice(index);
+            $scope.itemlist.splice(index,1);
         }
         $scope.number = function (str) {
             return parseFloat(str);
         }
-        $scope.sum = function (arr) {
-            var sum = 0;
-            for (var i = 0; i < arr.length; i++) {
-                sum += parseFloat(arr[i]);
+        $scope.addLca = function(){
+            var lca_no = $scope.lca_no;
+            $scope.lca_no = null;
+            if(!lca_no){
+                $scope.warning('Please type something first');
+                return;
             }
-            return sum;
+            index = $scope.lcalist.findIndex(item => item.lca_no==lca_no);
+            if(index >= 0){
+                $scope.warning('This LCA No already exist');
+                return;
+            }
+            var lca = {};
+            lca.lca_no = lca_no;
+            $scope.lcalist.push(lca);
+        }
+        $scope.removeLca = function(index){
+            $scope.lcalist.splice(index,1);
+        }
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            new PNotify(data);
         }
     });
 

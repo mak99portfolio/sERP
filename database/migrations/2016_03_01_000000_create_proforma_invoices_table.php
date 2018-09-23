@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePurchaseOrdersTable extends Migration
+class CreateProformaInvoicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreatePurchaseOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('purchase_orders', function (Blueprint $table) {
+        Schema::create('proforma_invoices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('foreign_requisition_id')->unsigned();
-            $table->foreign('foreign_requisition_id')->references('id')->on('purchase_orders')->onDelete('cascade');
-            $table->string('purchase_order_no')->nullable();
-            $table->integer('vendor_id')->unsigned();
-            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
-            $table->string('requisition_date')->nullable();
             $table->string('purchase_order_date')->nullable();
+            $table->string('proforma_invoice_no')->nullable();
+            $table->string('proforma_invoice_date')->nullable();
+            $table->string('proforma_invoice_receive_date')->nullable();
+            $table->integer('vendor_id')->unsigned()->nullable();
+            $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->integer('port_of_loading_port_id')->unsigned()->nullable();
             $table->foreign('port_of_loading_port_id')->references('id')->on('ports')->onDelete('cascade');
             $table->integer('port_of_discharge_port_id')->unsigned()->nullable();
@@ -35,14 +34,17 @@ class CreatePurchaseOrdersTable extends Migration
             $table->string('shipment_allow')->nullable();
             $table->string('payment_type')->nullable();
             $table->string('pre_carriage_by')->nullable();
-            $table->text('subject')->nullable();
-            $table->text('letter_header')->nullable();
-            $table->text('letter_footer')->nullable();
+            $table->string('customer_code')->nullable();
+            $table->string('consignee')->nullable();
+            $table->string('beneficiary_bank_info')->nullable();
             $table->text('notes')->nullable();
+            $table->integer('company_id')->unsigned()->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->tinyInteger('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
@@ -55,6 +57,6 @@ class CreatePurchaseOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('purchase_orders');
+        Schema::dropIfExists('proforma_invoices');
     }
 }

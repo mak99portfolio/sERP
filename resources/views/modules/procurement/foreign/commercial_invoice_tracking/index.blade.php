@@ -5,27 +5,30 @@
     <div class="right_col" role="main">
         <div class="row">
             <div class="col-md-12 col-xs-12">
-                <div class="x_panel" ng-app="myApp">
+                <div class="x_panel">
                     <div class="x_title">
                         <h2>Commercial Invoice Tracking</h2>
-                        <!-- <a href="{{route('commercial-invoice-tracking.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Commercial Invoice List</a> -->
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content" ng-controller="myCtrl">
-                        <form class="form-horizontal form-label-left input_mask">
-                            <div class="col-lg-4 ol-md-6 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-3 col-sm-offset-3">
-                                <form>
-                                    <label for="">Commercial Invoice Tracking No Search</label>
-                                    <div class="input-group">
-                                        <input type="text" name="ci_no" ng-model="ci_no" class="form-control" placeholder="Commercial Invoice Tracking No Search..">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" ng-click="searchCI()"><i class="fa fa-search"></i></button>
-                                        </span>
+                    <div class="x_content">
+                        <div class="panel">
+                            <div class="well row">
+                                <div class="col-lg-4 ol-md-6 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-3 col-sm-offset-3">
+                                        <form action="{{route('get-ci-with-tracking')}}" method="GET">
+                                            <label for="">Commercial Invoice Tracking No Search</label>
+                                            <div class="input-group">
+                                                <input type="text" name="ci_no" class="form-control" placeholder="Commercial Invoice Tracking No Search..">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </form>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <table class="table table-bordered" ng-show="ci_data.ci">
+                            @isset($ci)
+                                <table class="table table-bordered">
                                     <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">Title</th>
@@ -37,227 +40,294 @@
                                     <tr>
                                         <th scope="row">Commercial Invoice Issue Date</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->commercial_invoice_issue_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->commercial_invoice_issue_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="commercial_invoice_issue_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->commercial_invoice_issue_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Bl Issue Date</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->bill_of_lading_issue_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->bill_of_lading_issue_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="bill_of_lading_issue_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->bill_of_lading_issue_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Document Arrived At Bank</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->document_arrived_at_bank_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->document_arrived_at_bank_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="document_arrived_at_bank_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->document_arrived_at_bank_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Document Send At Port</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->document_send_at_port_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->document_send_at_port_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="document_send_at_port_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->document_send_at_port_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Document Value Payment</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->document_value_payment_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->document_value_payment_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="document_value_payment_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->document_value_payment_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Container Arrived At Port</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->container_arrived_at_port_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->container_arrived_at_port_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="container_arrived_at_port_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->container_arrived_at_port_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th scope="row">Container Birlth At Port</th>
+                                        <th scope="row">Container Birth At Port</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->container_birth_at_port_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->container_birth_at_port_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="container_birth_at_port_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->container_birth_at_port_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Container Delivery At Port</th>
                                         <td>
-                                            <form action="">
-                                                @csrf 
-                                                <div ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->container_delivery_at_port_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->container_delivery_at_port_date }}">
                                                 </div>
-                                                <div class="input-group" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                    <input type="text" name="bl_issue_date" class="form-control datepicker">
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="container_delivery_at_port_date" class="form-control datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit">Save</button>
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
+                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->container_delivery_at_port_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     <tr>
                                         <th scope="row">Received At Warehouse</th>
                                         <td>
-                                            <div ng-show="ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                <input type="text" class="form-control" readonly value="<% ci_data.ci_tracking.commercial_invoice_issue_date %>">
-                                            </div>
-                                            <div class="input-group" ng-show="!ci_data.ci_tracking.commercial_invoice_issue_date">
-                                                <input type="text" name="bl_issue_date" class="form-control datepicker">
-                                                <span class="input-group-btn">
-                                                        <button class="btn btn-success" type="submit">Save</button>
-                                                    </span>
-                                            </div>
+                                            <form action="{{route('save-tracking-date')}}" method="POST">
+                                                @csrf
+                                                @isset($ci_tracking->receive_at_warehouse_date)
+                                                <div>
+                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->receive_at_warehouse_date }}">
+                                                </div>
+                                                @else
+                                                <div class="input-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
+                                                    <input type="text" name="receive_at_warehouse_date" class="form-control datepicker" autocomplete="off">
+                                                    <span class="input-group-btn">
+                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                        </span>
+                                                </div>
+                                                @endisset
+                                            </form>
                                         </td>
                                         <td>
-                                            <div class="form-group text-center" ng-if="ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @isset($ci_tracking->receive_at_warehouse_date)
+                                            <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
-                                            <div class="form-group text-center" ng-if="!ci_data.ci_tracking.commercial_invoice_issue_date">
+                                            @else
+                                            <div class="form-group text-center">
                                                 <label class="label label-warning">Pending</label>
                                             </div>
+                                            @endisset
                                         </td>
                                     </tr>
                                     </tbody>
                                 </table>
+                                @endif
                             </div>
                             <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
@@ -265,7 +335,6 @@
                                     <a href="{{route('commercial-invoice-tracking.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                 </div>
                             </div> -->
-                        </form>
                     </div>
                 </div>
             </div>
@@ -273,27 +342,4 @@
     </div>
     </div>
     <!-- /page content -->
-@endsection
-@section('script')
-<script>
-    var app = angular.module('myApp', [], function($interpolateProvider) {
-            $interpolateProvider.startSymbol('<%');
-            $interpolateProvider.endSymbol('%>');
-        });
-    app.controller('myCtrl', function($scope, $http) {
-        $scope.searchCI = function(){
-            var ci_no = null;
-            if($scope.ci_no){
-                ci_no = $scope.ci_no;
-            }
-            let url = "{{URL::to('/procurement/commercial-invoice-tracking/get-ci-with-tracking')}}/" + ci_no;
-            $http.get(url)
-                    .then(function(response) {
-                        $scope.ci_data = response.data;
-                        toaster_notification();
-                        console.log($scope.ci_data);
-                    });
-        }
-    });
-</script>
 @endsection

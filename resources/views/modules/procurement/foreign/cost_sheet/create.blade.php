@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Cost Sheet</h2>
-                        <a href="{{route('cost-sheet.index')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Cost Sheet List</a>
+                        <a href="{{route('cost-sheet.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Cost Sheet List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('letter_of_credit_value','LC Amount', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_value', 'readonly']) }}
+                                    {{ BootForm::number('letter_of_credit_value','LC Amount (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_value', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate']) }}
@@ -95,65 +95,65 @@
                                                 <tr>
                                                     <td>01</td>
                                                     <td>LC Margin</td>
-                                                    <td>{{ Form::number('percent_of_lc_margin', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_margin" ng-model="amount_of_lc_margin" ng-init="amount_of_lc_margin = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_margin" ng-model="round_amount_of_lc_margin" ng-init="round_amount_of_lc_margin = 0"></td>
+                                                    <td>{{ Form::number('percent_of_lc_margin', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_margin']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_margin" ng-model="amount_of_lc_margin" value="<% amount_of_lc_margin = bdt_amount * (percent_of_lc_margin/100) %>"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_margin" ng-model="round_amount_of_lc_margin"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>02</td>
                                                     <td>LC Commision</td>
-                                                    <td>{{ Form::number('percent_of_lc_commision', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_commision" ng-model="amount_of_lc_commision" ng-init="amount_of_lc_commision = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_commision" ng-model="round_amount_of_lc_commision" ng-init="round_amount_of_lc_commision = 0"></td>
+                                                    <td>{{ Form::number('percent_of_lc_commision', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_commision']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_commision" ng-model="amount_of_lc_commision" value="<% amount_of_lc_commision = bdt_amount * (percent_of_lc_commision/100) %>"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_commision" ng-model="round_amount_of_lc_commision"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>03</td>
                                                     <td>VAT</td>
-                                                    <td>{{ Form::number('percent_of_vat', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" ng-init="amount_of_vat = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_vat" ng-model="round_amount_of_vat" ng-init="round_amount_of_vat = 0"></td>
+                                                    <td>{{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_vat']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" value="<% amount_of_vat = amount_of_lc_commision * (percent_of_vat/100) %>"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_vat" ng-model="round_amount_of_vat"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>04</td>
                                                     <td>SWIFT</td>
-                                                    <td>{{ Form::number('percent_of_swift', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_swift" ng-model="amount_of_swift" ng-init="amount_of_swift = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_swift" ng-model="round_amount_of_swift" ng-init="round_amount_of_swift = 0"></td>
+                                                    <td>{{ Form::number('percent_of_swift', null, ['class'=>'form-control input-sm']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_swift" ng-model="amount_of_swift"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_swift" ng-model="round_amount_of_swift"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>05</td>
                                                     <td>Stamp Charge</td>
-                                                    <td>{{ Form::number('percent_of_stamp_charge', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_stamp_charge" ng-model="amount_of_stamp_charge" ng-init="amount_of_stamp_charge = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_stamp_charge" ng-model="round_amount_of_stamp_charge" ng-init="round_amount_of_stamp_charge = 0"></td>
+                                                    <td>{{ Form::number('percent_of_stamp_charge', null, ['class'=>'form-control input-sm']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_stamp_charge" ng-model="amount_of_stamp_charge"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_stamp_charge" ng-model="round_amount_of_stamp_charge"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>06</td>
                                                     <td>LCAF Issue Charge</td>
-                                                    <td>{{ Form::number('percent_of_lcaf_issue_charge', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lcaf_issue_charge" ng-model="amount_of_lcaf_issue_charge" ng-init="amount_of_lcaf_issue_charge = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lcaf_issue_charge" ng-model="round_amount_of_lcaf_issue_charge" ng-init="round_amount_of_lcaf_issue_charge = 0"></td>
+                                                    <td>{{ Form::number('percent_of_lcaf_issue_charge', null, ['class'=>'form-control input-sm']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lcaf_issue_charge" ng-model="amount_of_lcaf_issue_charge"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lcaf_issue_charge" ng-model="round_amount_of_lcaf_issue_charge"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>07</td>
                                                     <td>IMP</td>
-                                                    <td>{{ Form::number('percent_of_imp', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_imp" ng-model="amount_of_imp" ng-init="amount_of_imp = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_imp" ng-model="round_amount_of_imp" ng-init="round_amount_of_imp = 0"></td>
+                                                    <td>{{ Form::number('percent_of_imp', null, ['class'=>'form-control input-sm']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_imp" ng-model="amount_of_imp"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_imp" ng-model="round_amount_of_imp"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>08</td>
                                                     <td>LC Application Form</td>
-                                                    <td>{{ Form::number('percent_of_lc_application_form', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_application_form" ng-model="amount_of_lc_application_form" ng-init="amount_of_lc_application_form = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_application_form" ng-model="round_amount_of_lc_application_form" ng-init="round_amount_of_lc_application_form = 0"></td>
+                                                    <td>{{ Form::number('percent_of_lc_application_form', null, ['class'=>'form-control input-sm']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_application_form" ng-model="amount_of_lc_application_form"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_application_form" ng-model="round_amount_of_lc_application_form"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>09</td>
                                                     <td>Other Charge(If any)</td>
-                                                    <td>{{ Form::number('percent_of_others', 0, ['class'=>'form-control input-sm']) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_others" ng-model="amount_of_others" ng-init="amount_of_others = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_others" ng-model="round_amount_of_others" ng-init="round_amount_of_others = 0"></td>
+                                                    <td>{{ Form::number('percent_of_others', null, ['class'=>'form-control input-sm']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_others" ng-model="amount_of_others"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_others" ng-model="round_amount_of_others"></td>
                                                 </tr>
                                             </tbody>
                                             <tfoot>
@@ -230,6 +230,9 @@
             return total;
         }
 
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
 
     });
 </script>

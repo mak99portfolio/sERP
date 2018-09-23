@@ -9,7 +9,6 @@ class ProformaInvoice extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'purchase_order_id',
         'purchase_order_date',
         'proforma_invoice_no',
         'proforma_invoice_date',
@@ -51,5 +50,8 @@ class ProformaInvoice extends Model
     }
     public function origin_of_goods_country(){
         return $this->belongsTo('App\Country','country_of_origin_of_goods_country_id');
+    }
+    public function purchase_orders(){
+        return $this->belongsToMany('App\PurchaseOrder');
     }
 }

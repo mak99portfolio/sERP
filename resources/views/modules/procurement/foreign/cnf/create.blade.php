@@ -24,88 +24,245 @@
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
+                                        <label for="">Consignee</label>
+                                        <input type="text" class="form-control input-sm" name="consignee">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Bill No</label>
+                                        <input type="text" class="form-control input-sm" name="bill_no">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Bill Date</label>
+                                        <input type="date" class="form-control input-sm" name="bill_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
                                         <label for="">LC No</label>
-                                        <select name="lc_select" class="form-control">
-                                            <option value="one" selected>One</option>
+                                        <select class="form-control input-sm">
+                                            <option value="" selected>Select CI No</option>
+                                            <option value="one">One</option>
+                                            <option value="one">One</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Icn No</label>
-                                        <input type="text" class="form-control" name="icn_no">
+                                        <label for="">LC Opening Date</label>
+                                        <input type="date" class="form-control input-sm" name="lc_opening_date">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Icn Date</label>
-                                        <input type="date" class="form-control" name="icn_date">
+                                        <label for="">LC Value</label>
+                                        <input type="text" class="form-control input-sm">
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
-                                        <label for="">Icn Agency Name</label>
-                                        <input type="text" class="form-control" name="icn_agency_name">
+                                        <label for="">Commercial invoice No</label>
+                                        <select name="commercial_invoice_no" class="form-control input-sm">
+                                            <option value="" selected>Select CI No</option>
+                                            <option value="one">One</option>
+                                            <option value="one">One</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Invoice Date</label>
+                                        <input type="date" class="form-control input-sm" name="invoice_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">B/L No</label>
+                                        <input type="text" class="form-control input-sm" name="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">B/L Date</label>
+                                        <input type="date" class="form-control input-sm" name="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">B/E No</label>
+                                        <input type="text" class="form-control input-sm" name="be_no">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">B/E Date</label>
+                                        <input type="date" class="form-control input-sm" name="be_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Arrival Date</label>
+                                        <input type="date" class="form-control input-sm" name="arrival_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Delivery Date</label>
+                                        <input type="date" class="form-control input-sm" name="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Job No</label>
+                                        <input type="text" class="form-control input-sm" name="job_no">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Exporter</label>
+                                        <select class="form-control input-sm">
+                                            <option value="" selected>Select Exporter No</option>
+                                            <option value="one">One</option>
+                                            <option value="one">One</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">C&F Value</label>
+                                        <input type="number" class="form-control input-sm" name="cf_value">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">USD Amount</label>
+                                        <input type="number" class="form-control input-sm" name="usd_amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Exchange Rate</label>
+                                        <input type="number" class="form-control input-sm" name="">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">BD Amount</label>
+                                        <input type="number" class="form-control input-sm" name="bd_amount">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Total Days</label>
+                                        <input type="number" class="form-control input-sm" name="total_days">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Duty Pament Date</label>
+                                        <input type="date" class="form-control input-sm" name="duty_payment_date">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Container No</label>
+                                        <input type="text" class="form-control input-sm" name="container_no">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Particulars of Consignments</label>
+                                        <select class="form-control input-sm">
+                                            <option value="" selected>Select</option>
+                                            <option value="one">One</option>
+                                            <option value="one">One</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                        <label for="">Amount</label>
+                                        <input type="number" class="form-control input-sm" name="">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
-                                        <div class="panel-heading">ICN Bank Info</div>
+                                        <div class="panel-heading">Particulars of Consignments Table</div>
                                         <div class="panel-body">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account No</label>
-                                                    <input type="text" class="form-control" name="icn_account_no">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account Name</label>
-                                                    <input type="text" class="form-control" name="icn_account_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Name</label>
-                                                    <input type="text" class="form-control" name="icn_bank_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Address</label>
-                                                    <textarea name="icn_bank_address" class="form-control" id="" cols="30" rows="1"></textarea>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="panel panel-default">
-                                        <div class="panel-heading">Consignee Bank Info</div>
-                                        <div class="panel-body">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account Number</label>
-                                                    <input type="text" class="form-control" name="consignee_account_number">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Account Name</label>
-                                                    <input type="text" class="form-control" name="consignee_account_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Name</label>
-                                                    <input type="text" class="form-control" name="consignee_bank_name">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    <label for="">Bank Address</label>
-                                                    <textarea name="consignee_bank_address" class="form-control" id="" cols="30" rows="1"></textarea>
-                                                </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered">
+                                                    <thead class="bg-primary">
+                                                        <tr>
+                                                            <th scope="col" class="text-center">#</th>
+                                                            <th scope="col" class="text-center">Particulars of Consignments</th>
+                                                            <th scope="col" class="text-center">Taka</th>
+                                                            <th scope="col" class="text-center">Poisa</th>
+                                                            <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">01</th>
+                                                            <th>Particulars</th>
+                                                            <td>20</td>
+                                                            <td>10</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Voucher Tk</th>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Previous Due Tk</th>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Total Voucher Tk</th>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Cash Received/Pay Order Tk</th>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th colspan="2" class="text-right">Due Tk</th>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" class="form-control input-sm">
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
@@ -113,7 +270,7 @@
                                 <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Notes</label>
-                                        <textarea name="notes" class="form-control" id="" cols="30" rows="2"></textarea>
+                                        <textarea name="notes" class="form-control input-sm" id="" cols="30" rows="2"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -128,8 +285,6 @@
                 </div>
             </div>
         </div>
-
-
         {{--end Content here --}}
     </div>
 </div>

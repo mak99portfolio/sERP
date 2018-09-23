@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\ProformaInvoiceItem;
+use App\ProformaInvoicePurchaseOrder;
 use App\Port;
 use App\Country;
 use App\City;
@@ -53,8 +54,8 @@ class ProformaInvoiceController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->purchase_order_ids);
         $request->validate([
-            'purchase_order_id'=>'required',
             'purchase_order_date'=>'required',
             // 'proforma_invoice_no'=>'required',
             'proforma_invoice_date'=>'required',
@@ -79,6 +80,10 @@ class ProformaInvoiceController extends Controller
         $proforma_invoice->proforma_invoice_no = time();
         // dd($request->input());
         $proforma_invoice->save();
+
+
+        $proforma_invoice->purchase_orders()->sync($request->purchase_order_ids);
+
         $items = Array();
         foreach($request->items as $item){
             array_push($items, new ProformaInvoiceItem($item));

@@ -10,6 +10,9 @@ use App\ProformaInvoice;
 use App\LetterOfCredit;
 use App\CommercialInvoice;
 use App\LocalRequisition;
+use App\CommercialInvoiceItem;
+use App\PurchaseOrderItem;
+use App\Stock;
 
 class ApiController extends Controller
 {
@@ -56,9 +59,9 @@ class ApiController extends Controller
     }
     public function getProductByProductId($id){
         $product = Product::find($id);
-        $physical_stock = 0;
-        $goods_in_transit = 0;
-        $pending = 0;
+        $physical_stock = Stock::where('product_id', $id)->sum('receive_quantity');
+        $goods_in_transit = CommercialInvoiceItem::where('product_id', $id)->sum('quantity');
+        $pending = PurchaseOrderItem::where('product_id', $id)->sum('quantity');;
         $data = [
             'id' => $product->id,
             'name' => $product->name,
@@ -131,5 +134,8 @@ class ApiController extends Controller
             ];
         }
         return response()->json($data);
+    }
+    public function getAllProduct(){
+        return response()->json(Product::all());
     }
 }

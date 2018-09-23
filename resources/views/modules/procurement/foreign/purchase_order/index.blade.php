@@ -16,13 +16,13 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Foreign Purchase order List</h2>
-                    <a href="{{route('purchase-order.create')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
+                    <a href="{{route('purchase-order.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>

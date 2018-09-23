@@ -32,7 +32,7 @@
                                     {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::date('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm']) }}
@@ -241,7 +241,7 @@
                                                 {{ BootForm::text('contacts[<% $index %>][designation]','Designation', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::tel('contacts[<% $index %>][telephone]','Designation', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::tel('contacts[<% $index %>][telephone]','Tel.No', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::email('contacts[<% $index %>][email]','E-Mail', null, ['class'=>'form-control input-sm']) }}

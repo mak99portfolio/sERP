@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Proforma Invoice</h2>
-                        <a href="{{route('proforma-invoice.index')}}" class="btn btn-sm btn-success btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Proforma Invoice List</a>
+                        <a href="{{route('proforma-invoice.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Proforma Invoice List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -27,7 +27,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Purchase Order No.</label>
-                                        <select data-placeholder="Select PO No"  class="form-control input-sm" name="purchase_order_id" ng-model="po_id" ng-change="searchPO()">
+                                        <select data-placeholder="Select PO No" multiple  class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">
                                             <option></option>
                                             @foreach($purchase_orders as $item)
                                             <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>

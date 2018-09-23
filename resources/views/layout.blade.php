@@ -49,8 +49,9 @@
       <div class="main_container">
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="{{route('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>ShadowERP</span></a>
+            <div class="navbar nav_title" style="border: 0; background-color: #EDEDED; border-right: 1px solid;">
+              <!--<a href="{{route('dashboard')}}" class="site_title"><i class="fa fa-paw"></i> <span>ShadowERP</span></a>-->
+                <a href="{{route('dashboard')}}" class="site_title"><img src="{{asset('assets/build/images/logo2.png')}}" class="" alt=""></a>
             </div>
 
             <div class="clearfix"></div>
@@ -120,6 +121,8 @@
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.js')}}"></script>
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
     <script src="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
+    <!-- validator -->
+    <script src="{{asset('assets/vendors/validator/validator.js')}}"></script>
     <!-- Datatables -->
     <script src="{{asset('assets/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>

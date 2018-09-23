@@ -21,7 +21,7 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="datatable-buttons" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">Bill OF lading Issue Date </th>

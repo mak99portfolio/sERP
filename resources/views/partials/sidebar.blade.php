@@ -20,6 +20,7 @@
               <li><a href="{{route('packing-list.index')}}">Packing List</a></li>
               <li><a href="{{route('bill-of-lading.index')}}">Bill of Lading</a></li>
               <li><a href="{{route('cnf.index')}}">Duty Tax, Vat, CNF Bill</a></li>
+              <li><a href="{{route('foreign-payment.index')}}">Payments</a></li>
             </ul>
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
@@ -45,7 +46,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
           <li><a href="{{ route('issue.index') }}">Issue</a></li>
-          <li><a href="{{ route('receive-internal.index') }}">Receive Item</a></li>
+          <li><a href="{{ route('receive.index') }}">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
             <li class="sub_menu">

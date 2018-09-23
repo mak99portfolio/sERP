@@ -30,7 +30,7 @@
                                     <tr>
                                     <td><strong>LC No:</strong> {{$letterOfCredit->letter_of_credit_no}}</td>
                                         <td><strong>LC Date :</strong> {{$letterOfCredit->letter_of_credit_date}}</td>
-                                        <td><strong>LC Value :</strong> {{$letterOfCredit->letter_of_credit_value}}</td>
+                                        <td><strong>LC Value :</strong> {{number_format($letterOfCredit->letter_of_credit_value,2)}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Vendor:</strong> {{$letterOfCredit->vendor->name}}</td>
@@ -90,15 +90,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>LCA No :</strong> 125</td>
-                                        <td><strong>SL No:</strong> 125</td>
-                                        <td><strong>LCA No:</strong> 125</td>
+                                        <td><strong>#</strong></td>
+                                        <td><strong>LCA No</strong></td>
                                     </tr>
+                                    @foreach($letterOfCredit->application_numbers as $key=>$application_numbers)
                                     <tr>
-                                        <td><strong>Update:</strong> 125</td>
-                                        <td><strong>Delete:</strong> 125</td>
-                                        <td><strong></strong></td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$application_numbers->lca_no}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -112,20 +112,22 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">LCA Information :</th>
+                                        <th colspan="3">PI Information :</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>LCA No :</strong> 125</td>
-                                        <td><strong>SL No:</strong> 125</td>
-                                        <td><strong>PI No:</strong> 125</td>
+                                        <td><strong>#</strong></td>
+                                        <td><strong>PI No </strong></td>
+                                        <td><strong>PI Date:</strong></td>
                                     </tr>
+                                    @foreach($letterOfCredit->proforma_invoices as $key=>$proforma_invoice_noand_date)
                                     <tr>
-                                        <td><strong>Delete:</strong> 125</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
+                                    <td>{{$key+1}}</td>
+                                        <td>{{$proforma_invoice_noand_date->proforma_invoice_no}}</td>
+                                        <td>{{$proforma_invoice_noand_date->proforma_invoice_date}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -143,7 +145,7 @@
                                         <th><strong>Discount</strong></th>
                                         <th><strong>D.Rate</strong></th>
                                         <th><strong>Vat(%)</strong></th>
-                                        <th><strong>Sub Total</strong></th>
+                                        <th class="text-right"><strong>Sub Total</strong></th>
                                      </tr>
                                 </thead>
                                 <tbody>
@@ -158,7 +160,7 @@
                                         <td>{{$item->discount}}</td>
                                         <td>{{$item->d_rate}}</td>
                                         <td>{{$item->vat}}</td>
-                                        <td>{{($item->quantity * $item->unit_price)+($item->d_rate+$item->vat)-$item->discount}}</td>
+                                        <td class="text-right">{{number_format(($item->quantity * $item->unit_price)+($item->d_rate+$item->vat)-$item->discount,2)}}</td>
                                      
                                     </tr>
                                     @endforeach

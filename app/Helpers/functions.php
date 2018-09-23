@@ -142,3 +142,12 @@ function stock_balance(\App\WorkingUnit $working_unit, \App\Product $product){
     return $receive_quantity - $issue_quantity - $allocated_quantity;
 
 }
+
+function total_stock_balance(\App\Product $product){
+
+    $receive_quantity=\App\Stock::where('product_id', $product->id)->sum('receive_quantity');
+    $issue_quantity=\App\Stock::where('product_id', $product->id)->sum('issue_quantity');
+    $allocated_quantity=\App\Stock::where('product_id', $product->id)->sum('allocated_quantity');
+    return $receive_quantity - $issue_quantity - $allocated_quantity;
+
+}

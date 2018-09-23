@@ -32,16 +32,16 @@
                                     {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm', 'required'=>'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker', 'required'=>'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
+                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker', 'required'=>'required' ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2', 'required'=>'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2', 'required'=>'required']) }}
                                 </div>
                             </div>
 
@@ -71,7 +71,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-search"></i> Search
                                             </span>
-                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
+                                            <input type="text" class="form-control input-lg" placeholder="Please type to find product" id="search_product">
                                             <span class="input-group-addon">
                                                 <a href="#" ng-click="searchProduct()"><i class="fa fa-plus"></i> Add</a>
                                             </span>
@@ -103,13 +103,13 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in itemlist">
-                                            <td><% $index+1 %> <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product.id %>"></td>
+                                            <td><% $index+1 %> <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
                                             <td><% item.name %></td>
                                             <td><% item.physical_stock %></td>
                                             <td><% item.goods_in_transit %></td>
                                             <td><% item.pending %></td>
                                             <td><% item.total_quantity %></td>
-                                            <td><input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]"></td>
+                                            <td><input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" required></td>
                                             <td class="text-center"><button class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
@@ -173,7 +173,7 @@
                                                     <td>rkr</td>
                                                     <td>42221</td>
                                                     <td>werr</td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)" disabled>Added</button>
                                                         <button ng-if="!checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)">Add</button>
                                                         

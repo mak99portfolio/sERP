@@ -74,7 +74,9 @@ class PackingListController extends Controller
      */
     public function show(PackingList $packingList)
     {
-      echo 'tyty';
+     $view = view($this->view_root . 'show');
+        $view->with('packingList', $packingList);
+        return $view;
     }
 
     /**

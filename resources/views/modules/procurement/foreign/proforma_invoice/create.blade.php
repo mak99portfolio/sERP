@@ -21,22 +21,11 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form class="form-horizontal form-label-left" action="{{route('proforma-invoice.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('proforma-invoice.store')}}" method="POST">
                         @csrf
                             <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>Purchase Order No.</label>
-                                        <select data-placeholder="Select PO No" multiple  class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">
-                                            <option></option>
-                                            @foreach($purchase_orders as $item)
-                                            <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm','id'=>"single_cal4" ]) }}
+                                    {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm','id'=>"single_cal4",'required']) }}
                                 </div>
 
                                {{--<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -44,15 +33,15 @@
                                 </div> --}}
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm','id'=>"single_cal3" ]) }}
+                                {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm','id'=>"single_cal3",'required']) }}
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('proforma_invoice_receive_date','Proforma Invoice receive date', null, ['class'=>'form-control input-sm','id'=>"single_cal2" ]) }}
+                                {{ BootForm::text('proforma_invoice_receive_date','Proforma Invoice receive date', null, ['class'=>'form-control input-sm','id'=>"single_cal2",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 
-                                {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
 
                             </div>
@@ -61,42 +50,57 @@
                                 <legend>Table of Terms and Conditions:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2']) }}
+                                     {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('country_of_final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('country_of_final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                 </div>
                             </fieldset>
 
                             <div class="row"> <br />
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('beneficiary_bank_info','Beneficiary Bank Info', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('beneficiary_bank_info','Beneficiary Bank Info', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
+                            </div>
+                            <div class="row"> <br />
+                                <div class="col-sm-6 col-sm-offset-3">
+                                    <div class="well">
+                                           <div class="form-group">
+                                        <label>Purchase Order No.</label>
+                                        <select data-placeholder="Select PO No" multiple  required class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">
+                                            <option></option>
+                                            @foreach($purchase_orders as $item)
+                                            <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                   </div>
+                               </div>
                             </div>
 
                             <fieldset>
@@ -122,8 +126,8 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" required ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" required ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td><% total[$index] = quantity[$index]*unit_price[$index] %></td>
                                                 </tr>
                                                 </tbody>

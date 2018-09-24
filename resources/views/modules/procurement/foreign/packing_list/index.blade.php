@@ -25,6 +25,7 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">Ci No</th>
+                                        <th scope="col">Ci Date</th>
                                         <th scope="col">Customer Code</th>
                                         <th scope="col">Net Total</th>
                                         <th scope="col">Gross Total</th>
@@ -35,6 +36,7 @@
                                     @foreach($packing_list as $item)
                                     <tr>
                                         <td>{{$item->commercial_invoice->commercial_invoice_no}}</td>
+                                        <td>{{$item->commercial_invoice->date}}</td>
                                         <td>{{$item->customer_code}}</td>
                                         <td>{{$item->net_total}}</td>
                                         <td>{{$item->gross_total}}</td>

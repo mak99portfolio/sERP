@@ -34,7 +34,7 @@
                                 <tbody>
                                     @foreach($packing_list as $item)
                                     <tr>
-                                        <td>{{$item->commercial_invoice_id}}</td>
+                                        <td>{{$item->commercial_invoice->commercial_invoice_no}}</td>
                                         <td>{{$item->customer_code}}</td>
                                         <td>{{$item->net_total}}</td>
                                         <td>{{$item->gross_total}}</td>

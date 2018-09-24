@@ -35,7 +35,7 @@ class LetterOfCreditController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Country --', ''));
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
         $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no','id')->prepend('-- Select proforma invoice --', ''));
         return $view;
     }

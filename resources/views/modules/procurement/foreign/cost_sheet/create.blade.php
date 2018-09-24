@@ -37,7 +37,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model'=>'letter_of_credit_date', 'readonly']) }}
+                                    {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('currency', 'Currency', [''=>'-- select currency --','Doller'=>'Doller'], null, ['class'=>'form-control input-sm']) }}

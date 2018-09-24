@@ -21,14 +21,9 @@ class CityController extends Controller
 
     public function index()
     {
-        // $data = [
-        //     'countries' => \App\Country::pluck( 'name', 'id')
-        // ];
-
         $view = view($this->view_root . 'index');
         $view->with('city_list', City::all());
         $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
-
         return $view;
     }
 

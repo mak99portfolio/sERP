@@ -25,8 +25,7 @@ class PackingListController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('packing_list', PackingList::all());
         return $view;
     }
 
@@ -38,9 +37,6 @@ class PackingListController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('country_list', Country ::pluck('name', 'id')->prepend('--Select Country--'));
-        $view->with('port_list', Port ::pluck('name', 'id')->prepend('--Select Port--'));
-        $view->with('city_list', City ::pluck('name', 'id')->prepend('--Select City--'));
         $view->with('ci_list', CommercialInvoice::all());
         return $view;
     }
@@ -56,6 +52,7 @@ class PackingListController extends Controller
          $request->validate([
             // 'requisition_no'=>'required',
             'commercial_invoice_id' => 'required',
+            'customer_code' => 'required',
         ]);
         $packing_list = new PackingList;
         $packing_list->fill($request->input());
@@ -77,7 +74,9 @@ class PackingListController extends Controller
      */
     public function show(PackingList $packingList)
     {
-        //
+     $view = view($this->view_root . 'show');
+        $view->with('packingList', $packingList);
+        return $view;
     }
 
     /**

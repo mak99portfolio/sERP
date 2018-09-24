@@ -85,6 +85,10 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
 });
+//Company
+Route::middleware('auth')->namespace('Company')->prefix('Company')->group(function(){
+    Route::resource('company-profile', 'CompanyProfileController');
+});
 
 //Inventory without auth middleware
 Route::namespace('Inventory')->prefix('inventory')->group(function(){

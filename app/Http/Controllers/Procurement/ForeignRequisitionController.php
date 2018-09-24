@@ -56,14 +56,14 @@ class ForeignRequisitionController extends Controller
         $requisition->fill($request->input());
         $requisition->creator_user_id = Auth::id();
         $requisition->company_id = 1;
-        $requisition->requisition_no = time();
+        $requisition->generateRequisitionNumber();
         $requisition->save();
         $items = Array();
         foreach($request->items as $item){
             array_push($items, new ForeignRequisitionItem($item));
         }
         $requisition->items()->saveMany($items);
-        Session::put('alert-success', 'Requisition created successfully. Requisition No: ' . $requisition->requisition_no);
+        Session::put('alert-success', 'Requisition created successfully. <br><strong>Requisition No: ' . $requisition->requisition_no . '</strong>');
         return redirect()->route('foreign-requisition.index');
     }
 

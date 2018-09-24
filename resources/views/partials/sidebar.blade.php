@@ -49,9 +49,6 @@
           <li><a href="{{ route('receive.index') }}">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-            <li class="sub_menu">
-            	<a href="{{ route('working-unit.index') }}">Working Unit</a>
-            </li>
               <li><a href="{{ route('status-adjustment.index') }}">Item Status Adjustment</a></li>
               <li><a href="{{ route('stock-adjustment.index') }}">Item Stock Adjustment</a></li>
               {{-- <li><a href="{{ route('item-status.index') }}">Item Status List</a></li> --}}
@@ -73,8 +70,16 @@
           <li><a href="{{route('product-brand.index')}}">Product Brand</a></li>
           <li><a href="{{route('product.index')}}">Product</a></li>
           <li><a href="{{route('bank.index')}}">Bank</a></li>
-          <li><a href="{{route('employee-profile.index')}}">Employee Profile</a></li>
           <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="{{route('company-profile.index')}}">General Information</a></li>
+          <li><a href="{{route('working-unit.index')}}">Working Unit</a></li>
+          <li><a href="{{route('employee-profile.index')}}">Employees</a></li>
+          <li><a href="{{route('port.index')}}">Bank Information</a></li>
+          <li><a href="{{route('unit-of-measurement.index')}}">Licenses</a></li>
         </ul>
       </li>
     </ul>

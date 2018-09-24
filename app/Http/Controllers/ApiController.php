@@ -71,10 +71,10 @@ class ApiController extends Controller {
 
     public function getProductByProductId($id) {
         $product = Product::find($id);
-        $physical_stock = Stock::where('product_id', $id)->sum('receive_quantity');
+        $physical_stock = Stock::where('product_id', $id)->sum('receive_quantity') - Stock::where('product_id', $id)->sum('issue_quantity');
         $goods_in_transit = CommercialInvoiceItem::where('product_id', $id)->sum('quantity');
         $pending = PurchaseOrderItem::where('product_id', $id)->sum('quantity');
-        ;
+        $total_quantity = $physical_stock + $goods_in_transit + $pending;
         $data = [
             'id' => $product->id,
             'name' => $product->name,
@@ -83,7 +83,7 @@ class ApiController extends Controller {
             'physical_stock' => $physical_stock,
             'goods_in_transit' => $goods_in_transit,
             'pending' => $pending,
-            'total_quantity' => $physical_stock + $goods_in_transit + $pending,
+            'total_quantity' => $total_quantity,
         ];
         return response()->json($data);
     }

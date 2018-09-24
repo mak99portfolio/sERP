@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
 use App\PackingList;
+use App\PackingListItem;
 use App\Country;
 use App\Port;
 use App\City;
 use App\LetterOfCredit;
 use App\CommercialInvoice;
+use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class PackingListController extends Controller
@@ -50,7 +53,20 @@ class PackingListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $request->validate([
+            // 'requisition_no'=>'required',
+            'commercial_invoice_id' => 'required',
+        ]);
+        $packing_list = new PackingList;
+        $packing_list->fill($request->input());
+        $packing_list->creator_user_id = Auth::id();
+        $packing_list->save();
+        foreach ($request->items as $item){
+            $packing_list_items[] = new PackingListItem($item);
+        }
+        $packing_list->items()->saveMany($packing_list_items);
+        Session::put('alert-success', 'Packing List created successfully');
+        return redirect()->route('packing-list.create');
     }
 
     /**

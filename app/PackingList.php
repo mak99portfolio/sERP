@@ -21,4 +21,7 @@ class PackingList extends Model
     function items() {
         return $this->hasMany('App\PackingListItem');
     }
+    function commercial_invoice() {
+        return $this->belongsTo('App\CommercialInvoice');
+    }
 }

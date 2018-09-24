@@ -12,23 +12,25 @@
         {{-- Content here --}}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Packing List</h2>
                         <a href="{{route('packing-list.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Packing List</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form class="form-horizontal form-label-left input_mask">
+                        @include("partials/flash_msg")
+                        <form class="form-horizontal form-label-left" action="{{route('packing-list.store')}}" method="POST">
+                            @csrf
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Commercial Invoice No.</label>
-                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getci()">
+                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()">
                                             <option value="">--Select Commercial Invoice No--</option>
                                             @foreach($ci_list as $item)
-                                            <option value="{{$item-> id}}">{{$item-> commercial_invoice_no}}</option>
+                                            <option value="{{$item->id}}">{{$item->commercial_invoice_no}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -37,7 +39,7 @@
                                     {{ BootForm::text('commercial_invoice_date','Commercial Invoice Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'commercial_invoice_date','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('lc_no','LC No', null, ['class'=>'form-control input-sm', 'ng-model'=>'lc_no','readonly'=>'readonly']) }}
+                                    {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_no','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
@@ -51,7 +53,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Benefeciary Bank Info</div>
-                                      <div class="panel-body">
+                                        <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('beneficiary_ac_no','Account No', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_no','readonly'=>'readonly']) }}
                                             </div>
@@ -70,43 +72,45 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_no','Bl No', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
+                                    {{ BootForm::text('bl_no','Bl No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bl_no']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_date','Bl Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
+                                    {{ BootForm::text('bl_date','Bl Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bl_date']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
+                                    {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vessel_no']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
+                                    {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'container_no']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset class="m-t-20">
                                         <legend>Table of Terms and Conditions:</legend>
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::text('port_of_loading_port_name', 'Port of Loading', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'port_of_loading_port_name']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::text('port_of_discharge_port_name', 'Port of Discharge', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'port_of_discharge_port_name']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::text('destination_country_name', 'Country of Final Destination', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'destination_country_name']) }}   
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}   
+
+                                                {{ BootForm::text('destination_city_id','Final Destination', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'destination_city_name']) }}
+
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::text('country_goods_country_id','Country of Origin of Goods', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'country_goods_country_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::text('exporter','Exporter', null, ['class'=>'form-control input-sm','readonly'=>'readonly']) }}
+                                                {{ BootForm::text('exporter','Exporter', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vendor_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
                                                 {{ BootForm::select('currency', 'Currency', ['$'=>'$'], null, ['class'=>'form-control input-sm']) }}   
                                             </div>
-                                            
+
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
                                                 {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm']) }}
                                             </div>
@@ -121,7 +125,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered">
+                                        <table class="table table-bordered" ng-if="itemlist.length > 0">
                                             <thead class="bg-primary">
                                                 <tr>
                                                     <th colspan="5">Packing List table</th>
@@ -135,22 +139,26 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <th>01</th>
-                                                    <td>sas</td>
-                                                    <td>50</td>
-                                                    <td>80</td>
+                                                <tr ng-repeat="item in itemlist">
+                                                    <th><% $index+1 %> <input  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
+                                                    <td class=""> <% item.name %></td>
                                                     <td>
-                                                        <input type="text" name="amount" class="form-control input-sm">
+                                                        <input ng-change="netSum()"  ng-model="quantity[$index]" ng-init="quantity[$index] = item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
+                                                    </td>
+                                                    <td>
+                                                        <input ng-change="netSum()" ng-model="per_unit_weight[$index]" ng-init="per_unit_weight[$index] = item.per_unit_weight" type="text" name="items[<%$index%>][per_unit_weight]" class="form-control input-sm">
+                                                    </td>
+                                                    <td>
+                                                        <input ng-change="netSum()" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*per_unit_weight[$index]" type="text" class="form-control input-sm" disabled>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Net Total =</td>
-                                                    <td><input type="text" name="amount" class="form-control input-sm"></td>
+                                                    <td><input type="text" name="net_total" class="form-control" ng-model="net_total"></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Gross Total =</td>
-                                                    <td><input type="text" name="amount" class="form-control input-sm"></td>
+                                                    <td><input type="text" name="gross_total" class="form-control input-sm"></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -173,4 +181,60 @@
         {{--end Content here --}}
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+    $interpolateProvider.startSymbol('<%');
+    $interpolateProvider.endSymbol('%>');
+    });
+    app.controller('myCtrl', function($scope, $http) {
+
+    $scope.itemlist = [];
+    $scope.getCi = function () {
+    //   alert($scope.commercial_invoice_id);
+    $scope.itemlist = [];
+    $scope.addToItemList($scope.commercial_invoice_id);
+    }
+    $scope.getLc = function () {
+    $scope.itemlist = [];
+    $scope.addToItemList($scope.letter_of_credit_id);
+    }
+    $scope.addToItemList = function(id){
+    let url = "{{URL::to('get-ci')}}/" + id;
+    $http.get(url)
+            .then(function(response) {
+            angular.forEach(response.data.items, function(value, key) {
+            $scope.itemlist.push(value);
+            });
+            $scope.port_of_loading_port_name = response.data.port_of_loading_port_name;
+            $scope.port_of_discharge_port_name = response.data.port_of_discharge_port_name;
+            $scope.destination_city_name = response.data.destination_city_name;
+            $scope.country_goods_country_name = response.data.country_goods_country_name;
+            $scope.destination_country_name = response.data.destination_country_name;
+            $scope.letter_of_credit_no = response.data.letter_of_credit_no;
+            $scope.letter_of_credit_date = response.data.letter_of_credit_date;
+            $scope.commercial_invoice_date = response.data.commercial_invoice_date;
+            $scope.bl_no = response.data.bl_no;
+            $scope.bl_date = response.data.bl_date;
+            $scope.vessel_no = response.data.vessel_no;
+            $scope.vendor_name = response.data.vendor_name;
+            $scope.container_no = response.data.container_no;
+            $scope.beneficiary_ac_no = response.data.beneficiary_ac_no;
+            $scope.beneficiary_ac_name = response.data.beneficiary_ac_name;
+            $scope.beneficiary_bank_name = response.data.beneficiary_bank_name;
+            $scope.beneficiary_branch_name = response.data.beneficiary_branch_name;
+            });
+    }
+    
+    $scope.netTotal = function(){
+        var sum = 0;
+//        colsole.log($scope.amount);
+//        for(i=0; i<$scope.amount.length; i++){
+//            sum += $scope.amount[i];
+//        }
+        $scope.net_total = sum;
+    }
+    });
+</script>
 @endsection

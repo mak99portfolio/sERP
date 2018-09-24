@@ -25,24 +25,24 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">Ci No</th>
-                                        <th scope="col">CI Issue Date</th>
-                                        <th scope="col">Bl Issue Date</th>
-                                        <th scope="col">Document Arrived At Bank</th>
-                                        <th scope="col">Doct Send At Port</th>
+                                        <th scope="col">Customer Code</th>
+                                        <th scope="col">Net Total</th>
+                                        <th scope="col">Gross Total</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($packing_list as $item)
                                     <tr>
-                                        <td>abc</td>
-                                        <td>20-04-2018</td>
-                                        <td>20-04-2018</td>
-                                        <td>abc.pdf</td>
-                                        <td>8</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <td>{{$item->commercial_invoice_id}}</td>
+                                        <td>{{$item->customer_code}}</td>
+                                        <td>{{$item->net_total}}</td>
+                                        <td>{{$item->gross_total}}</td>
+                                       <td class="text-right">
+                                            <a href="{{route('packing-list.show',$item)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                      @endforeach
                                 </tbody>
                             </table>
                         </div>

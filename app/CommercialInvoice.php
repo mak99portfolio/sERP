@@ -29,6 +29,9 @@ class CommercialInvoice extends Model {
     function items() {
         return $this->hasMany('App\CommercialInvoiceItem');
     }
+    function packingList() {
+        return $this->hasMany('App\PackingList');
+    }
     function LetterOfCredit() {
         return $this->belongsTo('App\LetterOfCredit');
     }

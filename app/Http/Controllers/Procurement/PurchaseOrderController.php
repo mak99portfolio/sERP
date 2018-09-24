@@ -11,7 +11,7 @@ use App\Country;
 use App\City;
 use App\Vendor;
 use App\PurchaseOrderItem;
-use Illuminate\Http\Request;
+use App\Http\Requests\ForeignPurchaseOrderRequest;
 use Auth;
 use Session;
 use DB;
@@ -37,10 +37,10 @@ class PurchaseOrderController extends Controller
         return $view;
     }
 
-    public function store(Request $request)
+    public function store(ForeignPurchaseOrderRequest $request)
     {
         // dd();
-        $request->validate([
+        // $request->validate([
             // 'foreign_requisition_id'=>'required',
             // 'purchase_order_no'=>'required',
             // 'vendor_id'=>'required',
@@ -56,7 +56,7 @@ class PurchaseOrderController extends Controller
             // 'subject'=>'required',
             // 'letter_header'=>'required',
             // 'letter_footer'=>'required',
-        ]);
+        // ]);
         $purchase_order = new PurchaseOrder;
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();

@@ -29,4 +29,7 @@ class ForeignRequisition extends Model
     public function purchase_orders(){
         return $this->belongsToMany('App\PurchaseOrder');
     }
+    public function generateRequisitionNumber(){
+        $this->requisition_no =  'req-'. time();
+    }
 }

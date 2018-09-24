@@ -36,7 +36,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>LC No.</label>
-                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
+                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()" required>
                                             <option value="">--Select LC No--</option>
                                             @foreach($lc_list as $item)
                                             <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
@@ -53,7 +53,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Commercial invoice No</label>
-                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()">
+                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()" required>
                                             <option value="">--Select Commercial Invoice No--</option>
                                             @foreach($commercial_invoice_list as $item)
                                             <option value="{{$item->id}}">{{$item->commercial_invoice_no}}</option>
@@ -120,7 +120,7 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular_id">
+                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular_id" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
                                                             <option value="{{$item->id}}">{{$item->name}}</option>
@@ -137,7 +137,7 @@
                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                                     <div class="form-group">
                                                         <label for=""></label>
-                                                        <button class="form-control btn btn-primary  btn-sm">Add</button>
+                                                        <button type="button" class="form-control btn btn-primary  btn-sm">Add</button>
                                                     </div>
                                                 </div>
                                             </div>

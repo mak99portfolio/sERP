@@ -37,10 +37,11 @@ class CnfController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->input());
         $request->validate([
             'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
             'commercial_invoice_id' => 'required',
-            // 'vendor_id' => 'required',
+            'vendor_id' => 'required',
             'consignee' => 'required',
             'bill_no' => 'required',
             'bill_date' => 'required',
@@ -70,6 +71,10 @@ class CnfController extends Controller
         $cnf->save();
         $consignment_particular_cnf = new ConsignmentParticularCnf;
         $consignment_particular_cnf->fill($request->input());
+        // $particulars = Array();
+        // foreach($request->items as $item){
+        //     array_push($items, new LetterOfCreditItem($item));
+        // }
         $cnf->consignment_particular_cnf()->save($consignment_particular_cnf);
         Session::put('alert-success', $cnf->cnf_no . " successfully created");
         return redirect()->route('cnf.index');

@@ -12,7 +12,6 @@ class Cnf extends Model
         'letter_of_credit_id',
         'commercial_invoice_id',
         'vendor_id',
-        'cnf_agent_id',
         'consignee',
         'bill_no',
         'bill_date',
@@ -42,15 +41,15 @@ class Cnf extends Model
         return $this->belongsTo('App\CommercialInvoice', 'commercial_invoice_id');
     }
 
-    public function exporter(){
+    public function cnf_agent(){
         return $this->belongsTo('App\Vendor', 'vendor_id');
     }
 
-    public function cnf_agent(){
-        return $this->belongsTo('App\Vendor', 'cnf_agent_id');
-    }
 
+    public function consignment_particular(){
+        return $this->belongsToMany('App\ConsignmentParticular', 'consignment_particular_id');
+    }
     public function consignment_particular_cnf(){
-        return $this->belongsToMany('App\ConsignmentParticularCnf', 'consignment_particular_id');
+        return $this->belongsTo('App\ConsignmentParticularCnf', 'consignment_particular_id');
     }
 }

@@ -36,7 +36,7 @@ class ForeignRequisitionRequest extends FormRequest
         if(isset($this->items)){
             foreach($this->items as $item){
                 if($item['quantity']){
-                    if(is_int($item['quantity'])){
+                    if(is_numeric($item['quantity'])){
                         return true;
                     }else{
                         Session::put('alert-danger', 'Quantity must be a positive number');

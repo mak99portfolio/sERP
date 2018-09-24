@@ -11,6 +11,7 @@ class CreateCnfsTable extends Migration
     {
         Schema::create('cnfs', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('cnf_no');
             $table->integer('letter_of_credit_id')->unsigned();
             $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->integer('commercial_invoice_id')->unsigned();

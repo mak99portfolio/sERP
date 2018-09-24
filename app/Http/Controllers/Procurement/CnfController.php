@@ -40,7 +40,7 @@ class CnfController extends Controller
         $request->validate([
             'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
             'commercial_invoice_id' => 'required',
-            'vendor_id' => 'required',
+            // 'vendor_id' => 'required',
             'consignee' => 'required',
             'bill_no' => 'required',
             'bill_date' => 'required',
@@ -55,11 +55,11 @@ class CnfController extends Controller
             'bdt_amount' => 'required',
             'total_day' => 'required',
             'duty_payment_date' => 'required',
-            'consignment_particular_amount' => 'required',
-            'previous_due_amount' => 'required',
-            'cash_recieved_amount' => 'required',
-            'note' => 'required',
-            'consignment_particular_id' => 'required'
+            // 'consignment_particular_amount' => 'required',
+            // 'previous_due_amount' => 'required',
+            // 'cash_recieved_amount' => 'required',
+            'note' => 'required'
+            // 'consignment_particular_id' => 'required'
         ]);
 
         $cnf = new Cnf;

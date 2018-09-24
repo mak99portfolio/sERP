@@ -92,13 +92,16 @@
                                     {{ BootForm::number('cnf_value','C&F Value', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('usd_amount','USD Amount', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::number('usd_amount','USD Amount', null, ['class'=>'form-control input-sm', 'ng-model'=>'usd_amount']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('bdt_amount','BDT Amount', null, ['class'=>'form-control input-sm']) }}
+                                    <div class="form-group">
+                                        <label>BDT Amount</label>
+                                        <input type="number" class="form-control input-sm" name="bdt_amount" ng-model="bdt_amount" value="<% getBdtAmount() %>" readonly>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('cnf_agent_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm']) }}
@@ -120,7 +123,7 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular" required>
+                                                        <select class="form-control input-sm" ng-model="consignment_particular" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
                                                             <option value="{{$item}}">{{$item->name}}</option>
@@ -161,7 +164,7 @@
                                                         <tr>
                                                             <th class="text-right" colspan="2">Voucher Tk</th>
                                                             <td>
-                                                                <input type="number" class="form-control input-sm">
+                                                                <% getVoucherAmount() %>
                                                             </td>
                                                         </tr>
                                                         {{-- <tr>
@@ -198,16 +201,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                                {{-- <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Amount In Words</label>
                                         <input type="text" class="form-control input-sm" name="amount_in_word">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Notes</label>
-                                        <textarea name="notes" class="form-control input-sm" id="" cols="30" rows="2"></textarea>
+                                        <textarea name="note" class="form-control input-sm" id="" cols="30" rows="2"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -234,13 +237,15 @@
         });
     app.controller('myCtrl', function($scope, $http) {
 
-        $scope.getLc = function () {
-            $scope.getLcDetails($scope.letter_of_credit_id);
-        }
 
         $scope.getCi = function () {
             $scope.getCiDetails($scope.letter_of_credit_id);
         }
+
+        $scope.getLc = function () {
+            $scope.getLcDetails($scope.letter_of_credit_id);
+        }
+
 
         $scope.getLcDetails = function(id){
             let url = "{{URL::to('get-lc')}}/" + id;
@@ -255,15 +260,26 @@
             });
         }
 
+
+
         $scope.getCiDetails = function(id){
             let url = "{{URL::to('get-ci')}}/" + id;
             $http.get(url).then(function(response) {
-                $scope.commercial_invoice_date = response.data.ci_date;
+                $scope.commercial_invoice_date = response.data.commercial_invoice_date;
                 $scope.bl_no = response.data.bl_no;
                 $scope.bl_date = response.data.bl_date;
                 $scope.container_no = response.data.container_no;
             });
         }
+
+        $scope.getBdtAmount = function () {
+                var total = 0;
+                total = $scope.usd_amount * $scope.exchange_rate;
+                $scope.bdt_amount = total;
+                return $scope.bdt_amount;
+            }
+
+
         $scope.particularlist = [];
         $scope.addParticular = function(){
             var particular = {};
@@ -272,8 +288,17 @@
             particular.id = item.id;
             particular.amount = $scope.amount;
             $scope.particularlist.push(particular);
-            console.log(item);
+            // console.log($scope.particularlist[0].amount);
+
+            $scope.getVoucherAmount = function(){
+                var sum = 0;
+                for (var i = 0; i < $scope.particularlist.length; i++) {
+                    sum += parseInt($scope.particularlist[i].amount);
+                }
+                return sum;
+            }
         }
+
         $scope.remove = function(index){
             $scope.particularlist.splice(index,1);
         }

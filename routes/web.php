@@ -105,6 +105,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         Route::get('get-commercial-invoice/{slug}', 'ReceiveController@get_commercial_invoice');
         Route::get('get-purchase-order/{slug}', 'ReceiveController@get_purchase_order');
         Route::get('get-inventory-requisition/{working_unit}/{slug}', 'ReceiveController@get_inventory_requisition');
+        Route::get('get-product-statuses', 'ReceiveController@product_statuses');
 
     });
 

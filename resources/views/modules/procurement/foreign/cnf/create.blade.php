@@ -36,7 +36,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>LC No.</label>
-                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
+                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()" required>
                                             <option value="">--Select LC No--</option>
                                             @foreach($lc_list as $item)
                                             <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
@@ -53,7 +53,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Commercial invoice No</label>
-                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()">
+                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()" required>
                                             <option value="">--Select Commercial Invoice No--</option>
                                             @foreach($commercial_invoice_list as $item)
                                             <option value="{{$item->id}}">{{$item->commercial_invoice_no}}</option>
@@ -120,10 +120,10 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular_id">
+                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
-                                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            <option value="{{$item}}">{{$item->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -131,13 +131,13 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="">Amount</label>
-                                                        <input type="text" class="form-control input-sm" name="container_no">
+                                                        <input type="text" class="form-control input-sm" name="amount" ng-model="amount">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                                     <div class="form-group">
                                                         <label for=""></label>
-                                                        <button class="form-control btn btn-primary  btn-sm">Add</button>
+                                                        <button type="button" class="form-control btn btn-primary  btn-sm" ng-click="addParticular()">Add</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,19 +152,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">01</th>
-                                                            <th>Particulars</th>
-                                                            <td>20</td>
+                                                        <tr ng-repeat="particular in particularlist">
+                                                            <th scope="row"><% $index+1 %></th>
+                                                            <td><% particular.name %> <input type="hidden" value="<% particular.id %>"></td>
+                                                            <td><% particular.amount %><input type="hidden" value="<% particular.amount %>"></td>
+                                                            <td class="text-center"><a href="" class="btn btn-danger btn-xs" ng-click="remove($index)"><i class="fa fa-trash"></i></a></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="text-right" colspan="2">Voucher Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
-                                                            <td></td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <th class="text-right" colspan="2">Previous Due Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
@@ -191,7 +191,7 @@
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -264,6 +264,53 @@
                 $scope.container_no = response.data.container_no;
             });
         }
+        $scope.particularlist = [];
+        $scope.addParticular = function(){
+            var particular = {};
+            var item = JSON.parse($scope.consignment_particular);
+            particular.name = item.name;
+            particular.id = item.id;
+            particular.amount = $scope.amount;
+            $scope.particularlist.push(particular);
+            console.log(item);
+            console.log(numberToWord(563445.34, 'taka', 'paisa'));
+        }
+        $scope.remove = function(index){
+            $scope.particularlist.splice(index,1);
+        }
+        
+        function numberToWord(n, unit_whole, unit_fraction) {
+            var nums = n.toString().split('.')
+            var whole = inWhole(nums[0])
+            if (nums.length == 2) {
+                var fraction = inFraction(nums[1])
+                return whole + unit_whole +' and ' + fraction +  unit_fraction;
+            } else {
+                return whole;
+            }
+        }
+        function inWhole (num) {
+            var a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
+            var b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
+            if ((num = num.toString()).length > 9) return 'overflow';
+            n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
+            if (!n) return; var str = '';
+            str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
+            str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
+            str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
+            str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
+            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
+            return str;
+        }
+        function inFraction (num) {
+            var a = ['zero ','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine s'];
+            var str = '';
+            for(i=0; i<num.length; i++){
+                str += +a[num[i]];
+            }
+            return str;
+        }
+        
     });
 </script>
 @endsection

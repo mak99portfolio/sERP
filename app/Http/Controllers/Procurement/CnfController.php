@@ -77,7 +77,9 @@ class CnfController extends Controller
 
     public function show(Cnf $cnf)
     {
-        //
+        $view = view($this->view_root . 'show');
+        // $view->with('cnf', $cnf);
+        return $view;
     }
 
     public function edit(Cnf $cnf)

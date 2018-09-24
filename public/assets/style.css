@@ -8,48 +8,6 @@
 .select2{
     width: 100%!important;
 }
-
-/* Make Select2 boxes match Bootstrap3 heights: */
-.select2-container {
-  width:100%;   
-}
-/*.select2-container a.select2-choice {
-  font-size: 14px;
-  height: 38px;
-  padding: 8px 12px;
-  line-height: 1.42857;
-}
-.select2-container .select2-choice .select2-arrow {
-  padding-top:6px;
-}*/
-/*.select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
-    background-color: #fff!important;
-    border: 1px solid #ccc!important;
-    border-radius: 0px!important;
-    min-height: 30px!important;
-}*/
-/*.select2-container .select2-selection, 
-.select2-selection__rendered, 
-.select2-selection__arrow {
-    height: 48px !important;
-    line-height: 48px !important;
-}*/
-
-.select2-container .select2-choice {
-    display: block;
-    height: 26px;
-    height: 32px;
-    padding: 0 0 0 8px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid #aaa;
-    white-space: nowrap;
-    line-height: 26px;
-    line-height: 32px;
-    color: #444;
-    text-decoration: none;
-}
-
 /*end select2*/
 textarea{
     resize: vertical;

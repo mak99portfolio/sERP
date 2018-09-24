@@ -13,6 +13,7 @@ use App\Model\Core\Enclosure;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Auth;
 use Session;
 
 class VendorController extends Controller
@@ -63,6 +64,7 @@ class VendorController extends Controller
         $vendor->fill($request->input());
         $vendor->business_type = serialize($request->business_type);
         $vendor->business_nature = serialize($request->business_nature);
+        $vendor->creator_user_id = Auth::id();
         $vendor->save();
         $vendor->payment_term()->save(new VendorPaymentTerm($request->payment_term));
         $vendor->bank()->save(new VendorBank($request->bank));

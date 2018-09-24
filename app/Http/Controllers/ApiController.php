@@ -183,18 +183,17 @@ class ApiController extends Controller {
 
     public function getCiByCiId($id) {
         $ci = CommercialInvoice::find($id);
-        $lc_items = $ci->items;
-        foreach ($lc_items as $lc_item) {
+        $ci_items = $ci->items;
+        foreach ($ci_items as $ci_item) {
             $items[] = [
-                'product_id' => $lc_item->product_id,
-                'quantity' => $lc_item->quantity,
-                'name' => $lc_item->product->name,
-                'unit_price' => $lc_item->unit_price,
+                'product_id' => $ci_item->product_id,
+                'quantity' => $ci_item->quantity,
+                'name' => $ci_item->product->name,
             ];
         }
 
         $data['items'] = $items;
-        $data['ci_date'] = $ci->date;
+        $data['commercial_invoice_date'] = $ci->date;
         $data['letter_of_credit_no'] = $ci->LetterOfCredit->letter_of_credit_no;
         $data['letter_of_credit_date'] = $ci->LetterOfCredit->letter_of_credit_date;
         $data['beneficiary_ac_no'] = $ci->LetterOfCredit->beneficiary_ac_no;
@@ -202,11 +201,16 @@ class ApiController extends Controller {
         $data['beneficiary_bank_name'] = $ci->LetterOfCredit->beneficiary_bank_name;
         $data['beneficiary_branch_name'] = $ci->LetterOfCredit->beneficiary_branch_name;
 
-        $data['port_of_loading_port_id'] = $ci->loading_port->name;
-        $data['port_of_discharge_port_id'] = $ci->discharge_port->name;
-        $data['destination_city_id'] = $ci->city->name;
-        $data['country_goods_country_id'] = $ci->destination_country->name;
-        $data['destination_country_id'] = $ci->country_goods->name;
+        $data['port_of_loading_port_id'] = $ci->port_of_loading_port_id;
+        $data['port_of_loading_port_name'] = $ci->loading_port->name;
+        $data['port_of_discharge_port_id'] = $ci->port_of_discharge_port_id;
+        $data['port_of_discharge_port_name'] = $ci->discharge_port->name;
+        $data['destination_city_name'] = $ci->city->name;
+        $data['destination_city_id'] = $ci->destination_city_id;
+        $data['country_goods_country_id'] = $ci->country_goods_country_id;
+        $data['country_goods_country_name'] = $ci->destination_country->name;
+        $data['destination_country_id'] = $ci->destination_country_id;
+        $data['destination_country_name'] = $ci->country_goods->name;
 
         $data['bl_no'] = $ci->bl_no;
         $data['bl_date'] = $ci->bl_date;

@@ -14,7 +14,7 @@ class CreatePackingListsTable extends Migration {
     public function up() {
         Schema::create('packing_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('commercial_invoice_no')->unsigned();
+            $table->string('commercial_invoice_id')->unsigned();
             $table->string('currency');
             $table->string('customer_code')->nullable();
             $table->text('notes')->nullable();

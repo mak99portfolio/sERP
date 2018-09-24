@@ -120,10 +120,10 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular_id" required>
+                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
-                                                            <option value="{{$item->id}}">{{$item->name}}</option>
+                                                            <option value="{{$item}}">{{$item->name}}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -131,13 +131,13 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label for="">Amount</label>
-                                                        <input type="text" class="form-control input-sm" name="container_no">
+                                                        <input type="text" class="form-control input-sm" name="amount" ng-model="amount">
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                                     <div class="form-group">
                                                         <label for=""></label>
-                                                        <button type="button" class="form-control btn btn-primary  btn-sm">Add</button>
+                                                        <button type="button" class="form-control btn btn-primary  btn-sm" ng-click="addParticular()">Add</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,19 +152,19 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <th scope="row">01</th>
-                                                            <th>Particulars</th>
-                                                            <td>20</td>
+                                                        <tr ng-repeat="particular in particularlist">
+                                                            <th scope="row"><% $index+1 %></th>
+                                                            <td><% particular.name %> <input type="hidden" value="<% particular.id %>"></td>
+                                                            <td><% particular.amount %><input type="hidden" value="<% particular.amount %>"></td>
+                                                            <td class="text-center"><a href="" class="btn btn-danger btn-xs" ng-click="remove($index)"><i class="fa fa-trash"></i></a></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="text-right" colspan="2">Voucher Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
-                                                            <td></td>
                                                         </tr>
-                                                        <tr>
+                                                        {{-- <tr>
                                                             <th class="text-right" colspan="2">Previous Due Tk</th>
                                                             <td>
                                                                 <input type="number" class="form-control input-sm">
@@ -191,7 +191,7 @@
                                                                 <input type="number" class="form-control input-sm">
                                                             </td>
                                                             <td></td>
-                                                        </tr>
+                                                        </tr> --}}
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -263,6 +263,19 @@
                 $scope.bl_date = response.data.bl_date;
                 $scope.container_no = response.data.container_no;
             });
+        }
+        $scope.particularlist = [];
+        $scope.addParticular = function(){
+            var particular = {};
+            var item = JSON.parse($scope.consignment_particular);
+            particular.name = item.name;
+            particular.id = item.id;
+            particular.amount = $scope.amount;
+            $scope.particularlist.push(particular);
+            console.log(item);
+        }
+        $scope.remove = function(index){
+            $scope.particularlist.splice(index,1);
         }
     });
 </script>

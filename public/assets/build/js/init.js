@@ -35,6 +35,7 @@ $(document).ready(function() {
 		init_autocomplete();
         
         $(".select2").select2({
-            allowClear: false
+			allowClear: false,
+			
         });
 	});	

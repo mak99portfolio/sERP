@@ -12,7 +12,33 @@
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    
+                    <br />
+                    @include('partials.flash_msg')
+                    <form class="form-horizontal form-label-left" action="{{ route('company-profile.store') }}" method="POST">
+                        @csrf
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::text('name','Company Name', null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::email('email','Email', null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::tel('phone','Phone Number', null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            {{ BootForm::textarea('address','Address', null, ['class'=>'form-control input-sm', 'rows' => '3']) }}
+                        </div>
+                      </div>
+                        <br>
+                        <hr>
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-success btn-sm">Save</button>
+                            <a class="btn btn-default btn-sm" href="{{route('company-profile.index')}}">Cancel</a>
+                        </div>
+                    </form>
 
                   </div>
               </div>

@@ -51,7 +51,7 @@ class PackingListController extends Controller
     {
          $request->validate([
             // 'requisition_no'=>'required',
-            'commercial_invoice_id' => 'required',
+            'commercial_invoice_id' => 'required|unique:packing_lists',
             'customer_code' => 'required',
         ]);
         $packing_list = new PackingList;

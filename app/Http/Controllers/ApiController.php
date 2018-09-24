@@ -194,12 +194,20 @@ class ApiController extends Controller {
         }
 
         $data['items'] = $items;
-        $data['letter_of_credit_date'] = $ci->letter_of_credit_date;
-        $data['beneficiary_ac_no'] = $ci->beneficiary_ac_no;
-        $data['beneficiary_ac_name'] = $ci->beneficiary_ac_name;
-        $data['beneficiary_bank_name'] = $ci->beneficiary_bank_name;
-        $data['beneficiary_branch_name'] = $ci->beneficiary_branch_name;
         $data['ci_date'] = $ci->date;
+        $data['letter_of_credit_no'] = $ci->LetterOfCredit->letter_of_credit_no;
+        $data['letter_of_credit_date'] = $ci->LetterOfCredit->letter_of_credit_date;
+        $data['beneficiary_ac_no'] = $ci->LetterOfCredit->beneficiary_ac_no;
+        $data['beneficiary_ac_name'] = $ci->LetterOfCredit->beneficiary_ac_name;
+        $data['beneficiary_bank_name'] = $ci->LetterOfCredit->beneficiary_bank_name;
+        $data['beneficiary_branch_name'] = $ci->LetterOfCredit->beneficiary_branch_name;
+
+        $data['port_of_loading_port_id'] = $ci->loading_port->name;
+        $data['port_of_discharge_port_id'] = $ci->discharge_port->name;
+        $data['destination_city_id'] = $ci->city->name;
+        $data['country_goods_country_id'] = $ci->destination_country->name;
+        $data['destination_country_id'] = $ci->country_goods->name;
+
         $data['bl_no'] = $ci->bl_no;
         $data['bl_date'] = $ci->bl_date;
         $data['vessel_no'] = $ci->vessel_no;

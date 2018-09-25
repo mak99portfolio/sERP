@@ -102,7 +102,9 @@ class VendorController extends Controller
      */
     public function show(Vendor $vendor)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('vendor', $vendor);
+        return $view;
     }
 
     /**

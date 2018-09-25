@@ -29,8 +29,7 @@ class Cnf extends Model
         'consignment_particular_amount',
         'previous_due_amount',
         'cash_recieved_amount',
-        'note',
-        'consignment_particular_id'
+        'note'
     ];
 
     public function letter_of_credit(){
@@ -50,6 +49,6 @@ class Cnf extends Model
         return $this->belongsToMany('App\ConsignmentParticular', 'consignment_particular_id');
     }
     public function consignment_particular_cnf(){
-        return $this->belongsTo('App\ConsignmentParticularCnf', 'consignment_particular_id');
+        return $this->hasMany('App\ConsignmentParticularCnf','cnf_id');
     }
 }

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Bill of Lading')
+@section('title', 'Duty TAX, VAT and CNF Bill')
 @section('content')
 <div class="right_col" role="main">
     <div class="">

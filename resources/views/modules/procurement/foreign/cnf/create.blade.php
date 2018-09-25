@@ -157,8 +157,8 @@
                                                     <tbody>
                                                         <tr ng-repeat="particular in particularlist">
                                                             <th scope="row"><% $index+1 %></th>
-                                                            <td><% particular.name %> <input type="hidden" value="<% particular.id %>"></td>
-                                                            <td><% particular.amount %><input type="hidden" value="<% particular.amount %>"></td>
+                                                            <td><% particular.name %> <input type="hidden" name="items[<% $index %>][consignment_particular_id]" value="<% particular.id %>"></td>
+                                                            <td><% particular.amount %><input type="hidden" name="items[<% $index %>][amount]" value="<% particular.amount %>"></td>
                                                             <td class="text-center"><a href="" class="btn btn-danger btn-xs" ng-click="remove($index)"><i class="fa fa-trash"></i></a></td>
                                                         </tr>
                                                         <tr>

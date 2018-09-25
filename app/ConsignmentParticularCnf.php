@@ -25,6 +25,10 @@ class ConsignmentParticularCnf extends Model
         return floor($this->amount);
     }
     public function amount_in_paisa(){
-        return ($this->amount*100)%floor($this->amount*100);
+        $paisa =  ( round( $this->amount, 2 ) * 100 ) % floor ( $this->amount );
+        if( $paisa < 10 ){
+            $paisa = '0' . $paisa;
+        }
+        return $paisa;
     }
 }

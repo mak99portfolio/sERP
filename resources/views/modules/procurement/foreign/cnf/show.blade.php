@@ -100,7 +100,7 @@
                                     @endforeach
 
                                     <tr>
-                                        <td class="text-right" colspan="2"><strong>Voucher Tk=</strong></td>
+                                        <td class="text-right" colspan="2"><strong> Voucher Tk : </strong></td>
                                         <td><strong></strong> {{ $total_taka }}</td>
                                         <td><strong></strong> {{ $total_paisa }}</td>
                                     </tr>

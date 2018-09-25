@@ -85,8 +85,9 @@ class CnfController extends Controller
 
     public function show(Cnf $cnf)
     {
+        // dd($cnf->consignment_particular_cnf);
         $view = view($this->view_root . 'show');
-        // $view->with('cnf', $cnf);
+        $view->with('cnf', $cnf);
         return $view;
     }
 

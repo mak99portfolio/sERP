@@ -29,26 +29,42 @@ class Cnf extends Model
         'consignment_particular_amount',
         'previous_due_amount',
         'cash_recieved_amount',
-        'note'
+        'note',
     ];
 
-    public function letter_of_credit(){
+    public function letter_of_credit()
+    {
         return $this->belongsTo('App\LetterOfCredit', 'letter_of_credit_id');
     }
 
-    public function commercial_invoice(){
+    public function commercial_invoice()
+    {
         return $this->belongsTo('App\CommercialInvoice', 'commercial_invoice_id');
     }
 
-    public function cnf_agent(){
+    public function cnf_agent()
+    {
         return $this->belongsTo('App\Vendor', 'vendor_id');
     }
 
-
-    public function consignment_particular(){
+    public function consignment_particular()
+    {
         return $this->belongsToMany('App\ConsignmentParticular', 'consignment_particular_id');
     }
-    public function consignment_particular_cnf(){
-        return $this->hasMany('App\ConsignmentParticularCnf','cnf_id');
+
+    public function consignment_particular_cnf()
+    {
+        return $this->hasMany('App\ConsignmentParticularCnf', 'cnf_id');
     }
+
+    public function getBdtAmount()
+    {
+        return $this->usd_amount * $this->exchange_rate;
+    }
+    public function amount_in_word()
+    {
+        return number_to_word($this->consignment_particular_cnf()->sum('amount'));
+
+    }
+
 }

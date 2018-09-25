@@ -199,6 +199,8 @@ $(function () {
 
         $('#print-footer').hide();
     });
+
+    $('.flash').delay(8000).fadeOut('slow');
 });
 
 

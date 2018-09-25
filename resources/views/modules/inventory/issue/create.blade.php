@@ -32,10 +32,10 @@
                                     {{ BootForm::select('inventory_requisition_type_id', 'Requisition Type', $inventory_requisition_types, null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('sender_depot_id', 'Requisition Sender Depot', $working_units, null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::select('sender_depot_id', 'Requisition Sender Depot', $working_units, $sender_depot_id, ['class'=>'form-control input-sm', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requested_depot_id', 'Requested Depot', $working_units, null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::select('requested_depot_id', 'Requested Depot', $working_units, $requested_depot_id, ['class'=>'form-control input-sm', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}

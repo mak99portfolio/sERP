@@ -39,15 +39,11 @@
                                         <div class="row">
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                <div class="form-group">
-                                                    {{--<label>Date</label>
-                                                    <input class="form-control input-sm" type="text"> --}}
-                                                    {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
-                                                </div>
+                                                {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
                                             </div>
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'form-control input-sm']) }}
                                             </div>
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -192,8 +188,7 @@
                                         {!! btnSubmitGroup() !!}
                                     </div>
                                 </div>
-                                        {{ BootForm::close() }}
-                                    </form>
+                                {{ BootForm::close() }}
                                 </div>
                             </div>
                         </div>

@@ -50,8 +50,8 @@
                                 {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-local-purchase.edit', ['receive_local_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
                             @elseif($row->receive_type=='internal_receive')
                                 {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-internal.edit', ['receive_internal'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
-                            @elseif($row->receive_type=='return_receive')
-                                {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-return.edit ', ['receive_return'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='receive_return')
+                                {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-return.edit', ['receive_return'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
                             @endif
                             </td>
                         </tr>

@@ -33,8 +33,8 @@
         </ul>
     </div>
 @endif
-<script>
+{{--<script>
     $(function(){
         $('.flash').delay(8000).fadeOut('slow');
     });
-</script>
+</script>--}}

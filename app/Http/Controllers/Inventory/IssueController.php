@@ -51,6 +51,8 @@ class IssueController extends Controller{
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
+            'sender_depot_id'=>$issue->requisition->sender_depot_id,
+            'requested_depot_id'=>$issue->requisition->requested_depot_id
         ];
 
         $products=[];

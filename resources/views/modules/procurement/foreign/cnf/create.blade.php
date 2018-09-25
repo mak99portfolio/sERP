@@ -92,16 +92,19 @@
                                     {{ BootForm::number('cnf_value','C&F Value', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('usd_amount','USD Amount', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::number('usd_amount','USD Amount', null, ['class'=>'form-control input-sm', 'ng-model'=>'usd_amount']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('bdt_amount','BDT Amount', null, ['class'=>'form-control input-sm']) }}
+                                    <div class="form-group">
+                                        <label>BDT Amount</label>
+                                        <input type="number" class="form-control input-sm" name="bdt_amount" ng-model="bdt_amount" value="<% getBdtAmount() %>" readonly>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('cnf_agent_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text(null, 'Exporter', null, ['class'=>'form-control input-sm' , 'ng-model'=>'vendor_name', 'readonly']) }}
@@ -120,7 +123,7 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" name="consignment_particular_id" ng-model="consignment_particular" required>
+                                                        <select class="form-control input-sm" ng-model="consignment_particular" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
                                                             <option value="{{$item}}">{{$item->name}}</option>
@@ -154,14 +157,14 @@
                                                     <tbody>
                                                         <tr ng-repeat="particular in particularlist">
                                                             <th scope="row"><% $index+1 %></th>
-                                                            <td><% particular.name %> <input type="hidden" value="<% particular.id %>"></td>
-                                                            <td><% particular.amount %><input type="hidden" value="<% particular.amount %>"></td>
+                                                            <td><% particular.name %> <input type="hidden" name="items[<% $index %>][consignment_particular_id]" value="<% particular.id %>"></td>
+                                                            <td><% particular.amount %><input type="hidden" name="items[<% $index %>][amount]" value="<% particular.amount %>"></td>
                                                             <td class="text-center"><a href="" class="btn btn-danger btn-xs" ng-click="remove($index)"><i class="fa fa-trash"></i></a></td>
                                                         </tr>
                                                         <tr>
                                                             <th class="text-right" colspan="2">Voucher Tk</th>
                                                             <td>
-                                                                <input type="number" class="form-control input-sm">
+                                                                <% getVoucherAmount() %>
                                                             </td>
                                                         </tr>
                                                         {{-- <tr>
@@ -198,16 +201,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                                {{-- <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Amount In Words</label>
                                         <input type="text" class="form-control input-sm" name="amount_in_word">
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Notes</label>
-                                        <textarea name="notes" class="form-control input-sm" id="" cols="30" rows="2"></textarea>
+                                        <textarea name="note" class="form-control input-sm" id="" cols="30" rows="2"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -234,13 +237,15 @@
         });
     app.controller('myCtrl', function($scope, $http) {
 
-        $scope.getLc = function () {
-            $scope.getLcDetails($scope.letter_of_credit_id);
-        }
 
         $scope.getCi = function () {
             $scope.getCiDetails($scope.letter_of_credit_id);
         }
+
+        $scope.getLc = function () {
+            $scope.getLcDetails($scope.letter_of_credit_id);
+        }
+
 
         $scope.getLcDetails = function(id){
             let url = "{{URL::to('get-lc')}}/" + id;
@@ -255,62 +260,74 @@
             });
         }
 
+
+
         $scope.getCiDetails = function(id){
             let url = "{{URL::to('get-ci')}}/" + id;
             $http.get(url).then(function(response) {
-                $scope.commercial_invoice_date = response.data.ci_date;
+                $scope.commercial_invoice_date = response.data.commercial_invoice_date;
                 $scope.bl_no = response.data.bl_no;
                 $scope.bl_date = response.data.bl_date;
                 $scope.container_no = response.data.container_no;
             });
         }
+
+        $scope.getBdtAmount = function () {
+                var total = 0;
+                total = $scope.usd_amount * $scope.exchange_rate;
+                $scope.bdt_amount = total;
+                return $scope.bdt_amount;
+            }
+
+
         $scope.particularlist = [];
         $scope.addParticular = function(){
             var particular = {};
+
+            if(!$scope.consignment_particular){
+                $scope.warning('Please select a particular first');
+                return;
+            }
+
             var item = JSON.parse($scope.consignment_particular);
+
+
+            index = $scope.particularlist.findIndex(value => value.id == item.id);
+            if(index >= 0){
+                $scope.warning('This Particular already exist');
+                return;
+            }
+
             particular.name = item.name;
             particular.id = item.id;
             particular.amount = $scope.amount;
             $scope.particularlist.push(particular);
-            console.log(item);
-            console.log(numberToWord(563445.34, 'taka', 'paisa'));
+            // console.log($scope.particularlist[0].amount);
+
+            $scope.getVoucherAmount = function(){
+                var sum = 0;
+                for (var i = 0; i < $scope.particularlist.length; i++) {
+                    sum += parseFloat($scope.particularlist[i].amount);
+                }
+                return sum;
+            }
         }
+
         $scope.remove = function(index){
             $scope.particularlist.splice(index,1);
         }
-        
-        function numberToWord(n, unit_whole, unit_fraction) {
-            var nums = n.toString().split('.')
-            var whole = inWhole(nums[0])
-            if (nums.length == 2) {
-                var fraction = inFraction(nums[1])
-                return whole + unit_whole +' and ' + fraction +  unit_fraction;
-            } else {
-                return whole;
-            }
+
+
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            new PNotify(data);
         }
-        function inWhole (num) {
-            var a = ['','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine ','ten ','eleven ','twelve ','thirteen ','fourteen ','fifteen ','sixteen ','seventeen ','eighteen ','nineteen '];
-            var b = ['', '', 'twenty','thirty','forty','fifty', 'sixty','seventy','eighty','ninety'];
-            if ((num = num.toString()).length > 9) return 'overflow';
-            n = ('000000000' + num).substr(-9).match(/^(\d{2})(\d{2})(\d{2})(\d{1})(\d{2})$/);
-            if (!n) return; var str = '';
-            str += (n[1] != 0) ? (a[Number(n[1])] || b[n[1][0]] + ' ' + a[n[1][1]]) + 'crore ' : '';
-            str += (n[2] != 0) ? (a[Number(n[2])] || b[n[2][0]] + ' ' + a[n[2][1]]) + 'lakh ' : '';
-            str += (n[3] != 0) ? (a[Number(n[3])] || b[n[3][0]] + ' ' + a[n[3][1]]) + 'thousand ' : '';
-            str += (n[4] != 0) ? (a[Number(n[4])] || b[n[4][0]] + ' ' + a[n[4][1]]) + 'hundred ' : '';
-            str += (n[5] != 0) ? ((str != '') ? 'and ' : '') + (a[Number(n[5])] || b[n[5][0]] + ' ' + a[n[5][1]]) : '';
-            return str;
-        }
-        function inFraction (num) {
-            var a = ['zero ','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine s'];
-            var str = '';
-            for(i=0; i<num.length; i++){
-                str += +a[num[i]];
-            }
-            return str;
-        }
-        
+
     });
 </script>
 @endsection

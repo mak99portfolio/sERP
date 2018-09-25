@@ -45,7 +45,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                      <div class="form-group">
                                         <label>PI No.</label>
                                         <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
@@ -55,10 +55,10 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                </div> -->
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','PI Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
-                                </div>
+                                </div> -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Beneficiary Bank Info</div>
@@ -99,20 +99,20 @@
                                         <legend>Table of Terms and Conditions:</legend>
                                         <div class="row">
 
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}   
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}   
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}   
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}   
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                         </div>
                                     </fieldset>
@@ -155,22 +155,19 @@
                                                         <input ng-disabled="!checked[$index]" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*unit_price[$index]" type="text" class="form-control input-sm" disabled>
                                                     </td>
                                                 </tr>
-<!--                                                <tr>
+                                               <tr>
                                                     <td colspan="4" class="text-right">Sub Total =</td>
                                                     <td><% subtotal() %></td>
-                                                </tr>-->
-                                                <tr>
-                                                    <td colspan="4" class="text-right" name="freight">Add Fright =</td>
-                                                    <td> <input type="text" name="fright" class="form-control input-sm"></td>
                                                 </tr>
-<!--                                                <tr>
+                                                <tr>
+                                                    <td colspan="4" class="text-right">Add Freight =</td>
+                                                    <td> <input type="number" class="form-control input-sm" name="freight" ng-model="freight"></td>
+                                                </tr>
+                                                <tr>
                                                     <td colspan="4" class="text-right">Grand Total =</td>
-                                                    <td></td>
+                                                    <td> <% grandTotal() %> </td>
                                                 </tr>
-                                                <tr>
-                                                    <td colspan="4" class="text-right">Amount In word =</td>
-                                                    <td></td>
-                                                </tr>-->
+                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -198,11 +195,24 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        
+
+        $scope.freight = 100 ;
+
         $scope.itemlist = [];
         $scope.getLc = function () {
             $scope.itemlist = [];
             $scope.addToItemList($scope.letter_of_credit_id);
+
+
+            $scope.grandTotal = function(){
+            var total = 0;
+            total = $scope.subtotal() + parseInt($scope.freight);
+            console.log("sdfds", $scope.subtotal());
+            console.log("aaa", parseInt($scope.freight));
+            return total;
+        }
+            console.log("freight", parseInt($scope.freight));
+
         }
         $scope.addToItemList = function(id){
             let url = "{{URL::to('get-lc')}}/" + id;
@@ -216,14 +226,25 @@
                         $scope.beneficiary_ac_name = response.data.beneficiary_ac_name;
                         $scope.beneficiary_bank_name = response.data.beneficiary_bank_name;
                         $scope.beneficiary_branch_name = response.data.beneficiary_branch_name;
+                        console.log($scope.itemlist);
                     });
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
         }
         $scope.subtotal = function(){
-            return $scope.sum(amount);
+            // console.log("sfsdf", $scope.amount);
+            // return $scope.sum($scope.amount);
+            var amount = [];
+            var sum = 0;
+                for (var i = 0; i < $scope.itemlist.length; i++) {
+                    amount.push(parseInt($scope.itemlist[i].quantity * $scope.itemlist[i].unit_price));
+                    sum += amount[i];
+                }
+                return sum;
         }
+
+
         $scope.sum = function(arr){
             var sum = 0;
             for(i=0; i<arr.length; i++){

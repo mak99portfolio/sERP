@@ -120,5 +120,6 @@ Route::get('/get-local-requisition/{ids}', ['as' => 'get-local-requisition', 'us
 Route::get('/get-po/{ids}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOIds']);
 Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
-Route::get('/get-all-product', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
+Route::get('/get-all-product/{product_group_id}', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
 Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
+Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);

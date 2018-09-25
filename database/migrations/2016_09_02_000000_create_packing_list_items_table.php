@@ -18,6 +18,7 @@ class CreatePackingListItemsTable extends Migration {
             $table->integer('product_id')->unsigned();
             $table->integer('per_unit_weight');
             $table->integer('quantity');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

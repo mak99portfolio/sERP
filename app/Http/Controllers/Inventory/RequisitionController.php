@@ -32,7 +32,7 @@ class RequisitionController extends Controller{
 
         $data=[
             'inventory_requisition'=>new \App\InventoryRequisition,
-            'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_id', 'IR'),
+            'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_id', 'IR00'),
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
@@ -142,7 +142,10 @@ class RequisitionController extends Controller{
         $requisition->creator()->associate(\Auth::user());
         $requisition->requested_items()->delete();
 
-        $issue=\App\InventoryIssue::create([]);
+        $issue=\App\InventoryIssue::create([
+            'inventory_issue_no'=>uCode('inventory_issues.inventory_issue_no', 'IIS00')
+        ]);
+
         $requisition->issue()->save($issue);
 
         $requisition->save();

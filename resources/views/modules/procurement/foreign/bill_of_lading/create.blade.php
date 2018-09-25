@@ -12,32 +12,27 @@
         {{-- Content here --}}
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
+                <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Bill of Lading</h2>
                         <a href="{{route('bill-of-lading.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Bill of Lading List</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" ng-controller="myCtrl">
                         <br />
                         <form class="form-horizontal form-label-left input_mask" autocomplete="off">
                             <div class="row">
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('commercial_invoice_id', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                    {{ BootForm::select('bill_of_lading_issue_no', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_issue_date','readonly']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="">LC No</label>
-                                            <select class="form-control input-sm select2">
-                                                <option>option1</option>
-                                            </select>
-                                        </div>
+                                        {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_no','readonly']) }}
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('bill_of_lading_issue_date','LC Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                            {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_date','readonly']) }}
                                         </div>
                                 {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm']) }}
@@ -52,17 +47,17 @@
                                                     <tr>
                                                         <th scope="col" colspan="3">Commercial Invoice List</th>
                                                     </tr>
-                                                    <tr>
+                                                    <tr >
                                                         <th scope="col">#</th>
                                                         <th scope="col">Commercial Invoice No</th>
                                                         <th scope="col">Commercial Invoice Date</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td scope="col">01</td>
-                                                        <td scope="col">45477</td>
-                                                        <td scope="col">5-01-2018</td>
+                                                    <tr ng-repeat="ci in cilist">
+                                                        <td scope="col"><% $index+1 %></td>
+                                                        <td scope="col"><% ci.commercial_invoice_no %></td>
+                                                        <td scope="col"><% ci.date %></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -82,10 +77,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td scope="col">01</td>
-                                                        <td scope="col">MEF Product</td>
-                                                        <td scope="col">5</td>
+                                                    <tr ng-repeat="item in itemlist">
+                                                        <td scope="col"><% $index+1 %></td>
+                                                        <td scope="col"><% item.name %></td>
+                                                        <td scope="col"><% item.quantity %></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
@@ -133,16 +128,16 @@
                                         <div class="panel-heading">LC Issue Bank</div>
                                         <div class="panel-body">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('issue_ac_no','A/C No', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('issue_ac_no','A/C No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_no']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_branch_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_bank_name']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -204,4 +199,32 @@
         {{--end Content here --}}
     </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+     var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+        
+        $scope.itemlist = [];
+        $scope.searchBL = function () {
+            $scope.itemlist = [];
+            $scope.addToItemList($scope.bl_no);
+        }
+        $scope.addToItemList = function(bl_no){
+            let url = "{{URL::to('get-all-by-bl-no')}}/" + bl_no;
+            $http.get(url)
+                    .then(function(response) {
+                        console.log(response.data);
+                        $scope.itemlist = response.data.items;
+                        $scope.cilist = response.data.ci;
+                        $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
+
+                    });
+        }
+    });
+</script>
 @endsection

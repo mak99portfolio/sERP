@@ -33,7 +33,7 @@ class BillOfLadingController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'id')->prepend('-- Select Bill Number --', ''));
+        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'bl_no')->prepend('-- Select Bill Number --', ''));
         $view->with('exproter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         return $view;

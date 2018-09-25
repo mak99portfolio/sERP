@@ -27,7 +27,8 @@
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr class='primary'>
-                            <th>Requisition ID</th>
+                            <th>Issue No</th>
+                            <th>Requisition No</th>
                             <th>Type</th>
                             <th>Sender</th>
                             <th>Requested To</th>
@@ -41,7 +42,8 @@
                     <tbody>
                     @foreach($paginate->table as $row)
                         <tr>
-                            <td>{{ $row->requisition->id }}</td>
+                            <td>{{ $row->inventory_issue_no }}</td>
+                            <td>{{ $row->requisition->inventory_requisition_id }}</td>
                             <td>{{ $row->requisition->type->name }}</td>
                             <td>{{ $row->requisition->sender->name }}</td>
                             <td>{{ $row->requisition->requested_to->name }}</td>

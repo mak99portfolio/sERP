@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\ProductGroup;
 use App\ForeignRequisition;
 use App\PurchaseOrder;
 use App\ProformaInvoice;
@@ -177,8 +178,13 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getAllProduct() {
-        return response()->json(Product::all());
+    public function getAllProduct($product_group_id) {
+        $product_group = ProductGroup::find($product_group_id);
+        if($product_group){
+            return response()->json(Product::where('product_group_id', $product_group_id)->get());
+        }else{
+            return response()->json(Product::all());
+        }
     }
 
     public function getCiByCiId($id) {

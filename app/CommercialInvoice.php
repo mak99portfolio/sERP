@@ -30,7 +30,7 @@ class CommercialInvoice extends Model {
         return $this->hasMany('App\CommercialInvoiceItem');
     }
     function packingList() {
-        return $this->hasMany('App\PackingList');
+        return $this->hasOne('App\PackingList');
     }
     function LetterOfCredit() {
         return $this->belongsTo('App\LetterOfCredit');

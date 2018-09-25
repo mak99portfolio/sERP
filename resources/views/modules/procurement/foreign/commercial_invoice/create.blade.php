@@ -167,10 +167,7 @@
                                                     <td colspan="4" class="text-right">Grand Total =</td>
                                                     <td> <% grandTotal() %> </td>
                                                 </tr>
-                                                <tr>
-                                                    <td colspan="4" class="text-right">Amount In word =</td>
-                                                    <td></td>
-                                                </tr>
+                                               
                                             </tbody>
                                         </table>
                                     </div>

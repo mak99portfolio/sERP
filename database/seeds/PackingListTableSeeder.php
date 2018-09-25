@@ -14,7 +14,6 @@ class PackingListTableSeeder extends Seeder {
             [
                 'commercial_invoice_id' => 1,
                 'currency' => 'Dollar',
-                'customer_code' => 'C13434',
                 'notes' => 'Notes 2',
                 'net_total' => 100.34,
                 'gross_total' => 100,
@@ -23,7 +22,6 @@ class PackingListTableSeeder extends Seeder {
             [
                 'commercial_invoice_id' => 2,
                 'currency' => 'Dollar',
-                'customer_code' => 'C15534',
                 'notes' => 'Notes 2',
                 'net_total' => 200.34,
                 'gross_total' => 200,

@@ -84,7 +84,6 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Currency:</strong> {{$packingList->currency}}</td>
-                                        <td><strong>Customer Code:</strong> {{$packingList->customer_code}}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tbody>

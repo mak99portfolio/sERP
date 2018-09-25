@@ -20,20 +20,21 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form class="form-horizontal form-label-left input_mask" autocomplete="off">
+                        <form class="form-horizontal form-label-left input_mask" autocomplete="off"  action="{{route('bill-of-lading.store')}}" method="POST">
+                                @csrf
                             <div class="row">
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('bill_of_lading_issue_no', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_issue_date','readonly']) }}
+                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_no','readonly']) }}
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_date','readonly']) }}
-                                        </div>
+                                    {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
+                                 </div>
+                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date']) }}
+                                 </div>
                                 {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
@@ -108,15 +109,8 @@
                                     {{ BootForm::select('shipping_agency_id', 'Shipping Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::textarea('shipping_agency_address','Shipping Agency Address', null, ['class'=>'form-control input-sm','rows'=>"1"]) }}
-                                    </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::text('local_agency_name','Local Agency Name', null, ['class'=>'form-control input-sm']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::textarea('local_agency_address','Local Agency Address', null, ['class'=>'form-control input-sm','rows'=>"1"]) }}
-                                </div>
-                                
+                                     {{ BootForm::text('local_agency_id','Local Agency Name', null, ['class'=>'form-control input-sm']) }}
+                                </div>                              
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('exproter_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
@@ -146,10 +140,10 @@
                                         {{ BootForm::text('acceptance','Acceptance', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('port_of_loading', 'Port Of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                        {{ BootForm::select('port_of_loading_id', 'Port Of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('port_of_dischare', 'Port Of Dischrge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                        {{ BootForm::select('port_of_dischare_id', 'Port Of Dischrge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::text('place_of_delivery','Place Of Delivery', null, ['class'=>'form-control input-sm']) }}
@@ -221,7 +215,14 @@
                         console.log(response.data);
                         $scope.itemlist = response.data.items;
                         $scope.cilist = response.data.ci;
+                        $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bl_date;
                         $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
+                        $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
+                        console.log('bl_issue_date------', $scope.letter_of_credit_no);
+                        $scope.issue_ac_no = response.data.lc.issue_ac_no;
+                        $scope.issue_ac_name = response.data.lc.issue_ac_name;
+                        $scope.issue_branch_name = response.data.lc.issue_branch_name;
+                        $scope.issue_bank_name = response.data.lc.issue_bank_name;
 
                     });
         }

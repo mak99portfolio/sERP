@@ -21,7 +21,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include("partials/flash_msg")
-                        <form class="form-horizontal form-label-left" action="{{route('commercial-invoice.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('commercial-invoice.store')}}" method="POST">
                             @csrf
                             <div class="row">
 

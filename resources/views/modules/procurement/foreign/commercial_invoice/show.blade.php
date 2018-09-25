@@ -134,7 +134,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Add Fright</b></td>
-                                        <td>$180</td>
+                                        <td>{{$commercialInvoice-> fright}}</td>
                                     </tr>
                                     <tr>
                                         <td></td>

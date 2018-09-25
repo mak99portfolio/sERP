@@ -26,12 +26,13 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Commercial Invoice No:</strong> 125</td>
-                                        <td><strong>Date:</strong> 125</td>
+                                        <td><strong>Commercial Invoice No:</strong> {{$packingList->commercial_invoice->commercial_invoice_no}}</td>
+                                        <td><strong>Date:</strong>  {{$packingList->commercial_invoice->date}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>LC No:</strong> 125</td>
-                                        <td><strong>LC Date:</strong> 125</td>
+   
+                                        <td><strong>LC No:</strong> {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_no}}</td>
+                                        <td><strong>LC Date:</strong>  {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -43,24 +44,24 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> 125</td>
-                                        <td><strong>A/C Name :</strong> 125</td>
-                                        <td><strong>Branch Name :</strong> 125</td>
+                                        <td><strong>A/C No :</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_ac_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_ac_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Bank Address:</strong> 125</td>
+                                        <td colspan="3"><strong>Bank Name:</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_bank_name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Bl No:</strong> 125</td>
-                                        <td><strong>Bl Date:</strong> 125</td>
+                                        <td><strong>Bl No:</strong> {{$packingList->commercial_invoice->bl_no}}</td>
+                                        <td><strong>Bl Date:</strong> {{$packingList->commercial_invoice->bl_date}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Vessel No / Flight No:</strong> 125</td>
-                                        <td><strong>Container No:</strong> 125</td>
+                                        <td><strong>Vessel No / Flight No:</strong> {{$packingList->commercial_invoice->vessel_no}}</td>
+                                        <td><strong>Container No:</strong> {{$packingList->commercial_invoice->container_no}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -72,18 +73,18 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Port of Loading:</strong> 125</td>
-                                        <td><strong>Port of Discharge:</strong> 125</td>
-                                        <td><strong>Country of Final Destination:</strong> 125</td>
+                                        <td><strong>Port of Loading:</strong> {{$packingList->commercial_invoice->loading_port->name}}</td>
+                                        <td><strong>Port of Discharge:</strong> {{$packingList->commercial_invoice->discharge_port->name}}</td>
+                                        <td><strong>Country of Final Destination:</strong> {{$packingList->commercial_invoice->destination_country->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Final Destination:</strong> 125</td>
-                                        <td><strong>Country of Origin of Goods:</strong> 125</td>
-                                        <td><strong>Exporter:</strong>125</td>
+                                        <td><strong>Final Destination:</strong> {{$packingList->commercial_invoice->city->name}}</td>
+                                        <td><strong>Country of Origin of Goods:</strong> {{$packingList->commercial_invoice->country_goods->name}}</td>
+                                        <td><strong>Exporter:</strong>{{$packingList->commercial_invoice->LetterOfCredit->vendor->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Currency:</strong> 125</td>
-                                        <td><strong>Customer Code:</strong> 125</td>
+                                        <td><strong>Currency:</strong> {{$packingList->currency}}</td>
+                                        <td><strong>Customer Code:</strong> {{$packingList->customer_code}}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tbody>
@@ -91,7 +92,7 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Notes:</strong> 125</td>
+                                        <td><strong>Notes:</strong>  {{$packingList->notes}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -110,20 +111,23 @@
                                 </thead>
 
                                 <tbody>
+                                @foreach($packingList->items as $key=>$item)
                                     <tr>
-                                        <td>1</td>
-                                        <td>abc</td>
-                                        <td>1</td>
-                                        <td>5</td>
-                                        <td>125</td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$item->product->name}}</td>
+                                        <td>{{$item->quantity}}</td>
+                                        <td>{{$item->per_unit_weight}}</td>
+                                        <td>{{($item->quantity * $item->per_unit_weight)}}</td>
+                                     
                                     </tr>
+                                    @endforeach
                                     <tr>
                                         <td colspan="4" class="text-right">Net Total =</td>
-                                        <td>125</td>
+                                        <td>{{$packingList->net_total}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" class="text-right">Gross Total =</td>
-                                        <td>125</td>
+                                        <td>{{$packingList->gross_total}}</td>
                                     </tr>
                                 </tbody>
                             </table>

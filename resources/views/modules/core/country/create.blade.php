@@ -16,22 +16,11 @@
                         @include('partials.flash_msg')
                         <form class="form-horizontal form-label-left" action="{{route('country.store')}}" method="POST">
                             {{csrf_field()}}
-                            
-                              <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name1">Name 
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="name1"  data-validate-length-range="6" data-validate-words="2" name="name1"  required="required" type="text">
-                                        </div>
-                                    </div>
-                            
-                            
-                            
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('name', 'Country Name', null, ['class'=>'form-control input-sm item','data-validate-length-range'=>'6', 'data-validate-words'=>'2', 'required'=>'required']) }}
+                            <div class="col-md-6 offset-md-3 col-sm-6 col-xs-12">
+                                {{ BootForm::text('name', 'Country Name', null, ['class'=>'form-control input-sm','data-validate-length-range'=>'6', 'data-validate-words'=>'2', 'required'=>'required']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm','data-validate-length-range'=>'6', 'data-validate-words'=>'2', 'required'=>'required']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
@@ -49,4 +38,13 @@
         <div class="clearfix"></div>
     </div>
 </div>
+@endsection
+
+
+@section('script')
+<script>
+
+   $( ".form-group" ).addClass( "item" );
+    
+</script>
 @endsection

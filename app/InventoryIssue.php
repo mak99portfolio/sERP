@@ -13,7 +13,7 @@ class InventoryIssue extends Model{
 	}
 
 	public function allocated_items(){
-		return $this->hasMany('App\InventoryIssueItem');
+		return $this->hasMany('App\InventoryIssueItem', 'inventory_issue_id');
 	}
 
 	public function initial_approver(){
@@ -26,6 +26,10 @@ class InventoryIssue extends Model{
 
 	public function items(){
 		return $this->hasMany('App\InventoryIssueItem', 'inventory_issue_id');
+	}
+
+	public function return_items(){
+		return $this->hasMany('App\InventoryIssueReturnItem', 'inventory_issue_id');
 	}
 
 }

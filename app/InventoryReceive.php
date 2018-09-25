@@ -16,6 +16,10 @@ class InventoryReceive extends Model{
 		return $this->hasOne('App\InventoryReceiveLocal', 'inventory_receive_id');
 	}
 
+	public function internal(){
+		return $this->hasOne('App\InventoryReceiveInternal', 'inventory_receive_id');
+	}
+
 	public function stocks(){
 		return $this->hasMany('App\Stock', 'inventory_receive_id');
 	}
@@ -38,6 +42,10 @@ class InventoryReceive extends Model{
 
 	public function working_unit(){
 		return $this->belongsTo('App\WorkingUnit', 'working_unit_id');
+	}
+
+	public function issue_return(){
+		return $this->hasOne('App\InventoryIssueReturn', 'inventory_receive_id');
 	}
 
 }

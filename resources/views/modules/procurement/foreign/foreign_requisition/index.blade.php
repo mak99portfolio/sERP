@@ -25,7 +25,7 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Requisition Title</th>
                                         <th>Requisition No</th>
                                         <th class="text-center">Action</th>
@@ -37,7 +37,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->requisition_title}}</td>
                                         <td>{{$item->requisition_no}}</td>
-                                        <td class="text-center">
+                                        <td  width="30" class="text-center">
                                             <a href="{{route('foreign-requisition.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>

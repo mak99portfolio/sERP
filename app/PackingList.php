@@ -13,7 +13,6 @@ class PackingList extends Model
     protected $fillable = [
         'commercial_invoice_id',
         'currency',
-        'customer_code',
         'notes',
         'net_total',
         'gross_total'

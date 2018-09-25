@@ -96,7 +96,7 @@
                                                     <th>UOM</th>
                                                     <th>Quantity</th>
                                                     <th>Unit Price</th>
-                                                    <th>Total Amount</th>
+                                                    <th class="text-center">Total Amount</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -110,7 +110,7 @@
                                                     <td><% item.uom %></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
-                                                    <td>
+                                                    <td class="text-right">
                                                     <% quantity[$index]*unit_price[$index] %>
                                                     </td>
                                                 </tr>
@@ -135,8 +135,12 @@
                                         {{ BootForm::textarea('notes','Notes', null, ['class'=>'form-control input-sm','rows'=>2]) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
+                                        
+                                        <br />
+                                        <div class="ln_solid"></div>
                                         <div class="form-group">
-                                            <button type="submit" class="btn btn-primary">Save</button>
+                                            <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                            <a class="btn btn-default btn-sm" href="{{route('purchase-order.index')}}">Cancel</a>
                                         </div>
                                     </div>
                             </div>

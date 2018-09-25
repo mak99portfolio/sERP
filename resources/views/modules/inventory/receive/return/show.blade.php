@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Foreign Purchase Requisition Details')
+@section('title', 'Foreign Purchase Order Details')
 @section('content')
 
 <!-- page content -->
@@ -15,10 +15,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <a href="{{route('foreign-requisition.index')}}" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</a>
-                        <h2 class="text-center">Foreign Purchase Requisition Details</h2>
-                        <div class="pull-right">
-                            <button type="button" class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                        <h2>Internal Receive Details</h2>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                            <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Back</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -28,62 +28,58 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" colspan="2">Requisition</th>
+                                        <td colspan="3">Internal Receive</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td scope="row"><strong>Requisition No :</strong>{{$foreignRequisition->requisition_no}}</td>
-                                        <td><strong>Requisition Title :</strong>{{$foreignRequisition->requisition_title}}</td>
+                                        <td><strong>Receive No:</strong> 123</td>
+                                        <td><strong>Working Unit:</strong> 123</td>
+                                        <td><strong>Date:</strong> 123</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Requisition Purpose :</strong> {{$foreignRequisition->purpose->name}}</td>
-                                        <td scope="row"><strong>Requisition Priority :</strong> {{$foreignRequisition->priority->name}}</td>
+                                        <td><strong>Requisition No:</strong> 123</td>
+                                        <td><strong>Challan No:</strong>123</td>
+                                        <td><strong>Receive From:</strong>132</td>
                                     </tr>
                                     <tr>
-                                        <th scope="row" colspan="2">Reference No : req-11</th>
+                                        <td><strong>Product Status:</strong> 123</td>
+                                        <td><strong>Product Pattern:</strong>123</td>
+                                        <td></td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <td colspan="3"><strong>Remarks:</strong> 123</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th scope="col" colspan="5">Purchase Requistion Items</th>
+                                        <td colspan="7">Product List</td>
+                                    </tr>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>HS Code</td>
+                                        <td>Item name</td>
+                                        <td>Requisition Quantity</td>
+                                        <td>Issue Quantity</td>
+                                        <td>Return Quantity</td>
+                                        <td>Return Status</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th width="40">#</th>
-                                        <th>H.S. CODE</th>
-                                        <th>Product Name</th>
-                                        <th>Quantity</th>
-                                        <th>UOM</th>
-                                    </tr>
-                                    @foreach($foreignRequisition->items as $key=>$item)
-                                    <tr>
-                                        <td>{{$key+1}}</td>
-                                        <td>{{$item->product->hs_code}}</td>
-                                        <td>{{$item->product->name}}</td>
-                                        <td>{{$item->quantity}}</td>
-                                        <td>{{$item->product->unit_of_measurement->name}}</td>
-                                    </tr> 
-                                    @endforeach
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Date Issued : {{$foreignRequisition->issued_date}}</th>
-                                        <th scope="col">Date expected :{{$foreignRequisition->date_expected}}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td colspan="2">Notes : {{$foreignRequisition->note}}</td>
+                                        <td>01</td>
+                                        <td>255</td>
+                                        <td>Name</td>
+                                        <td>454</td>
+                                        <td>455</td>
+                                        <td>45</td>
+                                        <td>Active</td>
                                     </tr>
                                 </tbody>
                             </table>
+                    
                             <!--start approved by-->
                             <table id="print-footer" style="position: absolute; bottom: 20px; width: 100%; display: none;">
                                 <tr>

@@ -43,6 +43,8 @@ class CnfController extends Controller
             'commercial_invoice_id' => 'required',
             'vendor_id' => 'required',
             'consignee' => 'required',
+            'bill_of_lading_issue_no' => 'required',
+            'bill_of_lading_issue_date' => 'required',
             'bill_no' => 'required',
             'bill_date' => 'required',
             'bill_of_entry_no' => 'required',

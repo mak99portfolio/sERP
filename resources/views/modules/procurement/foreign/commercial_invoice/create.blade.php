@@ -21,7 +21,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include("partials/flash_msg")
-                        <form class="form-horizontal form-label-left" action="{{route('commercial-invoice.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('commercial-invoice.store')}}" method="POST">
                             @csrf
                             <div class="row">
 
@@ -45,17 +45,33 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
-                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                     <div class="form-group">
-                                        <label>PI No.</label>
-                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
-                                            <option value="">--Select LC No--</option>
-                                            @foreach($lc_list as $item)
-                                            <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
-                                            @endforeach
-                                        </select>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                        <table class="table table-bordered" ng-if="piinfo.length>0">
+                                            <thead class="bg-primary">
+                                               
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>PI No</th>
+                                                    <th>PI Date</th>
+                                                    <th>Customer Code</th>
+              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="info in piinfo">
+                                                 <td><% $index+1 %></td>
+                                                 <td><%info.proforma_invoice_no%></td>
+                                                 <td><%info.proforma_invoice_date%></td>
+                                                 <td><%info.customer_code%></td>
+                                                 
+                                                </tr>
+                                             
+                                               
+                                            </tbody>
+                                        </table>
                                     </div>
-                                </div> -->
+                                </div>
                                 <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','PI Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div> -->
@@ -197,10 +213,9 @@
     app.controller('myCtrl', function($scope, $http) {
 
         $scope.freight = 100 ;
-
-        $scope.itemlist = [];
         $scope.getLc = function () {
             $scope.itemlist = [];
+            $scope.piinfo = [];
             $scope.addToItemList($scope.letter_of_credit_id);
 
 
@@ -221,12 +236,15 @@
                         angular.forEach(response.data.items, function(value, key) {
                             $scope.itemlist.push(value);
                         });
+                        angular.forEach(response.data.pilist, function(value, key) {
+                            $scope.piinfo.push(value);
+                        });
                         $scope.letter_of_credit_date = response.data.letter_of_credit_date;
                         $scope.beneficiary_ac_no = response.data.beneficiary_ac_no;
                         $scope.beneficiary_ac_name = response.data.beneficiary_ac_name;
                         $scope.beneficiary_bank_name = response.data.beneficiary_bank_name;
                         $scope.beneficiary_branch_name = response.data.beneficiary_branch_name;
-                        console.log($scope.itemlist);
+                        console.log($scope.piinfo);
                     });
         }
         $scope.removeItem = function(index){

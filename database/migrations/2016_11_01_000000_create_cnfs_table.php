@@ -17,6 +17,8 @@ class CreateCnfsTable extends Migration
             $table->integer('commercial_invoice_id')->unsigned();
             $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->string('consignee');
+            $table->string('bill_of_lading_issue_no');
+            $table->string('bill_of_lading_issue_date');
             $table->string('bill_no');
             $table->string('bill_date');
             $table->string('bill_of_entry_no');

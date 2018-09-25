@@ -44,12 +44,33 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
-                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('pi_no','PI No', null, ['class'=>'form-control input-sm', 'ng-model'=>'pi_no','readonly'=>'readonly']) }}
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="table-responsive">
+                                        <table class="table table-bordered" ng-if="piinfo.length>0">
+                                            <thead class="bg-primary">
+                                               
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th>PI No</th>
+                                                    <th>PI Date</th>
+                                                    <th>Customer Code</th>
+              
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="info in piinfo">
+                                                 <td><% $index+1 %></td>
+                                                 <td><%info.proforma_invoice_no%></td>
+                                                 <td><%info.proforma_invoice_date%></td>
+                                                 <td><%info.customer_code%></td>
+                                                 
+                                                </tr>
+                                             
+                                               
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('pi_date','PI Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'pi_date','readonly'=>'readonly']) }}
-                                </div> -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Benefeciary Bank Info</div>
@@ -111,9 +132,7 @@
                                                 {{ BootForm::select('currency', 'Currency', ['Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm']) }}   
                                             </div>
 
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm']) }}
-                                            </div>
+                                       
                                         </div>
                                     </fieldset>
                                 </div>
@@ -190,10 +209,11 @@
     });
     app.controller('myCtrl', function($scope, $http) {
 
-    $scope.itemlist = [];
+    
     $scope.getCi = function () {
     //   alert($scope.commercial_invoice_id);
-    $scope.itemlist = [];
+    $scope.itemlist = [];  
+    $scope.piinfo = [];
     $scope.addToItemList($scope.commercial_invoice_id);
     }
     $scope.getLc = function () {
@@ -207,6 +227,9 @@
             angular.forEach(response.data.items, function(value, key) {
             $scope.itemlist.push(value);
             });
+            angular.forEach(response.data.pilist, function(value, key) {
+                            $scope.piinfo.push(value);
+                        });
             $scope.port_of_loading_port_name = response.data.port_of_loading_port_name;
             $scope.port_of_discharge_port_name = response.data.port_of_discharge_port_name;
             $scope.destination_city_name = response.data.destination_city_name;
@@ -224,6 +247,7 @@
             $scope.beneficiary_ac_name = response.data.beneficiary_ac_name;
             $scope.beneficiary_bank_name = response.data.beneficiary_bank_name;
             $scope.beneficiary_branch_name = response.data.beneficiary_branch_name;
+            console.log($scope.piinfo);
             });
     }
     

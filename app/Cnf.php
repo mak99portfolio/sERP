@@ -9,6 +9,8 @@ class Cnf extends Model
 {
     use SoftDeletes;
     protected $fillable = [
+        'bill_of_lading_issue_no',
+        'bill_of_lading_issue_date',
         'letter_of_credit_id',
         'commercial_invoice_id',
         'vendor_id',

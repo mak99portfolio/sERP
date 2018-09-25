@@ -128,6 +128,13 @@ class ReceiveInternalController extends Controller{
     }
 
     public function show(\App\InventoryReceive $receive_internal){
+
+        $data=[
+            'inventory_receive'=>$receive_internal,
+            'carbon'=>new \Carbon\Carbon
+        ];
+        
+        return view($this->path('show'), $data);
         
     }
 

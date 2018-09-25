@@ -42,7 +42,17 @@
                             <td>{{ title_case($row->receive_type) }}</td>
                             <td>{{ $row->working_unit->name }}</td>
                             <td>{{ $carbon->parse($row->receive_date)->diffForHumans() }}</td>
-                            <td>Details</td>
+                            <td>
+                            @if($row->receive_type=='foreign_purchase')
+                                {!! btnCustom(['title'=>'Show', 'url'=>route('receive-foreign-purchase.show', ['receive_foreign_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='local_purchase')
+                                {!! btnCustom(['title'=>'Show', 'url'=>route('receive-local-purchase.show', ['receive_local_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='internal_receive')
+                                {!! btnCustom(['title'=>'Show', 'url'=>route('receive-internal.show', ['receive_internal'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @elseif($row->receive_type=='receive_return')
+                                {!! btnCustom(['title'=>'Show', 'url'=>route('receive-return.show', ['receive_return'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
+                            @endif
+                            </td>
                             <td>
                             @if($row->receive_type=='foreign_purchase')
                                 {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-foreign-purchase.edit', ['receive_foreign_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}

@@ -29,8 +29,8 @@
                                     {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_issue_date','readonly']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_no','readonly']) }}
-                                    </div>
+                                    {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_no','readonly']) }}
+                                </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','ng-madel'=>'letter_of_credit_date','readonly']) }}
                                         </div>
@@ -94,7 +94,7 @@
                                         <!--end table-->
                                     </div>
 
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
@@ -116,7 +116,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::textarea('local_agency_address','Local Agency Address', null, ['class'=>'form-control input-sm','rows'=>"1"]) }}
                                 </div>
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('exproter_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
@@ -166,11 +166,11 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::select('move_type', 'Move Type', [''=>'-- select --','1'=>'Option'], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                         </div>
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::textarea('issue_place','Issue Place', null, ['class'=>'form-control input-sm','rows'=>"1"]) }}
                                 </div>
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('number_of_mtd','Number Of MTD', null, ['class'=>'form-control input-sm']) }}
                                 </div>
@@ -180,8 +180,8 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::text('requisition_date','Gross Weight', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                            
-                                
+
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <a href="#" class="btn btn-success btn-sm">Submit</a>
@@ -208,7 +208,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        
+
         $scope.itemlist = [];
         $scope.searchBL = function () {
             $scope.itemlist = [];

@@ -7,7 +7,10 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Unit Of Measurement </h2>
+                    <h2>Unit Of Measurement</h2>
+                    <div class="btn-group pull-right">
+                        <a href="{{route('unit-of-measurement.index')}}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;See Unit Of Measurement list</a>
+                    </div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

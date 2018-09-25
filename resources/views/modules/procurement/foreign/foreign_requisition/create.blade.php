@@ -154,6 +154,16 @@
                                         <h4 class="modal-title">Product List</h4>
                                     </div>
                                     <div class="modal-body" style="height: 75vh; overflow-y: auto">
+                                        <div class="col-sm-4 col-sm-offset-8">
+                                            <div class="form-group">
+                                                <select class="form-control select2" ng-init="group_id = 0" ng-model="group_id" ng-change="getAllProduct()">
+                                                    <option value="0" selected>All Group</option>
+                                                    @foreach ($product_group as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
                                         <table class="table table-bordered m-t-lg table-hover">
                                             <thead class="bg-default">
                                                 <tr>
@@ -245,7 +255,7 @@
             product_id = null;
         }
         $scope.getAllProduct = function(){
-            let url = "{{URL::to('get-all-product')}}";
+            let url = "{{URL::to('get-all-product')}}/" + $scope.group_id;
                 $http.get(url)
                         .then(function(response) {
                             $scope.productlist = response.data;

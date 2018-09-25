@@ -32,6 +32,25 @@ class CommercialInvoiceTableSeeder extends Seeder
                 'grand_total' => 20200
             ],
             [
+                'commercial_invoice_no' => 1221,
+                'date' => \Carbon\Carbon::now(),
+                'letter_of_credit_id' => 1,
+                'bl_no' => 452,
+                'bl_date' => \Carbon\Carbon::now(),
+                'vessel_no' => 25,
+                'container_no' => 28,
+                'port_of_loading_port_id' => 2,
+                'port_of_discharge_port_id' => 1,
+                'destination_city_id' => 1,
+                'country_goods_country_id' => 1,
+                'destination_country_id' => 2,
+                'notes' => 'Notes 3',
+                'sub_total_quantity' => 243,
+                'sub_total_amount' => 200000,
+                'freight' => 2000,
+                'grand_total' => 2002000
+            ],
+            [
                 'commercial_invoice_no' => 1122,
                 'date' => \Carbon\Carbon::now(),
                 'letter_of_credit_id' => 1,

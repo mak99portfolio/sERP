@@ -127,28 +127,28 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Sub Total</b></td>
-                                        <td>$180</td>
+                                        <td>{{$commercialInvoice->sub_total_amount}}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td><b>Add Fright</b></td>
-                                        <td>$180</td>
+                                        <td>{{$commercialInvoice->freight}}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td><b>Grand Total</b></td>
-                                        <td>$180</td>
+                                        <td>{{$commercialInvoice->freight+$commercialInvoice->sub_total_amount}}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td><b>Amount In Word</b></td>
-                                        <td>$180</td>
+                                        <td>{{number_to_word($commercialInvoice->freight+$commercialInvoice->sub_total_amount)}}</td>
                                     </tr>
                                 </tfoot>
                             </table>

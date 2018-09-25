@@ -61,8 +61,8 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Bl No:</strong> {{$commercialInvoice->bill_no}}</td>
-                                        <td><strong>Bl Date :</strong> {{$commercialInvoice->bill_date}}</td>
+                                        <td><strong>Bl No:</strong> {{$commercialInvoice->bl_no}}</td>
+                                        <td><strong>Bl Date :</strong> {{$commercialInvoice->bl_date}}</td>
                                         <td><strong>Vessel No / Flight No :</strong> {{$commercialInvoice->vessel_no}}</td>
                                     </tr>
                                     <tr>

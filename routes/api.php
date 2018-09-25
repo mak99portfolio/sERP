@@ -17,6 +17,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-/*
-Route::get('get_ci_by_ci_no/{id}', ['as' => 'get_ci_by_ci_no', 'uses' => 'ReceivePurchaseController@getCommercialInvoice']);
-*/
+
+// Route::get('get_ci_by_ci_no/{id}', ['as' => 'get_ci_by_ci_no', 'uses' => 'ReceivePurchaseController@getCommercialInvoice']);

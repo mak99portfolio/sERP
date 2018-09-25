@@ -181,7 +181,7 @@ class ApiController extends Controller {
     public function getAllProduct($product_group_id) {
         $product_group = ProductGroup::find($product_group_id);
         if($product_group){
-            return response()->json(Product::where('product_group_id', $product_group_id)->get());
+            return response()->json(Product::where('product_category_id', $product_group_id)->get());
         }else{
             return response()->json(Product::all());
         }

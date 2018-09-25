@@ -28,9 +28,7 @@
                                         <th scope="col">LC No</th>
                                         <th scope="col">CI No</th>
                                         <th scope="col">Bill No</th>
-                                        <th scope="col">Bill Date</th>
                                         <th scope="col">B/E No</th>
-                                        <th scope="col">B/E Date</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
@@ -41,9 +39,7 @@
                                         <td>{{ $item->letter_of_credit->letter_of_credit_no }}</td>
                                         <td>{{ $item->commercial_invoice->commercial_invoice_no }}</td>
                                         <td>{{ $item->bill_no }}</td>
-                                        <td>{{ $item->bill_date }}</td>
                                         <td>{{ $item->bill_of_entry_no }}</td>
-                                        <td>{{ $item->bill_of_entry_date }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('cnf.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

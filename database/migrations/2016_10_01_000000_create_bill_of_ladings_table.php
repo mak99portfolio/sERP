@@ -22,8 +22,8 @@ class CreateBillOfLadingsTable extends Migration
             $table->string('number_of_box');
             $table->integer('shipping_agency_id')->unsigned();
             $table->foreign('shipping_agency_id')->references('id')->on('vendors')->onDelete('cascade');
-            $table->string('local_agency_id');
-            $table->foreign('local_agency_id')->references('id')->on('vendors')->onDelete('cascade');
+            // $table->string('local_agency_id');
+            // $table->foreign('local_agency_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->integer('exproter_id')->unsigned();
             $table->foreign('exproter_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->string('consignee');

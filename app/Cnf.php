@@ -11,8 +11,8 @@ class Cnf extends Model
     protected $fillable = [
         'bill_of_lading_issue_no',
         'bill_of_lading_issue_date',
-        'letter_of_credit_id',
-        'commercial_invoice_id',
+        // 'letter_of_credit_id',
+        // 'commercial_invoice_id',
         'vendor_id',
         'consignee',
         'bill_no',

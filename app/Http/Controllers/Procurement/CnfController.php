@@ -39,8 +39,8 @@ class CnfController extends Controller
     {
         // dd($request->input());
         $request->validate([
-            'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
-            'commercial_invoice_id' => 'required',
+            // 'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
+            // 'commercial_invoice_id' => 'required',
             'vendor_id' => 'required',
             'consignee' => 'required',
             'bill_of_lading_issue_no' => 'required',

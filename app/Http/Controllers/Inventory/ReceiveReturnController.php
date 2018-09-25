@@ -113,8 +113,14 @@ class ReceiveReturnController extends Controller{
     }
 
 
-    public function show(\App\InventoryReceiveReturn $receive_return){
-        
+    public function show(\App\InventoryReceive $receive_return){
+
+        $data=[
+            'inventory_receive'=>$receive_return
+        ];
+
+        return view($this->path('show'), $data);
+
     }
 
 

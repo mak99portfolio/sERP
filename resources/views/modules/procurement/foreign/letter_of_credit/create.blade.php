@@ -51,12 +51,12 @@
                                     {{ BootForm::select('currency', 'Currency', [''=>'-- select currency --','1'=>'Doller'], null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                             </div>
-                            <div class="row m-t-20"> 
+                            <div class="row m-t-20">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Beneficiary Bank info</div>
                                         <div class="panel-body">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">                    
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ BootForm::text('beneficiary_ac_no','A/C No', null, ['class'=>'form-control input-sm','required']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -210,25 +210,25 @@
                                             <tr>
                                                 <td colspan="5">Sub Total</td>
                                                 <td>520</td>
-        
+
                                                 <td colspan="2"></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5">Add freight</td>
                                                 <td>520</td>
-        
+
                                                 <td colspan="2"></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5">Grand Total</td>
                                                 <td>520</td>
-        
+
                                                 <td colspan="2"></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="5">Amount in Word</td>
                                                 <td>one thousand five hundred </td>
-        
+
                                                 <td colspan="2"></td>
                                             </tr>
                                         </tfoot> -->
@@ -336,7 +336,7 @@ $(document).ready(function () {
         cols += '<td>'+ counter + '</td>';
         cols += '<td><input type="text" class="form-control" id="lca_no_value' + counter + '" name="mail' + counter + '"/></td>';
         cols += '<td><input type="button" class="ibtnDel btn btn-danger btn-sm"  value="Delete"></td>';
-         
+
         newRow.append(cols);
         $('#lca_no_table').append(newRow);
         $("#lca_no_value" + counter).val(lca_no);
@@ -346,7 +346,7 @@ $(document).ready(function () {
 
 
     $('#lca_no_table').on("click", ".ibtnDel", function (event) {
-        $(this).closest("tr").remove();       
+        $(this).closest("tr").remove();
         counter -= 1
     });
 

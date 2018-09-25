@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LetterOfCreditRequest;
 use App\LetterOfCredit;
-use App\Vendor;
-use App\ProformaInvoice;
-use App\LetterOfCreditProformaInvoice;
 use App\LetterOfCreditApplicationNumber;
 use App\LetterOfCreditItem;
-use Illuminate\Http\Request;
+use App\ProformaInvoice;
+use App\Vendor;
+use DB;
 use Auth;
 use Session;
+
 class LetterOfCreditController extends Controller
 {
     /**
@@ -35,8 +36,8 @@ class LetterOfCreditController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
-        $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no','id')->prepend('-- Select proforma invoice --', ''));
+        $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('-- Select Vendor --', ''));
+        $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no', 'id')->prepend('-- Select proforma invoice --', ''));
         return $view;
     }
 
@@ -46,48 +47,25 @@ class LetterOfCreditController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LetterOfCreditRequest $request)
     {
-        // dd($request->input());
-        $request->validate([
-            'letter_of_credit_no' => 'required',
-            'letter_of_credit_date' => 'required',
-            // 'letter_of_credit_value' => 'required',
-            'vendor_id' => 'required',
-            // 'letter_of_credit_expire_date' => 'required',
-            // 'letter_of_credit_status' => 'required',
-            // 'letter_of_credit_shipment_date' => 'required',
-            // 'currency' => 'required',
-            // 'beneficiary_ac_no' => 'required',
-            // 'beneficiary_ac_name' => 'required',
-            // 'beneficiary_branch_name' => 'required',
-            // 'beneficiary_bank_name' => 'required',
-            // 'issue_ac_no' => 'required',
-            // 'issue_ac_name' => 'required',
-            // 'issue_branch_name' => 'required',
-            // 'issue_bank_name' => 'required',
-            // 'partial_shipment' => 'required',
-            // 'transhipment_information' => 'required',
-        ]);
         $letter_of_credit = new LetterOfCredit;
         $letter_of_credit->fill($request->input());
         $letter_of_credit->creator_user_id = Auth::id();
         $letter_of_credit->save();
-
         $letter_of_credit->proforma_invoices()->sync($request->proforma_invoice_ids);
-
-        $lca_nos = Array();
-        foreach($request->lca_nos as $lca_no){
-            array_push($lca_nos, new LetterOfCreditApplicationNumber($lca_no));
+        if ($request->lca_nos) {
+            $lca_nos = array();
+            foreach ($request->lca_nos as $lca_no) {
+                array_push($lca_nos, new LetterOfCreditApplicationNumber($lca_no));
+            }
+            $letter_of_credit->application_numbers()->saveMany($lca_nos);
         }
-        $letter_of_credit->application_numbers()->saveMany($lca_nos);
-       
-        $items = Array();
-        foreach($request->items as $item){
+        $items = array();
+        foreach ($request->items as $item) {
             array_push($items, new LetterOfCreditItem($item));
         }
         $letter_of_credit->items()->saveMany($items);
-
         Session::put('alert-success', 'Letter of credit created successfully');
         return redirect()->route('letter-of-credit.index');
     }
@@ -101,7 +79,7 @@ class LetterOfCreditController extends Controller
     public function show(LetterOfCredit $letterOfCredit)
     {
         $view = view($this->view_root . 'show');
-        $view->with('letterOfCredit',$letterOfCredit);
+        $view->with('letterOfCredit', $letterOfCredit);
         return $view;
     }
 
@@ -138,5 +116,5 @@ class LetterOfCreditController extends Controller
     {
         //
     }
-    
+
 }

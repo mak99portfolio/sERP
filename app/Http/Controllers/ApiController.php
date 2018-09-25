@@ -2,25 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\CommercialInvoice;
+use App\CommercialInvoiceItem;
+use App\ForeignRequisition;
+use App\LetterOfCredit;
+use App\LocalRequisition;
 use App\Product;
 use App\ProductGroup;
-use App\ForeignRequisition;
-use App\PurchaseOrder;
 use App\ProformaInvoice;
-use App\LetterOfCredit;
-use App\CommercialInvoice;
-use App\LocalRequisition;
-use App\CommercialInvoiceItem;
+use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
+use Illuminate\Http\Request;
 
-class ApiController extends Controller {
+class ApiController extends Controller
+{
 
-    public function searchProduct(Request $request) {
+    public function searchProduct(Request $request)
+    {
         $products = Product::where('name', 'LIKE', '%' . $request->term . '%')
-                ->take(10)
-                ->get();
+            ->take(10)
+            ->get();
 
         $results = array();
         foreach ($products as $product) {
@@ -32,7 +34,8 @@ class ApiController extends Controller {
         return response()->json($results);
     }
 
-    public function getLcByLcId($id) {
+    public function getLcByLcId($id)
+    {
         $lc = LetterOfCredit::find($id);
 
         $lc_items = $lc->items;
@@ -70,7 +73,8 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getProductByProductId($id) {
+    public function getProductByProductId($id)
+    {
         $product = Product::find($id);
         $physical_stock = Stock::where('product_id', $id)->sum('receive_quantity') - Stock::where('product_id', $id)->sum('issue_quantity');
         $goods_in_transit = CommercialInvoiceItem::where('product_id', $id)->sum('quantity');
@@ -89,7 +93,8 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getPiByPiItem($id) {
+    public function getPiByPiItem($id)
+    {
         $pi = ProformaInvoice::find($id);
         $data = [];
         $items = $pi->items;
@@ -106,7 +111,8 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getPOByPOIds($ids) {
+    public function getPOByPOIds($ids)
+    {
         $data = [];
         foreach (explode(',', $ids) as $id) {
             $po = PurchaseOrder::find($id);
@@ -135,7 +141,8 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getForeignRequisitionByRequisitionIds($ids) {
+    public function getForeignRequisitionByRequisitionIds($ids)
+    {
         $data = [];
         foreach (explode(',', $ids) as $id) {
             $req = ForeignRequisition::find($id);
@@ -163,7 +170,8 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getLocalRequisitionByRequisitionId($id) {
+    public function getLocalRequisitionByRequisitionId($id)
+    {
         $req = LocalRequisition::find($id);
         $items = $req->items;
         foreach ($items as $item) {
@@ -178,7 +186,8 @@ class ApiController extends Controller {
         return response()->json($data);
     }
 
-    public function getAllProduct($product_group_id) {
+    public function getAllProduct($product_group_id)
+    {
         $product_group = ProductGroup::find($product_group_id);
         if($product_group){
             return response()->json(Product::where('product_category_id', $product_group_id)->get());
@@ -187,7 +196,8 @@ class ApiController extends Controller {
         }
     }
 
-    public function getCiByCiId($id) {
+    public function getCiByCiId($id)
+    {
         $ci = CommercialInvoice::find($id);
         $ci_items = $ci->items;
         foreach ($ci_items as $ci_item) {
@@ -225,5 +235,34 @@ class ApiController extends Controller {
         $data['vendor_name'] = $ci->LetterOfCredit->vendor->name;
         return response()->json($data);
     }
+    public function getAllByBlNo($bl_no)
+    {
+        $data['ci'] = CommercialInvoice::where('bl_no',$bl_no)->get();
+        $data['items'] = [];
+        foreach($data['ci'] as $ci){
+            foreach($ci->items as $item){
+                $item_exist = false;
+                foreach ($data['items'] as $key => $value) {
+                    if ($value['product_id'] == $item->product->id) {
+                        $data[$key]['quantity'] += $item->quantity;
+                        $item_exist = true;
+                        break;
+                    }
+                }
+                if (!$item_exist) {
+                    $data['items'][] = [
+                        'product_id' => $item->product->id,
+                        'name' => $item->product->name,
+                        'hs_code' => $item->product->hs_code,
+                        'uom' => $item->product->unit_of_measurement->name,
+                        'quantity' => $item->quantity,
+                    ];
+                }
+            }
+        }
+        
+        $data['lc'] = LetterOfCredit::find(CommercialInvoice::where('bl_no',$bl_no)->first()->letter_of_credit_id);
 
+        return response()->json($data);
+    }
 }

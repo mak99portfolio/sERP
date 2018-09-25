@@ -90,15 +90,16 @@ class ReceiveController extends Controller{
             $data=[];
 
             foreach($products as $row){
+
+                $temp=[];
+                foreach($row as $field=>$value) $temp[$field]=$value;
+
+                $product=\App\Product::find($temp['id']);
+
+                $temp['hs_code']=$product->hs_code;
+                $temp['name']=$product->name;
                 
-                $product=\App\Product::find($row['id']);
-                
-                array_push($data, [
-                    'id'=>$row['id'],
-                    'hs_code'=>$product->hs_code,
-                    'name'=>$product->name,
-                    'quantity'=>$row['quantity']
-                ]);
+                array_push($data, $temp);
 
             }
 
@@ -193,14 +194,29 @@ class ReceiveController extends Controller{
 
             foreach($items as $item){
 
+                $return_quantity=0;
+                $return_status_id=1;
+
+                if($requisition->issue->return_items()->exists()){
+
+                    $return_item=$requisition->issue->return_items()->where('product_id', $item->product_id)->first();
+
+                    if($return_item){
+                        $return_quantity=$return_item->return_quantity;
+                        $return_status_id=$return_item->product_status_id;
+                    }
+
+
+                }
+
                 array_push($products, [
                     'id'=>$item->product->id,
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->requested_quantity,
                     'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity,
-                    'return_quantity'=>0,
-                    'return_status_id'=>1
+                    'return_quantity'=>$return_quantity,
+                    'return_status_id'=>$return_status_id
                 ]);
 
                 
@@ -223,6 +239,64 @@ class ReceiveController extends Controller{
 
     public function product_statuses(){
         return \App\ProductStatus::select('id', 'name')->get();
+    }
+
+    public function get_issue_return(\App\WorkingUnit $working_unit, string $slug){
+
+        $issue=\App\InventoryIssue::where('inventory_issue_no', $slug)->first();
+
+
+        $requisition=NULL;
+
+        if($issue) $requisition=$working_unit->incoming_requisitions()->find($issue->inventory_requisition_id);
+
+        if($requisition && $requisition->issue->final_approver()->exists()){
+
+            $items=$requisition->issue->items;
+
+            $products=[];
+
+            foreach($items as $item){
+
+                $return_quantity=0;
+                $return_status_id=1;
+
+                if($requisition->issue->return_items()->exists()){
+
+                    $return_item=$requisition->issue->return_items()->where('product_id', $item->product_id)->first();
+
+                    if($return_item){
+                        $return_quantity=$return_item->return_quantity;
+                        $return_status_id=$return_item->product_status_id;
+                    }
+
+
+                }
+
+                array_push($products, [
+                    'id'=>$item->product->id,
+                    'hs_code'=>$item->product->hs_code,
+                    'name'=>$item->product->name,
+                    'quantity'=>$item->requested_quantity,
+                    'return_quantity'=>$return_quantity,
+                    'return_status_id'=>$return_status_id
+                ]);
+
+                
+            }
+
+            return response()->json([
+                'issue'=>[
+                    'inventory_issue_no'=>$requisition->issue->inventory_issue_no,
+                    'inventory_requisition_id'=>$requisition->inventory_requisition_id,
+                    'receive_from'=>$requisition->sender->name
+                ],
+                'products'=>$products
+            ]);
+        }
+
+        return response()->json(null, 404);
+
     }
 
 }

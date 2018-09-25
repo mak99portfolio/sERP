@@ -44,12 +44,12 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <!-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('pi_no','PI No', null, ['class'=>'form-control input-sm', 'ng-model'=>'pi_no','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('pi_date','PI Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'pi_date','readonly'=>'readonly']) }}
-                                </div>
+                                </div> -->
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Benefeciary Bank Info</div>
@@ -108,7 +108,7 @@
                                                 {{ BootForm::text('exporter','Exporter', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vendor_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('currency', 'Currency', ['$'=>'$'], null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('currency', 'Currency', ['Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm']) }}   
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    

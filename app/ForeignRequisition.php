@@ -30,6 +30,12 @@ class ForeignRequisition extends Model
         return $this->belongsToMany('App\PurchaseOrder');
     }
     public function generateRequisitionNumber(){
-        $this->requisition_no =  'req-'. time();
+        $serial = $this->count_last_serial() + 1;
+        $this->requisition_no =  'REQ-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+    private function count_last_serial(){
+        return ForeignRequisition::whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', date('m'))
+                            ->count();
     }
 }

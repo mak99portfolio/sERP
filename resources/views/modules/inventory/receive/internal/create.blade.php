@@ -34,7 +34,7 @@
 
                                     @include('partials.flash_msg')
 
-                                    {{ BootForm::open(['model'=>$inventory_receive, 'store'=>'receive-local-purchase.store', 'update'=>'receive-local-purchase.update']) }}
+                                    {{ BootForm::open(['model'=>$inventory_receive, 'store'=>'receive-internal.store', 'update'=>'receive-internal.update']) }}
                                         <div id="vue_app"> {{-- begining of vue app --}}
                                         <div class="row">
 
@@ -44,6 +44,10 @@
                                                     <input class="form-control input-sm" type="text"> --}}
                                                     {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
                                             </div>
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -75,15 +79,14 @@
                                                 </div>
                                             </div>
 
+                                            {{ BootForm::hidden('inventory_issue_id', null, ['v-model'=>"requisition.inventory_issue_id"]) }}
+
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     {{ BootForm::text('Receive From', null, null, ['class'=>'form-control input-sm', 'disabled', 'v-model'=>"requisition.receive_from"]) }}
                                                 </div>
                                             </div>
-                                            
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm']) }}
-                                            </div>
+                                        
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('product_status_id', 'Product Status', $product_statuses, ['class'=>'form-control input-sm']) }}
                                             </div>
@@ -129,7 +132,7 @@
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity'>
+                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity' placeholder="Insert Quantity">
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -145,6 +148,8 @@
                                         <th>Item name</th>
                                         <th>Requisition Quantity</th>
                                         <th>Issue Quantity</th>
+                                        <th>Return Quantity</th>
+                                        <th>Return Status</th>
                                         <th>Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
@@ -159,6 +164,18 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][return_quantity]'" class="form-control input-sm" type="number" v-model='product.return_quantity' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <select v-bind:name="'products['+index+'][return_status_id]'" class="form-control input-sm" v-bind:value="product.return_status_id">
+                                                    <option v-for="status in product_statuses" v-bind:value="status.id" v-html="status.name" v-bind:selected="product.return_status_id==status.id"></option>
+                                                </select>
+                                            </div>
+                                        </td>
+                                        <td>
                                             <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
                                                 <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
                                             </button>
@@ -168,19 +185,13 @@
                             </div>
                             </div> {{-- End of vue app --}}
 
-
-
-
-
-
-
-                                        <div class="col-md-12">
-                                            <br />
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                {!! btnSubmitGroup() !!}
-                                            </div>
-                                        </div>
+                                <div class="col-md-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        {!! btnSubmitGroup() !!}
+                                    </div>
+                                </div>
                                         {{ BootForm::close() }}
                                     </form>
                                 </div>
@@ -211,20 +222,18 @@ $(function(){
                 base_url: "{{ url('inventory/api/get-product-info/') }}",
                 old_data_url: "{{ url('inventory/api/vue-old-products') }}",
                 get_requisition_url: "{{ url('inventory/api/get-inventory-requisition') }}",
-                old_inputs_url: "{{ url('inventory/api/vue-old-inputs') }}"
+                old_inputs_url: "{{ url('inventory/api/vue-old-inputs') }}",
+                product_status_url: "{{ url('inventory/api/get-product-statuses') }}"
             },
             products:[],
-            active_record:{
-                hs_code:'',
-                id:'',
-                name:'',
-                quantity:''
-            },
+            active_record:null,
             remote_data:null,
             requisition:{
                 inventory_requisition_id:'',
-                receive_from: '' //Requested working units name
-            }
+                receive_from: '', //Requested working units name
+                inventory_issue_id: ''
+            },
+            product_statuses:null
         },
         methods:{
 
@@ -238,7 +247,8 @@ $(function(){
                 vm.products=[];
                 vm.requisition={
                     inventory_requisition_id:'',
-                    receive_from: ''
+                    receive_from: '',
+                    inventory_issue_id: ''
                 }
 
                 if(slug){
@@ -274,7 +284,9 @@ $(function(){
 
                         vm.remote_data=response.data;
                         vm.active_record=vm.remote_data;
-                        vm.active_record.quantity=0
+                        vm.active_record.quantity=0;
+                        vm.active_record.return_quantity=0;
+                        vm.active_record.return_status_id=1;
                 
                         loading.close();
 
@@ -291,7 +303,14 @@ $(function(){
                 this.products.splice(this.products.indexOf(product), 1);
              },
             reset_active_record:function(){
-                this.active_record={hs_code:'', id:'', name:'', quantity:''};
+                this.active_record={
+                    hs_code:'',
+                    id:'',
+                    name:'',
+                    quantity:'',
+                    return_quantity:0,
+                    return_status_id:1
+                };
             },
             add_product:function(){
                 if(this.active_record.quantity > 0){
@@ -327,15 +346,32 @@ $(function(){
                     loading.close();
 
                 });//End of axios
-         }
-        },
-        watch:{
-            remote_data:function(){
+         },
+         fetch_product_statuses:function(){
+                var vm=this;
+                var loading=$.loading();
+                loading.open(3000);
+                axios.get(this.config.product_status_url).then(function(response){
 
-            }
+                    vm.product_statuses=response.data;                
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+
+                });//End of axios
+         },//End of fetch_product_statuses method
+         deduct_return:function(product){
+
+            console.log(this.products.indexOf(product));
+
+         }//End of deduct_return
         },
         beforeMount(){
+            this.reset_active_record();
             this.load_old();
+            this.fetch_product_statuses();
         }
     })//End of vue js
 

@@ -16,6 +16,7 @@ class CreateInventoryIssuesTable extends Migration
         Schema::create('inventory_issues', function(Blueprint $table){
 
             $table->increments('id');
+            $table->string('inventory_issue_no')->unique();
             $table->integer('inventory_requisition_id')->unsigned()->nullable();
             $table->integer('initial_approver_id')->unsigned()->nullable();
             $table->integer('final_approver_id')->unsigned()->nullable();

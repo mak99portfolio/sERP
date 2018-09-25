@@ -19,7 +19,7 @@ class CreateForeignRequisitionItemsTable extends Migration
             $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('cascade');
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('quantity');
+            $table->integer('quantity')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -19,8 +19,26 @@ class CommercialInvoiceItemTableSeeder extends Seeder
                 'quantity' => 20
             ],
             [
-                'commercial_invoice_id' => 2,
+                'commercial_invoice_id' => 1,
                 'product_id' => 2,
+                'unit_price' => 6000,
+                'quantity' => 40
+            ],
+            [
+                'commercial_invoice_id' => 3,
+                'product_id' => 2,
+                'unit_price' => 3000,
+                'quantity' => 50
+            ],
+            [
+                'commercial_invoice_id' => 3,
+                'product_id' => 3,
+                'unit_price' => 3000,
+                'quantity' => 50
+            ],
+            [
+                'commercial_invoice_id' => 2,
+                'product_id' => 3,
                 'unit_price' => 2000,
                 'quantity' => 20
             ]

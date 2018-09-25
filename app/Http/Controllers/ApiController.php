@@ -40,7 +40,7 @@ class ApiController extends Controller
 
         $lc_items = $lc->items;
         $pi_numbers = $lc->proforma_invoices;
-//dd($pi_numbers);
+
         foreach ($lc_items as $lc_item) {
             $items[] = [
                 'product_id' => $lc_item->product_id,
@@ -53,10 +53,12 @@ class ApiController extends Controller
             $numbers[] = [
                 'proforma_invoice_date' => $pi_number->proforma_invoice_date,
                 'proforma_invoice_no' => $pi_number->proforma_invoice_no,
+                'customer_code' => $pi_number->customer_code,
             ];
         }
         $data['items'] = $items;
-        //   $data['pi_info'] = $numbers;
+        $data['pilist'] = $numbers;
+       //dd($data);
         $data['vendor_name'] = $lc->vendor->name;
 
         $data['letter_of_credit_date'] = $lc->letter_of_credit_date;
@@ -189,9 +191,9 @@ class ApiController extends Controller
     public function getAllProduct($product_group_id)
     {
         $product_group = ProductGroup::find($product_group_id);
-        if ($product_group) {
-            return response()->json(Product::where('product_group_id', $product_group_id)->get());
-        } else {
+        if($product_group){
+            return response()->json(Product::where('product_category_id', $product_group_id)->get());
+        }else{
             return response()->json(Product::all());
         }
     }
@@ -200,6 +202,7 @@ class ApiController extends Controller
     {
         $ci = CommercialInvoice::find($id);
         $ci_items = $ci->items;
+        $pi_numbers = $ci->LetterOfCredit->proforma_invoices;
         foreach ($ci_items as $ci_item) {
             $items[] = [
                 'product_id' => $ci_item->product_id,
@@ -208,7 +211,15 @@ class ApiController extends Controller
             ];
         }
 
+        foreach ($pi_numbers as $pi_number) {
+            $numbers[] = [
+                'proforma_invoice_date' => $pi_number->proforma_invoice_date,
+                'proforma_invoice_no' => $pi_number->proforma_invoice_no,
+                'customer_code' => $pi_number->customer_code,
+            ];
+        }
         $data['items'] = $items;
+        $data['pilist'] = $numbers;
         $data['commercial_invoice_date'] = $ci->date;
         $data['letter_of_credit_no'] = $ci->LetterOfCredit->letter_of_credit_no;
         $data['letter_of_credit_date'] = $ci->LetterOfCredit->letter_of_credit_date;

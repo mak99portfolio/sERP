@@ -15,10 +15,10 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Foreign Purchase Order Details</h2>
-                        <div class="btn-group pull-right">
+                        <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</a>
+                        <h2 class="text-center">Foreign Purchase Order Details</h2>
+                        <div class="pull-right">
                             <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
-                            <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Foreign Purchase Order List</a>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -46,8 +46,8 @@
                                        @endforeach
                                         
                                         </td>
-                                        <td><strong>Purchase Order date:</strong>{{$purchaseOrder->requisition_date}}</td>
-                                        <td></td>
+                                        <td colspan="2"><strong>Purchase Order date:</strong>{{$purchaseOrder->requisition_date}}</td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -92,9 +92,9 @@
                                             <th>#</th>
                                             <th>Product Name</th>
                                             <th>UOM</th>
-                                            <th>Quantity</th>
-                                            <th>Unit Price</th>
-                                            <th>Total Amount</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-right">Unit Price</th>
+                                            <th class="text-right">Total Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,9 +103,9 @@
                                        <td>{{$key+1}}</td>
                                            <td>{{$item->product->name}}</td>
                                            <td>{{$item->product->unit_of_measurement->name}}</td>
-                                           <td>{{$item->quantity}}</td>
-                                           <td>{{$item->unit_price}}</td>
-                                           <td>{{number_format($item->quantity * $item->unit_price,2)}}</td>
+                                           <td class="text-right">{{$item->quantity}}</td>
+                                           <td class="text-right">{{$item->unit_price}}</td>
+                                           <td class="text-right">{{number_format($item->quantity * $item->unit_price,2)}}</td>
                                        </tr>
                                        @endforeach
                                     </tbody>

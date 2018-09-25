@@ -25,13 +25,13 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Purchase Order No</th>
                                         <th>Purchase Order Date</th>
                                         <th>Create time</th>
                                         <th>Port of loading</th>
                                         <th>Port of discharge</th>
-                                        <th>Action</th>
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,8 +43,8 @@
                                         <td>{{$purchase_order->requisition_date}}</td>   
                                         <td>{{$purchase_order->loading->name}}</td>   
                                         <td>{{$purchase_order->discharge->name}}</td>   
-                                        <td class="text-right">
-                                            <a href="{{route('purchase-order.show',$purchase_order)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <td class="text-center">
+                                            <a href="{{route('purchase-order.show',$purchase_order)}}" class="btn btn-default btn-xs btn-block"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                      @endforeach

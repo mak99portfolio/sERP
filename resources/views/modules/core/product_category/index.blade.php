@@ -13,20 +13,24 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <table class="table">
-                        <thead>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="bg-primary">
                             <tr>
-                                <th>Country Name</th>
-                                <th>Shortname</th>
+                                <th>Product Name</th>
+                                <th>Short Name</th>
                             </tr>
+                            <thead>
+                            <tbody>
                             @foreach ($product_category as $item)
-                            <tr>
-                                <td>{{$item->name}}</td>
-                                <td>{{$item->short_name}}</td>
-                            </tr>
+                                <tr>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->short_name}}</td>
+                                </tr>
                             @endforeach
-                        </thead>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

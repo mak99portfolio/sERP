@@ -8,6 +8,10 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Product Category </h2>
+                    <div class="btn-group pull-right">
+                        <a href="{{route('product-category.index')}}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Product Category</a>
+                    </div>
+                    <div class="clearfix"></div>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">

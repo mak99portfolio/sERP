@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Company;
 use App\CompanyProfile;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Country;
+use Auth;
+use Session;
 
 class CompanyProfileController extends Controller
 {
@@ -13,20 +16,25 @@ class CompanyProfileController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('city_list', City::all());
+        $view->with('company_list', CompanyProfile::all());
         return $view;
     }
 
     public function create()
     {
         $view = view($this->view_root . 'create');
-        // $view->with('city_list', City::all());
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('select country', ''));
         return $view;
     }
 
     public function store(Request $request)
     {
-        //
+        $company_profile = new CompanyProfile;
+        $company_profile->fill($request->input());
+        $company_profile->creator_user_id = Auth::id();
+        $company_profile->save();
+        Session::put('alert-success', $company_profile->name . ' created successfully');
+        return redirect()->route('company-profile.index');
     }
 
     public function show(CompanyProfile $companyProfile)

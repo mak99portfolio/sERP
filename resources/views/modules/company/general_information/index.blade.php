@@ -19,17 +19,19 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Company Name</th>
+                                        <th>Phone Number</th>
                                         <th>Country</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($city_list as $key => $item)
+                                    @foreach ($company_list as $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
+                                        <td>{{ $item->phone }}</td>
                                         <td>{{ $item->country->name }}</td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

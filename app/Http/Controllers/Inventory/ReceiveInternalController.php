@@ -39,7 +39,9 @@ class ReceiveInternalController extends Controller{
         //dd($request->all());
 
         \Session::put('vue_inputs', [
-            'purchase_order_no'=>$request->get('purchase_order_no')
+            'inventory_requisition_id'=>$request->get('inventory_requisition_id'),
+            'receive_from'=>$request->get('receive_from'),
+            'inventory_issue_id'=>$request->get('inventory_issue_id'),
         ]);
 
         \Session::put('vue_products', $request->get('products'));
@@ -47,11 +49,11 @@ class ReceiveInternalController extends Controller{
         $request->validate([
             'inventory_receive_id'=>'required|unique:inventory_receives',
             'receive_date'=>'required|date',
-            'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
             'product_pattern_id'=>'required|integer',
-            'products'=>'required|array'
+            'products'=>'required|array',
+            'inventory_issue_id'=>'required|integer'
         ]);
 
         $inventory_receive=\App\InventoryReceive::create($request->only(
@@ -63,36 +65,58 @@ class ReceiveInternalController extends Controller{
         ));
 
         $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
-        $inventory_receive->receive_type='local_purchase';
+        $inventory_receive->receive_type='internal_receive';
         $inventory_receive->creator()->associate(\Auth::user());
         $inventory_receive->save();
 
 
-        $local_purchase=new \App\InventoryReceiveLocal;
-
-        $local_purchase_order=\App\LocalPurchaseOrder::where(
-            'purchase_order_no',
-            $request->get('purchase_order_no')
-        )->first();
-
-        $local_purchase->purchase_order()->associate($local_purchase_order);
-        $local_purchase->inventory_receive()->associate($inventory_receive);
-        $local_purchase->save();
+        $internal_receive=new \App\InventoryReceiveInternal;
+        $inventory_issue=\App\InventoryIssue::find($request->get('inventory_issue_id'));
+        $internal_receive->issue()->associate($inventory_issue);
+        $internal_receive->inventory_receive()->associate($inventory_receive);
+        $internal_receive->challan_no=$request->get('challan_no');
+        $internal_receive->save();
 
         $products=$request->get('products');
 
         foreach($products as $row){
-            
-            \App\Stock::create([
-                'working_unit_id'=>$inventory_receive->working_unit_id,
-                'product_id'=>$row['id'],
-                'product_status_id'=>$inventory_receive->product_status_id,
-                'product_pattern_id'=>$inventory_receive->product_pattern_id,
-                'inventory_receive_id'=>$inventory_receive->id,
-                'receive_quantity'=>$row['quantity'],
-                'remarks'=>$inventory_receive->remarks,
-                'creator_user_id'=>\Auth::id()
-            ]);
+
+            if(empty($row['return_quantity'])){
+
+                \App\Stock::create([
+                    'working_unit_id'=>$inventory_receive->working_unit_id,
+                    'product_id'=>$row['id'],
+                    'product_status_id'=>$inventory_receive->product_status_id,
+                    'product_pattern_id'=>$inventory_receive->product_pattern_id,
+                    'inventory_receive_id'=>$inventory_receive->id,
+                    'receive_quantity'=>$row['quantity'],
+                    'remarks'=>$inventory_receive->remarks,
+                    'creator_user_id'=>\Auth::id()
+                ]);
+
+            }else{
+
+                $receive_quantity=$row['quantity']-$row['return_quantity'];
+                \App\Stock::create([
+                    'working_unit_id'=>$inventory_receive->working_unit_id,
+                    'product_id'=>$row['id'],
+                    'product_status_id'=>$inventory_receive->product_status_id,
+                    'product_pattern_id'=>$inventory_receive->product_pattern_id,
+                    'inventory_receive_id'=>$inventory_receive->id,
+                    'receive_quantity'=>$receive_quantity,
+                    'remarks'=>$inventory_receive->remarks,
+                    'creator_user_id'=>\Auth::id()
+                ]);
+
+                \App\InventoryIssueReturnItem::create([
+                    'inventory_issue_id'=>$inventory_issue->id,
+                    'product_id'=>$row['id'],
+                    'product_status_id'=>$row['return_status_id'],
+                    'product_pattern_id'=>$inventory_receive->product_pattern_id,
+                    'return_quantity'=>$row['return_quantity']
+                ]);
+
+            }
 
         }
 
@@ -103,15 +127,15 @@ class ReceiveInternalController extends Controller{
         
     }
 
-    public function show(ReceiveInternal $receiveInternal){
+    public function show(\App\InventoryReceive $receive_internal){
         
     }
 
-    public function edit(\App\InventoryReceive $receive_local_purchase){
+    public function edit(\App\InventoryReceive $receive_internal){
 
         $data=[
-            'inventory_receive'=>$receive_local_purchase,
-            'inventory_receive_id'=>$receive_local_purchase->inventory_receive_id,
+            'inventory_receive'=>$receive_internal,
+            'inventory_receive_id'=>$receive_internal->inventory_receive_id,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
@@ -121,7 +145,7 @@ class ReceiveInternalController extends Controller{
 
         $products=[];
 
-        foreach($receive_local_purchase->stocks as $row){
+        foreach($receive_internal->stocks as $row){
 
             array_push($products, [
                 'id'=>$row->product_id,
@@ -132,12 +156,10 @@ class ReceiveInternalController extends Controller{
 
         \Session::put('vue_products', $products);
 
-        //dd($requisition->requested_items);
-
-        $local_purchase_order=\App\LocalPurchaseOrder::find($receive_local_purchase->local->local_purchase_order_id);
-
         \Session::put('vue_inputs', [
-            'purchase_order_no'=>$local_purchase_order->purchase_order_no
+            'inventory_requisition_id'=>$receive_internal->internal->issue->requisition->inventory_requisition_id,
+            'receive_from'=>$receive_internal->internal->issue->requisition->requested_to->name,
+            'inventory_issue_id'=>$receive_internal->internal->issue->id,
         ]);
         
         return view($this->path('create'), $data);

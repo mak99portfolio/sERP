@@ -185,7 +185,7 @@ class ReceiveController extends Controller{
 
         $requisition=$working_unit->outgoing_requisitions()->where('inventory_requisition_id', $slug)->first();
 
-        if($requisition && $requisition->issue()->exists()){
+        if($requisition && $requisition->issue()->exists() && $requisition->issue->final_approver()->exists()){
 
             $items=$requisition->issue->items;
 
@@ -198,7 +198,9 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->requested_quantity,
-                    'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity
+                    'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity,
+                    'return_quantity'=>0,
+                    'return_status_id'=>1
                 ]);
 
                 
@@ -207,7 +209,8 @@ class ReceiveController extends Controller{
             return response()->json([
                 'requisition'=>[
                     'inventory_requisition_id'=>$requisition->inventory_requisition_id,
-                    'receive_from'=>$requisition->requested_to->name
+                    'receive_from'=>$requisition->requested_to->name,
+                    'inventory_issue_id'=>$requisition->issue->id
                 ],
                 'products'=>$products
             ]);
@@ -216,6 +219,10 @@ class ReceiveController extends Controller{
 
         return response()->json(null, 404);
 
+    }
+
+    public function product_statuses(){
+        return \App\ProductStatus::select('id', 'name')->get();
     }
 
 }

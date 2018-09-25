@@ -4,18 +4,18 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateInventoryIssueItemsTable extends Migration{
+class CreateInventoryIssueReturnItemsTable extends Migration{
 
     public function up(){
 
-        Schema::create('inventory_issue_items', function (Blueprint $table){
+        Schema::create('inventory_issue_return_items', function (Blueprint $table){
 
             $table->increments('id');
             $table->integer('inventory_issue_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('product_status_id')->unsigned()->nullable();
             $table->integer('product_pattern_id')->unsigned()->nullable();
-            $table->integer('requested_quantity')->unsigned()->default(0);
+            $table->integer('return_quantity')->unsigned()->default(0);
             $table->softDeletes();
             $table->timestamps();
 
@@ -23,7 +23,7 @@ class CreateInventoryIssueItemsTable extends Migration{
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('product_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
             $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
-            
+
         });
 
     }
@@ -31,7 +31,7 @@ class CreateInventoryIssueItemsTable extends Migration{
 
     public function down(){
 
-        Schema::dropIfExists('inventory_issue_items');
+        Schema::dropIfExists('inventory_issue_return_items');
 
     }
 }

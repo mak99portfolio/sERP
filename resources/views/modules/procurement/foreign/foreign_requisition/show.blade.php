@@ -54,7 +54,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <th>SL NO</th>
+                                        <th width="40">#</th>
                                         <th>H.S. CODE</th>
                                         <th>Product Name</th>
                                         <th>Quantity</th>

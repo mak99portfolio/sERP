@@ -209,11 +209,11 @@
     });
     app.controller('myCtrl', function($scope, $http) {
 
-    $scope.itemlist = [];  
-    $scope.piinfo = [];
+    
     $scope.getCi = function () {
     //   alert($scope.commercial_invoice_id);
-    $scope.itemlist = [];
+    $scope.itemlist = [];  
+    $scope.piinfo = [];
     $scope.addToItemList($scope.commercial_invoice_id);
     }
     $scope.getLc = function () {

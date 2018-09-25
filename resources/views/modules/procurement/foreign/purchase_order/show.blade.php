@@ -46,8 +46,8 @@
                                        @endforeach
                                         
                                         </td>
-                                        <td><strong>Purchase Order date:</strong>{{$purchaseOrder->requisition_date}}</td>
-                                        <td></td>
+                                        <td colspan="2"><strong>Purchase Order date:</strong>{{$purchaseOrder->requisition_date}}</td>
+                                        
                                     </tr>
                                 </tbody>
                             </table>
@@ -92,9 +92,9 @@
                                             <th>#</th>
                                             <th>Product Name</th>
                                             <th>UOM</th>
-                                            <th>Quantity</th>
-                                            <th>Unit Price</th>
-                                            <th>Total Amount</th>
+                                            <th class="text-right">Quantity</th>
+                                            <th class="text-right">Unit Price</th>
+                                            <th class="text-right">Total Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -103,9 +103,9 @@
                                        <td>{{$key+1}}</td>
                                            <td>{{$item->product->name}}</td>
                                            <td>{{$item->product->unit_of_measurement->name}}</td>
-                                           <td>{{$item->quantity}}</td>
-                                           <td>{{$item->unit_price}}</td>
-                                           <td>{{number_format($item->quantity * $item->unit_price,2)}}</td>
+                                           <td class="text-right">{{$item->quantity}}</td>
+                                           <td class="text-right">{{$item->unit_price}}</td>
+                                           <td class="text-right">{{number_format($item->quantity * $item->unit_price,2)}}</td>
                                        </tr>
                                        @endforeach
                                     </tbody>

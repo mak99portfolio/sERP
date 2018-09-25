@@ -213,11 +213,9 @@
     app.controller('myCtrl', function($scope, $http) {
 
         $scope.freight = 100 ;
-
-        $scope.itemlist = [];
-        $scope.piinfo = [];
         $scope.getLc = function () {
             $scope.itemlist = [];
+            $scope.piinfo = [];
             $scope.addToItemList($scope.letter_of_credit_id);
 
 

@@ -28,6 +28,8 @@ class BillOfLading extends Model
         'move_type_id',
         'issue_place',
         'number_of_mtd',
+        'packaging_qty',
+        'gross_weight',
     ];
 
     public function letter_of_credit(){
@@ -39,7 +41,7 @@ class BillOfLading extends Model
     public function local_agency(){
         return $this->belongsTo('App\Vendor','local_agency_vendor_id');
     }
-    public function exproter_id(){
+    public function exprote(){
         return $this->belongsTo('App\Vendor','exproter_vendor_id');
     }
     public function loading(){
@@ -53,6 +55,12 @@ class BillOfLading extends Model
     }
     public function modes_of_transport(){
         return $this->belongsTo('App\ModesOfTransport','modes_of_transport_id');
+    }
+    public function move_type(){
+        return $this->belongsTo('App\MoveType','move_type_id');
+    }
+    public function items(){
+        return $this->hasMany('App\BillOfLadingItem');
     }
 
 }

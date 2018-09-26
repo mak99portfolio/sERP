@@ -43,6 +43,8 @@ class CreateBillOfLadingsTable extends Migration
             $table->foreign('move_type_id')->references('id')->on('move_types')->onDelete('cascade');
             $table->string('issue_place');
             $table->string('number_of_mtd');
+            $table->string('packaging_qty');
+            $table->string('gross_weight');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

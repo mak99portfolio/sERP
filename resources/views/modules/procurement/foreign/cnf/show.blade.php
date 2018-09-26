@@ -28,108 +28,131 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Consignee:</strong> {{ $cnf->consignee }}</td>
-                                        <td><strong>Bill No:</strong> {{ $cnf->bill_no }}</td>
-                                        <td><strong>Bill Date:</strong> {{ $cnf->bill_date }}</td>
+                                        <td><strong>BL No:</strong> {{ $cnf->bill_of_lading->bill_of_lading_no  }} </td>
+                                        <td><strong>BL Date:</strong> {{ $cnf->bill_of_lading->bill_of_lading_date }} </td>
+                                        <td><strong>LC No:</strong> {{ $cnf->bill_of_lading->letter_of_credit->letter_of_credit_no }} </td>
                                     </tr>
                                     <tr>
-                                        <td><strong>LC No:</strong> {{ $cnf->letter_of_credit->letter_of_credit_no }}</td>
-                                        <td><strong>LC Opening Date:</strong> {{ $cnf->letter_of_credit->letter_of_credit_date }}</td>
-                                        <td><strong>LC Value:</strong> {{ number_format($cnf->letter_of_credit->letter_of_credit_value, 2) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Commercial invoice No:</strong> {{ $cnf->commercial_invoice->commercial_invoice_no }}</td>
-                                        <td><strong>Commercial Invoice Date:</strong> {{ $cnf->commercial_invoice->date }}</td>
-                                        <td><strong>B/L No:</strong> {{ $cnf->commercial_invoice->bl_no }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>B/L Date:</strong> {{ $cnf->commercial_invoice->bl_date }}</td>
-                                        <td><strong>B/E No:</strong> {{ $cnf->bill_of_entry_no }}</td>
-                                        <td><strong>B/E Date:</strong> {{ $cnf->bill_of_entry_date }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Arrival Date:</strong> {{ $cnf->arrival_date }}</td>
-                                        <td><strong>Delivery Date:</strong> {{ $cnf->delivery_date }}</td>
-                                        <td><strong>Job No:</strong> {{ $cnf->job_no }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Total Days:</strong> {{ $cnf->total_day }}</td>
-                                        <td><strong>C&F Value:</strong> {{ $cnf->cnf_value }}</td>
-                                        <td><strong>USD Amount:</strong> {{ number_format($cnf->usd_amount, 2) }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Exchange Rate:</strong> {{ $cnf->exchange_rate }}</td>
-                                        <td><strong>BDT Amount:</strong> {{ number_format($cnf->getBdtAmount(), 2) }}</td>
-                                        <td><strong>CNF Agent :</strong> {{ $cnf->cnf_agent->name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Exporter: </strong>{{ $cnf->letter_of_credit->vendor->name }}</td>
-                                        <td><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }}</td>
-                                        <td><strong>Container No:</strong> {{ $cnf->commercial_invoice->container_no }}</td>
+                                        <td><strong>LC Opening Date:</strong> {{ $cnf->bill_of_lading->letter_of_credit->letter_of_credit_date }} </td>
+                                        <td><strong>LC Value (USD):</strong> {{ number_format($cnf->bill_of_lading->letter_of_credit->letter_of_credit_value, 2) }}</td>
+                                        <td><strong>Exporter:</strong> {{ $cnf->bill_of_lading->letter_of_credit->vendor->name }} </td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="4">Particulars of Consignments Table:</th>
+                                        <td colspan="4">Commercial Invoice List</td>
                                     </tr>
                                     <tr>
-                                        <th>SL No</th>
-                                        <th>Particulars of Consignments</th>
-                                        <th>Taka</th>
-                                        <th>Paisa</th>
+                                        <td>#</td>
+                                        <td>Commercial Invoice No</td>
+                                        <td>Commercial Invoice Date</td>
+                                        <td>Container No</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    @php
-                                        $total_taka = 0;
-                                        $total_paisa = 0;
-                                    @endphp
-                                    @foreach ($cnf->consignment_particular_cnf as $item)
+                                    <tbody>
+                                        @foreach ($cnf->bill_of_lading->commercial_invoices as $item)
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->consignment_particular->name }}</td>
-                                            <td>{{ $item->amount_in_taka() }}</td>
-                                            <td>{{ $item->amount_in_paisa() }}</td>
+                                            <td> {{ $loop->iteration }} </td>
+                                            <td> {{ $item->commercial_invoice_no }} </td>
+                                            <td> {{ $item->date }} </td>
+                                            <td> {{ $item->container_no }} </td>
                                         </tr>
-                                        @php
-                                            $total_taka += $item->amount_in_taka();
-                                            $total_paisa += $item->amount_in_paisa();
-                                        @endphp
-                                    @endforeach
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Bill No:</strong> {{ $cnf->bill_no }} </td>
+                                            <td><strong>Bill Date:</strong> {{ $cnf->bill_date }} </td>
+                                            <td><strong>Consignee:</strong> {{ $cnf->consignee }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>B/E No:</strong> {{ $cnf->bill_of_entry_no }} </td>
+                                            <td><strong>B/E Date:</strong> {{ $cnf->bill_of_entry_date }} </td>
+                                            <td><strong>Arrival Date:</strong> {{ $cnf->arrival_date }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Delivery Date:</strong> {{ $cnf->delivery_date }} </td>
+                                            <td><strong>Job No:</strong> {{ $cnf->job_no }} </td>
+                                            <td><strong>Total Days:</strong> {{ $cnf->total_day }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>C&F Value:</strong> {{ $cnf->cnf_value }} </td>
+                                            <td><strong>USD Amount:</strong> {{ number_format($cnf->usd_amount, 2) }} </td>
+                                            <td><strong>Exchange Rate:</strong> {{ $cnf->exchange_rate }} </td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>BDT Amount:</strong> {{ number_format($cnf->getBdtAmount(), 2) }} </td>
+                                            <td><strong>CNF Agent:</strong> {{ $cnf->cnf_agent->name }} </td>
+                                            <td><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="4">Particulars of Consignments Table:</th>
+                                            </tr>
+                                            <tr>
+                                                <th>SL No</th>
+                                                <th>Particulars of Consignments</th>
+                                                <th>Taka</th>
+                                                <th>Paisa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                                $total_taka = 0;
+                                                $total_paisa = 0;
+                                            @endphp
+                                            @foreach ($cnf->consignment_particular_cnf as $item)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $item->consignment_particular->name }}</td>
+                                                    <td>{{ number_format($item->amount_in_taka(), 2) }}</td>
+                                                    <td>{{ $item->amount_in_paisa() }}</td>
+                                                </tr>
+                                                @php
+                                                    $total_taka += $item->amount_in_taka();
+                                                    $total_paisa += $item->amount_in_paisa();
+                                                @endphp
+                                            @endforeach
 
-                                    <tr>
-                                        <td class="text-right" colspan="2"><strong> Voucher Tk : </strong></td>
-                                        <td><strong></strong> {{ $total_taka }}</td>
-                                        <td><strong></strong> {{ $total_paisa }}</td>
-                                    </tr>
-                                    {{-- <tr>
-                                        <td class="text-right" colspan="2"><strong>Previous Due Tk=</strong></td>
-                                        <td><strong></strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right" colspan="2"><strong>Total Voucher Tk=</strong> </td>
-                                        <td><strong></strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right" colspan="2"><strong>Cash Received/Pay Order Tk=</strong></td>
-                                        <td><strong></strong> 125</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-right" colspan="2"><strong>Due Tk=</strong></td>
-                                        <td><strong></strong> 125</td>
-                                    </tr> --}}
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                <tbody>
-                                <td><strong>Amount In Word:</strong> {{ $cnf->amount_in_word() }}</td>
-                                </tbody>
-                                <tbody>
-                                <td><strong>Notes: </strong>{{ $cnf->note }}</td>
-                                </tbody>
-                            </table>
+                                            <tr>
+                                                <td class="text-right" colspan="2"><strong> Voucher Tk : </strong></td>
+                                                <td><strong></strong> {{ number_format($total_taka, 2) }}</td>
+                                                <td><strong></strong> {{ $total_paisa }}</td>
+                                            </tr>
+                                            {{-- <tr>
+                                                <td class="text-right" colspan="2"><strong>Previous Due Tk=</strong></td>
+                                                <td><strong></strong> 125</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right" colspan="2"><strong>Total Voucher Tk=</strong> </td>
+                                                <td><strong></strong> 125</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right" colspan="2"><strong>Cash Received/Pay Order Tk=</strong></td>
+                                                <td><strong></strong> 125</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-right" colspan="2"><strong>Due Tk=</strong></td>
+                                                <td><strong></strong> 125</td>
+                                            </tr> --}}
+                                        </tbody>
+                                    </table>
+                                    <table class="table table-bordered">
+                                        <tbody>
+                                        <td><strong>Amount In Word:</strong> {{ $cnf->amount_in_word() }}</td>
+                                        </tbody>
+                                        <tbody>
+                                        <td><strong>Notes: </strong>{{ $cnf->note }}</td>
+                                        </tbody>
+                                    </table>
+
                             <!--start approved by-->
                             <table id="print-footer" style="position: absolute; bottom: 30px; width: 100%; display: none;">
                                 <tr>

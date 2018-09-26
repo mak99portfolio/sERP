@@ -53,7 +53,7 @@
                                                     <th scope="col">#</th>
                                                     <th scope="col">Commercial Invoice No</th>
                                                     <th scope="col">Commercial Invoice Date</th>
-                                                    <th scope="col">COntainer No</th>
+                                                    <th scope="col">Container No</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

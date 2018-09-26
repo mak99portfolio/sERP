@@ -4,11 +4,15 @@ namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
 use App\BillOfLading;
+use App\BillOfLadingItem;
 use App\CommercialInvoice;
 use App\Vendor;
+use App\ModesOfTransport;
+use App\MoveType;
 use App\Port;
 use Illuminate\Http\Request;
-
+use Auth;
+use Session;
 class BillOfLadingController extends Controller
 {
     /**
@@ -20,8 +24,7 @@ class BillOfLadingController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('bill_of_lading_list', BillOfLading::all());
         return $view;
     }
 
@@ -33,9 +36,11 @@ class BillOfLadingController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'bl_no')->prepend('-- Select Bill Number --', ''));
+        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
         $view->with('exproter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
+        $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Modes Of Transport --', ''));
+        $view->with('move_type_list', MoveType::pluck('name','id')->prepend('-- Select Move Type --', ''));
         return $view;
     }
 
@@ -47,12 +52,19 @@ class BillOfLadingController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
-        $proforma_invoice = new BillOfLading;
-        $proforma_invoice->fill($request->input());
-        $proforma_invoice->creator_user_id = Auth::id();
         // dd($request->input());
-        $proforma_invoice->save();
+        $bill_of_lading = new BillOfLading;
+        $bill_of_lading->fill($request->input());
+        $bill_of_lading->creator_user_id = Auth::id();
+        $bill_of_lading->save();
+
+
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new BillOfLadingItem($item));
+        }
+        $bill_of_lading->items()->saveMany($items);
+
         Session::put('alert-success', 'Bill of lading created successfully');
         return redirect()->route('bill-of-lading.index');
     }
@@ -66,7 +78,7 @@ class BillOfLadingController extends Controller
     public function show(BillOfLading $billOfLading)
     {
         $view = view($this->view_root . 'show');
-        $view->with($billOfLading);
+        $view->with('bill_of_lading',$billOfLading);
         return $view;
     }
 

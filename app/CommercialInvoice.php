@@ -14,8 +14,8 @@ class CommercialInvoice extends Model {
         'commercial_invoice_no',
         'date',
         'letter_of_credit_id',
-        'bl_no',
-        'bl_date',
+        'bill_of_lading_no',
+        'bill_of_lading_date',
         'vessel_no',
         'container_no',
         'port_of_loading_port_id',
@@ -23,7 +23,8 @@ class CommercialInvoice extends Model {
         'destination_city_id',
         'country_goods_country_id',
         'destination_country_id',
-        'notes'
+        'notes',
+        'freight'
     ];
 
     function items() {

@@ -93,10 +93,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bl_no','Bl No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bl_no']) }}
+                                    {{ BootForm::text('bill_of_lading_no','Bill Of Lading No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bill_of_lading_no']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bl_date','Bl Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bl_date']) }}
+                                    {{ BootForm::text('bill_of_lading_date','Bill Of Lading Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bill_of_lading_date']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vessel_no']) }}
@@ -238,8 +238,8 @@
             $scope.letter_of_credit_no = response.data.letter_of_credit_no;
             $scope.letter_of_credit_date = response.data.letter_of_credit_date;
             $scope.commercial_invoice_date = response.data.commercial_invoice_date;
-            $scope.bl_no = response.data.bl_no;
-            $scope.bl_date = response.data.bl_date;
+            $scope.bill_of_lading_no = response.data.bill_of_lading_no;
+            $scope.bill_of_lading_date = response.data.bill_of_lading_date;
             $scope.vessel_no = response.data.vessel_no;
             $scope.vendor_name = response.data.vendor_name;
             $scope.container_no = response.data.container_no;

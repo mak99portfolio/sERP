@@ -25,24 +25,24 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">Bill OF lading Issue Date </th>
-                                        <th scope="col">LC No</th>
-                                        <th scope="col">CI No</th>
                                         <th scope="col">BL No</th>
                                         <th scope="col">Moder Of Transport</th>
+                                        <th scope="col">Container No</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($bill_of_lading_list as $key=>$bill_of_lading)
                                     <tr>
-                                        <td>10-12-2018</td>
-                                        <td>8</td>
-                                        <td>5</td>
-                                        <td>2</td>
-                                        <td>Abc</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
-                                        </td>
+                                    <td>{{date('d-m-Y',strtotime($bill_of_lading->bill_of_lading_date))}}</td>
+                                    <td>{{$bill_of_lading->bill_of_lading_no}}</td>
+                                    <td>{{$bill_of_lading->modes_of_transport->name}}</td>
+                                    <td>{{$bill_of_lading->container_no}}</td>
+                                    <td class="text-center">
+                                    <a href="{{route('bill-of-lading.show', $bill_of_lading) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                     </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

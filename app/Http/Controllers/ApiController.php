@@ -13,6 +13,7 @@ use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
+use App\BillOfLading;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -239,8 +240,8 @@ class ApiController extends Controller
         $data['destination_country_id'] = $ci->destination_country_id;
         $data['destination_country_name'] = $ci->country_goods->name;
 
-        $data['bl_no'] = $ci->bl_no;
-        $data['bl_date'] = $ci->bl_date;
+        $data['bill_of_lading_no'] = $ci->bill_of_lading_no;
+        $data['bill_of_lading_date'] = $ci->bill_of_lading_date;
         $data['vessel_no'] = $ci->vessel_no;
         $data['container_no'] = $ci->container_no;
         $data['vendor_name'] = $ci->LetterOfCredit->vendor->name;
@@ -248,7 +249,7 @@ class ApiController extends Controller
     }
     public function getAllByBlNo($bl_no)
     {
-        $data['ci'] = CommercialInvoice::where('bl_no',$bl_no)->get();
+        $data['ci'] = CommercialInvoice::where('bill_of_lading_no',$bl_no)->get();
         $data['items'] = [];
         foreach($data['ci'] as $ci){
             foreach($ci->items as $item){
@@ -267,12 +268,27 @@ class ApiController extends Controller
                         'hs_code' => $item->product->hs_code,
                         'uom' => $item->product->unit_of_measurement->name,
                         'quantity' => $item->quantity,
+                        'unit_price' => $item->unit_price,
                     ];
                 }
             }
         }
-        
-        $data['lc'] = LetterOfCredit::find(CommercialInvoice::where('bl_no',$bl_no)->first()->letter_of_credit_id);
+
+        $data['lc'] = LetterOfCredit::find(CommercialInvoice::where('bill_of_lading_no',$bl_no)->first()->letter_of_credit_id);
+
+        return response()->json($data);
+    }
+    public function getBlByBlId($id){
+        $data = [];
+        $bill_of_lading = BillOfLading::find($id);
+        $data['bill_of_lading'] = $bill_of_lading;
+        $data['commercial_invoices'] = $bill_of_lading->commercial_invoices;
+        $data['letter_of_credit'] = [
+            'letter_of_credit_no' => $bill_of_lading->letter_of_credit->letter_of_credit_no,
+            'letter_of_credit_date' => $bill_of_lading->letter_of_credit->letter_of_credit_date,
+            'letter_of_credit_value' => $bill_of_lading->letter_of_credit->letter_of_credit_value,
+            'exporter_name' => $bill_of_lading->letter_of_credit->vendor->name,
+        ];
 
         return response()->json($data);
     }

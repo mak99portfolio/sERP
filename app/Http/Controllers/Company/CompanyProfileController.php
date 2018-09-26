@@ -39,7 +39,9 @@ class CompanyProfileController extends Controller
 
     public function show(CompanyProfile $companyProfile)
     {
-        //
+        $view = view($this->view_root . 'index');
+        $view->with('companyProfile', $companyProfile);
+        return $view;
     }
 
     public function edit(CompanyProfile $companyProfile)

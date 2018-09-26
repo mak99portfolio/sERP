@@ -110,6 +110,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @php
+                                        $sub_total_amount = 0;
+                                    
+                                    @endphp
                                 @foreach($commercialInvoice->items as $key=>$item)
                                     <tr>
                                         <td>{{$key+1}}</td>
@@ -119,6 +123,10 @@
                                         <td>{{($item->quantity * $item->unit_price)}}</td>
                                      
                                     </tr>
+                                        @php
+                                            $sub_total_amount += ($item->quantity * $item->unit_price);
+                                        
+                                        @endphp
                                     @endforeach
                                 </tbody>
                                 <tfoot>
@@ -127,7 +135,7 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Sub Total</b></td>
-                                        <td>{{$commercialInvoice->sub_total_amount}}</td>
+                                        <td>{{$sub_total_amount}}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
@@ -141,14 +149,14 @@
                                         <td></td>
                                         <td></td>
                                         <td><b>Grand Total</b></td>
-                                        <td>{{$commercialInvoice->freight+$commercialInvoice->sub_total_amount}}</td>
+                                        <td>{{$commercialInvoice->freight+$sub_total_amount}}</td>
                                     </tr>
                                     <tr>
                                         <td></td>
                                         <td></td>
                                         <td></td>
                                         <td><b>Amount In Word</b></td>
-                                        <td>{{number_to_word($commercialInvoice->freight+$commercialInvoice->sub_total_amount)}}</td>
+                                        <td>{{number_to_word($commercialInvoice->freight+$sub_total_amount)}}</td>
                                     </tr>
                                 </tfoot>
                             </table>

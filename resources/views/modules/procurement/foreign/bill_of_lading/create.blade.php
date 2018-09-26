@@ -157,7 +157,7 @@
                                     {{ BootForm::text('place_of_transhipment','Place of Transhipment', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('modes_of_transport', 'Modes Of Transport', [''=>'-- select --','1'=>'Option'], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                        {{ BootForm::select('modes_of_transport', 'Modes Of Transport', $modes_of_transport_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::select('move_type', 'Move Type', [''=>'-- select --','1'=>'Option'], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}

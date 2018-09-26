@@ -23,7 +23,8 @@ class CommercialInvoice extends Model {
         'destination_city_id',
         'country_goods_country_id',
         'destination_country_id',
-        'notes'
+        'notes',
+        'freight'
     ];
 
     function items() {

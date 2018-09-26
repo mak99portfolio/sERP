@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\MoveType;
+use Auth;
+use Session;
 use Illuminate\Http\Request;
 
 class MoveTypeController extends Controller
@@ -12,10 +14,11 @@ class MoveTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    private $view_root = 'modules/procurement/foreign/move_type/';
+    private $view_root = 'modules/procurement/setting/move_type/';
     public function index()
     {
         $view = view($this->view_root . 'index');
+        $view->with('movetype_list', MoveType::all());
         return $view;
     }
 
@@ -26,7 +29,8 @@ class MoveTypeController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**
@@ -37,7 +41,16 @@ class MoveTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:move_types',
+            'short_name' => 'required|unique:move_types',
+        ]);
+        $movetype = new MoveType;
+        $movetype->fill($request->input());
+        $movetype->creator_user_id = Auth::id();
+        $movetype->save();
+        Session::put('alert-success', $movetype->name . ' created successfully');
+        return redirect()->route('move-type.index');
     }
 
     /**

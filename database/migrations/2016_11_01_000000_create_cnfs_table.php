@@ -12,10 +12,10 @@ class CreateCnfsTable extends Migration
         Schema::create('cnfs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cnf_no');
-            $table->integer('letter_of_credit_id')->unsigned();
-            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
-            $table->integer('commercial_invoice_id')->unsigned();
-            $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
+            $table->integer('bill_of_lading_issue_id')->unsigned();
+            $table->foreign('bill_of_lading_issue_id')->references('id')->on('bill_of_ladings')->onDelete('cascade');
+            // $table->integer('commercial_invoice_id')->unsigned();
+            // $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->string('consignee');
             $table->string('bill_of_lading_issue_no');
             $table->string('bill_of_lading_issue_date');

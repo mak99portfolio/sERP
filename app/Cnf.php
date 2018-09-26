@@ -39,9 +39,9 @@ class Cnf extends Model
         return $this->belongsTo('App\LetterOfCredit', 'letter_of_credit_id');
     }
 
-    public function commercial_invoice()
+    public function commercial_invoices()
     {
-        return $this->belongsTo('App\CommercialInvoice', 'commercial_invoice_id');
+        return $this->belongsTo('App\CommercialInvoice', 'bill_of_lading_issue_no','bl_no');
     }
 
     public function cnf_agent()

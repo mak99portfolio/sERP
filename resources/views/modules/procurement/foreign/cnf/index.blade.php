@@ -26,7 +26,6 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">LC No</th>
-                                        <th scope="col">CI No</th>
                                         <th scope="col">Bill No</th>
                                         <th scope="col">Bill Date</th>
                                         <th scope="col">B/E No</th>
@@ -38,10 +37,9 @@
                                     @foreach ($cnf_list as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->letter_of_credit->letter_of_credit_no }}</td>
-                                        <td>{{ $item->commercial_invoice->commercial_invoice_no }}</td>
-                                        <td>{{ $item->bill_no }}</td>
-                                        <td>{{ $item->bill_date }}</td>
+                                        <td></td>
+                                        <td>{{ $item->bill_of_lading_issue_no }}</td>
+                                        <td>{{ $item->bill_of_lading_issue_date }}</td>
                                         <td>{{ $item->bill_of_entry_no }}</td>
                                         <td>{{ $item->bill_of_entry_date }}</td>
                                         <td class="text-center">

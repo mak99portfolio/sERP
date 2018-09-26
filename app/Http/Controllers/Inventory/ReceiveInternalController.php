@@ -64,7 +64,7 @@ class ReceiveInternalController extends Controller{
             'remarks'
         ));
 
-        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
+        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'));
         $inventory_receive->receive_type='internal_receive';
         $inventory_receive->creator()->associate(\Auth::user());
         $inventory_receive->save();
@@ -219,7 +219,7 @@ class ReceiveInternalController extends Controller{
             'remarks'
         ));
 
-        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
+        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'));
         //$inventory_receive->receive_type='internal_receive';
         $inventory_receive->editor()->associate(\Auth::user());
 

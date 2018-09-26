@@ -65,7 +65,7 @@ class ReceiveForeignPurchaseController extends Controller{
             'remarks'
         ));
 
-        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
+        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'));
         $inventory_receive->receive_type='foreign_purchase';
         $inventory_receive->creator()->associate(\Auth::user());
         $inventory_receive->save();
@@ -180,7 +180,7 @@ class ReceiveForeignPurchaseController extends Controller{
             'remarks'
         ));
 
-        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'))->toDateString();
+        $inventory_receive->receive_date=\Carbon\Carbon::parse($request->get('receive_date'));
         //$inventory_receive->receive_type='foreign_purchase';
         $inventory_receive->editor()->associate(\Auth::user());
         $inventory_receive->stocks()->delete();

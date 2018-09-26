@@ -64,7 +64,7 @@ class StatusAdjustmentController extends Controller{
         ]);
 
         $status_adjustment=\App\InventoryStatusAdjustment::create($request->except('name', 'stock', 'date'));
-        $status_adjustment->date=\Carbon\Carbon::parse($request->get('date'))->toDateString();
+        $status_adjustment->date=\Carbon\Carbon::parse($request->get('date'));
         $status_adjustment->creator()->associate(\Auth::user());
         $status_adjustment->save();
 

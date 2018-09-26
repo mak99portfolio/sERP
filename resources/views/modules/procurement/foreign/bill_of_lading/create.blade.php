@@ -108,13 +108,13 @@
                                     {{ BootForm::text('number_of_box','Number Of Box', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('shipping_agency_id', 'Shipping Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                    {{ BootForm::select('shipping_agency_vendor_id', 'Shipping Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('local_agency_id', 'Local Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                    {{ BootForm::select('local_agency_vendor_id', 'Local Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                 </div>                              
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('exproter_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                    {{ BootForm::select('exproter_vendor_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
@@ -142,10 +142,10 @@
                                         {{ BootForm::text('acceptance','Acceptance', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('port_of_loading_id', 'Port Of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                        {{ BootForm::select('port_of_loading_port_id', 'Port Of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('port_of_dischare_id', 'Port Of Dischrge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                        {{ BootForm::select('port_of_dischare_port_id', 'Port Of Dischrge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::text('place_of_delivery','Place Of Delivery', null, ['class'=>'form-control input-sm']) }}
@@ -157,10 +157,10 @@
                                     {{ BootForm::text('place_of_transhipment','Place of Transhipment', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('modes_of_transport', 'Modes Of Transport', $modes_of_transport_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                        {{ BootForm::select('modes_of_transport_id', 'Modes Of Transport', $modes_of_transport_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::select('move_type', 'Move Type', [''=>'-- select --','1'=>'Option'], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                            {{ BootForm::select('move_type_id', 'Move Type', $move_type_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                         </div>
                                 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">

@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
-                                    
+
                                 </div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date']) }}
@@ -97,7 +97,7 @@
                                         <!--end table-->
                                     </div>
 
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
@@ -162,11 +162,11 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::select('move_type_id', 'Move Type', $move_type_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                         </div>
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::textarea('issue_place','Issue Place', null, ['class'=>'form-control input-sm','rows'=>"1"]) }}
                                 </div>
-                                
+
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('number_of_mtd','Number Of MTD', null, ['class'=>'form-control input-sm']) }}
                                 </div>
@@ -176,8 +176,8 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::text('requisition_date','Gross Weight', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                            
-                                
+
+
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success btn-sm">Submit</button>
@@ -204,7 +204,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        
+
         $scope.itemlist = [];
         $scope.searchBL = function () {
             $scope.itemlist = [];

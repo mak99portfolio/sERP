@@ -25,7 +25,47 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_date', 'readonly']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::number('letter_of_credit_value','LC Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_value', 'readonly']) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text(null, 'Exporter', null, ['class'=>'form-control input-sm' , 'ng-model'=>'vendor_name', 'readonly']) }}
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead class="bg-primary">
+                                                <tr>
+                                                    <th scope="col" colspan="4">Commercial Invoice List</th>
+                                                </tr>
+                                                <tr >
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">Commercial Invoice No</th>
+                                                    <th scope="col">Commercial Invoice Date</th>
+                                                    <th scope="col">COntainer No</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr ng-repeat="ci in cilist">
+                                                    <td scope="col"><% $index+1 %></td>
+                                                    <td scope="col"><% ci.commercial_invoice_no %></td>
+                                                    <td scope="col"><% ci.date %></td>
+                                                    <td scope="col"><% ci.container_no %></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('bill_no','Bill No', null, ['class'=>'form-control input-sm']) }}
@@ -34,41 +74,7 @@
                                     {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label>LC No.</label>
-                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()" required>
-                                            <option value="">--Select LC No--</option>
-                                            @foreach($lc_list as $item)
-                                            <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date', 'readonly']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('letter_of_credit_value','LC Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_value', 'readonly']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    <div class="form-group">
-                                        <label for="">Commercial invoice No</label>
-                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()" required>
-                                            <option value="">--Select Commercial Invoice No--</option>
-                                            @foreach($commercial_invoice_list as $item)
-                                            <option value="{{$item->id}}">{{$item->commercial_invoice_no}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text(null,'Commercial Invoice Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'commercial_invoice_date', 'readonly']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text(null,'B/L No', null, ['class'=>'form-control input-sm', 'ng-model'=>'bl_no', 'readonly']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text(null,'B/L Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'bl_date', 'readonly']) }}
+                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm']) }}
@@ -104,16 +110,10 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text(null, 'Exporter', null, ['class'=>'form-control input-sm' , 'ng-model'=>'vendor_name', 'readonly']) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text(null,'Container No', null, ['class'=>'form-control input-sm', 'ng-model'=>'container_no', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
@@ -123,7 +123,7 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" ng-model="consignment_particular" required>
+                                                        <select class="form-control input-sm select2" ng-model="consignment_particular" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
                                                             <option value="{{$item}}">{{$item->name}}</option>
@@ -238,39 +238,25 @@
     app.controller('myCtrl', function($scope, $http) {
 
 
-        $scope.getCi = function () {
-            $scope.getCiDetails($scope.letter_of_credit_id);
+
+        $scope.searchBL = function () {
+            $scope.getLcAndCiDetails($scope.bl_no);
         }
 
-        $scope.getLc = function () {
-            $scope.getLcDetails($scope.letter_of_credit_id);
-        }
-
-
-        $scope.getLcDetails = function(id){
-            let url = "{{URL::to('get-lc')}}/" + id;
+        $scope.getLcAndCiDetails = function(id){
+            let url = "{{URL::to('get-bl-by-bl-id')}}/" + id;
             $http.get(url).then(function(response) {
-                $scope.letter_of_credit_date = response.data.letter_of_credit_date;
-                $scope.letter_of_credit_value = parseInt(response.data.letter_of_credit_value);
-                $scope.issue_ac_no = response.data.issue_ac_no;
-                $scope.issue_ac_name = response.data.issue_ac_name;
-                $scope.issue_bank_name = response.data.issue_bank_name;
-                $scope.issue_branch_name = response.data.issue_branch_name;
-                $scope.vendor_name = response.data.vendor_name;
+                console.log(response.data);
+                $scope.cilist = response.data.commercial_invoices;
+                $scope.bill_of_lading_date = response.data.bill_of_lading.bill_of_lading_date;
+                $scope.container_no = response.data.commercial_invoices[response.data.commercial_invoices.length-1].container_no;
+                $scope.letter_of_credit_no = response.data.letter_of_credit.letter_of_credit_no;
+                $scope.letter_of_credit_date = response.data.letter_of_credit.letter_of_credit_date;
+                $scope.letter_of_credit_value = parseInt(response.data.letter_of_credit.letter_of_credit_value);
+                $scope.vendor_name = response.data.letter_of_credit.exporter_name;
             });
         }
 
-
-
-        $scope.getCiDetails = function(id){
-            let url = "{{URL::to('get-ci')}}/" + id;
-            $http.get(url).then(function(response) {
-                $scope.commercial_invoice_date = response.data.commercial_invoice_date;
-                $scope.bl_no = response.data.bl_no;
-                $scope.bl_date = response.data.bl_date;
-                $scope.container_no = response.data.container_no;
-            });
-        }
 
         $scope.getBdtAmount = function () {
                 var total = 0;

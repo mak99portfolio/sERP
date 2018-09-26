@@ -15,11 +15,16 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</a>
-                        <h2 class="text-center">Foreign Purchase Order Details</h2>
-                        <div class="pull-right">
-                            <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <a href="{{route('purchase-order.index')}}" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</a>
                         </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <h2 class="text-center">Foreign Purchase Order Details</h2>
+                        </div>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                            <button class="btn btn-sm btn-info print-btn pull-right" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                        </div>
+                        
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

@@ -38,6 +38,8 @@
               <li><a href="{{route('requisition-purpose.index')}}">Requisition Purpose</a></li>
               <li><a href="{{route('cost-particular.index')}}">Cost Particulars</a></li>
               <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
+              <li><a href="{{route('move-type.index')}}">Move Type</a></li>
+              <li><a href="{{route('modes-of-transport.index')}}">Modes Of Transport</a></li>
             </ul>
           </li>
         </ul>

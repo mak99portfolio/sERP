@@ -12,10 +12,8 @@ class CreateCnfsTable extends Migration
         Schema::create('cnfs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('cnf_no');
-            $table->integer('letter_of_credit_id')->unsigned();
-            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
-            $table->integer('commercial_invoice_id')->unsigned();
-            $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
+            $table->integer('bill_of_lading_id')->unsigned();
+            $table->foreign('bill_of_lading_id')->references('id')->on('bill_of_ladings')->onDelete('cascade');
             $table->string('consignee');
             $table->string('bill_no');
             $table->string('bill_date');
@@ -32,8 +30,6 @@ class CreateCnfsTable extends Migration
             $table->string('duty_payment_date');
             // $table->double('previous_due_amount');
             // $table->double('cash_recieved_amount');
-            // $table->integer('consignment_particular_id')->unsigned();
-            // $table->foreign('consignment_particular_id')->references('id')->on('consignment_particulars')->onDelete('cascade');
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->text('note')->nullable();

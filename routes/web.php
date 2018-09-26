@@ -116,6 +116,9 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         Route::get('get-product-statuses', 'ReceiveController@product_statuses');
         Route::get('get-issue-return/{working_unit}/{slug}', 'ReceiveController@get_issue_return');
 
+        //route for status adjustment
+        Route::get('product-info-for-adjusment/{working_unit}/{selected_pattern}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
+
     });
 
 });

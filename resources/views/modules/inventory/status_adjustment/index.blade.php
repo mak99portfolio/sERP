@@ -16,7 +16,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Inventory Status Adjustment <small>List</small></h2>
-                {!! btnAddNew(['url'=>route('stock-adjustment.create')]) !!}
+                {!! btnAddNew(['url'=>route('status-adjustment.create')]) !!}
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -27,33 +27,34 @@
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr class='primary'>
-                        	<th>ID</th>
-                        	<th>Product ID</th>
-                            <th>Product name</th>
-                            <th>Working Unit</th>
-                            <th>Status</th>
-                            <th>Pattern</th>
-                            <th>Receive quantity</th>
-                            <th>Issue quantity</th>
+                        	<th>Adjustment No</th>
+                        	<th>Working Unit</th>
+                            <th>Product Id</th>
+                            <th>Product Name</th>
+                            <th>Selected Pattern</th>
+                            <th>Selected Status</th>
+                            <th>Status Changed To</th>
+                            <th>Adjusted Quantity</th>
                             <th>Remarks</th>
-                            <th>Created At</th>
-                            <th>Update Status</th>
+                            <th>Date</th>
+                            <th>Show</th>
                         </tr>
                     </thead>
+
                     <tbody>
                     @foreach($paginate->table as $row)
                         <tr>
-                            <td>{{ $row->id }}</td>
+                            <td>{{ $row->inventory_status_adjustment_no }}</td>
+                            <td>{{ $row->working_unit->name }}</td>
                             <td>{{ $row->product_id }}</td>
                             <td>{{ $row->product->name }}</td>
-                            <td>{{ $row->working_unit->name }}</td>
-                            <td>{{ $row->status->name }}</td>
-                            <td>{{ $row->pattern->name }}</td>
-                            <td>{{ $row->receive_quantity}}</td>
-                            <td>{{ $row->issue_quantity }}</td>
+                            <td>{{ $row->selected_pattern->name }}</td>
+                            <td>{{ $row->selected_status->name }}</td>
+                            <td>{{ $row->adjusted_status->name }}</td>
+                            <td>{{ $row->quantity }}</td>
                             <td>{{ $row->remarks ?? 'Not Specified' }}</td>
-                            <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
-                            <td>{!! btnEdit(['url'=>route('status-adjustment.edit', ['status_adjustment'=>$row->id])]) !!}</td>
+                            <td>{{ $carbon->parse($row->date)->toFormattedDateString() }}</td>
+                            <td>{!! btnCustom(['title'=>'Show', 'url'=>route('status-adjustment.show', ['status_adjustment'=>$row->id])]) !!}</td>
                         </tr>
                     @endforeach
                     </tbody>

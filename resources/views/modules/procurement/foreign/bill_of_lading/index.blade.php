@@ -39,7 +39,7 @@
                                     <td>{{$bill_of_lading->modes_of_transport->name}}</td>
                                     <td>{{$bill_of_lading->container_no}}</td>
                                     <td class="text-center">
-                                         <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                    <a href="{{route('bill-of-lading.show', $bill_of_lading) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                      </td>
                                     </tr>
                                     @endforeach

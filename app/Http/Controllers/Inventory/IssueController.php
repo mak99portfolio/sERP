@@ -26,6 +26,7 @@ class IssueController extends Controller{
 
     public function create(){
 
+        return back();
         $data=[];
         return view($this->path('create'), $data);
         
@@ -37,7 +38,14 @@ class IssueController extends Controller{
     }
 
 
-    public function show(Issue $issue){
+    public function show(\App\InventoryIssue $issue){
+
+        $data=[
+            'issue'=>$issue,
+            'carbon'=>new \carbon\Carbon
+        ];
+
+        return view($this->path('show'), $data);
         
     }
 
@@ -46,7 +54,7 @@ class IssueController extends Controller{
 
         $data=[
             'issue'=>$issue,
-            'requisition_no'=>$issue->requisition->inventory_requisition_id,
+            'requisition_no'=>$issue->requisition->inventory_requisition_no,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),

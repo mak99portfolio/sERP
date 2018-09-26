@@ -26,7 +26,7 @@
 						{{ BootForm::open(['model'=>$stock_adjustment, 'store'=>'stock-adjustment.store', 'update'=>'stock-adjustment.update']) }}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('inventory_stock_adjustment_id', 'Stock Adjustment No', $stock_adjustment_no, ['class'=>'form-control input-sm'/*, 'readonly'=>'true'*/]) }}
+                                    {{ BootForm::text('inventory_stock_adjustment_no', 'Stock Adjustment No', $stock_adjustment_no, ['class'=>'form-control input-sm'/*, 'readonly'=>'true'*/]) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('adjustment_type', 'Select Requisition Type', ['stock_in'=>'Stock In', 'stock_out'=>'Stock Out'], null, ['class'=>'form-control input-sm']) }}

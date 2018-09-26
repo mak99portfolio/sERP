@@ -39,7 +39,7 @@
                                         <div class="row">
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
+                                                {{ BootForm::text('inventory_receive_no', 'Receive No', $inventory_receive_no, ['class'=>'form-control input-sm', 'readonly']) }}
                                             </div>
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
@@ -59,9 +59,9 @@
                                                     <label>Requisition No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('inventory_requisition_id', null, ['class'=>'form-control input-sm', "v-model"=>"requisition.inventory_requisition_id", "v-on:change"=>"fetch_requisition(requisition.inventory_requisition_id)"]) }}
+                                                        {{ Form::text('inventory_requisition_no', null, ['class'=>'form-control input-sm', "v-model"=>"requisition.inventory_requisition_no", "v-on:change"=>"fetch_requisition(requisition.inventory_requisition_no)"]) }}
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_requisition(requisition.inventory_requisition_id)">
+                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_requisition(requisition.inventory_requisition_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
@@ -224,7 +224,7 @@ $(function(){
             active_record:null,
             remote_data:null,
             requisition:{
-                inventory_requisition_id:'',
+                inventory_requisition_no:'',
                 receive_from: '', //Requested working units name
                 inventory_issue_id: ''
             },
@@ -241,7 +241,7 @@ $(function(){
                 //reset models
                 vm.products=[];
                 vm.requisition={
-                    inventory_requisition_id:'',
+                    inventory_requisition_no:'',
                     receive_from: '',
                     inventory_issue_id: ''
                 }

@@ -9,8 +9,9 @@ class CreateInventoryStockAdjustmentsTable extends Migration{
     public function up(){
 
         Schema::create('inventory_stock_adjustments', function (Blueprint $table){
+            
             $table->increments('id');
-            $table->string('inventory_stock_adjustment_id')->unique();
+            $table->string('inventory_stock_adjustment_no')->unique();
             $table->integer('working_unit_id')->unsigned()->nullable();
             $table->string('adjustment_type')->default('stock_in');
             $table->integer('inventory_adjustment_purpose_id')->unsigned();

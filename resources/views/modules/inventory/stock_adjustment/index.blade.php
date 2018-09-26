@@ -42,7 +42,7 @@
                     <tbody>
                     @foreach($paginate->table as $row)
                         <tr>
-                            <td>{{ $row->inventory_stock_adjustment_id }}</td>
+                            <td>{{ $row->inventory_stock_adjustment_no }}</td>
                             <td>{{ $row->working_unit->name }}</td>
                             <td>{{ $row->adjustment_type }}</td>
                             <td>{{ $row->purpose->name }}</td>

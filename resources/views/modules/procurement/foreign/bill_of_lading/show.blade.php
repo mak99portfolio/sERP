@@ -33,13 +33,13 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>BL No :</strong>125</td>
-                                        <td><strong>BL Date :</strong>125</td>
+                                    <td><strong>BL No :</strong>{{$bill_of_lading->bill_of_lading_no}}</td>
+                                        <td><strong>BL Date :</strong>{{$bill_of_lading->bill_of_lading_date}}</td>
                                         
                                     </tr>
                                     <tr>
-                                        <td><strong>LC No :</strong>125</td>
-                                        <td><strong>LC Date :</strong>125</td>
+                                    <td><strong>LC No :</strong>{{$bill_of_lading->letter_of_credit->letter_of_credit_no}}</td>
+                                        <td><strong>LC Date :</strong>{{$bill_of_lading->letter_of_credit->letter_of_credit_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -55,54 +55,69 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($bill_of_lading->commercial_invoices as $key=>$commercial_invoice)
                                     <tr>
-                                        <td>125</td>
-                                        <td>125</td>
-                                        <td>125</td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$commercial_invoice->commercial_invoice_no}}</td>
+                                        <td>{{$commercial_invoice->date}}</td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">Product List</th>
+                                        <th colspan="5">Product List</th>
                                     </tr>
                                     <tr>
                                         <th>#</th>
                                         <th>Product Name</th>
-                                        <th class="text-right">Quantity</th>
+                                        <th>Quantity</th>
+                                        <th>Unit Price</th>
+                                        <th>Amount</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $sum=0;
+                                    @endphp
+                                    @foreach($bill_of_lading->items as $key=>$item)
+
                                     <tr>
-                                        <td>125</td>
-                                        <td>125</td>
-                                        <td class="text-right">125</td>
+                                        <td>{{$key+1}}</td>
+                                        <td>{{$item->product->name}}</td>
+                                        <td>{{$item->quantity}}</td>
+                                        <td>{{$item->unit_price}}</td>
+                                        <td class="text-right">{{$item->unit_price * $item->quantity}}</td>
                                     </tr>
+                                    @php
+                                        $sum += $item->unit_price * $item->quantity;
+                                    @endphp
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="2" class="text-right">Total Quantity =</td>
-                                        <td class="text-right">125</td>
+                                        <td colspan="4" class="text-right">Total Quantity =</td>
+                                        <td class="text-right">{{$sum}}</td>
                                     </tr>
                                 </tfoot>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Container No :</strong>125</td>
-                                        <td><strong>Container Size :</strong>125</td>
-                                        <td><strong>Number Of Box :</strong>125</td>
+                                        <td><strong>Container No :</strong>{{$bill_of_lading->container_no}}</td>
+                                        <td><strong>Container Size :</strong>{{$bill_of_lading->container_size}}</td>
+                                        <td><strong>Number Of Box :</strong>{{$bill_of_lading->number_of_box}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Shipping Agency Name :</strong>125</td>
-                                        <td><strong>Shipping Agency Address :</strong>125</td>
-                                        <td><strong>Local Agency Name :</strong>125</td>
+                                        <td><strong>Shipping Agency Name :</strong>{{$bill_of_lading->shipping_agency->name}}</td>
+                                        <td><strong>Shipping Agency Address :</strong>{{$bill_of_lading->shipping_agency->address}}</td>
+                                        <td><strong>Local Agency Name :</strong>{{$bill_of_lading->local_agency->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Local Agency Address :</strong>125</td>
-                                        <td><strong>Exproter:</strong>125</td>
-                                        <td><strong>Consignee:</strong>125</td>
+                                        <td><strong>Local Agency Address :</strong>{{$bill_of_lading->local_agency->address}}</td>
+                                        <td><strong>Exproter:</strong>{{$bill_of_lading->exprote->name}}</td>
+                                    <td><strong>Consignee:</strong>{{$bill_of_lading->consignee}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -114,36 +129,36 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No:</strong>125</td>
-                                        <td><strong>A/C Name :</strong>125</td>
+                                    <td><strong>A/C No:</strong>{{$bill_of_lading->letter_of_credit->issue_ac_no}}</td>
+                                        <td><strong>A/C Name :</strong>{{$bill_of_lading->letter_of_credit->issue_ac_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Branch Name :</strong>125</td>
-                                        <td><strong>Bank Name :</strong></td>
+                                        <td><strong>Branch Name :</strong>{{$bill_of_lading->letter_of_credit->issue_branch_name}}</td>
+                                        <td><strong>Bank Name :</strong>{{$bill_of_lading->letter_of_credit->issue_bank_name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Acceptance:</strong>125</td>
-                                        <td><strong>Port Of Loading :</strong>125</td>
-                                        <td><strong>Port Of Dischrge :</strong>125</td>
+                                        <td><strong>Acceptance:</strong>{{$bill_of_lading->acceptance}}</td>
+                                        <td><strong>Port Of Loading :</strong>{{$bill_of_lading->loading->name}}</td>
+                                        <td><strong>Port Of Dischrge :</strong>{{$bill_of_lading->dischare->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Place Of Delivery :</strong>125</td>
-                                        <td><strong>Voyage No :</strong>125</td>
-                                        <td><strong>Place of Transhipment :</strong>125</td>
+                                        <td><strong>Place Of Delivery :</strong>{{$bill_of_lading->place_of_delivery}}</td>
+                                        <td><strong>Voyage No :</strong>{{$bill_of_lading->voyage_no}}</td>
+                                        <td><strong>Place of Transhipment :</strong>{{$bill_of_lading->place_of_transhipment}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Modes Of Transport :</strong>125</td>
-                                        <td><strong>Move Type :</strong>125</td>
-                                        <td><strong>Issue Place :</strong>125</td>
+                                        <td><strong>Modes Of Transport :</strong>{{$bill_of_lading->modes_of_transport->name}}</td>
+                                        <td><strong>Move Type :</strong>{{$bill_of_lading->move_type->name}}</td>
+                                        <td><strong>Issue Place :</strong>{{$bill_of_lading->issue_place}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Number Of MTD :</strong>125</td>
-                                        <td><strong>Packaging Qty :</strong>125</td>
-                                        <td><strong>Gross Weight :</strong>125</td>
+                                        <td><strong>Number Of MTD :</strong>{{$bill_of_lading->number_of_mtd}}</td>
+                                        <td><strong>Packaging Qty :</strong>{{$bill_of_lading->packaging_qty}}</td>
+                                        <td><strong>Gross Weight :</strong>{{$bill_of_lading->gross_weight}}</td>
                                     </tr>
                                 </tbody>
                             </table>

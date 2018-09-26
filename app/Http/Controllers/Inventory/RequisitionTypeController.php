@@ -2,62 +2,104 @@
 
 namespace App\Http\Controllers\Inventory;
 
-use App\InventoryRequisitionType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
-use Session;
+use App\Helpers\Paginate;
 
 class RequisitionTypeController extends Controller{
 
-    private $view_root = 'modules/inventory/requisition_type/';
+    protected function path(string $suffix){
+        return "modules.inventory.requisition_type.{$suffix}";
+    }
 
     public function index(){
+        
+        $data=[
+            'paginate'=>new Paginate('\App\InventoryRequisitionType', ['id'=>'ID', 'name'=>'Name', 'short_name'=>'Short Name']),
+            'carbon'=>new \Carbon\Carbon
+        ];
 
-        $view = view($this->view_root.'index');
-        $view->with('requisition_type_list', InventoryRequisitionType::all());
-        return $view;
+        return view($this->path('index'), $data);
 
     }
 
 
     public function create(){
 
-        $view = view($this->view_root.'create');
-        return $view;
+        $data=[
 
+            'model'=>new \App\InventoryRequisitionType,
+            'route_name'=>'requisition-type',
+            'title'=>'Requisition Type'
+
+        ];
+
+        return view($this->path('create'), $data);
+        
     }
 
-    public function store(Request $request)
-    {
+
+    public function store(Request $request){
+
         $request->validate([
-            'name' => 'required|unique:inventory_requisition_types',
-            'short_name' => 'required|unique:inventory_requisition_types',
+            'name'=>'required|unique:inventory_requisition_types',
+            'short_name'=>'required|unique:inventory_requisition_types'
         ]);
-        $requisition_type = new InventoryRequisitionType;
-        $requisition_type->fill($request->input());
-        $requisition_type->creator_user_id = Auth::id();
-        $requisition_type->save();
-        Session::put('alert-success', $requisition_type->name . ' created successfully');
-        return redirect()->route('requisition-type.index');
+
+        $model=\App\InventoryRequisitionType::create($request->all());
+        $model->creator()->associate(\Auth::user());
+        $model->save();
+
+        return back()->with('success', 'Form Submitted Successfully!.');
 
     }
 
-    public function show($id){
+
+    public function show(\App\InventoryRequisitionType $requisition_type){
+
+        return back();
 
     }
 
-    public function edit($id){
+
+    public function edit(\App\InventoryRequisitionType $requisition_type){
+
+        $data=[
+
+            'model'=>$requisition_type,
+            'route_name'=>'requisition-type',
+            'title'=>'Requisition Type'
+
+        ];
+
+        return view($this->path('create'), $data);
 
     }
 
-    public function update(Request $request, $id)
-    {
 
+    public function update(Request $request, \App\InventoryRequisitionType $requisition_type){
+
+        $model=$requisition_type;
+
+        $request->validate([
+            'name'=>'required|unique:inventory_requisition_types,name,'.$model->id,
+            'short_name'=>'required|unique:inventory_requisition_types,short_name,'.$model->id
+        ]);
+
+        $model->fill($request->all());
+        $model->editor()->associate(\Auth::user());
+        $model->save();
+
+        return back()->with('success', 'Form Submitted Successfully!.');
+        
     }
 
-    public function destroy($id){
 
+    public function destroy(\App\InventoryRequisitionType $requisition_type){
+
+        return back();
+        
     }
+
 
 }

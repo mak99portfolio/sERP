@@ -244,7 +244,7 @@
         }
 
         $scope.getLcAndCiDetails = function(id){
-            let url = "{{URL::to('get-all-by-bl-no')}}/" + id;
+            let url = "{{URL::to('get-bl-by-bl-id')}}/" + id;
             $http.get(url).then(function(response) {
                 console.log(response.data);
                 $scope.cilist = response.data.ci;

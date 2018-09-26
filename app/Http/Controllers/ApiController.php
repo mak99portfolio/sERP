@@ -13,6 +13,7 @@ use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
+use App\BillOfLading;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -271,9 +272,12 @@ class ApiController extends Controller
                 }
             }
         }
-        
+
         $data['lc'] = LetterOfCredit::find(CommercialInvoice::where('bl_no',$bl_no)->first()->letter_of_credit_id);
 
         return response()->json($data);
+    }
+    public function getBlByBlId($id){
+        return response()->json(BillOfLading::with('letter_of_credit')->with('commercial_invoice')->find($id));
     }
 }

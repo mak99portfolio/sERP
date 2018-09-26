@@ -216,7 +216,7 @@
                         console.log(response.data);
                         $scope.itemlist = response.data.items;
                         $scope.cilist = response.data.ci;
-                        $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bl_date;
+                        $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bill_of_lading_date;
                         $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
                         $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
                         $scope.letter_of_credit_id = response.data.lc.id;

@@ -44,13 +44,13 @@
                                     {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('country_of_final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                    {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('country_of_origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                    {{ BootForm::select('origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('shipment_allow', 'Shipment Allow', ['Multi shipment'=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}

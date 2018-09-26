@@ -24,9 +24,9 @@ class CreateWorkingUnitsTable extends Migration
             $table->string('short_name')->unique()->nullable();
             $table->integer('in_charge')->unsigned();
             $table->text('address')->nullable();
-            $table->integer('country_id')->nullable();
-            $table->integer('division_id')->nullable();
-            $table->integer('district_id')->nullable();
+            $table->integer('country_id')->unsigned();
+            $table->integer('division_id')->unsigned();
+            $table->integer('district_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
 

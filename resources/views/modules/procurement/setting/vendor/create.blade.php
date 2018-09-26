@@ -19,6 +19,7 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
+                        @include('partials/flash_msg')
                         <form class="form-horizontal form-label-left" action="{{route('vendor.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">

@@ -63,7 +63,7 @@ class EmployeeProfileController extends Controller{
 
         if($employeeProfile->save()){
 
-            $organizationalInformation=\App\EmployeeOrganizationalInformation::create([]);
+            $organizationalInformation=\App\EmployeeOrgInfo::create([]);
             $organizationalInformation->employee_profile()->associate($employeeProfile);
             $organizationalInformation->save();
             return redirect()->route(
@@ -127,15 +127,15 @@ class EmployeeProfileController extends Controller{
         
     }
 
-    public function organizational_info_form(\App\EmployeeOrganizationalInformation $organizational_info){
+    public function organizational_info_form(\App\EmployeeOrgInfo $organizational_info){
 
         $data=[
             'organizational_info'=>$organizational_info,
             'depatrments'=>\App\Department::pluck('name', 'id'),
             'designations'=>\App\Designation::pluck('name', 'id'),
             'workingUnits'=>\App\WorkingUnit::pluck('name', 'id'),
-            'statuses'=>\App\EmployeeOrganizationalInformationStatus::pluck('name', 'id'),
-            'types'=>\App\EmployeeOrganizationalInformationType::pluck('name', 'id'),
+            'statuses'=>\App\EmployeeOrgInfoStatus::pluck('name', 'id'),
+            'types'=>\App\EmployeeOrgInfoType::pluck('name', 'id'),
         ];
 
         //dd($data);
@@ -144,7 +144,7 @@ class EmployeeProfileController extends Controller{
         
     }
 
-    public function update_organizational_info(Request $request, \App\EmployeeOrganizationalInformation $organizational_info){
+    public function update_organizational_info(Request $request, \App\EmployeeOrgInfo $organizational_info){
 
         $request->validate([
             'department_id'=>'required',

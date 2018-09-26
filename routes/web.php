@@ -87,6 +87,10 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
 });
+//Accounts
+Route::middleware('auth')->namespace('Accounts')->prefix('Accounts')->group(function(){
+    Route::resource('product-costing', 'ProductCostingController');
+});
 //Company
 Route::middleware('auth')->namespace('Company')->prefix('Company')->group(function(){
     Route::resource('company-profile', 'CompanyProfileController');

@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
 {
-    protected $table = 'vendors';
-    protected $guarded = ['id'];
+    // protected $table = 'vendors';
+    // protected $guarded = ['id'];
     protected $fillable = [
             'vendor_id',
             'name',
@@ -36,7 +36,7 @@ class Vendor extends Model
         return $this->belongsTo('App\Country');
     }
     public function category(){
-        return $this->belongsTo('App\VendorCategory');
+        return $this->belongsTo('App\VendorCategory', 'vendor_category_id');
     }
 
     public function payment_term()

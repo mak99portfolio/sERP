@@ -27,14 +27,14 @@ class CreateVendorsTable extends Migration
             $table->string('certificate_of_incorporation')->nullable();
             $table->string('vat_no')->nullable();
             $table->integer('status_id')->unsigned()->nullable();
-            $table->date('establishment_date')->nullable();
+            $table->string('establishment_date')->nullable();
             $table->integer('country_id')->nullable();
             $table->integer('vendor_category_id')->nullable();
             $table->string('telephone')->nullable();
             $table->string('website')->nullable();
             $table->string('tin_no')->nullable();
-            $table->date('trade_license_issue_date')->nullable();
-            $table->date('incorporation_date')->nullable();
+            $table->string('trade_license_issue_date')->nullable();
+            $table->string('incorporation_date')->nullable();
             $table->string('business_type')->nullable();
             $table->string('business_nature')->nullable();
             $table->string('credit_period')->nullable();

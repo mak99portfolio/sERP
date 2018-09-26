@@ -16,9 +16,9 @@ class ProformaInvoice extends Model
         'vendor_id',
         'port_of_loading_port_id',
         'port_of_discharge_port_id',
-        'country_of_final_destination_country_id',
+        'final_destination_country_id',
         'final_destination_city_id',
-        'country_of_origin_of_goods_country_id',
+        'origin_of_goods_country_id',
         'shipment_allow',
         'payment_type',
         'pre_carriage_by',
@@ -43,13 +43,13 @@ class ProformaInvoice extends Model
         return $this->belongsTo('App\Port','port_of_discharge_port_id');
     }
     public function final_destination_country(){
-        return $this->belongsTo('App\Country','country_of_final_destination_country_id');
+        return $this->belongsTo('App\Country','final_destination_country_id');
     }
     public function final_destination_city(){
         return $this->belongsTo('App\City','final_destination_city_id');
     }
     public function origin_of_goods_country(){
-        return $this->belongsTo('App\Country','country_of_origin_of_goods_country_id');
+        return $this->belongsTo('App\Country','origin_of_goods_country_id');
     }
     public function purchase_orders(){
         return $this->belongsToMany('App\PurchaseOrder');

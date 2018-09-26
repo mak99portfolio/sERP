@@ -16,9 +16,9 @@ class CreateForeignRequisitionPurchaseOrderTable extends Migration
         Schema::create('foreign_requisition_purchase_order', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('purchase_order_id')->unsigned()->nullable();
-            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
+            $table->foreign('purchase_order_id', 'po_foreign_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->integer('foreign_requisition_id')->unsigned()->nullable();
-            $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('cascade');
+            $table->foreign('foreign_requisition_id', 'fr_foreign_id')->references('id')->on('foreign_requisitions')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

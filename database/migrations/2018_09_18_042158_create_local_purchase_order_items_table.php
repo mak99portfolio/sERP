@@ -23,7 +23,7 @@ class CreateLocalPurchaseOrderItemsTable extends Migration {
             $table->double('total_discount', 8, 2)->nullable();
             $table->double('total_vat', 8, 2)->nullable();
             $table->integer('local_purchase_order_id')->unsigned();
-            $table->foreign('local_purchase_order_id')->references('id')->on('local_purchase_orders')->onDelete('restrict');
+            $table->foreign('local_purchase_order_id', 'lpo_foreign_id')->references('id')->on('local_purchase_orders')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -26,75 +26,56 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Vendor Id :</strong> 125</td>
-                                        <td><strong>Vendor Name :</strong> 125</td>
-                                        <td><strong>Status:</strong> 125</td>
+                                        <td><strong>Vendor Id : </strong>{{ $vendor->vendor_id }}</td>
+                                        <td><strong>Vendor Name : </strong> {{ $vendor->name }}</td>
+                                        <td><strong>Status: </strong> {{ $vendor->status_id }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Establishment Date :</strong> 125</td>
-                                        <td><strong>Country:</strong> 125</td>
-                                        <td><strong>Vendor Category:</strong> 125</td>
+                                        <td><strong>Establishment Date :</strong> {{ $vendor->establishment_date }}</td>
+                                        <td><strong>Country:</strong> {{ $vendor->country->name }}</td>
+                                        <td><strong>Vendor Category:</strong> {{ $vendor->category->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Zip Code:</strong> 125</td>
-                                        <td><strong>Tel. No. :</strong> 125</td>
-                                        <td><strong>Fax:</strong> 125</td>
+                                        <td><strong>Zip Code:</strong> {{ $vendor->zip_code }}</td>
+                                        <td><strong>Tel. No. :</strong> {{ $vendor->telephone }}</td>
+                                        <td><strong>Fax:</strong> {{ $vendor->fax }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Web Site :</strong> 125</td>
-                                        <td><strong>Email:</strong> 125</td>
-                                        <td><strong>TIN Number :</strong> 125</td>
+                                        <td><strong>Web Site :</strong> {{ $vendor->website }}</td>
+                                        <td><strong>Email:</strong> {{ $vendor->email }}</td>
+                                        <td><strong>TIN Number :</strong> {{ $vendor->tin_no }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Trade License No :</strong> 125</td>
-                                        <td><strong>Trade License Issue Date:</strong> 125</td>
-                                        <td><strong>Certificate of Incorporation :</strong> 125</td>
+                                        <td><strong>Trade License No :</strong> {{ $vendor->trade_license_no }}</td>
+                                        <td><strong>Trade License Issue Date:</strong> {{ $vendor->trade_license_issue_date }}</td>
+                                        <td><strong>Certificate of Incorporation :</strong> {{ $vendor->certificate_of_incorporation }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Incorporation Date :</strong> 125</td>
-                                        <td><strong>VAT No:</strong> 125</td>
+                                        <td><strong>Incorporation Date :</strong> {{ $vendor->incorporation_date }}</td>
+                                        <td><strong>VAT No:</strong> {{ $vendor->vat_no }}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Address:</strong> 125</td>
+                                        <td colspan="3"><strong>Address:</strong> {{ $vendor->address }}</td>
                                     </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                <thead>
+                                    @if(is_array($business_type = unserialize($vendor->business_type)))
                                     <tr>
-                                        <th colspan="4">Type of Business</th>
+                                        <td colspan="3"><strong>Type of Business:</strong> 
+                                            @foreach ($business_type as $item)
+                                                {{ $item . ($loop->last ? '': ',')}}
+                                            @endforeach
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tbody>
+                                    @endif
+                                    @if(is_array($business_nature = unserialize($vendor->business_nature)))
                                     <tr>
-                                        <td><strong>Ltd. Company:</strong>125</td>
-                                        <td><strong>Partnership:</strong>125</td>
-                                        <td><strong>Proprietorship:</strong>125</td>
+                                        <td colspan="3"><strong>Nature of Business:</strong> 
+                                            @foreach ($business_nature as $item)
+                                                {{ $item . ($loop->last ? '': ',')}}
+                                            @endforeach
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td><strong>Other:</strong></td>
-                                        <td><strong></strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th colspan="4">Nature of Business</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Manufacturer:</strong>125</td>
-                                        <td><strong>Trader:</strong>125</td>
-                                        <td><strong>Service Provide:</strong>125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Contractor:</strong>125</td>
-                                        <td><strong>Agent/Distributor:</strong>125</td>
-                                        <td><strong>Other:</strong>125</td>
-                                    </tr>
+                                    @endif
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -105,8 +86,8 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Credit Period :</strong>125</td>
-                                        <td><strong>Credit Limit :</strong>125</td>
+                                        <td><strong>Credit Period :</strong> {{ $vendor->credit_period }}</td>
+                                        <td><strong>Credit Limit :</strong> {{ $vendor->credit_limit }}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tbody>
@@ -119,12 +100,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Net Day:</strong>125</td>
-                                        <td><strong>Prompt payment discount :</strong>125</td>
-                                        <td><strong>Other Discounts:</strong>125</td>
+                                        <td><strong>Net Day:</strong> {{ $vendor->payment_term->net_days }}</td>
+                                        <td><strong>Prompt payment discount :</strong> {{ $vendor->payment_term->payment_discount }}</td>
+                                        <td><strong>Other Discounts:</strong> {{ $vendor->payment_term->other_discount }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Specify Discount Terms :</strong>125</td>
+                                        <td colspan="3"><strong>Specify Discount Terms :</strong> {{ $vendor->payment_term->discount_terms }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -136,40 +117,42 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No:</strong>125</td>
-                                        <td><strong>A/C Name :</strong>125</td>
-                                        <td><strong>Bank:</strong>125</td>
+                                        <td><strong>A/C No:</strong> {{ $vendor->bank->ac_no }}</td>
+                                        <td><strong>A/C Name :</strong> {{ $vendor->bank->ac_name }}</td>
+                                        <td><strong>Bank:</strong> {{ $vendor->bank->bank_name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Branch:</strong>125</td>
-                                        <td><strong>SWIFT Code :</strong>125</td>
+                                        <td><strong>Branch:</strong> {{ $vendor->bank->branch_name }}</td>
+                                        <td><strong>SWIFT Code :</strong> {{ $vendor->bank->swift_code }}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Bank Address :</strong>125</td>
+                                        <td colspan="3"><strong>Bank Address :</strong> {{ $vendor->bank->address }}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">Contact Person Information</th>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="3">Person-1</th>
+                                        <th colspan="4">Contact Person Information</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($vendor->contacts as $item)
                                     <tr>
-                                        <td><strong>Contact Name :</strong>125</td>
-                                        <td><strong>Designation:</strong>125</td>
-                                        <td><strong>Tel.No :</strong>125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>E-Mail :</strong>125</td>
-                                        <td><strong>Job Role :</strong>125</td>
-                                        <td><strong>Cell No :</strong>125</td>
-                                    </tr>
+                                            <td rowspan="3">Person {{ $loop->iteration }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Contact Name :</strong> {{ $item->name }}</td>
+                                            <td><strong>Designation:</strong> {{ $item->designation }}</td>
+                                            <td><strong>Tel.No :</strong> {{ $item->telephone }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>E-Mail :</strong> {{ $item->email }}</td>
+                                            <td><strong>Job Role :</strong> {{ $item->role }}</td>
+                                            <td><strong>Cell No :</strong> {{ $item->mobile }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -181,17 +164,20 @@
                                         <th colspan="3">Enclosure LIst</th>
                                     </tr>
                                     <tr>
-                                        <th>SL No</th>
+                                        <th>#</th>
                                         <th>Enclosure Name</th>
                                         <th>Attachment</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><strong></strong>125</td>
-                                        <td><strong></strong>125</td>
-                                        <td><strong></strong>125</td>
-                                    </tr>
+                                    @foreach ($vendor->enclosures as $item)
+                                        <tr>
+                                            <td><strong></strong>{{ $loop->iteration }}</td>
+                                            <td><strong></strong>{{ $item->enclosure->name }}</td>
+                                            <td><a target="_blank" href="{{ asset($item->file_directory . $item->file_name) }}"><i class="fa fa-file"></i> {{ $item->file_name }}</a></td>
+                                        </tr>
+                                    @endforeach
+                                    
                                 </tbody>
                             </table>
                         </div>

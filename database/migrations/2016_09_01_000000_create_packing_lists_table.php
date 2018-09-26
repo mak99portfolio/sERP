@@ -14,7 +14,8 @@ class CreatePackingListsTable extends Migration {
     public function up() {
         Schema::create('packing_lists', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('commercial_invoice_id')->unsigned();
+            $table->integer('commercial_invoice_id')->unsigned();
+            $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->string('currency');
             $table->string('customer_code')->nullable();
             $table->text('notes')->nullable();

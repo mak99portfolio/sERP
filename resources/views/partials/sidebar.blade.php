@@ -78,8 +78,8 @@
           <li><a href="{{route('company-profile.index')}}">General Information</a></li>
           <li><a href="{{route('working-unit.index')}}">Working Unit</a></li>
           <li><a href="{{route('employee-profile.index')}}">Employees</a></li>
-          <li><a href="{{route('port.index')}}">Bank Information</a></li>
-          <li><a href="{{route('unit-of-measurement.index')}}">Licenses</a></li>
+          <li><a href="{{route('company-bank.index')}}">Bank Information</a></li>
+          <li><a href="{{route('company-license.index')}}">Licenses</a></li>
         </ul>
       </li>
     </ul>

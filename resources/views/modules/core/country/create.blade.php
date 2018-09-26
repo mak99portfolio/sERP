@@ -17,10 +17,10 @@
                         <form class="form-horizontal form-label-left" action="{{route('country.store')}}" method="POST">
                             {{csrf_field()}}
                             <div class="col-md-6 offset-md-3 col-sm-6 col-xs-12">
-                                {{ BootForm::text('name', 'Country Name', null, ['class'=>'form-control input-sm','data-validate-length-range'=>'6', 'data-validate-words'=>'2', 'required'=>'required']) }}
+                                {{ BootForm::text('name', 'Country Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm','data-validate-length-range'=>'6', 'data-validate-words'=>'2', 'required'=>'required']) }}
+                                {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
@@ -38,13 +38,4 @@
         <div class="clearfix"></div>
     </div>
 </div>
-@endsection
-
-
-@section('script')
-<script>
-
-   $( ".form-group" ).addClass( "item" );
-    
-</script>
 @endsection

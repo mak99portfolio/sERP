@@ -24,7 +24,7 @@ class TestController extends Controller{
         //$role->givePermissionTo($permission);
         //\Auth::user()->assignRole($role);
         //echo 'passed permission middleware';
-        dd(uCode('working_units.working_unit_id', 'WU'));
+        dd(uCode('working_units.working_unit_no', 'WU'));
     }
 
     public function design(){

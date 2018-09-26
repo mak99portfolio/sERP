@@ -24,7 +24,7 @@ class ReceiveLocalPurchaseController extends Controller{
 
         $data=[
             'inventory_receive'=>new \App\InventoryReceive,
-            'inventory_receive_id'=>uCode('inventory_receives.inventory_receive_id', 'IR00'),
+            'inventory_receive_no'=>uCode('inventory_receives.inventory_receive_no', 'IR00'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
@@ -46,7 +46,7 @@ class ReceiveLocalPurchaseController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_receive_id'=>'required|unique:inventory_receives',
+            'inventory_receive_no'=>'required|unique:inventory_receives',
             'receive_date'=>'required|date',
             'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
@@ -56,7 +56,7 @@ class ReceiveLocalPurchaseController extends Controller{
         ]);
 
         $inventory_receive=\App\InventoryReceive::create($request->only(
-            'inventory_receive_id',
+            'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
             'product_pattern_id',
@@ -158,7 +158,7 @@ class ReceiveLocalPurchaseController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_receive_id'=>'required|unique:inventory_receives,inventory_receive_id,'.$inventory_receive->id,
+            'inventory_receive_no'=>'required|unique:inventory_receives,inventory_receive_no,'.$inventory_receive->id,
             'receive_date'=>'required|date',
             'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
@@ -168,7 +168,7 @@ class ReceiveLocalPurchaseController extends Controller{
         ]);
 
         $inventory_receive->fill($request->only(
-            'inventory_receive_id',
+            'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
             'product_pattern_id',

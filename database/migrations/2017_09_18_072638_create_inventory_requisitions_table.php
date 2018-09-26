@@ -10,7 +10,7 @@ class CreateInventoryRequisitionsTable extends Migration{
 
         Schema::create('inventory_requisitions', function (Blueprint $table){
             $table->increments('id');
-            $table->string('inventory_requisition_id')->unique();
+            $table->string('inventory_requisition_no')->unique();
             $table->date('date')->nullable();
 
             $table->integer('inventory_requisition_type_id')->unsigned();

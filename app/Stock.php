@@ -20,6 +20,10 @@ class Stock extends Model{
 		return $this->belongsTo('App\InventoryStockAdjustment', 'stock_adjustment_id');
 	}
 
+    public function status_adjustment(){
+        return $this->belongsTo('App\InventoryStatuskAdjustment', 'status_adjustment_id');
+    }
+
     public function creator(){
     	return $this->belongsTo('App\User', 'creator_user_id');
     }

@@ -42,7 +42,7 @@
                                                 <div class="form-group">
                                                     {{--<label>Date</label>
                                                     <input class="form-control input-sm" type="text"> --}}
-                                                    {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
+                                                    {{ BootForm::text('inventory_receive_no', 'Receive No', $inventory_receive_no, ['class'=>'form-control input-sm', 'readonly']) }}
                                                 </div>
                                             </div>
 

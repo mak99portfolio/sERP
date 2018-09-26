@@ -8,7 +8,7 @@ class WorkingUnitsTableSeeder extends Seeder{
         
         $data=[
         	[
-        		'working_unit_id'=>'WU1',
+        		'working_unit_no'=>'WU001',
         		'company_id'=>1,
         		'parent_unit_id'=>null,
         		'working_unit_type_id'=>1,
@@ -20,7 +20,7 @@ class WorkingUnitsTableSeeder extends Seeder{
         		'division_id'=>1,
         		'district_id'=>1
         	],[
-        		'working_unit_id'=>'WU2',
+        		'working_unit_no'=>'WU002',
         		'company_id'=>1,
         		'parent_unit_id'=>1,
         		'working_unit_type_id'=>2,
@@ -32,7 +32,7 @@ class WorkingUnitsTableSeeder extends Seeder{
         		'division_id'=>1,
         		'district_id'=>1
         	],[
-        		'working_unit_id'=>'WU3',
+        		'working_unit_no'=>'WU003',
         		'company_id'=>1,
         		'parent_unit_id'=>2,
         		'working_unit_type_id'=>3,

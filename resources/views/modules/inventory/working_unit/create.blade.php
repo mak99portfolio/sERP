@@ -30,6 +30,8 @@
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                {{ BootForm::text('working_unit_no','Unit No', $working_unit_no, ['class'=>'form-control input-sm']) }}
+                                </div>                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 {{ BootForm::text('name','Unit Name', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

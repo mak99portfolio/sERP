@@ -37,7 +37,7 @@
                                     <div id="vue_app">
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('inventory_receive_id', 'Receive No', $inventory_receive_id, ['class'=>'form-control input-sm', 'readonly']) }}
+                                                {{ BootForm::text('inventory_receive_no', 'Receive No', $inventory_receive_no, ['class'=>'form-control input-sm', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('inventory_return_reason_id', 'Return Reason', $inventory_return_reasons, null, ['class'=>'form-control input-sm selectpicker']) }}
@@ -52,7 +52,7 @@
                                                 {{ BootForm::text('inventory_issue_no', 'Issue No', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert Issue No','suffix' => BootForm::addonButton(fa('fa-search'), ['class' => 'btn-default btn-sm', "v-on:click"=>"fetch_issue_return(issue.inventory_issue_no)"]), 'v-model'=>"issue.inventory_issue_no", 'v-on:change'=>"fetch_issue_return(issue.inventory_issue_no)"]) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('inventory_requisition_id', 'Requisition No', null, ['class'=>'form-control input-sm', 'readonly', 'v-model'=>"issue.inventory_requisition_id"]) }}
+                                                {{ BootForm::text('inventory_requisition_no', 'Requisition No', null, ['class'=>'form-control input-sm', 'readonly', 'v-model'=>"issue.inventory_requisition_no"]) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('receive_from', null, null, ['class'=>'form-control input-sm', 'readonly', 'v-model'=>"issue.receive_from"]) }}
@@ -145,7 +145,7 @@ $(function(){
             products:[],
             issue:{
                 inventory_issue_no:'',
-                inventory_requisition_id: '',
+                inventory_requisition_no: '',
                 receive_from: ''
             },
             product_statuses:null
@@ -162,7 +162,7 @@ $(function(){
                 vm.products=[];
                 vm.issue={
                     inventory_issue_no:'',
-                    inventory_requisition_id: '',
+                    inventory_requisition_no: '',
                     receive_from: ''
                 }
 

@@ -24,7 +24,7 @@ class ReceiveInternalController extends Controller{
 
         $data=[
             'inventory_receive'=>new \App\InventoryReceive,
-            'inventory_receive_id'=>uCode('inventory_receives.inventory_receive_id', 'IR00'),
+            'inventory_receive_no'=>uCode('inventory_receives.inventory_receive_no', 'IR00'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
@@ -39,7 +39,7 @@ class ReceiveInternalController extends Controller{
         //dd($request->all());
 
         \Session::put('vue_inputs', [
-            'inventory_requisition_id'=>$request->get('inventory_requisition_id'),
+            'inventory_requisition_no'=>$request->get('inventory_requisition_no'),
             'receive_from'=>$request->get('receive_from'),
             'inventory_issue_id'=>$request->get('inventory_issue_id'),
         ]);
@@ -47,7 +47,7 @@ class ReceiveInternalController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_receive_id'=>'required|unique:inventory_receives',
+            'inventory_receive_no'=>'required|unique:inventory_receives',
             'receive_date'=>'required|date',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
@@ -57,7 +57,7 @@ class ReceiveInternalController extends Controller{
         ]);
 
         $inventory_receive=\App\InventoryReceive::create($request->only(
-            'inventory_receive_id',
+            'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
             'product_pattern_id',
@@ -142,7 +142,7 @@ class ReceiveInternalController extends Controller{
 
         $data=[
             'inventory_receive'=>$receive_internal,
-            'inventory_receive_id'=>$receive_internal->inventory_receive_id,
+            'inventory_receive_no'=>$receive_internal->inventory_receive_no,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
@@ -156,12 +156,20 @@ class ReceiveInternalController extends Controller{
 
         foreach($receive_internal->stocks as $row){
 
+            $return_quantity=0;
+            $return_status_id=1;
+
+            if($related_issue->return_items()->exists()){
+                $return_quantity=$related_issue->return_items()->where('product_id', $row->product_id)->first()->return_quantity;
+                $return_status_id=$related_issue->return_items()->where('product_id', $row->product_id)->first()->product_status_id;
+            }
+
             array_push($products, [
                 'id'=>$row->product_id,
                 'quantity'=>$related_issue->items()->where('product_id', $row->product_id)->first()->requested_quantity,
                 'requisition_quantity'=>$related_issue->requisition->items()->where('product_id', $row->product_id)->first()->requested_quantity,
-                'return_quantity'=>$related_issue->return_items()->where('product_id', $row->product_id)->first()->return_quantity,
-                'return_status_id'=>$related_issue->return_items()->where('product_id', $row->product_id)->first()->product_status_id
+                'return_quantity'=>$return_quantity,
+                'return_status_id'=>$return_status_id
             ]);
 
         }
@@ -169,7 +177,7 @@ class ReceiveInternalController extends Controller{
         \Session::put('vue_products', $products);
 
         \Session::put('vue_inputs', [
-            'inventory_requisition_id'=>$receive_internal->internal->issue->requisition->inventory_requisition_id,
+            'inventory_requisition_no'=>$receive_internal->internal->issue->requisition->inventory_requisition_no,
             'receive_from'=>$receive_internal->internal->issue->requisition->requested_to->name,
             'inventory_issue_id'=>$receive_internal->internal->issue->id,
         ]);
@@ -186,7 +194,7 @@ class ReceiveInternalController extends Controller{
         $inventory_receive=$receive_internal;
 
         \Session::put('vue_inputs', [
-            'inventory_requisition_id'=>$request->get('inventory_requisition_id'),
+            'inventory_requisition_no'=>$request->get('inventory_requisition_no'),
             'receive_from'=>$request->get('receive_from'),
             'inventory_issue_id'=>$request->get('inventory_issue_id'),
         ]);
@@ -194,7 +202,7 @@ class ReceiveInternalController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_receive_id'=>'required|unique:inventory_receives,inventory_receive_id,'.$inventory_receive->id,
+            'inventory_receive_no'=>'required|unique:inventory_receives,inventory_receive_no,'.$inventory_receive->id,
             'receive_date'=>'required|date',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
@@ -204,7 +212,7 @@ class ReceiveInternalController extends Controller{
         ]);
 
         $inventory_receive->fill($request->only(
-            'inventory_receive_id',
+            'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
             'product_pattern_id',

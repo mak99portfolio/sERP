@@ -1,66 +1,107 @@
 <?php
-
 namespace App\Http\Controllers\Inventory;
 
-use App\InventoryRecordType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Auth;
-use Session;
+use App\Helpers\Paginate;
+
 
 class RecordTypeController extends Controller{
 
-    private $view_root = 'modules/inventory/record_type/';
+    protected function path(string $suffix){
+        return "modules.inventory.record_type.{$suffix}";
+    }
 
     public function index(){
+        
+        $data=[
+            'paginate'=>new Paginate('\App\InventoryRecordType', ['id'=>'ID', 'inventory_record_type_no'=>'Type No', 'name'=>'Name', 'short_name'=>'Short Name']),
+            'carbon'=>new \Carbon\Carbon
+        ];
 
-        $view = view($this->view_root.'index');
-        $view->with('record_type_list', InventoryRecordType::all());
-        return $view;
+        return view($this->path('index'), $data);
 
     }
 
 
     public function create(){
 
-        $view = view($this->view_root.'create');
-        return $view;
+        $data=[
 
+            'model'=>new \App\InventoryRecordType,
+            'inventory_record_type_no'=>uCode('inventory_record_types.inventory_record_type_no', 'RT00'),
+            'route_name'=>'record-type',
+            'title'=>'Record Type'
+
+        ];
+
+        return view($this->path('create'), $data);
+        
     }
 
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
         $request->validate([
-            'record_type_id' => 'required|unique:inventory_record_types',
-            'name' => 'required|unique:inventory_record_types',
-            'short_name' => 'required|unique:inventory_record_types',
+            'name'=>'required|unique:inventory_record_types',
+            'inventory_record_type_no'=>'required|unique:inventory_record_types',            
+            'short_name'=>'required|unique:inventory_record_types'
         ]);
-        $record_type = new InventoryRecordType;
-        $record_type->fill($request->input());
-        $record_type->creator_user_id = Auth::id();
-        $record_type->save();
-        Session::put('alert-success', $record_type->name . ' created successfully');
-        return redirect()->route('record-type.index');
-    }
 
-    public function show($id)
-    {
+        $model=\App\InventoryRecordType::create($request->all());
+        $model->creator()->associate(\Auth::user());
+        $model->save();
+
+        return back()->with('success', 'Form Submitted Successfully!.');
 
     }
 
 
-    public function edit($id){
+    public function show(\App\InventoryRecordType $record_type){
+
+        return back();
 
     }
 
 
-    public function update(Request $request, $id){
+    public function edit(\App\InventoryRecordType $record_type){
+
+        $data=[
+
+            'model'=>$record_type,
+            'inventory_record_type_no'=>$record_type->inventory_record_type_no,
+            'route_name'=>'record-type',
+            'title'=>'Record Type'
+
+        ];
+
+        return view($this->path('create'), $data);
 
     }
 
 
-    public function destroy($id){
+    public function update(Request $request, \App\InventoryRecordType $record_type){
 
+        $model=$record_type;
+
+        $request->validate([
+            'name'=>'required|unique:inventory_record_types,name,'.$model->id,
+            'inventory_record_type_no'=>'required|unique:inventory_record_types,inventory_record_type_no,'.$model->id, 
+            'short_name'=>'required|unique:inventory_record_types,short_name,'.$model->id
+        ]);
+
+        $model->fill($request->all());
+        $model->editor()->associate(\Auth::user());
+        $model->save();
+
+        return back()->with('success', 'Form Submitted Successfully!.');
+        
     }
+
+
+    public function destroy(\App\InventoryRecordType $record_type){
+
+        return back();
+        
+    }    
 }

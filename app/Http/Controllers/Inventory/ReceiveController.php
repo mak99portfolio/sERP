@@ -15,7 +15,7 @@ class ReceiveController extends Controller{
     public function index(){
         
         $data=[
-            'paginate'=>new Paginate('\App\InventoryReceive', ['inventory_receive_id'=>'Receive No']),
+            'paginate'=>new Paginate('\App\InventoryReceive', ['inventory_receive_no'=>'Receive No']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -184,7 +184,7 @@ class ReceiveController extends Controller{
 
     public function get_inventory_requisition(\App\WorkingUnit $working_unit, string $slug){
 
-        $requisition=$working_unit->outgoing_requisitions()->where('inventory_requisition_id', $slug)->first();
+        $requisition=$working_unit->outgoing_requisitions()->where('inventory_requisition_no', $slug)->first();
 
         if($requisition && $requisition->issue()->exists() && $requisition->issue->final_approver()->exists()){
 
@@ -224,7 +224,7 @@ class ReceiveController extends Controller{
 
             return response()->json([
                 'requisition'=>[
-                    'inventory_requisition_id'=>$requisition->inventory_requisition_id,
+                    'inventory_requisition_no'=>$requisition->inventory_requisition_no,
                     'receive_from'=>$requisition->requested_to->name,
                     'inventory_issue_id'=>$requisition->issue->id
                 ],
@@ -288,7 +288,7 @@ class ReceiveController extends Controller{
             return response()->json([
                 'issue'=>[
                     'inventory_issue_no'=>$requisition->issue->inventory_issue_no,
-                    'inventory_requisition_id'=>$requisition->inventory_requisition_id,
+                    'inventory_requisition_no'=>$requisition->inventory_requisition_no,
                     'receive_from'=>$requisition->sender->name
                 ],
                 'products'=>$products

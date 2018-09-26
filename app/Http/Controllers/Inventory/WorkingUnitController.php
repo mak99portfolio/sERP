@@ -30,7 +30,8 @@ class WorkingUnitController extends Controller{
     public function create(){
 
     	$data=[
-    		'working_unit'=>new \App\WorkingUnit,
+            'working_unit'=>new \App\WorkingUnit,
+    		'working_unit_no'=>uCode('working_units.working_unit_no', 'WU00'),
     		'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
     		'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
     		'countries'=>\App\Country::pluck('name', 'id'),
@@ -52,6 +53,7 @@ class WorkingUnitController extends Controller{
     	$request->validate([
     		'name'=>'required|unique:working_units,name',
     		'short_name'=>'required|unique:working_units,short_name',
+            'working_unit_no'=>'required|unique:working_units',
     		'working_unit_type_id'=>'required|integer',
     		'parent_unit_id'=>'nullable|integer',
     		'in_charge'=>'required|integer',
@@ -63,7 +65,6 @@ class WorkingUnitController extends Controller{
     	]);
 
     	$working_unit=\App\WorkingUnit::create($request->all());
-        $working_unit->working_unit_id=uCode('working_units.working_unit_id', 'WU');
         if($working_unit->save()) return back()->with('success', 'Form submitted successfully');
         //if($workingUnit->save()) return back()->with('success', 'Form submitted successfully');
         return back()->with('danger', 'Sorry, form submission failed');
@@ -80,6 +81,7 @@ class WorkingUnitController extends Controller{
     public function edit(WorkingUnit $workingUnit){
         $data=[
             'working_unit'=>$workingUnit,
+            'working_unit_no'=>$workingUnit->working_unit_no,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
             'countries'=>\App\Country::pluck('name', 'id'),
@@ -98,6 +100,7 @@ class WorkingUnitController extends Controller{
         $request->validate([
             'name'=>'required|unique:working_units,name,'.$workingUnit->id,
             'short_name'=>'required|unique:working_units,short_name,'.$workingUnit->id,
+            'working_unit_no'=>'required|unique:working_units,working_unit_no,'.$workingUnit->id,
             'working_unit_type_id'=>'required|integer',
             'parent_unit_id'=>'nullable|integer',
             'in_charge'=>'required|integer',

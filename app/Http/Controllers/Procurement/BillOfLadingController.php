@@ -8,7 +8,8 @@ use App\CommercialInvoice;
 use App\Vendor;
 use App\Port;
 use Illuminate\Http\Request;
-
+use Auth;
+use Session;
 class BillOfLadingController extends Controller
 {
     /**
@@ -47,12 +48,12 @@ class BillOfLadingController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
-        $proforma_invoice = new BillOfLading;
-        $proforma_invoice->fill($request->input());
-        $proforma_invoice->creator_user_id = Auth::id();
         // dd($request->input());
-        $proforma_invoice->save();
+        $bill_of_lading = new BillOfLading;
+        $bill_of_lading->fill($request->input());
+        $bill_of_lading->creator_user_id = Auth::id();
+        // dd($request->input());
+        $bill_of_lading->save();
         Session::put('alert-success', 'Bill of lading created successfully');
         return redirect()->route('bill-of-lading.index');
     }

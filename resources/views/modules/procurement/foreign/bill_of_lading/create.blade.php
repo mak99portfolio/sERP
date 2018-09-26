@@ -24,14 +24,14 @@
                                 @csrf
                             <div class="row">
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('bill_of_lading_issue_no', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
+                                    {{ BootForm::select('bill_of_lading_no', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date']) }}
+                                    {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
-                                    <input type="text" name="letter_of_credit_id" ng-model='letter_of_credit_id'>
+                                    <input type="hidden" name="letter_of_credit_id" ng-model='letter_of_credit_id'>
                                 </div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date']) }}

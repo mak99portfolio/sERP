@@ -8,8 +8,8 @@ class BillOfLading extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'bill_of_lading_issue_no',
-        'bill_of_lading_issue_date',
+        'bill_of_lading_no',
+        'bill_of_lading_date',
         'letter_of_credit_id',
         'container_no',
         'container_size',
@@ -32,6 +32,24 @@ class BillOfLading extends Model
 
     public function letter_of_credit(){
         return $this->belongsTo('App\LetterOfCredit','letter_of_credit_id');
+    }
+    public function shipping_agency(){
+        return $this->belongsTo('App\Vendor','shipping_agency_id');
+    }
+    public function local_agency(){
+        return $this->belongsTo('App\Vendor','local_agency_id');
+    }
+    public function exproter_id(){
+        return $this->belongsTo('App\Vendor','exproter_id');
+    }
+    public function loading(){
+        return $this->belongsTo('App\Port','port_of_loading_id');
+    }
+    public function dischare(){
+        return $this->belongsTo('App\Port','port_of_dischare_id');
+    }
+    public function commercial_invoices(){
+        return $this->hasMany('App\CommercialInvoice','bill_of_lading_no','bill_of_lading_no');
     }
 
 }

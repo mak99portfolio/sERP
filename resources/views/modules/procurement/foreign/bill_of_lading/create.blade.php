@@ -71,24 +71,28 @@
                                             <table class="table table-bordered">
                                                 <thead class="bg-primary">
                                                     <tr>
-                                                        <th scope="col" colspan="3">Product List</th>
+                                                        <th scope="col" colspan="5">Product List</th>
                                                     </tr>
                                                     <tr>
                                                         <th scope="col">#</th>
                                                         <th scope="col">Product Name</th>
+                                                        <th scope="col">UOM</th>
                                                         <th scope="col">Quantity</th>
+                                                        <th scope="col">Unit Price</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr ng-repeat="item in itemlist">
                                                         <td scope="col"><% $index+1 %></td>
-                                                        <td scope="col"><% item.name %></td>
-                                                        <td scope="col"><% item.quantity %></td>
+                                                        <td scope="col"><% item.name %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                        <td scope="col"><% item.uom %></td>
+                                                        <td scope="col"><% item.quantity %><input type="hidden" class="form-control" name="items[<% $index %>][quantity]" value="<% item.quantity %>"></td>
+                                                        <td scope="col"><% item.unit_price %><input type="hidden" class="form-control" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>"></td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <td scope="col" colspan="2" class="text-right">Total Quantity</td>
+                                                        <td scope="col" colspan="4" class="text-right">Total Quantity</td>
                                                         <td scope="col">5</td>
                                                     </tr>
                                                 </tfoot>
@@ -171,10 +175,10 @@
                                     {{ BootForm::text('number_of_mtd','Number Of MTD', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::text('requisition_date','Packaging Qty', null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::text('packaging_qty','Packaging Qty', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('requisition_date','Gross Weight', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('gross_weight','Gross Weight', null, ['class'=>'form-control input-sm']) }}
                                         </div>
 
 

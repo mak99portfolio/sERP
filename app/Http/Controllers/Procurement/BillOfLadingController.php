@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Procurement;
 
 use App\Http\Controllers\Controller;
 use App\BillOfLading;
+use App\BillOfLadingItem;
 use App\CommercialInvoice;
 use App\Vendor;
 use App\ModesOfTransport;
@@ -55,8 +56,15 @@ class BillOfLadingController extends Controller
         $bill_of_lading = new BillOfLading;
         $bill_of_lading->fill($request->input());
         $bill_of_lading->creator_user_id = Auth::id();
-        // dd($request->input());
         $bill_of_lading->save();
+
+
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new BillOfLadingItem($item));
+        }
+        $bill_of_lading->items()->saveMany($items);
+
         Session::put('alert-success', 'Bill of lading created successfully');
         return redirect()->route('bill-of-lading.index');
     }
@@ -70,7 +78,7 @@ class BillOfLadingController extends Controller
     public function show(BillOfLading $billOfLading)
     {
         $view = view($this->view_root . 'show');
-        $view->with($billOfLading);
+        $view->with('bill_of_lading',$billOfLading);
         return $view;
     }
 

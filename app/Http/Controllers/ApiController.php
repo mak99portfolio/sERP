@@ -268,6 +268,7 @@ class ApiController extends Controller
                         'hs_code' => $item->product->hs_code,
                         'uom' => $item->product->unit_of_measurement->name,
                         'quantity' => $item->quantity,
+                        'unit_price' => $item->unit_price,
                     ];
                 }
             }

@@ -51,9 +51,10 @@ class BillOfLadingController extends Controller
         $proforma_invoice = new BillOfLading;
         $proforma_invoice->fill($request->input());
         $proforma_invoice->creator_user_id = Auth::id();
-        $proforma_invoice->proforma_invoice_no = time();
         // dd($request->input());
         $proforma_invoice->save();
+        Session::put('alert-success', 'Bill of lading created successfully');
+        return redirect()->route('bill-of-lading.index');
     }
 
     /**

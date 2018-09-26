@@ -29,4 +29,9 @@ class BillOfLading extends Model
         'issue_place',
         'number_of_mtd',
     ];
+
+    public function letter_of_credit(){
+        return $this->belongsTo('App\LetterOfCredit','letter_of_credit_id');
+    }
+
 }

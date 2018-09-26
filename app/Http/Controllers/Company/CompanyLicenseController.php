@@ -31,7 +31,11 @@ class CompanyLicenseController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'license_name'=> 'required'
+            'company_profile_id'=> 'required',
+            'license_name'=> 'required',
+            'license_no'=> 'required',
+            'renewed_date'=> 'required',
+            'expire_date'=> 'required'
         ]);
         $companyLicense = new CompanyLicense;
         $companyLicense->fill($request->input());

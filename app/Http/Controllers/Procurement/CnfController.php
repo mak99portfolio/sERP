@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Cnf;
 use App\ConsignmentParticularCnf;
 use App\ConsignmentParticular;
+use App\BillOfLading;
 use App\LetterOfCredit;
 use App\Vendor;
 use App\CommercialInvoice;
@@ -29,7 +30,8 @@ class CnfController extends Controller
         $view = view($this->view_root . 'create');
         $view->with('lc_list', LetterOfCredit::all());
         $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('--select vendor--', ''));
-        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'bl_no')->prepend('-- Select Bill Number --', ''));
+        // $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'bl_no')->prepend('-- Select Bill Number --', ''));
+        $view->with('bill_of_lading_list', BillOfLading::pluck('bill_of_lading_issue_no', 'id')->prepend('-- Select Bill Number --', ''));
         $view->with('consignment_partucular_list', ConsignmentParticular::all());
 
         return $view;
@@ -39,12 +41,9 @@ class CnfController extends Controller
     {
         // dd($request->input());
         $request->validate([
-            // 'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
-            // 'commercial_invoice_id' => 'required',
             'vendor_id' => 'required',
             'consignee' => 'required',
-            'bill_of_lading_issue_no' => 'required',
-            'bill_of_lading_issue_date' => 'required',
+            'bill_of_lading_issue_id' => 'required',
             'bill_no' => 'required',
             'bill_date' => 'required',
             'bill_of_entry_no' => 'required',
@@ -58,10 +57,10 @@ class CnfController extends Controller
             'bdt_amount' => 'required',
             'total_day' => 'required',
             'duty_payment_date' => 'required',
+            'note' => 'required'
 
             // 'previous_due_amount' => 'required',
             // 'cash_recieved_amount' => 'required',
-            'note' => 'required'
         ]);
 
         $cnf = new Cnf;

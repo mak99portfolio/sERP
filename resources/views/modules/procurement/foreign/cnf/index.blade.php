@@ -37,9 +37,9 @@
                                     @foreach ($cnf_list as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td></td>
-                                        <td>{{ $item->bill_of_lading_issue_no }}</td>
-                                        <td>{{ $item->bill_of_lading_issue_date }}</td>
+                                        <td>{{ $item->bill_of_lading->bill_of_lading_issue_no }}</td>
+                                        <td>{{ $item->bill_of_lading->bill_of_lading_issue_no }}</td>
+                                        <td>{{ $item->bill_of_lading->bill_of_lading_issue_date }}</td>
                                         <td>{{ $item->bill_of_entry_no }}</td>
                                         <td>{{ $item->bill_of_entry_date }}</td>
                                         <td class="text-center">

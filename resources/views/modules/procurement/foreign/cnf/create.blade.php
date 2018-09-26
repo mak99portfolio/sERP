@@ -25,10 +25,10 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('bill_of_lading_issue_no', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
+                                    {{ BootForm::select('bill_of_lading_issue_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date']) }}
+                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_issue_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}

@@ -9,8 +9,7 @@ class Cnf extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'bill_of_lading_issue_no',
-        'bill_of_lading_issue_date',
+        'bill_of_lading_issue_id',
         // 'letter_of_credit_id',
         // 'commercial_invoice_id',
         'vendor_id',
@@ -34,9 +33,9 @@ class Cnf extends Model
         'note',
     ];
 
-    public function letter_of_credit()
+    public function bill_of_lading()
     {
-        return $this->belongsTo('App\LetterOfCredit', 'letter_of_credit_id');
+        return $this->belongsTo('App\BillOfLading', 'bill_of_lading_issue_id');
     }
 
     public function commercial_invoices()

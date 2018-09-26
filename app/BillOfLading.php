@@ -10,6 +10,7 @@ class BillOfLading extends Model
     protected $fillable = [
         'bill_of_lading_issue_no',
         'bill_of_lading_issue_date',
+        'letter_of_credit_id',
         'container_no',
         'container_size',
         'number_of_box',

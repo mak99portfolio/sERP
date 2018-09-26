@@ -9,7 +9,7 @@ class Cnf extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'bill_of_lading_issue_id',
+        'bill_of_lading_id',
         // 'letter_of_credit_id',
         // 'commercial_invoice_id',
         'vendor_id',
@@ -35,12 +35,12 @@ class Cnf extends Model
 
     public function bill_of_lading()
     {
-        return $this->belongsTo('App\BillOfLading', 'bill_of_lading_issue_id');
+        return $this->belongsTo('App\BillOfLading', 'bill_of_lading_id');
     }
 
     public function commercial_invoices()
     {
-        return $this->belongsTo('App\CommercialInvoice', 'bill_of_lading_issue_no','bl_no');
+        return $this->belongsTo('App\CommercialInvoice', 'bill_of_lading_no','bill_of_lading_no');
     }
 
     public function cnf_agent()

@@ -30,8 +30,7 @@ class CnfController extends Controller
         $view = view($this->view_root . 'create');
         $view->with('lc_list', LetterOfCredit::all());
         $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('--select vendor--', ''));
-        // $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'bl_no')->prepend('-- Select Bill Number --', ''));
-        $view->with('bill_of_lading_list', BillOfLading::pluck('bill_of_lading_issue_no', 'id')->prepend('-- Select Bill Number --', ''));
+        $view->with('bill_of_lading_list', BillOfLading::pluck('bill_of_lading_no', 'id')->prepend('-- Select Bill Number --', ''));
         $view->with('consignment_partucular_list', ConsignmentParticular::all());
 
         return $view;
@@ -43,7 +42,7 @@ class CnfController extends Controller
         $request->validate([
             'vendor_id' => 'required',
             'consignee' => 'required',
-            'bill_of_lading_issue_id' => 'required',
+            'bill_of_lading_id' => 'required',
             'bill_no' => 'required',
             'bill_date' => 'required',
             'bill_of_entry_no' => 'required',

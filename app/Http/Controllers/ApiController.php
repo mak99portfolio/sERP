@@ -249,7 +249,7 @@ class ApiController extends Controller
     }
     public function getAllByBlNo($bl_no)
     {
-        $data['ci'] = CommercialInvoice::where('bl_no',$bl_no)->get();
+        $data['ci'] = CommercialInvoice::where('bill_of_lading_no',$bl_no)->get();
         $data['items'] = [];
         foreach($data['ci'] as $ci){
             foreach($ci->items as $item){
@@ -273,7 +273,7 @@ class ApiController extends Controller
             }
         }
 
-        $data['lc'] = LetterOfCredit::find(CommercialInvoice::where('bl_no',$bl_no)->first()->letter_of_credit_id);
+        $data['lc'] = LetterOfCredit::find(CommercialInvoice::where('bill_of_lading_no',$bl_no)->first()->letter_of_credit_id);
 
         return response()->json($data);
     }

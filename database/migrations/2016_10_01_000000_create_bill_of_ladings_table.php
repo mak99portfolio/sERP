@@ -15,8 +15,8 @@ class CreateBillOfLadingsTable extends Migration
     {
         Schema::create('bill_of_ladings', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bill_of_lading_issue_no');
-            $table->string('bill_of_lading_issue_date');
+            $table->string('bill_of_lading_no');
+            $table->string('bill_of_lading_date');
             $table->string('container_no');
             $table->string('container_size');
             $table->string('number_of_box');

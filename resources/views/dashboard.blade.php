@@ -77,7 +77,56 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Cntr. Size</th>
+                                                <th>No. of Cntr.</th>
+                                                <th>Cntr.  No.</th>
+                                                <th>Prod. Pattern</th>
+                                                <th>Qty of Product</th>
+                                                <th>Inv. No./ Date</th>
+                                                <th>LC No/ Date</th>
+                                                <th>BL No./ Date</th>
+                                                <th>Commercial Invoice Issue Date</th>
+                                                <th>Document Arrived At Bank</th>
+                                                <th>Document Send At Port</th>
+                                                <th>Document Value Payment</th>
+                                                <th>Container Arrived At Port</th>
+                                                <th>Container Birth At Port</th>
+                                                <th>Container Delivery At Port</th>
+                                                <th>Received At Warehouse</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>01</td>
+                                                <td>40</td>
+                                                <td>1</td>
+                                                <td>abc</td>
+                                                <td>125</td>
+                                                <td>125/26-09-18</td>
+                                                <td>125/26-09-18</td>
+                                                <td>125/26-09-18</td>
+                                                <td>125/26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                                <td>26-09-18</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

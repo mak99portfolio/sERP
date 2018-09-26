@@ -7,6 +7,7 @@ use App\BillOfLading;
 use App\CommercialInvoice;
 use App\Vendor;
 use App\ModesOfTransport;
+use App\MoveType;
 use App\Port;
 use Illuminate\Http\Request;
 use Auth;
@@ -22,8 +23,7 @@ class BillOfLadingController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('foo', 'bar');
-        // your code here
+        $view->with('bill_of_lading_list', BillOfLading::all());
         return $view;
     }
 
@@ -38,7 +38,8 @@ class BillOfLadingController extends Controller
         $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
         $view->with('exproter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
-        $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Port --', ''));
+        $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Modes Of Transport --', ''));
+        $view->with('move_type_list', MoveType::pluck('name','id')->prepend('-- Select Move Type --', ''));
         return $view;
     }
 

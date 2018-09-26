@@ -31,7 +31,8 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
-                                 </div>
+                                    <input type="text" name="letter_of_credit_id" ng-model='letter_of_credit_id'>
+                                </div>
                                  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date']) }}
                                  </div>
@@ -109,7 +110,7 @@
                                     {{ BootForm::select('shipping_agency_id', 'Shipping Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::text('local_agency_id','Local Agency Name', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('local_agency_id', 'Local Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>                              
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('exproter_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
@@ -178,7 +179,7 @@
                                 
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <a href="#" class="btn btn-success btn-sm">Submit</a>
+                                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
                                         <a href="{{route('bill-of-lading.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                     </div>
                                 </div>
@@ -218,7 +219,7 @@
                         $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bl_date;
                         $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
                         $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
-                        console.log('bl_issue_date------', $scope.letter_of_credit_no);
+                        $scope.letter_of_credit_id = response.data.lc.id;
                         $scope.issue_ac_no = response.data.lc.issue_ac_no;
                         $scope.issue_ac_name = response.data.lc.issue_ac_name;
                         $scope.issue_branch_name = response.data.lc.issue_branch_name;

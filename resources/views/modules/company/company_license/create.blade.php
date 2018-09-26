@@ -17,7 +17,20 @@
                     <form class="form-horizontal form-label-left" action="{{ route('company-license.store') }}" method="POST">
                         @csrf
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ BootForm::text('name','License Name', null, ['class'=>'form-control input-sm']) }}
+                            {{ BootForm::select('company_profile_id','Company Name', $company_profile_list,null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::text('license_name','License Name', null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::text('license_no','License No', null, ['class'=>'form-control input-sm']) }}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::text('renewed_date','Renewed Date No', null, ['class'=>'form-control input-sm datepicker']) }}
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ BootForm::text('expire_date','Expire Date No', null, ['class'=>'form-control input-sm datepicker']) }}
                         </div>
                         
                       </div>

@@ -7,8 +7,8 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
                     <div class="x_title">
-                        <h2>Company</h2>
-                        <a href="{{ route('company-license.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Company</a>
+                        <h2>Company License</h2>
+                        <a href="{{ route('company-license.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Company License</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -18,20 +18,28 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th>#</th>
+                                        <th>Company Name</th>
                                         <th>License Name</th>
-                                        <th>License Name</th>
-                                        <th>License Name</th>
+                                        <th>License No</th>
+                                        <th>Renewed Date</th>
+                                        <th>Expire Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($company_list as $item)
-                                    <tr>
+                                    @foreach ($company_license_list as $item)
+                                    <tr> 
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->phone }}</td>
-                                        <td>{{ $item->country->name }}</td>
+                                        <td>{{ $item->company->name }}</td>
+                                        <td>{{ $item->license_name }}</td>
+                                        <td>{{ $item->license_no }}</td>
+                                        <td>{{ $item->renewed_date }}</td>
+                                        <td>{{ $item->expire_date }}</td>
+                                        <td class="text-center">
+                                            <a href="{{route('company-license.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        </td>
                                     </tr>
-                                    @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

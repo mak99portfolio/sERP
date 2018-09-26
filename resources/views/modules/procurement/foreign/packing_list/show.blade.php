@@ -56,8 +56,8 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Bl No:</strong> {{$packingList->commercial_invoice->bl_no}}</td>
-                                        <td><strong>Bl Date:</strong> {{$packingList->commercial_invoice->bl_date}}</td>
+                                        <td><strong>Bill Of Lading No:</strong> {{$packingList->commercial_invoice->bill_of_lading_no}}</td>
+                                        <td><strong>Bill Of Lading Date:</strong> {{$packingList->commercial_invoice->bill_of_lading_date}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Vessel No / Flight No:</strong> {{$packingList->commercial_invoice->vessel_no}}</td>

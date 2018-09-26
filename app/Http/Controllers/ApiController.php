@@ -240,8 +240,8 @@ class ApiController extends Controller
         $data['destination_country_id'] = $ci->destination_country_id;
         $data['destination_country_name'] = $ci->country_goods->name;
 
-        $data['bl_no'] = $ci->bl_no;
-        $data['bl_date'] = $ci->bl_date;
+        $data['bill_of_lading_no'] = $ci->bill_of_lading_no;
+        $data['bill_of_lading_date'] = $ci->bill_of_lading_date;
         $data['vessel_no'] = $ci->vessel_no;
         $data['container_no'] = $ci->container_no;
         $data['vendor_name'] = $ci->LetterOfCredit->vendor->name;

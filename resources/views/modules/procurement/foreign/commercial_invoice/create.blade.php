@@ -98,10 +98,10 @@
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bl_no','Bl No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('bill_of_lading_no','Bill Of Lading No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bl_date','Bl Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('bill_of_lading_date','Bill Of Lading Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm']) }}

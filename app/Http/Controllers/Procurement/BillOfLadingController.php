@@ -34,7 +34,7 @@ class BillOfLadingController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bl_no', 'bl_no')->prepend('-- Select Bill Number --', ''));
+        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
         $view->with('exproter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         return $view;
@@ -48,7 +48,7 @@ class BillOfLadingController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->input());
+        dd($request->input());
         $bill_of_lading = new BillOfLading;
         $bill_of_lading->fill($request->input());
         $bill_of_lading->creator_user_id = Auth::id();

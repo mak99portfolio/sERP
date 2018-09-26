@@ -48,7 +48,7 @@ class BillOfLadingController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->input());
+        // dd($request->input());
         $bill_of_lading = new BillOfLading;
         $bill_of_lading->fill($request->input());
         $bill_of_lading->creator_user_id = Auth::id();

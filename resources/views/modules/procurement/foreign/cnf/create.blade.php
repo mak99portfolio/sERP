@@ -25,10 +25,10 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('bill_of_lading_issue_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
+                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_of_lading_issue_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_issue_date', 'readonly']) }}
+                                    {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
@@ -123,7 +123,7 @@
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
-                                                        <select class="form-control input-sm" ng-model="consignment_particular" required>
+                                                        <select class="form-control input-sm select2" ng-model="consignment_particular" required>
                                                             <option value="">--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
                                                             <option value="{{$item}}">{{$item->name}}</option>
@@ -247,13 +247,13 @@
             let url = "{{URL::to('get-bl-by-bl-id')}}/" + id;
             $http.get(url).then(function(response) {
                 console.log(response.data);
-                $scope.cilist = response.data.ci;
-                $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bl_date;
-                $scope.container_no = response.data.ci[response.data.ci.length-1].container_no;
-                $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
-                $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
-                $scope.letter_of_credit_value = parseInt(response.data.lc.letter_of_credit_value);
-                $scope.vendor_name = response.data.lc.vendor_id;
+                $scope.cilist = response.data.commercial_invoices;
+                $scope.bill_of_lading_date = response.data.bill_of_lading.bill_of_lading_date;
+                $scope.container_no = response.data.commercial_invoices[response.data.commercial_invoices.length-1].container_no;
+                $scope.letter_of_credit_no = response.data.letter_of_credit.letter_of_credit_no;
+                $scope.letter_of_credit_date = response.data.letter_of_credit.letter_of_credit_date;
+                $scope.letter_of_credit_value = parseInt(response.data.letter_of_credit.letter_of_credit_value);
+                $scope.vendor_name = response.data.letter_of_credit.exporter_name;
             });
         }
 

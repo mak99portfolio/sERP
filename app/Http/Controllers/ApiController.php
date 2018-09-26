@@ -278,6 +278,17 @@ class ApiController extends Controller
         return response()->json($data);
     }
     public function getBlByBlId($id){
-        return response()->json(BillOfLading::with('letter_of_credit')->with('commercial_invoice')->find($id));
+        $data = [];
+        $bill_of_lading = BillOfLading::find($id);
+        $data['bill_of_lading'] = $bill_of_lading;
+        $data['commercial_invoices'] = $bill_of_lading->commercial_invoices;
+        $data['letter_of_credit'] = [
+            'letter_of_credit_no' => $bill_of_lading->letter_of_credit->letter_of_credit_no,
+            'letter_of_credit_date' => $bill_of_lading->letter_of_credit->letter_of_credit_date,
+            'letter_of_credit_value' => $bill_of_lading->letter_of_credit->letter_of_credit_value,
+            'exporter_name' => $bill_of_lading->letter_of_credit->vendor->name,
+        ];
+
+        return response()->json($data);
     }
 }

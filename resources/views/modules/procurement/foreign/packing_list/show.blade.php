@@ -110,6 +110,10 @@
                                 </thead>
 
                                 <tbody>
+                                @php
+                                        $sub_total_weight = 0;
+                                    
+                                    @endphp
                                 @foreach($packingList->items as $key=>$item)
                                     <tr>
                                         <td>{{$key+1}}</td>
@@ -119,10 +123,14 @@
                                         <td>{{($item->quantity * $item->per_unit_weight)}}</td>
                                      
                                     </tr>
+                                    @php
+                                            $sub_total_weight += ($item->quantity * $item->per_unit_weight);
+                                        
+                                        @endphp
                                     @endforeach
                                     <tr>
                                         <td colspan="4" class="text-right">Net Total =</td>
-                                        <td>{{$packingList->net_total}}</td>
+                                        <td>{{$sub_total_weight}}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="4" class="text-right">Gross Total =</td>

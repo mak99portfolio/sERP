@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ForeignPurchaseOrderTableSeeder extends Seeder
+class PurchaseOrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.

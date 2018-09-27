@@ -56,7 +56,7 @@
                                             <label>HS Code</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)' v-on:keydown.enter.prevent="fetch_product(active_record.hs_code)">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
@@ -68,7 +68,7 @@
                                             <label>Product Name</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
@@ -102,10 +102,10 @@
                                         <th>Delete</th>
                                     </tr>
                                     <tr v-for="product in products">
-  										<td v-html='product.id'></td>
-  										<td v-html='product.name'></td>
-  										<td v-html='product.stock'></td>
-  										<td>
+  										                <td v-html='product.id'></td>
+  										                <td v-html='product.name'></td>
+  										                <td v-html='product.stock'></td>
+  										              <td>
 	                                        <div class="form-group">
 	                                            <input v-bind:name="'products['+product.id+']'" class="form-control input-sm" type="number" v-model='product.quantity' min="0">
 	                                        </div>

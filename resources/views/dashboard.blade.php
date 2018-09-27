@@ -81,7 +81,7 @@
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
-                                        <thead>
+                                        <thead class="bg-primary">
                                             <tr>
                                                 <th>#</th>
                                                 <th>Cntr. Size</th>

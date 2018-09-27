@@ -15,12 +15,12 @@ class CreateLetterOfCreditsTable extends Migration
     {
         Schema::create('letter_of_credits', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('proforma_invoice_id')->nullable();
+            $table->integer('proforma_invoice_id')->unsigned();
             $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
             $table->string('letter_of_credit_no');
             $table->string('letter_of_credit_date')->nullable();
             $table->string('letter_of_credit_value')->nullable();
-            $table->integer('vendor_id')->unsigned()->nullable();
+            $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->string('letter_of_credit_expire_date')->nullable();
             $table->integer('letter_of_credit_status')->nullable();

@@ -42,15 +42,25 @@
 
         <link href="{{asset('assets/style.css')}}" rel="stylesheet">
         <style>
-            .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {
-                min-height: 30px!important;
+            .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {min-height: 30px!important;}
+            .select2-container--default .select2-selection--single .select2-selection__rendered {padding-top: 0px!important;}
+            .select2-container--default .select2-selection--single .select2-selection__arrow b {top: 42%;}
+            /*end select2*/
+            .breadcrumb {font-size: 0px;}
+            .breadcrumb {padding: 0px;margin-bottom: 5px;}
+            .breadcrumb > * {font-size: 10px;color: #253e6a;background: #EDEDED;display: inline-block;padding: 0 9px 0 20px; margin: 0 6px 4px 0;height: 14px;line-height: 14px;position: relative;}
+            .breadcrumb a:hover{outline: 1px solid #3C4C5D;}
+            .breadcrumb > span {background: #5A738E;color: #fff;outline: 0px;}
+            .breadcrumb > span:after { border-color: transparent transparent transparent #5A738E;}
+            /* Left inset arrow */
+            .breadcrumb > :before {position: absolute;top: 0;content: '';left: 0;width: 0;height: 0; border-style: solid;border-width: 7px 0 7px 7px;border-color: transparent transparent transparent #3c4c5d;z-index: 1;
             }
-            .select2-container--default .select2-selection--single .select2-selection__rendered {
-                padding-top: 0px!important;
+            /* Right arrow tip */
+            .breadcrumb > :after {position: absolute;top: 0;content: '';left: 100%;width: 0;height: 0;border-style: solid;border-width: 7px 0 7px 7px;border-color: transparent transparent transparent #5A738E;z-index: 2;
             }
-            .select2-container--default .select2-selection--single .select2-selection__arrow b {
-                top: 42%;
-            }
+            /* The first item has no inset arrow */
+            .breadcrumb :first-child {padding-left: 10px;}
+            .breadcrumb :first-child:before {border: none}
         </style>
         @yield('style')
     </head>

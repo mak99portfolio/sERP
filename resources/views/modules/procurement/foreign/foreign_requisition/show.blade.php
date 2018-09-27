@@ -1,63 +1,6 @@
 @extends('layout')
 @section('title', 'Foreign Purchase Requisition Details')
 @section('content')
-<style>
-    .breadcrumb {
-        font-size: 0px;
-    }
-    .breadcrumb > * {
-        font-size: 14px;
-        color: #253e6a;
-        background: #c8f1fe;
-        display: inline-block;
-        padding: 0 8px 0 30px;
-        margin: 0 10px 4px 0;
-        height: 35px;
-        line-height: 35px;
-        position: relative;
-    }
-    .breadcrumb > span {
-        background: #76cae6;
-        color: #fff;
-    }
-    .breadcrumb > span:after {
-        border-color: transparent transparent transparent #76cae6;
-    }
-    /* Left inset arrow */
-    .breadcrumb > :before {
-        position: absolute;
-        top: 0;
-        content: '';
-        left: 0;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 20px 0 20px 20px;
-        border-color: transparent transparent transparent #9ad4e2;
-        z-index: 1;
-    }
-    /* Right arrow tip */
-    .breadcrumb > :after {
-        position: absolute;
-        top: 0;
-        content: '';
-        left: 100%;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 20px 0 20px 20px;
-        border-color: transparent transparent transparent #c8f1fe;
-        z-index: 2;
-    }
-
-    /* The first item has no inset arrow */
-    .breadcrumb :first-child {
-        padding-left: 10px;
-    }
-    .breadcrumb :first-child:before {
-        border: none
-    }
-</style>
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">

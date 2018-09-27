@@ -62,6 +62,11 @@
           </li>
         </ul>
       </li>
+      <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="{{ route('product-costing.index') }}">Product Costing</a></li>
+        </ul>
+      </li>
       <li><a><i class="fa fa-cogs"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{route('country.index')}}">Country</a></li>

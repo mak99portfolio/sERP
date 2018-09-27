@@ -12,11 +12,6 @@ use Session;
 
 class CompanyBankController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     private $view_root = 'modules/company/company_bank/';
 
     public function index()
@@ -26,11 +21,6 @@ class CompanyBankController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $view = view($this->view_root . 'create');
@@ -39,12 +29,6 @@ class CompanyBankController extends Controller
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $bank = new CompanyBank;
@@ -55,12 +39,6 @@ class CompanyBankController extends Controller
         return redirect()->route('company-bank.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CompanyBank  $companyBank
-     * @return \Illuminate\Http\Response
-     */
     public function show(CompanyBank $companyBank)
     {
         $view = view($this->view_root . 'index');
@@ -68,35 +46,16 @@ class CompanyBankController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CompanyBank  $companyBank
-     * @return \Illuminate\Http\Response
-     */
     public function edit(CompanyBank $companyBank)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CompanyBank  $companyBank
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, CompanyBank $companyBank)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CompanyBank  $companyBank
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(CompanyBank $companyBank)
     {
         //

@@ -15,9 +15,9 @@ class CreateLetterOfCreditItemsTable extends Migration
     {
         Schema::create('letter_of_credit_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('letter_of_credit_id');
+            $table->integer('letter_of_credit_id')->unsigned();
             $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
-            $table->integer('product_id');
+            $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->double('unit_price');

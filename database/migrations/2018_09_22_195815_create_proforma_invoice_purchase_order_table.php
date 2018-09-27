@@ -16,9 +16,9 @@ class CreateProformaInvoicePurchaseOrderTable extends Migration
         Schema::create('proforma_invoice_purchase_order', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('proforma_invoice_id')->unsigned()->nullable();
-            $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
+            $table->foreign('proforma_invoice_id', 'pipo_foreign_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
             $table->integer('purchase_order_id')->unsigned()->nullable();
-            $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
+            $table->foreign('purchase_order_id', 'popi_foreign_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

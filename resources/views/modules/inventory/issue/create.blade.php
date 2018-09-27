@@ -26,7 +26,7 @@
 						{{ BootForm::open(['model'=>$issue, /*'store'=>'issue.store',*/ 'update'=>'issue.update']) }}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('inventory_requisition_id', 'Requisition No', $requisition_no, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::text('inventory_requisition_no', 'Requisition No', $requisition_no, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('inventory_requisition_type_id', 'Requisition Type', $inventory_requisition_types, null, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}

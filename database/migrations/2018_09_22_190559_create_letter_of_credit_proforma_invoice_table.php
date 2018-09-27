@@ -16,9 +16,9 @@ class CreateLetterOfCreditProformaInvoiceTable extends Migration
         Schema::create('letter_of_credit_proforma_invoice', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('proforma_invoice_id')->unsigned()->nullable();
-            $table->foreign('proforma_invoice_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
+            $table->foreign('proforma_invoice_id', 'pi_foreign_id')->references('id')->on('proforma_invoices')->onDelete('cascade');
             $table->integer('letter_of_credit_id')->unsigned()->nullable();
-            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
+            $table->foreign('letter_of_credit_id', 'lc_foreign_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

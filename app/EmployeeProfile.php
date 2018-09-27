@@ -17,7 +17,7 @@ class EmployeeProfile extends Model{
 	}
 
 	public function organizational_information(){
-		return $this->hasOne('App\EmployeeOrganizationalInformation');
+		return $this->hasOne('App\EmployeeOrgInfo');
 	}
 
 	public function blood_group(){

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeOrganizationalInformation extends Model{
+class EmployeeOrgInfo extends Model{
 
 	protected $guarded=['id'];
 

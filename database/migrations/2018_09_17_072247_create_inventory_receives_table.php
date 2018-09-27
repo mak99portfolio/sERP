@@ -16,7 +16,7 @@ class CreateInventoryReceivesTable extends Migration
         Schema::create('inventory_receives', function (Blueprint $table){
 
             $table->increments('id');
-            $table->string('inventory_receive_id')->unique()->nullable();
+            $table->string('inventory_receive_no')->unique()->nullable();
             $table->date('receive_date')->nullable();
             $table->string('receive_type')->nullable();
             $table->integer('working_unit_id')->unsigned()->nullable();

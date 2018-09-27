@@ -38,7 +38,7 @@
                     <tbody>
                     @foreach($paginate->table as $row)
                         <tr>
-                            <td>{{ $row->inventory_receive_id }}</td>
+                            <td>{{ $row->inventory_receive_no }}</td>
                             <td>{{ title_case($row->receive_type) }}</td>
                             <td>{{ $row->working_unit->name }}</td>
                             <td>{{ $carbon->parse($row->receive_date)->diffForHumans() }}</td>

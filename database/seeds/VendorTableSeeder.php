@@ -26,8 +26,8 @@ class VendorTableSeeder extends Seeder
                 'certificate_of_incorporation'=>'certificate',
                 'incorporation_date'=> \Carbon\Carbon::now(),
                 'vat_no'=>'vat-98845646',
-                'business_type'=>'Ltd. Company',
-                'business_nature'=>'Service Provide',
+                'business_type'=>serialize(['Ltd. Company']),
+                'business_nature'=>serialize(['Service Provide']),
                 'credit_period'=>'3',
                 'credit_limit'=>'500000',
                 'address'=>'Kolkata'
@@ -51,8 +51,8 @@ class VendorTableSeeder extends Seeder
                 'certificate_of_incorporation'=>'certificate',
                 'incorporation_date'=> \Carbon\Carbon::now(),
                 'vat_no'=>'vat-845445646',
-                'business_type'=>'Partnership',
-                'business_nature'=>'Contractor',
+                'business_type'=>serialize(['Partnership']),
+                'business_nature'=>serialize(['Contractor']),
                 'credit_period'=>'5',
                 'credit_limit'=>'300000',
                 'address'=>'Khulna'

@@ -37,13 +37,14 @@
                             <th>Final Approver</th>
                             <th>Remarks</th>
                             <th>Requisition Date</th>
+                            <th>Show Details</th>
                         </tr>
                     </thead>
                     <tbody>
                     @foreach($paginate->table as $row)
                         <tr>
                             <td>{{ $row->inventory_issue_no }}</td>
-                            <td>{{ $row->requisition->inventory_requisition_id }}</td>
+                            <td>{{ $row->requisition->inventory_requisition_no }}</td>
                             <td>{{ $row->requisition->type->name }}</td>
                             <td>{{ $row->requisition->sender->name }}</td>
                             <td>{{ $row->requisition->requested_to->name }}</td>
@@ -65,7 +66,8 @@
                             @endif
                         	</td>
                             <td>{{ $row->requisition->remarks ?? 'Not Specified' }}</td>
-                            <td>{{ $carbon->parse($row->requisition->date)->diffForHumans() }}</td>
+                            <td>{{ $carbon->parse($row->requisition->date)->toFormattedDateString() }}</td>
+                            <td>{!! btnCustom(['title'=>'Show', 'url'=>route('issue.show', ['issue'=>$row->id])]) !!}</td>
                         </tr>
                     @endforeach
                     </tbody>

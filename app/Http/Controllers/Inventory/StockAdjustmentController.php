@@ -15,7 +15,7 @@ class StockAdjustmentController extends Controller{
     public function index(){
         
         $data=[
-            'paginate'=>new Paginate('\App\InventoryStockAdjustment', ['inventory_stock_adjustment_id'=>'Adjustment No', 'adjustment_type'=>'Adjustment Type']),
+            'paginate'=>new Paginate('\App\InventoryStockAdjustment', ['inventory_stock_adjustment_no'=>'Adjustment No', 'adjustment_type'=>'Adjustment Type']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -28,7 +28,7 @@ class StockAdjustmentController extends Controller{
 
         $data=[
             'stock_adjustment'=>new \App\InventoryRequisition,
-            'stock_adjustment_no'=>uCode('inventory_stock_adjustments.inventory_stock_adjustment_id', 'ISA_'),
+            'stock_adjustment_no'=>uCode('inventory_stock_adjustments.inventory_stock_adjustment_no', 'ISA_'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
@@ -47,7 +47,7 @@ class StockAdjustmentController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_stock_adjustment_id'=>'required|unique:inventory_stock_adjustments',
+            'inventory_stock_adjustment_no'=>'required|unique:inventory_stock_adjustments',
             'adjustment_type'=>'required|in:stock_in,stock_out',
             'inventory_adjustment_purpose_id'=>'required|integer',
             'working_unit_id'=>'required|integer',
@@ -101,7 +101,7 @@ class StockAdjustmentController extends Controller{
 
         $data=[
             'stock_adjustment'=>$stock_adjustment,
-            'stock_adjustment_no'=>$stock_adjustment->inventory_stock_adjustment_id,
+            'stock_adjustment_no'=>$stock_adjustment->inventory_stock_adjustment_no,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
@@ -139,7 +139,7 @@ class StockAdjustmentController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_stock_adjustment_id'=>'required|unique:inventory_stock_adjustments,inventory_stock_adjustment_id,'.$stock_adjustment->id,
+            'inventory_stock_adjustment_no'=>'required|unique:inventory_stock_adjustments,inventory_stock_adjustment_no,'.$stock_adjustment->id,
             'adjustment_type'=>'required|in:stock_in,stock_out',
             'inventory_adjustment_purpose_id'=>'required|integer',
             'working_unit_id'=>'required|integer',

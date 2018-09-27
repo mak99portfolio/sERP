@@ -17,7 +17,7 @@ class CreateLetterOfCreditApplicationNumbersTable extends Migration
             $table->increments('id');
             $table->string('lca_no');
             $table->integer('letter_of_credit_id')->unsigned()->nullable();
-            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
+            $table->foreign('letter_of_credit_id', 'lcan_foreign_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

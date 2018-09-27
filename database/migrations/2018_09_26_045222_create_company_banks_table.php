@@ -17,7 +17,7 @@ class CreateCompanyBanksTable extends Migration
             $table->increments('id');
             $table->string('account_no');
             $table->string('account_name');
-            $table->integer('bank_id');
+            $table->integer('bank_id')->unsigned();
             $table->foreign('bank_id')->references('id')->on('banks')->onDelete('cascade');
             $table->string('branch_name');
             $table->string('swift_code')->nullable();

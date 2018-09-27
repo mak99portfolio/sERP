@@ -5,13 +5,16 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class InventoryRecordType extends Model
-{
-    use SoftDeletes;
+class InventoryRecordType extends Model{
 
-    protected $fillable = [
-        'record_type_id',
-        'name',
-        'short_name'
-    ];
+	protected $guarded=['id'];
+
+	public function creator(){
+    	return $this->belongsTo('App\User', 'creator_user_id');
+    }
+
+    public function editor(){
+    	return $this->belongsTo('App\User', 'updator_user_id');
+    }
+
 }

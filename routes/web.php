@@ -87,6 +87,10 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
 });
+//Accounts
+Route::middleware('auth')->namespace('Accounts')->prefix('Accounts')->group(function(){
+    Route::resource('product-costing', 'ProductCostingController');
+});
 //Company
 Route::middleware('auth')->namespace('Company')->prefix('Company')->group(function(){
     Route::resource('company-profile', 'CompanyProfileController');
@@ -111,6 +115,9 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         Route::get('get-inventory-requisition/{working_unit}/{slug}', 'ReceiveController@get_inventory_requisition');
         Route::get('get-product-statuses', 'ReceiveController@product_statuses');
         Route::get('get-issue-return/{working_unit}/{slug}', 'ReceiveController@get_issue_return');
+
+        //route for status adjustment
+        Route::get('product-info-for-adjusment/{working_unit}/{selected_pattern}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
 
     });
 

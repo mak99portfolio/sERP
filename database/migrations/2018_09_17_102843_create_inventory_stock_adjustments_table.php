@@ -9,11 +9,12 @@ class CreateInventoryStockAdjustmentsTable extends Migration{
     public function up(){
 
         Schema::create('inventory_stock_adjustments', function (Blueprint $table){
+            
             $table->increments('id');
-            $table->string('inventory_stock_adjustment_id')->unique();
+            $table->string('inventory_stock_adjustment_no')->unique();
             $table->integer('working_unit_id')->unsigned()->nullable();
             $table->string('adjustment_type')->default('stock_in');
-            $table->integer('inventory_adjustment_purpose_id')->nullable();
+            $table->integer('inventory_adjustment_purpose_id')->unsigned();
             $table->integer('product_status_id')->unsigned()->nullable();
             $table->integer('product_pattern_id')->unsigned()->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
@@ -28,7 +29,7 @@ class CreateInventoryStockAdjustmentsTable extends Migration{
             $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('inventory_adjustment_purpose_id')->references('id')->on('inventory_adjustment_purposes')->onDelete('cascade');
+            $table->foreign('inventory_adjustment_purpose_id', 'lqa_id_foreign')->references('id')->on('inventory_adjustment_purposes')->onDelete('cascade');
 
         });
 

@@ -17,7 +17,7 @@ class RequisitionController extends Controller{
 
 
         $data=[
-            'paginate'=>new Paginate('\App\InventoryRequisition', ['inventory_requisition_id'=>'Requisition No']),
+            'paginate'=>new Paginate('\App\InventoryRequisition', ['inventory_requisition_no'=>'Requisition No']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -32,7 +32,7 @@ class RequisitionController extends Controller{
 
         $data=[
             'inventory_requisition'=>new \App\InventoryRequisition,
-            'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_id', 'IR00'),
+            'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_no', 'IR00'),
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
@@ -51,10 +51,10 @@ class RequisitionController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_requisition_id'=>'required|unique:inventory_requisitions',
+            'inventory_requisition_no'=>'required|unique:inventory_requisitions',
             'inventory_requisition_type_id'=>'required|integer',
             'sender_depot_id'=>'required|integer',
-            'requested_depot_id'=>'required|integer',
+            'requested_depot_id'=>'required|integer|different:sender_depot_id',
             'product_status_id'=>'required|integer',
             'product_pattern_id'=>'required|integer',
             'date'=>'required|date',
@@ -62,7 +62,7 @@ class RequisitionController extends Controller{
         ]);
 
         $requisition=\App\InventoryRequisition::create($request->except('products', 'date'));
-        $requisition->date=\Carbon\Carbon::parse($request->get('date'))->toDateString();
+        $requisition->date=\Carbon\Carbon::parse($request->get('date'));
         $requisition->initial_approver()->associate(\Auth::user());
         $requisition->creator()->associate(\Auth::user());
         $requisition->save();
@@ -90,6 +90,13 @@ class RequisitionController extends Controller{
 
 
     public function show(\App\InventoryRequisition $requisition){
+
+        $data=[
+            'inventory_requisition'=>$requisition,
+            'carbon'=>new \carbon\Carbon
+        ];
+
+        return view($this->path('show'), $data);
         
     }
 
@@ -98,7 +105,7 @@ class RequisitionController extends Controller{
 
         $data=[
             'inventory_requisition'=>$requisition,
-            'requisition_no'=>$requisition->inventory_requisition_id,
+            'requisition_no'=>$requisition->inventory_requisition_no,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
@@ -125,10 +132,10 @@ class RequisitionController extends Controller{
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
-            'inventory_requisition_id'=>'required|unique:inventory_requisitions,inventory_requisition_id,'.$requisition->id,
+            'inventory_requisition_no'=>'required|unique:inventory_requisitions,inventory_requisition_no,'.$requisition->id,
             'inventory_requisition_type_id'=>'required|integer',
             'sender_depot_id'=>'required|integer',
-            'requested_depot_id'=>'required|integer',
+            'requested_depot_id'=>'required|integer|different:sender_depot_id',
             'product_status_id'=>'required|integer',
             'product_pattern_id'=>'required|integer',
             'date'=>'required|date',
@@ -136,7 +143,7 @@ class RequisitionController extends Controller{
         ]);
 
         $requisition->fill($request->except('products', 'date'));
-        $requisition->date=\Carbon\Carbon::parse($request->get('date'))->toDateString();
+        $requisition->date=\Carbon\Carbon::parse($request->get('date'));
         //need to filter according to the user permission
         $requisition->final_approver()->associate(\Auth::user());
         $requisition->creator()->associate(\Auth::user());

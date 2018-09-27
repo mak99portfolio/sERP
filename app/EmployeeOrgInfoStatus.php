@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeOrganizationalInformationType extends Model
+class EmployeeOrgInfoStatus extends Model
 {
     //
 }

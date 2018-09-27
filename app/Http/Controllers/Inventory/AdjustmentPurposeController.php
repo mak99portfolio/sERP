@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Inventory;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\Paginate;
 
 class AdjustmentPurposeController extends Controller{
 
@@ -13,7 +14,11 @@ class AdjustmentPurposeController extends Controller{
 
     public function index(){
         
-        $data=[];
+        $data=[
+            'paginate'=>new Paginate('\App\InventoryAdjustmentPurpose', ['id'=>'ID', 'name'=>'Name', 'short_name'=>'Short Name']),
+            'carbon'=>new \Carbon\Carbon
+        ];
+
         return view($this->path('index'), $data);
 
     }
@@ -21,33 +26,76 @@ class AdjustmentPurposeController extends Controller{
 
     public function create(){
 
-        $data=[];
+        $data=[
+
+            'model'=>new \App\InventoryAdjustmentPurpose,
+            'route_name'=>'adjustment-purpose',
+            'title'=>'Adjustment Purpose'
+
+        ];
+
         return view($this->path('create'), $data);
         
     }
 
 
     public function store(Request $request){
+
+        $request->validate([
+            'name'=>'required|unique:inventory_adjustment_purposes',
+            'short_name'=>'required|unique:inventory_adjustment_purposes'
+        ]);
+
+        $model=\App\InventoryAdjustmentPurpose::create($request->all());
+        $model->creator()->associate(\Auth::user());
+        $model->save();
+
+        return back()->with('success', 'Form Submitted Successfully!.');
+
+    }
+
+
+    public function show(\App\InventoryAdjustmentPurpose $adjustment_purpose){
         
     }
 
 
-    public function show($id){
+    public function edit(\App\InventoryAdjustmentPurpose $adjustment_purpose){
+
+        $data=[
+
+            'model'=>$adjustment_purpose,
+            'route_name'=>'adjustment-purpose',
+            'title'=>'Adjustment Purpose'
+
+        ];
+
+        return view($this->path('create'), $data);
+
+    }
+
+
+    public function update(Request $request, \App\InventoryAdjustmentPurpose $adjustment_purpose){
+
+        $model=$adjustment_purpose;
+
+        $request->validate([
+            'name'=>'required|unique:inventory_adjustment_purposes,name,'.$model->id,
+            'short_name'=>'required|unique:inventory_adjustment_purposes,short_name,'.$model->id
+        ]);
+
+        $model->fill($request->all());
+        $model->editor()->associate(\Auth::user());
+        $model->save();
+
+        return back()->with('success', 'Form Submitted Successfully!.');
         
     }
 
 
-    public function edit($id){
-        
-    }
+    public function destroy(\App\InventoryAdjustmentPurpose $adjustment_purpose){
 
-
-    public function update(Request $request, $id){
-        
-    }
-
-
-    public function destroy($id){
+        return redirect()->back();
         
     }
 }

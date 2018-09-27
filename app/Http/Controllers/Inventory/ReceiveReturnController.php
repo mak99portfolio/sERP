@@ -116,7 +116,8 @@ class ReceiveReturnController extends Controller{
     public function show(\App\InventoryReceive $receive_return){
 
         $data=[
-            'inventory_receive'=>$receive_return
+            'inventory_receive'=>$receive_return,
+            'carbon'=>new \Carbon\Carbon
         ];
 
         return view($this->path('show'), $data);
@@ -128,7 +129,7 @@ class ReceiveReturnController extends Controller{
 
         $data=[
             'inventory_receive'=>$receive_return,
-            'inventory_receive_id'=>$receive_return->inventory_receive_id,
+            'inventory_receive_no'=>$receive_return->inventory_receive_no,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'inventory_return_reasons'=>\App\InventoryReturnReason::pluck('name', 'id')
         ];

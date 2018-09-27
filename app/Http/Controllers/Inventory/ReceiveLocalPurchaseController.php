@@ -106,6 +106,13 @@ class ReceiveLocalPurchaseController extends Controller{
 
 
     public function show(\App\InventoryReceive $receive_local_purchase){
+
+        $data=[
+            'inventory_receive'=>$receive_local_purchase,
+            'carbon'=>new \Carbon\Carbon
+        ];
+
+        return view($this->path('show'), $data);
         
     }
 
@@ -113,7 +120,7 @@ class ReceiveLocalPurchaseController extends Controller{
 
         $data=[
             'inventory_receive'=>$receive_local_purchase,
-            'inventory_receive_id'=>$receive_local_purchase->inventory_receive_id,
+            'inventory_receive_no'=>$receive_local_purchase->inventory_receive_no,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Receive Against Return Details')
+@section('title', 'Foreign Purchase Order Details')
 @section('content')
 
 <!-- page content -->
@@ -15,7 +15,7 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Receive Against Return Details</h2>
+                        <h2>Foreign Receive Details</h2>
                         <div class="btn-group pull-right">
                             <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Back</button>
@@ -28,24 +28,24 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <td colspan="2">Receive Against Return</td>
+                                        <td colspan="2">Foreign Receive</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td><strong>Receive No:</strong> {{ $inventory_receive->inventory_receive_no }}</td>
-                                        <td><strong>Working Unit:</strong> {{ $inventory_receive->working_unit->name }}</td>
+                                        <td><strong>Working Unit:</strong>  {{ $inventory_receive->working_unit->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Date:</strong> {{ $carbon->parse($inventory_receive->receive_date)->toFormattedDateString() }}</td>
-                                        <td><strong>Return Reason:</strong> {{ $inventory_receive->return->reason->name }}</td>
+                                        <td><strong>Date:</strong> {{ $carbon->parse($inventory_receive->receive_date)->toFormattedDateString() }}</td>                                        
+                                        <td><strong>Commercial Invoice No:</strong> {{ $inventory_receive->foreign->commercial_invoice->commercial_invoice_no }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Issue No:</strong> {{ $inventory_receive->return->issue->inventory_issue_no }}</td>
-                                        <td><strong>Requisition No:</strong> {{ $inventory_receive->return->issue->requisition->inventory_requisition_no }}</td>
+                                        <td><strong>Letter of Credit No:</strong> {{ $inventory_receive->foreign->commercial_invoice->LetterOfCredit->letter_of_credit_no }}</td>
+                                        <td><strong>Product Status:</strong> {{ $inventory_receive->item_status->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Receive From:</strong> {{ $inventory_receive->return->issue->requisition->sender->name }}</td>
+                                        <td><strong>Product Pattern:</strong> {{ $inventory_receive->item_pattern->name }}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
@@ -53,20 +53,17 @@
                                     </tr>
                                 </tbody>
                             </table>
-
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <td colspan="7">Product List</td>
+                                        <td colspan="5">Product List</td>
                                     </tr>
                                     <tr>
                                         <td>#</td>
                                         <td>HS Code</td>
                                         <td>Item name</td>
-                                        <td>Requisition Quantity</td>
-                                        <td>Issue Quantity</td>
-                                        <td>Return Quantity</td>
-                                        <td>Return Status</td>
+                                        <td>CI Quantity</td>
+                                        <td>Receive Quantity</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -75,10 +72,8 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $stock->product->hs_code }}</td>
                                         <td>{{ $stock->product->name }}</td>
-                                        <td>{{ $inventory_receive->return->issue->requisition->items()->where('product_id', $stock->product_id)->first()->requested_quantity }}</td>
-                                        <td>{{ $inventory_receive->return->issue->items()->where('product_id', $stock->product_id)->first()->requested_quantity }}</td>
+                                        <td>{{ $inventory_receive->foreign->commercial_invoice->items()->where('product_id', $stock->product_id)->first()->quantity }}</td>
                                         <td>{{ $stock->receive_quantity }}</td>
-                                        <td>{{ $stock->status->name }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

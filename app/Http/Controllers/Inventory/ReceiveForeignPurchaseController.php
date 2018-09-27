@@ -108,6 +108,13 @@ class ReceiveForeignPurchaseController extends Controller{
 
 
     public function show(\App\InventoryReceive $receive_foreign_purchase){
+
+        $data=[
+            'inventory_receive'=>$receive_foreign_purchase,
+            'carbon'=>new \Carbon\Carbon
+        ];
+
+        return view($this->path('show'), $data);
         
     }
 
@@ -116,7 +123,7 @@ class ReceiveForeignPurchaseController extends Controller{
 
         $data=[
             'inventory_receive'=>$receive_foreign_purchase,
-            'inventory_receive_id'=>$receive_foreign_purchase->inventory_receive_id,
+            'inventory_receive_no'=>$receive_foreign_purchase->inventory_receive_no,
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future

@@ -41,7 +41,7 @@
                             <td>{{ $row->inventory_receive_no }}</td>
                             <td>{{ title_case($row->receive_type) }}</td>
                             <td>{{ $row->working_unit->name }}</td>
-                            <td>{{ $carbon->parse($row->receive_date)->diffForHumans() }}</td>
+                            <td>{{ $carbon->parse($row->receive_date)->toFormattedDateString() }}</td>
                             <td>
                             @if($row->receive_type=='foreign_purchase')
                                 {!! btnCustom(['title'=>'Show', 'url'=>route('receive-foreign-purchase.show', ['receive_foreign_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}

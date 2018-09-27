@@ -44,7 +44,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ForeignRequisitionTableSeeder::class);
         $this->call(ForeignRequisitionItemTableSeeder::class);
         $this->call(ForeignPurchaseOrderTableSeeder::class);
-        // $this->call(PurchaseOrderSeeder::class);
         $this->call(ProformaInvoiceSeeder::class);
         $this->call(LocalRequisitionTableSeeder::class);
         $this->call(LetterOfCreditTableSeeder::class);

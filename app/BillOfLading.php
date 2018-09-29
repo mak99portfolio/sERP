@@ -62,5 +62,10 @@ class BillOfLading extends Model
     public function items(){
         return $this->hasMany('App\BillOfLadingItem');
     }
-
+    public function amount()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->quantity * $item->unit_price;
+        });
+    }
 }

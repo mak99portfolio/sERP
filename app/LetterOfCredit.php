@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class LetterOfCredit extends Model
 {
     use SoftDeletes;
@@ -25,18 +26,36 @@ class LetterOfCredit extends Model
         'issue_branch_name',
         'issue_bank_name',
         'partial_shipment',
-        'transhipment_information'
+        'transhipment_information',
     ];
-    public function items(){
+    public function items()
+    {
         return $this->hasMany('App\LetterOfCreditItem');
     }
-    public function vendor(){
-        return $this->belongsTo('App\Vendor'); 
-     }
-    public function application_numbers(){
-        return $this->hasMany('App\LetterOfCreditApplicationNumber'); 
-     }
-     public function proforma_invoices(){
+    public function insurance_cover_note()
+    {
+        return $this->hasOne('App\InsuranceCoverNote');
+    }
+    public function vendor()
+    {
+        return $this->belongsTo('App\Vendor');
+    }
+    public function application_numbers()
+    {
+        return $this->hasMany('App\LetterOfCreditApplicationNumber');
+    }
+    public function proforma_invoices()
+    {
         return $this->belongsToMany('App\ProformaInvoice');
+    }
+    public function cost_sheet()
+    {
+        return $this->hasOne('App\CostSheet');
+    }
+    public function amount()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->quantity * $item->unit_price;
+        });
     }
 }

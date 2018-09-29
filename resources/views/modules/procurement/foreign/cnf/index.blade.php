@@ -43,7 +43,7 @@
                                         <td>{{ $item->bill_of_entry_no }}</td>
                                         <td>{{ $item->bill_of_entry_date }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('cnf.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('cnf.show', $item) }}" class="btn btn-block btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

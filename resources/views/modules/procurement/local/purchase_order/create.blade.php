@@ -24,7 +24,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials/flash_msg')
-                        <form class="form-horizontal form-label-left" action="{{route('local-purchase-order.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" action="{{route('local-purchase-order.store')}}" method="POST" autocomplete="off">
                             @csrf
                             <fieldset>
                                 <legend>Vendor Information:</legend>

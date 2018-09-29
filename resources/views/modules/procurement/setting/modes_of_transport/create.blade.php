@@ -14,7 +14,7 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left" action="{{route('modes-of-transport.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" action="{{route('modes-of-transport.store')}}" method="POST" autocomplete="off">
                             {{csrf_field()}}
                             <div class="col-md-6 offset-md-3 col-sm-6 col-xs-12">
                                 {{ BootForm::text('name', 'Name', null, ['class'=>'form-control input-sm','required'=>'required']) }}

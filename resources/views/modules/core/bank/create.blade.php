@@ -20,7 +20,7 @@
                   <div class="x_content">
                       <br />
                       @include('partials.flash_msg')
-                  <form class="form-horizontal form-label-left" action="{{ route('bank.store') }}" method="POST">
+                  <form class="form-horizontal form-label-left" action="{{ route('bank.store') }}" method="POST" autocomplete="off">
                       {{ csrf_field() }}
                           <div class="col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('name','Bank Name', null, ['class'=>'form-control input-sm']) }}

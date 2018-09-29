@@ -64,7 +64,7 @@
                                 <div class="modal-body" style="height: 75vh; overflow-y: auto">
                                     <div class="wrapper-md">
                                         <!--<button class="btn btn-sm btn-info pull-right" id='btn' value='Print'>Print</button>-->
-                                        <div id='DivIdToPrint' class="panel panel-default">
+                                        <div id='print-area' class="panel panel-default">
                                             <div class="panel-body">
                                                 <!-- procurement_report_heading -->
                                                 <!--<div data-ng-include=" 'tpl/blocks/procurement_report_heading.html'"></div>-->

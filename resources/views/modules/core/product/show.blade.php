@@ -30,7 +30,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <div class="table-responsive DivIdToPrint">
+                        <div class="table-responsive print-area">
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>

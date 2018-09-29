@@ -16,9 +16,10 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td colspan="2"><strong>Consignee:</strong> Magnum Enterprise Limited</td>
-                                        <td><strong>Consignment No:</strong> 47</td>
-                                        <td><strong>Report Date: </strong> 18/09/2018</td>
+                                        <td colspan="2"><strong>Consignee </strong>: Magnum Enterprise Limited</td>
+                                        
+                                        <td><strong>Consignment No </strong>: 47</td>
+                                        <td><strong>Report Date  </strong>: 18/09/2018</td>
                                     </tr>
                                     <tr>
                                         <td><strong>LC/No & Date:</strong> 125</td>

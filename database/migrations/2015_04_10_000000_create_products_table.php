@@ -30,7 +30,13 @@ class CreateProductsTable extends Migration
             $table->foreign('product_group_id')->references('id')->on('product_groups')->onDelete('cascade');
             $table->integer('product_brand_id')->unsigned();
             $table->foreign('product_brand_id')->references('id')->on('product_brands')->onDelete('cascade');
-            $table->string('model');
+
+            $table->integer('product_model_id')->unsigned();
+            $table->foreign('product_model_id')->references('id')->on('product_models')->onDelete('cascade');
+            $table->integer('product_size_id')->unsigned();
+            $table->foreign('product_size_id')->references('id')->on('product_sizes')->onDelete('cascade');
+            $table->integer('product_set_id')->unsigned();
+            $table->foreign('product_set_id')->references('id')->on('product_sets')->onDelete('cascade');
             $table->string('serial');
             $table->string('part_number');
             $table->integer('country_of_origin_country_id')->unsigned();

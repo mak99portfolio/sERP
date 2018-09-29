@@ -9,6 +9,9 @@ use App\Country;
 use App\UnitOfMeasurement;
 use App\ProductPattern;
 use App\ProductGroup;
+use App\ProductModel;
+use App\ProductSet;
+use App\ProductSize;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -47,6 +50,9 @@ class ProductController extends Controller
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('unit_of_measurement_list', UnitOfMeasurement::pluck('name','id')->prepend('-- Select Unit Of Measurement --', ''));
         $view->with('product_pattern_list', ProductPattern::pluck('name','id')->prepend('-- Select Product Pattern --', ''));
+        $view->with('product_model_list', ProductModel::pluck('name','id')->prepend('-- Select Product Model --', ''));
+        $view->with('product_set_list', ProductSet::pluck('name','id')->prepend('-- Select Product Set --', ''));
+        $view->with('product_size_list', ProductSize::pluck('name','id')->prepend('-- Select Product Size --', ''));
         $view->with('product_group_list', ProductGroup::pluck('name','id'));
         // dd(['id' => ProductGroup::pluck('id'), 'name' => ProductGroup::pluck('name')]);
         $view->with('product_status_list', DB::table('product_statuses')->get());
@@ -61,6 +67,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->input());
         $request->validate([
             'name'=>'required|unique:products',
             'hs_code'=>'required|unique:products',
@@ -68,7 +75,7 @@ class ProductController extends Controller
             'product_pattern_id'=>'required',
             'product_group_id'=>'required',
             'product_brand_id'=>'required',
-            'model'=>'required',
+            'product_model_id'=>'required',
             'serial'=>'required',
             'part_number'=>'required',
             'country_of_origin_country_id'=>'required',

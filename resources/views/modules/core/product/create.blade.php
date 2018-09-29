@@ -39,19 +39,19 @@
                                 {{ BootForm::select('product_pattern_id', 'Select Pattern', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_pattern_id', 'Product Model', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_model_id', 'Product Model', $product_model_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_pattern_id', 'Product Size', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_size_id', 'Product Size', $product_size_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_pattern_id', 'Product Set', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_set_id', 'Product Set', $product_set_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Product Classification Group</div>
                                     <div class="panel-body">
-                                        <div class="col-md-1 col-sm-2">
+                                        {{-- <div class="col-md-1 col-sm-2">
                                             <div class="checkbox">
                                                 <label class="i-checks">
                                                     <input type="checkbox" name="" value="Sample"><i></i> Sample
@@ -85,10 +85,10 @@
                                                     <input type="checkbox" name="" value="Maintenance"><i></i> Maintenance
                                                 </label>
                                             </div>
-                                        </div>
-<!--                                        <div class="form-group pull-in clearfix">
+                                        </div> --}}
+                                <div class="form-group pull-in clearfix">
                                             {{ BootForm::checkboxes('product_group_id', null, $product_group_list)}} 
-                                        </div>-->
+                                        </div>
                                         
                                     </div>
                                 </div>

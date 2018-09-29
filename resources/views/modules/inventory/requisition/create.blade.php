@@ -77,14 +77,14 @@
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>Available Quantity</label>
+                                            <label>In Stock</label>
                                             <input class="form-control input-sm" type="text" v-model='active_record.stock' readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Requested Quantity</label>
-                                            <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity'>
+                                            <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity'  v-on:keydown.enter.prevent="add_product">
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -183,11 +183,13 @@ $(function(){
           vm.remote_data=null;
           vm.reset_active_record();
 
-          requested_depot_id=$('#requested_depot_id').val();
+          sender_depot_id=$('#sender_depot_id').val();
+          product_status_id=$('#product_status_id').val();
+          product_pattern_id=$('#product_pattern_id').val();
 
-          if(slug && requested_depot_id){
+          if(slug && sender_depot_id){
 
-            axios.get(this.config.base_url + '/' + requested_depot_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_pattern_id + '/' +slug).then(function(response){
 
               vm.remote_data=response.data;
               vm.active_record=vm.remote_data;
@@ -211,7 +213,7 @@ $(function(){
           this.active_record={hs_code:'', id:'', name:'', stock:'', quantity:''};
          },
          add_product:function(){
-          if(this.active_record.stock > 0 && this.active_record.quantity > 0 && this.active_record.quantity <= this.active_record.stock){
+          if(this.active_record.quantity > 0){
             this.products.push(this.active_record);
             this.reset_active_record();
           }
@@ -219,9 +221,13 @@ $(function(){
          load_old:function(){
             var vm=this;
             var loading=$.loading();
-            requested_depot_id=$('#requested_depot_id').val();
+
+            sender_depot_id=$('#sender_depot_id').val();
+            product_status_id=$('#product_status_id').val();
+            product_pattern_id=$('#product_pattern_id').val();
+
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + requested_depot_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_pattern_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();

@@ -191,7 +191,7 @@ class RequisitionController extends Controller{
         
     }
 
-    public function get_product_info(\App\WorkingUnit $working_unit, string $slug){
+    public function get_product_info(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern, string $slug){
 
         $product=\App\Product::where('hs_code', $slug)->orWhere('name', $slug)->first();
 
@@ -203,7 +203,10 @@ class RequisitionController extends Controller{
                 'id'=>$product->id,
                 'hs_code'=>$product->hs_code,
                 'name'=>$product->name,
-                'stock'=>stock_balance($working_unit, $product)
+                'stock'=>stock_balance($working_unit, $product, [
+                    'product_status_id'=>$product_status->id,
+                    'product_pattern_id'=>$product_pattern->id
+                ])
             ]);
         }
 
@@ -211,7 +214,7 @@ class RequisitionController extends Controller{
 
     }
 
-    public function vue_old_products(Request $request, \App\WorkingUnit $working_unit){
+    public function vue_old_products(Request $request, \App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern){
 
         //dd(Session::get('vue_products'));
 
@@ -229,7 +232,10 @@ class RequisitionController extends Controller{
                     'id'=>$id,
                     'hs_code'=>$product->hs_code,
                     'name'=>$product->name,
-                    'stock'=>stock_balance($working_unit, $product),
+                    'stock'=>stock_balance($working_unit, $product, [
+                        'product_status_id'=>$product_status->id,
+                        'product_pattern_id'=>$product_pattern->id
+                    ]),
                     'quantity'=>$quantity
                 ]);
 

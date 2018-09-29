@@ -69,6 +69,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 
 //Inventory
 Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(function(){
+
     Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
@@ -86,7 +87,10 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
     Route::resource('return-reason', 'ReturnReasonController');
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
+    Route::resource('stock-report', 'StockReportController');
+
 });
+
 //Accounts
 Route::middleware('auth')->namespace('Accounts')->prefix('Accounts')->group(function(){
     Route::resource('product-costing', 'ProductCostingController');
@@ -101,8 +105,8 @@ Route::middleware('auth')->namespace('Company')->prefix('Company')->group(functi
 //Inventory without auth middleware
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
-    Route::get('get-product-info/{working_unit}/{slug}', 'RequisitionController@get_product_info');
-    Route::get('vue-old-products/{working_unit}', 'RequisitionController@vue_old_products');
+    Route::get('get-product-info/{working_unit}/{product_status}/{product_pattern}/{slug}', 'RequisitionController@get_product_info');
+    Route::get('vue-old-products/{working_unit}/{product_status}/{product_pattern}', 'RequisitionController@vue_old_products');
 
     //routes for receive product info
     Route::prefix('api')->group(function(){

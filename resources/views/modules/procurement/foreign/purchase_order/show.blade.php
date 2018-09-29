@@ -7,11 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <div class="breadcrumb">
-                    <a>Procurement</a>
-                    <a>Foreign Purchase Order</a>
-                    <span>Details</span>
-                </div>
+                
             </div>
         </div>
         <div class="clearfix"></div>

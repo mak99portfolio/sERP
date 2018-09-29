@@ -28,7 +28,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>LC No.</label>
-                                        <select class="form-control input-sm" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
+                                        <select class="form-control input-sm select2" name="letter_of_credit_id" ng-model="letter_of_credit_id" ng-change="getLc()">
                                             <option value="">--Select LC No--</option>
                                             @foreach($lc_list as $item)
                                             <option value="{{$item->id}}">{{$item->letter_of_credit_no}}</option>
@@ -40,7 +40,7 @@
                                     {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('currency', 'Currency', [''=>'-- select currency --','Doller'=>'Doller'], null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('currency', 'Currency', [''=>'-- select currency --','Doller'=>'Doller'], null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
@@ -159,8 +159,8 @@
                                             <tfoot>
                                                 <tr>
                                                     <td colspan="3">Total</td>
-                                                    <td><% get_total_amount() %></td>
-                                                    <td><% get_total_amount_round() %></td>
+                                                    <td class="text-right"><% get_total_amount() %></td>
+                                                    <td class="text-right"><% get_total_amount_round() %></td>
                                                 </tr>
                                             </tfoot>
                                         </table>

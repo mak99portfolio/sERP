@@ -110,25 +110,25 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::text('employee_id') }}
+                            {{ BootForm::text('employee_id', null, null, ['class'=>'input-sm']) }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::text('name') }}
+                            {{ BootForm::text('name', null, null, ['class'=>'input-sm']) }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{ BootForm::text('nationality') }}
+                        {{ BootForm::text('nationality', null, null, ['class'=>'input-sm']) }}
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{ BootForm::text('national_id', 'National ID (NID)') }}
+                        {{ BootForm::text('national_id', 'National ID (NID)', null, ['class'=>'input-sm']) }}
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        {{ BootForm::select('blood_group_id', null, $bloodGroups) }}
+                        {{ BootForm::select('blood_group_id','Blood Group', $bloodGroups, null, ['class'=>'input-sm select2']) }}
                         </div>
                     </div>
                 </div>

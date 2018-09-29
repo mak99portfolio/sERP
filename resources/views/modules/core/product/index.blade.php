@@ -47,7 +47,7 @@
                                         <td>{{$product->model}}</td>
                                         <td>{{$product->part_number}}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"<i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('product.show',$product)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

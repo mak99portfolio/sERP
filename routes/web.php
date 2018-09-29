@@ -92,11 +92,11 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
 });
 
 //Accounts
-Route::middleware('auth')->namespace('Accounts')->prefix('Accounts')->group(function(){
+Route::middleware('auth')->namespace('Accounts')->prefix('accounts')->group(function(){
     Route::resource('product-costing', 'ProductCostingController');
 });
 //Company
-Route::middleware('auth')->namespace('Company')->prefix('Company')->group(function(){
+Route::middleware('auth')->namespace('Company')->prefix('company')->group(function(){
     Route::resource('company-profile', 'CompanyProfileController');
     Route::resource('company-bank', 'CompanyBankController');
     Route::resource('company-license', 'CompanyLicenseController');

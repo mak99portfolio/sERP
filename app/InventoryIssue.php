@@ -32,4 +32,8 @@ class InventoryIssue extends Model{
 		return $this->hasMany('App\InventoryIssueReturnItem', 'inventory_issue_id');
 	}
 
+	public function receive(){
+		return $this->hasOne('App\InventoryReceiveInternal', 'inventory_issue_id');
+	}
+
 }

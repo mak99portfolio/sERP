@@ -9,7 +9,7 @@ class InventoryIssueItem extends Model{
     protected $guarded=['id'];
 
     public function issue(){
-		return $this->belongsTo('App\InventoryIssue');
+		return $this->belongsTo('App\InventoryIssue', 'inventory_issue_id');
 	}
 
     public function product(){

@@ -54,13 +54,11 @@ class IssueController extends Controller{
 
         $data=[
             'issue'=>$issue,
-            'requisition_no'=>$issue->requisition->inventory_requisition_no,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
-            'sender_depot_id'=>$issue->requisition->sender_depot_id,
-            'requested_depot_id'=>$issue->requisition->requested_depot_id
+            'carbon'=>new \Carbon\Carbon
         ];
 
         $products=[];
@@ -87,6 +85,7 @@ class IssueController extends Controller{
             'products'=>'required|array'
         ]);
 
+
         if($request->get('forward_working_unit_id')){
 
             $issue->requisition->requested_depot_id=$request->get('forward_working_unit_id');
@@ -98,6 +97,25 @@ class IssueController extends Controller{
 
         }else{
 
+
+            $products=$request->get('products');
+
+            foreach($products as $id=>$quantity){
+                
+                $product=\App\Product::find($id);
+                $balance=stock_balance($issue->requisition->requested_to, $product, [
+                    'product_status_id'=>$issue->requisition->product_status_id,
+                    'product_pattern_id'=>$issue->requisition->product_pattern_id
+                ]);
+
+                if($balance < $quantity){
+                    return back()
+                    ->with('failed', 'Sorry!, your issue product quantity exceeds stock quantity.')
+                    ->withInput();
+                }
+
+            }
+
             $approval=$request->get('approval');
 
             if($approval=='initial'){
@@ -108,8 +126,6 @@ class IssueController extends Controller{
 
             $issue->allocated_items()->delete();
             $issue->save();
-
-            $products=$request->get('products');
 
             foreach($products as $id=>$quantity){
                 

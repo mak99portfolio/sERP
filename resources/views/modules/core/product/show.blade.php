@@ -17,13 +17,13 @@
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Product Name : </h2></div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Product Name : {{$product->name}}</h2></div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                         </div>
                         <div class="visible-xs col-xs-6"><button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</button></div>
                         <div class="visible-xs col-xs-6"><button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button></div>
-                        <div class="visible-xs col-xs-12"><h2 class="text-center">Product Name : </h2></div>
+                        <div class="visible-xs col-xs-12"><h2 class="text-center">Product Name :  {{$product->name}}</h2></div>
                     </div>
                     <div class="x_title">
                         <div class="clearfix"></div>
@@ -34,32 +34,32 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Product Name :</strong>125</td>
-                                        <td><strong>HS Code :</strong>125</td>
-                                        <td><strong>Category:</strong>125</td>
+                                        <td><strong>Product Name :</strong> {{$product->name}}</td>
+                                        <td><strong>HS Code :</strong> {{$product->hs_code}}</td>
+                                        <td><strong>Category:</strong> {{$product->product_category->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Select Pattern :</strong>125</td>
-                                        <td><strong>Product Model :</strong>125</td>
-                                        <td><strong>Product Size :</strong>125</td>
+                                        <td><strong>Select Pattern :</strong>{{$product->product_pattern->name}}</td>
+                                        <td><strong>Product Model :</strong>{{$product->product_model->name}}</td>
+                                        <td><strong>Product Size :</strong>{{$product->product_size->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Product Set :</strong>125</td>
-                                        <td colspan="2"><strong>Product Classification Group: </strong>Sample, Service</td>
+                                        <td><strong>Product Set :</strong>{{$product->product_set->name}}</td>
+                                        <td colspan="2"><strong>Product Classification Group: </strong>{{$product->product_category->name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Select Brand :</strong>125</td>
-                                        <td><strong>Product Serial :</strong>125</td>
-                                        <td><strong>Part No :</strong>125</td>
+                                        <td><strong>Select Brand :</strong>{{$product->product_brand->name}}</td>
+                                        <td><strong>Product Serial :</strong>{{$product->serial}}</td>
+                                        <td><strong>Part No :</strong>{{$product->part_number}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Country of Origin :</strong>125</td>
-                                        <td><strong>Country of Manufacture :</strong>125</td>
-                                        <td><strong>Unit of Measurement -:</strong>125</td>
+                                        <td><strong>Country of Origin :</strong>{{$product->origin_country->name}}</td>
+                                        <td><strong>Country of Manufacture :</strong>{{$product->manufacture->name}}</td>
+                                        <td><strong>Unit of Measurement -:</strong>{{$product->unit_of_measurement->name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -71,7 +71,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Active:</strong>125</td>
+                                        <td><strong>Active:</strong> {{$product->status()->name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -83,14 +83,14 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>TP:</strong>125</td>
-                                        <td><strong>MRP:</strong>125</td>
-                                        <td><strong>Flat:</strong>125</td>
+                                        <td><strong>TP:</strong>{{$product->tp_rate}}</td>
+                                        <td><strong>MRP:</strong>{{$product->mrp_rate}}</td>
+                                        <td><strong>Flat:</strong>{{$product->flat_rate}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Special Rate:</strong>125</td>
-                                        <td><strong>Distributor Rate :</strong>125</td>
-                                        <td><strong>Other:</strong>125</td>
+                                        <td><strong>Special Rate:</strong>{{$product->special_rate}}</td>
+                                        <td><strong>Distributor Rate :</strong>{{$product->distribution_rate}}</td>
+                                        <td><strong>Other:</strong>{{$product->other}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -102,15 +102,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Pack Size :</strong>125</td>
-                                        <td><strong>Shipper Carton Size :</strong>125</td>
+                                        <td><strong>Pack Size :</strong>{{$product->pack_size}}</td>
+                                        <td><strong>Shipper Carton Size :</strong>{{$product->shipper_carton_size}}</td>
                                     </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Description:</strong>125</td>
+                                        <td><strong>Description:</strong>{{$product->description}}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -63,9 +63,7 @@
                                         <td><strong>Branch Name :</strong>  {{$letterOfCredit->beneficiary_branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Bank Address:</strong>  {{$letterOfCredit->beneficiary_bank_name}}</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
+                                        <td colspan="3"><strong>Bank Address:</strong>  {{$letterOfCredit->beneficiary_bank_name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -82,9 +80,7 @@
                                         <td><strong>Branch Name :</strong> {{$letterOfCredit->issue_branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Bank Address</strong> {{$letterOfCredit->issue_bank_name}}</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
+                                        <td colspan="3"><strong>Bank Address</strong> {{$letterOfCredit->issue_bank_name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -146,11 +142,11 @@
                                         <th><strong>H.S. CODE</strong></th>
                                         <th><strong>Product Name</strong></th>
                                         <th><strong>UOM</strong> </th>
-                                        <th><strong>Quantity</strong></th>
-                                        <th><strong>Unit Price</strong></th>
-                                        <th><strong>Discount</strong></th>
-                                        <th><strong>D.Rate</strong></th>
-                                        <th><strong>Vat(%)</strong></th>
+                                        <th class="text-center"><strong>Quantity</strong></th>
+                                        <th class="text-center"><strong>Unit Price</strong></th>
+                                        <th class="text-center"><strong>Discount</strong></th>
+                                        <th class="text-center"><strong>D.Rate</strong></th>
+                                        <th class="text-center"><strong>Vat(%)</strong></th>
                                         <th class="text-right"><strong>Sub Total</strong></th>
                                      </tr>
                                 </thead>
@@ -161,11 +157,11 @@
                                         <td>{{$item->product->hs_code}}</td>
                                         <td>{{$item->product->name}}</td>
                                         <td>{{$item->product->unit_of_measurement->name}}</td>
-                                        <td>{{$item->quantity}}</td>
-                                        <td>{{$item->unit_price}}</td>
-                                        <td>{{$item->discount}}</td>
-                                        <td>{{$item->d_rate}}</td>
-                                        <td>{{$item->vat}}</td>
+                                        <td class="text-right">{{$item->quantity}}</td>
+                                        <td class="text-right">{{$item->unit_price}}</td>
+                                        <td class="text-right">{{$item->discount}}</td>
+                                        <td class="text-right">{{$item->d_rate}}</td>
+                                        <td class="text-right">{{$item->vat}}</td>
                                         <td class="text-right">{{number_format(($item->quantity * $item->unit_price)+($item->d_rate+$item->vat)-$item->discount,2)}}</td>
                                      
                                     </tr>

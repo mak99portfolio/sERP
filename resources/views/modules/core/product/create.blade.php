@@ -34,10 +34,10 @@
                                 {{ BootForm::text('hs_code','HS Code', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_category_id', 'Category', $product_category_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('product_category_id', 'Category', $product_category_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_pattern_id', 'Select Pattern', $product_pattern_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('product_pattern_id', 'Select Pattern', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <table class="table table-bordered">
@@ -58,7 +58,7 @@
                                 </table>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_brand_id', 'Select Brand', $product_brand_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('product_brand_id', 'Select Brand', $product_brand_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('serial','Product Serial', null, ['class'=>'form-control input-sm']) }}
@@ -70,13 +70,13 @@
                                 {{ BootForm::text('part_number','Part No', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_of_origin_country_id', 'Country of Origin', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('country_of_origin_country_id', 'Country of Origin', $country_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_of_manufacture_country_id', 'Country of Manufacture', $country_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('country_of_manufacture_country_id', 'Country of Manufacture', $country_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('unit_of_measurement_id', 'Unit of Measurement', $unit_of_measurement_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('unit_of_measurement_id', 'Unit of Measurement', $unit_of_measurement_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <table class="table table-bordered">

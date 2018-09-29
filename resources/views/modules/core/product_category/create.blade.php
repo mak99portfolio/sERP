@@ -21,7 +21,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label>Product Category</label>
-                                <select class="form-control input-sm" name="product_categorie_id">
+                                <select class="form-control input-sm select2" name="product_categorie_id">
                                         <option value="" disabled selected>Select Category</option>
 
                             @foreach ($product_category as $item)

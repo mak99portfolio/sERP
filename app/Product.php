@@ -47,6 +47,15 @@ class Product extends Model
     function product_brand(){
         return $this->belongsTo('App\ProductBrand');
     }
+    function product_model(){
+        return $this->belongsTo('App\ProductModel','product_model_id');
+    }
+    function product_size(){
+        return $this->belongsTo('App\ProductSize','product_size_id');
+    }
+    function product_set(){
+        return $this->belongsTo('App\ProductSet','product_set_id');
+    }
     function status(){
         return DB::table('product_statuses')->where('id', $this->product_status_id)->first();
     }

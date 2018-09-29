@@ -39,10 +39,10 @@
                                 </div>
                                   
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                {{ BootForm::select('parent_unit_id', 'Parent Working Unit', $working_units, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('parent_unit_id', 'Parent Working Unit', $working_units, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types, null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                              
 

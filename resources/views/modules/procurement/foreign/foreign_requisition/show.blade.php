@@ -6,11 +6,11 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <div class="breadcrumb">
+                {{--<!-- <div class="breadcrumb">
                     <a>Procurement</a>
                     <a>Foreign Purchase</a>
                     <span>Requisition</span>
-                </div>
+                </div>-->--}}
             </div>
         </div>
         <div class="clearfix"></div>

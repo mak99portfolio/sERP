@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Bill of Lading List Details')
+@section('title', 'Bill of Lading Details')
 @section('content')
 
 <!-- page content -->
@@ -7,38 +7,43 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Procurement</h3>
             </div>
         </div>
         <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
+                            <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">BL No : {{$bill_of_lading->bill_of_lading_no}}</h2></div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
+                            <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                        </div>
+                        <div class="visible-xs col-xs-6"><button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</button></div>
+                        <div class="visible-xs col-xs-6"><button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button></div>
+                        <div class="visible-xs col-xs-12"><h2 class="text-center">BL No : {{$bill_of_lading->bill_of_lading_no}}</h2></div>
+                    </div>
                     <div class="x_title">
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <a href="{{route('bill-of-lading.index')}}" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</a>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <h2 class="text-center">Bill of Lading List Details</h2>
-                        </div>
-                        <div class="col-md-3 col-sm-3 col-xs-12">
-                            <button class="btn btn-sm btn-info print-btn pull-right" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
-                        </div>
-
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
                         <div class="table-responsive DivIdToPrint">
                             <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <td colspan="2" class="text-center"><strong>Bill of Lading</strong></td>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
-                                    <td><strong>BL No :</strong>{{$bill_of_lading->bill_of_lading_no}}</td>
+                                        <td><strong>BL No :</strong>{{$bill_of_lading->bill_of_lading_no}}</td>
                                         <td><strong>BL Date :</strong>{{$bill_of_lading->bill_of_lading_date}}</td>
-                                        
                                     </tr>
                                     <tr>
-                                    <td><strong>LC No :</strong>{{$bill_of_lading->letter_of_credit->letter_of_credit_no}}</td>
+                                        <td><strong>LC No :</strong>{{$bill_of_lading->letter_of_credit->letter_of_credit_no}}</td>
                                         <td><strong>LC Date :</strong>{{$bill_of_lading->letter_of_credit->letter_of_credit_date}}</td>
                                     </tr>
                                 </tbody>

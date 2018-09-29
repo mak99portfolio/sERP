@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Accounts;
 
 use App\ProductCosting;
+use App\BillOfLading;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Auth;
+use Session;
 class ProductCostingController extends Controller
 {
     private $view_root = 'modules/accounts/product_costing/';
@@ -13,7 +15,7 @@ class ProductCostingController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('bank_list', CompanyBank::all());
+        $view->with('bill_of_lading_list', BillOfLading::all());
         return $view;
     }
 
@@ -46,9 +48,11 @@ class ProductCostingController extends Controller
      * @param  \App\ProductCosting  $productCosting
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductCosting $productCosting)
+    public function show(BillOfLading $productCosting)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('productCosting', $productCosting);
+        return $view;
     }
 
     /**

@@ -67,7 +67,6 @@ class DatabaseSeeder extends Seeder
         $this->call(BillOfLadingTableSeeder::class);
         $this->call(CostSheetTableSeeder::class);
         $this->call(InsuranceCoverNoteTableSeeder::class);
-
-
+        $this->call(CnfTableSeeder::class);
     }
 }

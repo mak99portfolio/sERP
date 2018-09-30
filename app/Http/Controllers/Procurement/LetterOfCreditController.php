@@ -49,11 +49,15 @@ class LetterOfCreditController extends Controller
      */
     public function store(LetterOfCreditRequest $request)
     {
+
+        //dd($request->all());
+
         $letter_of_credit = new LetterOfCredit;
         $letter_of_credit->fill($request->input());
         $letter_of_credit->creator_user_id = Auth::id();
         $letter_of_credit->save();
-        $letter_of_credit->proforma_invoices()->sync($request->proforma_invoice_ids);
+        $letter_of_credit->proforma_invoices()->sync($request->get('proforma_invoice_ids'));
+       
         if ($request->lca_nos) {
             $lca_nos = array();
             foreach ($request->lca_nos as $lca_no) {
@@ -61,6 +65,7 @@ class LetterOfCreditController extends Controller
             }
             $letter_of_credit->application_numbers()->saveMany($lca_nos);
         }
+
         $items = array();
         foreach ($request->items as $item) {
             array_push($items, new LetterOfCreditItem($item));

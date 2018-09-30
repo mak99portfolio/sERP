@@ -4,7 +4,7 @@ Route::get('/test', 'TestController@index');
 Route::get('/design', 'TestController@design');
 
 Route::namespace('Dev')->prefix('dev')->group(function(){
-    Route::resource('access-matrix', 'AccessMatrixController');
+
 });
 
 //Common
@@ -28,13 +28,13 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('employee-profile', 'EmployeeProfileController');
 
     Route::get(
-        'employee-organizational-info/{organizational_info}',
-        'EmployeeProfileController@organizational_info_form'
-        )->name('employee-profile.organizational-info');
-        Route::put(
-            'employee-organizational-info/{organizational_info}',
-            'EmployeeProfileController@update_organizational_info'
-            )->name('employee-profile.update-organizational-info');
+        'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@organizational_info_form'
+    )->name('employee-profile.organizational-info');
+
+    Route::put(
+        'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@update_organizational_info'
+    )->name('employee-profile.update-organizational-info');
+
 });
 
 //Procurement
@@ -142,4 +142,12 @@ Route::middleware('auth')->group(function(){
     Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
     Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
     Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
+});
+
+//ACL (Access Control Limit)
+Route::middleware('auth')->namespace('AccessControl')->prefix('access-control')->group(function(){
+
+    Route::resource('role', 'RoleController');
+    Route::resource('permission', 'PermissionController');
+
 });

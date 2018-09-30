@@ -84,6 +84,8 @@ class EmployeeProfileController extends Controller{
 
 
     public function edit(\App\EmployeeProfile $employee_profile){
+
+        //dd($employee_profile);
         
         $data=[
             'employee_profile'=>$employee_profile,
@@ -95,6 +97,8 @@ class EmployeeProfileController extends Controller{
     }
 
     public function update(Request $request, \App\EmployeeProfile $employee_profile){
+
+        //dd($employee_profile->organizational_information);
 
         $request->validate([
             'employee_id'=>'required|unique:employee_profiles,employee_id,'.$employee_profile->id,
@@ -109,7 +113,17 @@ class EmployeeProfileController extends Controller{
         $employee_profile->fill($request->all());
         $employee_profile->editor()->associate(auth()->user());
 
+
         if($employee_profile->save()){
+
+            if(empty($employee_profile->organizational_information)){
+
+                //dd('working...');
+                $organizationalInformation=\App\EmployeeOrgInfo::create([]);
+                $organizationalInformation->employee_profile()->associate($employee_profile);
+                $organizationalInformation->save();
+
+            }
 
             return redirect()->route(
                 'employee-profile.organizational-info',

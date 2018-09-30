@@ -17,7 +17,6 @@ class LetterOfCreditTableSeeder extends Seeder
                 'letter_of_credit_date'=>\Carbon\Carbon::now(),
                 'letter_of_credit_value'=>13434,
                 'vendor_id'=>1,
-                'proforma_invoice_id'=>1,
                 'letter_of_credit_expire_date'=>\Carbon\Carbon::now(),
                 'letter_of_credit_status'=>1,
                 'letter_of_credit_shipment_date'=>\Carbon\Carbon::now(),

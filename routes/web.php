@@ -108,6 +108,7 @@ Route::middleware('auth')->namespace('Company')->prefix('company')->group(functi
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
     Route::get('get-product-info/{working_unit}/{product_status}/{product_pattern}/{slug}', 'RequisitionController@get_product_info');
+    Route::get('get-product-info-for-adjustment/{working_unit}/{slug}', 'RequisitionController@get_product_info_for_adjustment');
     Route::get('vue-old-products/{working_unit}/{product_status}/{product_pattern}', 'RequisitionController@vue_old_products');
 
     //routes for receive product info
@@ -149,5 +150,6 @@ Route::middleware('auth')->namespace('AccessControl')->prefix('access-control')-
 
     Route::resource('role', 'RoleController');
     Route::resource('permission', 'PermissionController');
+    Route::resource('matrix', 'AclController');
 
 });

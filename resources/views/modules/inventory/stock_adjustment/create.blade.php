@@ -145,7 +145,7 @@ $(function(){
   		el: '#vue_app',
   		data:{
         config:{
-          base_url: "{{ url('inventory/get-product-info/') }}",
+          base_url: "{{ url('inventory/get-product-info-for-adjustment/') }}",
           old_data_url: "{{ url('inventory/vue-old-products') }}"
         },
   			products:[/*
@@ -205,6 +205,13 @@ $(function(){
           if(this.active_record.quantity > 0){
             this.products.push(this.active_record);
             this.reset_active_record();
+          }else{
+            new PNotify({
+              'title': 'Failed!',
+              'text': 'Sorry!, inserted quantity amount is zero.',
+              'type': 'error',
+              'styling': 'bootstrap3'
+            });
           }
          },
          load_old:function(){

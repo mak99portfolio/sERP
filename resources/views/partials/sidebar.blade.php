@@ -95,7 +95,7 @@
         <ul class="nav child_menu">
           <li><a href="{{ route('role.index') }}">Roles</a></li>
           <li><a href="{{ route('permission.index') }}">Permissions</a></li>
-          <li><a href="#">Role Permission Matrix</a></li>
+          <li><a href="{{ Route('matrix.index') }}">Role Permission Matrix</a></li>
         </ul>
       </li>
     </ul>

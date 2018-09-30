@@ -32,7 +32,7 @@ class RoleController extends Controller{
 
         $data=[
 
-            'model'=>new \App\InventoryReturnReason,
+            'model'=>new Role,
             'route_name'=>'role',
             'title'=>'Roles'
 
@@ -46,14 +46,10 @@ class RoleController extends Controller{
     public function store(Request $request){
 
         $request->validate([
-            'name'=>'required|unique:inventory_return_reasons',
-            'short_name'=>'required|unique:inventory_return_reasons'
+            'name'=>'required|unique:roles'
         ]);
 
-        $model=\App\InventoryReturnReason::create($request->all());
-        $model->creator()->associate(\Auth::user());
-        $model->save();
-
+        Role::create($request->all());
         return back()->with('success', 'Form Submitted Successfully!.');
 
     }

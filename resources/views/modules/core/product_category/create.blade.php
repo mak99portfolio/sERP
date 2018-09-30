@@ -1,6 +1,12 @@
 @extends('layout')
 @section('title', 'Product Category')
 @section('content')
+
+@section('style')
+
+    <link href="{{asset('assets/vendors/easy_tree/easyTree.min.css')}}" rel="stylesheet">
+@endsection
+
 <div class="right_col" role="main">
   <div class="">
     <div class="row">
@@ -51,9 +57,74 @@
                         </div>
                     </form>
                 </div>
+
+
+            <div class="">
+                    <div class="col-md-3">
+                            <h3 class="text-success">Easy Tree Example</h3>
+                            <div class="easy-tree">
+                                <ul>
+                                    <li>Example 1</li>
+                                    <li>Example 2</li>
+                                    <li>Example 3
+                                        <ul>
+                                            <li>Example 1</li>
+                                            <li>Example 2
+                                                <ul>
+                                                    <li>Example 1</li>
+                                                    <li>Example 2</li>
+                                                    <li>Example 3</li>
+                                                    <li>Example 4</li>
+                                                </ul>
+                                            </li>
+                                            <li>Example 3</li>
+                                            <li>Example 4</li>
+                                        </ul>
+                                    </li>
+                                    <li>Example 0
+                                        <ul>
+                                            <li>Example 1</li>
+                                            <li>Example 2</li>
+                                            <li>Example 3</li>
+                                            <li>Example 4
+                                                <ul>
+                                                    <li>Example 1</li>
+                                                    <li>Example 2</li>
+                                                    <li>Example 3</li>
+                                                    <li>Example 4</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+            </div>
+
+
+
             </div>
         </div>
     </div>
   </div>
 </div>
+@endsection
+
+@section('script')
+
+    <script src="{{asset('assets/vendors/easy_tree//easyTree.min.js')}}"></script>
+
+<script>
+        (function ($) {
+            function init() {
+                $('.easy-tree').EasyTree({
+                    addable: true,
+                    editable: true,
+                    deletable: true
+                });
+            }
+    
+            window.onload = init();
+        })(jQuery)
+    </script>
 @endsection

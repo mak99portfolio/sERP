@@ -8,7 +8,7 @@
               <div class="x_panel">
                   <div class="x_title">
                       <h2>Product Size</h2>
-                      <a class="btn btn-primary btn-sm pull-right" href="{{route('product-size.index')}}"><i class="fa fa-list-ul"></i> Port List</a>
+                      <a class="btn btn-primary btn-sm pull-right" href="{{route('product-size.index')}}"><i class="fa fa-list-ul"></i> Product Size List</a>
                       <div class="clearfix"></div>
                   </div>
                   <div class="x_content">

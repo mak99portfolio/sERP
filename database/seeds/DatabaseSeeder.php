@@ -65,6 +65,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CompanyProfileTableSeeder::class);
         $this->call(CompanyLicenseTableSeeder::class);
         $this->call(BillOfLadingTableSeeder::class);
+        $this->call(CostSheetTableSeeder::class);
+        $this->call(InsuranceCoverNoteTableSeeder::class);
 
 
     }

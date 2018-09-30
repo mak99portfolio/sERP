@@ -13,6 +13,7 @@ class InsuranceCoverNote extends Model
         'insurance_cover_note_no',
         'insurance_cover_note_date',
         'vendor_id',
+        'company_bank_id',
         'icn_bank_account_no',
         'icn_bank_account_name',
         'icn_bank_name',
@@ -37,6 +38,10 @@ class InsuranceCoverNote extends Model
 
     public function letter_of_credit(){
         return $this->belongsTo('App\LetterOfCredit', 'letter_of_credit_id');
+    }
+
+    public function company_bank(){
+        return $this->belongsTo('App\CompanyBank', 'company_bank_id');
     }
 
     public function vendor(){

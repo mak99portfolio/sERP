@@ -130,7 +130,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 });
 
 //API
-Route::middleware('auth')->group(function(){    
+Route::middleware('auth')->group(function(){
     Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
     Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
     Route::get('/get-foreign-requisition/{ids}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionIds']);
@@ -142,6 +142,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
     Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
     Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
+    Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
 });
 
 //ACL (Access Control Limit)

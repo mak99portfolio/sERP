@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\InsuranceCoverNote;
 use App\LetterOfCredit;
 use App\Vendor;
+use App\CompanyBank;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -29,6 +30,7 @@ class InsuranceCoverNoteController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('insurance_cover_note_list', InsuranceCoverNote::all());
+        $view->with('account_list', CompanyBank::pluck('account_no', 'id')->prepend('-- Select Account No. --', ''));
         $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('--select vendor--', ''));
         $view->with('lc_list', LetterOfCredit::pluck('letter_of_credit_no', 'id')->prepend('--select lc--', ''));
         return $view;

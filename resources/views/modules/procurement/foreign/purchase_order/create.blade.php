@@ -28,10 +28,10 @@
                                     {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_date','Requisition date', null, ['class'=>'form-control input-sm','id'=>"single_cal4" ,'required']) }}
+                                    {{ BootForm::text('requisition_date','Requisition date', null, ['class'=>'form-control input-sm datepicker' ,'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::text('purchase_order_date','Purchase Order date', null, ['class'=>'form-control input-sm','id'=>"single_cal3" ,'required']) }}
+                                        {{ BootForm::text('purchase_order_date','Purchase Order date', null, ['class'=>'form-control input-sm datepicker' ,'required']) }}
                                 </div>
                             </div>
                             <fieldset class="m-t-20">

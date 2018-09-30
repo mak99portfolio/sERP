@@ -16,7 +16,7 @@
                         @include('partials.flash_msg')
                         {{ BootForm::open(['model'=>$model, 'store'=>"$route_name.store", 'update'=>"$route_name.update"]) }}
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::text('name', 'Role Name (Must be unique)', null, ['class'=>'form-control input-sm']) }}
+                            {{ BootForm::text('name', 'Permission Name (Must be unique)', null, ['class'=>'form-control input-sm']) }}
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <br />

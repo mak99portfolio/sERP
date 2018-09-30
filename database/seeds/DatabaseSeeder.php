@@ -63,11 +63,11 @@ class DatabaseSeeder extends Seeder
         $this->call(MoveTypeTableSeeder::class);
         $this->call(ModesOfTransportTableSeeder::class);
         $this->call(CompanyProfileTableSeeder::class);
+        $this->call(CompanyBankTableSeeder::class);
         $this->call(CompanyLicenseTableSeeder::class);
         $this->call(BillOfLadingTableSeeder::class);
         $this->call(CostSheetTableSeeder::class);
         $this->call(InsuranceCoverNoteTableSeeder::class);
-
-
+        $this->call(CnfTableSeeder::class);
     }
 }

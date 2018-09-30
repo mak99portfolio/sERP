@@ -25,7 +25,7 @@
                         @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm','id'=>"single_cal4",'required']) }}
+                                    {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
 
                                {{--<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -33,11 +33,11 @@
                                 </div> --}}
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm','id'=>"single_cal3",'required']) }}
+                                {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('proforma_invoice_receive_date','Proforma Invoice receive date', null, ['class'=>'form-control input-sm','id'=>"single_cal2",'required']) }}
+                                {{ BootForm::text('proforma_invoice_receive_date','Proforma Invoice receive date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 

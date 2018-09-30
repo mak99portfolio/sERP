@@ -9,7 +9,7 @@ class EmployeeOrgInfo extends Model{
 	protected $guarded=['id'];
 
 	public function employee_profile(){
-		return $this->belongsTo('App\EmployeeProfile');
+		return $this->belongsTo('App\EmployeeProfile', 'employee_profile_id');
 	}
 
 }

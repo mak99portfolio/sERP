@@ -1,10 +1,10 @@
 <?php
-
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Core;
+use App\Http\Controllers\Controller;
 use App\ProductSize;
 use Illuminate\Http\Request;
-
+use Session;
+use Auth;
 class ProductSizeController extends Controller
 {
     /**
@@ -12,9 +12,12 @@ class ProductSizeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/core/product_size/';
     public function index()
     {
-        //
+        $view = view($this->view_root.'index');
+        $view->with('product_size_list', ProductSize::all());
+        return $view;
     }
 
     /**
@@ -24,7 +27,8 @@ class ProductSizeController extends Controller
      */
     public function create()
     {
-        //
+        $view = view($this->view_root.'create');
+        return $view;
     }
 
     /**
@@ -35,7 +39,12 @@ class ProductSizeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product_size = new ProductSize;
+        $product_size->fill($request->input());
+        $product_size->creator_user_id = Auth::id();
+        $product_size->save();
+        Session::put('alert-success', $product_size->name . ' created successfully');
+        return redirect()->route('product-size.index');
     }
 
     /**

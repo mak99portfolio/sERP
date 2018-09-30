@@ -25,23 +25,23 @@
                         @include('partials.flash_msg')
 						{{ BootForm::open(['model'=>$stock_adjustment, 'store'=>'stock-adjustment.store', 'update'=>'stock-adjustment.update']) }}
                             <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('inventory_stock_adjustment_no', 'Stock Adjustment No', $stock_adjustment_no, ['class'=>'form-control input-sm'/*, 'readonly'=>'true'*/]) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('adjustment_type', 'Select Requisition Type', ['stock_in'=>'Stock In', 'stock_out'=>'Stock Out'], null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('adjustment_type', 'Select Requisition Type', ['stock_in'=>'Stock In', 'stock_out'=>'Stock Out'], null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('inventory_adjustment_purpose_id', 'Select Adjustment Purpose', $inventory_adjustment_purposes, null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('inventory_adjustment_purpose_id', 'Select Adjustment Purpose', $inventory_adjustment_purposes, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_pattern_id', 'Item Pattern', $product_patterns, null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('product_pattern_id', 'Item Pattern', $product_patterns, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                             </div>
                             <hr>

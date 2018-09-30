@@ -38,15 +38,15 @@
                                         <div id="vue_app"> {{-- begining of vue app --}}
                                         <div class="row">
 
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('inventory_receive_no', 'Receive No', $inventory_receive_no, ['class'=>'form-control input-sm', 'readonly']) }}
                                             </div>
 
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'form-control input-sm select2']) }}
                                             </div>
 
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     {{--<label>Date</label>
                                                     <input class="form-control input-sm" type="text"> --}}
@@ -54,7 +54,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 
                                                     <label>Requisition No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
@@ -69,7 +69,7 @@
                                                 
                                             </div>
 
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     {{ BootForm::text('challan_no', null, null, ['class'=>'form-control input-sm']) }}
                                                 </div>
@@ -77,17 +77,17 @@
 
                                             {{ BootForm::hidden('inventory_issue_id', null, ['v-model'=>"requisition.inventory_issue_id"]) }}
 
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     {{ BootForm::text('Receive From', null, null, ['class'=>'form-control input-sm', 'disabled', 'v-model'=>"requisition.receive_from"]) }}
                                                 </div>
                                             </div>
                                         
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('product_status_id', 'Product Status', $product_statuses, ['class'=>'form-control input-sm select2']) }}
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('product_status_id', 'Product Status', $product_statuses,null, ['class'=>'form-control input-sm select2']) }}
                                             </div>
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('product_pattern_id', 'Product Pattern', $product_patterns, ['class'=>'form-control input-sm select2']) }}
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('product_pattern_id', 'Product Pattern', $product_patterns,null,['class'=>'form-control input-sm select2']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">

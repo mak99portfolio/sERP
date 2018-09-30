@@ -75,6 +75,8 @@
           <li><a href="{{route('unit-of-measurement.index')}}">Unit Of Measurement</a></li>
           <li><a href="{{route('product-category.index')}}">Product Category</a></li>
           <li><a href="{{route('product-brand.index')}}">Product Brand</a></li>
+          <li><a href="{{route('product-model.index')}}">Product Model</a></li>
+          <li><a href="{{route('product-size.index')}}">Product Size</a></li>
           <li><a href="{{route('product.index')}}">Product</a></li>
           <li><a href="{{route('bank.index')}}">Bank</a></li>
           <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>

@@ -21,13 +21,13 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include("partials/flash_msg")
-                        <form class="form-horizontal form-label-left" action="{{route('packing-list.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" action="{{route('packing-list.store')}}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>Commercial Invoice No.</label>
-                                        <select class="form-control input-sm" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()">
+                                        <select class="form-control input-sm select2" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()">
                                             <option value="">--Select Commercial Invoice No--</option>
                                             @foreach($ci_list as $item)
                                             <option value="{{$item->id}}">{{$item->commercial_invoice_no}}</option>
@@ -129,7 +129,7 @@
                                                 {{ BootForm::text('exporter','Exporter', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vendor_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                                {{ BootForm::select('currency', 'Currency', ['Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm']) }}   
+                                                {{ BootForm::select('currency', 'Currency', ['Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm select2']) }}   
                                             </div>
 
                                        

@@ -20,6 +20,8 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('product-brand', 'ProductBrandController');
     Route::resource('product-category', 'ProductCategoryController');
     Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
+    Route::resource('product-model', 'ProductModelController');
+    Route::resource('product-size', 'ProductSizeController');
     Route::resource('product', 'ProductController');
     Route::resource('bank', 'BankController');
     Route::resource('enclosure', 'EnclosureController');

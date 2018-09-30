@@ -21,7 +21,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST">
+                        <form class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}

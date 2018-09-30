@@ -22,7 +22,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left" action="{{ route('cost-sheet.store') }}" method="POST">
+                        <form class="form-horizontal form-label-left" action="{{ route('cost-sheet.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">

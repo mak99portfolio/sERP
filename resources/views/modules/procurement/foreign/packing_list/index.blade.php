@@ -39,7 +39,7 @@
                                         <td>{{$item->net_total}}</td>
                                         <td>{{$item->gross_total}}</td>
                                        <td class="text-right">
-                                            <a href="{{route('packing-list.show',$item)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('packing-list.show',$item)}}" class="btn btn-block btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                       @endforeach

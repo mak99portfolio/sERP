@@ -181,7 +181,7 @@ function toaster_notification() {
 $(function () {
     $(".print-btn").click(function () {
         $('#print-footer').show();
-        var contents = $(".DivIdToPrint").html();
+        var contents = $(".print-area").html();
         var frame1 = $('<iframe />');
         frame1[0].name = "frame1";
         frame1.css({"position": "absolute", "top": "-1000000px"});

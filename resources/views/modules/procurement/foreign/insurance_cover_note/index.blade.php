@@ -45,7 +45,7 @@
                                         <td>{{ $item->icn_bank_account_no }}</td>
                                         <td>{{ $item->icn_bank_account_name }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('insurance-cover-note.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('insurance-cover-note.show', $item) }}" class="btn btn-block  btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

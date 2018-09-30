@@ -16,7 +16,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                <form class="form-horizontal form-label-left" action="{{route('product-category.store')}}" method="POST">
+                <form class="form-horizontal form-label-left" action="{{route('product-category.store')}}" method="POST" autocomplete="off">
                     {{csrf_field()}}
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">

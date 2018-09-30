@@ -22,7 +22,7 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left" action="{{route('product.store')}}" method="POST">
+                        <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('product.store')}}" method="POST">
 
 
                             {{csrf_field()}}

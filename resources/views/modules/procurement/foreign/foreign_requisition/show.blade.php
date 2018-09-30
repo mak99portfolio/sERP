@@ -34,7 +34,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <div class="table-responsive DivIdToPrint">
+                        <div class="table-responsive print-area font-12">
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>

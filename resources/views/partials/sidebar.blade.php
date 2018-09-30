@@ -91,6 +91,13 @@
           <li><a href="{{route('company-license.index')}}">Licenses</a></li>
         </ul>
       </li>
+      <li><a><i class="fa fa-key"></i> Access Control <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="{{ route('role.index') }}">Roles</a></li>
+          <li><a href="{{ route('permission.index') }}">Permissions</a></li>
+          <li><a href="#">Role Permission Matrix</a></li>
+        </ul>
+      </li>
     </ul>
   </div>
   <div class="menu_section">

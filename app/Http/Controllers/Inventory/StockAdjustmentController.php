@@ -28,7 +28,7 @@ class StockAdjustmentController extends Controller{
 
         $data=[
             'stock_adjustment'=>new \App\InventoryRequisition,
-            'stock_adjustment_no'=>uCode('inventory_stock_adjustments.inventory_stock_adjustment_no', 'ISA_'),
+            'stock_adjustment_no'=>uCode('inventory_stock_adjustments.inventory_stock_adjustment_no', 'ISA00'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),

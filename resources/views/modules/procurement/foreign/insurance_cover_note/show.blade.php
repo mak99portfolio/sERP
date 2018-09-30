@@ -126,7 +126,7 @@
                                        </tr>
                                        <tr>
                                            <td colspan="2"><strong>Grand Total</strong> </td>
-                                           <td>{{ number_format($insuranceCoverNote->amount_of_grand_total(), 2) }}</td>
+                                           <td>{{ number_format($insuranceCoverNote->amount(), 2) }}</td>
                                        </tr>
                                     </tbody>
                                 </table>

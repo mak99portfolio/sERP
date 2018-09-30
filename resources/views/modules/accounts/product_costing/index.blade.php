@@ -8,7 +8,6 @@
           <div class="x_panel">
                     <div class="x_title">
                         <h2>Product Costing</h2>
-                        {{-- <a href="{{ route('product-costing.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a> --}}
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -19,7 +18,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>BL No</th>
-                                        <th>Action</th>
+                                        <th class="text-center" style="width: 30px;">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -27,7 +26,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>       
                                         <td>{{ $item->bill_of_lading_no }}</td>       
-                                        <td><a href="{{ route('product-costing.show', $item) }}" class="btn btn-default btn-sm">View Cost</a></td>       
+                                        <td  class="text-center"><a href="{{ route('product-costing.show', $item) }}" class="btn btn-default btn-sm">View Cost</a></td>       
                                     </tr>   
                                    @endforeach
                                 </tbody>

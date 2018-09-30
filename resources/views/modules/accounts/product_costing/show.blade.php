@@ -99,7 +99,7 @@
                                                 <span class="small">NGIC/MKB/07/2018</span>
                                             </td>
                                             <td class="text-right"><strong>
-                                                {{ round($bill_of_lading->letter_of_credit->insurance_cover_note->amount_of_grand_total() 
+                                                {{ round($bill_of_lading->letter_of_credit->insurance_cover_note->amount() 
                                                     * ($bill_of_lading->amount()/ $bill_of_lading->letter_of_credit->amount()),2) }}
                                             </strong></td>
                                         </tr>

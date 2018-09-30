@@ -31,7 +31,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
-        $view->with('product_category', ProductCategory::all());
+        $view->with('product_category', ProductCategory::whereNull('parent_product_category_id')->get());
         return $view;
     }
 

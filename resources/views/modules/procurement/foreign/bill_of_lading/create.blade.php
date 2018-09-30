@@ -90,12 +90,6 @@
                                                         <td scope="col"><% item.unit_price %><input type="hidden" class="form-control" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>"></td>
                                                     </tr>
                                                 </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td scope="col" colspan="4" class="text-right">Total Quantity</td>
-                                                        <td scope="col">5</td>
-                                                    </tr>
-                                                </tfoot>
                                             </table>
                                         </div>
                                         <!--end table-->
@@ -116,7 +110,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('local_agency_vendor_id', 'Local Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
-                                </div>                              
+                                </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('exproter_vendor_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>

@@ -20,19 +20,21 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('product-brand', 'ProductBrandController');
     Route::resource('product-category', 'ProductCategoryController');
     Route::resource('unit-of-measurement', 'UnitOfMeasurementController');
+    Route::resource('product-model', 'ProductModelController');
+    Route::resource('product-size', 'ProductSizeController');
     Route::resource('product', 'ProductController');
     Route::resource('bank', 'BankController');
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
 
     Route::get(
-        'employee-organizational-info/{organizational_info}',
-        'EmployeeProfileController@organizational_info_form'
-        )->name('employee-profile.organizational-info');
-        Route::put(
-            'employee-organizational-info/{organizational_info}',
-            'EmployeeProfileController@update_organizational_info'
-            )->name('employee-profile.update-organizational-info');
+        'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@organizational_info_form'
+    )->name('employee-profile.organizational-info');
+
+    Route::put(
+        'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@update_organizational_info'
+    )->name('employee-profile.update-organizational-info');
+
 });
 
 //Procurement

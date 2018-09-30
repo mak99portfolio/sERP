@@ -214,6 +214,26 @@ class RequisitionController extends Controller{
 
     }
 
+    public function get_product_info_for_adjustment(\App\WorkingUnit $working_unit, string $slug){
+
+        $product=\App\Product::where('hs_code', $slug)->orWhere('name', $slug)->first();
+
+        //dd($product);
+
+        if($product){
+
+            return response()->json([
+                'id'=>$product->id,
+                'hs_code'=>$product->hs_code,
+                'name'=>$product->name,
+                'stock'=>stock_balance($working_unit, $product)
+            ]);
+        }
+
+        return response()->json(null, 404);
+
+    }
+
     public function vue_old_products(Request $request, \App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern){
 
         //dd(Session::get('vue_products'));

@@ -26,13 +26,13 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('employee-profile', 'EmployeeProfileController');
 
     Route::get(
-        'employee-organizational-info/{organizational_info}',
-        'EmployeeProfileController@organizational_info_form'
-        )->name('employee-profile.organizational-info');
-        Route::put(
-            'employee-organizational-info/{organizational_info}',
-            'EmployeeProfileController@update_organizational_info'
-            )->name('employee-profile.update-organizational-info');
+        'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@organizational_info_form'
+    )->name('employee-profile.organizational-info');
+
+    Route::put(
+        'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@update_organizational_info'
+    )->name('employee-profile.update-organizational-info');
+
 });
 
 //Procurement

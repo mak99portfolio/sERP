@@ -31,16 +31,18 @@ class ProductCostingController extends Controller
         //
     }
 
-    public function show($bill_of_lading_id)
+    public function show(ProductCosting $productCosting)
     {
         $view = view($this->view_root . 'show');
-        $view->with('bill_of_lading', BillOfLading::find($bill_of_lading_id));
+        $view->with('productCosting', $productCosting);
         return $view;
     }
 
-    public function edit(ProductCosting $productCosting)
+    public function edit($bill_of_lading_id)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('bill_of_lading', BillOfLading::find($bill_of_lading_id));
+        return $view;
     }
 
     public function update(Request $request, ProductCosting $productCosting)

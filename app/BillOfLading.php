@@ -35,6 +35,9 @@ class BillOfLading extends Model
     public function letter_of_credit(){
         return $this->belongsTo('App\LetterOfCredit','letter_of_credit_id');
     }
+    public function cnf(){
+        return $this->hasOne('App\Cnf');
+    }
     public function shipping_agency(){
         return $this->belongsTo('App\Vendor','shipping_agency_vendor_id');
     }
@@ -68,4 +71,5 @@ class BillOfLading extends Model
             return $item->quantity * $item->unit_price;
         });
     }
+
 }

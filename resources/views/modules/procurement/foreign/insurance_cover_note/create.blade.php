@@ -35,7 +35,7 @@
                                     {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list,null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list,null, ['class'=>'form-control input-sm select2', 'ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()', 'required']) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -44,16 +44,16 @@
                                         <div class="panel-heading">ICN Bank Info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('icn_bank_account_no','Account No', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('icn_bank_account_no','Account No', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_account_no', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('icn_bank_account_name','Account Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('icn_bank_account_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_account_name', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('icn_bank_name','Bank Name', null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::text('icn_bank_name','Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_name', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::textarea('icn_bank_address','Bank Address', null, ['class'=>'form-control input-sm','rows'=>2]) }}
+                                                {{ BootForm::textarea('icn_bank_address','Bank Address', null, ['class'=>'form-control input-sm','rows'=>2, 'ng-model'=>'icn_bank_address', 'readonly']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -64,7 +64,7 @@
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{-- {{ BootForm::text('consignee_bank_account_no','Account No', null, ['class'=>'form-control input-sm']) }} --}}
-                                                {{ BootForm::select('consignee_bank_account_no', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchBank()','required']) }}
+                                                {{ BootForm::select('consignee_bank_account_no', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchConsigneeBank()','required']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('consignee_bank_account_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_account_name', 'readonly']) }}
@@ -171,16 +171,30 @@
             return total;
         }
 
-        $scope.searchBank = function () {
-            $scope.getBankDetails($scope.consignee_bank_account_no);
+        $scope.searchConsigneeBank = function () {
+            $scope.getConsigneeBankDetails($scope.consignee_bank_account_no);
         }
 
-        $scope.getBankDetails = function(id){
+        $scope.getConsigneeBankDetails = function(id){
             let url = "{{URL::to('get-bank-info')}}/" + id;
             $http.get(url).then(function(response) {
                 $scope.consignee_bank_account_name = response.data.account_name;
                 $scope.consignee_bank_name = response.data.bank.name;
                 $scope.consignee_bank_address = response.data.address;
+            });
+        }
+
+        $scope.searchVendorBank = function () {
+            $scope.getVendorBankDetails($scope.vendor_id);
+        }
+
+        $scope.getVendorBankDetails = function(id){
+            let url = "{{URL::to('get-vendor-bank-info')}}/" + id;
+            $http.get(url).then(function(response) {
+                $scope.icn_bank_account_no = response.data.ac_no;
+                $scope.icn_bank_account_name = response.data.ac_name;
+                $scope.icn_bank_name = response.data.bank_name;
+                $scope.icn_bank_address = response.data.address;
             });
         }
 

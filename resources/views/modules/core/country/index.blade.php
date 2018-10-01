@@ -31,9 +31,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($country_list as $key => $item)
+                                    @foreach ($country_list as $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->short_name }}</td>
                                     </tr>

@@ -33,9 +33,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($bank_list as $key => $item)
+                                    @foreach ($bank_list as $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->short_name }}</td>
                                         <td>{{ $item->description }}</td>

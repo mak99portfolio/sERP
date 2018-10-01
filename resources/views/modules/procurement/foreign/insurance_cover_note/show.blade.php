@@ -54,12 +54,12 @@
                                 </thead>
                                 <tbody>
                                    <tr>
-                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->icn_bank_account_no }}</td>
-                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->icn_bank_account_name }}</td>
+                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->vendor->bank->ac_no }}</td>
+                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->vendor->bank->ac_name }}</td>
                                    </tr>
                                    <tr>
-                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->icn_bank_name }}</td>
-                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->icn_bank_address }}</td>
+                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->vendor->bank->bank_name }}</td>
+                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->vendor->bank->address }}</td>
                                     </tr>
                                 </tbody>
                             </table>

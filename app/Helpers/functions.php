@@ -227,10 +227,10 @@ function number_to_word($number)
 		return $result . "Taka";
 	}
 }
-function generate_tree($categories, $field_name = null)
+function generate_tree($categories)
 {
     foreach ($categories as $category) {
-		echo '<li onclick="getTreeValue()" data-category-id = "';
+		echo '<li data-category-id = "';
 		echo $category->id;
 		echo '">';
         echo $category->name;

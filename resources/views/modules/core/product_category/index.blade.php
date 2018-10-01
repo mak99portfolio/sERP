@@ -1,5 +1,8 @@
 @extends('layout')
 @section('title', 'Product Category')
+@section('style')
+<link rel="stylesheet" href="{{asset('assets/vendors/jstree/default/style.min.css')}}">
+@endsection
 @section('content')
 <div class="right_col" role="main">
   <div class="">
@@ -31,6 +34,16 @@
                             </tbody>
                         </table>
                     </div>
+                    <label>Category Tree</label>
+                    <div id="jstree">
+                        <ul>
+                            <li data-jstree='{"selected":true}'>Root
+                                <ul>
+                                    {{ generate_tree($product_category_tree) }}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -38,4 +51,19 @@
     <div class="clearfix"></div>
   </div>
 </div>
+@endsection
+@section('script')
+
+<script src="{{asset('assets/vendors/jstree/jstree.min.js')}}"></script>
+<script>
+    $(function () {
+        // 6 create an instance when the DOM is ready
+        $('#jstree').jstree();
+        // 7 bind to events triggered on the tree
+        $('#jstree').on("changed.jstree", function (e, data) {
+            // console.log(data.selected[0]);
+            $('#treeField').val($('#'+data.selected[0]).data('category-id'))
+        });
+    });
+</script>
 @endsection

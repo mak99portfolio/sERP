@@ -33,6 +33,7 @@
                                 <tbody>
                                     @foreach($packing_list as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{$item->commercial_invoice->commercial_invoice_no}}</td>
                                         <td>{{$item->commercial_invoice->date}}</td>
                                         <td>{{$item->currency}}</td>

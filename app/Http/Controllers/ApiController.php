@@ -15,6 +15,7 @@ use App\PurchaseOrderItem;
 use App\Stock;
 use App\BillOfLading;
 use App\CompanyBank;
+use App\VendorBank;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -295,6 +296,10 @@ class ApiController extends Controller
     }
     public function getBankInfoById($id){
         $data = CompanyBank::with('bank')->find($id);
+        return response()->json($data);
+    }
+    public function getVendorBankInfoById($id){
+        $data = VendorBank::find($id);
         return response()->json($data);
     }
 

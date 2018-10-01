@@ -20,7 +20,7 @@ class LetterOfCreditTableSeeder extends Seeder
                 'letter_of_credit_expire_date'=>\Carbon\Carbon::now(),
                 'letter_of_credit_status'=>1,
                 'letter_of_credit_shipment_date'=>\Carbon\Carbon::now(),
-                'currency'=>1,
+                'currency_id'=>1,
                 'beneficiary_ac_no'=>11,
                 'beneficiary_ac_name'=>'Anis',
                 'beneficiary_branch_name'=>'Panthopath',

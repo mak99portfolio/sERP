@@ -46,7 +46,7 @@ class UnitOfMeasurementController extends Controller
         $umo->creator_user_id = Auth::id();
         $umo->save();
         Session::put('alert-success', $umo->name . ' created successfully');
-        return redirect()->route('unit-of-measurement.create');
+        return redirect()->route('unit-of-measurement.index');
     }
 
     /**
@@ -57,7 +57,7 @@ class UnitOfMeasurementController extends Controller
      */
     public function show(UnitOfMeasurement $unitOfMeasurement)
     {
-      
+
     }
 
     /**

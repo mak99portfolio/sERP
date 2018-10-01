@@ -15,7 +15,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Role Permission<small>Matrix</small></h2>
+                <h2>User Permission<small>Matrix</small></h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -23,15 +23,15 @@
             {{-- Main content area --}}
                 @include('partials.flash_msg')
 
-                {{ BootForm::open(['url'=>route('matrix.store')]) }}
+                {{ BootForm::open(['url'=>route('user-permission-matrix.store')]) }}
                 <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                   <thead>
                     <tr class="bg-primary">
-                      <th>Permissions \ Roles</th>
-                      @foreach($roles as $role)
+                      <th>Permissions \ Users</th>
+                      @foreach($users as $user)
                         <th class="text-center">
-                            {{ $role->name }}
+                            {{ $user->name }}
                         </th>
                       @endforeach
                     </tr>
@@ -40,11 +40,11 @@
                     @foreach($permissions as $permission)
                     <tr>
                         <td>{{ $permission->name }}</td>
-                        @foreach($roles as $role)
+                        @foreach($users as $user)
                         <td class="text-center">
                             <div class="pretty p-switch p-fill p-success">
-                                <input name="matrix[{{ $role->id }}][]" value="{{ $permission->id }}" type='checkbox' {{
-                                $cross_check($role_has_permissions, $role->id, $permission->id) }}/>
+                                <input name="matrix[{{ $user->id }}][]" value="{{ $permission->id }}" type='checkbox' {{
+                            $cross_check($model_has_permissions, $user->id, $permission->id) }}/>
                                 <div class="state p-primary">
                                     <label></label>
                                 </div>

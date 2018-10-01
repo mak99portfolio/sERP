@@ -123,11 +123,13 @@ class EmployeeProfileController extends Controller{
                 $organizationalInformation->employee_profile()->associate($employee_profile);
                 $organizationalInformation->save();
 
-            }
+                $model_to_redirect=$organizationalInformation;
+
+            }else $model_to_redirect=$employee_profile->organizational_information;
 
             return redirect()->route(
                 'employee-profile.organizational-info',
-                ['organizational_info'=>$employee_profile->organizational_information]
+                ['organizational_info'=>$model_to_redirect]
             );
 
         }
@@ -138,6 +140,8 @@ class EmployeeProfileController extends Controller{
 
 
     public function destroy($id){
+
+        return back()->with('failed', 'Employee delete option not implemented yet.');
         
     }
 
@@ -160,12 +164,14 @@ class EmployeeProfileController extends Controller{
 
     public function update_organizational_info(Request $request, \App\EmployeeOrgInfo $organizational_info){
 
+        //dd($request->all());
+
         $request->validate([
             'department_id'=>'required',
             'designation_id'=>'required',
             'working_unit_id'=>'required',
-            'employee_organizational_information_status_id'=>'required',
-            'employee_organizational_information_type_id'=>'required'
+            'employee_org_info_status_id'=>'required',
+            'employee_org_info_type_id'=>'required'
         ]);
 
         $organizational_info->fill($request->all());

@@ -10,7 +10,7 @@ Route::namespace('Dev')->prefix('dev')->group(function(){
 //Common
 Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
 //Core
 Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
@@ -34,6 +34,8 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::put(
         'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@update_organizational_info'
     )->name('employee-profile.update-organizational-info');
+
+    Route::resource('employee-user', 'EmployeeUserController');
 
 });
 
@@ -148,10 +150,18 @@ Route::middleware('auth')->group(function(){
 });
 
 //ACL (Access Control Limit)
-Route::middleware('auth')->namespace('AccessControl')->prefix('access-control')->group(function(){
+Route::middleware(['auth', 'hasPermission:access_to_acl'])
+->namespace('AccessControl')
+->prefix('access-control')
+->group(function(){
 
     Route::resource('role', 'RoleController');
     Route::resource('permission', 'PermissionController');
     Route::resource('matrix', 'AclController');
+    Route::get('role-user-matrix', 'AclController@role_user_matrix')->name('role-user-matrix');
+    Route::post('role-user-matrix', 'AclController@store_role_user_matrix')->name('role-user-matrix.store');
+    Route::get('user-permission-matrix', 'AclController@user_permission_matrix')->name('user-permission-matrix');
+    Route::post('user-permission-matrix', 'AclController@store_user_permission_matrix')->name('user-permission-matrix.store');
+    Route::resource('user', 'UserController');
 
 });

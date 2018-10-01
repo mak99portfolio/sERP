@@ -84,15 +84,14 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Cntr. Size</th>
-                                                <th>No. of Cntr.</th>
+                                                <th>Container Size</th>
+                                                <th>No. of Box</th>
                                                 <th>Cntr.  No.</th>
                                                 <th>Prod. Pattern</th>
                                                 <th>Qty of Product</th>
-                                                <th>Inv. No./ Date</th>
-                                                <th>LC No/ Date</th>
-                                                <th>BL No./ Date</th>
-                                                <th>Commercial Invoice Issue Date</th>
+                                                <th>Commercial Invoice No / Date</th>
+                                                <th>LC No / Date</th>
+                                                <th>BL No / Date</th>
                                                 <th>Document Arrived At Bank</th>
                                                 <th>Document Send At Port</th>
                                                 <th>Document Value Payment</th>
@@ -103,25 +102,40 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach($commercial_invoice_list as $item)
                                             <tr>
-                                                <td>01</td>
-                                                <td>40</td>
-                                                <td>1</td>
-                                                <td>abc</td>
-                                                <td>125</td>
-                                                <td>125/26-09-18</td>
-                                                <td>125/26-09-18</td>
-                                                <td>125/26-09-18</td>
-                                                <td>125/26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
-                                                <td>26-09-18</td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->BillOfLading->container_size }}</td>
+                                                <td>{{ $item->BillOfLading->number_of_box }}</td>
+                                                <td>{{ $item->container_no }}</td>
+                                                <td>
+                                                    @foreach($item->items as $row)
+                                                    {{ $row->product->product_model->name }}
+                                                    @php
+                                                        echo $loop->last ? null : '<hr>';
+                                                    @endphp
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach($item->items as $row)
+                                                    {{ $row->quantity }}
+                                                    @php
+                                                        echo $loop->last ? null : '<hr>';
+                                                    @endphp
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ $item->commercial_invoice_no }} / {{ $item->date }}</td>
+                                                <td>{{ $item->LetterOfCredit->letter_of_credit_no }} / {{ $item->LetterOfCredit->letter_of_credit_date }}</td>
+                                                <td>{{ $item->BillOfLading->bill_of_lading_no }} / {{ $item->BillOfLading->bill_of_lading_date }}</td>
+                                                <td>{{ $item->tracking->document_arrived_at_bank_date ?? "Pending" }}</td>
+                                                <td>{{ $item->tracking->document_send_at_port_date ?? "Pending" }}</td>
+                                                <td>{{ $item->tracking->document_value_payment_date ?? "Pending" }}</td>
+                                                <td>{{ $item->tracking->container_arrived_at_port_date ?? "Pending" }}</td>
+                                                <td>{{ $item->tracking->container_birth_at_port_date ?? "Pending" }}</td>
+                                                <td>{{ $item->tracking->container_delivery_at_port_date ?? "Pending" }}</td>
+                                                <td>{{ $item->tracking->receive_at_warehouse_date ?? "Pending" }}</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

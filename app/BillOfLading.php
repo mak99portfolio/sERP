@@ -16,7 +16,7 @@ class BillOfLading extends Model
         'number_of_box',
         'shipping_agency_vendor_id',
         'local_agency_vendor_id',
-        'exproter_vendor_id',
+        'exporter_vendor_id',
         'consignee',
         'acceptance',
         'port_of_loading_port_id',
@@ -44,8 +44,8 @@ class BillOfLading extends Model
     public function local_agency(){
         return $this->belongsTo('App\Vendor','local_agency_vendor_id');
     }
-    public function exprote(){
-        return $this->belongsTo('App\Vendor','exproter_vendor_id');
+    public function exporter(){
+        return $this->belongsTo('App\Vendor','exporter_vendor_id');
     }
     public function loading(){
         return $this->belongsTo('App\Port','port_of_loading_port_id');

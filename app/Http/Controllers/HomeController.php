@@ -26,10 +26,6 @@ class HomeController extends Controller
     {
         return redirect()->route('dashboard');
     }
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
     public function get_toaster_notification()
     {
         if (Session::has('alert-success')) {

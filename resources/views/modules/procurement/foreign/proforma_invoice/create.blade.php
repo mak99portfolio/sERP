@@ -128,11 +128,18 @@
                                                     <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" required ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" required ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
-                                                    <td><% total[$index] = quantity[$index]*unit_price[$index] %></td>
+                                                    <td>
+                                                    <span ng-if="quantity[$index]*unit_price[$index] "><% total[$index] = quantity[$index]*unit_price[$index] %></span>
+                                                    <span ng-if="!(quantity[$index]*unit_price[$index] )">0</span>
+                                                   
+                                                        
+                                                    
+                                                    
+                                                    </td>
                                                 </tr>
                                                 </tbody>
-                                                <!-- <tfoot class="font-bold">
-                                                    <tr>
+                                                <tfoot class="font-bold">
+                                                    {{-- <tr>
                                                         <td colspan="5">Sub Total</td>
                                                         <td>520</td>
 
@@ -143,20 +150,19 @@
                                                         <td>520</td>
 
                                                         <td colspan="2"></td>
-                                                    </tr>
+                                                    </tr> --}}
                                                     <tr>
                                                         <td colspan="5">Grand Total</td>
-                                                        <td>520</td>
 
-                                                        <td colspan="2"></td>
+                                                        <td colspan="1"><% grandSum(total) %></td>
                                                     </tr>
-                                                    <tr>
+                                                    {{-- <tr>
                                                         <td colspan="5">Amount in Word</td>
                                                         <td>one thousand five hundred </td>
 
                                                         <td colspan="2"></td>
-                                                    </tr>
-                                                </tfoot> -->
+                                                    </tr> --}}
+                                                </tfoot>
                                             </table>
                                         </div>
                             </fieldset>
@@ -190,6 +196,7 @@
     app.controller('myCtrl', function($scope, $http) {
         
         $scope.itemlist = [];
+        $scope.total = [];
         $scope.searchPO = function () {
             $scope.itemlist = [];
             $scope.addToItemList($scope.po_id.join());
@@ -213,6 +220,13 @@
           sum += parseFloat(arr[i]);
         }
         return sum;
+      }
+      $scope.grandSum=function($array){
+        var sum = 0;
+            for(i=0; i<$array.length; i++){
+                sum += $array[i];
+            }
+            return sum;
       }
     });
 </script>

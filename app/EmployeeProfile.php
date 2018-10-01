@@ -24,4 +24,8 @@ class EmployeeProfile extends Model{
 		return $this->belongsTo('App\BloodGroup');
 	}
 
+	public function user(){
+		return $this->belongsTo('App\user');
+	}
+
 }

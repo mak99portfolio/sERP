@@ -71,12 +71,12 @@
                                 </thead>
                                 <tbody>
                                    <tr>
-                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->consignee_bank_account_no }}</td>
-                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->consignee_bank_account_name }}</td>
+                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->company_bank->account_no }}</td>
+                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->company_bank->account_name }}</td>
                                    </tr>
                                    <tr>
-                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->consignee_bank_name }}</td>
-                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->consignee_bank_address }}</td>
+                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->company_bank->bank->name }}</td>
+                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->company_bank->address }}</td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -32,8 +32,7 @@ class InsuranceCoverNote extends Model
         'percent_of_vat',
         'amount_of_vat',
         'percent_of_stamp_duty',
-        'amount_of_stamp_duty',
-        'amount_of_grand_total'
+        'amount_of_stamp_duty'
     ];
 
     public function letter_of_credit(){

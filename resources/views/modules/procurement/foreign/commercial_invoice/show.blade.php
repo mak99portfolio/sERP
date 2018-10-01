@@ -79,12 +79,12 @@
                                 </thead>
                                 <tbody>
                                   @foreach($commercialInvoice->LetterOfCredit->proforma_invoices as $value)
-                              
+
                                     <tr>
                                         <td>{{$value->proforma_invoice_no}}</td>
                                         <td>{{$value->proforma_invoice_date}}</td>
                                         <td>{{$value->customer_code}}</td>
-                                    
+
                                     </tr>
                                  @endforeach
                                 </tbody>
@@ -135,15 +135,15 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Product Name</th>
-                                        <th>Unit Price Used ($)</th>
                                         <th>Qnantity</th>
+                                        <th>Unit Price Used ($)</th>
                                         <th>Amount ($)</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 @php
                                         $sub_total_amount = 0;
-                                    
+
                                     @endphp
                                 @foreach($commercialInvoice->items as $key=>$item)
                                     <tr>
@@ -152,11 +152,11 @@
                                         <td>{{$item->quantity}}</td>
                                         <td>{{$item->unit_price}}</td>
                                         <td>{{($item->quantity * $item->unit_price)}}</td>
-                                     
+
                                     </tr>
                                         @php
                                             $sub_total_amount += ($item->quantity * $item->unit_price);
-                                        
+
                                         @endphp
                                     @endforeach
                                 </tbody>

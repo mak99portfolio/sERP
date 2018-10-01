@@ -108,8 +108,22 @@
                                                 <td>{{ $item->BillOfLading->container_size }}</td>
                                                 <td>{{ $item->BillOfLading->number_of_box }}</td>
                                                 <td>{{ $item->container_no }}</td>
-                                                <td>125</td>
-                                                <td>324</td>
+                                                <td>
+                                                    @foreach($item->items as $row)
+                                                    {{ $row->product->product_model->name }}
+                                                    @php
+                                                        echo $loop->last ? null : '<hr>';
+                                                    @endphp
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach($item->items as $row)
+                                                    {{ $row->quantity }}
+                                                    @php
+                                                        echo $loop->last ? null : '<hr>';
+                                                    @endphp
+                                                    @endforeach
+                                                </td>
                                                 <td>{{ $item->commercial_invoice_no }} / {{ $item->date }}</td>
                                                 <td>{{ $item->LetterOfCredit->letter_of_credit_no }} / {{ $item->LetterOfCredit->letter_of_credit_date }}</td>
                                                 <td>{{ $item->BillOfLading->bill_of_lading_no }} / {{ $item->BillOfLading->bill_of_lading_date }}</td>

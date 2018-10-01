@@ -173,7 +173,7 @@
                                                 </tr>
                                                <tr>
                                                     <td colspan="4" class="text-right">Sub Total =</td>
-                                                    <td><% subtotal() %></td>
+                                                    <td><% sub_total = sum(amount) %></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Add Freight =</td>
@@ -181,7 +181,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Grand Total =</td>
-                                                    <td> <% grandTotal() %> </td>
+                                                    <td> <% sub_total+freight %> </td>
                                                 </tr>
                                                
                                             </tbody>
@@ -211,24 +211,16 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-
-        $scope.freight = 100 ;
+        $scope.itemlist = [];
+        $scope.quantity = [];
+        $scope.unit_price = [];
+        $scope.amount = [];
+        $scope.freight = 0 ;
         $scope.getLc = function () {
             $scope.itemlist = [];
             $scope.piinfo = [];
             $scope.addToItemList($scope.letter_of_credit_id);
-
-
-            $scope.grandTotal = function(){
-            var total = 0;
-            total = $scope.subtotal() + parseInt($scope.freight);
-            console.log("sdfds", $scope.subtotal());
-            console.log("aaa", parseInt($scope.freight));
-            return total;
-        }
-            console.log("freight", parseInt($scope.freight));
-
-        }
+  }
         $scope.addToItemList = function(id){
             let url = "{{URL::to('get-lc')}}/" + id;
             $http.get(url)
@@ -250,23 +242,11 @@
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
         }
-        $scope.subtotal = function(){
-            // console.log("sfsdf", $scope.amount);
-            // return $scope.sum($scope.amount);
-            var amount = [];
+      
+        $scope.sum = function($arr){
             var sum = 0;
-                for (var i = 0; i < $scope.itemlist.length; i++) {
-                    amount.push(parseInt($scope.itemlist[i].quantity * $scope.itemlist[i].unit_price));
-                    sum += amount[i];
-                }
-                return sum;
-        }
-
-
-        $scope.sum = function(arr){
-            var sum = 0;
-            for(i=0; i<arr.length; i++){
-                sum += parseFloat(arr[i]);
+            for(i=0; i<$arr.length; i++){
+                sum += $arr[i];
             }
             return sum;
         }

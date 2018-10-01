@@ -184,7 +184,7 @@
                                                     <th>D.Rate</th>
                                                     <th>Discount</th>
                                                     <th>Vat(%)</th>
-                                                    <th>Sub Total</th>
+                                                    <th>Amount (USD)</th>
                                                 </tr>
 
                                         </thead>
@@ -203,35 +203,34 @@
                                                 <td><input ng-disabled="!checked[$index]" ng-model="d_rate[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][d_rate]" required></td>
                                                 <td><input ng-disabled="!checked[$index]" ng-model="discount[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][discount]" required></td>
                                                 <td><input ng-disabled="!checked[$index]" ng-model="vat[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][vat]" required></td>
-                                                <td><% total[$index] = quantity[$index]*unit_price[$index] %></td>
+                                                <td class="text-right"><% total[$index] = (((quantity[$index]*unit_price[$index])+d_rate[$index])-discount[$index]) * (1 + vat[$index]/100)|number:2  %></td>
                                             </tr>
                                         </tbody>
-                                        <!-- <tfoot class="font-bold">
-                                            <tr>
-                                                <td colspan="5">Sub Total</td>
-                                                <td>520</td>
+                                        <tfoot class="font-bold">
+                                                {{-- <tr>
+                                                    <td colspan="5">Sub Total</td>
+                                                    <td>520</td>
 
-                                                <td colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">Add freight</td>
-                                                <td>520</td>
+                                                    <td colspan="2"></td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="5">Add freight</td>
+                                                    <td>520</td>
 
-                                                <td colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">Grand Total</td>
-                                                <td>520</td>
+                                                    <td colspan="2"></td>
+                                                </tr> --}}
+                                                <tr>
+                                                    <td colspan="9" class="text-right"><strong>Grand Total</strong></td>
 
-                                                <td colspan="2"></td>
-                                            </tr>
-                                            <tr>
-                                                <td colspan="5">Amount in Word</td>
-                                                <td>one thousand five hundred </td>
+                                                    <td colspan="1" class="text-right"><strong><% grandSum(total)|number:2 %></strong></td>
+                                                </tr>
+                                                {{-- <tr>
+                                                    <td colspan="5">Amount in Word</td>
+                                                    <td>one thousand five hundred </td>
 
-                                                <td colspan="2"></td>
-                                            </tr>
-                                        </tfoot> -->
+                                                    <td colspan="2"></td>
+                                                </tr> --}}
+                                            </tfoot>
                                     </table>
                                 </div>
                             </fieldset>
@@ -264,6 +263,8 @@
 
         $scope.itemlist = [];
         $scope.lcalist = [];
+        $scope.total = [];
+        $scope.d_rate = [];
         $scope.searchPI = function () {
             $scope.itemlist = [];
             for (i = 0; i < $scope.pi_id.length; i++) {
@@ -315,6 +316,15 @@
             };
             new PNotify(data);
         }
+
+
+        $scope.grandSum=function($array){
+        var sum = 0;
+            for(i=0; i<$array.length; i++){
+                sum += $array[i];
+            }
+            return sum;
+      }
     });
 
 

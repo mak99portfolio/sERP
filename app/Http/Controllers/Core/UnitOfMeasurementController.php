@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Core;
 
 use App\UnitOfMeasurement;
-use Illuminate\Http\Request;
+use App\Http\Requests\UnitOfMeasurementRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
@@ -39,12 +39,8 @@ class UnitOfMeasurementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UnitOfMeasurementRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:unit_of_measurements',
-            'short_name' => 'required|unique:unit_of_measurements',
-        ]);
         $umo = new UnitOfMeasurement;
         $umo->fill($request->input());
         $umo->creator_user_id = Auth::id();

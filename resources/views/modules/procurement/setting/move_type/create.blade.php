@@ -13,7 +13,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        @include('partials.flash_msg')
+                        {{-- @include('partials.flash_msg') --}}
                         <form class="form-horizontal form-label-left" action="{{route('move-type.store')}}" method="POST" autocomplete="off">
                             {{csrf_field()}}
                             <div class="col-md-6 offset-md-3 col-sm-6 col-xs-12">

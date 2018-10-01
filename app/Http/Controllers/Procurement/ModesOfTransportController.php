@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\ModesOfTransport;
 use Auth;
 use Session;
-use Illuminate\Http\Request;
+use App\Http\Requests\ModesOfTransportRequest;
 
 class ModesOfTransportController extends Controller
 {
@@ -41,12 +41,8 @@ class ModesOfTransportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ModesOfTransportRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:modes_of_transports',
-            'short_name' => 'required|unique:modes_of_transports',
-        ]);
         $modes_of_transports = new ModesOfTransport;
         $modes_of_transports->fill($request->input());
         $modes_of_transports->creator_user_id = Auth::id();

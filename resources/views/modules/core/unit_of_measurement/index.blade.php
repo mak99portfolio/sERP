@@ -17,6 +17,7 @@
                         <table class="table table-bordered">
                             <thead class="bg-primary">
                             <tr>
+                                <th>#</th>
                                 <th>Unit Of Measurement Name</th>
                                 <th>Short Name</th>
                             </tr>
@@ -24,8 +25,9 @@
                             <tbody>
                             @foreach ($uom_list as $item)
                                 <tr>
-                                    <td>{{$item->name}}</td>
-                                    <td>{{$item->short_name}}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->name }}</td>
+                                    <td>{{ $item->short_name }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

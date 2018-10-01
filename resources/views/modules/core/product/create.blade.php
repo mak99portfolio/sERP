@@ -87,7 +87,7 @@
                                             </div>
                                         </div> --}}
                                 <div class="form-group pull-in clearfix">
-                                            {{ BootForm::checkboxes('product_group_id', null, $product_group_list)}} 
+                                            {{ BootForm::checkboxes('product_group_id', null, $product_group_list, null, ['class'=>''])}} 
                                         </div>
                                         
                                     </div>

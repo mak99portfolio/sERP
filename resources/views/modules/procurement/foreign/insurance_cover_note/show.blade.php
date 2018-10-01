@@ -54,12 +54,12 @@
                                 </thead>
                                 <tbody>
                                    <tr>
-                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->icn_bank_account_no }}</td>
-                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->icn_bank_account_name }}</td>
+                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->vendor->bank->ac_no }}</td>
+                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->vendor->bank->ac_name }}</td>
                                    </tr>
                                    <tr>
-                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->icn_bank_name }}</td>
-                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->icn_bank_address }}</td>
+                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->vendor->bank->bank_name }}</td>
+                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->vendor->bank->address }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -71,12 +71,12 @@
                                 </thead>
                                 <tbody>
                                    <tr>
-                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->consignee_bank_account_no }}</td>
-                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->consignee_bank_account_name }}</td>
+                                       <td><strong>Account No:</strong> {{ $insuranceCoverNote->company_bank->account_no }}</td>
+                                       <td><strong>Account Name:</strong> {{ $insuranceCoverNote->company_bank->account_name }}</td>
                                    </tr>
                                    <tr>
-                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->consignee_bank_name }}</td>
-                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->consignee_bank_address }}</td>
+                                        <td><strong>Bank Name:</strong> {{ $insuranceCoverNote->company_bank->bank->name }}</td>
+                                        <td><strong>Bank Address:</strong> {{ $insuranceCoverNote->company_bank->address }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -126,7 +126,7 @@
                                        </tr>
                                        <tr>
                                            <td colspan="2"><strong>Grand Total</strong> </td>
-                                           <td>{{ number_format($insuranceCoverNote->amount_of_grand_total(), 2) }}</td>
+                                           <td>{{ number_format($insuranceCoverNote->amount(), 2) }}</td>
                                        </tr>
                                     </tbody>
                                 </table>

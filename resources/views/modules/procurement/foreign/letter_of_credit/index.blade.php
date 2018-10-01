@@ -22,16 +22,16 @@
                                         <th>LC Date</th>
                                         <th>LC Value</th>
                                         <th>Action</th>
-                                        
+
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($letter_of_credit_list as $key=>$letter_of_credit)
+                                    @foreach($letter_of_credit_list as $letter_of_credit)
                                     <tr>
-                                    <td>{{$key+1}}</td>    
-                                    <td>{{$letter_of_credit->letter_of_credit_no}}</td>    
-                                    <td>{{$letter_of_credit->letter_of_credit_date}}</td>    
-                                    <td>{{$letter_of_credit->letter_of_credit_value}}</td>    
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $letter_of_credit->letter_of_credit_no }}</td>
+                                    <td>{{ $letter_of_credit->letter_of_credit_date }}</td>
+                                    <td>{{ $letter_of_credit->letter_of_credit_value }}</td>
                                         <td class="text-right">
                                             <a href="{{route('letter-of-credit.show',$letter_of_credit)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

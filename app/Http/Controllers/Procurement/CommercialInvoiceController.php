@@ -20,8 +20,6 @@ class CommercialInvoiceController extends Controller {
     public function index() {
         $view = view($this->view_root . 'index');
         $view->with('commercial_invoice_list', CommercialInvoice::all());
-        // $view->with('foo', 'bar');
-        // your code here
         return $view;
     }
 
@@ -72,6 +70,6 @@ class CommercialInvoiceController extends Controller {
         //
     }
 
-    
+
 
 }

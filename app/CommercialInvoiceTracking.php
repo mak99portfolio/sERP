@@ -21,9 +21,9 @@ class CommercialInvoiceTracking extends Model
         'receive_at_warehouse_date',
         'city_id',
         'city_id',
-        
+
     ];
     public function commercial(){
-        return $this->belongsTo('App\CommercialInvoice');
+        return $this->belongsTo('App\CommercialInvoice', 'commercial_invoice_id');
     }
 }

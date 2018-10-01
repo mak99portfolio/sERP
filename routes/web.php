@@ -10,7 +10,7 @@ Route::namespace('Dev')->prefix('dev')->group(function(){
 //Common
 Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@dashboard']);
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
 //Core
 Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
@@ -133,7 +133,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 });
 
 //API
-Route::middleware('auth')->group(function(){    
+Route::middleware('auth')->group(function(){
     Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
     Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
     Route::get('/get-foreign-requisition/{ids}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionIds']);
@@ -145,6 +145,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
     Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
     Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
+    Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
+    Route::get('/get-vendor-bank-info/{id}', ['as' => 'get-vendor-bank-info', 'uses' => 'ApiController@getVendorBankInfoById']);
 });
 
 //ACL (Access Control Limit)

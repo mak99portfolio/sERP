@@ -106,13 +106,13 @@
                                     {{ BootForm::text('number_of_box','Number Of Box', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('shipping_agency_vendor_id', 'Shipping Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                    {{ BootForm::select('shipping_agency_vendor_id', 'Shipping Agency Name', $exporter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('local_agency_vendor_id', 'Local Agency Name', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                    {{ BootForm::select('local_agency_vendor_id', 'Local Agency Name', $exporter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('exproter_vendor_id', 'Exproter', $exproter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
+                                    {{ BootForm::select('exporter_vendor_id', 'Exporter', $exporter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm','required']) }}

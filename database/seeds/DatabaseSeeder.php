@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSizeTableSeeder::class);
         $this->call(ProductSetTableSeeder::class);
         $this->call(ProductTableSeeder::class);
+        $this->call(CurrencyTableSeeder::class);
         $this->call(InventoryRecordTypesSeeder::class);
         $this->call(InventoryRequisitionTypesSeeder::class);
         $this->call(InventoryItemStatusesSeeder::class);
@@ -63,6 +64,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MoveTypeTableSeeder::class);
         $this->call(ModesOfTransportTableSeeder::class);
         $this->call(CompanyProfileTableSeeder::class);
+        $this->call(CompanyBankTableSeeder::class);
         $this->call(CompanyLicenseTableSeeder::class);
         $this->call(BillOfLadingTableSeeder::class);
         $this->call(CostSheetTableSeeder::class);

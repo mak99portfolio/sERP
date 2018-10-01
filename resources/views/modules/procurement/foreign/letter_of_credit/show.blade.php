@@ -41,11 +41,11 @@
                                     <tr>
                                         <td><strong>Vendor:</strong> {{$letterOfCredit->vendor->name}}</td>
                                         <td><strong>LC Expire Date:</strong> {{$letterOfCredit->letter_of_credit_expire_date}}</td>
-                                        <td><strong>LC Status :</strong> {{$letterOfCredit->letter_of_credit_status}}</td>
+                                        <td><strong>LC Status :</strong> {{$letterOfCredit->letter_of_credit_status==1?" Open":" Close"}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>LC Shipment Date :</strong> {{$letterOfCredit->letter_of_credit_shipment_date}}</td>
-                                        <td><strong>Currency :</strong>  {{$letterOfCredit->currency}}</td>
+                                        <td><strong>Currency :</strong>  {{$letterOfCredit->currency->name}}</td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tbody>

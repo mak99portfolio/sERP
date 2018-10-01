@@ -4,8 +4,8 @@
   <div class="menu_section">
     {{-- <h3>General</h3> --}}
     <ul class="nav side-menu">
-    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-      <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
+       <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+       <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
@@ -112,37 +112,46 @@
   <div class="menu_section">
     <h3>Report</h3>
     <ul class="nav side-menu">
-      <li><a><i class="fa fa-bug"></i> Procurement <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="e_commerce.html">E-commerce</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="project_detail.html">Project Detail</a></li>
-          <li><a href="contacts.html">Contacts</a></li>
-          <li><a href="profile.html">Profile</a></li>
-        </ul>
-      </li>
-      <li><a><i class="fa fa-windows"></i> Inventory <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li><a href="{{ route('stock-report.index') }}">Stock Report</a></li>
-        </ul>
-      </li>
-      <li><a><i class="fa fa-sitemap"></i> Sales <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-            <li><a href="#level1_1">Level One</a>
-            <li><a>Level One<span class="fa fa-chevron-down"></span></a>
+            <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li class="sub_menu"><a href="level2.html">Level Two</a>
+                <li><a href="#">Foreign Requisition</a></li>
+                <li><a href="#">Purchase Order</a></li>
+                <li><a href="#">Proforma Invoice</a></li>
+                <li><a href="#">LC Details</a></li>
+                <li><a href="#">Cost Sheet</a></li>
+                <li><a href="#">Insurance Cover Note</a></li>
+                <li><a href="#">Commercial Invoice</a></li>
+                <li><a href="#">CI Tracking</a></li>
+                <li><a href="#">Packing List</a></li>
+                <li><a href="#">Bill of Lading</a></li>
+                <li><a href="#">Duty Tax, Vat, CNF Bill</a></li>
+                <li><a href="#">Payments</a></li>
+              </ul>
+            </li>
+            <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="#">Local Requisition</a>
                 </li>
-                <li><a href="#level2_1">Level Two</a>
-                </li>
-                <li><a href="#level2_2">Level Two</a>
+                <li><a href="#">Purchase Order</a>
                 </li>
               </ul>
             </li>
-            <li><a href="#level1_2">Level One</a>
-            </li>
-        </ul>
-      </li>
+          </ul>
+        </li>
+        <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="#">Requisition</a></li>
+            <li><a href="#">Issue</a></li>
+            <li><a href="#">Receive Item</a></li>
+          </ul>
+        </li>
+        <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
+          <ul class="nav child_menu">
+            <li><a href="#">Product Costing</a></li>
+          </ul>
+        </li>
      </ul>
   </div>
 

@@ -24,20 +24,22 @@
                             <table class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Commercial Invoice No</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">LC No</th>
-                                        <th scope="col">LC Date</th>
+                                        <th scope="col">Commercial Invoice Date</th>
+                                        <th scope="col">Letter of Credit No</th>
+                                        <th scope="col">Letter of Credit  Date</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($commercial_invoice_list as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{$item->commercial_invoice_no}}</td>
                                         <td>{{$item->date}}</td>
                                         <td>{{$item->letter_of_credit_id}}</td>
-                                        <td>{{$item->date}}</td>   
+                                        <td>{{$item->date}}</td>
                                         <td class="text-right">
                                             <a href="{{route('commercial-invoice.show',$item)}}" class="btn btn-default btn-block btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

@@ -30,25 +30,31 @@ class CommercialInvoice extends Model {
     function items() {
         return $this->hasMany('App\CommercialInvoiceItem');
     }
+    function tracking() {
+        return $this->hasOne('App\CommercialInvoiceTracking');
+    }
     function packingList() {
         return $this->hasOne('App\PackingList');
     }
     function LetterOfCredit() {
         return $this->belongsTo('App\LetterOfCredit');
     }
+    function BillOfLading() {
+        return $this->belongsTo('App\BillOfLading', 'bill_of_lading_no', 'bill_of_lading_no');
+    }
     function loading_port() {
         return $this->belongsTo('App\Port','port_of_loading_port_id');
     }
-     function discharge_port() {
+    function discharge_port() {
         return $this->belongsTo('App\Port','port_of_discharge_port_id');
     }
     function city() {
         return $this->belongsTo('App\City','destination_city_id');
     }
-     public function destination_country(){
+    public function destination_country(){
         return $this->belongsTo('App\Country','destination_country_id');
     }
-     public function country_goods(){
+    public function country_goods(){
         return $this->belongsTo('App\Country','country_goods_country_id');
     }
 

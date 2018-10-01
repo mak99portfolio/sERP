@@ -17,8 +17,8 @@ class CreateProductCategoriesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('short_name');
-            $table->integer('product_categorie_id')->unsigned();
-            $table->foreign('product_categorie_id')->references('id')->on('product_categories')->onDelete('cascade');
+            $table->integer('parent_product_category_id')->unsigned()->nullable();
+            $table->foreign('parent_product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

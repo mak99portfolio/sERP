@@ -16,7 +16,7 @@ class LetterOfCredit extends Model
         'letter_of_credit_expire_date',
         'letter_of_credit_status',
         'letter_of_credit_shipment_date',
-        'currency',
+        'currency_id',
         'beneficiary_ac_no',
         'beneficiary_ac_name',
         'beneficiary_branch_name',
@@ -39,6 +39,10 @@ class LetterOfCredit extends Model
     public function vendor()
     {
         return $this->belongsTo('App\Vendor');
+    }
+    public function currency()
+    {
+        return $this->belongsTo('App\Currency');
     }
     public function application_numbers()
     {

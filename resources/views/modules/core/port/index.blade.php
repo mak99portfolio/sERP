@@ -34,9 +34,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($port_list as $key => $item)
+                                    @foreach ($port_list as $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->contact_person }}</td>
                                         <td>{{ $item->contact_person_number }}</td>

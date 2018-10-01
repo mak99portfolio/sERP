@@ -8,6 +8,7 @@ use App\LetterOfCredit;
 use App\LetterOfCreditApplicationNumber;
 use App\LetterOfCreditItem;
 use App\ProformaInvoice;
+use App\Currency;
 use App\Vendor;
 use DB;
 use Auth;
@@ -36,6 +37,7 @@ class LetterOfCreditController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('currency_list', Currency::pluck('name', 'id')->prepend('-- Select Currency --', ''));
         $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('-- Select Vendor --', ''));
         $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no', 'id')->prepend('-- Select proforma invoice --', ''));
         return $view;

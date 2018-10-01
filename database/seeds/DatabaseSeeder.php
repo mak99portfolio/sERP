@@ -38,6 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductSizeTableSeeder::class);
         $this->call(ProductSetTableSeeder::class);
         $this->call(ProductTableSeeder::class);
+        $this->call(CurrencyTableSeeder::class);
         $this->call(InventoryRecordTypesSeeder::class);
         $this->call(InventoryRequisitionTypesSeeder::class);
         $this->call(InventoryItemStatusesSeeder::class);

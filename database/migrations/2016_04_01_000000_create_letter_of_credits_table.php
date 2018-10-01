@@ -23,7 +23,8 @@ class CreateLetterOfCreditsTable extends Migration
             $table->string('letter_of_credit_expire_date')->nullable();
             $table->integer('letter_of_credit_status')->nullable();
             $table->string('letter_of_credit_shipment_date')->nullable();
-            $table->integer('currency')->nullable();
+            $table->integer('currency_id')->nullable();
+            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
             $table->string('beneficiary_ac_no')->nullable();
             $table->string('beneficiary_ac_name')->nullable();
             $table->string('beneficiary_branch_name')->nullable();

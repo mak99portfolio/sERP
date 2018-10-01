@@ -35,9 +35,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($insurance_cover_note_list as $key => $item)
+                                    @foreach ($insurance_cover_note_list as $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->letter_of_credit->letter_of_credit_no }}</td>
                                         <td>{{ $item->insurance_cover_note_no }}</td>
                                         <td>{{ $item->insurance_cover_note_date }}</td>

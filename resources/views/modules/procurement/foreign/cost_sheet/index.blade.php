@@ -36,9 +36,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($cost_sheet_list as $key => $item)
+                                    @foreach ($cost_sheet_list as $item)
                                     <tr>
-                                        <td>{{ $key + 1 }}</td>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->letter_of_credit->letter_of_credit_no }}</td>
                                         <td>{{ $item->letter_of_credit->letter_of_credit_date }}</td>
                                         <td>{{ $item->currency }}</td>

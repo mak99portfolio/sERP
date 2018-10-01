@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\MoveType;
 use Auth;
 use Session;
-use Illuminate\Http\Request;
+use App\Http\Requests\MoveTypeRequest;
 
 class MoveTypeController extends Controller
 {
@@ -39,12 +39,8 @@ class MoveTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(MoveTypeRequest $request)
     {
-        $request->validate([
-            'name' => 'required|unique:move_types',
-            'short_name' => 'required|unique:move_types',
-        ]);
         $movetype = new MoveType;
         $movetype->fill($request->input());
         $movetype->creator_user_id = Auth::id();

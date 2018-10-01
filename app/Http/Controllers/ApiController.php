@@ -294,7 +294,7 @@ class ApiController extends Controller
         return response()->json($data);
     }
     public function getBankInfoById($id){
-       $data = CompanyBank::with('bank')->find($id);
+        $data = CompanyBank::with('bank')->find($id);
         return response()->json($data);
     }
 

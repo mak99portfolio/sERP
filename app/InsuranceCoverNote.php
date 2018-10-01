@@ -46,7 +46,7 @@ class InsuranceCoverNote extends Model
     public function vendor(){
         return $this->belongsTo('App\Vendor');
     }
-    public function amount_of_grand_total(){
+    public function amount(){
         return $this->amount_of_marine
                 + $this->amount_of_war
                 + $this->amount_of_net_premium

@@ -18,16 +18,10 @@
                 <form class="form-horizontal form-label-left" action="{{route('unit-of-measurement.store')}}" method="POST" autocomplete="off">
                     {{csrf_field()}}
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Unit Of Measurement Name</label>
-                                <input class="form-control input-sm" type="text" name="name">
-                            </div>
+                            {{ BootForm::text('name', 'Unit Of Measurement Name', null, ['class'=>'form-control input-sm']) }}
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label>Shortname</label>
-                                <input class="form-control input-sm" type="text" name="short_name">
-                            </div>
+                            {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm']) }}
                         </div>
                         <div class="col-md-12 col-xs-12">
                             <br />

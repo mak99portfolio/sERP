@@ -111,19 +111,18 @@
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
                                                     <td class="text-right">
-                                                    <% quantity[$index]*unit_price[$index] %>
+                                                    <span ng-if="quantity[$index]*unit_price[$index]"><% amount[$index] = quantity[$index]*unit_price[$index] %></span>
+                                                    <span ng-if="!(quantity[$index]*unit_price[$index])">0</span>
                                                     </td>
                                                 </tr>
                                             </tbody>
-                                            <!-- <tfoot class="font-bold">
+                                            <tfoot class="font-bold">
                                                 <tr>
-                                                    <td colspan="3">Total</td>
-                                                    <td>324</td>
-                                                    <td>324</td>
-
-                                                    <td colspan="1"></td>
+                                                    <td colspan="5" class="text-right">Total</td>
+                                            
+                                                <td colspan="1" class="text-right"><% sum(amount) %></td>
                                                 </tr>
-                                            </tfoot> -->
+                                            </tfoot>
                                     </table>
                                 </div>
                                 </div>
@@ -162,6 +161,9 @@
     app.controller('myCtrl', function($scope, $http) {
         
         $scope.itemlist = [];
+        $scope.quantity = [];
+        $scope.unit_price = [];
+        $scope.amount = [];
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
             $scope.addToItemList($scope.req_id.join());
@@ -173,9 +175,14 @@
                         $scope.itemlist = response.data;
                     });
         }
-        $scope.removeItem = function(index){
-            $scope.itemlist.splice(index);
+        $scope.sum = function($arr){
+            var sum = 0;
+            for(i=0; i<$arr.length; i++){
+                sum += $arr[i];
+            }
+            return sum;
         }
+        
     });
 </script>
 @endsection

@@ -24,6 +24,7 @@
                             <table id="datatable-buttons" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Ci No</th>
                                         <th scope="col">Ci Date</th>
                                         <th scope="col">Net Total</th>
@@ -34,6 +35,7 @@
                                 <tbody>
                                     @foreach($packing_list as $item)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td>{{$item->commercial_invoice->commercial_invoice_no}}</td>
                                         <td>{{$item->commercial_invoice->date}}</td>
                                         <td>{{$item->net_total}}</td>

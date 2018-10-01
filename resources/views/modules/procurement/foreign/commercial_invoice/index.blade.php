@@ -26,9 +26,9 @@
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Commercial Invoice No</th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">LC No</th>
-                                        <th scope="col">LC Date</th>
+                                        <th scope="col">Commercial Invoice Date</th>
+                                        <th scope="col">Letter of Credit No</th>
+                                        <th scope="col">Letter of Credit  Date</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>

@@ -14,7 +14,6 @@ class PackingList extends Model
         'commercial_invoice_id',
         'currency',
         'notes',
-        'net_total',
         'gross_total'
     ];
     function items() {

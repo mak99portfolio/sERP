@@ -165,7 +165,7 @@
                                                         <input ng-change="netSum()"  ng-model="quantity[$index]" ng-init="quantity[$index] = item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
                                                     </td>
                                                     <td>
-                                                        <input ng-change="netSum()" ng-model="per_unit_weight[$index]" ng-init="per_unit_weight[$index] = item.per_unit_weight" type="text" name="items[<%$index%>][per_unit_weight]" class="form-control input-sm">
+                                                        <input ng-change="netSum()" ng-model="per_unit_weight[$index]" ng-init="per_unit_weight[$index] = item.per_unit_weight" type="number" name="items[<%$index%>][per_unit_weight]" class="form-control input-sm">
                                                     </td>
                                                     <td>
                                                         <input ng-change="netSum()" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*per_unit_weight[$index]" type="text" class="form-control input-sm" disabled>
@@ -173,7 +173,9 @@
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Net Total =</td>
-                                                    <td><input type="text" name="net_total" class="form-control" ng-model="net_total"></td>
+                                                    <td>
+                                                    <span ng-if="sum(amount)"><% sum(amount) %></span>
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Gross Total =</td>
@@ -208,7 +210,11 @@
     $interpolateProvider.endSymbol('%>');
     });
     app.controller('myCtrl', function($scope, $http) {
-
+        $scope.itemlist = [];
+        $scope.quantity = [];
+        $scope.per_unit_weight = [];
+        $scope.total_weight = [];
+        $scope.amount = [];
     
     $scope.getCi = function () {
     //   alert($scope.commercial_invoice_id);
@@ -250,6 +256,13 @@
             console.log($scope.piinfo);
             });
     }
+    $scope.sum = function($arr){
+            var sum = 0;
+            for(i=0; i<$arr.length; i++){
+                sum += $arr[i];
+            }
+            return sum;
+        }
     
     $scope.netTotal = function(){
         var sum = 0;

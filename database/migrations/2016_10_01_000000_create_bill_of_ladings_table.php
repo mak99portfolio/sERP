@@ -26,8 +26,8 @@ class CreateBillOfLadingsTable extends Migration
             $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->integer('local_agency_vendor_id')->unsigned();
             $table->foreign('local_agency_vendor_id')->references('id')->on('vendors')->onDelete('cascade');
-            $table->integer('exproter_vendor_id')->unsigned();
-            $table->foreign('exproter_vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+            $table->integer('exporter_vendor_id')->unsigned();
+            $table->foreign('exporter_vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->string('consignee');
             $table->string('acceptance');
             $table->integer('port_of_loading_port_id')->unsigned();

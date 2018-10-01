@@ -26,7 +26,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>       
                                         <td>{{ $item->bill_of_lading_no }}</td>       
-                                        <td  class="text-center"><a href="{{ route('product-costing.show', $item) }}" class="btn btn-default btn-sm">View Cost</a></td>       
+                                        <td  class="text-center"><a href="{{ route('product-costing.edit', $item) }}" class="btn btn-primary btn-sm"><i class="fa fa-chevron-right"></i>  Make Cost</a></td>       
                                     </tr>   
                                    @endforeach
                                 </tbody>

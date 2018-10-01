@@ -20,6 +20,7 @@ class ProductCategoryController extends Controller
     {
         $view = view($this->view_root.'index');
         $view->with('product_category', ProductCategory::all());
+        $view->with('product_category_tree', ProductCategory::whereNull('parent_product_category_id')->get());
         return $view;
     }
 
@@ -31,7 +32,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $view = view($this->view_root.'create');
-        $view->with('product_category', ProductCategory::whereNull('parent_product_category_id')->get());
+        $view->with('product_category_tree', ProductCategory::whereNull('parent_product_category_id')->get());
         return $view;
     }
 
@@ -44,7 +45,7 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'product_categorie_id' => 'required',
+            'parent_product_category_id' => 'required',
             'name' => 'required|unique:product_categories',
             'short_name' => 'required|unique:product_categories',
         ]);
@@ -53,7 +54,7 @@ class ProductCategoryController extends Controller
         $pc->creator_user_id = Auth::id();
         $pc->save();
         Session::put('alert-success', $pc->name . ' created successfully');
-        return redirect()->route('product-category.create');
+        return redirect()->route('product-category.index');
     }
 
     /**

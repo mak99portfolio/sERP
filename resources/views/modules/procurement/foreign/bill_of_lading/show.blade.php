@@ -121,7 +121,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Local Agency Address :</strong>{{$bill_of_lading->local_agency->address}}</td>
-                                        <td><strong>Exproter:</strong>{{$bill_of_lading->exprote->name}}</td>
+                                        <td><strong>Exporter:</strong>{{$bill_of_lading->exporter->name}}</td>
                                     <td><strong>Consignee:</strong>{{$bill_of_lading->consignee}}</td>
                                     </tr>
                                 </tbody>

@@ -70,6 +70,26 @@
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Proforma Invoice No</th>
+                                        <th>Proforma Invoice Date</th>
+                                        <th>Customer Code</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach($commercialInvoice->LetterOfCredit->proforma_invoices as $value)
+                              
+                                    <tr>
+                                        <td>{{$value->proforma_invoice_no}}</td>
+                                        <td>{{$value->proforma_invoice_date}}</td>
+                                        <td>{{$value->customer_code}}</td>
+                                    
+                                    </tr>
+                                 @endforeach
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
                                 <tbody>
                                     <tr>
                                         <td><strong>Bill Of Lading No:</strong> {{$commercialInvoice->bill_of_lading_no}}</td>

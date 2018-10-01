@@ -37,7 +37,7 @@ class BillOfLadingController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
-        $view->with('exproter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
+        $view->with('exporter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Modes Of Transport --', ''));
         $view->with('move_type_list', MoveType::pluck('name','id')->prepend('-- Select Move Type --', ''));

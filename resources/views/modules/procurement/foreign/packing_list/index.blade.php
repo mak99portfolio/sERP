@@ -25,10 +25,9 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Ci No</th>
-                                        <th scope="col">Ci Date</th>
-                                        <th scope="col">Net Total</th>
-                                        <th scope="col">Gross Total</th>
+                                        <th scope="col">Commercial Invoice No</th>
+                                        <th scope="col">Commercial Invoice Date</th>
+                                        <th scope="col">Currency</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -38,8 +37,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{$item->commercial_invoice->commercial_invoice_no}}</td>
                                         <td>{{$item->commercial_invoice->date}}</td>
-                                        <td>{{$item->net_total}}</td>
-                                        <td>{{$item->gross_total}}</td>
+                                        <td>{{$item->currency}}</td>
                                        <td class="text-right">
                                             <a href="{{route('packing-list.show',$item)}}" class="btn btn-block btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

@@ -173,7 +173,7 @@
                                                 </tr>
                                                <tr>
                                                     <td colspan="4" class="text-right">Sub Total =</td>
-                                                    <td><% sub_total = sum(amount) %></td>
+                                                    <td><%sum(amount) %></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" class="text-right">Add Freight =</td>

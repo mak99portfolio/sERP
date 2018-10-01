@@ -15,16 +15,14 @@ class PackingListTableSeeder extends Seeder {
                 'commercial_invoice_id' => 1,
                 'currency' => 'Dollar',
                 'notes' => 'Notes 2',
-                'net_total' => 100.34,
-                'gross_total' => 100,
+                'gross_total' => 4000,
                 'creator_user_id' => 1,
             ],
             [
                 'commercial_invoice_id' => 2,
                 'currency' => 'Dollar',
                 'notes' => 'Notes 2',
-                'net_total' => 200.34,
-                'gross_total' => 200,
+                'gross_total' => 1000,
                 'creator_user_id' => 1,
             ]
         ];
@@ -40,8 +38,8 @@ class PackingListTableSeeder extends Seeder {
              [
                 'packing_list_id' => 1,
                 'product_id' => 2,
-                'per_unit_weight' => 15,
-                'quantity' => 200,
+                'per_unit_weight' => 10,
+                'quantity' => 100,
             ],
              [
                 'packing_list_id' => 2,

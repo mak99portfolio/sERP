@@ -120,21 +120,21 @@
                                                 <strong>D / Retirement(Including L /C Margin)</strong><br>
                                                 <span class="small">(USD 324 @23.04)</span>
                                             </td>
-                                            <td class="text-right"><input type="number" class="form-control"></td>
+                                            <td><input type="number" min="0" class="form-control text-right"></td>
                                         </tr>
                                         <tr>
                                             <td>12/07/2018</td>
-                                            <td colspan="2"><strong>C & F Expense</strong></td>
+                                            <td colspan="2"><strong><u>C & F Expense</u></strong></td>
                                         </tr>
+                                        @foreach($bill_of_lading->cnf->consignment_particular_cnf as $item)
                                         <tr>
-                                            <td rowspan="2"></td>
-                                            <td><strong>Duty, Taxes & VAT</strong></td>
-                                            <td class="text-right">41018</td>
+                                            @if($loop->first)
+                                            <td rowspan="{{ $loop->count }}"></td>
+                                            @endif
+                                            <td><strong>{{ $item->consignment_particular->name }}</strong></td>
+                                            <td class="text-right">{{ $item->amount }}</td>
                                         </tr>
-                                        <tr>
-                                            <td><strong>Port Charge</strong></td>
-                                            <td class="text-right">12018</td>
-                                        </tr>
+                                        @endforeach
 
                                         <tr>
                                             <td>12/07/2018</td>
@@ -142,7 +142,7 @@
                                                 <strong>Transport Charge(PARTIAL)</strong><br>
                                                 <span class="small">14412/6</span>
                                             </td>
-                                            <td class="text-right"><strong>231232</strong></td>
+                                            <td><input type="number" min="0" class="form-control text-right"></td>
                                         </tr>
                                     </tbody>
                                     <tfoot>

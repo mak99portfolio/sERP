@@ -127,6 +127,33 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-12 col-sm-12">
+                                <form action="" method="post" novalidate>
+                                    <fieldset>
+                                        <label>
+                                            <input type='checkbox' id='alerts' />
+                                            Disable alerts
+                                        </label>
+                                        <div class="item">
+                                            <div class="form-group">
+                                                <label>Name</label>
+                                                <input class="form-control" data-validate-length-range="6" data-validate-words="2" name="name" placeholder="ex. John f. Kennedy" required="required" />
+                                                <div class='tooltip help'>
+                                                    <span>?</span>
+                                                    <div class='content'>
+                                                        <b></b>
+                                                        <p>Name must be at least 2 words</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <button id='send' type='submit'>Submit</button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

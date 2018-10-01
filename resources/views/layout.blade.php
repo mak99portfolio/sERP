@@ -167,55 +167,54 @@
 
         @yield('script')
         <script>
-toaster_notification();
-function toaster_notification() {
-    $.ajax("{{route('get_toaster_notification')}}")
-            .done(function (data) {
-                if (data) {
-                    new PNotify(data);
-                }
-            })
+            toaster_notification();
+            function toaster_notification() {
+                $.ajax("{{route('get_toaster_notification')}}")
+                        .done(function (data) {
+                            if (data) {
+                                new PNotify(data);
+                            }
+                        })
 
-}
-// print script
-$(function () {
-    $(".print-btn").click(function () {
-        $('#print-footer').show();
-        var contents = $(".print-area").html();
-        var frame1 = $('<iframe />');
-        frame1[0].name = "frame1";
-        frame1.css({"position": "absolute", "top": "-1000000px"});
-        $("body").append(frame1);
-        var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
-        frameDoc.document.open();
-        //Create a new HTML document.
-        frameDoc.document.write('<html><head><title></title>');
-        frameDoc.document.write('</head><body>');
-        // address and logo
-        frameDoc.document.write('<div style="margin-bottom: 30px;"><table><tr><td><img src="{{asset('assets/build/images/logo1.png')}}" alt="company logo" class="img-responsive" style="max-width: 100px; max-height: 50px;"></td><td style="font-size: 12px; padding-left: 30px;"><p class="pull-right">531, Dhaur(Kamarpara), Turag, Dhaka-1230<br>Tel:(02)-8981941, Fax:+88-02-89819442, Mob:+88-01823-777992<br>E-mail:info@magnumenterprise.net, Web:www.magnumenterprise.net</p></td></tr></table></div>');
-        //Append the external CSS file.
-        frameDoc.document.write('<link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
-        //Append the DIV contents.
-        frameDoc.document.write(contents);
-        // footer
-        frameDoc.document.write('<div></div>');
-        frameDoc.document.write('</body></html>');
-        frameDoc.document.close();
-        setTimeout(function () {
-            window.frames["frame1"].focus();
-            window.frames["frame1"].print();
-            frame1.remove();
-        }, 500);
+            }
+            // print script
+            $(function () {
+                $(".print-btn").click(function () {
+                    $('#print-footer').show();
+                    var contents = $(".print-area").html();
+                    var frame1 = $('<iframe />');
+                    frame1[0].name = "frame1";
+                    frame1.css({"position": "absolute", "top": "-1000000px"});
+                    $("body").append(frame1);
+                    var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+                    frameDoc.document.open();
+                    //Create a new HTML document.
+                    frameDoc.document.write('<html><head><title></title>');
+                    frameDoc.document.write('</head><body>');
+                    // address and logo
+                    frameDoc.document.write('<div style="margin-bottom: 30px;"><table><tr><td><img src="{{asset('assets/build/images/logo1.png')}}" alt="company logo" class="img-responsive" style="max-width: 100px; max-height: 50px;"></td><td style="font-size: 12px; padding-left: 30px;"><p class="pull-right">531, Dhaur(Kamarpara), Turag, Dhaka-1230<br>Tel:(02)-8981941, Fax:+88-02-89819442, Mob:+88-01823-777992<br>E-mail:info@magnumenterprise.net, Web:www.magnumenterprise.net</p></td></tr></table></div>');
+                    //Append the external CSS file.
+                    frameDoc.document.write('<link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
+                    //Append the DIV contents.
+                    frameDoc.document.write(contents);
+                    // footer
+                    frameDoc.document.write('<div></div>');
+                    frameDoc.document.write('</body></html>');
+                    frameDoc.document.close();
+                    setTimeout(function () {
+                        window.frames["frame1"].focus();
+                        window.frames["frame1"].print();
+                        frame1.remove();
+                    }, 500);
 
-        $('#print-footer').hide();
-    });
+                    $('#print-footer').hide();
+                });
 
-    $('.flash').delay(8000).fadeOut('slow');
-});
-
-
-
-// end print script
+                $('.flash').delay(8000).fadeOut('slow');
+            });
+                // end print script
+                validator.defaults.alerts = false;
+                $('form .alert').remove();
         </script>
     </body>
 </html>

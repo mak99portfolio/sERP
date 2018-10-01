@@ -35,6 +35,8 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
         'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@update_organizational_info'
     )->name('employee-profile.update-organizational-info');
 
+    Route::resource('employee-user', 'EmployeeUserController');
+
 });
 
 //Procurement
@@ -146,10 +148,18 @@ Route::middleware('auth')->group(function(){
 });
 
 //ACL (Access Control Limit)
-Route::middleware('auth')->namespace('AccessControl')->prefix('access-control')->group(function(){
+Route::middleware(['auth', 'hasPermission:access_to_acl'])
+->namespace('AccessControl')
+->prefix('access-control')
+->group(function(){
 
     Route::resource('role', 'RoleController');
     Route::resource('permission', 'PermissionController');
     Route::resource('matrix', 'AclController');
+    Route::get('role-user-matrix', 'AclController@role_user_matrix')->name('role-user-matrix');
+    Route::post('role-user-matrix', 'AclController@store_role_user_matrix')->name('role-user-matrix.store');
+    Route::get('user-permission-matrix', 'AclController@user_permission_matrix')->name('user-permission-matrix');
+    Route::post('user-permission-matrix', 'AclController@store_user_permission_matrix')->name('user-permission-matrix.store');
+    Route::resource('user', 'UserController');
 
 });

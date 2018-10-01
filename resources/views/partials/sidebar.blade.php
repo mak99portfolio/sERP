@@ -84,20 +84,29 @@
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{route('company-profile.index')}}">General Information</a></li>
-          <li><a href="{{route('working-unit.index')}}">Working Unit</a></li>
-          <li><a href="{{route('employee-profile.index')}}">Employees</a></li>
-          <li><a href="{{route('company-bank.index')}}">Bank Information</a></li>
-          <li><a href="{{route('company-license.index')}}">Licenses</a></li>
+          <li><a href="{{ route('company-profile.index')}}">General Information</a></li>
+          <li><a href="{{ route('working-unit.index')}}">Working Unit</a></li>
+          <li><a href="{{ route('employee-profile.index')}}">Employees</a></li>
+          <li><a href="{{ route('company-bank.index')}}">Bank Information</a></li>
+          <li><a href="{{ route('company-license.index')}}">Licenses</a></li>
+          <li><a href="{{ route('company-license.index')}}">Licenses</a></li>
+          <li><a href="{{ route('employee-user.index')}}">Employee Related User</a></li>
         </ul>
       </li>
+
+      @can('view_developer_menu')
       <li><a><i class="fa fa-key"></i> Access Control <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
+          <li><a href="{{ Route('user.index') }}">User List</a></li>
           <li><a href="{{ route('role.index') }}">Roles</a></li>
           <li><a href="{{ route('permission.index') }}">Permissions</a></li>
           <li><a href="{{ Route('matrix.index') }}">Role Permission Matrix</a></li>
+          <li><a href="{{ Route('role-user-matrix') }}">Role User Matrix</a></li>
+          <li><a href="{{ Route('user-permission-matrix') }}">User Direct Permissions</a></li>
         </ul>
       </li>
+      @endcan
+
     </ul>
   </div>
   <div class="menu_section">

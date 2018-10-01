@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('username',100)->unique();
             $table->string('email',100)->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
@@ -24,7 +25,7 @@ class CreateUsersTable extends Migration
         });
 
         \DB::table('users')->insert([
-            'name'=>'admin', 'email'=>'admin@gmail.com', 'password'=>bcrypt('12345678')
+            'name'=>'admin', 'username'=>'admin', 'email'=>'admin@gmail.com', 'password'=>bcrypt('12345678')
         ]);
 
     }

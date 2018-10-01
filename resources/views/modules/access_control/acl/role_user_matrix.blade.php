@@ -23,11 +23,11 @@
             {{-- Main content area --}}
                 @include('partials.flash_msg')
 
-                {{ BootForm::open(['url'=>route('matrix.store')]) }}
+                {{ BootForm::open(['url'=>route('role-user-matrix.store')]) }}
                 <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                   <thead>
-                    <tr class="bg-warning">
+                    <tr class="bg-primary">
                       <th>Users \ Roles</th>
                       @foreach($roles as $role)
                         <th class="text-center">
@@ -42,8 +42,13 @@
                         <td>{{ $user->name }}</td>
                         @foreach($roles as $role)
                         <td class="text-center">
-                            <input name="matrix[{{ $role->id }}][]" value="{{ $user->id }}" type='checkbox' {{
+                            <div class="pretty p-switch p-fill p-success">
+                                <input name="matrix[{{ $role->id }}][]" value="{{ $user->id }}" type='checkbox' {{
                             $cross_check($model_has_roles, $role->id, $user->id) }}/>
+                                <div class="state p-primary">
+                                    <label></label>
+                                </div>
+                            </div>
                         </td>
                         @endforeach
                     </tr>
@@ -62,4 +67,8 @@
 {{-- Content end --}}
 </div>
 </div>
+@endsection
+
+@section('style')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css"/>
 @endsection

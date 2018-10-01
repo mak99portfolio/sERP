@@ -68,5 +68,10 @@ class DatabaseSeeder extends Seeder
         $this->call(CostSheetTableSeeder::class);
         $this->call(InsuranceCoverNoteTableSeeder::class);
         $this->call(CnfTableSeeder::class);
+        $this->call(AccessControlSeeder::class);
+        
+        $this->call(DepartmentsTableSeeder::class);
+        $this->call(EmployeeOrgInfoTypesTableSeeder::class);
+        $this->call(EmployeeOrgInfoStatusesTableSeeder::class);
     }
 }

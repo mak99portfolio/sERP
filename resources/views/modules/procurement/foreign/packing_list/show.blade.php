@@ -15,13 +15,13 @@
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Commercial Invoice No : {{$commercialInvoice->commercial_invoice_no}}</h2></div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Commercial Invoice No :  {{$packingList->commercial_invoice->commercial_invoice_no}}</h2></div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                         </div>
                         <div class="visible-xs col-xs-6"><button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</button></div>
                         <div class="visible-xs col-xs-6"><button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button></div>
-                        <div class="visible-xs col-xs-12"><h2 class="text-center">Commercial Invoice No : {{$commercialInvoice->commercial_invoice_no}}</h2></div>
+                        <div class="visible-xs col-xs-12"><h2 class="text-center">Commercial Invoice No :  {{$packingList->commercial_invoice->commercial_invoice_no}}</h2></div>
                     </div>
                     <div class="x_title">
                         <div class="clearfix"></div>
@@ -38,12 +38,12 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>Commercial Invoice No:</strong> {{$packingList->commercial_invoice->commercial_invoice_no}}</td>
-                                        <td><strong>Date:</strong>  {{$packingList->commercial_invoice->date}}</td>
+                                        <td><strong>Commercial Invoice Date:</strong>  {{$packingList->commercial_invoice->date}}</td>
                                     </tr>
                                     <tr>
    
-                                        <td><strong>LC No:</strong> {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_no}}</td>
-                                        <td><strong>LC Date:</strong>  {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_date}}</td>
+                                        <td><strong>Letter Of Credit No:</strong> {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_no}}</td>
+                                        <td><strong>Letter Of Credit Date:</strong>  {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -62,6 +62,26 @@
                                     <tr>
                                         <td colspan="3"><strong>Bank Name:</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_bank_name}}</td>
                                     </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Proforma Invoice No</th>
+                                        <th>Proforma Invoice Date</th>
+                                        <th>Customer Code</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                  @foreach($packingList->commercial_invoice->LetterOfCredit->proforma_invoices as $value)
+                              
+                                    <tr>
+                                        <td>{{$value->proforma_invoice_no}}</td>
+                                        <td>{{$value->proforma_invoice_date}}</td>
+                                        <td>{{$value->customer_code}}</td>
+                                    
+                                    </tr>
+                                 @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">

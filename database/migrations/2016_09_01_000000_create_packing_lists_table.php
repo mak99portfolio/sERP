@@ -17,9 +17,7 @@ class CreatePackingListsTable extends Migration {
             $table->integer('commercial_invoice_id')->unsigned();
             $table->foreign('commercial_invoice_id')->references('id')->on('commercial_invoices')->onDelete('cascade');
             $table->string('currency');
-            $table->string('customer_code')->nullable();
             $table->text('notes')->nullable();
-            $table->double('net_total')->nullable();
             $table->double('gross_total')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');

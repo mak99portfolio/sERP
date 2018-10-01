@@ -24,6 +24,7 @@
                             <table id="datatable-buttons" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Commercial Invoice No</th>
                                         <th scope="col">Commercial Invoice Date</th>
                                         <th scope="col">Currency</th>

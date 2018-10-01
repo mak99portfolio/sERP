@@ -38,12 +38,12 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>Commercial Invoice No:</strong> {{$packingList->commercial_invoice->commercial_invoice_no}}</td>
-                                        <td><strong>Date:</strong>  {{$packingList->commercial_invoice->date}}</td>
+                                        <td><strong>Commercial Invoice Date:</strong>  {{$packingList->commercial_invoice->date}}</td>
                                     </tr>
                                     <tr>
    
-                                        <td><strong>LC No:</strong> {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_no}}</td>
-                                        <td><strong>LC Date:</strong>  {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_date}}</td>
+                                        <td><strong>Letter Of Credit No:</strong> {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_no}}</td>
+                                        <td><strong>Letter Of Credit Date:</strong>  {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>

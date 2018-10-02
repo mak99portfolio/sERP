@@ -54,7 +54,7 @@
                                 {{ BootForm::select('company_id', 'Select Company', $companies, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                {{ BootForm::select('in_charge', 'Select In-charge', $users, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('in_charge', 'Select In-charge', $employees, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 {{ BootForm::select('country_id', 'Country', $countries,null, ['class'=>'form-control input-sm select2']) }}

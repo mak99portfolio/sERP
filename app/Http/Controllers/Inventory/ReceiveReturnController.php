@@ -22,10 +22,12 @@ class ReceiveReturnController extends Controller{
 
     public function create(){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'inventory_receive'=>new \App\InventoryReceive,
             'inventory_receive_no'=>uCode('inventory_receives.inventory_receive_no', 'IR00'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'inventory_return_reasons'=>\App\InventoryReturnReason::pluck('name', 'id')
         ];
         
@@ -127,10 +129,12 @@ class ReceiveReturnController extends Controller{
 
     public function edit(\App\InventoryReceive $receive_return){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'inventory_receive'=>$receive_return,
             'inventory_receive_no'=>$receive_return->inventory_receive_no,
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'inventory_return_reasons'=>\App\InventoryReturnReason::pluck('name', 'id')
         ];
 

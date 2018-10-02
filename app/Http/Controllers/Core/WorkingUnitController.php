@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Inventory;
+namespace App\Http\Controllers\Core;
 
 use App\Http\Controllers\Controller;
 use App\WorkingUnit;
@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class WorkingUnitController extends Controller{
 
     protected function path(string $suffix){
-        return "modules.inventory.working_unit.{$suffix}";
+        return "modules.core.working_unit.{$suffix}";
     }
 
     public function index(){
@@ -32,13 +32,13 @@ class WorkingUnitController extends Controller{
     	$data=[
             'working_unit'=>new \App\WorkingUnit,
     		'working_unit_no'=>uCode('working_units.working_unit_no', 'WU00'),
-    		'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+    		'working_units'=>\App\WorkingUnit::pluck('name', 'id')->prepend('--Select Parent Unit--', ''),
     		'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
     		'countries'=>\App\Country::pluck('name', 'id'),
     		'divisions'=>\App\Division::pluck('name', 'id'),
     		'districts'=>\App\District::pluck('name', 'id'),
             'companies'=>\App\Company::pluck('name', 'id'),
-    		'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
+    		'employees'=>\App\EmployeeProfile::pluck('name', 'id') //Need to filter according to employee profile
     	];
 
         return view($this->path('create'), $data);
@@ -82,13 +82,13 @@ class WorkingUnitController extends Controller{
         $data=[
             'working_unit'=>$workingUnit,
             'working_unit_no'=>$workingUnit->working_unit_no,
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'working_units'=>\App\WorkingUnit::pluck('name', 'id')->prepend('--Select Parent Unit--', ''),
             'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
             'countries'=>\App\Country::pluck('name', 'id'),
             'divisions'=>\App\Division::pluck('name', 'id'),
             'districts'=>\App\District::pluck('name', 'id'),
             'companies'=>\App\Company::pluck('name', 'id'),
-            'users'=>\App\User::pluck('name', 'id') //Need to filter according to employee profile
+            'employees'=>\App\EmployeeProfile::pluck('name', 'id') //Need to filter according to employee profile
         ];
 
         return view($this->path('create'), $data);

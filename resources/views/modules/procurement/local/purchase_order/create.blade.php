@@ -32,8 +32,8 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::select('vendor[vendor_id]', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select vendor']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
-                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Select Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm']) }}   
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Select Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm']) }}
@@ -50,34 +50,34 @@
                             <!---------- genaral po info-------->
                             <fieldset class="m-t-15">
                                 <legend>Genaral PO Information:</legend>
-                                <div class="row"> 
+                                <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('purchase_oder_no','Purchase Oder No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">   
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}        
+                                        {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('procurement_type', 'Select Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm']) }}        
+                                        {{ BootForm::select('procurement_type', 'Select Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('purchase_order_type', 'Select Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('purchase_order_type', 'Select Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipping_method', 'Select Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('shipping_method', 'Select Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_method', 'Select Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('payment_method', 'Select Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
@@ -88,7 +88,7 @@
                             <!---------- Ship to info-------->
                             <fieldset class="m-t-15">
                                 <legend>Ship To Information:</legend>
-                                <div class="row"> 
+                                <div class="row">
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="radio">
                                             <label>
@@ -105,13 +105,14 @@
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-8">
-                                            <input class="form-control input-sm" type="text" name="ship_to_address">
+                                            <input class="form-control input-sm" type="text">
                                         </div>
                                     </div>
                                 </div>
                             </fieldset>
 
                             <!---------- Ship to info end-------->
+
                             <!---------- PR info-------->
                             <fieldset class="m-t-15">
                                 <legend>PR Information:</legend>
@@ -121,7 +122,6 @@
 
                                         <label>Purchase Requisition No</label>
                                         <div class="input-group">
-                                            <!-- <input type="text" id="purchase_requisition_no" class="form-control" placeholder="Search"> -->
                                             <select data-placeholder="Select Req No" ng-model="req_id" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id">
                                                 <option value=""></option>
                                                 @foreach($requisition_list as $item)
@@ -129,7 +129,7 @@
                                                 @endforeach
                                             </select>
                                             <div class="input-group-btn">
-                                                <button type="button" class="btn btn-default" ng-click="searchReqNo()">Add</button>
+                                                <button type="button" class="btn btn-default btn-sm" ng-click="searchReqNo()">Add</button>
                                             </div>
                                         </div>
                                         <div id="msg">
@@ -236,7 +236,7 @@
                                     <div class="col-md-6 col-md-offset-3">
                                         <label>Payment Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm">
+                                            <select class="form-control input-sm select2">
                                                 <option value="" disabled selected> Select type</option>
                                                 <option>Fixed</option>
                                                 <option>Percentage</option>
@@ -263,7 +263,7 @@
                                                         <th>Date</th>
                                                         <th>Description</th>
                                                         <th colspan="2">% or Fixed Amount</th>
-                                                    </tr>  
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
@@ -349,10 +349,12 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        
+
         $scope.itemlist = [];
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
+            $scope.requisition = [];
+
             for(i=0; i<$scope.req_id.length; i++){
                 $scope.addToItemList($scope.req_id[i]);
             }
@@ -361,10 +363,11 @@
             let url = "{{URL::to('get-local-requisition')}}/" + id;
             $http.get(url)
                     .then(function(response) {
-                        // console.log('data-----------', response.data);
+                        console.log('data-----------', response.data);
                         angular.forEach(response.data, function(value, key) {
                             $scope.itemlist.push(value);
                         });
+
                     });
         }
         $scope.removeItem = function(index){

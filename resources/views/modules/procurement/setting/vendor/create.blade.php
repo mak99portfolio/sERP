@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm datepicker']) }}
-                                    
+
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
@@ -284,7 +284,7 @@
                                                     <td>
                                                         <div class="checkbox">
                                                             <label class="i-checks">
-                                                                <input type="checkbox" ng-model="enclosure{{$item->id}}"> {{$item->name}} 
+                                                                <input type="checkbox" ng-model="enclosure{{$item->id}}"> {{$item->name}}
                                                                 <input type="hidden" value="{{$item->id}}" name="enclosures[{{$loop->index}}][enclosure_id]" ng-disabled="!enclosure{{$item->id}}"> </td>
                                                             </label>
                                                         </div>
@@ -330,7 +330,7 @@
             $scope.maxPerson = 5;
 
             $scope.getNumber = function(num) {
-                $scope.person = new Array(num);   
+                $scope.person = new Array(num);
             }
             $scope.getNumber(1);
             $scope.increasePerson = function(){

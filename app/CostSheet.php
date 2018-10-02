@@ -24,7 +24,7 @@ class CostSheet extends Model
         return $this->hasOne('App\CostSheetParticular');
     }
 
-    public function getBdtAmount(){
+    public function amount_in_bdt(){
         return $this->letter_of_credit->letter_of_credit_value * $this->exchange_rate;
     }
 }

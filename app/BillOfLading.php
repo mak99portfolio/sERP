@@ -72,4 +72,14 @@ class BillOfLading extends Model
         });
     }
 
+    public function insurance_amount(){
+        return round($this->letter_of_credit->insurance_cover_note->amount() 
+        * ($this->amount()/ $this->letter_of_credit->amount()),2);
+    }
+
+    public function lc_charge(){
+        return round($this->letter_of_credit->cost_sheet->cost_sheet_particular->get_total_amount() 
+        * ($this->amount()/ $this->letter_of_credit->amount()),2);
+    }
+
 }

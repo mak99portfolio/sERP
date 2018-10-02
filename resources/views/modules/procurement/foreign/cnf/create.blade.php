@@ -106,7 +106,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                         <label>BDT Amount</label>
-                                        <input type="number" class="form-control input-sm" name="bdt_amount" ng-model="bdt_amount" value="<% getBdtAmount() %>" readonly>
+                                        <input type="number" class="form-control input-sm" name="bdt_amount" ng-model="bdt_amount" value="<% amount_in_bdt() %>" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -258,7 +258,7 @@
         }
 
 
-        $scope.getBdtAmount = function () {
+        $scope.amount_in_bdt = function () {
                 var total = 0;
                 total = $scope.usd_amount * $scope.exchange_rate;
                 $scope.bdt_amount = total;

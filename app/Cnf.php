@@ -57,15 +57,17 @@ class Cnf extends Model
     {
         return $this->hasMany('App\ConsignmentParticularCnf', 'cnf_id');
     }
-
-    public function getBdtAmount()
+    public function amount_in_bdt()
     {
         return $this->usd_amount * $this->exchange_rate;
     }
+
+    public function amount(){
+        return $this->consignment_particular_cnf()->sum('amount');
+    }
     public function amount_in_word()
     {
-        return number_to_word($this->consignment_particular_cnf()->sum('amount'));
-
+        return number_to_word($this->amount());
     }
 
 }

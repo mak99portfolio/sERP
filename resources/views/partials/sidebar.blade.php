@@ -154,6 +154,12 @@
         </li>
      </ul>
   </div>
+  <div class="menu_section">
+    <h3>Developer Area</h3>
+    <ul class="nav side-menu">
+      <li><a href="{{ URL::to('/design') }}"><i class="fa fa-globe"></i> Design Test</span></a></li>
+     </ul>
+  </div>
 
 </div>
 <!-- /sidebar menu -->

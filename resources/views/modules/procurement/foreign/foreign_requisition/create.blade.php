@@ -185,8 +185,8 @@
                                                     <td>42221</td>
                                                     <td>werr</td>
                                                     <td class="text-center">
-                                                        <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)" disabled>Added</button>
-                                                        <button ng-if="!checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)">Add</button>
+                                                        <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-danger btn-sm" ng-click="removeItemById(product.id)"><i class="fa fa-times"></i></button>
+                                                        <button ng-if="!checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)"><i class="fa fa-plus"></i></button>
                                                         
                                                     </td>
                                                 </tr>
@@ -283,6 +283,10 @@
             new PNotify(data);
         }
         $scope.removeItem = function(index){
+            $scope.itemlist.splice(index,1);
+        }
+        $scope.removeItemById = function(product_id){
+            index = $scope.itemlist.findIndex(item => item.id==product_id);
             $scope.itemlist.splice(index,1);
         }
     });

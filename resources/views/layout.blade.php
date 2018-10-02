@@ -37,6 +37,9 @@
         <link href="{{asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+        
+        <!--myidjs-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
         <!-- Custom Theme Style -->
         <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
@@ -160,6 +163,9 @@
         <script src="{{asset('assets/vendors/jszip/dist/jszip.min.js')}}"></script>
         <script src="{{asset('assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
         <script src="{{asset('assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+        
+        <!--myidjs-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="{{asset('assets/build/js/custom.js')}}"></script>
         <script src="{{asset('assets/build/js/init.js')}}"></script>

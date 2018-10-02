@@ -60,7 +60,7 @@
                                     <tr>
                                         <td><strong>L/C Amount: </strong> {{ number_format($costSheet->letter_of_credit->letter_of_credit_value, 2) }}</td>
                                         <td><strong>Exchange Rate: </strong> {{ $costSheet->exchange_rate }}</td>
-                                        <td><strong>BDT Amount: </strong> {{ number_format($costSheet->getBdtAmount(), 2) }}</td>
+                                        <td><strong>BDT Amount: </strong> {{ number_format($costSheet->amount_in_bdt(), 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"><strong>Note: </strong> {{ $costSheet->note }}</td>

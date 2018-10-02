@@ -96,7 +96,7 @@
                                             <td><strong>Exchange Rate:</strong> {{ $cnf->exchange_rate }} </td>
                                         </tr>
                                         <tr>
-                                            <td><strong>BDT Amount:</strong> {{ number_format($cnf->getBdtAmount(), 2) }} </td>
+                                            <td><strong>BDT Amount:</strong> {{ number_format($cnf->amount_in_bdt(), 2) }} </td>
                                             <td><strong>CNF Agent:</strong> {{ $cnf->cnf_agent->name }} </td>
                                             <td><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }} </td>
                                         </tr>

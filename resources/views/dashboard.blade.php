@@ -144,12 +144,8 @@
 
                         <div class="row">
                             <div class="col-md-12 col-sm-12">
-                                <form action="" method="post" novalidate>
+                                <form action="" method="post">
                                     <fieldset>
-                                        <label>
-                                            <input type='checkbox' id='alerts' />
-                                            Disable alerts
-                                        </label>
                                         <div class="item">
                                             <div class="form-group">
                                                 <label>Name</label>
@@ -164,7 +160,7 @@
                                             </div>
                                         </div>
                                     </fieldset>
-                                    <button id='send' type='submit'>Submit</button>
+                                    <button type='submit'>Submit</button>
                                 </form>
                             </div>
                         </div>

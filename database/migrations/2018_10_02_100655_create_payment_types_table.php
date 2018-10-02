@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRequisitionTypesTable extends Migration
+class CreatePaymentTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateRequisitionTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('requisition_types', function (Blueprint $table) {
+        Schema::create('payment_types', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateRequisitionTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('requisition_types');
+        Schema::dropIfExists('payment_types');
     }
 }

@@ -40,7 +40,7 @@ class AccessControlSeeder extends Seeder{
     		['name'=>'approve_final_requisition', 'guard_name'=>'web'],//4
     		['name'=>'approve_initial_issue', 'guard_name'=>'web'],//5
     		['name'=>'approve_final_issue', 'guard_name'=>'web'],//6
-    		['name'=>'receive_inventory', 'guard_name'=>'web']//7
+    		['name'=>'access_to_inventory', 'guard_name'=>'web']//7
     	];
 
     	\DB::table('permissions')->insert($data);

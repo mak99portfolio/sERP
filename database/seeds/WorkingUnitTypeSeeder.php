@@ -7,13 +7,13 @@ class WorkingUnitTypeSeeder extends Seeder{
     public function run(){
         
         $data=[
-        	['name'=>'Branch'],
-        	['name'=>'Central Depot'],
-        	['name'=>'Central Warehouse'],
-        	['name'=>'Depot'],
-        	['name'=>'Factory'],
-        	['name'=>'Head Office'],
-        	['name'=>'Warehouse']
+        	['name'=>'Branch', 'short_name'=>'B'],
+        	['name'=>'Central Depot', 'short_name'=>'CD'],
+        	['name'=>'Central Warehouse', 'short_name'=>'CWH'],
+        	['name'=>'Depot', 'short_name'=>'D'],
+        	['name'=>'Factory', 'short_name'=>'F'],
+        	['name'=>'Head Office', 'short_name'=>'HO'],
+        	['name'=>'Warehouse', 'short_name'=>'WH']
         ];
 
         \DB::table('working_unit_types')->insert($data);

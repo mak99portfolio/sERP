@@ -13,7 +13,9 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        <form action="">
+                        <form action="{{ route('product-costing.store') }}" method="POST">
+                            <input type="hidden" name="bill_of_lading_id" value="{{ $bill_of_lading->id }}">
+                            @csrf
                             <table class="table border_1 m-b-20">
                                 <tbody>
                                     <tr>
@@ -151,7 +153,7 @@
                                                     <strong>Transport Charge(PARTIAL)</strong><br>
                                                     <span class="small">14412/6</span>
                                                 </td>
-                                                <td><input type="number" min="0" class="form-control text-right" ng-model="transport_charge"></td>
+                                                <td><input type="number" min="0" class="form-control text-right" ng-model="transport_charge" name="transport_charge"></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -183,7 +185,7 @@
                                                 <td>{{ $item->product->name }}</td>
                                                 <td class="text-right">{{ $item->quantity }}</td>
                                                 <td>{{ $item->product->unit_of_measurement->name }}</td>
-                                                <td class="text-right"><% unit_price_in_usd[$index] = {{ $item->unit_price }} | number:2 %></td>
+                                                <td class="text-right"><% unit_price_in_usd[$index] = {{ $item->unit_price * (1+ $bill_of_lading->per_usd_freight()) }} | number:2 %></td>
                                                 <td class="text-right"><% unit_price_in_usd[$index]*cost_per_unit | number:2 %></td>
                                             </tr>
                                             @endforeach
@@ -191,10 +193,8 @@
                                         <tfoot>
                                             <tr>
                                                 <td><strong>Total Qty</strong></td>
-                                                <td class="text-right">23</td>
-                                                <td>SET</td>
-                                                <td class="text-right">14.21</td>
-                                                <td class="text-right">3213.44</td>
+                                                <td class="text-right">{{ $bill_of_lading->items->sum('quantity') }}</td>
+                                                <td colspan="3"></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -212,7 +212,7 @@
                                     </tr>
                                 </tbody>
                             </table>
-                            <p class="text-center">IN WORD: <% numberToWord(total_landing_cost, 'Tk', 'Paisa') %> </p>
+                            <p class="text-center"><strong>IN WORD:</strong> <% numberToWord(total_landing_cost, 'Tk', 'Paisa') %> </p>
                             <hr>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group">
@@ -236,6 +236,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
+        $scope.quantity = [];
         $scope.sum = function($arr){
             var sum = 0;
             for(i=0; i<$arr.length; i++){
@@ -270,8 +271,7 @@
             var a = ['zero ','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine s'];
             var str = '';
             for(i=0; i<num.length; i++){
-                console.log(a[i]);
-                str += +a[num[i]];
+                str += a[num[i]];
             }
             return str;
         }

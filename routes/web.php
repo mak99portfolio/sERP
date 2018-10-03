@@ -14,6 +14,8 @@ Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@in
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
 //Core
 Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
+
+    Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('country', 'CountryController');
     Route::resource('city', 'CityController');
     Route::resource('port', 'PortController');
@@ -64,6 +66,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::resource('consignment-particular', 'ConsignmentParticularController');
     Route::resource('move-type', 'MoveTypeController');
     Route::resource('modes-of-transport', 'ModesOfTransportController');
+    Route::resource('payment-type', 'PaymentTypeController');
     //CI Tracking
     Route::get('/commercial-invoice-tracking', ['as' => 'commercial-invoice-tracking.index', 'uses' => 'CommercialInvoiceTrackingController@index']);
     Route::get('/commercial-invoice-tracking/create', ['as' => 'get-ci-with-tracking', 'uses' => 'CommercialInvoiceTrackingController@getCIWithTracking']);
@@ -72,9 +75,8 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 });
 
 //Inventory
-Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(function(){
+Route::middleware(['auth', 'hasPermission:access_to_inventory'])->namespace('Inventory')->prefix('inventory')->group(function(){
 
-    Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
 
@@ -99,6 +101,7 @@ Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(fu
 Route::middleware('auth')->namespace('Accounts')->prefix('accounts')->group(function(){
     Route::resource('product-costing', 'ProductCostingController');
 });
+
 //Company
 Route::middleware('auth')->namespace('Company')->prefix('company')->group(function(){
     Route::resource('company-profile', 'CompanyProfileController');
@@ -131,6 +134,12 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     });
 
 });
+//Report
+Route::middleware('auth')->namespace('Report')->prefix('report')->group(function(){
+    Route::get('/foreign-purchase-order', ['as' => 'report-foreign-purchase-order', 'uses' => 'ProcurementReportController@foreign_purchase_order']);
+    Route::get('/proforma-invoice', ['as' => 'report-proforma-invoice', 'uses' => 'ProcurementReportController@proforma_invoice']);
+    Route::get('/commercial-invoice', ['as' => 'report-commercial-invoice', 'uses' => 'ProcurementReportController@commercial_invoice']);
+});
 
 //API
 Route::middleware('auth')->group(function(){
@@ -147,6 +156,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
     Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
     Route::get('/get-vendor-bank-info/{id}', ['as' => 'get-vendor-bank-info', 'uses' => 'ApiController@getVendorBankInfoById']);
+    Route::get('/get-due-amount/{id}/{no}', ['as' => 'et-due-amount', 'uses' => 'ApiController@getDueAmount']);
 });
 
 //ACL (Access Control Limit)

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CommercialInvoice;
 use App\CommercialInvoiceItem;
 use App\ForeignRequisition;
+use App\ForeignPayment;
 use App\LetterOfCredit;
 use App\LocalRequisition;
 use App\Product;
@@ -333,6 +334,28 @@ class ApiController extends Controller
     }
     public function getVendorBankInfoById($id){
         $data = VendorBank::find($id);
+        return response()->json($data);
+    }
+    public function getDueAmount($id,$no){
+       if($id==1){
+       $data = PurchaseOrder::where('purchase_order_no',$no)->first()->amount() 
+       - ForeignPayment::where('payment_by_no',$no)
+       ->get()->sum(function($item){
+            return $item->payment_amount * (1  + $item->vat/100) - $item->discount_amount;
+         });
+       }
+    //    1=Purchase Order
+       if($id==2){
+       $data = ProformaInvoice::where('proforma_invoice_no',$no)->first()->amount() 
+       - ForeignPayment::where('payment_by_no',$no)
+       ->get()->sum(function($item){
+            return $item->payment_amount * (1  + $item->vat/100) - $item->discount_amount;
+         });
+       }
+    //    2=Proforma Invoice
+       
+       
+       
         return response()->json($data);
     }
 

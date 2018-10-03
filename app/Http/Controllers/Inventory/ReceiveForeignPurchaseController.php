@@ -23,10 +23,12 @@ class ReceiveForeignPurchaseController extends Controller{
 
     public function create(){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'inventory_receive'=>new \App\InventoryReceive,
             'inventory_receive_no'=>uCode('inventory_receives.inventory_receive_no', 'IR00'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
         ];
@@ -121,10 +123,12 @@ class ReceiveForeignPurchaseController extends Controller{
 
     public function edit(\App\InventoryReceive $receive_foreign_purchase){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'inventory_receive'=>$receive_foreign_purchase,
             'inventory_receive_no'=>$receive_foreign_purchase->inventory_receive_no,
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'), //Need to filter in future
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
         ];

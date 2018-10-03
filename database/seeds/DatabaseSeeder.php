@@ -63,6 +63,8 @@ class DatabaseSeeder extends Seeder
         $this->call(InventoryReturnReasonsTableSeeder::class);
         $this->call(MoveTypeTableSeeder::class);
         $this->call(ModesOfTransportTableSeeder::class);
+        $this->call(PaymentTypeTableSeeder::class);
+        $this->call(PaymentByTableSeeder::class);
         $this->call(CompanyProfileTableSeeder::class);
         $this->call(CompanyBankTableSeeder::class);
         $this->call(CompanyLicenseTableSeeder::class);

@@ -31,6 +31,7 @@ class CreateWorkingUnitsTable extends Migration
             $table->timestamps();
 
             $table->foreign('parent_unit_id')->references('id')->on('working_units')->onDelete('cascade');
+            $table->foreign('in_charge')->references('id')->on('employee_profiles')->onDelete('cascade');
             $table->foreign('working_unit_type_id')->references('id')->on('working_unit_types')->onDelete('cascade');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

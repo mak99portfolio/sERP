@@ -13,9 +13,12 @@ class StockAdjustmentController extends Controller{
     }
 
     public function index(){
+
+        $working_unit=\Auth::user()->working_unit();
+        $stock_adjustments=\App\InventoryStockAdjustment::where('working_unit_id', $working_unit->id);
         
         $data=[
-            'paginate'=>new Paginate('\App\InventoryStockAdjustment', ['inventory_stock_adjustment_no'=>'Adjustment No', 'adjustment_type'=>'Adjustment Type']),
+            'paginate'=>new Paginate($stock_adjustments, ['inventory_stock_adjustment_no'=>'Adjustment No', 'adjustment_type'=>'Adjustment Type']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -26,10 +29,12 @@ class StockAdjustmentController extends Controller{
 
     public function create(){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'stock_adjustment'=>new \App\InventoryRequisition,
             'stock_adjustment_no'=>uCode('inventory_stock_adjustments.inventory_stock_adjustment_no', 'ISA00'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
             'inventory_adjustment_purposes'=>\App\InventoryAdjustmentPurpose::pluck('name', 'id')
@@ -99,10 +104,12 @@ class StockAdjustmentController extends Controller{
 
     public function edit(\App\InventoryStockAdjustment $stock_adjustment){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'stock_adjustment'=>$stock_adjustment,
             'stock_adjustment_no'=>$stock_adjustment->inventory_stock_adjustment_no,
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
             'inventory_adjustment_purposes'=>\App\InventoryAdjustmentPurpose::pluck('name', 'id')

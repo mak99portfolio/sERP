@@ -144,9 +144,9 @@
                                         <th><strong>UOM</strong> </th>
                                         <th class="text-center"><strong>Quantity</strong></th>
                                         <th class="text-center"><strong>Unit Price</strong></th>
-                                        <th class="text-center"><strong>Discount</strong></th>
-                                        <th class="text-center"><strong>D.Rate</strong></th>
-                                        <th class="text-center"><strong>Vat(%)</strong></th>
+                                        {{-- <th class="text-center"><strong>Discount</strong></th> --}}
+                                        {{-- <th class="text-center"><strong>D.Rate</strong></th> --}}
+                                        {{-- <th class="text-center"><strong>Vat(%)</strong></th> --}}
                                         <th class="text-right"><strong>Sub Total</strong></th>
                                      </tr>
                                 </thead>
@@ -159,10 +159,10 @@
                                         <td>{{$item->product->unit_of_measurement->name}}</td>
                                         <td class="text-right">{{$item->quantity}}</td>
                                         <td class="text-right">{{$item->unit_price}}</td>
-                                        <td class="text-right">{{$item->discount}}</td>
-                                        <td class="text-right">{{$item->d_rate}}</td>
-                                        <td class="text-right">{{$item->vat}}</td>
-                                        <td class="text-right">{{number_format(($item->quantity * $item->unit_price)+($item->d_rate+$item->vat)-$item->discount,2)}}</td>
+                                        {{-- <td class="text-right">{{$item->discount}}</td> --}}
+                                        {{-- <td class="text-right">{{$item->d_rate}}</td> --}}
+                                        {{-- <td class="text-right">{{$item->vat}}</td> --}}
+                                        <td class="text-right">{{number_format(($item->quantity * $item->unit_price),2)}}</td>
                                      
                                     </tr>
                                     @endforeach

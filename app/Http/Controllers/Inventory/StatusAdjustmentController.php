@@ -13,9 +13,12 @@ class StatusAdjustmentController extends Controller{
     }
 
     public function index(){
+
+        $working_unit=\Auth::user()->working_unit();
+        $status_adjustments=\App\InventoryStatusAdjustment::where('working_unit_id', $working_unit->id);
         
         $data=[
-            'paginate'=>new Paginate('\App\InventoryStatusAdjustment', ['inventory_status_adjustment_no'=>'Adjustment No', 'product_id'=>'Product ID', 'quantity'=>'Quantity', 'date'=>'Date']),
+            'paginate'=>new Paginate($status_adjustments, ['inventory_status_adjustment_no'=>'Adjustment No', 'product_id'=>'Product ID', 'quantity'=>'Quantity', 'date'=>'Date']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -26,10 +29,12 @@ class StatusAdjustmentController extends Controller{
 
     public function create(){
 
+        $working_unit=\Auth::user()->working_unit();
+
         $data=[
             'status_adjustment'=>new \App\InventoryStatusAdjustment,
             'inventory_status_adjustment_no'=>uCode('inventory_status_adjustments.inventory_status_adjustment_no', 'ISA00'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
         ];
@@ -115,7 +120,7 @@ class StatusAdjustmentController extends Controller{
         $data=[
             'status_adjustment'=>$status_adjustment,
             'inventory_status_adjustment_no'=>$status_adjustment->inventory_status_adjustment_no,
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
         ];

@@ -40,10 +40,13 @@
               <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
               <li><a href="{{route('move-type.index')}}">Move Type</a></li>
               <li><a href="{{route('modes-of-transport.index')}}">Modes Of Transport</a></li>
+              <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
             </ul>
           </li>
         </ul>
       </li>
+
+      @can('access_to_inventory')
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
@@ -62,6 +65,8 @@
           </li>
         </ul>
       </li>
+      @endcan
+
       <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('product-costing.index') }}">Product Costing</a></li>
@@ -117,12 +122,12 @@
             <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="#">Foreign Requisition</a></li>
-                <li><a href="#">Purchase Order</a></li>
-                <li><a href="#">Proforma Invoice</a></li>
+                <li><a href="{{ route('report-foreign-purchase-order') }}">Purchase Order</a></li>
+                <li><a href="{{ route('report-proforma-invoice') }}">Proforma Invoice</a></li>
                 <li><a href="#">LC Details</a></li>
                 <li><a href="#">Cost Sheet</a></li>
                 <li><a href="#">Insurance Cover Note</a></li>
-                <li><a href="#">Commercial Invoice</a></li>
+                <li><a href="{{ route('report-commercial-invoice') }}">Commercial Invoice</a></li>
                 <li><a href="#">CI Tracking</a></li>
                 <li><a href="#">Packing List</a></li>
                 <li><a href="#">Bill of Lading</a></li>

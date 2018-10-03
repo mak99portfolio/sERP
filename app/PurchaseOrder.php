@@ -47,4 +47,10 @@ class PurchaseOrder extends Model
     public function foreign_requisitions(){
         return $this->belongsToMany('App\ForeignRequisition');
     }
+    public function amount()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->quantity * $item->unit_price;
+        });
+    }
 }

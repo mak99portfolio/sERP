@@ -12,9 +12,9 @@ class LetterOfCreditItem extends Model
         'product_id',
         'quantity',
         'unit_price',
-        'd_rate',
-        'discount',
-        'vat',
+        // 'd_rate',
+        // 'discount',
+        // 'vat',
     ];
      public function product(){
         return $this->belongsTo('App\Product');

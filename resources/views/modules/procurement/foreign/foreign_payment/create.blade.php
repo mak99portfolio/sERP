@@ -20,39 +20,44 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
-                        <form class="form-horizontal form-label-left input_mask" autocomplete="off">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <form class="form-horizontal form-label-left input_mask" action="{{route('foreign-payment.store')}}" method="POST" autocomplete="off">
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('requisition_title','Payment Id', null, ['class'=>'form-control input-sm']) }}
+                            </div> --}}
+                            @csrf
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::text('payment_date','Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('requisition_title','Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                {{ BootForm::select('type_vendor_category_id', 'Select Vendor Type', $vendor_category_list , null,['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('requisition_purpose_id', 'Select Vendor Type', [''=>'-- Select --'] , null,['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list , null,['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('requisition_purpose_id', 'Select Vendor', [''=>'-- Select --'] , null,['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('payment_by_id', 'Payment By', $payment_by_list , null,['class'=>'form-control input-sm select2','ng-model'=>'payment_by_id']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('requisition_purpose_id', 'Payment By', [''=>'-- Select --','1'=>'Purchase Order','2'=>'Proforma Invoice'] , null,['class'=>'form-control input-sm select2']) }}
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Selected Payment By No', null, ['class'=>'form-control input-sm']) }}
+                                 {{ BootForm::text('payment_by_no','Selected Payment By No', null, ['class'=>'form-control input-sm','ng-model'=>"payment_by_no", 'ng-change'=>'getDue()']) }}
                              </div>
                              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_purpose_id', 'Payment Type', [''=>'-- Select Payment Type --'] , null,['class'=>'form-control input-sm select2']) }}
+                                 {{ BootForm::select('payment_type_id', 'Payment Type',$payment_type_list , null,['class'=>'form-control input-sm select2']) }}
                                 </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Due Amount', null, ['class'=>'form-control input-sm','readonly']) }}
+                                {{ BootForm::number('due_amount','Due Amount', null, ['class'=>'form-control input-sm', 'ng-model'=>'due_amount','readonly']) }}
                              </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Payment Amount', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::number('payment_amount','Payment Amount', null, ['class'=>'form-control input-sm']) }}
                              </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Discount Amount', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::number('discount_amount','Discount Amount', null, ['class'=>'form-control input-sm']) }}
                              </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Vat(%)', null, ['class'=>'form-control input-sm']) }}
+                                 {{ BootForm::number('vat','Vat(%)', null, ['class'=>'form-control input-sm']) }}
+                             </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 {{ BootForm::textarea('note','Note', null, ['class'=>'form-control input-sm','rows'=>'2']) }}
                              </div>
                             {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -293,8 +298,8 @@
                             </div> --}}
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="form-group">
-                                    <a href="" class="btn btn-success btn-sm">Submit</a>
-                                    <a href="" class="btn btn-default btn-sm">Cancel</a>
+                                        <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                        <a class="btn btn-default btn-sm" href="{{route('payment-type.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </form>
@@ -310,13 +315,26 @@
 
 @section('script')
 <script>
-var app = angular.module('myApp', []);
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
 
-app.controller('myCtrl', function($scope) {
-    $scope.color = 'blue';
-    $scope.isShown = function(color) {
-        return color === $scope.color;
-    };
-});
+        $scope.getDue = function () {
+
+            $scope.getDueAmount($scope.payment_by_id, $scope.payment_by_no);
+        }
+        
+        $scope.getDueAmount = function(id, no){
+            let url = "{{URL::to('get-due-amount')}}/" + id + "/" + no;
+            $http.get(url)
+            .then(function(response) {
+                 $scope.due_amount = parseInt(response.data);
+                 console.log($scope.due_amount);
+              });
+        }
+        
+    });
 </script>
 @endsection

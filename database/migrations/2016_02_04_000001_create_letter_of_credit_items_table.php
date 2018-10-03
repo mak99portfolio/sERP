@@ -21,9 +21,9 @@ class CreateLetterOfCreditItemsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->integer('quantity');
             $table->double('unit_price');
-            $table->double('d_rate');
-            $table->double('discount');
-            $table->double('vat');
+            $table->double('d_rate')->nullable();
+            $table->double('discount')->nullable();
+            $table->double('vat')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

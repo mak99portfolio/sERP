@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
 
+use App\Http\Controllers\Controller;
 use App\PaymentType;
-use Illuminate\Http\Request;
-
+use App\Http\Requests\PaymentTypeRequest;
+use Auth;
+use Session;
 class PaymentTypeController extends Controller
 {
     /**
@@ -12,9 +14,12 @@ class PaymentTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    private $view_root = 'modules/procurement/setting/payment_type/';
     public function index()
     {
-        //
+        $view = view($this->view_root . 'index');
+        $view->with('payment_type', PaymentType::all());
+        return $view;
     }
 
     /**
@@ -24,7 +29,8 @@ class PaymentTypeController extends Controller
      */
     public function create()
     {
-        //
+        $view=view($this->view_root.'create');
+        return $view;
     }
 
     /**
@@ -33,9 +39,14 @@ class PaymentTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaymentTypeRequest $request)
     {
-        //
+        $payment_type = new PaymentType;
+        $payment_type->fill($request->input());
+        $payment_type->creator_user_id = Auth::id();
+        $payment_type->save();
+        Session::put('alert-success', 'Payment type created successfully');
+        return redirect()->route('payment-type.index');
     }
 
     /**

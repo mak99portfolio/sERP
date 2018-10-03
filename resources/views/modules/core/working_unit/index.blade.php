@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Working Unit')
+@section('title', 'Company Setting')
 @section('content')
 <div class="right_col" role="main">
   <div class="">
@@ -45,13 +45,13 @@
                         <tr>
                             <td>{{ $row->name }}</td>
                             <td>{{ $row->short_name }}</td>
-                            <td>{{ empty($row->company->name)?'':$row->company->name }}</td>
-                            <td>{{ empty($row->parent->name)?'':$row->parent->name }}</td>
-                            <td>{{ empty($row->type->name)?'':$row->type->name }}</td>
-                            <td>{{ empty($row->user_in_charge->name)?'':$row->user_in_charge->name }}</td>
-                            <td>{{ empty($row->country->name)?'':$row->country->name }}</td>
-                            <td>{{ empty($row->division->name)?'':$row->division->name }}</td>
-                            <td>{{ empty($row->district->name)?'':$row->district->name }}</td>
+                            <td>{{ $row->company->name ?? 'Not Specified' }}</td>
+                            <td>{{ $row->parent->name ?? 'Not Specified' }}</td>
+                            <td>{{ $row->type->name ?? 'Not Specified' }}</td>
+                            <td>{{ $row->employee_in_charge->name ?? 'Not Specified' }}</td>
+                            <td>{{ $row->country->name ?? 'Not Specified' }}</td>
+                            <td>{{ $row->division->name ?? 'Not Specified' }}</td>
+                            <td>{{ $row->district->name ?? 'Not Specified' }}</td>
                             <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                             <td>
                                 {!! btnEdit(['url'=>route('working-unit.edit', ['working_unit'=>$row->id])]) !!}

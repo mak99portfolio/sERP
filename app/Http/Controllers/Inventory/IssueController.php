@@ -13,9 +13,14 @@ class IssueController extends Controller{
     }
 
     public function index(){
+
+        $working_unit=\Auth::user()->working_unit();
+        $inventory_issues=\App\InventoryIssue::whereHas('requisition', function($query) use($working_unit){
+            $query->where('requested_depot_id', $working_unit->id);
+        });
         
         $data=[
-            'paginate'=>new Paginate('\App\InventoryIssue', ['id'=>'ID']),
+            'paginate'=>new Paginate($inventory_issues, ['id'=>'ID']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -118,10 +123,18 @@ class IssueController extends Controller{
 
             $approval=$request->get('approval');
 
-            if($approval=='initial'){
+            if($approval=='initial' && \Auth::user()->can('approve_initial_issue')){
+
                 $issue->initial_approver()->associate(\Auth::user());
-            }elseif($approval=='final'){
+
+            }elseif($approval=='final' && \Auth::user()->can('approve_final_issue')){
+
                 $issue->final_approver()->associate(\Auth::user());
+
+            }else{
+
+                return back()->withInput()->with('failed', 'Sorry!, you can\'t perform this action.');
+
             }
 
             $issue->allocated_items()->delete();

@@ -175,7 +175,7 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getLocalRequisitionByRequisitionId($id)
+    public function getLocalRequisitionByRequisitionIds($id)
     {
         $req = LocalRequisition::find($id);
         $items = $req->items;
@@ -188,6 +188,7 @@ class ApiController extends Controller
                 'quantity' => $item->quantity,
             ];
         }
+        // $data['requisition'] = $req;
         return response()->json($data);
     }
 

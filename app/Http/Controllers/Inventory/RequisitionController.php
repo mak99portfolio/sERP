@@ -15,9 +15,12 @@ class RequisitionController extends Controller{
 
     public function index(){
 
+        $working_unit=\Auth::user()->working_unit();
+
+        $inventory_requisitions=\App\InventoryRequisition::where('sender_depot_id', $working_unit->id);
 
         $data=[
-            'paginate'=>new Paginate('\App\InventoryRequisition', ['inventory_requisition_no'=>'Requisition No']),
+            'paginate'=>new Paginate($inventory_requisitions, ['inventory_requisition_no'=>'Requisition No']),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -30,11 +33,16 @@ class RequisitionController extends Controller{
 
     public function create(){
 
+        $working_unit=\Auth::user()->working_unit();
+        $sender_working_units=\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id');
+        $requested_working_units=\App\WorkingUnit::where('id', '<>', $working_unit->id)->pluck('name', 'id');
+
         $data=[
             'inventory_requisition'=>new \App\InventoryRequisition,
             'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_no', 'IR00'),
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'sender_working_units'=>$sender_working_units,
+            'requested_working_units'=>$requested_working_units,
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
         ];
@@ -60,6 +68,10 @@ class RequisitionController extends Controller{
             'date'=>'required|date',
             'products'=>'required|array'
         ]);
+
+        if(!\Auth::user()->can('approve_initial_requisition')){
+            return back()->withInput()->with('failed', 'Sorry!, you can\'t perform this action.');
+        }
 
         $requisition=\App\InventoryRequisition::create($request->except('products', 'date'));
         $requisition->date=\Carbon\Carbon::parse($request->get('date'));
@@ -103,11 +115,16 @@ class RequisitionController extends Controller{
 
     public function edit(\App\InventoryRequisition $requisition){
 
+        $working_unit=\Auth::user()->working_unit();
+        $sender_working_units=\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id');
+        $requested_working_units=\App\WorkingUnit::where('id', '<>', $working_unit->id)->pluck('name', 'id');
+
         $data=[
             'inventory_requisition'=>$requisition,
             'requisition_no'=>$requisition->inventory_requisition_no,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'sender_working_units'=>$sender_working_units,
+            'requested_working_units'=>$requested_working_units,
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
         ];
@@ -141,6 +158,10 @@ class RequisitionController extends Controller{
             'date'=>'required|date',
             'products'=>'required|array'
         ]);
+
+        if(!\Auth::user()->can('approve_final_requisition')){
+            return back()->withInput()->with('failed', 'Sorry!, you can\'t perform this action.');
+        }
 
         $requisition->fill($request->except('products', 'date'));
         $requisition->date=\Carbon\Carbon::parse($request->get('date'));
@@ -188,6 +209,8 @@ class RequisitionController extends Controller{
 
 
     public function destroy(Requisition $requisition){
+
+        return back()->route('requisition.index');
         
     }
 

@@ -12,4 +12,8 @@ class EmployeeOrgInfo extends Model{
 		return $this->belongsTo('App\EmployeeProfile', 'employee_profile_id');
 	}
 
+	public function working_unit(){
+		return $this->belongsTo('App\WorkingUnit', 'working_unit_id');
+	}
+
 }

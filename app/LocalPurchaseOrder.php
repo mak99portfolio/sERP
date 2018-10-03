@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class LocalPurchaseOrder extends Model
 {
      use SoftDeletes;
-    protected $fillable = [
-        'purchase_order_no',
-        'inco_terms',
-        'inco_term_info',
-        'procurement_type',
-        'purchase_order_type',
-        'status',
-        'remarks',
-        'purchase_order_date'
-    ];
-     protected $guarded=['id'];
+    // protected $fillable = [
+    //     'purchase_order_no',
+    //     'inco_terms',
+    //     'inco_term_info',
+    //     'procurement_type',
+    //     'purchase_order_type',
+    //     'status',
+    //     'remarks',
+    //     'purchase_order_date'
+    // ];
+    protected $guarded=['id'];
 
     public function items(){
         return $this->hasMany('App\LocalPurchaseOrderItem', 'local_purchase_order_id');

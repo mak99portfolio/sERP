@@ -14,6 +14,8 @@ Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@in
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
 //Core
 Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
+
+    Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('country', 'CountryController');
     Route::resource('city', 'CityController');
     Route::resource('port', 'PortController');
@@ -72,9 +74,8 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 });
 
 //Inventory
-Route::middleware('auth')->namespace('Inventory')->prefix('inventory')->group(function(){
+Route::middleware(['auth', 'hasPermission:access_to_inventory'])->namespace('Inventory')->prefix('inventory')->group(function(){
 
-    Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
 

@@ -44,6 +44,8 @@
           </li>
         </ul>
       </li>
+
+      @can('access_to_inventory')
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
@@ -62,6 +64,8 @@
           </li>
         </ul>
       </li>
+      @endcan
+
       <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('product-costing.index') }}">Product Costing</a></li>

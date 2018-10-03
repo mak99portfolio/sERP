@@ -13,9 +13,12 @@ class ReceiveController extends Controller{
     }
 
     public function index(){
+
+        $working_unit=\Auth::user()->working_unit();
+        $inventory_receives=\App\InventoryReceive::where('working_unit_id', $working_unit->id);
         
         $data=[
-            'paginate'=>new Paginate('\App\InventoryReceive', ['inventory_receive_no'=>'Receive No']),
+            'paginate'=>new Paginate($inventory_receives, ['inventory_receive_no'=>'Receive No']),
             'carbon'=>new \Carbon\Carbon
         ];
 

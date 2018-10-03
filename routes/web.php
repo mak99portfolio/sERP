@@ -101,6 +101,7 @@ Route::middleware(['auth', 'hasPermission:access_to_inventory'])->namespace('Inv
 Route::middleware('auth')->namespace('Accounts')->prefix('accounts')->group(function(){
     Route::resource('product-costing', 'ProductCostingController');
 });
+
 //Company
 Route::middleware('auth')->namespace('Company')->prefix('company')->group(function(){
     Route::resource('company-profile', 'CompanyProfileController');
@@ -132,6 +133,12 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
     });
 
+});
+//Report
+Route::middleware('auth')->namespace('Report')->prefix('report')->group(function(){
+    Route::get('/foreign-purchase-order', ['as' => 'report-foreign-purchase-order', 'uses' => 'ProcurementReportController@foreign_purchase_order']);
+    Route::get('/proforma-invoice', ['as' => 'report-proforma-invoice', 'uses' => 'ProcurementReportController@proforma_invoice']);
+    Route::get('/commercial-invoice', ['as' => 'report-commercial-invoice', 'uses' => 'ProcurementReportController@commercial_invoice']);
 });
 
 //API

@@ -109,6 +109,19 @@ ul.bar_tabs>li a {
 .m-b-30{
     margin-bottom: 30px;
 }
+.p-t-6{padding-top:6px;}
+.p-t-7{padding-top:7px;}
+.p-t-8{padding-top:8px;}
+.p-t-9{padding-top:9px;}
+.p-t-10{padding-top:10px;}
+
+.p-b-6{padding-bottom: 6px;}
+.p-b-7{padding-bottom: 7px;}
+.p-b-8{padding-bottom: 8px;}
+.p-b-9{padding-bottom: 9px;}
+.p-b-10{padding-bottom: 10px;}
+
+
 
 .help-block{
     position: absolute;

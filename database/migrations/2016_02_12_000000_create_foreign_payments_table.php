@@ -15,10 +15,12 @@ class CreateForeignPaymentsTable extends Migration
     {
         Schema::create('foreign_payments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('payment_id');
             $table->string('payment_date');
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->integer('payment_by_id');
+            $table->foreign('payment_by_id')->references('id')->on('payment_bies')->onDelete('cascade');
             $table->string('payment_by_no');
             $table->integer('payment_type_id')->unsigned();
             $table->foreign('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade');

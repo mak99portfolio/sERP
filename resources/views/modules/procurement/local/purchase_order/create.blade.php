@@ -255,7 +255,7 @@
                                                 </thead>
                                             </table>
                                             <table class="table table-bordered table-hover">
-                                                <thead>
+                                                <thead ng-if="payment_terms.length >=1">
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Payment term</th>
@@ -268,10 +268,10 @@
                                                 <tbody>
                                                     <tr ng-repeat="terms in payment_terms">
                                                         <td><% $index+1 %></td>
-                                                        <td><% terms.type %></td>
-                                                        <td><% terms.date %></td>
-                                                        <td><% terms.description %></td>
-                                                        <td><% terms.amount %></td>
+                                                        <td><% terms.type %> <input name="payment_terms[<% $index %>][type]" type="hidden" value="<% terms.type %>"></td>
+                                                        <td><% terms.date %> <input name="payment_terms[<% $index %>][date]" type="hidden" value="<% terms.date %>"></td>
+                                                        <td><% terms.description %> <input name="payment_terms[<% $index %>][description]" type="hidden" value="<% terms.description %>"></td>
+                                                        <td><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
                                                         <td  class="text-center">
                                                             <button type="button" class="btn btn-xs btn-danger" ng-click="removeTerms($index)"><i class="fa fa-times"></i></button>
                                                         </td>
@@ -306,7 +306,7 @@
                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                         <button type="button" ng-click="add_condition()" class="btn btn-sm btn-default m-t-20"><strong>Add</strong></button>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="conditions.length >=1">
                                         <div class="table-responsive m-t-20">
                                             <table id="mytable1" class="table table-bordered table-hover">
                                                 <thead class="bg-primary">
@@ -383,7 +383,6 @@
             $scope.payment_terms.push(term);
             $scope.payment_terms_description = null;
             $scope.payment_terms_amount = null;
-            console.log('dfdsf', $scope.payment_terms);
         }
 
         $scope.removeTerms = function(index){
@@ -398,6 +397,7 @@
             condition.type = $scope.condition_type;
             condition.description = $scope.condition_description;
             $scope.conditions.push(condition);
+            $scope.condition_description = null;
         }
 
         $scope.removeCondition = function(index){

@@ -54,4 +54,10 @@ class ProformaInvoice extends Model
     public function purchase_orders(){
         return $this->belongsToMany('App\PurchaseOrder');
     }
+    public function amount()
+    {
+        return $this->items->sum(function ($item) {
+            return $item->quantity * $item->unit_price;
+        });
+    }
 }

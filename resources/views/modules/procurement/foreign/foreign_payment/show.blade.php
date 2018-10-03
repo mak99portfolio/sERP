@@ -30,7 +30,33 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive print-area font-12">
-                            
+                            <table class="table table-bordered">
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Payment Id:</strong> 125</td>
+                                        <td><strong>Payment Date:</strong> 125</td>
+                                        <td><strong>Select Vendor Type:</strong> 125</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Vendor Type:</strong> 125</td>
+                                        <td><strong>Vendor:</strong> 125</td>
+                                        <td><strong>Payment By:</strong> 123</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Payment By No:</strong> 125</td>
+                                        <td><strong>Payment Type:</strong> 125</td>
+                                        <td><strong>Due Amount:</strong> 123</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Payment Amount:</strong> 125</td>
+                                        <td><strong>Discount Amount:</strong> 125</td>
+                                        <td><strong>Vat(%):</strong> 123</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3"><strong>Note:</strong> 125</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                             <!--start approved by-->
                             <table id="print-footer" style="position: absolute; bottom: 20px; width: 100%; display: none;">
                                 <tr>

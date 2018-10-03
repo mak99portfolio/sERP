@@ -270,8 +270,7 @@
             var a = ['zero ','one ','two ','three ','four ', 'five ','six ','seven ','eight ','nine s'];
             var str = '';
             for(i=0; i<num.length; i++){
-                console.log(a[i]);
-                str += +a[num[i]];
+                str += a[num[i]];
             }
             return str;
         }

@@ -40,6 +40,7 @@
               <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
               <li><a href="{{route('move-type.index')}}">Move Type</a></li>
               <li><a href="{{route('modes-of-transport.index')}}">Modes Of Transport</a></li>
+              <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
             </ul>
           </li>
         </ul>

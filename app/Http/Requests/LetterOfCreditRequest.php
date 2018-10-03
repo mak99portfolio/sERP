@@ -26,22 +26,22 @@ class LetterOfCreditRequest extends FormRequest
         return [
             'letter_of_credit_no' => 'required',
             'letter_of_credit_date' => 'required',
-            'letter_of_credit_value' => 'required',
-            'vendor_id' => 'required',
-            'letter_of_credit_expire_date' => 'required',
-            'letter_of_credit_status' => 'required',
-            'letter_of_credit_shipment_date' => 'required',
-            'currency' => 'required',
-            'beneficiary_ac_no' => 'required',
-            'beneficiary_ac_name' => 'required',
-            'beneficiary_branch_name' => 'required',
-            'beneficiary_bank_name' => 'required',
-            'issue_ac_no' => 'required',
-            'issue_ac_name' => 'required',
-            'issue_branch_name' => 'required',
-            'issue_bank_name' => 'required',
-            'partial_shipment' => 'required',
-            'transhipment_information' => 'required'
+            // 'letter_of_credit_value' => 'required',
+            // 'vendor_id' => 'required',
+            // 'letter_of_credit_expire_date' => 'required',
+            // 'letter_of_credit_status' => 'required',
+            // 'letter_of_credit_shipment_date' => 'required',
+            // 'currency' => 'required',
+            // 'beneficiary_ac_no' => 'required',
+            // 'beneficiary_ac_name' => 'required',
+            // 'beneficiary_branch_name' => 'required',
+            // 'beneficiary_bank_name' => 'required',
+            // 'issue_ac_no' => 'required',
+            // 'issue_ac_name' => 'required',
+            // 'issue_branch_name' => 'required',
+            // 'issue_bank_name' => 'required',
+            // 'partial_shipment' => 'required',
+            // 'transhipment_information' => 'required'
         ];
     }
 }

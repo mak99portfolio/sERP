@@ -66,6 +66,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::resource('consignment-particular', 'ConsignmentParticularController');
     Route::resource('move-type', 'MoveTypeController');
     Route::resource('modes-of-transport', 'ModesOfTransportController');
+    Route::resource('payment-type', 'PaymentTypeController');
     //CI Tracking
     Route::get('/commercial-invoice-tracking', ['as' => 'commercial-invoice-tracking.index', 'uses' => 'CommercialInvoiceTrackingController@index']);
     Route::get('/commercial-invoice-tracking/create', ['as' => 'get-ci-with-tracking', 'uses' => 'CommercialInvoiceTrackingController@getCIWithTracking']);

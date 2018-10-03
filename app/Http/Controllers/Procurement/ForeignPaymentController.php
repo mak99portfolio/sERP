@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Procurement;
 
 use App\ForeignPayment;
 use Illuminate\Http\Request;
+use App\PaymentType;
+use App\Vendor;
+use App\VendorCategory;
 use App\Http\Controllers\controller;
-
+use Auth;
+use Session;
 class ForeignPaymentController extends Controller
 {
     /**
@@ -30,7 +34,9 @@ class ForeignPaymentController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        // your code here
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
+        $view->with('vendor_category_list', VendorCategory::pluck('name','id')->prepend('-- Select Vendor --', ''));
+        $view->with('payment_type_list', PaymentType::pluck('name','id')->prepend('-- Select Payment Type --', ''));
         return $view;
     }
 
@@ -42,7 +48,13 @@ class ForeignPaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request->input());
+        $payment_type = new ForeignPayment;
+        $payment_type->fill($request->input());
+        $payment_type->creator_user_id = Auth::id();
+        $payment_type->save();
+        Session::put('alert-success', 'Payment created successfully');
+        return redirect()->route('foreign-payment.index'); 
     }
 
     /**

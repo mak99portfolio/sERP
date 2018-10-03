@@ -101,21 +101,22 @@
                                         <th>Quantity</th>
                                         <th>Delete</th>
                                     </tr>
-                                    <tr v-for="product in products">
+                                    <tr v-for="(product, index) in products">
   										                <td v-html='product.id'></td>
   										                <td v-html='product.name'></td>
   										                <td v-html='product.stock'></td>
-  										              <td>
+  										                <td>
 	                                        <div class="form-group">
-	                                            <input v-bind:name="'products['+product.id+']'" class="form-control input-sm" type="number" v-model='product.quantity' min="0">
+                                            <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
+                                            <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
 	                                        </div>
-  										</td>
+  										                </td>
                                     	<td>
-	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
-	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
-	                                		</button>
+  	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
+  	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+  	                                		</button>
                                     	</td>
-									</tr>
+									                   </tr>
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}

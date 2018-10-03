@@ -23,7 +23,7 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-						{{ BootForm::open(['model'=>$issue, /*'store'=>'issue.store',*/ 'update'=>'issue.update']) }}
+						              {{ BootForm::open(['model'=>$issue, /*'store'=>'issue.store',*/ 'update'=>'issue.update']) }}
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('inventory_requisition_no', 'Requisition No', $issue->requisition->inventory_requisition_no, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
@@ -44,7 +44,7 @@
                                     {{ BootForm::select('product_pattern_id', 'Item Pattern', $product_patterns, $issue->requisition->product_pattern_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date', 'Select Date', $carbon->parse($issue->requisition->date)->format('d-m-Y'), ['class'=>'form-control input-sm datepicker', 'disabled'=>'true']) }}
+                                    {{ BootForm::text('date', 'Date', $carbon->parse($issue->requisition->date)->format('d-m-Y'), ['class'=>'form-control input-sm datepicker', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('forward_working_unit_id', 'Forward To', $working_units->prepend('--select Working Unit--',''), null, ['class'=>'form-control input-sm']) }}
@@ -92,36 +92,45 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
+                                        <button type="button" class="btn btn-success btn-sm m-t-25" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>id</th>
+                                        <th style="width: 125px;">id</th>
                                         <th>Item name</th>
-                                        <th>Stock</th>
-                                        <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th style="width: 150px;">Stock</th>
+                                        <th style="width: 150px;">Quantity</th>
+                                        <th style="width: 150px;">Batch No</th>
+                                        <th style="width: 125px;">Delete</th>
                                     </tr>
-                                    <tr v-for="product in products">
-  										<td v-html='product.id'></td>
-  										<td v-html='product.name'></td>
-  										<td v-html='product.stock'></td>
-  										<td>
-	                                        <div class="form-group">
-	                                            <input v-bind:name="'products['+product.id+']'" class="form-control input-sm" type="number" v-model='product.quantity' min="0">
-	                                        </div>
-  										</td>
-                                    	<td>
-	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
-	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
-	                                		</button>
-                                    	</td>
-									</tr>
+                                    <tr v-for="(product, index) in products">
+  										                  <td v-html='product.id'></td>
+  										                  <td v-html='product.name'></td>
+  										                  <td v-html='product.stock'></td>
+  										                  <td>
+                                          <div class="form-group">
+                                              <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
+                                              <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
+                                          </div>
+  										                  </td>
+                                        <td>
+                                          <div class="form-group">
+                                              <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="hidden" v-bind:value='product.expiration_date'/>
+                                              <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' v-on:change="get_batch_stock(index)" min="0"/>
+                                          </div>
+                                        </td>
+                                      	<td>
+  	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
+  	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+  	                                		</button>
+                                      	</td>
+									                   </tr>
                                 </table>
                             </div>
+
                             </div> {{-- End of vue app --}}
 
                             @if(!$issue->initial_approver()->exists())
@@ -160,6 +169,7 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
+
 <script>
 $(function(){
 	var vue=new Vue({
@@ -167,7 +177,8 @@ $(function(){
   		data:{
         config:{
           base_url: "{{ url('inventory/get-product-info/') }}",
-          old_data_url: "{{ url('inventory/vue-old-products') }}"
+          old_data_url: "{{ url('inventory/vue-old-products') }}",
+          batch_stock_url: "{{ url('inventory/get-batch-stock') }}",
         },
   			products:[/*
   				{id:1, name:'First Table', stock:10, quantity:8},
@@ -258,7 +269,34 @@ $(function(){
               loading.close();
 
             });
-         }
+         },
+         get_batch_stock:function(index){
+
+          var vm=this;
+          var loading = $.loading();
+          loading.open(3000);
+
+          var requested_depot_id=$('#requested_depot_id').val();
+          var product_status_id=$('#product_status_id').val();
+          var product_pattern_id=$('#product_pattern_id').val();
+          var product=vm.products[index].id;
+          var slug=vm.products[index].batch_no;
+
+          if(!slug) slug='reset';
+
+          axios.get(this.config.batch_stock_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_pattern_id + '/' + product + '/' +slug).then(function(response){
+
+            vm.products[index].stock=response.data;
+              
+            loading.close();
+
+          }).catch(function(){
+
+            loading.close();
+
+          });
+
+         }//End of method get_batch_stock
   		},
       watch:{
         remote_data:function(){
@@ -269,6 +307,14 @@ $(function(){
         this.load_old();
       }
 	})//End of vue js
+
+  $('.datepicker').daterangepicker({
+      singleDatePicker: true,
+      singleClasses: "picker_3",
+      locale: {
+          format: 'DD-MM-YYYY'
+      }
+  });
 
 });
 </script>

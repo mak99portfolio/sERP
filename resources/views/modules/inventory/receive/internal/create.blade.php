@@ -144,6 +144,7 @@
                                         <th>Item name</th>
                                         <th>Requisition Quantity</th>
                                         <th>Issue Quantity</th>
+                                        <th>Batch No</th>
                                         <th>Return Quantity</th>
                                         <th>Return Status</th>
                                         <th>Delete</th>
@@ -157,6 +158,12 @@
                                             <div class="form-group">
                                                 <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
                                                 <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="hidden" v-bind:value='product.expiration_date'/>
+                                                <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' min="0" readonly/>
                                             </div>
                                         </td>
                                         <td>

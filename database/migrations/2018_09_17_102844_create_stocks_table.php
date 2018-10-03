@@ -22,6 +22,8 @@ class CreateStocksTable extends Migration{
             $table->integer('inventory_issue_id')->unsigned()->nullable();
             $table->integer('issue_quantity')->unsigned()->default(0);
             $table->integer('allocated_quantity')->unsigned()->default(0);
+            $table->string('batch_no')->nullable();
+            $table->date('expiration_date')->nullable();
             $table->text('remarks')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->integer('updator_user_id')->unsigned()->nullable();

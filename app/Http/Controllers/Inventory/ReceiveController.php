@@ -145,6 +145,7 @@ class ReceiveController extends Controller{
 
             return response()->json([
                 'commercial_invoice'=>$commercial_invoice,
+                'letter_of_credit_no'=>$commercial_invoice->LetterOfCredit->letter_of_credit_no,
                 'products'=>$products
             ]);
 
@@ -197,7 +198,7 @@ class ReceiveController extends Controller{
 
             foreach($items as $item){
 
-                $return_quantity=0;
+                $return_quantity='';
                 $return_status_id=1;
 
                 if($requisition->issue->return_items()->exists()){
@@ -219,7 +220,9 @@ class ReceiveController extends Controller{
                     'quantity'=>$item->requested_quantity,
                     'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity,
                     'return_quantity'=>$return_quantity,
-                    'return_status_id'=>$return_status_id
+                    'return_status_id'=>$return_status_id,
+                    'batch_no'=>$item->batch_no,
+                    'expiration_date'=>$item->expiration_date
                 ]);
 
                 

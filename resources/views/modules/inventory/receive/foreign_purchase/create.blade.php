@@ -70,7 +70,7 @@
                                             </div>
                                             
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('letter_of_credit_id', 'LC No', null, ['class'=>'form-control input-sm', 'readonly', "v-model"=>"commercial_invoice.letter_of_credit_id"]) }}
+                                                {{ BootForm::text('letter_of_credit_no', 'LC No', null, ['class'=>'form-control input-sm', 'readonly', "v-model"=>"letter_of_credit_no"]) }}
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm select2']) }}
@@ -156,21 +156,14 @@
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
-
-
-
-
-
-
-
-                                        <div class="col-md-12">
-                                            <br />
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                {!! btnSubmitGroup() !!}
-                                            </div>
+                                    <div class="col-md-12">
+                                        <br />
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            {!! btnSubmitGroup() !!}
                                         </div>
-                                        {{ BootForm::close() }}
+                                    </div>
+                                    {{ BootForm::close() }}
                                     </form>
                                 </div>
                             </div>
@@ -212,7 +205,7 @@ $(function(){
             remote_data:null,
             commercial_invoice:{
                 commercial_invoice_no:'',
-                letter_of_credit_id:''
+                letter_of_credit_no:''
             }
         },
         methods:{
@@ -227,7 +220,7 @@ $(function(){
                 vm.products=[];
                 vm.commercial_invoice={
                     commercial_invoice_no:'',
-                    letter_of_credit_id:''
+                    letter_of_credit_no:''
                 }
 
                 if(slug){
@@ -235,6 +228,7 @@ $(function(){
                     axios.get(this.config.get_commercial_invoice_url + '/' + slug).then(function(response){
 
                         vm.commercial_invoice=response.data.commercial_invoice;
+                        vm.letter_of_credit_no=response.data.letter_of_credit_no;
                         vm.products=response.data.products;                
                         loading.close();
 

@@ -74,7 +74,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 });
 
 //Inventory
-Route::middleware(['auth', 'hasPermission:access_to_inventory'])->namespace('Inventory')->prefix('inventory')->group(function(){
+Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'])->namespace('Inventory')->prefix('inventory')->group(function(){
 
     Route::resource('requisition', 'RequisitionController');
     Route::resource('issue', 'IssueController');
@@ -113,6 +113,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     Route::get('get-product-info/{working_unit}/{product_status}/{product_pattern}/{slug}', 'RequisitionController@get_product_info');
     Route::get('get-product-info-for-adjustment/{working_unit}/{slug}', 'RequisitionController@get_product_info_for_adjustment');
     Route::get('vue-old-products/{working_unit}/{product_status}/{product_pattern}', 'RequisitionController@vue_old_products');
+    Route::get('get-batch-stock/{working_unit}/{product_status}/{product_pattern}/{product}/{slug}', 'RequisitionController@get_batch_stock');
 
     //routes for receive product info
     Route::prefix('api')->group(function(){

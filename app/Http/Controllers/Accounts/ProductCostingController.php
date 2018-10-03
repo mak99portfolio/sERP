@@ -15,7 +15,8 @@ class ProductCostingController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        $view->with('bill_of_lading_list', BillOfLading::all());
+        $view->with('bill_of_lading_list', BillOfLading::doesntHave('product_costing')->get());
+        $view->with('product_costing_list', ProductCosting::all());
         return $view;
     }
 
@@ -28,7 +29,13 @@ class ProductCostingController extends Controller
 
     public function store(Request $request)
     {
-        //
+        // dd($request->input());
+        $productCosting = new ProductCosting;
+        $productCosting->fill($request->input());
+        $productCosting->creator_user_id = Auth::id();
+        $productCosting->save();
+        Session::put('alert-success', 'Product Costing saved successfully');
+        return redirect()->route('product-costing.index');
     }
 
     public function show(ProductCosting $productCosting)
@@ -40,8 +47,13 @@ class ProductCostingController extends Controller
 
     public function edit($bill_of_lading_id)
     {
+        $productCosting = ProductCosting::where('bill_of_lading_id', $bill_of_lading_id)->first();
+        if($productCosting){
+            Session::put('alert-success', 'Already costing completed for this BL');
+            return redirect()->route('product-costing.index');
+        }
         $view = view($this->view_root . 'edit');
-        $view->with('bill_of_lading', BillOfLading::find($bill_of_lading_id));
+        $view->with('bill_of_lading', BillOfLading::findOrFail($bill_of_lading_id));
         return $view;
     }
 

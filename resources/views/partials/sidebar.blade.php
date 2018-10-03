@@ -122,12 +122,12 @@
             <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
                 <li><a href="#">Foreign Requisition</a></li>
-                <li><a href="#">Purchase Order</a></li>
-                <li><a href="#">Proforma Invoice</a></li>
+                <li><a href="{{ route('report-foreign-purchase-order') }}">Purchase Order</a></li>
+                <li><a href="{{ route('report-proforma-invoice') }}">Proforma Invoice</a></li>
                 <li><a href="#">LC Details</a></li>
                 <li><a href="#">Cost Sheet</a></li>
                 <li><a href="#">Insurance Cover Note</a></li>
-                <li><a href="#">Commercial Invoice</a></li>
+                <li><a href="{{ route('report-commercial-invoice') }}">Commercial Invoice</a></li>
                 <li><a href="#">CI Tracking</a></li>
                 <li><a href="#">Packing List</a></li>
                 <li><a href="#">Bill of Lading</a></li>

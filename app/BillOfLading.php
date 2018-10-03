@@ -81,5 +81,11 @@ class BillOfLading extends Model
         return round($this->letter_of_credit->cost_sheet->cost_sheet_particular->get_total_amount() 
         * ($this->amount()/ $this->letter_of_credit->amount()),2);
     }
+    public function per_usd_freight(){
+        return $this->commercial_invoices->sum('freight')/$this->amount();
+    }
+    public function product_costing(){
+        return $this->hasOne('App\ProductCosting');
+    }
 
 }

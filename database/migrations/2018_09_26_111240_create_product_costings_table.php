@@ -17,12 +17,14 @@ class CreateProductCostingsTable extends Migration
             $table->increments('id');
             $table->integer('bill_of_lading_id');
             $table->foreign('bill_of_lading_id')->references('id')->on('bill_of_ladings')->onDelete('cascade');
-            $table->double('insurance');
-            $table->double('lc_charge');
             $table->double('retirement');
             $table->double('remittance');
             $table->double('dh_charge');
             $table->double('transport_charge');
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('updator_user_id')->unsigned()->nullable()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

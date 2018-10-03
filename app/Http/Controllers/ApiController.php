@@ -303,5 +303,8 @@ class ApiController extends Controller
         $data = VendorBank::find($id);
         return response()->json($data);
     }
+    public function getDueAmount($id,$no){
+        return response()->json($no);
+    }
 
 }

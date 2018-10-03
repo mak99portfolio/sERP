@@ -36,16 +36,16 @@
                                 {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list , null,['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('payment_by_id', 'Payment By', [''=>'-- Select Payment By --','1'=>'Purchase Order','2'=>'Proforma Invoice','3'=>'Letter Of Credit','4'=>'Insurance Cover Note','5'=>'Commercial Invoice','6'=>'Bill Of Lading'] , null,['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('payment_by_id', 'Payment By', $payment_by_list , null,['class'=>'form-control input-sm select2','ng-model'=>'payment_by_id']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                 {{ BootForm::text('payment_by_no','Selected Payment By No', null, ['class'=>'form-control input-sm']) }}
+                                 {{ BootForm::text('payment_by_no','Selected Payment By No', null, ['class'=>'form-control input-sm','ng-model'=>"payment_by_no", 'ng-change'=>'getDue()']) }}
                              </div>
                              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                  {{ BootForm::select('payment_type_id', 'Payment Type',$payment_type_list , null,['class'=>'form-control input-sm select2']) }}
                                 </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::number('due_amount','Due Amount', null, ['class'=>'form-control input-sm','readonly']) }}
+                                {{ BootForm::number('due_amount','Due Amount', null, ['class'=>'form-control input-sm', 'ng-model'=>'due_amount','readonly']) }}
                              </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::number('payment_amount','Payment Amount', null, ['class'=>'form-control input-sm']) }}
@@ -315,13 +315,26 @@
 
 @section('script')
 <script>
-var app = angular.module('myApp', []);
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
 
-app.controller('myCtrl', function($scope) {
-    $scope.color = 'blue';
-    $scope.isShown = function(color) {
-        return color === $scope.color;
-    };
-});
+        $scope.getDue = function () {
+
+            $scope.getDueAmount($scope.payment_by_id, $scope.payment_by_no);
+        }
+        
+        $scope.getDueAmount = function(id, no){
+            let url = "{{URL::to('get-due-amount')}}/" + id + "/" + no;
+            $http.get(url)
+            .then(function(response) {
+                 $scope.due_amount = parseInt(response.data);
+                 console.log($scope.due_amount);
+              });
+        }
+        
+    });
 </script>
 @endsection

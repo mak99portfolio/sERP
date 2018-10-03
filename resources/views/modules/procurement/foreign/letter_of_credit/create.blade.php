@@ -181,9 +181,9 @@
                                                     <th>UOM</th>
                                                     <th>Quantity</th>
                                                     <th>Unit Price</th>
-                                                    <th>D.Rate</th>
-                                                    <th>Discount</th>
-                                                    <th>Vat(%)</th>
+                                                    {{-- <th>D.Rate</th> --}}
+                                                    {{-- <th>Discount</th> --}}
+                                                    {{-- <th>Vat(%)</th> --}}
                                                     <th>Amount (USD)</th>
                                                 </tr>
 
@@ -200,10 +200,10 @@
                                                 <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                 <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index] = number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]" required></td>
                                                 <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index] = number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="d_rate[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][d_rate]" required></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="discount[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][discount]" required></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="vat[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][vat]" required></td>
-                                                <td class="text-right"><% total[$index] = (((quantity[$index]*unit_price[$index])+d_rate[$index])-discount[$index]) * (1 + vat[$index]/100)|number:2  %></td>
+                                                {{-- <td><input ng-disabled="!checked[$index]" ng-model="d_rate[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][d_rate]" required></td> --}}
+                                                {{-- <td><input ng-disabled="!checked[$index]" ng-model="discount[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][discount]" required></td> --}}
+                                                {{-- <td><input ng-disabled="!checked[$index]" ng-model="vat[$index]"  class="form-control input-sm" type="number" name="items[<% $index %>][vat]" required></td> --}}
+                                                <td class="text-right"><% total[$index] = quantity[$index]*unit_price[$index]|number:2  %></td>
                                             </tr>
                                         </tbody>
                                         <tfoot class="font-bold">
@@ -220,7 +220,7 @@
                                                     <td colspan="2"></td>
                                                 </tr> --}}
                                                 <tr>
-                                                    <td colspan="9" class="text-right"><strong>Grand Total</strong></td>
+                                                    <td colspan="6" class="text-right"><strong>Grand Total</strong></td>
 
                                                     <td colspan="1" class="text-right"><strong><% grandSum(total)|number:2 %></strong></td>
                                                 </tr>

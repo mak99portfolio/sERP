@@ -28,7 +28,7 @@
                                         <td class="p-5"><strong>June 15,2018</strong></td>
                                     </tr>
                                     <tr>
-                                        <td>Ref No : ME/TYRE/07/2017</td>
+                                        <td class="p-10">Ref No : ME/TYRE/07/2017</td>
                                     </tr>
                                     <tr>
                                         <td>MRF Limited</td>
@@ -43,13 +43,13 @@
                                         <td>Attn:Mr Rohit Kr. Mandal (RM - Bangladesh)</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Subect: <u>MRP Tyre Purchases Order For July 2017</u></strong></td>
+                                        <td class="p-10"><strong>Subect: <u>MRP Tyre Purchases Order For July 2017</u></strong></td>
                                     </tr>
                                     <tr>
-                                        <td>Dear Sir,</td>
+                                        <td class="p-t-8">Dear Sir,</td>
                                     </tr>
                                     <tr>
-                                        <td>We are pleased to submit our purchases order fo July 2017 as below:7</td>
+                                        <td class="p-b-8">We are pleased to submit our purchases order fo July 2017 as below:7</td>
                                     </tr>
                                 </tbody>
                             </table>

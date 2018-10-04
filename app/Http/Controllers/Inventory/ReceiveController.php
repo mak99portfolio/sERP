@@ -144,7 +144,7 @@ class ReceiveController extends Controller{
             }
 
             return response()->json([
-                'commercial_invoice'=>$commercial_invoice,
+                'commercial_invoice_no'=>$commercial_invoice->commercial_invoice_no,
                 'letter_of_credit_no'=>$commercial_invoice->LetterOfCredit->letter_of_credit_no,
                 'products'=>$products
             ]);

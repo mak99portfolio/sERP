@@ -59,9 +59,9 @@
                                                     <label>CI No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice.commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice.commercial_invoice_no)"]) }}
+                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice_no)"]) }}
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(commercial_invoice.commercial_invoice_no)">
+                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(commercial_invoice_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
@@ -135,6 +135,8 @@
                                         <th>HS Code</th>
                                         <th>Item name</th>
                                         <th>Quantity</th>
+                                        <th>Batch No</th>
+                                        <th>Expiration Date</th>
                                         <th>Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
@@ -145,6 +147,16 @@
                                             <div class="form-group">
                                                 <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
                                                 <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="date" v-model='product.expiration_date' min="0"/>
                                             </div>
                                         </td>
                                         <td>
@@ -203,10 +215,8 @@ $(function(){
                 quantity:''
             },
             remote_data:null,
-            commercial_invoice:{
-                commercial_invoice_no:'',
-                letter_of_credit_no:''
-            }
+            commercial_invoice_no:'',
+            letter_of_credit_no:''
         },
         methods:{
 
@@ -218,16 +228,14 @@ $(function(){
 
                 //reset models
                 vm.products=[];
-                vm.commercial_invoice={
-                    commercial_invoice_no:'',
-                    letter_of_credit_no:''
-                }
+                vm.commercial_invoice_no='';
+                vm.letter_of_credit_no='';
 
                 if(slug){
 
                     axios.get(this.config.get_commercial_invoice_url + '/' + slug).then(function(response){
 
-                        vm.commercial_invoice=response.data.commercial_invoice;
+                        vm.commercial_invoice_no=response.data.commercial_invoice_no;
                         vm.letter_of_credit_no=response.data.letter_of_credit_no;
                         vm.products=response.data.products;                
                         loading.close();
@@ -307,7 +315,8 @@ $(function(){
 
                 axios.get(this.config.old_inputs_url).then(function(response){
 
-                    vm.commercial_invoice=response.data;                
+                    vm.commercial_invoice_no=response.data.commercial_invoice_no;
+                    vm.letter_of_credit_no=response.data.letter_of_credit_no;
                     loading.close();
 
                 }).catch(function(){

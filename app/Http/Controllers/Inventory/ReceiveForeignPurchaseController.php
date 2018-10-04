@@ -44,7 +44,7 @@ class ReceiveForeignPurchaseController extends Controller{
 
         \Session::put('vue_inputs', [
             'commercial_invoice_no'=>$request->get('commercial_invoice_no'),
-            'letter_of_credit_id'=>$request->get('letter_of_credit_id'),
+            'letter_of_credit_no'=>$request->get('letter_of_credit_no'),
         ]);
 
         \Session::put('vue_products', $request->get('products'));
@@ -87,6 +87,8 @@ class ReceiveForeignPurchaseController extends Controller{
         $products=$request->get('products');
 
         foreach($products as $row){
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
             
             \App\Stock::create([
                 'working_unit_id'=>$inventory_receive->working_unit_id,
@@ -95,6 +97,8 @@ class ReceiveForeignPurchaseController extends Controller{
                 'product_pattern_id'=>$inventory_receive->product_pattern_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['quantity'],
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
                 'remarks'=>$inventory_receive->remarks,
                 'creator_user_id'=>\Auth::id()
             ]);
@@ -141,7 +145,9 @@ class ReceiveForeignPurchaseController extends Controller{
 
             array_push($products, [
                 'id'=>$row->product_id,
-                'quantity'=>$row->receive_quantity
+                'quantity'=>$row->receive_quantity,
+                'batch_no'=>$row->batch_no,
+                'expiration_date'=>$row->expiration_date
             ]);
 
         }
@@ -154,7 +160,7 @@ class ReceiveForeignPurchaseController extends Controller{
 
         \Session::put('vue_inputs', [
             'commercial_invoice_no'=>$commercial_invoice->commercial_invoice_no,
-            'letter_of_credit_id'=>$commercial_invoice->letter_of_credit_id
+            'letter_of_credit_no'=>$commercial_invoice->LetterOfCredit->letter_of_credit_no
         ]);
         
         return view($this->path('create'), $data);
@@ -168,7 +174,7 @@ class ReceiveForeignPurchaseController extends Controller{
 
         \Session::put('vue_inputs', [
             'commercial_invoice_no'=>$request->get('commercial_invoice_no'),
-            'letter_of_credit_id'=>$request->get('letter_of_credit_id'),
+            'letter_of_credit_no'=>$request->get('letter_of_credit_no'),
         ]);
 
         \Session::put('vue_products', $request->get('products'));
@@ -212,6 +218,8 @@ class ReceiveForeignPurchaseController extends Controller{
         $products=$request->get('products');
 
         foreach($products as $row){
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::createFromFormat('m/d/Y', $row['expiration_date']);
             
             \App\Stock::create([
                 'working_unit_id'=>$inventory_receive->working_unit_id,
@@ -220,6 +228,8 @@ class ReceiveForeignPurchaseController extends Controller{
                 'product_pattern_id'=>$inventory_receive->product_pattern_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['quantity'],
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
                 'remarks'=>$inventory_receive->remarks,
                 'creator_user_id'=>\Auth::id()
             ]);

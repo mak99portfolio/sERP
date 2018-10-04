@@ -294,6 +294,7 @@
                 }
                 return sum;
             }
+            $scope.amount = null;
         }
 
         $scope.remove = function(index){

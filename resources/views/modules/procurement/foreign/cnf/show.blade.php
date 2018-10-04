@@ -91,14 +91,13 @@
                                             <td><strong>Total Days:</strong> {{ $cnf->total_day }} </td>
                                         </tr>
                                         <tr>
-                                            <td><strong>C&F Value:</strong> {{ $cnf->cnf_value }} </td>
-                                            <td><strong>USD Amount:</strong> {{ number_format($cnf->usd_amount, 2) }} </td>
+                                            <td><strong>CNF Agent:</strong> {{ $cnf->cnf_agent->name }} </td>
+                                            <td><strong>C&F Value:</strong> {{ number_format($cnf->cnf_value, 2) }}</td>
                                             <td><strong>Exchange Rate:</strong> {{ $cnf->exchange_rate }} </td>
                                         </tr>
                                         <tr>
                                             <td><strong>BDT Amount:</strong> {{ number_format($cnf->amount_in_bdt(), 2) }} </td>
-                                            <td><strong>CNF Agent:</strong> {{ $cnf->cnf_agent->name }} </td>
-                                            <td><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }} </td>
+                                            <td colspan="2"><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -157,7 +156,7 @@
                                     </table>
                                     <table class="table table-bordered">
                                         <tbody>
-                                        <td><strong>Amount In Word:</strong> {{ $cnf->amount_in_word() }}</td>
+                                        <td><strong>Amount In Word:</strong> {{ number_to_word($cnf->amount()) }}</td>
                                         </tbody>
                                         <tbody>
                                         <td><strong>Notes: </strong>{{ $cnf->note }}</td>

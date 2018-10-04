@@ -162,7 +162,7 @@ function stock_balance(\App\WorkingUnit $working_unit, \App\Product $product, ar
     	->where('product_id', $product->id)
     	->where($filters)
     	->sum('allocated_quantity');
-    	
+
     	return $receive_quantity - $issue_quantity - $allocated_quantity;
 
 	}
@@ -179,8 +179,8 @@ function total_stock_balance(\App\Product $product){
 }
 function number_to_word($number)
 {
-	$no = round($number);
-	$point = round($number - $no, 2) * 100;
+	$no = floor($number);
+    $point =  round(($number-$no)*100);
 	$hundred = null;
 	$digits_1 = strlen($no);
 	$i = 0;
@@ -221,7 +221,7 @@ function number_to_word($number)
 	"and " . $words[$point / 10] . " " .
 	$words[$point = $point % 10] : '';
 	if ($result) {
-		if ($point) {
+		if ($points) {
 			return $result . "Taka  " . $points . " Paisa";
 		}
 		return $result . "Taka";

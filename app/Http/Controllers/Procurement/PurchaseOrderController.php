@@ -62,7 +62,8 @@ class PurchaseOrderController extends Controller
         $purchase_order = new PurchaseOrder;
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();
-        $purchase_order->purchase_order_no = time();
+        // $purchase_order->purchase_order_no = time();
+        $purchase_order->generate_purchase_order_number();
         $purchase_order->save();
         $requisitions = Array();
 
@@ -79,7 +80,7 @@ class PurchaseOrderController extends Controller
         }
         $purchase_order->items()->saveMany($items);
 
-        Session::put('alert-success', 'Purchase order created successfully');
+        Session::put('alert-success', 'Purchase order created successfully'. '<br><strong>Requisition No: ' . $purchase_order->purchase_order_no . '</strong>');
         return redirect()->route('purchase-order.index');
     }
 

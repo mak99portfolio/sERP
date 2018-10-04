@@ -17,7 +17,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">BL No : {{ $cnf->bill_of_lading->bill_of_lading_no }}</h2></div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">CNF No : {{ $cnf->cnf_no }}</h2></div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                         </div>
@@ -91,14 +91,13 @@
                                             <td><strong>Total Days:</strong> {{ $cnf->total_day }} </td>
                                         </tr>
                                         <tr>
-                                            <td><strong>C&F Value:</strong> {{ $cnf->cnf_value }} </td>
-                                            <td><strong>USD Amount:</strong> {{ number_format($cnf->usd_amount, 2) }} </td>
+                                            <td><strong>CNF Agent:</strong> {{ $cnf->cnf_agent->name }} </td>
+                                            <td><strong>C&F Value:</strong> {{ number_format($cnf->cnf_value, 2) }}</td>
                                             <td><strong>Exchange Rate:</strong> {{ $cnf->exchange_rate }} </td>
                                         </tr>
                                         <tr>
                                             <td><strong>BDT Amount:</strong> {{ number_format($cnf->amount_in_bdt(), 2) }} </td>
-                                            <td><strong>CNF Agent:</strong> {{ $cnf->cnf_agent->name }} </td>
-                                            <td><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }} </td>
+                                            <td colspan="2"><strong>Duty Payment Date:</strong> {{ $cnf->duty_payment_date }} </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -157,7 +156,7 @@
                                     </table>
                                     <table class="table table-bordered">
                                         <tbody>
-                                        <td><strong>Amount In Word:</strong> {{ $cnf->amount_in_word() }}</td>
+                                        <td><strong>Amount In Word:</strong> {{ number_to_word($cnf->amount()) }}</td>
                                         </tbody>
                                         <tbody>
                                         <td><strong>Notes: </strong>{{ $cnf->note }}</td>

@@ -95,10 +95,10 @@
                                     {{ BootForm::number('total_day','Total Days', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('cnf_value','C&F Value', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::number('usd_amount','USD Amount', null, ['class'=>'form-control input-sm', 'ng-model'=>'usd_amount']) }}
+                                    {{ BootForm::number('cnf_value','C&F Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'cnf_value']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate']) }}
@@ -108,9 +108,6 @@
                                         <label>BDT Amount</label>
                                         <input type="number" class="form-control input-sm" name="bdt_amount" ng-model="bdt_amount" value="<% amount_in_bdt() %>" readonly>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
@@ -163,7 +160,7 @@
                                                         </tr>
                                                         <tr>
                                                             <th class="text-right" colspan="2">Voucher Tk</th>
-                                                            <td>
+                                                            <td colspan="2">
                                                                 <% getVoucherAmount() %>
                                                             </td>
                                                         </tr>
@@ -260,7 +257,7 @@
 
         $scope.amount_in_bdt = function () {
                 var total = 0;
-                total = $scope.usd_amount * $scope.exchange_rate;
+                total = $scope.cnf_value * $scope.exchange_rate;
                 $scope.bdt_amount = total;
                 return $scope.bdt_amount;
             }

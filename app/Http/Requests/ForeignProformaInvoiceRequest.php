@@ -38,7 +38,7 @@ class ForeignProformaInvoiceRequest extends FormRequest
             'pre_carriage_by'=>'required',
             'customer_code'=>'required',
             'consignee'=>'required',
-            'beneficiary_bank_info'=>'required'
+            // 'beneficiary_bank_info'=>'required'
         ];
     }
 }

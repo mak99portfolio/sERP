@@ -83,9 +83,9 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('beneficiary_bank_info','Beneficiary Bank Info', null, ['class'=>'form-control input-sm','required']) }}
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row"> <br />
                                 <div class="col-sm-6 col-sm-offset-3">

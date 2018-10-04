@@ -23,7 +23,6 @@ class CreateCnfsTable extends Migration
             $table->string('delivery_date');
             $table->string('job_no');
             $table->double('cnf_value');
-            $table->double('usd_amount');
             $table->integer('exchange_rate');
             $table->double('bdt_amount');
             $table->integer('total_day');

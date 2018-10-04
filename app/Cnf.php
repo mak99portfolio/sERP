@@ -22,7 +22,6 @@ class Cnf extends Model
         'delivery_date',
         'job_no',
         'cnf_value',
-        'usd_amount',
         'exchange_rate',
         'bdt_amount',
         'total_day',
@@ -59,7 +58,7 @@ class Cnf extends Model
     }
     public function amount_in_bdt()
     {
-        return $this->usd_amount * $this->exchange_rate;
+        return $this->cnf_value * $this->exchange_rate;
     }
 
     public function amount(){

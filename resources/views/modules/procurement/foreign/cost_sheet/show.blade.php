@@ -75,74 +75,74 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Cost Particulars</th>
-                                        <th>Percent (%)</th>
-                                        <th>Amount</th>
-                                        <th>Amt. in round Figure</th>
+                                        <th class="text-center">Percent (%)</th>
+                                        <th class="text-right">Amount</th>
+                                        <th class="text-right">Amt. in round Figure</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td><strong></strong>1</td>
                                         <td><strong>LC Margin </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_margin }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_margin, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_margin, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_margin }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_margin, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_margin, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>2</td>
                                         <td><strong>LC Commision </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_commision }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_commision, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_commision, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_commision }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_commision, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_commision, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>3</td>
                                         <td><strong>VAT </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_vat }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_vat, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_vat, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_vat }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_vat, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_vat, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>4</td>
                                         <td><strong>SWIFT </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_swift }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_swift, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_swift, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_swift }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_swift, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_swift, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>5</td>
                                         <td><strong>Stamp Charge </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_stamp_charge }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_stamp_charge, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_stamp_charge, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_stamp_charge }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_stamp_charge, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_stamp_charge, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>6</td>
                                         <td><strong>LCAF Issue Charge </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lcaf_issue_charge }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lcaf_issue_charge, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lcaf_issue_charge, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lcaf_issue_charge }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lcaf_issue_charge, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lcaf_issue_charge, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>7</td>
                                         <td><strong>IMP </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_imp }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_imp, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_imp, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_imp }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_imp, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_imp, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>8</td>
                                         <td><strong>LC Application Form </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_application_form }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_application_form, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_application_form, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_lc_application_form }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_lc_application_form, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_lc_application_form, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td><strong></strong>9</td>
                                         <td><strong>Other Charge(If any) </strong></td>
-                                        <td><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_others }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_others, 2) }}</td>
-                                        <td><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_others, 2) }}</td>
+                                        <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_others }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_others, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_others, 2) }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"><strong>Total </strong></td>

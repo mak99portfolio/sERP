@@ -51,7 +51,6 @@ class CnfController extends Controller
             'delivery_date' => 'required',
             'job_no' => 'required',
             'cnf_value' => 'required',
-            'usd_amount' => 'required',
             'exchange_rate' => 'required',
             'bdt_amount' => 'required',
             'total_day' => 'required',

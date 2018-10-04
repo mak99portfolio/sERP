@@ -28,12 +28,14 @@ class PurchaseOrderController extends Controller
 
     public function create()
     {
+        
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', ForeignRequisition::all());
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
         $view->with('city_list', City::pluck('name','id')->prepend('-- Select City --', ''));
+        $view->with('last_purchase_order',PurchaseOrder::orderBy('id', 'desc')->first());
         return $view;
     }
 

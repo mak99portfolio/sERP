@@ -33,13 +33,13 @@ class CommercialInvoice extends Model {
     function tracking() {
         return $this->hasOne('App\CommercialInvoiceTracking');
     }
-    function packingList() {
+    function packing_list() {
         return $this->hasOne('App\PackingList');
     }
-    function LetterOfCredit() {
+    function letter_of_credit() {
         return $this->belongsTo('App\LetterOfCredit');
     }
-    function BillOfLading() {
+    function bill_of_lading() {
         return $this->belongsTo('App\BillOfLading', 'bill_of_lading_no', 'bill_of_lading_no');
     }
     function loading_port() {

@@ -239,7 +239,7 @@ class ApiController extends Controller
     {
         $ci = CommercialInvoice::find($id);
         $ci_items = $ci->items;
-        $pi_numbers = $ci->LetterOfCredit->proforma_invoices;
+        $pi_numbers = $ci->letter_of_credit->proforma_invoices;
         foreach ($ci_items as $ci_item) {
             $items[] = [
                 'product_id' => $ci_item->product_id,
@@ -258,12 +258,12 @@ class ApiController extends Controller
         $data['items'] = $items;
         $data['pilist'] = $numbers;
         $data['commercial_invoice_date'] = $ci->date;
-        $data['letter_of_credit_no'] = $ci->LetterOfCredit->letter_of_credit_no;
-        $data['letter_of_credit_date'] = $ci->LetterOfCredit->letter_of_credit_date;
-        $data['beneficiary_ac_no'] = $ci->LetterOfCredit->beneficiary_ac_no;
-        $data['beneficiary_ac_name'] = $ci->LetterOfCredit->beneficiary_ac_name;
-        $data['beneficiary_bank_name'] = $ci->LetterOfCredit->beneficiary_bank_name;
-        $data['beneficiary_branch_name'] = $ci->LetterOfCredit->beneficiary_branch_name;
+        $data['letter_of_credit_no'] = $ci->letter_of_credit->letter_of_credit_no;
+        $data['letter_of_credit_date'] = $ci->letter_of_credit->letter_of_credit_date;
+        $data['beneficiary_ac_no'] = $ci->letter_of_credit->beneficiary_ac_no;
+        $data['beneficiary_ac_name'] = $ci->letter_of_credit->beneficiary_ac_name;
+        $data['beneficiary_bank_name'] = $ci->letter_of_credit->beneficiary_bank_name;
+        $data['beneficiary_branch_name'] = $ci->letter_of_credit->beneficiary_branch_name;
 
         $data['port_of_loading_port_id'] = $ci->port_of_loading_port_id;
         $data['port_of_loading_port_name'] = $ci->loading_port->name;
@@ -280,12 +280,13 @@ class ApiController extends Controller
         $data['bill_of_lading_date'] = $ci->bill_of_lading_date;
         $data['vessel_no'] = $ci->vessel_no;
         $data['container_no'] = $ci->container_no;
-        $data['vendor_name'] = $ci->LetterOfCredit->vendor->name;
+        $data['vendor_name'] = $ci->letter_of_credit->vendor->name;
         return response()->json($data);
     }
     public function getAllByBlNo($bl_no)
     {
         $data['ci'] = CommercialInvoice::where('bill_of_lading_no',$bl_no)->get();
+        // dd($data['ci']);
         $data['items'] = [];
         foreach($data['ci'] as $ci){
             foreach($ci->items as $item){

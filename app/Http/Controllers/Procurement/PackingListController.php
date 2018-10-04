@@ -49,11 +49,11 @@ class PackingListController extends Controller
      */
     public function store(Request $request)
     {
-         $request->validate([
-            // 'requisition_no'=>'required',
-            'commercial_invoice_id' => 'required|unique:packing_lists',
-            'customer_code' => 'required',
-        ]);
+        //  $request->validate([
+        //     // 'requisition_no'=>'required',
+        //     'commercial_invoice_id' => 'required|unique:packing_lists',
+        //     'customer_code' => 'required',
+        // ]);
         $packing_list = new PackingList;
         $packing_list->fill($request->input());
         $packing_list->creator_user_id = Auth::id();

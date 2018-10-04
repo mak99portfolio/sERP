@@ -31,25 +31,25 @@
                                         <td class="p-10">Ref No : ME/TYRE/07/2017</td>
                                     </tr>
                                     <tr>
-                                        <td>MRF Limited</td>
+                                        <td>{{ $purchase_order->vendor->name }}</td>
                                     </tr>
                                     <tr>
                                         <td>124,Greams Road</td>
                                     </tr>
                                     <tr>
-                                        <td>Chennai 600006,India</td>
+                                        <td>{{ $purchase_order->vendor->address }}</td>
                                     </tr>
                                     <tr>
                                         <td>Attn:Mr Rohit Kr. Mandal (RM - Bangladesh)</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-10"><strong>Subect: <u>MRP Tyre Purchases Order For July 2017</u></strong></td>
+                                        <td class="p-10"><strong>Subect: <u>{{ $purchase_order->subject }}</u></strong></td>
                                     </tr>
                                     <tr>
                                         <td class="p-t-8">Dear Sir,</td>
                                     </tr>
                                     <tr>
-                                        <td class="p-b-8">We are pleased to submit our purchases order fo July 2017 as below:7</td>
+                                        <td class="p-b-8">{{ $purchase_order->letter_header }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -60,40 +60,22 @@
                                         <td class="text-center">PRODUCT -DESC</td>
                                         <td class="text-center">QTY</td>
                                         <td class="text-center">UOM</td>
-                                        <td class="text-center">Remark</td>
+                                        {{-- <td class="text-center">Remark</td> --}}
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($purchase_order->items as $item)
                                     <tr>
-                                        <td class="text-center">1</td>
-                                        <td>12.00-20 SUPERLUG78 N18</td>
-                                        <td class="text-center">0</td>
-                                        <td>Set</td>
-                                        <td></td>
+                                        <td class="text-center">{{ $loop->iteration }}</td>
+                                        <td>{{ $item->product->name }}</td>
+                                        <td class="text-center">{{ $item->quantity }}</td>
+                                        <td>{{ $item->product->unit_of_measurement->name }}</td>
                                     </tr>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>12.00-20 SUPERLUG78 N18</td>
-                                        <td class="text-center">0</td>
-                                        <td>Set</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center">1</td>
-                                        <td>12.00-20 SUPERLUG78 N18</td>
-                                        <td class="text-center">0</td>
-                                        <td>Set</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" class="text-right">Total</td>
-                                        <td class="text-center">125</td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                            <p>NOTE: </p>
+                            <p>{{ $purchase_order->letter_footer }}</p>
+                            <p>NOTE: {{ $purchase_order->notes }}</p>
                         </div>
                         <!--end table-->
                     </div>

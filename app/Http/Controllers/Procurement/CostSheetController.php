@@ -37,7 +37,6 @@ class CostSheetController extends Controller
             'currency' => 'required',
             'exchange_rate' => 'required',
             'bdt_amount' => 'required',
-            'note' => 'required',
             'percent_of_lc_margin' => 'required',
             'amount_of_lc_margin' => 'required',
             'round_amount_of_lc_margin' => 'required',

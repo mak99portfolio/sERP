@@ -52,7 +52,6 @@ class InsuranceCoverNoteController extends Controller
             'consignee_bank_account_name' => 'required',
             'consignee_bank_name' => 'required',
             'consignee_bank_address' => 'required',
-            'note' => 'required',
             'percent_of_marine' => 'required',
             'amount_of_marine' => 'required',
             'percent_of_war' => 'required',

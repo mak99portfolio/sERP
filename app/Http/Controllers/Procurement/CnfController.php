@@ -55,8 +55,7 @@ class CnfController extends Controller
             'exchange_rate' => 'required',
             'bdt_amount' => 'required',
             'total_day' => 'required',
-            'duty_payment_date' => 'required',
-            'note' => 'required'
+            'duty_payment_date' => 'required'
 
             // 'previous_due_amount' => 'required',
             // 'cash_recieved_amount' => 'required',

@@ -64,9 +64,5 @@ class Cnf extends Model
     public function amount(){
         return $this->consignment_particular_cnf()->sum('amount');
     }
-    public function amount_in_word()
-    {
-        return number_to_word($this->amount());
-    }
 
 }

@@ -156,7 +156,7 @@
                                     </table>
                                     <table class="table table-bordered">
                                         <tbody>
-                                        <td><strong>Amount In Word:</strong> {{ $cnf->amount_in_word() }}</td>
+                                        <td><strong>Amount In Word:</strong> {{ number_to_word($cnf->amount()) }}</td>
                                         </tbody>
                                         <tbody>
                                         <td><strong>Notes: </strong>{{ $cnf->note }}</td>

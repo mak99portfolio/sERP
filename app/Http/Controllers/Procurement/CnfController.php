@@ -64,6 +64,7 @@ class CnfController extends Controller
         $cnf->fill($request->input());
         $cnf->creator_user_id = Auth::id();
         $cnf->company_id = 1;
+        $cnf->status = 1;
         $cnf->cnf_no = time();
         $cnf->save();
         $consignment_particular_cnf = new ConsignmentParticularCnf;

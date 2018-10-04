@@ -97,6 +97,12 @@ Route::middleware(['auth', 'hasPermission:access_to_inventory'])->namespace('Inv
 
 });
 
+Route::middleware(['auth'])->namespace('Inventory')->prefix('inventory')->group(function(){
+
+    Route::resource('stock-report', 'StockReportController');
+
+});
+
 //Accounts
 Route::middleware('auth')->namespace('Accounts')->prefix('accounts')->group(function(){
     Route::resource('product-costing', 'ProductCostingController');

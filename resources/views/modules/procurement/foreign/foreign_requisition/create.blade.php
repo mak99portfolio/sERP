@@ -170,9 +170,10 @@
                                                     <th>#</th>
                                                     <th>Product Name</th>
                                                     <th>HS Code</th>
-                                                    <th>Brand</th>
-                                                    <th>Product Serial</th>
-                                                    <th>Product Model</th>
+                                                    <th>Type</th>
+                                                    <th>Size</th>
+                                                    <th>Pattern</th>
+                                                    <th>Set</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -181,9 +182,10 @@
                                                     <td><% $index+1 %></td>
                                                     <td ng-click="checked[$index] = !checked[$index]"><% product.name %></td>
                                                     <td><% product.hs_code %></td>
-                                                    <td>rkr</td>
-                                                    <td>42221</td>
-                                                    <td>werr</td>
+                                                    <td><% product.product_category.name %></td>
+                                                    <td><% product.product_size.name %></td>
+                                                    <td><% product.product_pattern.name %></td>
+                                                    <td><% product.product_set.name %></td>
                                                     <td class="text-center">
                                                         <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-danger btn-sm" ng-click="removeItemById(product.id)"><i class="fa fa-times"></i></button>
                                                         <button ng-if="!checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)"><i class="fa fa-plus"></i></button>

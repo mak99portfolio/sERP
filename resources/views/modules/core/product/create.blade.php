@@ -34,6 +34,12 @@
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('product_category_id', 'Category', $product_category_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{-- <div class="form-group">
+                                    <label>Select list:</label>
+                                    <select class="form-control input-sm">
+                                           {{generate_select_tree($product_category_list)}}
+                                    </select>
+                                  </div> --}}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('product_pattern_id', 'Select Pattern', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}

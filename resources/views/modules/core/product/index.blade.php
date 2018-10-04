@@ -29,23 +29,25 @@
                                         <th>#</th>
                                         <th>Product Name</th>
                                         <th>HS Code</th>
+                                        <th>Type</th>
+                                        <th>Size</th>
+                                        <th>Pattern</th>
+                                        <th>Set</th>
                                         <th>Brand</th>
-                                        <th>Product Serial</th>
-                                        <th>Product Model</th>
-                                        <th>Part No</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($paginate->table as $product)
+                                  @foreach($paginate->table as $key=>$product)
                                     <tr>
-                                        <td>01</td>
+                                        <td>{{$key+1}}</td>
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->hs_code}}</td>
+                                        <td>{{$product->product_category->name}}</td>
+                                        <td>{{$product->product_size->name}}</td>
+                                        <td>{{$product->product_pattern->name}}</td>
+                                        <td>{{$product->product_set->name}}</td>
                                         <td>{{$product->product_brand->name}}</td>
-                                        <td>{{$product->serial}}</td>
-                                        <td>{{$product->model}}</td>
-                                        <td>{{$product->part_number}}</td>
                                         <td class="text-center">
                                             <a href="{{route('product.show',$product)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

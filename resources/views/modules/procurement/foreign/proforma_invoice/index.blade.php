@@ -34,9 +34,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($proforma_invoice_list as $proforma_invoice)
+                                    @foreach($proforma_invoice_list as $key=>$proforma_invoice)
                                     <tr>
-                                        <td>{{$proforma_invoice->id}}</td>
+                                        <td>{{$key+1}}</td>
                                         <td>{{$proforma_invoice->proforma_invoice_no}}</td>
                                         <td>{{$proforma_invoice->proforma_invoice_date}}</td>
                                         <td>{{$proforma_invoice->created_at}}</td>    

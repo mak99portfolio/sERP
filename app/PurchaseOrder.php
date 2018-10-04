@@ -53,4 +53,13 @@ class PurchaseOrder extends Model
             return $item->quantity * $item->unit_price;
         });
     }
+    public function generate_purchase_order_number(){
+        $serial = $this->count_last_serial() + 1;
+        $this->purchase_order_no =  'PO-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+    private function count_last_serial(){
+        return PurchaseOrder::whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', date('m'))
+                            ->count();
+    }
 }

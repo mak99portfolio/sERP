@@ -60,4 +60,13 @@ class ProformaInvoice extends Model
             return $item->quantity * $item->unit_price;
         });
     }
+    public function generate_proforma_invoice_number(){
+        $serial = $this->count_last_serial() + 1;
+        $this->proforma_invoice_no =  'PI-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+    private function count_last_serial(){
+        return ProformaInvoice::whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', date('m'))
+                            ->count();
+    }
 }

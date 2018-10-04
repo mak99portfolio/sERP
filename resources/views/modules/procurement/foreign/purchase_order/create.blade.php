@@ -65,10 +65,10 @@
                             </fieldset>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::text('subject','Subject', $last_purchase_order->subject, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('subject','Subject', empty($last_purchase_order->subject)?null:$last_purchase_order->subject, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::text('letter_header','Letter Header', $last_purchase_order->letter_header, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('letter_header','Letter Header', empty($last_purchase_order->letter_header)?null:$last_purchase_order->letter_header, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="table-responsive m-t-15">
@@ -128,10 +128,10 @@
                                 </div>
                                  <!--end table-->
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::text('letter_footer','Letter Footer', $last_purchase_order->letter_footer, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('letter_footer','Letter Footer', empty($last_purchase_order->letter_footer)?null:$last_purchase_order->letter_footer, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        {{ BootForm::textarea('notes','Notes', $last_purchase_order->notes, ['class'=>'form-control input-sm','rows'=>2]) }}
+                                        {{ BootForm::textarea('notes','Notes', empty($last_purchase_order->notes)?null:$last_purchase_order->notes, ['class'=>'form-control input-sm','rows'=>2]) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         

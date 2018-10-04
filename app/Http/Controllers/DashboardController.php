@@ -13,9 +13,9 @@ class DashboardController extends Controller
 
     public function index()
     {
-        //dd(CommercialInvoice::find(1)->first()->tracking->id);
+        // dd(CommercialInvoice::whereHas('bill_of_lading')->get());
         $view = view($this->view_root . 'dashboard');
-        $view->with('commercial_invoice_list', CommercialInvoice::all());
+        $view->with('commercial_invoice_list', CommercialInvoice::whereHas('bill_of_lading')->get());
         return $view;
     }
 

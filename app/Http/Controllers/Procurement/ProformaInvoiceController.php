@@ -58,7 +58,8 @@ class ProformaInvoiceController extends Controller
         $proforma_invoice = new ProformaInvoice;
         $proforma_invoice->fill($request->input());
         $proforma_invoice->creator_user_id = Auth::id();
-        $proforma_invoice->proforma_invoice_no = time();
+        // $proforma_invoice->proforma_invoice_no = time();
+        $proforma_invoice->generate_proforma_invoice_number();
         // dd($request->input());
         $proforma_invoice->save();
 
@@ -70,7 +71,7 @@ class ProformaInvoiceController extends Controller
             array_push($items, new ProformaInvoiceItem($item));
         }
         $proforma_invoice->items()->saveMany($items);
-        Session::put('alert-success', 'Proforma invoice created successfully');
+        Session::put('alert-success', 'Proforma invoice created successfully. <br><strong>Requisition No: ' . $proforma_invoice->proforma_invoice_no . '</strong>');
         return redirect()->route('proforma-invoice.create');
     }
 

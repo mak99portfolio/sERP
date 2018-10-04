@@ -51,7 +51,6 @@ class CnfController extends Controller
             'delivery_date' => 'required',
             'job_no' => 'required',
             'cnf_value' => 'required',
-            'usd_amount' => 'required',
             'exchange_rate' => 'required',
             'bdt_amount' => 'required',
             'total_day' => 'required',
@@ -65,6 +64,7 @@ class CnfController extends Controller
         $cnf->fill($request->input());
         $cnf->creator_user_id = Auth::id();
         $cnf->company_id = 1;
+        $cnf->status = 1;
         $cnf->cnf_no = time();
         $cnf->save();
         $consignment_particular_cnf = new ConsignmentParticularCnf;

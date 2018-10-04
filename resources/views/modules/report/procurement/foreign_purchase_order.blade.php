@@ -25,7 +25,7 @@
                             <table class="">
                                 <tbody>
                                     <tr>
-                                        <td class="p-5"><strong>June 15,2018</strong></td>
+                                        <td class="p-5"><strong>{{ Date('F d,Y', strtotime($purchase_order->purchase_order_date)) }}</strong></td>
                                     </tr>
                                     <tr>
                                         <td class="p-10">Ref No : ME/TYRE/07/2017</td>

@@ -41,10 +41,10 @@
                                     <tr>
                                         <td><strong>Commercial Invoice No :</strong> {{$commercialInvoice->commercial_invoice_no}}</td>
                                         <td><strong>Date:</strong> {{$commercialInvoice->date}}</td>
-                                        <td><strong>LC No :</strong> {{$commercialInvoice->LetterOfCredit->letter_of_credit_no}}</td>
+                                        <td><strong>LC No :</strong> {{$commercialInvoice->letter_of_credit->letter_of_credit_no}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>LC Date :</strong>  {{$commercialInvoice->LetterOfCredit->letter_of_credit_date}}</td>
+                                        <td><strong>LC Date :</strong>  {{$commercialInvoice->letter_of_credit->letter_of_credit_date}}</td>
                                         <td><strong></strong></td>
                                         <td><strong></strong></td>
                                     </tr>
@@ -58,12 +58,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_ac_name}}</td>
-                                        <td><strong>Branch Name :</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_branch_name}}</td>
+                                        <td><strong>A/C No :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_ac_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_ac_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Bank Name</strong> {{$commercialInvoice->LetterOfCredit->beneficiary_bank_name}}</td>
+                                        <td><strong>Bank Name</strong> {{$commercialInvoice->letter_of_credit->beneficiary_bank_name}}</td>
                                         <td><strong></strong></td>
                                         <td><strong></strong></td>
                                     </tr>
@@ -78,7 +78,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($commercialInvoice->LetterOfCredit->proforma_invoices as $value)
+                                  @foreach($commercialInvoice->letter_of_credit->proforma_invoices as $value)
 
                                     <tr>
                                         <td>{{$value->proforma_invoice_no}}</td>

@@ -35,9 +35,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($purchase_order_list as $purchase_order)
+                                    @foreach($purchase_order_list as $key=>$purchase_order)
                                     <tr>
-                                    <td>{{$purchase_order->id}}</td>
+                                    <td>{{$key+1}}</td>
                                         <td>{{$purchase_order->purchase_order_no}}</td>
                                         <td>{{$purchase_order->purchase_order_date}}</td>
                                         <td>{{$purchase_order->requisition_date}}</td>   

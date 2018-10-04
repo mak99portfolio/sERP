@@ -30,10 +30,10 @@
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('vendor[vendor_id]', 'Select Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select vendor']) }}
+                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'vendor']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Select Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm']) }}
@@ -58,26 +58,26 @@
                                         {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('inco_terms', 'Select Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('inco_terms', 'Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('procurement_type', 'Select Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('procurement_type', 'Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('purchase_order_type', 'Select Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('purchase_order_type', 'Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipping_method', 'Select Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('shipping_method', 'Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_method', 'Select Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('payment_method', 'Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
@@ -117,48 +117,36 @@
                             <fieldset class="m-t-15">
                                 <legend>PR Information:</legend>
                                 <div class="row">
-                                    <div class="col-md-6 col-md-offset-3">
-
-
-                                        <label>Purchase Requisition No</label>
-                                        <div class="input-group">
-                                            <select data-placeholder="Select Req No" ng-model="req_id" class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_id" ng-model="req_id">
-                                                <option value=""></option>
-                                                @foreach($requisition_list as $item)
-                                                <option value="{{$item->id}}">{{$item->requisition_no}}</option>
-                                                @endforeach
-                                            </select>
-                                            <div class="input-group-btn">
-                                                <button type="button" class="btn btn-default btn-sm" ng-click="searchReqNo()">Add</button>
+                                    <div class="col-sm-6 col-sm-offset-3">
+                                        <div class="well">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">Select Req. No</span>
+                                                <select data-placeholder="Select Req No" multiple required class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_ids[]" ng-model="req_id" ng-change="searchReqNo()">
+                                                    <option value=""></option>
+                                                    @foreach($requisition_list as $item)
+                                                    <option value="{{$item->id}}">{{$item->requisition_no}}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
-                                        </div>
-                                        <div id="msg">
-
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive">
-                                            <table class="table table-bordered table-hover">
+                                            <table class="table table-bordered table-hover" ng-if="requisitions.length >=1">
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th>SL NO</th>
                                                         <th>Purchase Requisition No</th>
                                                         <th>Date</th>
                                                         <th>Purchase Requisition Name</th>
-                                                        <th class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>01</td>
-                                                        <td>123</td>
-                                                        <td>12/03/2018</td>
-                                                        <td>123</td>
-                                                        <td  class="text-center">
-                                                            <a href="#" class="btn btn-default btn-xs">Edit</a>
-                                                            <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>
-
-                                                        </td>
+                                                    <tr ng-repeat="req in requisitions">
+                                                        <td><% $index+1 %></td>
+                                                        <td><% req.requisition_no %></td>
+                                                        <td><% req.issued_date %></td>
+                                                        <td><% req.requisition_title %></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -172,7 +160,7 @@
 
                             <!----------PR Product Details end-------->
                             <!----------PO Product Details-------->
-                            <fieldset class="m-t-15">
+                            <fieldset class="m-t-15" ng-if="itemlist.length >=1">
                                 <legend>PO Product Details:</legend>
                                 <div class="table-responsive">
                                     <table class="table table-bordered table-hover">
@@ -190,26 +178,26 @@
                                                 <th>VAT Rt(%)</th>
                                                 <th>VAT Amt</th>
                                                 <th>Total (Net)</th>
-                                                <th class="text-center">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in itemlist">
-                                                <td><% $index+1 %></td>
-                                                <td><% item.name %></td>
-                                                <td><% item.hs_code %></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td><% item.uom %></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td>123</td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
-                                                <td>123</td>
-                                                <td  class="text-center">
-                                                    <button type="button" class="btn btn-xs btn-default"><i class="fa fa-times"></i></button>
+                                                <td> <% $index+1 %></td>
+                                                <td class="checkbox">
+                                                    <label class="control-label">
+                                                        <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                    </label>
                                                 </td>
+                                                <td><% item.hs_code %></td>
+                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="<% item.quantity %>" type="text"></td>
+                                                <td><% item.uom %></td>
+                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="" type="text"></td>
+                                                <td>123</td>
+                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="" type="text"></td>
+                                                <td>123</td>
+                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="" type="text"></td>
+                                                <td></td>
+                                                <td>123</td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -217,9 +205,9 @@
                                                 <td colspan="6">Total</td>
                                                 <td>9123</td>
                                                 <td></td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td></td>
                                                 <td>343</td>
-                                                <td><input class="form-control input-sm" value="345" type="text"></td>
+                                                <td></td>
                                                 <td>245.30</td>
                                                 <td></td>
                                             </tr>
@@ -236,11 +224,10 @@
                                     <div class="col-md-6 col-md-offset-3">
                                         <label>Payment Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm select2">
+                                            <select class="form-control input-sm select2" ng-model="payment_terms_type">
                                                 <option value="" disabled selected> Select type</option>
-                                                <option>Fixed</option>
-                                                <option>Percentage</option>
-
+                                                <option value="Fixed">Fixed</option>
+                                                <option value="Percentage">Percentage</option>
                                             </select>
                                         </div>
                                     </div>
@@ -254,26 +241,39 @@
                                                         <th colspan="2">% or Fixed Amount</th>
                                                     </tr>
                                                     <tr>
-                                                        <th><input class="form-control input-sm datepicker" type="text"></th>
-                                                        <th><input class="form-control input-sm" type="text"></th>
-                                                        <th><input class="form-control input-sm" type="text"></th>
-                                                        <th  class="text-center"><button type="button" class="btn btn-xs btn-default">Add</button></th>
+                                                        <th>
+                                                            {{ BootForm::text('payment_terms_date','Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'payment_terms_date']) }}
+                                                        </th>
+                                                        <th>
+                                                            {{ BootForm::text('payment_terms_description','Description',null,['class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'payment_terms_description']) }}
+                                                        </th>
+                                                        <th>
+                                                            {{ BootForm::number('payment_terms_amount','Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
+                                                        </th>
+                                                        <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-default">Add</button></th>
                                                     </tr>
+                                                </thead>
+                                            </table>
+                                            <table class="table table-bordered table-hover">
+                                                <thead ng-if="payment_terms.length >=1">
                                                     <tr>
+                                                        <th>#</th>
+                                                        <th>Payment term</th>
                                                         <th>Date</th>
                                                         <th>Description</th>
-                                                        <th colspan="2">% or Fixed Amount</th>
+                                                        <th>% or Fixed Amount</th>
+                                                        <th class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>12/03/2018</td>
-                                                        <td>Description</td>
-                                                        <td>12%</td>
+                                                    <tr ng-repeat="terms in payment_terms">
+                                                        <td><% $index+1 %></td>
+                                                        <td><% terms.type %> <input name="payment_terms[<% $index %>][type]" type="hidden" value="<% terms.type %>"></td>
+                                                        <td><% terms.date %> <input name="payment_terms[<% $index %>][date]" type="hidden" value="<% terms.date %>"></td>
+                                                        <td><% terms.description %> <input name="payment_terms[<% $index %>][description]" type="hidden" value="<% terms.description %>"></td>
+                                                        <td><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
                                                         <td  class="text-center">
-                                                            <a href="#" class="btn btn-default btn-xs">Edit</a>
-                                                            <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></button>
-
+                                                            <button type="button" class="btn btn-xs btn-danger" ng-click="removeTerms($index)"><i class="fa fa-times"></i></button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -306,7 +306,7 @@
                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                         <button type="button" ng-click="add_condition()" class="btn btn-sm btn-default m-t-20"><strong>Add</strong></button>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="conditions.length >=1">
                                         <div class="table-responsive m-t-20">
                                             <table id="mytable1" class="table table-bordered table-hover">
                                                 <thead class="bg-primary">
@@ -351,37 +351,57 @@
     app.controller('myCtrl', function($scope, $http) {
 
         $scope.itemlist = [];
+        $scope.requisitions = [];
+
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
-            $scope.requisition = [];
-
-            for(i=0; i<$scope.req_id.length; i++){
-                $scope.addToItemList($scope.req_id[i]);
-            }
+            $scope.requisitions = [];
+            $scope.addToItemList($scope.req_id.join());
         }
-        $scope.addToItemList = function(id){
-            let url = "{{URL::to('get-local-requisition')}}/" + id;
+
+        $scope.addToItemList = function(ids){
+            let url = "{{URL::to('get-local-requisition')}}/" + ids;
             $http.get(url)
                     .then(function(response) {
-                        console.log('data-----------', response.data);
-                        angular.forEach(response.data, function(value, key) {
-                            $scope.itemlist.push(value);
-                        });
-
+                        $scope.requisitions = response.data.requisitions;
+                        $scope.itemlist = response.data.items;
                     });
         }
+
         $scope.removeItem = function(index){
-            $scope.itemlist.splice(index);
+            $scope.itemlist.splice(index, 1);
         }
+
+        $scope.payment_terms = [];
+
+        $scope.add_terms = function(){
+            var term = {};
+            term.type = $scope.payment_terms_type;
+            term.date = $scope.payment_terms_date;
+            term.description = $scope.payment_terms_description;
+            term.amount = $scope.payment_terms_amount;
+            $scope.payment_terms.push(term);
+            $scope.payment_terms_description = null;
+            $scope.payment_terms_amount = null;
+        }
+
+        $scope.removeTerms = function(index){
+            $scope.payment_terms.splice(index, 1);
+        }
+
+
         $scope.conditions = [];
+
         $scope.add_condition = function(){
             var condition = {};
             condition.type = $scope.condition_type;
             condition.description = $scope.condition_description;
             $scope.conditions.push(condition);
+            $scope.condition_description = null;
         }
+
         $scope.removeCondition = function(index){
-            $scope.conditions.splice(index);
+            $scope.conditions.splice(index, 1);
         }
     });
 </script>

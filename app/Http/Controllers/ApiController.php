@@ -176,22 +176,54 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getLocalRequisitionByRequisitionIds($id)
+    public function getLocalRequisitionByRequisitionIds($ids)
     {
-        $req = LocalRequisition::find($id);
-        $items = $req->items;
-        foreach ($items as $item) {
-            $data[] = [
-                'product_id' => $item->product->id,
-                'name' => $item->product->name,
-                'hs_code' => $item->product->hs_code,
-                'uom' => $item->product->unit_of_measurement->name,
-                'quantity' => $item->quantity,
-            ];
+        $req_items = [];
+        foreach (explode(',', $ids) as $id) {
+            $req = LocalRequisition::find($id);
+            $data['requisitions'][] = $req;
+            $items = $req->items;
+            foreach ($items as $item) {
+                $item_exist = false;
+                foreach ($req_items as $key => $value) {
+                    if ($value['product_id'] == $item->product->id) {
+                        $req_items[$key]['quantity'] += $item->quantity;
+                        $item_exist = true;
+                        break;
+                    }
+                }
+                if (!$item_exist) {
+                    $req_items[] = [
+                        'product_id' => $item->product->id,
+                        'name' => $item->product->name,
+                        'hs_code' => $item->product->hs_code,
+                        'uom' => $item->product->unit_of_measurement->name,
+                        'quantity' => $item->quantity,
+                    ];
+                }
+            }
         }
-        // $data['requisition'] = $req;
+        $data['items'] = $req_items;
         return response()->json($data);
     }
+
+    // public function getLocalRequisitionByRequisitionIds($id)
+    // {
+    //     $req = LocalRequisition::find($id);
+    //     $items = $req->items;
+    //     foreach ($items as $item) {
+    //         $req_items[] = [
+    //             'product_id' => $item->product->id,
+    //             'name' => $item->product->name,
+    //             'hs_code' => $item->product->hs_code,
+    //             'uom' => $item->product->unit_of_measurement->name,
+    //             'quantity' => $item->quantity,
+    //         ];
+    //     }
+    //      $data['items'] = $req_items;
+    //      $data['requisition'] = $req;
+    //     return response()->json($data);
+    // }
 
     public function getAllProduct($product_group_id)
     {

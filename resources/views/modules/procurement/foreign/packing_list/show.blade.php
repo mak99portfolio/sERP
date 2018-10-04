@@ -42,8 +42,8 @@
                                     </tr>
                                     <tr>
    
-                                        <td><strong>Letter Of Credit No:</strong> {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_no}}</td>
-                                        <td><strong>Letter Of Credit Date:</strong>  {{$packingList->commercial_invoice->LetterOfCredit->letter_of_credit_date}}</td>
+                                        <td><strong>Letter Of Credit No:</strong> {{$packingList->commercial_invoice->letter_of_credit->letter_of_credit_no}}</td>
+                                        <td><strong>Letter Of Credit Date:</strong>  {{$packingList->commercial_invoice->letter_of_credit->letter_of_credit_date}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -55,12 +55,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_ac_name}}</td>
-                                        <td><strong>Branch Name :</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_branch_name}}</td>
+                                        <td><strong>A/C No :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_ac_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_ac_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Bank Name:</strong> {{$packingList->commercial_invoice->LetterOfCredit->beneficiary_bank_name}}</td>
+                                        <td colspan="3"><strong>Bank Name:</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_bank_name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -73,7 +73,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($packingList->commercial_invoice->LetterOfCredit->proforma_invoices as $value)
+                                  @foreach($packingList->commercial_invoice->letter_of_credit->proforma_invoices as $value)
                               
                                     <tr>
                                         <td>{{$value->proforma_invoice_no}}</td>
@@ -111,7 +111,7 @@
                                     <tr>
                                         <td><strong>Final Destination:</strong> {{$packingList->commercial_invoice->city->name}}</td>
                                         <td><strong>Country of Origin of Goods:</strong> {{$packingList->commercial_invoice->country_goods->name}}</td>
-                                        <td><strong>Exporter:</strong>{{$packingList->commercial_invoice->LetterOfCredit->vendor->name}}</td>
+                                        <td><strong>Exporter:</strong>{{$packingList->commercial_invoice->letter_of_credit->vendor->name}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Currency:</strong> {{$packingList->currency}}</td>

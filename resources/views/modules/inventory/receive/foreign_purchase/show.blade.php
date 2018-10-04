@@ -41,7 +41,7 @@
                                         <td><strong>Commercial Invoice No:</strong> {{ $inventory_receive->foreign->commercial_invoice->commercial_invoice_no }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Letter of Credit No:</strong> {{ $inventory_receive->foreign->commercial_invoice->LetterOfCredit->letter_of_credit_no }}</td>
+                                        <td><strong>Letter of Credit No:</strong> {{ $inventory_receive->foreign->commercial_invoice->letter_of_credit->letter_of_credit_no }}</td>
                                         <td><strong>Product Status:</strong> {{ $inventory_receive->item_status->name }}</td>
                                     </tr>
                                     <tr>

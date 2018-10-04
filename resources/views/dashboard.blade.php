@@ -105,8 +105,8 @@
                                             @foreach($commercial_invoice_list as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->BillOfLading->container_size }}</td>
-                                                <td>{{ $item->BillOfLading->number_of_box }}</td>
+                                                <td>{{ $item->bill_of_lading->container_size }}</td>
+                                                <td>{{ $item->bill_of_lading->number_of_box }}</td>
                                                 <td>{{ $item->container_no }}</td>
                                                 <td>
                                                     @foreach($item->items as $row)
@@ -125,8 +125,8 @@
                                                     @endforeach
                                                 </td>
                                                 <td>{{ $item->commercial_invoice_no }} / {{ $item->date }}</td>
-                                                <td>{{ $item->LetterOfCredit->letter_of_credit_no }} / {{ $item->LetterOfCredit->letter_of_credit_date }}</td>
-                                                <td>{{ $item->BillOfLading->bill_of_lading_no }} / {{ $item->BillOfLading->bill_of_lading_date }}</td>
+                                                <td>{{ $item->letter_of_credit->letter_of_credit_no }} / {{ $item->letter_of_credit->letter_of_credit_date }}</td>
+                                                <td>{{ $item->bill_of_lading->bill_of_lading_no }} / {{ $item->bill_of_lading->bill_of_lading_date }}</td>
                                                 <td>{{ $item->tracking->document_arrived_at_bank_date ?? "Pending" }}</td>
                                                 <td>{{ $item->tracking->document_send_at_port_date ?? "Pending" }}</td>
                                                 <td>{{ $item->tracking->document_value_payment_date ?? "Pending" }}</td>

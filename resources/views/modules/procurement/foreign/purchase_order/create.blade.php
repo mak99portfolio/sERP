@@ -119,7 +119,7 @@
                                             <tfoot class="font-bold">
                                                 <tr>
                                                     <td colspan="5" class="text-right">Total</td>
-                                            
+
                                                 <td colspan="1" class="text-right"><% sum(amount) %></td>
                                                 </tr>
                                             </tfoot>
@@ -134,7 +134,7 @@
                                         {{ BootForm::textarea('notes','Notes', empty($last_purchase_order->notes)?null:$last_purchase_order->notes, ['class'=>'form-control input-sm','rows'=>2]) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        
+
                                         <br />
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
@@ -159,7 +159,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        
+
         $scope.itemlist = [];
         $scope.quantity = [];
         $scope.unit_price = [];
@@ -182,7 +182,7 @@
             }
             return sum;
         }
-        
+
     });
 </script>
 @endsection

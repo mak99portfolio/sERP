@@ -27,35 +27,49 @@
                   </ul>
                 </li>
 
+        {{-- Alert drop down --}}
         <li role="presentation" class="dropdown">
+
           <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-envelope-o"></i>
-            {{-- <span class="badge bg-green">6</span> --}}
+            <i class="fa fa-bell-o"></i>
+            @if(\Auth::user()->unreadNotifications()->exists())
+              <span class="badge bg-green">{{ \Auth::user()->unreadNotifications->count() }}</span>
+            @endif
           </a>
+
           <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-            <li>
-              <a>
-                <span class="image"><img src="" alt="Profile Image" /></span>
-                <span>
-                  <span>John Smith</span>
-                  <span class="time">3 mins ago</span>
-                </span>
-                <span class="message">
-                  Film festivals used to be do-or-die moments for movie makers. They were where...
-                </span>
-              </a>
-            </li>
+
+
+            @if(\Auth::user()->unreadNotifications()->exists())
+              @foreach(\Auth::user()->unreadNotifications as $row)
+                <li>
+                  <a href="{{ route('notification.show', ['notification'=>$row->id]) }}">
+                    <span class="image">{!! fa('fa-bell fa-2x') !!}</span>
+                    <span>
+                      <span>Sender: {{ \App\User::find($row->data['sender_id'])->name }}</span>
+                      <span class="time">{{ \Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</span>
+                    </span>
+                    <span class="message">
+                      <strong>{{ $row->data['subject'] }}:</strong> {{ $row->data['message'] }}
+                    </span>
+                  </a>
+                </li>
+              @endforeach
+            @endif
             
             <li>
               <div class="text-center">
-                <a>
-                  <strong>See All Alerts</strong>
+                <a href="{{ route('notification.index') }}">
+                  <strong>See All Notifications</strong>
                   <i class="fa fa-angle-right"></i>
                 </a>
               </div>
             </li>
           </ul>
+
         </li>
+        {{-- End of aalert dropdown --}}
+
       </ul>
     </nav>
   </div>

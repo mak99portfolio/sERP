@@ -59,7 +59,7 @@
                                                     <label>Purchase Order No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('purchase_order_no', null, ['class'=>'form-control input-sm', "v-model"=>"local_order.purchase_order_no", "v-on:change"=>"fetch_local_order(local_order.purchase_order_no)"]) }}
+                                                        {{ Form::text('purchase_order_no', null, ['class'=>'form-control input-sm', "v-model"=>"local_order.purchase_order_no", "v-on:change"=>"fetch_local_order(local_order.purchase_order_no)", "v-on:keydown.enter.prevent"=>"fetch_local_order(local_order.purchase_order_no)"]) }}
                                                         <span class="input-group-btn">
                                                             <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_local_order(local_order.purchase_order_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -92,24 +92,14 @@
                                 <div class="row">
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>HS Code</label>
+                                            <label>Search Product</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)"/>
                                             <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'>
+                                                    <i class="fa fa-search" aria-hidden="true"></i>
+                                                </button>
                                             </span>
                                         </div><!-- /input-group -->
                                         </div>
@@ -131,8 +121,10 @@
                                         <th>SL</th>
                                         <th>HS Code</th>
                                         <th>Item name</th>
-                                        <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th style="width: 150px;">Quantity</th>
+                                        <th style="width: 150px;">Batch No</th>
+                                        <th style="width: 150px;">Expiration Date</th>
+                                        <th style="width: 150px;">Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
                                         <td v-html='index+1'></td>
@@ -142,6 +134,16 @@
                                             <div class="form-group">
                                                 <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
                                                 <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="date" v-model='product.expiration_date' min="0"/>
                                             </div>
                                         </td>
                                         <td>
@@ -233,13 +235,22 @@ $(function(){
                         vm.products=response.data.products;                
                         loading.close();
 
-                    }).catch(function(){
+                    }).catch(function(response){
 
                         loading.close();
 
+                        new PNotify({
+                          'title': 'Failed!',
+                          'text': 'Sorry!, found no local purchase order with given order no.',
+                          'type': 'error',
+                          'styling': 'bootstrap3'
+                        });
+
                     });
 
-                }else loading.close();
+                }else{
+                    loading.close();
+                }
 
             },
             fetch_product:function(slug){
@@ -264,9 +275,20 @@ $(function(){
 
                         loading.close();
 
+                        new PNotify({
+                          'title': 'Failed!',
+                          'text': 'Sorry!, searched product does\'t found.',
+                          'type': 'error',
+                          'styling': 'bootstrap3'
+                        });
+
                     });
 
-                }else loading.close();
+                }else{
+
+                    loading.close();
+
+                }
 
             },
             delete_product:function(product){

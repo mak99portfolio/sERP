@@ -139,13 +139,15 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->quantity,
+                    'batch_no'=>'',
+                    'expiration_date'=>''
                 ]);
                 
             }
 
             return response()->json([
                 'commercial_invoice_no'=>$commercial_invoice->commercial_invoice_no,
-                'letter_of_credit_no'=>$commercial_invoice->LetterOfCredit->letter_of_credit_no,
+                'letter_of_credit_no'=>$commercial_invoice->letter_of_credit->letter_of_credit_no,
                 'products'=>$products
             ]);
 
@@ -171,6 +173,8 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->quantity,
+                    'batch_no'=>'',
+                    'expiration_date'=>''
                 ]);
                 
             }
@@ -284,8 +288,10 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->requested_quantity,
+                    'batch_no'=>$item->batch_no,
+                    'expiration_date'=>$item->expiration_date,
                     'return_quantity'=>$return_quantity,
-                    'return_status_id'=>$return_status_id
+                    'return_status_id'=>$return_status_id,
                 ]);
 
                 

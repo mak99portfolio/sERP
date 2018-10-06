@@ -59,7 +59,7 @@
                                                     <label>CI No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice_no)"]) }}
+                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice_no)", "v-on:keydown.enter.prevent"=>"fetch_commercial_invoice(commercial_invoice_no)"]) }}
                                                         <span class="input-group-btn">
                                                             <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(commercial_invoice_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -95,22 +95,10 @@
                                 <div class="row">
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>HS Code</label>
+                                            <label>Search Product</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)'>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search Product" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)"/>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
@@ -120,7 +108,7 @@
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity'>
+                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity' v-on:keydown.enter.prevent="add_product">
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -134,10 +122,10 @@
                                         <th>SL</th>
                                         <th>HS Code</th>
                                         <th>Item name</th>
-                                        <th>Quantity</th>
-                                        <th>Batch No</th>
-                                        <th>Expiration Date</th>
-                                        <th>Delete</th>
+                                        <th style="width: 150px;">Quantity</th>
+                                        <th style="width: 150px;">Batch No</th>
+                                        <th style="width: 150px;">Expiration Date</th>
+                                        <th style="width: 150px;">Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
                                         <td v-html='index+1'></td>
@@ -273,7 +261,17 @@ $(function(){
 
                     });
 
-                }else loading.close();
+                }else{
+
+                    loading.close();
+                    new PNotify({
+                      'title': 'Failed!',
+                      'text': 'Sorry!, searched product does\'t found.',
+                      'type': 'error',
+                      'styling': 'bootstrap3'
+                    });
+
+                }
 
             },
             delete_product:function(product){

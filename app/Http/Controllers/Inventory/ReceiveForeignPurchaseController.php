@@ -52,7 +52,7 @@ class ReceiveForeignPurchaseController extends Controller{
         $request->validate([
             'inventory_receive_no'=>'required|unique:inventory_receives',
             'receive_date'=>'required|date',
-            'commercial_invoice_no'=>'required|integer|exists:commercial_invoices',
+            'commercial_invoice_no'=>'required|exists:commercial_invoices',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
             'product_pattern_id'=>'required|integer',

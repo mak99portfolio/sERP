@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Requisition;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
+use App\Notifications\SimpleNotification;
 
 class RequisitionController extends Controller{
 
@@ -208,6 +209,25 @@ class RequisitionController extends Controller{
                 'product_pattern_id'=>$requisition->product_pattern_id
             ]);
 
+        }
+
+        $requested_working_unit=\App\WorkingUnit::find($request->get('requested_depot_id'));
+
+        foreach($requested_working_unit->employees as $row){
+
+            if(!empty($row->employee_profile->user)){
+
+                $row->employee_profile->user->notify(
+                    new SimpleNotification([
+                        'subject'=>'Inventory Requisition',
+                        'sender_id'=>$requisition->final_approver_id,
+                        'url'=>route('issue.index'),
+                        'message'=>'An Inventory Requisition Requested To Your Working Unit'
+                    ])
+                );
+
+            }
+            
         }
 
         \Session::forget('vue_products');

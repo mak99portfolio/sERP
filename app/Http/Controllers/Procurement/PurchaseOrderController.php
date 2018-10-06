@@ -17,7 +17,7 @@ use Session;
 use DB;
 class PurchaseOrderController extends Controller
 {
-    
+
     private $view_root = 'modules/procurement/foreign/purchase_order/';
     public function index()
     {
@@ -28,7 +28,7 @@ class PurchaseOrderController extends Controller
 
     public function create()
     {
-        
+
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', ForeignRequisition::all());
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
@@ -67,7 +67,7 @@ class PurchaseOrderController extends Controller
         $purchase_order->save();
         $requisitions = Array();
 
-        
+
         // foreach($request->foreign_requisition_ids as $foreign_requisition_id){
         //     array_push($requisitions, new ForeignRequisitionPurchaseOrder([
         //         'foreign_requisition_id' => $foreign_requisition_id
@@ -86,28 +86,28 @@ class PurchaseOrderController extends Controller
 
     public function show(PurchaseOrder $purchaseOrder)
     {
-      
+
         $view = view($this->view_root . 'show');
         $view->with('purchaseOrder',$purchaseOrder);
         return $view;
     }
 
-    
+
     public function edit(PurchaseOrder $purchaseOrder)
     {
         //
     }
 
-   
+
     public function update(Request $request, PurchaseOrder $purchaseOrder)
     {
         //
     }
 
-    
+
     public function destroy(PurchaseOrder $purchaseOrder)
     {
         //
     }
-    
+
 }

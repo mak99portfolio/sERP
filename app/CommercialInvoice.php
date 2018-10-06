@@ -20,9 +20,9 @@ class CommercialInvoice extends Model {
         'container_no',
         'port_of_loading_port_id',
         'port_of_discharge_port_id',
-        'destination_city_id',
-        'country_goods_country_id',
-        'destination_country_id',
+        'final_destination_city_id',
+        'origin_of_goods_country_id',
+        'final_destination_country_id',
         'notes',
         'freight'
     ];
@@ -49,13 +49,13 @@ class CommercialInvoice extends Model {
         return $this->belongsTo('App\Port','port_of_discharge_port_id');
     }
     function city() {
-        return $this->belongsTo('App\City','destination_city_id');
+        return $this->belongsTo('App\City','final_destination_city_id');
     }
     public function destination_country(){
-        return $this->belongsTo('App\Country','destination_country_id');
+        return $this->belongsTo('App\Country','final_destination_country_id');
     }
     public function country_goods(){
-        return $this->belongsTo('App\Country','country_goods_country_id');
+        return $this->belongsTo('App\Country','origin_of_goods_country_id');
     }
 
 }

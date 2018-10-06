@@ -26,12 +26,12 @@ class CreateCommercialInvoicesTable extends Migration {
             $table->foreign('port_of_loading_port_id')->references('id')->on('ports')->onDelete('cascade');
             $table->integer('port_of_discharge_port_id')->unsigned();
             $table->foreign('port_of_discharge_port_id')->references('id')->on('ports')->onDelete('cascade');
-            $table->integer('destination_city_id')->unsigned();
-            $table->foreign('destination_city_id')->references('id')->on('cities')->onDelete('cascade');
-            $table->integer('country_goods_country_id')->unsigned();
-            $table->foreign('country_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
-            $table->integer('destination_country_id')->unsigned();
-            $table->foreign('destination_country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->integer('final_destination_city_id')->unsigned();
+            $table->foreign('final_destination_city_id')->references('id')->on('cities')->onDelete('cascade');
+            $table->integer('origin_of_goods_country_id')->unsigned();
+            $table->foreign('origin_of_goods_country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->integer('final_destination_country_id')->unsigned();
+            $table->foreign('final_destination_country_id')->references('id')->on('countries')->onDelete('cascade');
             $table->text('notes')->nullable();
             $table->integer('agreed_by_user_id')->unsigned()->nullable();
             $table->foreign('agreed_by_user_id')->references('id')->on('users')->onDelete('cascade');

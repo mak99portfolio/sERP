@@ -54,14 +54,21 @@ class ApiController extends Controller
             ];
         }
         foreach ($pi_numbers as $pi_number) {
-            $numbers[] = [
+            $numbers['pi_list'][] = [
                 'proforma_invoice_date' => $pi_number->proforma_invoice_date,
                 'proforma_invoice_no' => $pi_number->proforma_invoice_no,
                 'customer_code' => $pi_number->customer_code,
             ];
+            $numbers['pi_terms'] = [
+                'port_of_loading_port_id' => $pi_number->port_of_loading_port_id,
+                'port_of_discharge_port_id' => $pi_number->port_of_discharge_port_id,
+                'final_destination_country_id' => $pi_number->final_destination_country_id,
+                'final_destination_city_id' => $pi_number->final_destination_city_id,
+                'origin_of_goods_country_id' => $pi_number->origin_of_goods_country_id
+            ];
         }
         $data['items'] = $items;
-        $data['pilist'] = $numbers;
+        $data['pi'] = $numbers;
        //dd($data);
         $data['vendor_name'] = $lc->vendor->name;
 
@@ -119,21 +126,21 @@ class ApiController extends Controller
 
     public function getPOByPOIds($ids)
     {
-        $data = [];
+        $items = [];
         foreach (explode(',', $ids) as $id) {
             $po = PurchaseOrder::find($id);
             $items = $po->items;
             foreach ($items as $item) {
                 $item_exist = false;
-                foreach ($data as $key => $value) {
+                foreach ($items as $key => $value) {
                     if ($value['product_id'] == $item->product->id) {
-                        $data[$key]['quantity'] += $item->quantity;
+                        $items[$key]['quantity'] += $item->quantity;
                         $item_exist = true;
                         break;
                     }
                 }
                 if (!$item_exist) {
-                    $data[] = [
+                    $items[] = [
                         'product_id' => $item->product->id,
                         'name' => $item->product->name,
                         'hs_code' => $item->product->hs_code,
@@ -144,6 +151,8 @@ class ApiController extends Controller
                 }
             }
         }
+        $data['items'] = $items;
+        $data['last_po'] = $po;
         return response()->json($data);
     }
 
@@ -339,7 +348,7 @@ class ApiController extends Controller
     }
     public function getDueAmount($id,$no){
        if($id==1){
-       $data = PurchaseOrder::where('purchase_order_no',$no)->first()->amount() 
+       $data = PurchaseOrder::where('purchase_order_no',$no)->first()->amount()
        - ForeignPayment::where('payment_by_no',$no)
        ->get()->sum(function($item){
             return $item->payment_amount * (1  + $item->vat/100) - $item->discount_amount;
@@ -347,16 +356,16 @@ class ApiController extends Controller
        }
     //    1=Purchase Order
        if($id==2){
-       $data = ProformaInvoice::where('proforma_invoice_no',$no)->first()->amount() 
+       $data = ProformaInvoice::where('proforma_invoice_no',$no)->first()->amount()
        - ForeignPayment::where('payment_by_no',$no)
        ->get()->sum(function($item){
             return $item->payment_amount * (1  + $item->vat/100) - $item->discount_amount;
          });
        }
     //    2=Proforma Invoice
-       
-       
-       
+
+
+
         return response()->json($data);
     }
 

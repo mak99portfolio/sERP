@@ -50,28 +50,28 @@
                                 <legend>Table of Terms and Conditions:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                     {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_loading_port_id', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_discharge_port_id', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                        {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_country_id', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                        {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_city_id', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                        {{ BootForm::select('origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'origin_of_goods_country_id', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm select2','required']) }}
+                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'shipment_allow', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm select2','required']) }}
+                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'payment_type', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm select2','required']) }}
+                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'pre_carriage_by', 'required']) }}
                                     </div>
                                 </div>
                             </fieldset>
@@ -110,8 +110,8 @@
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th>SL NO</th>
-                                                        <th>H.S. CODE</th>
                                                         <th>Product Name</th>
+                                                        <th>H.S. CODE</th>
                                                         <th>Quantity</th>
                                                         <th>Unit Price</th>
                                                         <th>Total Amount($USD)</th>
@@ -122,19 +122,15 @@
                                                     <td class="text-center"><% $index+1 %></td>
                                                     <td class="checkbox">
                                                         <label class="i-checks">
-                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.product.name %>
                                                         </label>
                                                     </td>
-                                                    <td><% item.uom %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                    <td><% item.product.hs_code %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" required ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" required ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>
                                                     <span ng-if="quantity[$index]*unit_price[$index] "><% total[$index] = quantity[$index]*unit_price[$index] %></span>
                                                     <span ng-if="!(quantity[$index]*unit_price[$index] )">0</span>
-                                                   
-                                                        
-                                                    
-                                                    
                                                     </td>
                                                 </tr>
                                                 </tbody>
@@ -194,7 +190,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        
+
         $scope.itemlist = [];
         $scope.total = [];
         $scope.searchPO = function () {
@@ -205,7 +201,15 @@
             let url = "{{URL::to('get-po')}}/" + id;
             $http.get(url)
                     .then(function(response) {
-                        $scope.itemlist = response.data;
+                        $scope.itemlist = response.data.items;
+                        $scope.port_of_loading_port_id = response.data.last_po.port_of_loading_port_id.toString();
+                        $scope.port_of_discharge_port_id = response.data.last_po.port_of_discharge_port_id.toString();
+                        $scope.final_destination_country_id = response.data.last_po.final_destination_country_id.toString();
+                        $scope.final_destination_city_id = response.data.last_po.final_destination_city_id.toString();
+                        $scope.origin_of_goods_country_id = response.data.last_po.origin_of_goods_country_id.toString();
+                        $scope.shipment_allow = response.data.last_po.shipment_allow;
+                        $scope.payment_type = response.data.last_po.payment_type;
+                        $scope.pre_carriage_by = response.data.last_po.pre_carriage_by;
                     });
         }
         $scope.removeItem = function(index){

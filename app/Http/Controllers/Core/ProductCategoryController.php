@@ -45,7 +45,7 @@ class ProductCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'parent_product_category_id' => 'required',
+            // 'parent_product_category_id' => 'required',
             'name' => 'required|unique:product_categories',
             'short_name' => 'required|unique:product_categories',
         ]);

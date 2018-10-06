@@ -49,13 +49,13 @@
                                 <div class="table-responsive">
                                         <table class="table table-bordered" ng-if="piinfo.length>0">
                                             <thead class="bg-primary">
-                                               
+
                                                 <tr>
                                                     <th>#</th>
                                                     <th>PI No</th>
                                                     <th>PI Date</th>
                                                     <th>Customer Code</th>
-              
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -64,10 +64,10 @@
                                                  <td><%info.proforma_invoice_no%></td>
                                                  <td><%info.proforma_invoice_date%></td>
                                                  <td><%info.customer_code%></td>
-                                                 
+
                                                 </tr>
-                                             
-                                               
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -116,19 +116,19 @@
                                         <div class="row">
 
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_loading_port_id']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_discharge_port_id']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_country_id']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_city_id']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('country_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'origin_of_goods_country_id']) }}
                                             </div>
                                         </div>
                                     </fieldset>
@@ -183,7 +183,7 @@
                                                     <td colspan="4" class="text-right">Grand Total =</td>
                                                     <td> <% sub_total+freight %> </td>
                                                 </tr>
-                                               
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -215,12 +215,12 @@
         $scope.quantity = [];
         $scope.unit_price = [];
         $scope.amount = [];
-        $scope.freight = 0 ;
+        $scope.freight = 0;
         $scope.getLc = function () {
             $scope.itemlist = [];
             $scope.piinfo = [];
             $scope.addToItemList($scope.letter_of_credit_id);
-  }
+        }
         $scope.addToItemList = function(id){
             let url = "{{URL::to('get-lc')}}/" + id;
             $http.get(url)
@@ -228,7 +228,7 @@
                         angular.forEach(response.data.items, function(value, key) {
                             $scope.itemlist.push(value);
                         });
-                        angular.forEach(response.data.pilist, function(value, key) {
+                        angular.forEach(response.data.pi.pi_list, function(value, key) {
                             $scope.piinfo.push(value);
                         });
                         $scope.letter_of_credit_date = response.data.letter_of_credit_date;
@@ -236,13 +236,18 @@
                         $scope.beneficiary_ac_name = response.data.beneficiary_ac_name;
                         $scope.beneficiary_bank_name = response.data.beneficiary_bank_name;
                         $scope.beneficiary_branch_name = response.data.beneficiary_branch_name;
+                        $scope.port_of_loading_port_id = response.data.pi.pi_terms.port_of_loading_port_id.toString();
+                        $scope.port_of_discharge_port_id = response.data.pi.pi_terms.port_of_discharge_port_id.toString();
+                        $scope.final_destination_country_id = response.data.pi.pi_terms.final_destination_country_id.toString();
+                        $scope.final_destination_city_id = response.data.pi.pi_terms.final_destination_city_id.toString();
+                        $scope.origin_of_goods_country_id = response.data.pi.pi_terms.origin_of_goods_country_id.toString();
                         console.log($scope.piinfo);
                     });
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
         }
-      
+
         $scope.sum = function($arr){
             var sum = 0;
             for(i=0; i<$arr.length; i++){

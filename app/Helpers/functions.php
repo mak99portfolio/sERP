@@ -243,3 +243,17 @@ function generate_tree($categories)
         echo '</li>';
     }
 }
+function generate_select_tree($categories, $generation = 0)
+{
+    foreach ($categories as $category) {
+		echo '<option value = "';
+		echo $category->id;
+		echo '">';
+		for($i=0; $i<$generation; $i++){ echo " -";}
+        echo $category->name;
+		echo '</option>';
+        if ($category->children) {
+            generate_select_tree($category->children, ++$generation);
+        }
+    }
+}

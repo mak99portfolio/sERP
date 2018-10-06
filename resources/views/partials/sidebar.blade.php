@@ -147,9 +147,7 @@
         </li>
         <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
           <ul class="nav child_menu">
-            <li><a href="#">Requisition</a></li>
-            <li><a href="#">Issue</a></li>
-            <li><a href="#">Receive Item</a></li>
+          <li><a href="{{route('stock-report.index')}}">Stock Reports</a></li>
           </ul>
         </li>
         <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>

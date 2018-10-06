@@ -77,5 +77,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DepartmentsTableSeeder::class);
         $this->call(EmployeeOrgInfoTypesTableSeeder::class);
         $this->call(EmployeeOrgInfoStatusesTableSeeder::class);
+        
+        $this->call(InventoryRequisitionStatusesTableSeeder::class);
+        $this->call(InventoryIssueStatusesTableSeeder::class);
     }
 }

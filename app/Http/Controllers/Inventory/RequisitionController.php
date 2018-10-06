@@ -80,6 +80,8 @@ class RequisitionController extends Controller{
         $requisition->date=\Carbon\Carbon::parse($request->get('date'));
         $requisition->initial_approver()->associate(\Auth::user());
         $requisition->creator()->associate(\Auth::user());
+        $requisition_status=\App\InventoryRequisitionStatus::where('code', 'pending')->first();
+        $requisition->status()->associate($requisition_status);
         $requisition->save();
 
         $products=$request->get('products');
@@ -179,9 +181,16 @@ class RequisitionController extends Controller{
         $requisition->creator()->associate(\Auth::user());
         $requisition->requested_items()->delete();
 
+        $requisition_status=\App\InventoryRequisitionStatus::where('code', 'confirmed')->first();
+        $requisition->status()->associate($requisition_status);
+
         $issue=\App\InventoryIssue::create([
             'inventory_issue_no'=>uCode('inventory_issues.inventory_issue_no', 'IIS00')
         ]);
+
+        $issue_status=\App\InventoryIssueStatus::where('code', 'pending')->first();
+        $issue->status()->associate($issue_status);
+        $issue->save();
 
         $requisition->issue()->save($issue);
 

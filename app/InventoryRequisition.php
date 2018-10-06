@@ -48,6 +48,10 @@ class InventoryRequisition extends Model{
 		return $this->belongsTo('App\User', 'updator_user_id');
 	}
 
+	public function status(){
+		return $this->belongsTo('App\InventoryRequisitionStatus', 'inventory_requisition_status_id');
+	}
+
 	public function issue(){
 		return $this->hasOne('App\InventoryIssue');
 	}

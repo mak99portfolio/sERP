@@ -20,6 +20,7 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->integer('product_pattern_id')->unsigned()->nullable();
             $table->integer('initial_approver_id')->unsigned()->nullable();
             $table->integer('final_approver_id')->unsigned()->nullable();
+            $table->integer('inventory_requisition_status_id')->unsigned()->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->text('remarks')->nullable();
@@ -35,6 +36,7 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->foreign('final_approver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('inventory_requisition_status_id')->references('id')->on('inventory_requisition_statuses')->onDelete('cascade');
         });
 
     }

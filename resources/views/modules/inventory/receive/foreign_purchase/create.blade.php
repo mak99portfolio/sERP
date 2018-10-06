@@ -59,9 +59,9 @@
                                                     <label>CI No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
-                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice.commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice.commercial_invoice_no)"]) }}
+                                                        {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice_no)", "v-on:keydown.enter.prevent"=>"fetch_commercial_invoice(commercial_invoice_no)"]) }}
                                                         <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(commercial_invoice.commercial_invoice_no)">
+                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_commercial_invoice(commercial_invoice_no)">
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
@@ -70,7 +70,7 @@
                                             </div>
                                             
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('letter_of_credit_id', 'LC No', null, ['class'=>'form-control input-sm', 'readonly', "v-model"=>"commercial_invoice.letter_of_credit_id"]) }}
+                                                {{ BootForm::text('letter_of_credit_no', 'LC No', null, ['class'=>'form-control input-sm', 'readonly', "v-model"=>"letter_of_credit_no"]) }}
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, ['class'=>'form-control input-sm select2']) }}
@@ -95,22 +95,10 @@
                                 <div class="row">
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>HS Code</label>
+                                            <label>Search Product</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)'>
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Product Name</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search Product" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)"/>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
@@ -120,7 +108,7 @@
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Quantity</label>
-                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity'>
+                                            <input class="form-control input-sm" type="text" v-model='active_record.quantity' v-on:keydown.enter.prevent="add_product">
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -134,8 +122,10 @@
                                         <th>SL</th>
                                         <th>HS Code</th>
                                         <th>Item name</th>
-                                        <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th style="width: 150px;">Quantity</th>
+                                        <th style="width: 150px;">Batch No</th>
+                                        <th style="width: 150px;">Expiration Date</th>
+                                        <th style="width: 150px;">Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
                                         <td v-html='index+1'></td>
@@ -148,6 +138,16 @@
                                             </div>
                                         </td>
                                         <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="date" v-model='product.expiration_date' min="0"/>
+                                            </div>
+                                        </td>
+                                        <td>
                                             <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
                                                 <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
                                             </button>
@@ -156,21 +156,14 @@
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
-
-
-
-
-
-
-
-                                        <div class="col-md-12">
-                                            <br />
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                {!! btnSubmitGroup() !!}
-                                            </div>
+                                    <div class="col-md-12">
+                                        <br />
+                                        <div class="ln_solid"></div>
+                                        <div class="form-group">
+                                            {!! btnSubmitGroup() !!}
                                         </div>
-                                        {{ BootForm::close() }}
+                                    </div>
+                                    {{ BootForm::close() }}
                                     </form>
                                 </div>
                             </div>
@@ -210,10 +203,8 @@ $(function(){
                 quantity:''
             },
             remote_data:null,
-            commercial_invoice:{
-                commercial_invoice_no:'',
-                letter_of_credit_id:''
-            }
+            commercial_invoice_no:'',
+            letter_of_credit_no:''
         },
         methods:{
 
@@ -225,16 +216,15 @@ $(function(){
 
                 //reset models
                 vm.products=[];
-                vm.commercial_invoice={
-                    commercial_invoice_no:'',
-                    letter_of_credit_id:''
-                }
+                vm.commercial_invoice_no='';
+                vm.letter_of_credit_no='';
 
                 if(slug){
 
                     axios.get(this.config.get_commercial_invoice_url + '/' + slug).then(function(response){
 
-                        vm.commercial_invoice=response.data.commercial_invoice;
+                        vm.commercial_invoice_no=response.data.commercial_invoice_no;
+                        vm.letter_of_credit_no=response.data.letter_of_credit_no;
                         vm.products=response.data.products;                
                         loading.close();
 
@@ -271,7 +261,17 @@ $(function(){
 
                     });
 
-                }else loading.close();
+                }else{
+
+                    loading.close();
+                    new PNotify({
+                      'title': 'Failed!',
+                      'text': 'Sorry!, searched product does\'t found.',
+                      'type': 'error',
+                      'styling': 'bootstrap3'
+                    });
+
+                }
 
             },
             delete_product:function(product){
@@ -313,7 +313,8 @@ $(function(){
 
                 axios.get(this.config.old_inputs_url).then(function(response){
 
-                    vm.commercial_invoice=response.data;                
+                    vm.commercial_invoice_no=response.data.commercial_invoice_no;
+                    vm.letter_of_credit_no=response.data.letter_of_credit_no;
                     loading.close();
 
                 }).catch(function(){

@@ -94,6 +94,8 @@ class ReceiveReturnController extends Controller{
 
         foreach($products as $row){
 
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
+
             \App\Stock::create([
                 'working_unit_id'=>$inventory_receive->working_unit_id,
                 'product_id'=>$row['id'],
@@ -101,6 +103,8 @@ class ReceiveReturnController extends Controller{
                 'product_pattern_id'=>$inventory_issue->product_pattern_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['return_quantity'],
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
                 'remarks'=>$inventory_receive->remarks,
                 'creator_user_id'=>\Auth::id()
             ]);
@@ -150,6 +154,8 @@ class ReceiveReturnController extends Controller{
                 'id'=>$row->product_id,
                 'quantity'=>$related_issue->items()->where('product_id', $row->product_id)->first()->requested_quantity,
                 'return_quantity'=>$row->receive_quantity,
+                'batch_no'=>$row->batch_no,
+                'expiration_date'=>$row->expiration_date,
                 'return_status_id'=>$related_issue->return_items()->where('product_id', $row->product_id)->first()->product_status_id
             ]);
 
@@ -217,6 +223,8 @@ class ReceiveReturnController extends Controller{
 
         foreach($products as $row){
 
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
+
             \App\Stock::create([
                 'working_unit_id'=>$inventory_receive->working_unit_id,
                 'product_id'=>$row['id'],
@@ -224,6 +232,8 @@ class ReceiveReturnController extends Controller{
                 'product_pattern_id'=>$inventory_issue->product_pattern_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['return_quantity'],
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
                 'remarks'=>$inventory_receive->remarks,
                 'creator_user_id'=>\Auth::id()
             ]);

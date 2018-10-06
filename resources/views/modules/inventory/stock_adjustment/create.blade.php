@@ -53,7 +53,7 @@
                                             <label>HS Code</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)' v-on:keydown.enter.prevent="fetch_product(active_record.name)">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
@@ -65,7 +65,7 @@
                                             <label>Product Name</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>
+                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)">
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
@@ -80,8 +80,8 @@
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>Requested Quantity</label>
-                                            <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity'>
+                                            <label>Adjusted Quantity</label>
+                                            <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity' v-on:keydown.enter.prevent="add_product">
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -92,27 +92,40 @@
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>id</th>
+                                        <th style="width: 100px;">ID</th>
                                         <th>Item name</th>
-                                        <th>Stock</th>
-                                        <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th style="width: 150px;">Stock</th>
+                                        <th style="width: 175px;">Adjusted Quantity</th>
+                                        <th style="width: 175px;">Batch No</th>
+                                        <th style="width: 175px;">Expiration Date</th>
+                                        <th style="width: 100px;">Delete</th>
                                     </tr>
-                                    <tr v-for="product in products">
-  										<td v-html='product.id'></td>
-  										<td v-html='product.name'></td>
-  										<td v-html='product.stock'></td>
-  										<td>
-	                                        <div class="form-group">
-	                                            <input v-bind:name="'products['+product.id+']'" class="form-control input-sm" type="number" v-model='product.quantity' min="0">
-	                                        </div>
-  										</td>
-                                    	<td>
-	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
-	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
-	                                		</button>
-                                    	</td>
-									</tr>
+                                    <tr v-for="(product, index) in products">
+                                      <td v-html='product.id'></td>
+                                      <td v-html='product.name'></td>
+                                      <td v-html='product.stock'></td>
+                                      <td>
+                                       <div class="form-group">
+                                          <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
+                                          <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
+                                       </div>
+                                     </td>
+                                      <td>
+                                       <div class="form-group">
+                                          <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' min="0"  placeholder="Optional"/>
+                                       </div>
+                                     </td>
+                                      <td>
+                                       <div class="form-group">
+                                          <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="date" v-model='product.expiration_date' min="0" placeholder="Optional" />
+                                       </div>
+                                     </td>
+                                     <td>
+                                       <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
+                                        <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+                                      </button>
+                                    </td>
+                                  </tr>
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
@@ -217,9 +230,13 @@ $(function(){
          load_old:function(){
             var vm=this;
             var loading=$.loading();
+
             requested_depot_id=$('#working_unit_id').val();
+            product_status_id=$('#product_status_id').val();
+            product_pattern_id=$('#product_pattern_id').val();
+
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + requested_depot_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_pattern_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();

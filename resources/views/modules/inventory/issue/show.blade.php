@@ -34,7 +34,7 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>Requisition Date:</strong> {{ $carbon->parse($issue->requisition->date)->toFormattedDateString() }}</td>
-                                        <td><strong>Issue No:</strong> {{ $issue->requisition->inventory_requisition_no }}</td>
+                                        <td><strong>Issue No:</strong> {{ $issue->inventory_issue_no }}</td>
                                         <td><strong>Requisition No:</strong> {{ $issue->requisition->inventory_requisition_no }}</td>
                                         <td><strong>Requisition Type:</strong> {{ $issue->requisition->type->name }}</td>
                                         <td><strong>Requisition From:</strong>  {{ $issue->requisition->sender->name }}</td>

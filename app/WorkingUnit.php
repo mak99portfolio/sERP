@@ -20,6 +20,10 @@ class WorkingUnit extends Model{
 		return $this->belongsTo('App\Company');
 	}
 
+	public function employees(){
+		return $this->hasMany('App\EmployeeOrgInfo', 'working_unit_id');
+	}
+
 	public function employee_in_charge(){
 		return $this->belongsTo('App\EmployeeProfile', 'in_charge');
 	}

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Requisition;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
+use App\Notifications\SimpleNotification;
 
 class RequisitionController extends Controller{
 
@@ -55,6 +56,8 @@ class RequisitionController extends Controller{
 
 
     public function store(Request $request){
+
+        //dd($request->all());
         
         \Session::put('vue_products', $request->get('products'));
 
@@ -81,14 +84,14 @@ class RequisitionController extends Controller{
 
         $products=$request->get('products');
 
-        foreach($products as $id=>$quantity){
+        foreach($products as $row){
             
-            $product=\App\Product::find($id);
+            $product=\App\Product::find($row['id']);
 
             \App\InventoryRequisitionItem::create([
                 'inventory_requisition_id'=>$requisition->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$quantity,
+                'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
                 'product_pattern_id'=>$requisition->product_pattern_id
             ]);
@@ -118,6 +121,7 @@ class RequisitionController extends Controller{
         $working_unit=\Auth::user()->working_unit();
         $sender_working_units=\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id');
         $requested_working_units=\App\WorkingUnit::where('id', '<>', $working_unit->id)->pluck('name', 'id');
+        $requisition->date=\Carbon\Carbon::parse($requisition->date)->format('d-m-Y');
 
         $data=[
             'inventory_requisition'=>$requisition,
@@ -132,7 +136,12 @@ class RequisitionController extends Controller{
         $products=[];
 
         foreach($requisition->requested_items as $row){
-            $products[$row->product_id]=$row->requested_quantity;
+
+            array_push($products, [
+                'id'=>$row->product_id,
+                'quantity'=>$row->requested_quantity
+            ]);
+
         }
 
         //dd($requisition->requested_items);
@@ -180,14 +189,14 @@ class RequisitionController extends Controller{
 
         $products=$request->get('products');
 
-        foreach($products as $id=>$quantity){
+        foreach($products as $row){
             
-            $product=\App\Product::find($id);
+            $product=\App\Product::find($row['id']);
 
             \App\InventoryRequisitionItem::create([
                 'inventory_requisition_id'=>$requisition->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$quantity,
+                'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
                 'product_pattern_id'=>$requisition->product_pattern_id
             ]);
@@ -195,11 +204,30 @@ class RequisitionController extends Controller{
             \App\InventoryIssueItem::create([
                 'inventory_issue_id'=>$issue->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$quantity,
+                'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
                 'product_pattern_id'=>$requisition->product_pattern_id
             ]);
 
+        }
+
+        $requested_working_unit=\App\WorkingUnit::find($request->get('requested_depot_id'));
+
+        foreach($requested_working_unit->employees as $row){
+
+            if(!empty($row->employee_profile->user)){
+
+                $row->employee_profile->user->notify(
+                    new SimpleNotification([
+                        'subject'=>'Inventory Requisition',
+                        'sender_id'=>$requisition->final_approver_id,
+                        'url'=>route('issue.index'),
+                        'message'=>'An Inventory Requisition Requested To Your Working Unit'
+                    ])
+                );
+
+            }
+            
         }
 
         \Session::forget('vue_products');
@@ -237,6 +265,29 @@ class RequisitionController extends Controller{
 
     }
 
+    public function get_batch_stock(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern, \App\Product $product, string $slug){
+
+        if($slug=='reset'){
+
+            $stock_balance=stock_balance($working_unit, $product, [
+                'product_status_id'=>$product_status->id,
+                'product_pattern_id'=>$product_pattern->id
+            ]);
+
+        }else{
+
+            $stock_balance=stock_balance($working_unit, $product, [
+                'product_status_id'=>$product_status->id,
+                'product_pattern_id'=>$product_pattern->id,
+                'batch_no'=>$slug
+            ]);
+
+        }
+
+        return response()->json($stock_balance);
+
+    }
+
     public function get_product_info_for_adjustment(\App\WorkingUnit $working_unit, string $slug){
 
         $product=\App\Product::where('hs_code', $slug)->orWhere('name', $slug)->first();
@@ -263,24 +314,46 @@ class RequisitionController extends Controller{
 
         $products=\Session::pull('vue_products');
 
+        //return response()->json($products);
+
         if($products){
 
             $data=[];
 
-            foreach($products as $id=>$quantity){
+            foreach($products as $row){
                 
-                $product=\App\Product::find($id);
-                
-                array_push($data, [
-                    'id'=>$id,
+                $product=\App\Product::find($row['id']);
+
+                $temp=[
+                    'id'=>$product->id,
                     'hs_code'=>$product->hs_code,
                     'name'=>$product->name,
-                    'stock'=>stock_balance($working_unit, $product, [
+                    'quantity'=>$row['quantity']
+                ];
+
+                if(empty($row['batch_no'])){
+
+                    $temp['stock']=stock_balance($working_unit, $product, [
                         'product_status_id'=>$product_status->id,
                         'product_pattern_id'=>$product_pattern->id
-                    ]),
-                    'quantity'=>$quantity
-                ]);
+                    ]);
+
+                    $temp['batch_no']='';
+
+                }else{
+
+                    $temp['stock']=stock_balance($working_unit, $product, [
+                        'product_status_id'=>$product_status->id,
+                        'product_pattern_id'=>$product_pattern->id,
+                        'batch_no'=>$row['batch_no']
+                    ]);
+
+                    $temp['batch_no']=$row['batch_no'];
+                }
+
+                $temp['expiration_date']=empty($row['expiration_date'])?'':$row['expiration_date'];
+                
+                array_push($data, $temp);
 
             }
 

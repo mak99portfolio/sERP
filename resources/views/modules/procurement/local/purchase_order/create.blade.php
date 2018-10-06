@@ -52,9 +52,6 @@
                                 <legend>Genaral PO Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::text('purchase_oder_no','Purchase Oder No', null, ['class'=>'form-control input-sm']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                         {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -90,22 +87,22 @@
                                 <legend>Ship To Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="radio">
+                                        <div class="checkbox">
                                             <label>
-                                                <input type="radio" class="flat" name="ship_to_address" value="magnum"> MAGNUM Enterprise Ltd.
+                                                <input type="checkbox" class="flat" name="ship_to_address[]" value="MAGNUM Enterprise Ltd."> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12">
                                         <div class="col-md-3 col-sm-4">
-                                            <div class="radio pull-right">
+                                            <div class="checkbox pull-right">
                                                 <label>
-                                                    <input type="radio" class="flat" name="ship_to_address"> Other Ship to Address
+                                                    <input type="checkbox" class="flat"> Other Ship to Address
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-8">
-                                            <input class="form-control input-sm" type="text">
+                                            <input class="form-control input-sm" type="text" name="ship_to_address[]">
                                         </div>
                                     </div>
                                 </div>
@@ -182,34 +179,47 @@
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="item in itemlist">
-                                                <td> <% $index+1 %></td>
+                                                <td>
+                                                    <% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
+                                                </td>
                                                 <td class="checkbox">
                                                     <label class="control-label">
                                                         <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
                                                     </label>
                                                 </td>
                                                 <td><% item.hs_code %></td>
-                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="<% item.quantity %>" type="text"></td>
+                                                <td>
+                                                    <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]">
+                                                </td>
                                                 <td><% item.uom %></td>
-                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="" type="text"></td>
-                                                <td>123</td>
-                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="" type="text"></td>
-                                                <td>123</td>
-                                                <td><input class="form-control input-sm" ng-disabled="!checked[$index]" value="" type="text"></td>
-                                                <td></td>
-                                                <td>123</td>
+                                                <td>
+                                                    <input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required>
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="!checked[$index]" ng-model="amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][amount]" value="<% amount[$index] = quantity[$index]*unit_price[$index] %>"><% amount[$index] = quantity[$index]*unit_price[$index] %>
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="!checked[$index]" ng-model="discount_rate[$index]" ng-init="discount_rate[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][discount_rate]" required>
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="!checked[$index]" ng-model="total_discount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][total_discount]" value="<% total_discount[$index] = amount[$index]*discount_rate[$index]/100 %>"><% total_discount[$index] = amount[$index]*discount_rate[$index]/100 %>
+                                                </td>
+                                                <td>
+                                                    <input ng-disabled="!checked[$index]" ng-model="vat_rate[$index]" ng-init="vat_rate[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][vat_rate]" required>
+                                                </td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="vat_amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][vat_amount]" value="<% vat_amount[$index] = amount[$index]*vat_rate[$index]/100 %>"><% vat_amount[$index] = amount[$index]*vat_rate[$index]/100 %></td>
+                                                <td><input ng-disabled="!checked[$index]" ng-model="total_net_amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][total_net_amount]" value="<% total_net_amount[$index] = amount[$index]-total_discount[$index]+vat_amount[$index] %>"><% total_net_amount[$index] = amount[$index]-total_discount[$index]+vat_amount[$index] %></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td colspan="6">Total</td>
-                                                <td>9123</td>
+                                                <td><% sum(amount) %></td>
                                                 <td></td>
+                                                <td><% sum(total_discount) %></td>
                                                 <td></td>
-                                                <td>343</td>
-                                                <td></td>
-                                                <td>245.30</td>
-                                                <td></td>
+                                                <td><% sum(vat_amount) %></td>
+                                                <td><% sum(total_net_amount) %></td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -352,6 +362,14 @@
 
         $scope.itemlist = [];
         $scope.requisitions = [];
+        $scope.quantity = [];
+        $scope.unit_price = [];
+        $scope.amount = [];
+        $scope.discount_rate = [];
+        $scope.vat_rate = [];
+        $scope.total_discount = [];
+        $scope.vat_amount = [];
+        $scope.total_net_amount = [];
 
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
@@ -403,6 +421,17 @@
         $scope.removeCondition = function(index){
             $scope.conditions.splice(index, 1);
         }
+
+        $scope.sum = function($arr){
+            var sum = 0;
+            for(i=0; i<$arr.length; i++){
+                sum += $arr[i];
+            }
+            return sum;
+        }
+
+        $scope
+
     });
 </script>
 @endsection

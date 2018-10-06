@@ -85,6 +85,8 @@ class ReceiveLocalPurchaseController extends Controller{
         $products=$request->get('products');
 
         foreach($products as $row){
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
             
             \App\Stock::create([
                 'working_unit_id'=>$inventory_receive->working_unit_id,
@@ -93,6 +95,8 @@ class ReceiveLocalPurchaseController extends Controller{
                 'product_pattern_id'=>$inventory_receive->product_pattern_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['quantity'],
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
                 'remarks'=>$inventory_receive->remarks,
                 'creator_user_id'=>\Auth::id()
             ]);
@@ -138,7 +142,9 @@ class ReceiveLocalPurchaseController extends Controller{
 
             array_push($products, [
                 'id'=>$row->product_id,
-                'quantity'=>$row->receive_quantity
+                'quantity'=>$row->receive_quantity,
+                'batch_no'=>$row->batch_no,
+                'expiration_date'=>$row->expiration_date
             ]);
 
         }
@@ -206,6 +212,8 @@ class ReceiveLocalPurchaseController extends Controller{
         $products=$request->get('products');
 
         foreach($products as $row){
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
             
             \App\Stock::create([
                 'working_unit_id'=>$inventory_receive->working_unit_id,
@@ -214,6 +222,8 @@ class ReceiveLocalPurchaseController extends Controller{
                 'product_pattern_id'=>$inventory_receive->product_pattern_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['quantity'],
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
                 'remarks'=>$inventory_receive->remarks,
                 'creator_user_id'=>\Auth::id()
             ]);

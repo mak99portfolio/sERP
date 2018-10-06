@@ -139,12 +139,15 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->quantity,
+                    'batch_no'=>'',
+                    'expiration_date'=>''
                 ]);
                 
             }
 
             return response()->json([
-                'commercial_invoice'=>$commercial_invoice,
+                'commercial_invoice_no'=>$commercial_invoice->commercial_invoice_no,
+                'letter_of_credit_no'=>$commercial_invoice->letter_of_credit->letter_of_credit_no,
                 'products'=>$products
             ]);
 
@@ -170,6 +173,8 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->quantity,
+                    'batch_no'=>'',
+                    'expiration_date'=>''
                 ]);
                 
             }
@@ -197,7 +202,7 @@ class ReceiveController extends Controller{
 
             foreach($items as $item){
 
-                $return_quantity=0;
+                $return_quantity='';
                 $return_status_id=1;
 
                 if($requisition->issue->return_items()->exists()){
@@ -219,7 +224,9 @@ class ReceiveController extends Controller{
                     'quantity'=>$item->requested_quantity,
                     'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity,
                     'return_quantity'=>$return_quantity,
-                    'return_status_id'=>$return_status_id
+                    'return_status_id'=>$return_status_id,
+                    'batch_no'=>$item->batch_no,
+                    'expiration_date'=>$item->expiration_date
                 ]);
 
                 
@@ -281,8 +288,10 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->requested_quantity,
+                    'batch_no'=>$item->batch_no,
+                    'expiration_date'=>$item->expiration_date,
                     'return_quantity'=>$return_quantity,
-                    'return_status_id'=>$return_status_id
+                    'return_status_id'=>$return_status_id,
                 ]);
 
                 

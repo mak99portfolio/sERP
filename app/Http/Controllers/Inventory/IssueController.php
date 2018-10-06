@@ -66,15 +66,27 @@ class IssueController extends Controller{
             'carbon'=>new \Carbon\Carbon
         ];
 
-        $products=[];
+        if(!\Session::has('vue_products')){
 
-        foreach($issue->allocated_items as $row){
-            $products[$row->product_id]=$row->requested_quantity;
+            $products=[];
+
+            foreach($issue->allocated_items as $row){
+
+                array_push($products, [
+                    'id'=>$row->product_id,
+                    'quantity'=>$row->requested_quantity,
+                    'batch_no'=>$row->batch_no,
+                    'expiration_date'=>$row->expiration_date
+                ]);
+
+            }
+
+            //dd($requisition->requested_items);
+
+            \Session::put('vue_products', $products);
+            
         }
 
-        //dd($requisition->requested_items);
-
-        \Session::put('vue_products', $products);
         return view($this->path('create'), $data);
         
     }
@@ -82,9 +94,10 @@ class IssueController extends Controller{
 
     public function update(Request $request, \App\InventoryIssue $issue){
 
-        //dd($request->all());
 
         \Session::put('vue_products', $request->get('products'));
+
+        //dd($request->get('products'));
 
         $request->validate([
             'products'=>'required|array'
@@ -105,15 +118,28 @@ class IssueController extends Controller{
 
             $products=$request->get('products');
 
-            foreach($products as $id=>$quantity){
+            foreach($products as $row){
                 
-                $product=\App\Product::find($id);
-                $balance=stock_balance($issue->requisition->requested_to, $product, [
-                    'product_status_id'=>$issue->requisition->product_status_id,
-                    'product_pattern_id'=>$issue->requisition->product_pattern_id
-                ]);
+                $product=\App\Product::find($row['id']);
 
-                if($balance < $quantity){
+                if(empty($row['batch_no'])){
+
+                    $balance=stock_balance($issue->requisition->requested_to, $product, [
+                        'product_status_id'=>$issue->requisition->product_status_id,
+                        'product_pattern_id'=>$issue->requisition->product_pattern_id
+                    ]);
+
+                }else{
+
+                    $balance=stock_balance($issue->requisition->requested_to, $product, [
+                        'product_status_id'=>$issue->requisition->product_status_id,
+                        'product_pattern_id'=>$issue->requisition->product_pattern_id,
+                        'batch_no'=>$row['batch_no']
+                    ]);
+
+                }
+
+                if($balance < $row['quantity']){
                     return back()
                     ->with('failed', 'Sorry!, your issue product quantity exceeds stock quantity.')
                     ->withInput();
@@ -140,16 +166,20 @@ class IssueController extends Controller{
             $issue->allocated_items()->delete();
             $issue->save();
 
-            foreach($products as $id=>$quantity){
+            foreach($products as $row){
                 
-                $product=\App\Product::find($id);
+                $product=\App\Product::find($row['id']);
+
+                $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
 
                 \App\InventoryIssueItem::create([
                     'inventory_issue_id'=>$issue->id,
                     'product_id'=>$product->id,
-                    'requested_quantity'=>$quantity,
+                    'requested_quantity'=>$row['quantity'],
                     'product_status_id'=>$issue->requisition->product_status_id,
-                    'product_pattern_id'=>$issue->requisition->product_pattern_id
+                    'product_pattern_id'=>$issue->requisition->product_pattern_id,
+                    'batch_no'=>$row['batch_no'],
+                    'expiration_date'=>$expiration_date
                 ]);
 
                 if($approval=='final'){
@@ -158,9 +188,11 @@ class IssueController extends Controller{
                         'working_unit_id'=>$issue->requisition->requested_depot_id,
                         'inventory_issue_id'=>$issue->id,
                         'product_id'=>$product->id,
-                        'issue_quantity'=>$quantity,
+                        'issue_quantity'=>$row['quantity'],
                         'product_status_id'=>$issue->requisition->product_status_id,
-                        'product_pattern_id'=>$issue->requisition->product_pattern_id
+                        'product_pattern_id'=>$issue->requisition->product_pattern_id,
+                        'batch_no'=>$row['batch_no'],
+                        'expiration_date'=>$expiration_date
                     ]);
 
                 }

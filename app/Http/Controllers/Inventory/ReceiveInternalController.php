@@ -83,6 +83,8 @@ class ReceiveInternalController extends Controller{
 
         foreach($products as $row){
 
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
+
             if(empty($row['return_quantity'])){
 
                 \App\Stock::create([
@@ -92,6 +94,8 @@ class ReceiveInternalController extends Controller{
                     'product_pattern_id'=>$inventory_receive->product_pattern_id,
                     'inventory_receive_id'=>$inventory_receive->id,
                     'receive_quantity'=>$row['quantity'],
+                    'batch_no'=>$row['batch_no'],
+                    'expiration_date'=>$expiration_date,
                     'remarks'=>$inventory_receive->remarks,
                     'creator_user_id'=>\Auth::id()
                 ]);
@@ -106,6 +110,8 @@ class ReceiveInternalController extends Controller{
                     'product_pattern_id'=>$inventory_receive->product_pattern_id,
                     'inventory_receive_id'=>$inventory_receive->id,
                     'receive_quantity'=>$receive_quantity,
+                    'batch_no'=>$row['batch_no'],
+                    'expiration_date'=>$expiration_date,
                     'remarks'=>$inventory_receive->remarks,
                     'creator_user_id'=>\Auth::id()
                 ]);
@@ -115,7 +121,9 @@ class ReceiveInternalController extends Controller{
                     'product_id'=>$row['id'],
                     'product_status_id'=>$row['return_status_id'],
                     'product_pattern_id'=>$inventory_receive->product_pattern_id,
-                    'return_quantity'=>$row['return_quantity']
+                    'return_quantity'=>$row['return_quantity'],
+                    'batch_no'=>$row['batch_no'],
+                    'expiration_date'=>$expiration_date
                 ]);
 
             }

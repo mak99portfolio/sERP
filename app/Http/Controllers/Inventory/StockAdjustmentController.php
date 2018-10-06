@@ -49,6 +49,8 @@ class StockAdjustmentController extends Controller{
 
     public function store(Request $request){
 
+        //dd($request->all());
+
         \Session::put('vue_products', $request->get('products'));
 
         $request->validate([
@@ -67,15 +69,17 @@ class StockAdjustmentController extends Controller{
 
         $products=$request->get('products');
 
-        foreach($products as $id=>$quantity){
+        foreach($products as $row){
             
-            $product=\App\Product::find($id);
+            $product=\App\Product::find($row['id']);
 
             $receive_quantity=0;
             $issue_quantity=0;
 
-            if($stock_adjustment->adjustment_type=='stock_in') $receive_quantity=$quantity;
-            elseif($stock_adjustment->adjustment_type=='stock_out') $issue_quantity=$quantity;
+            if($stock_adjustment->adjustment_type=='stock_in') $receive_quantity=$row['quantity'];
+            elseif($stock_adjustment->adjustment_type=='stock_out') $issue_quantity=$row['quantity'];
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
 
             \App\Stock::create([
                 'working_unit_id'=>$stock_adjustment->working_unit_id,
@@ -85,7 +89,9 @@ class StockAdjustmentController extends Controller{
                 'product_pattern_id'=>$stock_adjustment->product_pattern_id,
                 'creator_user_id'=>$stock_adjustment->creator_user_id,
                 'receive_quantity'=>$receive_quantity,
-                'issue_quantity'=>$issue_quantity
+                'issue_quantity'=>$issue_quantity,
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date
 
             ]);
 
@@ -123,11 +129,21 @@ class StockAdjustmentController extends Controller{
 
             if($stock_adjustment->adjustment_type=='stock_in'){
 
-                $products[$row->product_id]=$row->receive_quantity;
+                array_push($products, [
+                    'id'=>$row->product_id,
+                    'quantity'=>$row->receive_quantity,
+                    'batch_no'=>$row->batch_no,
+                    'expiration_date'=>$row->expiration_date //\Carbon\Carbon::parse($row->expiration_date)->format('m/d/Y');
+                ]);
 
             }elseif($stock_adjustment->adjustment_type=='stock_out'){
 
-                $products[$row->product_id]=$row->issue_quantity;
+                array_push($products, [
+                    'id'=>$row->product_id,
+                    'quantity'=>$row->issue_quantity,
+                    'batch_no'=>$row->batch_no,
+                    'expiration_date'=>$row->expiration_date //\Carbon\Carbon::parse($row->expiration_date)->format('m/d/Y');
+                ]);
 
             }
         }
@@ -162,15 +178,17 @@ class StockAdjustmentController extends Controller{
 
         $products=$request->get('products');
 
-        foreach($products as $id=>$quantity){
+        foreach($products as $row){
             
-            $product=\App\Product::find($id);
+            $product=\App\Product::find($row['id']);
 
             $receive_quantity=0;
             $issue_quantity=0;
 
-            if($stock_adjustment->adjustment_type=='stock_in') $receive_quantity=$quantity;
-            elseif($stock_adjustment->adjustment_type=='stock_out') $issue_quantity=$quantity;
+            if($stock_adjustment->adjustment_type=='stock_in') $receive_quantity=$row['quantity'];
+            elseif($stock_adjustment->adjustment_type=='stock_out') $issue_quantity=$row['quantity'];
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
 
             \App\Stock::create([
                 'working_unit_id'=>$stock_adjustment->working_unit_id,
@@ -180,8 +198,9 @@ class StockAdjustmentController extends Controller{
                 'product_pattern_id'=>$stock_adjustment->product_pattern_id,
                 'creator_user_id'=>$stock_adjustment->creator_user_id,
                 'receive_quantity'=>$receive_quantity,
-                'issue_quantity'=>$issue_quantity
-
+                'issue_quantity'=>$issue_quantity,
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
             ]);
 
         }

@@ -27,10 +27,11 @@ function btnDelete($args=[]){
 	$attr=[
 		'url'=>'#',
 		'icon'=>'fa-trash-o',
-		'class'=>'text-danger'
+		'class'=>'text-danger',
+		'title'=>''
 	];
 	$attr=array_merge($attr,$args);
-	return "<form method='POST' action='$attr[url]'>".csrf_field().method_field('DELETE')."<button type='submit' class='btn btn-default btn-sm' title='Delete' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true' title='Delete'></i></button></form>";
+	return "<form method='POST' action='$attr[url]'>".csrf_field().method_field('DELETE')."<button type='submit' class='btn btn-default btn-sm' onclick='return action_confirm()'><i class='$attr[class] fa $attr[icon] fa-lg' aria-hidden='true' title='Delete'></i> $attr[title]</button></form>";
 }
 function btnCustom($args=[], Array $customeAttr=[]){
 

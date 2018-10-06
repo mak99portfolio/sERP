@@ -89,7 +89,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" class="flat" name="ship_to_address[]" value="MAGNUM Enterprise Ltd."> MAGNUM Enterprise Ltd.
+                                                <input type="checkbox" ng-checked="!other_ship" ng-model="magnum_checked" name="ship_to_address" ng-init="magnum_checked = true" value="MAGNUM Enterprise Ltd."> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
@@ -97,12 +97,12 @@
                                         <div class="col-md-3 col-sm-4">
                                             <div class="checkbox pull-right">
                                                 <label>
-                                                    <input type="checkbox" class="flat"> Other Ship to Address
+                                                    <input type="checkbox" ng-model="other_ship" ng-checked="!magnum_checked" > Other Ship to Address
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-8">
-                                            <input class="form-control input-sm" type="text" name="ship_to_address[]">
+                                            <input class="form-control input-sm" type="text" ng-disabled="magnum_checked" name="ship_to_address">
                                         </div>
                                     </div>
                                 </div>

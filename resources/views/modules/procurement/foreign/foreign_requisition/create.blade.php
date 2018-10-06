@@ -29,19 +29,19 @@
                         <form class="form-horizontal form-label-left" action="{{route('foreign-requisition.store')}}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2','required']) }}
                                 </div>
                             </div>
@@ -83,8 +83,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!--start Purchase Order Items table-->
                             <div class="table-responsive">
                                 <table class="table table-bordered table-hover" ng-if="itemlist.length >= 1">
                                     <thead class="bg-default">
@@ -110,7 +108,7 @@
                                             <td><% item.goods_in_transit %></td>
                                             <td><% item.pending %></td>
                                             <td><% item.total_quantity %></td>
-                                            <td><input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" required></td>
+                                            <td class="item"><input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" required></td>
                                             <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
@@ -137,7 +135,7 @@
                                     <br />
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="!itemlist.length > 0">Save</button>
                                         <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
                                     </div>
                                 </div>

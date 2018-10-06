@@ -14,7 +14,7 @@
                     <a class="btn btn-primary btn-sm pull-right" href="{{route('product-category.create')}}"><i class="fa fa-plus"></i> Add new</a>
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
+                <div class="x_content" id="popup_area">
                     <br />
                     <div class="table-responsive">
                         <table class="table table-bordered">

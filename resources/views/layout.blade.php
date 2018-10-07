@@ -105,6 +105,28 @@
                 <!-- /footer content -->
             </div>
         </div>
+        <!-- Modal -->
+        <div id="popUpModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+            
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title popup_title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body" id="modal_body">
+                    <p>Some text in the modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#" class="popup_destination btn btn-primary">Go To <span class="popup_title"></span></a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            
+                </div>
+            </div>
+            
 
         <!-- jQuery -->
         <script src="{{asset('assets/vendors/jquery/dist/jquery.min.js')}}"></script>
@@ -173,6 +195,24 @@
 
         @yield('script')
         <script>
+            $('*[data-popup]').each(function(){
+                $("label[for='" + $(this).attr('id') + "']").css({
+                    'cursor': 'pointer',
+                    'text-decoration': 'underline'
+                });
+            });
+            $('*[data-popup]').on('click', function(){
+                var destination_url = $(this).data('popup');
+                var split = destination_url.split('/');
+                var popup_title = split[split.length -1];
+                var popup_title = popup_title.charAt(0).toUpperCase() + popup_title.slice(1);
+                $('#popUpModal').modal('show');
+                var label = $("label[for='" + $(this).attr('id') + "']");
+                $('.popup_title').text(popup_title);
+                $('.popup_destination').attr('href', destination_url);
+
+                $('#modal_body').load(destination_url + ' #popup_area');
+            });
             toaster_notification();
             function toaster_notification() {
                 $.ajax("{{route('get_toaster_notification')}}")

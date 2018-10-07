@@ -13,7 +13,7 @@ class CreateInventoryStatusAdjustmentsTable extends Migration{
             $table->increments('id');
             $table->string('inventory_status_adjustment_no')->unique();
             $table->integer('working_unit_id')->unsigned()->nullable();
-            $table->integer('selected_pattern_id')->unsigned()->nullable();
+            $table->integer('selected_type_id')->unsigned()->nullable();
             $table->integer('selected_status_id')->unsigned()->nullable();
             $table->integer('adjusted_status_id')->unsigned()->nullable();
             $table->integer('product_id')->unsigned()->nullable();
@@ -26,7 +26,7 @@ class CreateInventoryStatusAdjustmentsTable extends Migration{
             $table->timestamps();
 
             $table->foreign('working_unit_id')->references('id')->on('working_units')->onDelete('cascade');
-            $table->foreign('selected_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
+            $table->foreign('selected_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->foreign('selected_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
             $table->foreign('adjusted_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');

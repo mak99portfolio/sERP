@@ -23,59 +23,59 @@
                         <form class="form-horizontal form-label-left" action="{{route('vendor.store')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('vendor_id','Vendor Id', $vendor_id, ['class'=>'form-control input-sm', 'readonly'=>true]) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('vendor_id','Vendor Id', $vendor_id, ['class'=>'form-control input-sm', 'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm select2']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('status_id', 'Status', [1=>'Active', 0=>'Inactive'], null, ['class'=>'form-control input-sm select2','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('establishment_date','Establishment Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
 
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_category_id', 'Vendor Category', $vendor_category_list, null, ['class'=>'form-control input-sm select2']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('vendor_category_id', 'Vendor Category', $vendor_category_list, null, ['class'=>'form-control input-sm select2','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('zip_code','Zip Code', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::tel('telephone','Tel. No.', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('fax','Fax', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('website','Web Site', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::email('email','Email', null, ['class'=>'form-control input-sm']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::email('email','Email', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::tel('tin_no','TIN Number', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('trade_license_no','Trade License No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('trade_license_issue_date','Trade License Issue Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('certificate_of_incorporation','Certificate of Incorporation', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('incorporation_date','Incorporation Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('vat_no','VAT No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::textarea('address','Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
                                 </div>
                             </div>
@@ -86,21 +86,21 @@
                                         <div class="col-md-2 col-sm-2 col-xs-12">
                                             <div class="checkbox">
                                                 <label class="i-checks">
-                                                    <input type="checkbox" name="business_type[]" value="Ltd. Company"><i></i> Ltd. Company
+                                                    <input type="checkbox" name="business_type[]" value="Ltd. Company" required autofocus><i></i> Ltd. Company
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-sm-2 col-xs-12">
                                             <div class="checkbox">
                                                 <label class="i-checks">
-                                                    <input type="checkbox" name="business_type[]" value="Partnership"><i></i> Partnership
+                                                    <input type="checkbox" name="business_type[]" value="Partnership" required><i></i> Partnership
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-2 col-sm-2 col-xs-12">
                                             <div class="checkbox">
                                                 <label class="i-checks">
-                                                    <input type="checkbox" name="business_type[]" value="Proprietorship"><i></i> Proprietorship
+                                                    <input type="checkbox" name="business_type[]" value="Proprietorship" required><i></i> Proprietorship
                                                 </label>
                                             </div>
                                         </div>
@@ -108,12 +108,12 @@
                                             <div class="col-sm-2">
                                                 <div class="checkbox">
                                                     <label class="i-checks">
-                                                        <input type="checkbox" ng-model="other_business_type"> Other
+                                                        <input type="checkbox" ng-model="other_business_type" required> Other
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-sm-6">
-                                                <input class="form-control input-sm" type="text" name="business_type[]" value="" ng-disabled="!other_business_type">
+                                                <input class="form-control input-sm" type="text" name="business_type[]" value="" ng-disabled="!other_business_type" required>
                                             </div>
                                         </div>
                                     </div>
@@ -154,7 +154,7 @@
                                         <div class="col-md-2 col-sm-2 col-xs-12">
                                             <div class="checkbox">
                                                 <label class="i-checks">
-                                                    <input type="checkbox" name="business_nature['']" value="Agent/Distributor"><i></i> Agent/Distributor
+                                                    <input type="checkbox" name="business_nature[]" value="Agent/Distributor"><i></i> Agent/Distributor
                                                 </label>
                                             </div>
                                         </div>
@@ -209,22 +209,22 @@
                                 <div class="panel-heading">Bank Information</div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::text('bank[ac_no]','A/C No', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::text('bank[ac_name]','A/C Name', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::text('bank[bank_name]','Bank', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::text('bank[branch_name]','Branch', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::text('bank[swift_code]','SWIFT Code', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::textarea('bank[address]','Bank Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
                                         </div>
                                     </div>
@@ -236,22 +236,22 @@
                                     <div class="panel-heading" ng-bind="'Person-' + (1+$index)"></div>
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('contacts[<% $index %>][name]','Contact Name', null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('contacts[<% $index %>][designation]','Designation', null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::tel('contacts[<% $index %>][telephone]','Tel.No', null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::email('contacts[<% $index %>][email]','E-Mail', null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('contacts[<% $index %>][role]','Job Role', null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::tel('contacts[<% $index %>][mobile]','Cell No', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                         </div>
@@ -344,5 +344,21 @@
                 }
             }
         });
+        $(function(){
+
+var requiredCheckboxes = $(':checkbox[required]');
+
+requiredCheckboxes.change(function(){
+
+    if(requiredCheckboxes.is(':checked')) {
+        requiredCheckboxes.removeAttr('required');
+    }
+
+    else {
+        requiredCheckboxes.attr('required', 'required');
+    }
+});
+
+});
         </script>
 @endsection

@@ -45,7 +45,7 @@
                                         <td>{{$product->hs_code}}</td>
                                         <td>{{$product->product_category->name}}</td>
                                         <td>{{$product->product_size->name}}</td>
-                                        <td>{{$product->product_pattern->name}}</td>
+                                        <td>{{$product->product_type->name}}</td>
                                         <td>{{$product->product_set->name}}</td>
                                         <td>{{$product->product_brand->name}}</td>
                                         <td class="text-center">

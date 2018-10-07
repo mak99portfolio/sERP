@@ -169,6 +169,7 @@
                                                     <th>Product Name</th>
                                                     <th>HS Code</th>
                                                     <th>Category</th>
+                                                    <th>Model</th>
                                                     <th>Size</th>
                                                     <th>Product Type</th>
                                                     <th>Set</th>
@@ -181,6 +182,7 @@
                                                     <td ng-click="checked[$index] = !checked[$index]"><% product.name %></td>
                                                     <td><% product.hs_code %></td>
                                                     <td><% product.product_category.name %></td>
+                                                    <td><% product.product_model.name %></td>
                                                     <td><% product.product_size.name %></td>
                                                     <td><% product.product_type.name %></td>
                                                     <td><% product.product_set.name %></td>

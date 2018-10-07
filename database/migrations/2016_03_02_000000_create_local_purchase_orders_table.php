@@ -15,7 +15,7 @@ class CreateLocalPurchaseOrdersTable extends Migration
     {
         Schema::create('local_purchase_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_order_no')->unsigned()->nullable();
+            $table->string('purchase_order_no')->unsigned()->nullable();
             $table->string('inco_terms')->nullable();
             $table->string('inco_term_info')->nullable();
             $table->string('procurement_type')->nullable();
@@ -24,7 +24,8 @@ class CreateLocalPurchaseOrdersTable extends Migration
             $table->string('status')->nullable();
             $table->string('shipping_method')->nullable();
             $table->string('payment_method')->nullable();
-            $table->string('remarks')->nullable();         
+            $table->string('ship_to_address')->nullable();
+            $table->string('remarks')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

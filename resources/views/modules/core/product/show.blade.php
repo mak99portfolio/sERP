@@ -39,7 +39,7 @@
                                         <td><strong>Category:</strong> {{$product->product_category->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Select Pattern :</strong>{{$product->product_pattern->name}}</td>
+                                        <td><strong>Product Type :</strong>{{$product->product_type->name}}</td>
                                         <td><strong>Product Model :</strong>{{$product->product_model->name}}</td>
                                         <td><strong>Product Size :</strong>{{$product->product_size->name}}</td>
                                     </tr>

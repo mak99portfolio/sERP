@@ -25,10 +25,10 @@
                         <form class="form-horizontal form-label-left" action="{{route('vendor-category.store')}}" method="POST" autocomplete="off">
                         {{ BootForm::open(['store'=>'vendor-category.store', 'update'=>'vendor-category.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            {{ BootForm::text('name','Category Title', null, ['class'=>'form-control input-sm']) }}
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                            {{ BootForm::text('name','Category Title', null, ['class'=>'form-control input-sm', 'required']) }}
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                             {{ BootForm::text('short_name','Short Title', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

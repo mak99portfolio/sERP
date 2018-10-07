@@ -19,7 +19,7 @@
                         {!! btnAddNew(['url'=>route('requisition-purpose.create')]) !!}
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" id="popup_area">
                         <br />
                         {{-- Main content area --}}
             @include('partials.paginate_header')

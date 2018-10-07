@@ -159,8 +159,57 @@ class ApiController extends Controller
     public function getForeignRequisitionByRequisitionIds($ids)
     {
         $data = [];
+        $previous_orders_quantity=[];
+
         foreach (explode(',', $ids) as $id) {
-            $req = ForeignRequisition::find($id);
+
+            $req = ForeignRequisition::find($id);            
+            
+            $purchase_orders=$req->purchase_orders;
+
+            //dd($purchase_orders);
+
+            foreach ($req->items as $item){
+
+                $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
+                ->where('product_id', $item->product_id)
+                ->sum('quantity');
+
+                if(empty($previous_orders_quantity)){
+
+                    array_push($previous_orders_quantity, [
+                        'previous_product_id'=>$item->product_id,
+                        'previous_quantity'=>$previous_quantity
+                    ]);
+
+                }else{
+
+                    foreach($previous_orders_quantity as $key=>$row){
+
+                        if($row['previous_product_id']==$item->product_id){
+
+                            $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
+
+                        }else{
+
+                            array_push($previous_orders_quantity, [
+                                'previous_product_id'=>$item->product_id,
+                                'previous_quantity'=>$previous_quantity
+                            ]);
+
+                        }
+
+                    }
+
+                }
+
+
+            }
+
+            //dd($previous_orders_quantity);
+            
+
+
             $items = $req->items;
             foreach ($items as $item) {
                 $item_exist = false;
@@ -181,7 +230,21 @@ class ApiController extends Controller
                     ];
                 }
             }
+            
         }
+
+        foreach($data as $key=>$row){
+
+            foreach($previous_orders_quantity as $inner_row){
+
+                if($row['product_id']==$inner_row['previous_product_id']){
+                    $data[$key]['quantity']=$row['quantity']-$inner_row['previous_quantity'];
+                }
+
+            }
+
+        }
+
         return response()->json($data);
     }
 
@@ -238,9 +301,9 @@ class ApiController extends Controller
     {
         $product_group = ProductGroup::find($product_group_id);
         if($product_group){
-            return response()->json(Product::where('product_category_id', $product_group_id)->with('product_category')->with('product_size')->with('product_set')->with('product_pattern')->get());
+            return response()->json(Product::where('product_category_id', $product_group_id)->with('product_category')->with('product_size')->with('product_set')->with('product_type')->get());
         }else{
-            return response()->json(Product::with('product_category')->with('product_size')->with('product_set')->with('product_pattern')->get());
+            return response()->json(Product::with('product_category')->with('product_size')->with('product_set')->with('product_type')->get());
         }
     }
 

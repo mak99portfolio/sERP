@@ -13,7 +13,7 @@ class CreateInventoryRequisitionItemsTable extends Migration{
             $table->integer('inventory_requisition_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('product_status_id')->unsigned()->nullable();
-            $table->integer('product_pattern_id')->unsigned()->nullable();
+            $table->integer('product_type_id')->unsigned()->nullable();
             $table->integer('requested_quantity')->unsigned()->default(0);
             $table->softDeletes();
             $table->timestamps();
@@ -21,7 +21,7 @@ class CreateInventoryRequisitionItemsTable extends Migration{
             $table->foreign('inventory_requisition_id')->references('id')->on('inventory_requisitions')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('product_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
-            $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
+            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
         });
 
     }

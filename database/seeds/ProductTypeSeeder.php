@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductPatternSeeder extends Seeder
+class ProductTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,7 +18,7 @@ class ProductPatternSeeder extends Seeder
         	['id'=>4, 'name'=>"Other", 'short_name'=>'OT', 'creator_user_id'=>1],
         ];
 
-        \DB::table('product_patterns')->insert($data);
+        \DB::table('product_types')->insert($data);
 
     }
 }

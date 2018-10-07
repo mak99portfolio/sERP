@@ -89,7 +89,7 @@
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" ng-checked="!other_ship" ng-model="magnum_checked" name="ship_to_address" ng-init="magnum_checked = true" value="MAGNUM Enterprise Ltd."> MAGNUM Enterprise Ltd.
+                                                <input type="checkbox" ng-model="magnum_checked" ng-checked="!other_ship"  name="ship_to_address" ng-init="magnum_checked = true" value="MAGNUM Enterprise Ltd."> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
@@ -97,12 +97,12 @@
                                         <div class="col-md-3 col-sm-4">
                                             <div class="checkbox pull-right">
                                                 <label>
-                                                    <input type="checkbox" ng-model="other_ship" ng-checked="!magnum_checked" > Other Ship to Address
+                                                    <input type="checkbox" ng-model="other_ship" ng-checked="!magnum_checked" ng-init="other_ship = false"> Other Ship to Address
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-8">
-                                            <input class="form-control input-sm" type="text" ng-disabled="magnum_checked" name="ship_to_address">
+                                            <input class="form-control input-sm" type="text" ng-disabled="other_ship == false" name="ship_to_address">
                                         </div>
                                     </div>
                                 </div>
@@ -278,8 +278,8 @@
                                                 <tbody>
                                                     <tr ng-repeat="terms in payment_terms">
                                                         <td><% $index+1 %></td>
-                                                        <td><% terms.type %> <input name="payment_terms[<% $index %>][type]" type="hidden" value="<% terms.type %>"></td>
-                                                        <td><% terms.date %> <input name="payment_terms[<% $index %>][date]" type="hidden" value="<% terms.date %>"></td>
+                                                        <td><% terms.type %> <input name="payment_terms[<% $index %>][payment_type]" type="hidden" value="<% terms.type %>"></td>
+                                                        <td><% terms.date %> <input name="payment_terms[<% $index %>][payment_date]" type="hidden" value="<% terms.date %>"></td>
                                                         <td><% terms.description %> <input name="payment_terms[<% $index %>][description]" type="hidden" value="<% terms.description %>"></td>
                                                         <td><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
                                                         <td  class="text-center">
@@ -311,7 +311,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                                        {{ BootForm::textarea('description','Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
+                                        {{ BootForm::textarea(null,'Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
                                     </div>
                                     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
                                         <button type="button" ng-click="add_condition()" class="btn btn-sm btn-default m-t-20"><strong>Add</strong></button>
@@ -330,8 +330,8 @@
                                                 <tbody id="mytable1">
                                                     <tr ng-repeat="condition in conditions">
                                                         <td><% $index+1 %></td>
-                                                        <td><% condition.type %><input name="conditions[<% $index %>][type]" type="hidden" value="<% condition.type %>"></td>
-                                                        <td><% condition.description %> <input name="conditions[<% $index %>][descripton]" type="hidden" value="<% condition.description %>"></td>
+                                                        <td><% condition.type %><input name="terms_conditions[<% $index %>][terms_type]" type="hidden" value="<% condition.type %>"></td>
+                                                        <td><% condition.description %> <input name="terms_conditions[<% $index %>][descripton]" type="hidden" value="<% condition.description %>"></td>
                                                         <td class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                     </tr>
                                                 </tbody>

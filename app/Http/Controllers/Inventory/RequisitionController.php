@@ -45,7 +45,7 @@ class RequisitionController extends Controller{
             'sender_working_units'=>$sender_working_units,
             'requested_working_units'=>$requested_working_units,
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
+            'product_types'=>\App\ProductType::pluck('name', 'id')
         ];
 
         //dd($data);
@@ -67,7 +67,7 @@ class RequisitionController extends Controller{
             'sender_depot_id'=>'required|integer',
             'requested_depot_id'=>'required|integer|different:sender_depot_id',
             'product_status_id'=>'required|integer',
-            'product_pattern_id'=>'required|integer',
+            'product_type_id'=>'required|integer',
             'date'=>'required|date',
             'products'=>'required|array'
         ]);
@@ -95,7 +95,7 @@ class RequisitionController extends Controller{
                 'product_id'=>$product->id,
                 'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
-                'product_pattern_id'=>$requisition->product_pattern_id
+                'product_type_id'=>$requisition->product_type_id
             ]);
 
         }
@@ -132,7 +132,7 @@ class RequisitionController extends Controller{
             'sender_working_units'=>$sender_working_units,
             'requested_working_units'=>$requested_working_units,
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
+            'product_types'=>\App\ProductType::pluck('name', 'id'),
         ];
 
         $products=[];
@@ -165,7 +165,7 @@ class RequisitionController extends Controller{
             'sender_depot_id'=>'required|integer',
             'requested_depot_id'=>'required|integer|different:sender_depot_id',
             'product_status_id'=>'required|integer',
-            'product_pattern_id'=>'required|integer',
+            'product_type_id'=>'required|integer',
             'date'=>'required|date',
             'products'=>'required|array'
         ]);
@@ -207,7 +207,7 @@ class RequisitionController extends Controller{
                 'product_id'=>$product->id,
                 'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
-                'product_pattern_id'=>$requisition->product_pattern_id
+                'product_type_id'=>$requisition->product_type_id
             ]);
 
             \App\InventoryIssueItem::create([
@@ -215,7 +215,7 @@ class RequisitionController extends Controller{
                 'product_id'=>$product->id,
                 'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
-                'product_pattern_id'=>$requisition->product_pattern_id
+                'product_type_id'=>$requisition->product_type_id
             ]);
 
         }
@@ -251,7 +251,7 @@ class RequisitionController extends Controller{
         
     }
 
-    public function get_product_info(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern, string $slug){
+    public function get_product_info(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductType $product_type, string $slug){
 
         $product=\App\Product::where('hs_code', $slug)->orWhere('name', $slug)->first();
 
@@ -265,7 +265,7 @@ class RequisitionController extends Controller{
                 'name'=>$product->name,
                 'stock'=>stock_balance($working_unit, $product, [
                     'product_status_id'=>$product_status->id,
-                    'product_pattern_id'=>$product_pattern->id
+                    'product_type_id'=>$product_type->id
                 ])
             ]);
         }
@@ -274,20 +274,20 @@ class RequisitionController extends Controller{
 
     }
 
-    public function get_batch_stock(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern, \App\Product $product, string $slug){
+    public function get_batch_stock(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductType $product_type, \App\Product $product, string $slug){
 
         if($slug=='reset'){
 
             $stock_balance=stock_balance($working_unit, $product, [
                 'product_status_id'=>$product_status->id,
-                'product_pattern_id'=>$product_pattern->id
+                'product_type_id'=>$product_type->id
             ]);
 
         }else{
 
             $stock_balance=stock_balance($working_unit, $product, [
                 'product_status_id'=>$product_status->id,
-                'product_pattern_id'=>$product_pattern->id,
+                'product_type_id'=>$product_type->id,
                 'batch_no'=>$slug
             ]);
 
@@ -317,7 +317,7 @@ class RequisitionController extends Controller{
 
     }
 
-    public function vue_old_products(Request $request, \App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductPattern $product_pattern){
+    public function vue_old_products(Request $request, \App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductType $product_type){
 
         //dd(Session::get('vue_products'));
 
@@ -344,7 +344,7 @@ class RequisitionController extends Controller{
 
                     $temp['stock']=stock_balance($working_unit, $product, [
                         'product_status_id'=>$product_status->id,
-                        'product_pattern_id'=>$product_pattern->id
+                        'product_type_id'=>$product_type->id
                     ]);
 
                     $temp['batch_no']='';
@@ -353,7 +353,7 @@ class RequisitionController extends Controller{
 
                     $temp['stock']=stock_balance($working_unit, $product, [
                         'product_status_id'=>$product_status->id,
-                        'product_pattern_id'=>$product_pattern->id,
+                        'product_type_id'=>$product_type->id,
                         'batch_no'=>$row['batch_no']
                     ]);
 

@@ -79,7 +79,7 @@
                                                 {{ BootForm::select('product_status_id', 'Product Status', $product_statuses, ['class'=>'form-control input-sm select2']) }}
                                             </div>
                                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('product_pattern_id', 'Product Pattern', $product_patterns, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('product_type_id', 'Product Type', $product_types, ['class'=>'form-control input-sm select2']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">

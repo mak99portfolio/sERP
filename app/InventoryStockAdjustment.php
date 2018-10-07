@@ -21,7 +21,7 @@ class InventoryStockAdjustment extends Model{
     }
 
     public function item_type(){
-    	return $this->belongsTo('App\ProductPattern', 'product_type_id');
+    	return $this->belongsTo('App\ProductType', 'product_type_id');
     }
 
     public function creator(){

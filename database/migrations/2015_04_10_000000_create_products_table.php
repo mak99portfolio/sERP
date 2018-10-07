@@ -24,8 +24,8 @@ class CreateProductsTable extends Migration
             $table->string('hs_code')->unique();
             $table->integer('product_category_id')->unsigned();
             $table->foreign('product_category_id')->references('id')->on('product_categories')->onDelete('cascade');
-            $table->integer('product_pattern_id')->unsigned();
-            $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
+            $table->integer('product_type_id')->unsigned();
+            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->integer('product_group_id')->unsigned();
             $table->foreign('product_group_id')->references('id')->on('product_groups')->onDelete('cascade');
             $table->integer('product_brand_id')->unsigned();

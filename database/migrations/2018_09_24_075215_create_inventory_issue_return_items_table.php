@@ -14,7 +14,7 @@ class CreateInventoryIssueReturnItemsTable extends Migration{
             $table->integer('inventory_issue_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('product_status_id')->unsigned()->nullable();
-            $table->integer('product_pattern_id')->unsigned()->nullable();
+            $table->integer('product_type_id')->unsigned()->nullable();
             $table->integer('return_quantity')->unsigned()->default(0);
             $table->string('batch_no')->nullable();
             $table->date('expiration_date')->nullable();
@@ -24,7 +24,7 @@ class CreateInventoryIssueReturnItemsTable extends Migration{
             $table->foreign('inventory_issue_id')->references('id')->on('inventory_issues')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('product_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
-            $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
+            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
 
         });
 

@@ -10,7 +10,7 @@ use App\ProductBrand;
 use App\ProductCategory;
 use App\ProductGroup;
 use App\ProductModel;
-use App\ProductPattern;
+use App\ProductType;
 use App\ProductSet;
 use App\ProductSize;
 use App\UnitOfMeasurement;
@@ -52,7 +52,7 @@ class ProductController extends Controller
         $view->with('product_brand_list', ProductBrand::pluck('name', 'id')->prepend('-- Select Product Brand --', ''));
         $view->with('country_list', Country::pluck('name', 'id')->prepend('-- Select Country --', ''));
         $view->with('unit_of_measurement_list', UnitOfMeasurement::pluck('name', 'id')->prepend('-- Select Unit Of Measurement --', ''));
-        $view->with('product_pattern_list', ProductPattern::pluck('name', 'id')->prepend('-- Select Product Pattern --', ''));
+        $view->with('product_type_list', ProductType::pluck('name', 'id')->prepend('-- Select Product Type --', ''));
         $view->with('product_model_list', ProductModel::pluck('name', 'id')->prepend('-- Select Product Model --', ''));
         $view->with('product_set_list', ProductSet::pluck('name', 'id')->prepend('-- Select Product Set --', ''));
         $view->with('product_size_list', ProductSize::pluck('name', 'id')->prepend('-- Select Product Size --', ''));

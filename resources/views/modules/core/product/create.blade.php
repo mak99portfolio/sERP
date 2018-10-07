@@ -42,7 +42,7 @@
                                   </div> --}}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_pattern_id', 'Select Pattern', $product_pattern_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_type_id', 'Product Type', $product_type_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('product_model_id', 'Product Model', $product_model_list, null, ['class'=>'form-control input-sm select2']) }}
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_brand_id', 'Select Brand', $product_brand_list, null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('product_brand_id', 'Select Brand', $product_brand_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('serial','Product Serial', null, ['class'=>'form-control input-sm']) }}

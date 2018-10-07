@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\ProductPattern;
+use App\ProductType;
 use Illuminate\Http\Request;
 
-class ProductPatternController extends Controller
+class ProductTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,7 +44,7 @@ class ProductPatternController extends Controller
      * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductPattern $productPattern)
+    public function show(ProductType $product_type)
     {
         //
     }
@@ -55,7 +55,7 @@ class ProductPatternController extends Controller
      * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductPattern $productPattern)
+    public function edit(ProductType $product_type)
     {
         //
     }
@@ -67,7 +67,7 @@ class ProductPatternController extends Controller
      * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductPattern $productPattern)
+    public function update(Request $request, ProductType $product_type)
     {
         //
     }
@@ -78,7 +78,7 @@ class ProductPatternController extends Controller
      * @param  \App\ProductPattern  $productPattern
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductPattern $productPattern)
+    public function destroy(ProductType $product_type)
     {
         //
     }

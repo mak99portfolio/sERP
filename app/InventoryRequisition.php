@@ -24,8 +24,8 @@ class InventoryRequisition extends Model{
 		return $this->belongsTo('App\ProductStatus', 'product_status_id');
 	}
 
-	public function item_pattern(){
-		return $this->belongsTo('App\ProductPattern', 'product_pattern_id');
+	public function item_type(){
+		return $this->belongsTo('App\ProductType', 'product_type_id');
 	}
 
 	public function requested_items(){

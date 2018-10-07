@@ -16,7 +16,7 @@ class CreateLocalPurchaseOrderTermsConditionsTable extends Migration {
             $table->increments('id');
             $table->integer('local_purchase_order_id')->unsigned();
             $table->foreign('local_purchase_order_id', 'lpotc_foreign_id')->references('id')->on('local_purchase_orders')->onDelete('cascade');
-            $table->string('terms_and_condition');
+            $table->string('terms_type');
             $table->text('description')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');

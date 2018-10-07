@@ -14,9 +14,9 @@ class CreateLocalPurchaseOrderItemsTable extends Migration {
     public function up() {
         Schema::create('local_purchase_order_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('item_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->integer('quantity')->unsigned();
-            $table->double('price', 8, 2)->nullable();
+            $table->double('unit_price', 8, 2)->nullable();
             $table->double('discount_rate', 8, 2)->nullable();
             $table->double('discount', 8, 2)->nullable();
             $table->double('vat_rate', 8, 2)->nullable();

@@ -43,9 +43,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
         \DB::table('local_purchase_orders')->insert($data);
         \DB::table('local_purchase_order_items')->insert([
             [
-                'item_id' => 1,
+                'product_id' => 1,
                 'quantity' => rand(1, 20),
-                'price' => rand(100, 5000),
+                'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
                 'discount' => rand(1, 20),
                 'vat_rate' => rand(1, 20),
@@ -54,9 +54,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'local_purchase_order_id' => 1,
             ],
             [
-                'item_id' => 2,
+                'product_id' => 2,
                 'quantity' => rand(1, 20),
-                'price' => rand(100, 5000),
+                'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
                 'discount' => rand(1, 20),
                 'vat_rate' => rand(1, 20),
@@ -65,9 +65,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'local_purchase_order_id' => 1,
             ],
             [
-                'item_id' => 3,
+                'product_id' => 3,
                 'quantity' => rand(1, 20),
-                'price' => rand(100, 5000),
+                'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
                 'discount' => rand(1, 20),
                 'vat_rate' => rand(1, 20),
@@ -76,9 +76,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'local_purchase_order_id' => 1,
             ],
             [
-                'item_id' => 1,
+                'product_id' => 1,
                 'quantity' => rand(1, 20),
-                'price' => rand(100, 5000),
+                'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
                 'discount' => rand(1, 20),
                 'vat_rate' => rand(1, 20),
@@ -87,9 +87,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'local_purchase_order_id' => 2,
             ],
             [
-                'item_id' => 2,
+                'product_id' => 2,
                 'quantity' => rand(1, 20),
-                'price' => rand(100, 5000),
+                'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
                 'discount' => rand(1, 20),
                 'vat_rate' => rand(1, 20),
@@ -98,9 +98,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'local_purchase_order_id' => 2,
             ],
             [
-                'item_id' => 3,
+                'product_id' => 3,
                 'quantity' => rand(1, 20),
-                'price' => rand(100, 5000),
+                'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
                 'discount' => rand(1, 20),
                 'vat_rate' => rand(1, 20),
@@ -108,9 +108,9 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'total_vat' => rand(1, 20),
                 'local_purchase_order_id' => 2,
             ],
-           
-          
-           
+
+
+
         ]);
     }
 

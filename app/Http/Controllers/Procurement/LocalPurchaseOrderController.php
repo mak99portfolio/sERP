@@ -39,20 +39,33 @@ class LocalPurchaseOrderController extends Controller
     }
 
 
-    public function store(Request $request)
-    {
-    //    dd($request->input());
-         $request->validate([
+    public function store(Request $request){
+
+        //dd($request->input());
+
+        $request->validate([
            // 'requisition_no'=>'required',
 
         ]);
+
+        //dd($request->input());
+
         $local_purchase_order = new LocalPurchaseOrder;
         $local_purchase_order->fill($request->input());
         $local_purchase_order->creator_user_id = Auth::id();
+        $local_purchase_order->generate_purchase_order_number();
         $local_purchase_order->save();
         $local_purchase_order->vendor()->save(new LocalPurchaseOrderVendor($request->vendor));
+        $local_purchase_order->requisitions()->sync($request->get('foreign_requisition_ids'));
+
+        $local_purchase_order->items()->createMany($request->get('items'));
+        $local_purchase_order->payment_terms()->createMany($request->get('payment_terms'));
+        $local_purchase_order->terms_conditions()->createMany($request->get('terms_conditions'));
+        $local_purchase_order->save();
+
         Session::put('alert-success', 'Local Purchase order created successfully');
-        return redirect()->route('local-purchase-order.create');
+        return redirect()->route('local-purchase-order.index');
+
     }
 
 

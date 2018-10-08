@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Country extends Model
-{
+class Country extends Model{
+
     use SoftDeletes;
     // protected $table = 'countries';
     // protected $guarded = ['id'];
@@ -22,5 +22,9 @@ class Country extends Model
     }
     public function proforma_invoice_country_of_origin_of_goods(){
         return $this->hasMany('App\ProformaInvoice','origin_of_goods_country_id');
+    }
+
+    public function divisions(){
+        return $this->hasMany('App\Division');
     }
 }

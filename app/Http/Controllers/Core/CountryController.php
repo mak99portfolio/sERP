@@ -64,4 +64,34 @@ class CountryController extends Controller
     {
         //
     }
+
+    public function country_detail(Request $request){
+
+
+        if($request->get('country_id')){
+
+            return \App\Country::with(['divisions'=>function($query){
+
+                $query->with(['districts'=>function($query){
+                    $query->select('division_id' ,'id', 'name');
+                }])->select('country_id', 'id','name');
+
+            }])->select('id', 'name')
+            ->where('id', $request->country_id)
+            ->first();
+
+        }elseif($request->get('division_id')){
+
+            return \App\Division::with(['districts'=>function($query){
+
+                $query->select('division_id', 'id','name');
+
+            }])->select('id', 'name')
+            ->where('id', $request->division_id)
+            ->first();
+
+        }
+
+    }
+
 }

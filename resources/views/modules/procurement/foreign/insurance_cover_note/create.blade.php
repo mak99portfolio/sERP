@@ -49,20 +49,20 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label>Account No.</label>
-                                                    <select class="form-control input-sm select2" name="icn_bank_account_no" ng-model="vendor_bank_id" ng-change="getIcnAccountDetails()">
+                                                    <select class="form-control input-sm select2" name="vendor_bank_id" ng-model="vendor_bank_id" ng-change="getIcnAccountDetails()">
                                                         <option value="" disabled>--Select Account No--</option>
                                                         <option ng-repeat="account in icn_account_list" value="<% account.id %>"><% account.ac_no %></option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('icn_bank_account_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_account_name', 'readonly']) }}
+                                                {{ BootForm::text(null,'Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_account_name', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('icn_bank_name','Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_name', 'readonly']) }}
+                                                {{ BootForm::text(null,'Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_name', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::textarea('icn_bank_address','Bank Address', null, ['class'=>'form-control input-sm','rows'=>2, 'ng-model'=>'icn_bank_address', 'readonly']) }}
+                                                {{ BootForm::textarea(null,'Bank Address', null, ['class'=>'form-control input-sm','rows'=>2, 'ng-model'=>'icn_bank_address', 'readonly']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -73,16 +73,16 @@
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{-- {{ BootForm::text('consignee_bank_account_no','Account No', null, ['class'=>'form-control input-sm']) }} --}}
-                                                {{ BootForm::select('consignee_bank_account_no', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchConsigneeBank()','required','data-popup'=> route('company-bank.index')]) }}
+                                                {{ BootForm::select('company_bank_id', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchConsigneeBank()','required','data-popup'=> route('company-bank.index')]) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('consignee_bank_account_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_account_name', 'readonly']) }}
+                                                {{ BootForm::text(null,'Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_account_name', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('consignee_bank_name','Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_name', 'readonly']) }}
+                                                {{ BootForm::text(null,'Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_name', 'readonly']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::textarea('consignee_bank_address','Bank Address', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_address','rows'=>2, 'readonly']) }}
+                                                {{ BootForm::textarea(null,'Bank Address', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_address','rows'=>2, 'readonly']) }}
                                             </div>
                                         </div>
                                     </div>

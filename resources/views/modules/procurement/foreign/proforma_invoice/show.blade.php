@@ -80,7 +80,7 @@
                                 <tbody>
                                     <tr>
                                         <td><strong>Customer Code:</strong> {{$proformaInvoice->customer_code}}</td>
-                                        <td><strong>Consignee :</strong> {{$proformaInvoice->consignee}}</td>
+                                        <td><strong>Consignee :</strong> {{$proformaInvoice->company_profile->name}}</td>
                                         <td><strong>Beneficiary Bank Info :</strong> {{$proformaInvoice->beneficiary_bank_info}}</td>
                                     </tr>
                                 </tbody>

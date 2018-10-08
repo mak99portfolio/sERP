@@ -35,7 +35,8 @@ class CreateProformaInvoicesTable extends Migration
             $table->string('payment_type')->nullable();
             $table->string('pre_carriage_by')->nullable();
             $table->string('customer_code')->nullable();
-            $table->string('consignee')->nullable();
+            $table->integer('consignee_company_profile_id')->nullable();
+            $table->foreign('consignee_company_profile_id')->references('id')->on('company_profiles')->onDelete('cascade');
             $table->string('beneficiary_bank_info')->nullable();
             $table->text('notes')->nullable();
             $table->integer('company_id')->unsigned()->nullable();

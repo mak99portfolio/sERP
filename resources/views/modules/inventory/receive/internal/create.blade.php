@@ -101,6 +101,7 @@
                             <hr>
                             <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
+                                    {{-- 
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>HS Code</label>
@@ -113,9 +114,10 @@
                                         </div><!-- /input-group -->
                                         </div>
                                     </div>
+                                     --}}
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>Product Name</label>
+                                            <label>Search Product</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
                                             <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)'>

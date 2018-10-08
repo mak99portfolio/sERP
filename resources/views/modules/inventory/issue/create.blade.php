@@ -41,7 +41,7 @@
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, $issue->requisition->product_status_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_type_id', 'Item Pattern', $product_types, $issue->requisition->product_type_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::select('product_type_id', 'Item Type', $product_types, $issue->requisition->product_type_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('date', 'Date', $carbon->parse($issue->requisition->date)->format('d-m-Y'), ['class'=>'form-control input-sm datepicker', 'disabled']) }}

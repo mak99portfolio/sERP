@@ -45,7 +45,7 @@
                                         <td><strong>Product Status:</strong> {{ $inventory_receive->item_status->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Product Type:</strong> {{ $inventory_receive->item_pattern->name }}</td>
+                                        <td><strong>Product Type:</strong> {{ $inventory_receive->item_type->name }}</td>
                                         <td></td>
                                     </tr>
                                     <tr>

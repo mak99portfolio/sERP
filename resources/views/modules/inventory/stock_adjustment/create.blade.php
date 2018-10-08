@@ -38,10 +38,10 @@
                                     {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('product_status_id', 'Product Status', $product_statuses, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_type_id', 'Item Pattern', $product_types, null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('product_type_id', 'Product Type', $product_types, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                             </div>
                             <hr>

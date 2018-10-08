@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class InventoryItemPatternsSeeder extends Seeder{
+class InventoryItemTypesSeeder extends Seeder{
 
     public function run(){
 
@@ -12,7 +12,7 @@ class InventoryItemPatternsSeeder extends Seeder{
         	['creator_user_id'=>1, 'name'=>'Sample Product', 'short_name'=>'SP']
         ];
 
-        \DB::table('inventory_item_patterns')->insert($data);
+        \DB::table('inventory_item_types')->insert($data);
         
     }
 

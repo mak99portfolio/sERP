@@ -24,7 +24,7 @@
                         {{ BootForm::select('working_unit_id', 'Working Unit', $working_units, null, ['class'=>'input-sm select2']) }}
                         {{ BootForm::select('product_id', 'Product', $products, null, ['class'=>'input-sm select2']) }}
                         {{ BootForm::select('product_status_id', 'Status', $product_statuses, null, ['class'=>'input-sm select2']) }}
-                        {{ BootForm::select('product_type_id', 'Pattern', $product_types, null, ['class'=>'input-sm select2']) }}
+                        {{ BootForm::select('product_type_id', 'Type', $product_types, null, ['class'=>'input-sm select2']) }}
                         {{-- {{ BootForm::text('date_range', 'Select Date', null, ['class'=>'form-control input-sm date_range', ]) }} --}}
                         {{ BootForm::submit('submit', ['class'=>'btn btn-info btn-sm', 'style'=>'margin-top: 13px;']) }}
                         {{ BootForm::close() }}

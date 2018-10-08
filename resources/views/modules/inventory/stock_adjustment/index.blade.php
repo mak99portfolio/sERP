@@ -32,7 +32,7 @@
                             <th>Type</th>
                             <th>Purpose</th>
                             <th>Item Status</th>
-                            <th>Item Pattern</th>
+                            <th>Item Type</th>
                             <th>Approver</th>
                             <th>Remarks</th>
                             <th>Adjustment Date</th>
@@ -47,7 +47,7 @@
                             <td>{{ $row->adjustment_type }}</td>
                             <td>{{ $row->purpose->name }}</td>
                             <td>{{ $row->item_status->name }}</td>
-                            <td>{{ $row->item_pattern->name }}</td>
+                            <td>{{ $row->item_type->name }}</td>
                             <td>{{ $row->creator->name }}</td>
                             <td>{{ $row->remarks ?? 'Not Specified' }}</td>
                             <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>

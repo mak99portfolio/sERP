@@ -24,23 +24,31 @@
                                 @csrf
                                 <input type="hidden" name="letter_of_credit_id" value='<% letter_of_credit_id %>'>
                             <div class="row">
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('bill_of_lading_no', 'BL No', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('commercial-invoice.index')]) }}
+                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('bill_of_lading_date','Bill of Lading No', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date','required']) }}
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('bill_of_lading_date','Bill of Lading Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date','required']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no','required']) }}
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('letter_of_credit_id', 'Letter of Credit No', $letter_of_credit_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('letter-of-credit.index')]) }}
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('letter_of_credit_date','Letter of Credit Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'letter_of_credit_date','required']) }}
+                                </div>
 
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('commercial_invoice_ids', 'Commercial Invoice', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('commercial-invoice.index')]) }}
                                 </div>
-                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date','required']) }}
-                                 </div>
-                                {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no','required']) }}
+                                </div>
+
+
+                                {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('commercial_invoice_date','Commercial Invoice Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div> --}}
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

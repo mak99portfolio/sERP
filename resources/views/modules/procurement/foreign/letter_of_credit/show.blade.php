@@ -58,12 +58,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong>  {{$letterOfCredit->beneficiary_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong>  {{$letterOfCredit->beneficiary_ac_name}}</td>
-                                        <td><strong>Branch Name :</strong>  {{$letterOfCredit->beneficiary_branch_name}}</td>
+                                        <td><strong>A/C No :</strong>  {{$letterOfCredit->beneficiary_vendor_bank->ac_no}}</td>
+                                        <td><strong>A/C Name :</strong>  {{$letterOfCredit->beneficiary_vendor_bank->ac_name}}</td>
+                                        <td><strong>Branch Name :</strong>  {{$letterOfCredit->beneficiary_vendor_bank->branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Bank Address:</strong>  {{$letterOfCredit->beneficiary_bank_name}}</td>
+                                        <td colspan="3"><strong>Bank Address:</strong>  {{$letterOfCredit->beneficiary_vendor_bank->address}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -75,12 +75,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> {{$letterOfCredit->issue_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong> {{$letterOfCredit->issue_ac_name}}</td>
-                                        <td><strong>Branch Name :</strong> {{$letterOfCredit->issue_branch_name}}</td>
+                                        <td><strong>A/C No :</strong> {{$letterOfCredit->issue_bank->account_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$letterOfCredit->issue_bank->account_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$letterOfCredit->issue_bank->branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Bank Address</strong> {{$letterOfCredit->issue_bank_name}}</td>
+                                        <td colspan="3"><strong>Bank Address</strong> {{$letterOfCredit->issue_bank->address}}</td>
                                     </tr>
                                 </tbody>
                             </table>

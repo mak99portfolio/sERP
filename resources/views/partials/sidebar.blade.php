@@ -94,7 +94,6 @@
           <li><a href="{{ route('employee-profile.index')}}">Employees</a></li>
           <li><a href="{{ route('company-bank.index')}}">Bank Information</a></li>
           <li><a href="{{ route('company-license.index')}}">Licenses</a></li>
-          <li><a href="{{ route('company-license.index')}}">Licenses</a></li>
           <li><a href="{{ route('employee-user.index')}}">Employee Related User</a></li>
         </ul>
       </li>

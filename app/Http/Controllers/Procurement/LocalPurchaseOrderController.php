@@ -33,7 +33,7 @@ class LocalPurchaseOrderController extends Controller
    public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('requisition_list', LocalRequisition::all());
+        $view->with('requisition_list', LocalRequisition::availableRequisitions());
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
         return $view;
     }

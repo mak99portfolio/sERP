@@ -17,7 +17,7 @@
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Local Order No: </h2></div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Local Purchase Order No: {{ $localPurchaseOrder->purchase_order_no }}</h2></div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                         </div>
@@ -39,15 +39,15 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Vendor:</strong> 234</td>
-                                        <td><strong>Vendor Selection Criteria:</strong> 345</td>
-                                        <td><strong>Reference No:</strong> 345</td>
+                                        <td><strong>Vendor:</strong> {{ $localPurchaseOrder->order_vendor->vendor->name ?? "not specified" }}</td>
+                                        <td><strong>Vendor Selection Criteria:</strong> {{ $localPurchaseOrder->order_vendor->vendor_selection_criteria ?? "not specified" }}</td>
+                                        <td><strong>Reference No:</strong> {{ $localPurchaseOrder->order_vendor->reference_no ?? "not specified" }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Additional Information:</strong> 234</td>
+                                        <td colspan="3"><strong>Additional Information:</strong> {{ $localPurchaseOrder->order_vendor->additional_information ?? "not specified" }}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Address:</strong> 234</td>
+                                        <td colspan="3"><strong>Address:</strong> {{ $localPurchaseOrder->order_vendor->address ?? "not specified" }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -59,34 +59,24 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Purchase Oder Date:</strong> 234</td>
-                                        <td><strong>Inco-Terms:</strong> 345</td>
-                                        <td><strong>Inco-Term Info:</strong> 345</td>
+                                        <td><strong>Purchase Oder Date:</strong> {{ $localPurchaseOrder->purchase_order_date }}</td>
+                                        <td><strong>Inco-Terms:</strong> {{ $localPurchaseOrder->inco_terms }}</td>
+                                        <td><strong>Inco-Term Info:</strong> {{ $localPurchaseOrder->inco_term_info }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Procurement Type:</strong> 234</td>
-                                        <td><strong>Purchase Order Type:</strong> 345</td>
-                                        <td><strong>Status:</strong> 345</td>
+                                        <td><strong>Procurement Type:</strong> {{ $localPurchaseOrder->procurement_type }}</td>
+                                        <td><strong>Purchase Order Type:</strong> {{ $localPurchaseOrder->purchase_order_type }}</td>
+                                        <td><strong>Status:</strong> {{ $localPurchaseOrder->status }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Shipping Method:</strong> 234</td>
-                                        <td><strong>Payment Method:</strong> 345</td>
-                                        <td><strong>Remarks:</strong> 345</td>
+                                        <td><strong>Shipping Method:</strong> {{ $localPurchaseOrder->shipping_method }}</td>
+                                        <td><strong>Payment Method:</strong> {{ $localPurchaseOrder->payment_method }}</td>
+                                        <td><strong>Remarks:</strong> {{ $localPurchaseOrder->remarks }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Ship To Information:</strong> {{ $localPurchaseOrder->ship_to_address }}</td>
                                     </tr>
                                 </tbody>
-                            </table>
-                            <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="2">Ship To Information</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>MAGNUM Enterprise Ltd.</td>
-                                            <td><strong>Other Ship to Address:</strong> 234</td>
-                                        </tr>
-                                    </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <thead>

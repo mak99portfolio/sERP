@@ -14,14 +14,7 @@ class InsuranceCoverNote extends Model
         'insurance_cover_note_date',
         'vendor_id',
         'company_bank_id',
-        'icn_bank_account_no',
-        'icn_bank_account_name',
-        'icn_bank_name',
-        'icn_bank_address',
-        'consignee_bank_account_no',
-        'consignee_bank_account_name',
-        'consignee_bank_name',
-        'consignee_bank_address',
+        'vendor_bank_id',
         'note',
         'percent_of_marine',
         'amount_of_marine',
@@ -41,6 +34,10 @@ class InsuranceCoverNote extends Model
 
     public function company_bank(){
         return $this->belongsTo('App\CompanyBank', 'company_bank_id');
+    }
+
+    public function vendor_bank(){
+        return $this->belongsTo('App\VendorBank', 'vendor_bank_id');
     }
 
     public function vendor(){

@@ -42,8 +42,8 @@
                                         <td>{{ $item->insurance_cover_note_no }}</td>
                                         <td>{{ $item->insurance_cover_note_date }}</td>
                                         <td>{{ $item->vendor->name }}</td>
-                                        <td>{{ $item->icn_bank_account_no }}</td>
-                                        <td>{{ $item->icn_bank_account_name }}</td>
+                                        <td>{{ $item->vendor_bank->ac_no }}</td>
+                                        <td>{{ $item->vendor_bank->ac_name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('insurance-cover-note.show', $item) }}" class="btn btn-block  btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

@@ -21,16 +21,10 @@ class CreateInsuranceCoverNotesTable extends Migration
             $table->string('insurance_cover_note_date');
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+            $table->integer('vendor_bank_id')->unsigned();
+            $table->foreign('vendor_bank_id')->references('id')->on('vendor_banks')->onDelete('cascade');
             $table->integer('company_bank_id')->unsigned();
             $table->foreign('company_bank_id')->references('id')->on('company_banks')->onDelete('cascade');
-            $table->string('icn_bank_account_no');
-            $table->string('icn_bank_account_name');
-            $table->string('icn_bank_name');
-            $table->string('icn_bank_address');
-            $table->string('consignee_bank_account_no');
-            $table->string('consignee_bank_account_name');
-            $table->string('consignee_bank_name');
-            $table->string('consignee_bank_address');
             $table->text('note')->nullable();
             $table->double('percent_of_marine');
             $table->double('amount_of_marine');

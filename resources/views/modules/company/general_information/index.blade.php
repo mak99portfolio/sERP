@@ -11,7 +11,7 @@
                         <a href="{{ route('company-profile.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Company</a>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content">
+                    <div class="x_content" id="popup_area">
                         <br />
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">

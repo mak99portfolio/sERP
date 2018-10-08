@@ -25,17 +25,17 @@
                             @csrf
                             <input type="hidden" name="company_bank_id" value='<% consignee_bank_account_no %>'>
                             <div class="row">
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list,null, ['class'=>'form-control input-sm select2']) }}
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list,null, ['class'=>'form-control input-sm select2','data-popup'=> route('letter-of-credit.index')]) }}
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('insurance_cover_note_no','ICN No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list,null, ['class'=>'form-control input-sm select2', 'ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()', 'required']) }}
+                                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list,null, ['class'=>'form-control input-sm select2', 'ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()', 'required','data-popup'=> route('vendor.index')]) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -64,7 +64,7 @@
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{-- {{ BootForm::text('consignee_bank_account_no','Account No', null, ['class'=>'form-control input-sm']) }} --}}
-                                                {{ BootForm::select('consignee_bank_account_no', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchConsigneeBank()','required']) }}
+                                                {{ BootForm::select('consignee_bank_account_no', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchConsigneeBank()','required','data-popup'=> route('company-bank.index')]) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('consignee_bank_account_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_account_name', 'readonly']) }}

@@ -29,13 +29,13 @@
                             <fieldset>
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'vendor']) }}
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'vendor','data-popup'=> route('vendor.index')]) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('vendor[vendor_selection_criteria]', 'Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -51,32 +51,32 @@
                             <fieldset class="m-t-15">
                                 <legend>Genaral PO Information:</legend>
                                 <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('inco_terms', 'Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('procurement_type', 'Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('purchase_order_type', 'Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('shipping_method', 'Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('payment_method', 'Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
                                     </div>
                                 </div>

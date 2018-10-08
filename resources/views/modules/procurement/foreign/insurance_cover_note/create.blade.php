@@ -43,8 +43,17 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">ICN Bank Info</div>
                                         <div class="panel-body">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('icn_bank_account_no','Account No', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_account_no', 'readonly']) }}
+                                            </div> --}}
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label>Account No.</label>
+                                                    <select class="form-control input-sm select2" name="icn_bank_account_no" ng-model="vendor_bank_id" ng-change="getIcnAccountDetails()">
+                                                        <option value="" disabled>--Select Account No--</option>
+                                                        <option ng-repeat="account in icn_account_list" value="<% account.id %>"><% account.ac_no %></option>
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text('icn_bank_account_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'icn_bank_account_name', 'readonly']) }}
@@ -188,15 +197,32 @@
             $scope.getVendorBankDetails($scope.vendor_id);
         }
 
+
+        $scope.icn_account_list = [];
         $scope.getVendorBankDetails = function(id){
             let url = "{{URL::to('get-vendor-bank-info')}}/" + id;
             $http.get(url).then(function(response) {
-                $scope.icn_bank_account_no = response.data.ac_no;
-                $scope.icn_bank_account_name = response.data.ac_name;
-                $scope.icn_bank_name = response.data.bank_name;
-                $scope.icn_bank_address = response.data.address;
+                $scope.icn_account_list = response.data;
+                // console.log($scope.icn_account_list[0].ac_no);
+                $scope.vendor_bank_id = $scope.icn_account_list[0].id.toString();
+                $scope.icn_bank_account_name = $scope.icn_account_list[0].ac_name;
+                $scope.icn_bank_name = $scope.icn_account_list[0].bank_name;
+                $scope.icn_bank_address = $scope.icn_account_list[0].address;
             });
         }
+
+        $scope.getIcnAccountDetails = function(){
+
+            // alert($scope.icn_bank_account_no);
+
+            index = $scope.icn_account_list.findIndex(item => item.id==$scope.vendor_bank_id);
+            var account  = $scope.icn_account_list[index];
+            // console.log(index);
+            $scope.icn_bank_account_name = account.ac_name;
+            $scope.icn_bank_name = account.bank_name;
+            $scope.icn_bank_address = account.address;
+        }
+
 
     });
 </script>

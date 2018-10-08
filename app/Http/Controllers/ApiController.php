@@ -233,6 +233,8 @@ class ApiController extends Controller
             
         }
 
+        //dd($previous_orders_quantity);
+
         foreach($data as $key=>$row){
 
             foreach($previous_orders_quantity as $inner_row){

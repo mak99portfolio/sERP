@@ -57,6 +57,9 @@
                                         <div class="panel-heading">Beneficiary Bank info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                {{ BootForm::select('beneficiary_bank_id', 'Bank Account No', $currency_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ BootForm::text('beneficiary_ac_no','A/C No', null, ['class'=>'form-control input-sm','required']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -76,16 +79,19 @@
                                         <div class="panel-heading">Issue Bank info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_ac_no','A/C No ', null, ['class'=>'form-control input-sm','required']) }}
+                                                 {{ BootForm::select('issue_bank_id', 'Bank Account No', $company_bank_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'bank_account_no','ng-change'=>'searchBank()','required']) }}
+                                             </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                {{ BootForm::text('issue_account_no','A/C No ', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_no','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('issue_account_name','A/C Name', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_name','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('issue_account_branch_name','Branch Name', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_branch_name','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','ng-model'=>'issue_bank_name','required','readonly']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -325,6 +331,23 @@
             }
             return sum;
       }
+
+
+        $scope.searchBank = function () {
+            $scope.getBankDetails($scope.bank_account_no);
+        }
+
+        $scope.getBankDetails = function(id){
+            let url = "{{URL::to('get-bank-info')}}/" + id;
+            $http.get(url).then(function(response) {
+                $scope.issue_account_no = response.data.account_no;
+                $scope.issue_account_name = response.data.account_name;
+                $scope.issue_account_branch_name = response.data.branch_name;
+                $scope.issue_bank_name = response.data.bank.name;
+                // $scope.consignee_bank_address = response.data.address;
+            });
+        }
+
     });
 
 

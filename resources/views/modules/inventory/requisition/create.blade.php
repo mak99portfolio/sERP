@@ -201,6 +201,12 @@ $(function(){
             }).catch(function(){
 
               loading.close();
+              new PNotify({
+                'title': 'Failed!',
+                'text': 'Sorry!, searched product does not found.',
+                'type': 'error',
+                'styling': 'bootstrap3'
+              });
 
             });
 

@@ -34,9 +34,9 @@ class WorkingUnitController extends Controller{
     		'working_unit_no'=>uCode('working_units.working_unit_no', 'WU00'),
     		'working_units'=>\App\WorkingUnit::pluck('name', 'id')->prepend('--Select Parent Unit--', ''),
     		'working_unit_types'=>\App\WorkingUnitType::pluck('name', 'id'),
-    		'countries'=>\App\Country::pluck('name', 'id'),
-    		'divisions'=>\App\Division::pluck('name', 'id'),
-    		'districts'=>\App\District::pluck('name', 'id'),
+    		'countries'=>\App\Country::pluck('name', 'id')->prepend('--select--', ''),
+    		'divisions'=>\App\Division::pluck('name', 'id')->prepend('--select--', ''),
+    		'districts'=>\App\District::pluck('name', 'id')->prepend('--select--', ''),
             'companies'=>\App\Company::pluck('name', 'id'),
     		'employees'=>\App\EmployeeProfile::pluck('name', 'id') //Need to filter according to employee profile
     	];

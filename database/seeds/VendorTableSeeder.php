@@ -79,7 +79,7 @@ class VendorTableSeeder extends Seeder
         $data3 = [
             [
                'vendor_id' => '1',
-                'ac_no' => 'AC-0016568984',
+                'ac_no' => 'AC-4104154445',
                 'ac_name' => 'MRF Account',
                 'bank_name' => 'LIC Bank',
                 'branch_name' => 'Kolkata branch',
@@ -88,12 +88,48 @@ class VendorTableSeeder extends Seeder
             ],
             [
                'vendor_id' => '2',
-                'ac_no' => 'AC-23416568984',
+                'ac_no' => 'AC-4566546445',
                 'ac_name' => 'Oman Oil Account',
                 'bank_name' => 'DBBL Bank',
                 'branch_name' => 'Khulna branch',
                 'swift_code' => 'DBBL-123',
                 'address' => 'Khulna',
+            ],
+            [
+               'vendor_id' => '1',
+                'ac_no' => 'AC-4564564566',
+                'ac_name' => 'MRF Libon Account',
+                'bank_name' => 'Libon LIC Bank',
+                'branch_name' => 'Libon Kolkata branch',
+                'swift_code' => 'Libon LIC-123',
+                'address' => 'Mirpur',
+            ],
+            [
+               'vendor_id' => '2',
+                'ac_no' => 'AC-4560745447',
+                'ac_name' => 'Ail Account',
+                'bank_name' => 'DBBL Bank',
+                'branch_name' => 'Ail Khulna branch',
+                'swift_code' => 'Ail DBBL-123',
+                'address' => 'Shukrabad',
+            ],
+            [
+               'vendor_id' => '1',
+                'ac_no' => 'AC-4566544567',
+                'ac_name' => 'MRF Atik Account',
+                'bank_name' => 'Atik LIC Bank',
+                'branch_name' => 'Atik Kolkata branch',
+                'swift_code' => 'Atik LIC-123',
+                'address' => 'Kollanpur',
+            ],
+            [
+               'vendor_id' => '2',
+                'ac_no' => 'AC-23416568984',
+                'ac_name' => 'Oil Account',
+                'bank_name' => 'Asian Bank',
+                'branch_name' => 'Dhaka branch',
+                'swift_code' => 'Asian-123',
+                'address' => 'Dhaka',
             ]
         ];
 

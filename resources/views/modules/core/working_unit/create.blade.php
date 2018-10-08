@@ -101,21 +101,61 @@
 @endsection
 @section('script')
 <script>
-	$(document).ready(function(){
+$(document).ready(function(){
 
-$('#division_id').change(function(){
+    $('#division_id').change(function(){
 
-  var division_id = $('#division_id').val();
+        var division_id = $(this).val();
+     
+        $.get("{{ url('core/country-detail') }}", {division_id: division_id}).done(function(response){
 
- 
- $.get("{{ url('inventory/district-search') }}/" + division_id, function(data){
-    console.log(data);
-  });
+            $('#district_id').find('option').remove();
+
+            $.each(response.districts, function(key, district){
+
+                 $('#district_id').append($("<option></option>").attr("value",district.id).text(district.name)); 
+
+            });
+
+        });
 
 
-});
+    });
 
-});
+    $('#country_id').change(function(){
 
+        var country_id = $(this).val();
+     
+        $.get("{{ url('core/country-detail') }}", {country_id: country_id}).done(function(response){
+
+            $('#division_id').find('option').remove();
+            $('#district_id').find('option').remove();
+
+            var load_first=true;
+
+            $.each(response.divisions, function(key, division){
+
+                $('#division_id').append($("<option></option>").attr("value",division.id).text(division.name));
+
+                if(load_first){
+
+                    $.each(division.districts, function(key, district){
+
+                         $('#district_id').append($("<option></option>").attr("value",district.id).text(district.name)); 
+
+                    });
+
+                    load_first=false;
+
+                }
+
+            });
+
+        });
+
+
+    });
+
+});//End of jquery
 </script>
 @endsection

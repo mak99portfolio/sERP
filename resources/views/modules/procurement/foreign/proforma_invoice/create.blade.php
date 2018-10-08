@@ -41,47 +41,17 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
 
-                                {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','data-popup'=> route('vendor.index')]) }}
                                 </div>
 
                             </div>
-
-                            <fieldset class="m-t-20">
-                                <legend>Table of Terms and Conditions:</legend>
-                                <div class="row">
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                     {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_loading_port_id', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_discharge_port_id', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_country_id', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_city_id', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'origin_of_goods_country_id', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'shipment_allow', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'payment_type', 'required']) }}
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'pre_carriage_by', 'required']) }}
-                                    </div>
-                                </div>
-                            </fieldset>
 
                             <div class="row"> <br />
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee',$company_profile_list,null, ['class'=>'form-control input-sm select2', 'required']) }}
+                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee',$company_profile_list,null, ['class'=>'form-control input-sm select2', 'required', 'required','data-popup'=> route('company-profile.index')]) }}
                                 </div>
                                 {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('beneficiary_bank_info','Beneficiary Bank Info', null, ['class'=>'form-control input-sm','required']) }}
@@ -162,6 +132,37 @@
                                             </table>
                                         </div>
                             </fieldset>
+
+                            <fieldset class="m-t-20">
+                                <legend>Table of Terms and Conditions:</legend>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                     {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_loading_port_id', 'required','data-popup'=> route('port.index')]) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'port_of_discharge_port_id', 'required','data-popup'=> route('port.index')]) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_country_id', 'required','data-popup'=> route('country.index')]) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('final_destination_city_id', 'Final Destination', $city_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'final_destination_city_id', 'required','data-popup'=> route('country.index')]) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('origin_of_goods_country_id', 'Country of Origin of Goods', $country_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'origin_of_goods_country_id', 'required','data-popup'=> route('country.index')]) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('shipment_allow', 'Shipment Allow', ["Multi shipment"=>'Multi shipment','Partial'=>'Partial'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'shipment_allow', 'required']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('payment_type', 'Payment Type', ['Cash'=>'Cash'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'payment_type', 'required']) }}
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        {{ BootForm::select('pre_carriage_by', 'Pre Carriage By', ['Ship'=>'Ship','Air'=>'Air'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'pre_carriage_by', 'required']) }}
+                                    </div>
+                                </div>
+                            </fieldset>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 {{ BootForm::textarea('notes','Notes', null, ['class'=>'form-control input-sm','rows'=>2]) }}
                             </div>

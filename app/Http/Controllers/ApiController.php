@@ -225,8 +225,10 @@ class ApiController extends Controller
                     ];
                 }
             }
-            
+
         }
+
+        //dd($previous_orders_quantity);
 
         foreach($data as $key=>$row){
 
@@ -399,10 +401,16 @@ class ApiController extends Controller
         $data = CompanyBank::with('bank')->find($id);
         return response()->json($data);
     }
+    // public function getVendorBankInfoById($id){
+    //     $data = VendorBank::find($id);
+    //     return response()->json($data);
+    // }
+
     public function getVendorBankInfoById($id){
-        $data = VendorBank::find($id);
+        $data = VendorBank::where('vendor_id',$id)->get();
         return response()->json($data);
     }
+
     public function getDueAmount($id,$no){
        if($id==1){
        $data = PurchaseOrder::where('purchase_order_no',$no)->first()->amount()

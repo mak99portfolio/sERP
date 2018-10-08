@@ -36,7 +36,7 @@ class StatusAdjustmentController extends Controller{
             'inventory_status_adjustment_no'=>uCode('inventory_status_adjustments.inventory_status_adjustment_no', 'ISA00'),
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
+            'product_types'=>\App\ProductType::pluck('name', 'id')
         ];
 
         return view($this->path('create'), $data);
@@ -57,7 +57,7 @@ class StatusAdjustmentController extends Controller{
             'inventory_status_adjustment_no'=>'required|unique:inventory_status_adjustments,inventory_status_adjustment_no',
             'date'=>'required|date',
             'working_unit_id'=>'required|integer',
-            'selected_pattern_id'=>'required|integer',
+            'selected_type_id'=>'required|integer',
             'selected_status_id'=>'required|integer',
             'name'=>'required',
             'product_id'=>'required|integer',
@@ -78,7 +78,7 @@ class StatusAdjustmentController extends Controller{
             'working_unit_id'=>$status_adjustment->working_unit_id,
             'product_id'=>$status_adjustment->product_id,
             'product_status_id'=>$status_adjustment->selected_status_id,
-            'product_pattern_id'=>$status_adjustment->selected_pattern_id,
+            'product_type_id'=>$status_adjustment->selected_type_id,
             'issue_quantity'=>$status_adjustment->quantity,
             'remarks'=>$status_adjustment->remarks,
             'creator_user_id'=>\Auth::id()
@@ -89,7 +89,7 @@ class StatusAdjustmentController extends Controller{
             'working_unit_id'=>$status_adjustment->working_unit_id,
             'product_id'=>$status_adjustment->product_id,
             'product_status_id'=>$status_adjustment->adjusted_status_id,
-            'product_pattern_id'=>$status_adjustment->selected_pattern_id,
+            'product_type_id'=>$status_adjustment->selected_type_id,
             'receive_quantity'=>$status_adjustment->quantity,
             'remarks'=>$status_adjustment->remarks,
             'creator_user_id'=>\Auth::id()
@@ -122,7 +122,7 @@ class StatusAdjustmentController extends Controller{
             'inventory_status_adjustment_no'=>$status_adjustment->inventory_status_adjustment_no,
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')
+            'product_types'=>\App\ProductType::pluck('name', 'id')
         ];
 
         \Session::put('vue_inputs', [
@@ -150,7 +150,7 @@ class StatusAdjustmentController extends Controller{
 
     public function product_info_for_adjusment(
         \App\WorkingUnit $working_unit,
-        \App\ProductPattern $selected_pattern,
+        \App\ProductType $selected_type,
         \App\ProductStatus $selected_status,
         string $slug
     ){
@@ -163,14 +163,14 @@ class StatusAdjustmentController extends Controller{
                 'working_unit_id'=>$working_unit->id,
                 'product_id'=>$product->id,
                 'product_status_id'=>$selected_status->id,
-                'product_pattern_id'=>$selected_pattern->id
+                'product_type_id'=>$selected_type->id
             ])->sum('receive_quantity');
 
             $issue_quantity=\App\Stock::where([
                 'working_unit_id'=>$working_unit->id,
                 'product_id'=>$product->id,
                 'product_status_id'=>$selected_status->id,
-                'product_pattern_id'=>$selected_pattern->id
+                'product_type_id'=>$selected_type->id
             ])->sum('issue_quantity');
 
             return response()->json([

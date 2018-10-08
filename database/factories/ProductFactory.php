@@ -7,7 +7,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
         'name' => $faker->word,
         'hs_code' => $faker->word,
         'product_category_id' => 1,
-        'product_pattern_id' => 1,
+        'product_type_id' => 1,
         'product_group_id' => 1,
         'product_brand_id' => 1,
         'model' => $faker->number,

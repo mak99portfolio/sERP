@@ -21,7 +21,7 @@ class CreateInventoryReceivesTable extends Migration
             $table->string('receive_type')->nullable();
             $table->integer('working_unit_id')->unsigned()->nullable();
             $table->integer('product_status_id')->unsigned()->nullable();
-            $table->integer('product_pattern_id')->unsigned()->nullable();
+            $table->integer('product_type_id')->unsigned()->nullable();
             $table->text('remarks')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->integer('updator_user_id')->unsigned()->nullable();
@@ -30,7 +30,7 @@ class CreateInventoryReceivesTable extends Migration
 
             $table->foreign('working_unit_id')->references('id')->on('working_units')->onDelete('cascade');
             $table->foreign('product_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
-            $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
+            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
 

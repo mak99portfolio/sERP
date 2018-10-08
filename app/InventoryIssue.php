@@ -36,4 +36,8 @@ class InventoryIssue extends Model{
 		return $this->hasOne('App\InventoryReceiveInternal', 'inventory_issue_id');
 	}
 
+	public function status(){
+		return $this->belongsTo('App\InventoryIssueStatus', 'inventory_issue_status_id');
+	}
+
 }

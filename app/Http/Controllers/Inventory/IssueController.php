@@ -62,7 +62,7 @@ class IssueController extends Controller{
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'),
+            'product_types'=>\App\ProductType::pluck('name', 'id'),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -126,14 +126,14 @@ class IssueController extends Controller{
 
                     $balance=stock_balance($issue->requisition->requested_to, $product, [
                         'product_status_id'=>$issue->requisition->product_status_id,
-                        'product_pattern_id'=>$issue->requisition->product_pattern_id
+                        'product_type_id'=>$issue->requisition->product_type_id
                     ]);
 
                 }else{
 
                     $balance=stock_balance($issue->requisition->requested_to, $product, [
                         'product_status_id'=>$issue->requisition->product_status_id,
-                        'product_pattern_id'=>$issue->requisition->product_pattern_id,
+                        'product_type_id'=>$issue->requisition->product_type_id,
                         'batch_no'=>$row['batch_no']
                     ]);
 
@@ -177,7 +177,7 @@ class IssueController extends Controller{
                     'product_id'=>$product->id,
                     'requested_quantity'=>$row['quantity'],
                     'product_status_id'=>$issue->requisition->product_status_id,
-                    'product_pattern_id'=>$issue->requisition->product_pattern_id,
+                    'product_type_id'=>$issue->requisition->product_type_id,
                     'batch_no'=>$row['batch_no'],
                     'expiration_date'=>$expiration_date
                 ]);
@@ -190,7 +190,7 @@ class IssueController extends Controller{
                         'product_id'=>$product->id,
                         'issue_quantity'=>$row['quantity'],
                         'product_status_id'=>$issue->requisition->product_status_id,
-                        'product_pattern_id'=>$issue->requisition->product_pattern_id,
+                        'product_type_id'=>$issue->requisition->product_type_id,
                         'batch_no'=>$row['batch_no'],
                         'expiration_date'=>$expiration_date
                     ]);

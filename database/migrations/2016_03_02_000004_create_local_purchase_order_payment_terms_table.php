@@ -15,10 +15,10 @@ class CreateLocalPurchaseOrderPaymentTermsTable extends Migration {
         Schema::create('local_purchase_order_payment_terms', function (Blueprint $table) {
             $table->increments('id');
 
-            $table->integer('payment_type')->nullable();
-            $table->integer('payment_date')->nullable();
-            $table->integer('description')->nullable();
-            $table->integer('amount')->nullable();
+            $table->string('payment_type')->nullable();
+            $table->string('payment_date')->nullable();
+            $table->text('description')->nullable();
+            $table->decimal('amount', 8, 2)->nullable();
             $table->integer('local_purchase_order_id')->unsigned();
             $table->foreign('local_purchase_order_id', 'lpopt_foreign_id')->references('id')->on('local_purchase_orders')->onDelete('cascade');
             $table->integer('creator_user_id')->unsigned()->nullable();

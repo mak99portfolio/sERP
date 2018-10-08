@@ -168,9 +168,10 @@
                                                     <th>#</th>
                                                     <th>Product Name</th>
                                                     <th>HS Code</th>
-                                                    <th>Type</th>
+                                                    <th>Category</th>
+                                                    <th>Model</th>
                                                     <th>Size</th>
-                                                    <th>Pattern</th>
+                                                    <th>Product Type</th>
                                                     <th>Set</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -181,8 +182,9 @@
                                                     <td ng-click="checked[$index] = !checked[$index]"><% product.name %></td>
                                                     <td><% product.hs_code %></td>
                                                     <td><% product.product_category.name %></td>
+                                                    <td><% product.product_model.name %></td>
                                                     <td><% product.product_size.name %></td>
-                                                    <td><% product.product_pattern.name %></td>
+                                                    <td><% product.product_type.name %></td>
                                                     <td><% product.product_set.name %></td>
                                                     <td class="text-center">
                                                         <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-danger btn-sm" ng-click="removeItemById(product.id)"><i class="fa fa-times"></i></button>

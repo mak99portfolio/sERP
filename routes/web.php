@@ -119,10 +119,10 @@ Route::middleware('auth')->namespace('Company')->prefix('company')->group(functi
 //Inventory without auth middleware
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
-    Route::get('get-product-info/{working_unit}/{product_status}/{product_pattern}/{slug}', 'RequisitionController@get_product_info');
+    Route::get('get-product-info/{working_unit}/{product_status}/{product_type}/{slug}', 'RequisitionController@get_product_info');
     Route::get('get-product-info-for-adjustment/{working_unit}/{slug}', 'RequisitionController@get_product_info_for_adjustment');
-    Route::get('vue-old-products/{working_unit}/{product_status}/{product_pattern}', 'RequisitionController@vue_old_products');
-    Route::get('get-batch-stock/{working_unit}/{product_status}/{product_pattern}/{product}/{slug}', 'RequisitionController@get_batch_stock');
+    Route::get('vue-old-products/{working_unit}/{product_status}/{product_type}', 'RequisitionController@vue_old_products');
+    Route::get('get-batch-stock/{working_unit}/{product_status}/{product_type}/{product}/{slug}', 'RequisitionController@get_batch_stock');
 
     //routes for receive product info
     Route::prefix('api')->group(function(){
@@ -137,7 +137,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         Route::get('get-issue-return/{working_unit}/{slug}', 'ReceiveController@get_issue_return');
 
         //route for status adjustment
-        Route::get('product-info-for-adjusment/{working_unit}/{selected_pattern}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
+        Route::get('product-info-for-adjusment/{working_unit}/{selected_type}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
 
     });
 

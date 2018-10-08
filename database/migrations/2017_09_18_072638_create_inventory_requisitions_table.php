@@ -17,9 +17,10 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->integer('sender_depot_id')->unsigned();
             $table->integer('requested_depot_id')->unsigned();
             $table->integer('product_status_id')->unsigned()->nullable();
-            $table->integer('product_pattern_id')->unsigned()->nullable();
+            $table->integer('product_type_id')->unsigned()->nullable();
             $table->integer('initial_approver_id')->unsigned()->nullable();
             $table->integer('final_approver_id')->unsigned()->nullable();
+            $table->integer('inventory_requisition_status_id')->unsigned()->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->text('remarks')->nullable();
@@ -30,11 +31,12 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->foreign('sender_depot_id')->references('id')->on('working_units')->onDelete('cascade');
             $table->foreign('requested_depot_id')->references('id')->on('working_units')->onDelete('cascade');
             $table->foreign('product_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
-            $table->foreign('product_pattern_id')->references('id')->on('product_patterns')->onDelete('cascade');
+            $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->foreign('initial_approver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('final_approver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('inventory_requisition_status_id')->references('id')->on('inventory_requisition_statuses')->onDelete('cascade');
         });
 
     }

@@ -16,8 +16,8 @@ class InventoryStatusAdjustment extends Model{
     	return $this->belongsTo('App\Product', 'product_id');
     }
 
-    public function selected_pattern(){
-    	return $this->belongsTo('App\ProductPattern', 'selected_pattern_id');
+    public function selected_type(){
+    	return $this->belongsTo('App\ProductType', 'selected_type_id');
     }
 
     public function selected_status(){

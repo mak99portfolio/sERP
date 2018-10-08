@@ -15,7 +15,7 @@ class Product extends Model
         'name',
         'hs_code',
         'product_category_id',
-        'product_pattern_id',
+        'product_type_id',
         'product_group_id',
         'product_brand_id',
         'product_model_id',
@@ -62,8 +62,8 @@ class Product extends Model
     function product_set(){
         return $this->belongsTo('App\ProductSet','product_set_id');
     }
-    function product_pattern(){
-        return $this->belongsTo('App\ProductPattern','product_pattern_id');
+    function product_type(){
+        return $this->belongsTo('App\ProductType','product_type_id');
     }
     function status(){
         return DB::table('product_statuses')->where('id', $this->product_status_id)->first();

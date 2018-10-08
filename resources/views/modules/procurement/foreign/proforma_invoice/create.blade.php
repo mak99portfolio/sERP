@@ -28,9 +28,9 @@
                                     {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
 
-                               {{--<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('proforma_invoice_no','Proforma Invoice No.', null, ['class'=>'form-control input-sm','readonly' ]) }}
-                                </div> --}}
+                               <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::text('proforma_invoice_no','Proforma Invoice No.', null, ['class'=>'form-control input-sm']) }}
+                                </div>
 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('proforma_invoice_date','Proforma Invoice date', null, ['class'=>'form-control input-sm datepicker','required']) }}
@@ -81,7 +81,7 @@
                                     {{ BootForm::text('customer_code','Customer Code', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm','required']) }}
+                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee',$company_profile_list,null, ['class'=>'form-control input-sm select2', 'required']) }}
                                 </div>
                                 {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('beneficiary_bank_info','Beneficiary Bank Info', null, ['class'=>'form-control input-sm','required']) }}

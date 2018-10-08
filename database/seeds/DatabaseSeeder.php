@@ -48,6 +48,11 @@ class DatabaseSeeder extends Seeder
         $this->call(ForeignRequisitionTableSeeder::class);
         $this->call(ForeignRequisitionItemTableSeeder::class);
         $this->call(ForeignPurchaseOrderTableSeeder::class);
+
+        $this->call(CompanyProfileTableSeeder::class);
+        $this->call(CompanyBankTableSeeder::class);
+        $this->call(CompanyLicenseTableSeeder::class);
+        
         $this->call(ProformaInvoiceSeeder::class);
         $this->call(LocalRequisitionTableSeeder::class);
         $this->call(LetterOfCreditTableSeeder::class);
@@ -65,9 +70,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ModesOfTransportTableSeeder::class);
         $this->call(PaymentTypeTableSeeder::class);
         $this->call(PaymentByTableSeeder::class);
-        $this->call(CompanyProfileTableSeeder::class);
-        $this->call(CompanyBankTableSeeder::class);
-        $this->call(CompanyLicenseTableSeeder::class);
         $this->call(BillOfLadingTableSeeder::class);
         $this->call(CostSheetTableSeeder::class);
         $this->call(InsuranceCoverNoteTableSeeder::class);

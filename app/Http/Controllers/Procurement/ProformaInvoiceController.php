@@ -9,6 +9,7 @@ use App\ProformaInvoiceItem;
 use App\ProformaInvoicePurchaseOrder;
 use App\Port;
 use App\Country;
+use App\CompanyProfile;
 use App\City;
 use App\Vendor;
 use App\Http\Requests\ForeignProformaInvoiceRequest;
@@ -41,6 +42,7 @@ class ProformaInvoiceController extends Controller
         $view->with('purchase_orders', PurchaseOrder::all());
         $view->with('port_list', Port::pluck('name','id'));
         $view->with('country_list', Country::pluck('name','id'));
+        $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('-- Select Company --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
         $view->with('city_list', City::pluck('name','id'));
         return $view;
@@ -59,7 +61,7 @@ class ProformaInvoiceController extends Controller
         $proforma_invoice->fill($request->input());
         $proforma_invoice->creator_user_id = Auth::id();
         // $proforma_invoice->proforma_invoice_no = time();
-        $proforma_invoice->generate_proforma_invoice_number();
+        // $proforma_invoice->generate_proforma_invoice_number();
         // dd($request->input());
         $proforma_invoice->save();
 
@@ -71,7 +73,7 @@ class ProformaInvoiceController extends Controller
             array_push($items, new ProformaInvoiceItem($item));
         }
         $proforma_invoice->items()->saveMany($items);
-        Session::put('alert-success', 'Proforma invoice created successfully. <br><strong>Requisition No: ' . $proforma_invoice->proforma_invoice_no . '</strong>');
+        Session::put('alert-success', 'Proforma invoice created successfully');
         return redirect()->route('proforma-invoice.create');
     }
 

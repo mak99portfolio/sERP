@@ -168,7 +168,7 @@
                                 </tbody>
                             </table>
                             <!--start approved by-->
-                            <table id="print-footer" style="position: absolute; bottom: 20px; width: 100%; display: none;">
+                            <table id="print-footer" style="margin-top: 40px; width: 100%; display: none;">
                                 <tr>
                                     <td style="text-align: center; font-weight: bold;">
                                         <span style="border-top: 2px solid black;"> Prepared By</span>

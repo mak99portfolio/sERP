@@ -119,7 +119,7 @@
                     <p>Some text in the modal.</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="popup_destination btn btn-primary">Go To <span class="popup_title"></span></a>
+                        <a href="#" class="popup_destination btn btn-primary">Add New <span class="popup_title"></span></a>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
@@ -209,7 +209,7 @@
                 $('#popUpModal').modal('show');
                 var label = $("label[for='" + $(this).attr('id') + "']");
                 $('.popup_title').text(popup_title);
-                $('.popup_destination').attr('href', destination_url);
+                $('.popup_destination').attr('href', destination_url+'/create');
 
                 $('#modal_body').load(destination_url + ' #popup_area');
             });

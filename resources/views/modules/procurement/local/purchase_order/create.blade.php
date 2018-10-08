@@ -52,7 +52,7 @@
                                 <legend>Genaral PO Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('purchase_oder_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                        {{ BootForm::text('purchase_order_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::select('inco_terms', 'Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}

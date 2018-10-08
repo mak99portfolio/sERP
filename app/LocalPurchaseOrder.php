@@ -36,7 +36,7 @@ class LocalPurchaseOrder extends Model
     public function terms_conditions(){
         return $this->hasMany('App\LocalPurchaseOrderTermsCondition');
     }
-    public function vendor(){
+    public function order_vendor(){
         return $this->hasOne('App\LocalPurchaseOrderVendor');
     }
     public function generate_purchase_order_number(){
@@ -45,7 +45,7 @@ class LocalPurchaseOrder extends Model
     }
 
     private function count_last_serial(){
-        return PurchaseOrder::whereYear('created_at', date('Y'))
+        return LocalPurchaseOrder::whereYear('created_at', date('Y'))
                             ->whereMonth('created_at', date('m'))
                             ->count();
     }

@@ -24,13 +24,13 @@
                             <table id="datatable-buttons" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">LC No</th>
-                                        <th scope="col">Bill No</th>
-                                        <th scope="col">Bill Date</th>
-                                        <th scope="col">B/E No</th>
-                                        <th scope="col">B/E Date</th>
-                                        <th scope="col">Action</th>
+                                        <th width="25">#</th>
+                                        <th>LC No</th>
+                                        <th>Bill No</th>
+                                        <th>Bill Date</th>
+                                        <th>B/E No</th>
+                                        <th>B/E Date</th>
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

@@ -24,22 +24,22 @@
                         <form class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index')]) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_date', 'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_date']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::number('letter_of_credit_value','LC Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_value', 'readonly']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text(null, 'Exporter', null, ['class'=>'form-control input-sm' , 'ng-model'=>'vendor_name', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -67,49 +67,49 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_no','Bill No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_entry_date','B/E Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('arrival_date','Arrival Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('delivery_date','Delivery Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('job_no','Job No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::number('total_day','Total Days', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2','data-popup'=> route('vendor.index')]) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::number('cnf_value','C&F Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'cnf_value']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     <div class="form-group">
                                         <label>BDT Amount</label>
                                         <input type="number" class="form-control input-sm" name="bdt_amount" ng-model="bdt_amount" value="<% amount_in_bdt() %>" readonly>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -25,6 +25,7 @@ class ForeignProformaInvoiceRequest extends FormRequest
     {
         return [
             'purchase_order_date'=>'required',
+            'proforma_invoice_no'=>'required',
             'proforma_invoice_date'=>'required',
             'proforma_invoice_receive_date'=>'required',
             'vendor_id'=>'required',
@@ -37,7 +38,7 @@ class ForeignProformaInvoiceRequest extends FormRequest
             'payment_type'=>'required',
             'pre_carriage_by'=>'required',
             'customer_code'=>'required',
-            'consignee'=>'required',
+            'consignee_company_profile_id'=>'required',
             // 'beneficiary_bank_info'=>'required'
         ];
     }

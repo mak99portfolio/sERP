@@ -24,7 +24,7 @@
                         <form class="form-horizontal form-label-left" action="{{route('packing-list.store')}}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     <div class="form-group">
                                         <label>Commercial Invoice No.</label>
                                         <select class="form-control input-sm select2" name="commercial_invoice_id" ng-model="commercial_invoice_id" ng-change="getCi()">
@@ -35,13 +35,13 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('commercial_invoice_date','Commercial Invoice Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'commercial_invoice_date','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_no','readonly'=>'readonly']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -75,60 +75,60 @@
                                     <div class="panel panel-default m-t-15">
                                         <div class="panel-heading">Benefeciary Bank Info</div>
                                         <div class="panel-body">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_ac_no','Account No', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_no','readonly'=>'readonly']) }}
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_ac_name','Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_ac_name','readonly'=>'readonly']) }}
                                             </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_bank_name','readonly'=>'readonly']) }}
                                             </div>
 
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_branch_name','Bank Branch Name',null,['class'=>'form-control input-sm', 'ng-model'=>'beneficiary_branch_name','readonly'=>'readonly']) }}
                                             </div>
 
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_no','Bill Of Lading No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bill_of_lading_no']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_date','Bill Of Lading Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bill_of_lading_date']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vessel_no']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'container_no']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset class="m-t-20">
                                         <legend>Table of Terms and Conditions:</legend>
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::text('port_of_loading_port_name', 'Port of Loading', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'port_of_loading_port_name']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::text('port_of_discharge_port_name', 'Port of Discharge', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'port_of_discharge_port_name']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::text('destination_country_name', 'Country of Final Destination', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'destination_country_name']) }}   
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
 
                                                 {{ BootForm::text('destination_city_id','Final Destination', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'destination_city_name']) }}
 
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::text('country_goods_country_id','Country of Origin of Goods', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'country_goods_country_name']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::text('exporter','Exporter', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vendor_name']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">    
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::select('currency', 'Currency', ['Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm select2']) }}   
                                             </div>
 

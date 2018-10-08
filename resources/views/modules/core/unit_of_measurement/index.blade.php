@@ -17,7 +17,7 @@
                         <table class="table table-bordered">
                             <thead class="bg-primary">
                             <tr>
-                                <th>#</th>
+                                <th width="25">#</th>
                                 <th>Unit Of Measurement Name</th>
                                 <th>Short Name</th>
                             </tr>

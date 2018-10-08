@@ -25,13 +25,13 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>SL NO</th>
+                                        <th width="25">#</th>
                                         <th>Vendor Id</th>
                                         <th>Vendor Name</th>
                                         <th>Status</th>
                                         <th>Country</th>
                                         <!-- <th>Vendor Category</th> -->
-                                        <th width="50">Action</th>
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,7 +42,7 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->status_id}}</td>
                                         <td>{{$item->country->name}}</td>
-                                        <td class="text-right">
+                                        <td class="text-center">
                                             <a href="{{ route('vendor.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block">View</a>
                                         </td>
                                     </tr>

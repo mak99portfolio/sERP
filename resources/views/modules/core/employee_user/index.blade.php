@@ -33,7 +33,7 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Assigned Roles</th>
-                            <th>Delete</th>
+                            <th><center>Delete</center></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,7 +50,7 @@
                                 </span>
                                 @endif
                             </td>
-                            <td>{!! btnDelete(['url'=>route('employee-user.destroy', ['user'=>$row->id])]) !!}</td>
+                            <td><center>{!! btnDelete(['url'=>route('employee-user.destroy', ['user'=>$row->id])]) !!}</center></td>
                         </tr>
                     @endforeach
                     </tbody>

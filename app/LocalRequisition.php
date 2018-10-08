@@ -26,4 +26,27 @@ class LocalRequisition extends Model
     public function purpose(){
         return $this->belongsTo('App\RequisitionPurpose');
     }
+    public static function availableRequisitions()
+    {
+        $requisitions = \App\LocalRequisition::all();
+        $available_requisitions = [];
+        foreach ($requisitions as $requisition) {
+            $purchase_orders = $requisition->purchase_orders;
+            foreach ($requisition->items as $item) {
+                $po_quantity = LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
+                if ($item->quantity - $po_quantity > 0) {
+                    $available_requisitions[] = $requisition;
+                    break;
+                }
+            }
+        }
+        return $available_requisitions;
+    }
+    public function availableItems()
+    {
+        foreach ($this->items as $key => $item) {
+            $this->items[$key]->quantity -= LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
+        }
+        return $this->items;
+    }
 }

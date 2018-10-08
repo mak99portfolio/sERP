@@ -1,6 +1,30 @@
 @extends('layout')
 @section('title', 'Design Page')
-
+@section('style')
+<!--myidjs-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<!--animatedModal-->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
+<style>
+    #closebt-container {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin-top: 40px;
+    }
+    .closebt {
+        -webkit-transition: all 0.2s;
+        -moz-transition: all 0.2s;
+        -ms-transition: all 0.2s;
+        -o-transition: all 0.2s;
+        transition: all 0.2s;
+        cursor: pointer;
+    }
+    .closebt:hover {
+        transform: rotate(90deg);
+    }
+</style>
+@endsection
 @section('content')
 
 <div class="right_col" role="main">
@@ -41,6 +65,38 @@
                                 </form>
                             </div>
                         </div>
+                        <!--Call your modal-->
+                        <ul>
+                            <li><a id="demo01" href="#animatedModal">DEMO01</a></li>
+                            <li><a id="demo02" href="#modal-02">DEMO02</a></li>
+                        </ul>
+                        <!--DEMO01-->
+                        <div id="animatedModal">
+                            <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID -->
+                            <!-- <div  id="btn-close-modal" class="close-animatedModal"> 
+                                CLOSE MODAL
+                            </div>-->
+                            <div id="closebt-container" class="close-animatedModal">
+                                <img class="closebt" src="https://joaopereirawd.github.io/animatedModal.js/img/closebt.svg">
+                            </div>
+                            <div class="modal-content">
+                                <!--Your modal content goes here-->
+                            </div>
+                        </div>
+
+                        <!--DEMO02-->
+                        <div id="modal-02">
+                            <!--"THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID-->
+<!--                            <div  id="btn-close-modal" class="close-modal-02"> 
+                                CLOSE MODAL
+                            </div>-->
+                            <div id="closebt-container" class="close-modal-02">
+                                <img class="closebt" src="https://joaopereirawd.github.io/animatedModal.js/img/closebt.svg">
+                            </div>
+                            <div class="modal-content">
+                                <!--Your modal content goes here-->
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,6 +106,11 @@
 </div>
 @endsection
 @section('script')
+<!--myidjs-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+<!--animatedModal-->
+<script src="{{asset('assets/vendors/animatedModal/animatedModal.min.js')}}"></script>
+
 <script type="text/javascript">
     $('.example-bounce-1').on('click', function () {
         $.confirm({
@@ -103,6 +164,51 @@
                 },
             }
         });
+    });
+    //demo 01
+    $("#demo01").animatedModal({
+        animatedIn:'zoomIn',
+        animatedOut:'bounceOut',
+        color:'#39BEB9',
+        beforeOpen: function() {
+
+            var children = $(".thumb");
+            var index = 0;
+
+            function addClassNextChild() {
+                if (index == children.length) return;
+                children.eq(index++).show().velocity("transition.expandIn", { opacity:1, stagger: 250 });
+                window.setTimeout(addClassNextChild, 200);
+            }
+
+            addClassNextChild();
+
+        },
+        afterClose: function() {
+          $(".thumb").hide();
+              
+        }
+    });
+
+    //demo 02
+    $("#demo02").animatedModal({
+        modalTarget: 'modal-02',
+        animatedIn: 'lightSpeedIn',
+        animatedOut: 'bounceOutDown',
+        color: '#3498db',
+        // Callbacks
+        beforeOpen: function () {
+            console.log("The animation was called");
+        },
+        afterOpen: function () {
+            console.log("The animation is completed");
+        },
+        beforeClose: function () {
+            console.log("The animation was called");
+        },
+        afterClose: function () {
+            console.log("The animation is completed");
+        }
     });
 </script>
 @endsection

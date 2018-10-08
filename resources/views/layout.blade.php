@@ -37,9 +37,8 @@
         <link href="{{asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+
         
-        <!--myidjs-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
         <!-- Custom Theme Style -->
         <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
@@ -64,6 +63,7 @@
             /* The first item has no inset arrow */
             .breadcrumb :first-child {padding-left: 10px;}
             .breadcrumb :first-child:before {border: none}
+
         </style>
         @yield('style')
     </head>
@@ -107,26 +107,25 @@
         </div>
         <!-- Modal -->
         <div id="popUpModal" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-            
-                <!-- Modal content-->
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+
+                <!--Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title popup_title">Modal Header</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title popup_title">Modal Header</h4>
                     </div>
                     <div class="modal-body" id="modal_body">
-                    <p>Some text in the modal.</p>
+                        <p>Some text in the modal.</p>
                     </div>
                     <div class="modal-footer">
-                        <a href="#" class="popup_destination btn btn-primary">Add New <span class="popup_title"></span></a>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <a href="#" class="popup_destination btn btn-primary">Go To <span class="popup_title"></span></a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
-            
-                </div>
+
             </div>
-            
+        </div>
 
         <!-- jQuery -->
         <script src="{{asset('assets/vendors/jquery/dist/jquery.min.js')}}"></script>
@@ -185,82 +184,84 @@
         <script src="{{asset('assets/vendors/jszip/dist/jszip.min.js')}}"></script>
         <script src="{{asset('assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
         <script src="{{asset('assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
+
         
-        <!--myidjs-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
         <!-- Custom Theme Scripts -->
         <script src="{{asset('assets/build/js/custom.js')}}"></script>
         <script src="{{asset('assets/build/js/init.js')}}"></script>
 
 
         @yield('script')
+
         <script>
-            $('*[data-popup]').each(function(){
-                $("label[for='" + $(this).attr('id') + "']").css({
-                    'cursor': 'pointer',
-                    'text-decoration': 'underline'
-                });
-            });
-            $('*[data-popup]').on('click', function(){
-                var destination_url = $(this).data('popup');
-                var split = destination_url.split('/');
-                var popup_title = split[split.length -1];
-                var popup_title = popup_title.charAt(0).toUpperCase() + popup_title.slice(1);
-                $('#popUpModal').modal('show');
-                var label = $("label[for='" + $(this).attr('id') + "']");
-                $('.popup_title').text(popup_title);
-                $('.popup_destination').attr('href', destination_url+'/create');
+$('*[data-popup]').each(function () {
+    $("label[for='" + $(this).attr('id') + "']").css({
+        'cursor': 'pointer',
+        'text-decoration': 'underline'
+    });
+});
+$('*[data-popup]').on('click', function () {
+    var destination_url = $(this).data('popup');
+    var split = destination_url.split('/');
+    var popup_title = split[split.length - 1];
+    var popup_title = popup_title.charAt(0).toUpperCase() + popup_title.slice(1);
+    $('#popUpModal').modal('show');
+    var label = $("label[for='" + $(this).attr('id') + "']");
+    $('.popup_title').text(popup_title);
+    $('.popup_destination').attr('href', destination_url);
 
-                $('#modal_body').load(destination_url + ' #popup_area');
-            });
-            toaster_notification();
-            function toaster_notification() {
-                $.ajax("{{route('get_toaster_notification')}}")
-                        .done(function (data) {
-                            if (data) {
-                                new PNotify(data);
-                            }
-                        })
+    $('#modal_body').load(destination_url + ' #popup_area');
+    
+});
+toaster_notification();
+function toaster_notification() {
+    $.ajax("{{route('get_toaster_notification')}}")
+            .done(function (data) {
+                if (data) {
+                    new PNotify(data);
+                }
+            })
 
-            }
-            // print script
-            $(function () {
-                $(".print-btn").click(function () {
-                    $('#print-footer').show();
-                    var contents = $(".print-area").html();
-                    var frame1 = $('<iframe />');
-                    frame1[0].name = "frame1";
-                    frame1.css({"position": "absolute", "top": "-1000000px"});
-                    $("body").append(frame1);
-                    var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
-                    frameDoc.document.open();
-                    //Create a new HTML document.
-                    frameDoc.document.write('<html><head><title></title>');
-                    frameDoc.document.write('</head><body>');
-                    // address and logo
-                    frameDoc.document.write('<div style="margin-bottom: 30px;"><table><tr><td><img src="{{asset('assets/build/images/logo1.png')}}" alt="company logo" class="img-responsive" style="max-width: 100px; max-height: 50px;"></td><td style="font-size: 12px; padding-left: 30px;"><p class="pull-right">531, Dhaur(Kamarpara), Turag, Dhaka-1230<br>Tel:(02)-8981941, Fax:+88-02-89819442, Mob:+88-01823-777992<br>E-mail:info@magnumenterprise.net, Web:www.magnumenterprise.net</p></td></tr></table></div>');
-                    //Append the external CSS file.
-                    frameDoc.document.write('<link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
-                    //Append the DIV contents.
-                    frameDoc.document.write(contents);
-                    // footer
-                    frameDoc.document.write('<div></div>');
-                    frameDoc.document.write('</body></html>');
-                    frameDoc.document.close();
-                    setTimeout(function () {
-                        window.frames["frame1"].focus();
-                        window.frames["frame1"].print();
-                        frame1.remove();
-                    }, 500);
+}
+// print script
+$(function () {
+    $(".print-btn").click(function () {
+        $('#print-footer').show();
+        var contents = $(".print-area").html();
+        var frame1 = $('<iframe />');
+        frame1[0].name = "frame1";
+        frame1.css({"position": "absolute", "top": "-1000000px"});
+        $("body").append(frame1);
+        var frameDoc = frame1[0].contentWindow ? frame1[0].contentWindow : frame1[0].contentDocument.document ? frame1[0].contentDocument.document : frame1[0].contentDocument;
+        frameDoc.document.open();
+        //Create a new HTML document.
+        frameDoc.document.write('<html><head><title></title>');
+        frameDoc.document.write('</head><body>');
+        // address and logo
+        frameDoc.document.write('<div style="margin-bottom: 30px;"><table><tr><td><img src="{{asset('assets / build / images / logo1.png')}}" alt="company logo" class="img-responsive" style="max-width: 100px; max-height: 50px;"></td><td style="font-size: 12px; padding-left: 30px;"><p class="pull-right">531, Dhaur(Kamarpara), Turag, Dhaka-1230<br>Tel:(02)-8981941, Fax:+88-02-89819442, Mob:+88-01823-777992<br>E-mail:info@magnumenterprise.net, Web:www.magnumenterprise.net</p></td></tr></table></div>');
+        //Append the external CSS file.
+        frameDoc.document.write('<link href="{{asset('assets / vendors / bootstrap / dist / css / bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
+        //Append the DIV contents.
+        frameDoc.document.write(contents);
+        // footer
+        frameDoc.document.write('<div></div>');
+        frameDoc.document.write('</body></html>');
+        frameDoc.document.close();
+        setTimeout(function () {
+            window.frames["frame1"].focus();
+            window.frames["frame1"].print();
+            frame1.remove();
+        }, 500);
 
-                    $('#print-footer').hide();
-                });
+        $('#print-footer').hide();
+    });
 
-                $('.flash').delay(8000).fadeOut('slow');
-            });
-                // end print script
-                validator.defaults.alerts = false;
-                $('form .alert').remove();
+    $('.flash').delay(8000).fadeOut('slow');
+});
+// end print script
+validator.defaults.alerts = false;
+$('form .alert').remove();
+
         </script>
     </body>
 </html>

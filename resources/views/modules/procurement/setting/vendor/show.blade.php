@@ -12,12 +12,19 @@
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Vendor List Details</h2>
-                        <div class="btn-group pull-right">
-                            <button class="btn btn-sm btn-info print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
-                            <a href="{{route('vendor.index')}}" class="btn btn-sm btn-success btn-addon"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Vendor List</a>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
+                            <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Vendor Name : {{ $vendor->name }}</h2></div>
+                        <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
+                            <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
+                        </div>
+                        <div class="visible-xs col-xs-6"><button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</button></div>
+                        <div class="visible-xs col-xs-6"><button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button></div>
+                        <div class="visible-xs col-xs-12"><h2 class="text-center">Vendor Name : {{ $vendor->name }}</h2></div>
+                    </div>
+                    <div class="x_title">
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

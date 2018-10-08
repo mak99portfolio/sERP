@@ -163,55 +163,50 @@ class ApiController extends Controller
 
         foreach (explode(',', $ids) as $id) {
 
-            $req = ForeignRequisition::find($id);
-
-            $purchase_orders=$req->purchase_orders;
-
-            //dd($purchase_orders);
-
-            foreach ($req->items as $item){
-
-                $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
-                ->where('product_id', $item->product_id)
-                ->sum('quantity');
-
-                if(empty($previous_orders_quantity)){
-
-                    array_push($previous_orders_quantity, [
-                        'previous_product_id'=>$item->product_id,
-                        'previous_quantity'=>$previous_quantity
-                    ]);
-
-                }else{
-
-                    foreach($previous_orders_quantity as $key=>$row){
-
-                        if($row['previous_product_id']==$item->product_id){
-
-                            $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
-
-                        }else{
-
-                            array_push($previous_orders_quantity, [
-                                'previous_product_id'=>$item->product_id,
-                                'previous_quantity'=>$previous_quantity
-                            ]);
-
-                        }
-
-                    }
-
-                }
+            $req = ForeignRequisition::find($id);            
+            
+            // $purchase_orders=$req->purchase_orders;
 
 
-            }
+            // foreach ($req->items as $item){
 
-            //dd($previous_orders_quantity);
+            //     $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
+            //     ->where('product_id', $item->product_id)
+            //     ->sum('quantity');
+
+            //     if(empty($previous_orders_quantity)){
+
+            //         array_push($previous_orders_quantity, [
+            //             'previous_product_id'=>$item->product_id,
+            //             'previous_quantity'=>$previous_quantity
+            //         ]);
+
+            //     }else{
+
+            //         foreach($previous_orders_quantity as $key=>$row){
+
+            //             if($row['previous_product_id']==$item->product_id){
+
+            //                 $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
+
+            //             }else{
+
+            //                 array_push($previous_orders_quantity, [
+            //                     'previous_product_id'=>$item->product_id,
+            //                     'previous_quantity'=>$previous_quantity
+            //                 ]);
+
+            //             }
+
+            //         }
+
+            //     }
 
 
+            // }
 
-            $items = $req->items;
-            foreach ($items as $item) {
+            
+            foreach ($req->availableItems() as $item) {
                 $item_exist = false;
                 foreach ($data as $key => $value) {
                     if ($value['product_id'] == $item->product->id) {
@@ -256,8 +251,7 @@ class ApiController extends Controller
         foreach (explode(',', $ids) as $id) {
             $req = LocalRequisition::find($id);
             $data['requisitions'][] = $req;
-            $items = $req->items;
-            foreach ($items as $item) {
+            foreach ($req->availableItems() as $item) {
                 $item_exist = false;
                 foreach ($req_items as $key => $value) {
                     if ($value['product_id'] == $item->product->id) {

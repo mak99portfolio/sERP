@@ -33,7 +33,7 @@
                                     {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
+                                    {{ BootForm::text('issued_date','Issued Date', \Carbon\Carbon::now()->format('d-m-Y'), ['class'=>'form-control input-sm','required', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker','required']) }}

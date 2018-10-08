@@ -26,8 +26,8 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Requisition Title</th>
                                         <th>Requisition No</th>
+                                        <th>Requisition Title</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -35,8 +35,8 @@
                                     @foreach($requisition_list as $item)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->requisition_title}}</td>
                                         <td>{{$item->requisition_no}}</td>
+                                        <td>{{$item->requisition_title}}</td>
                                         <td  width="30" class="text-center">
                                             <a href="{{route('foreign-requisition.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

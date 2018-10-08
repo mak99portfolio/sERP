@@ -12,6 +12,7 @@ Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->middleware('auth');
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
+
 //Core
 Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
 
@@ -38,8 +39,17 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     )->name('employee-profile.update-organizational-info');
 
     Route::resource('employee-user', 'EmployeeUserController');
+    Route::get('country-detail', 'CountryController@country_detail');
 
 });
+
+//Core related API without auth middleware
+Route::namespace('Core')->prefix('core')->group(function(){
+
+    Route::get('country-detail', 'CountryController@country_detail');
+
+});
+
 
 //Procurement
 Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->group(function(){
@@ -142,6 +152,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
     });
 
 });
+
 //Report
 Route::middleware('auth')->namespace('Report')->prefix('report')->group(function(){
     Route::get('/foreign-purchase-order', ['as' => 'report-foreign-purchase-order', 'uses' => 'ProcurementReportController@foreign_purchase_order']);

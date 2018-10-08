@@ -17,12 +17,11 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>LC No</th>
                                         <th>LC Date</th>
                                         <th>LC Value</th>
-                                        <th>Action</th>
-
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -32,8 +31,8 @@
                                     <td>{{ $letter_of_credit->letter_of_credit_no }}</td>
                                     <td>{{ $letter_of_credit->letter_of_credit_date }}</td>
                                     <td>{{ $letter_of_credit->letter_of_credit_value }}</td>
-                                        <td class="text-right">
-                                            <a href="{{route('letter-of-credit.show',$letter_of_credit)}}" class="btn btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <td class="text-center">
+                                            <a href="{{route('letter-of-credit.show',$letter_of_credit)}}" class="btn btn-sm btn-default btn-xs btn-block"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

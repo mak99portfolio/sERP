@@ -16,7 +16,7 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Time</th>
                                         <th>Sender</th>
                                         <th>Subject</th>

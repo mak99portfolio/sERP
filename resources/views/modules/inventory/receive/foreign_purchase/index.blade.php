@@ -29,7 +29,7 @@
                             <th>Name</th>
                             <th>Short Name</th>
                             <th>Company</th>
-                            <th>Action</th>
+                            <th width="30">Action</th>
                         </tr>
                     </thead>
                     <tbody>

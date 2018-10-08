@@ -87,22 +87,22 @@
                                 <legend>Ship To Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                        <div class="checkbox">
+                                        <div class="radio">
                                             <label>
-                                                <input type="checkbox" ng-model="magnum_checked" ng-checked="!other_ship"  name="ship_to_address" ng-init="magnum_checked = true" value="MAGNUM Enterprise Ltd."> MAGNUM Enterprise Ltd.
+                                                <input type="radio" ng-model="ship_info"  name="ship_info" value="MAGNUM Enterprise Ltd." ng-init="ship_info = 'MAGNUM Enterprise Ltd.'"> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12">
                                         <div class="col-md-3 col-sm-4">
-                                            <div class="checkbox pull-right">
+                                            <div class="radio pull-right">
                                                 <label>
-                                                    <input type="checkbox" ng-model="other_ship" ng-checked="!magnum_checked" ng-init="other_ship = false"> Other Ship to Address
+                                                    <input type="radio" ng-model="ship_info" value="other"> Other Ship to Address
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="col-md-9 col-sm-8">
-                                            <input class="form-control input-sm" type="text" ng-disabled="other_ship == false" name="ship_to_address">
+                                            <input class="form-control input-sm" type="text" ng-disabled="ship_info != 'other'" name="ship_info">
                                         </div>
                                     </div>
                                 </div>

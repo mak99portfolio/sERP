@@ -17,7 +17,7 @@
                     <div class="x_title">
                         <h2>Requisition Purpose</h2>
 
-                         {!! btnAddNew(['url'=>route('requisition-purpose.index')]) !!}
+                         {!! goBack(['url'=>route('requisition-purpose.index')]) !!}
                        
                         <div class="clearfix"></div>
                     </div>

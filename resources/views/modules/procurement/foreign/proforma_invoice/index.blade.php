@@ -25,11 +25,11 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Proforma Invoice No</th>
                                         <th>Proforma Invoice Date</th>
                                         <th>Create time</th>
-                                        <th>Action</th>
+                                        <th width="30">Action</th>
                                         
                                     </tr>
                                 </thead>
@@ -40,8 +40,8 @@
                                         <td>{{$proforma_invoice->proforma_invoice_no}}</td>
                                         <td>{{$proforma_invoice->proforma_invoice_date}}</td>
                                         <td>{{$proforma_invoice->created_at}}</td>    
-                                        <td class="text-right">
-                                            <a href="{{route('proforma-invoice.show',$proforma_invoice)}}" class="btn btn-sm btn-default btn-xs" ><i class="fa fa-eye"></i>View</a>
+                                        <td class="text-center">
+                                            <a href="{{route('proforma-invoice.show',$proforma_invoice)}}" class="btn btn-sm btn-default btn-block btn-xs" ><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

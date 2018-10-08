@@ -36,7 +36,7 @@
                                     {{ BootForm::number('letter_of_credit_value','LC Value', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','data-popup'=> route('vendor.index')]) }}
+                                    {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()','required','data-popup'=> route('vendor.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_expire_date','LC Expire Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
@@ -56,20 +56,31 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Beneficiary Bank info</div>
                                         <div class="panel-body">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <div class="form-group">
+                                                            <label>Account No.</label>
+                                                            <select class="form-control input-sm select2" name="beneficiary_vendor_bank_id" ng-model="vendor_bank_id" ng-change="getIcnAccountDetails()">
+                                                                <option value="" disabled>--Select Account No--</option>
+                                                                <option ng-repeat="account in icn_account_list" value="<% account.id %>"><% account.ac_no %></option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                            {{-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ BootForm::select('beneficiary_bank_id', 'Bank Account No', $currency_list, null, ['class'=>'form-control input-sm select2','required']) }}
-                                            </div>
+                                            </div> --}}
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('beneficiary_ac_no','A/C No', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('beneficiary_account_no','A/C No', null, ['class'=>'form-control input-sm','ng-model'=>'beneficiary_account_no','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
-                                                {{ BootForm::text('beneficiary_ac_name','A/C Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('beneficiary_account_name','A/C Name', null, ['class'=>'form-control input-sm','ng-model'=>'beneficiary_account_name','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
-                                                {{ BootForm::text('beneficiary_branch_name','Branch Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('beneficiary_branch_name','Branch Name', null, ['class'=>'form-control input-sm','ng-model'=>'beneficiary_branch_name','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
-                                                {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm','ng-model'=>'beneficiary_bank_name','required','readonly']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +90,7 @@
                                         <div class="panel-heading">Issue Bank info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                 {{ BootForm::select('issue_bank_id', 'Bank Account No', $company_bank_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'bank_account_no','ng-change'=>'searchBank()','required']) }}
+                                                 {{ BootForm::select('issue_company_bank_id', 'Bank Account No', $company_bank_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'bank_account_no','ng-change'=>'searchBank()','required']) }}
                                              </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ BootForm::text('issue_account_no','A/C No ', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_no','required','readonly']) }}
@@ -347,8 +358,39 @@
                 // $scope.consignee_bank_address = response.data.address;
             });
         }
+        $scope.searchVendorBank = function () {
+            $scope.getVendorBankDetails($scope.vendor_id);
+        }
+
+
+        $scope.icn_account_list = [];
+        $scope.getVendorBankDetails = function(id){
+            let url = "{{URL::to('get-vendor-bank-info')}}/" + id;
+            $http.get(url).then(function(response) {
+                $scope.icn_account_list = response.data;
+                // console.log($scope.icn_account_list[0].ac_no);
+                $scope.vendor_bank_id = $scope.icn_account_list[0].id.toString();
+                $scope.beneficiary_account_no = $scope.icn_account_list[0].ac_no;
+                $scope.beneficiary_account_name = $scope.icn_account_list[0].ac_name;
+                $scope.beneficiary_branch_name = $scope.icn_account_list[0].branch_name;
+                $scope.beneficiary_bank_name = $scope.icn_account_list[0].bank_name;
+            });
+        }
+        $scope.getIcnAccountDetails = function(){
+
+            // alert($scope.icn_bank_account_no);
+
+            index = $scope.icn_account_list.findIndex(item => item.id==$scope.vendor_bank_id);
+            var account  = $scope.icn_account_list[index];
+            // console.log(index);
+            $scope.beneficiary_account_no = account.ac_no;
+            $scope.beneficiary_account_name = account.ac_name;
+            $scope.beneficiary_branch_name = account.branch_name;
+            $scope.beneficiary_bank_name = account.bank_name;
+        }
 
     });
+
 
 
 //     $('#add').on('click', function(e){

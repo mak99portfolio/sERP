@@ -7,6 +7,7 @@ use App\BillOfLading;
 use App\BillOfLadingItem;
 use App\CommercialInvoice;
 use App\Vendor;
+use App\LetterOfCredit;
 use App\ModesOfTransport;
 use App\MoveType;
 use App\Port;
@@ -39,6 +40,7 @@ class BillOfLadingController extends Controller
         $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
         $view->with('exporter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
+        $view->with('letter_of_credit_list', LetterOfCredit::pluck('letter_of_credit_no','id')->prepend('-- Select Port --', ''));
         $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Modes Of Transport --', ''));
         $view->with('move_type_list', MoveType::pluck('name','id')->prepend('-- Select Move Type --', ''));
         return $view;

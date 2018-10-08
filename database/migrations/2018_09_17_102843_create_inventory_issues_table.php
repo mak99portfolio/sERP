@@ -20,12 +20,14 @@ class CreateInventoryIssuesTable extends Migration
             $table->integer('inventory_requisition_id')->unsigned()->nullable();
             $table->integer('initial_approver_id')->unsigned()->nullable();
             $table->integer('final_approver_id')->unsigned()->nullable();
+            $table->integer('inventory_issue_status_id')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
 
             $table->foreign('inventory_requisition_id')->references('id')->on('inventory_requisitions')->onDelete('cascade');
             $table->foreign('initial_approver_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('final_approver_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('inventory_issue_status_id')->references('id')->on('inventory_issue_statuses')->onDelete('cascade');
 
         });
 

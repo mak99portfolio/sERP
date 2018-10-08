@@ -44,7 +44,7 @@
               @foreach(\Auth::user()->unreadNotifications as $row)
                 <li>
                   <a href="{{ route('notification.show', ['notification'=>$row->id]) }}">
-                    <span class="image">{!! fa('fa-bell fa-2x') !!}</span>
+                    <span class="image">{!! fa('fa-bell fa-2x fa-border') !!}</span>
                     <span>
                       <span>Sender: {{ \App\User::find($row->data['sender_id'])->name }}</span>
                       <span class="time">{{ \Carbon\Carbon::parse($row->created_at)->diffForHumans() }}</span>
@@ -55,16 +55,27 @@
                   </a>
                 </li>
               @endforeach
+
+              <li>
+                <div class="text-center">
+                  <a href="{{ route('notification.index') }}">
+                    <strong>See All Notifications</strong>
+                    <i class="fa fa-angle-right"></i>
+                  </a>
+                </div>
+              </li>
+
+            @else
+
+              <li>
+                <div class="text-center">
+                  <a>
+                    <strong>Does't have any unread notification.</strong>
+                  </a>
+                </div>
+              </li>
+
             @endif
-            
-            <li>
-              <div class="text-center">
-                <a href="{{ route('notification.index') }}">
-                  <strong>See All Notifications</strong>
-                  <i class="fa fa-angle-right"></i>
-                </a>
-              </div>
-            </li>
           </ul>
 
         </li>

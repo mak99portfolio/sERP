@@ -73,7 +73,7 @@ class ReceiveReturnController extends Controller{
             'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
-            'product_pattern_id',
+            'product_type_id',
             'remarks'
         ));
 
@@ -100,7 +100,7 @@ class ReceiveReturnController extends Controller{
                 'working_unit_id'=>$inventory_receive->working_unit_id,
                 'product_id'=>$row['id'],
                 'product_status_id'=>$row['return_status_id'],
-                'product_pattern_id'=>$inventory_issue->product_pattern_id,
+                'product_type_id'=>$inventory_issue->product_type_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['return_quantity'],
                 'batch_no'=>$row['batch_no'],
@@ -207,7 +207,7 @@ class ReceiveReturnController extends Controller{
             'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
-            'product_pattern_id',
+            'product_type_id',
             'remarks'
         ));
 
@@ -229,7 +229,7 @@ class ReceiveReturnController extends Controller{
                 'working_unit_id'=>$inventory_receive->working_unit_id,
                 'product_id'=>$row['id'],
                 'product_status_id'=>$row['return_status_id'],
-                'product_pattern_id'=>$inventory_issue->product_pattern_id,
+                'product_type_id'=>$inventory_issue->product_type_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['return_quantity'],
                 'batch_no'=>$row['batch_no'],

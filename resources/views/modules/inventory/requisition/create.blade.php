@@ -41,7 +41,7 @@
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_pattern_id', 'Item Pattern', $product_patterns, null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('product_type_id', 'Item Pattern', $product_types, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('date', 'Select Date', null, ['class'=>'form-control input-sm datepicker']) }}
@@ -186,11 +186,11 @@ $(function(){
 
           sender_depot_id=$('#sender_depot_id').val();
           product_status_id=$('#product_status_id').val();
-          product_pattern_id=$('#product_pattern_id').val();
+          product_type_id=$('#product_type_id').val();
 
           if(slug && sender_depot_id){
 
-            axios.get(this.config.base_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_pattern_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
 
               vm.remote_data=response.data;
               vm.active_record=vm.remote_data;
@@ -225,10 +225,10 @@ $(function(){
 
             sender_depot_id=$('#sender_depot_id').val();
             product_status_id=$('#product_status_id').val();
-            product_pattern_id=$('#product_pattern_id').val();
+            product_type_id=$('#product_type_id').val();
 
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_pattern_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();

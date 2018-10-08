@@ -29,7 +29,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'inventory_receive_no'=>uCode('inventory_receives.inventory_receive_no', 'IR00'),
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
+            'product_types'=>\App\ProductType::pluck('name', 'id'), //Need to filter in future
         ];
         
         return view($this->path('create'), $data);
@@ -53,7 +53,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
-            'product_pattern_id'=>'required|integer',
+            'product_type_id'=>'required|integer',
             'products'=>'required|array'
         ]);
 
@@ -61,7 +61,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
-            'product_pattern_id',
+            'product_type_id',
             'remarks'
         ));
 
@@ -92,7 +92,7 @@ class ReceiveLocalPurchaseController extends Controller{
                 'working_unit_id'=>$inventory_receive->working_unit_id,
                 'product_id'=>$row['id'],
                 'product_status_id'=>$inventory_receive->product_status_id,
-                'product_pattern_id'=>$inventory_receive->product_pattern_id,
+                'product_type_id'=>$inventory_receive->product_type_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['quantity'],
                 'batch_no'=>$row['batch_no'],
@@ -131,7 +131,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'inventory_receive_no'=>$receive_local_purchase->inventory_receive_no,
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id'), //Need to filter in future
+            'product_types'=>\App\ProductType::pluck('name', 'id'), //Need to filter in future
         ];
 
         //dd($receive_foreign_purchase->stocks);
@@ -180,7 +180,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'purchase_order_no'=>'required|integer|exists:local_purchase_orders',
             'working_unit_id'=>'required|integer',
             'product_status_id'=>'required|integer',
-            'product_pattern_id'=>'required|integer',
+            'product_type_id'=>'required|integer',
             'products'=>'required|array'
         ]);
 
@@ -188,7 +188,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'inventory_receive_no',
             'working_unit_id',
             'product_status_id',
-            'product_pattern_id',
+            'product_type_id',
             'remarks'
         ));
 
@@ -219,7 +219,7 @@ class ReceiveLocalPurchaseController extends Controller{
                 'working_unit_id'=>$inventory_receive->working_unit_id,
                 'product_id'=>$row['id'],
                 'product_status_id'=>$inventory_receive->product_status_id,
-                'product_pattern_id'=>$inventory_receive->product_pattern_id,
+                'product_type_id'=>$inventory_receive->product_type_id,
                 'inventory_receive_id'=>$inventory_receive->id,
                 'receive_quantity'=>$row['quantity'],
                 'batch_no'=>$row['batch_no'],

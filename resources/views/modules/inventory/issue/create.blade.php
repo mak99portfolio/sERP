@@ -41,7 +41,7 @@
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, $issue->requisition->product_status_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_pattern_id', 'Item Pattern', $product_patterns, $issue->requisition->product_pattern_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                    {{ BootForm::select('product_type_id', 'Item Pattern', $product_types, $issue->requisition->product_type_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('date', 'Date', $carbon->parse($issue->requisition->date)->format('d-m-Y'), ['class'=>'form-control input-sm datepicker', 'disabled']) }}
@@ -208,11 +208,11 @@ $(function(){
 
           requested_depot_id=$('#requested_depot_id').val();
           product_status_id=$('#product_status_id').val();
-          product_pattern_id=$('#product_pattern_id').val();
+          product_type_id=$('#product_type_id').val();
 
           if(slug && requested_depot_id){
 
-            axios.get(this.config.base_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_pattern_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
 
               vm.remote_data=response.data;
               vm.active_record=vm.remote_data;
@@ -256,10 +256,10 @@ $(function(){
 
             requested_depot_id=$('#requested_depot_id').val();
             product_status_id=$('#product_status_id').val();
-            product_pattern_id=$('#product_pattern_id').val();
+            product_type_id=$('#product_type_id').val();
 
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_pattern_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();
@@ -278,13 +278,13 @@ $(function(){
 
           var requested_depot_id=$('#requested_depot_id').val();
           var product_status_id=$('#product_status_id').val();
-          var product_pattern_id=$('#product_pattern_id').val();
+          var product_type_id=$('#product_type_id').val();
           var product=vm.products[index].id;
           var slug=vm.products[index].batch_no;
 
           if(!slug) slug='reset';
 
-          axios.get(this.config.batch_stock_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_pattern_id + '/' + product + '/' +slug).then(function(response){
+          axios.get(this.config.batch_stock_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id + '/' + product + '/' +slug).then(function(response){
 
             vm.products[index].stock=response.data;
               

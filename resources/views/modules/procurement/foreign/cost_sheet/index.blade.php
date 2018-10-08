@@ -25,14 +25,14 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>L/C No</th>
                                         <th>L/C Opening Date</th>
                                         <th>Currency</th>
                                         <th>L/C Amount</th>
                                         <th>Exchange Rate</th>
                                         <th>BDT Amount</th>
-                                        <th>Action</th>
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -46,7 +46,7 @@
                                         <td>{{ $item->exchange_rate }}</td>
                                         <td>{{ $item->bdt_amount }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('cost-sheet.show', $item) }}" class="btn btn-sm btn-default btn-xs" ><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('cost-sheet.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block" ><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

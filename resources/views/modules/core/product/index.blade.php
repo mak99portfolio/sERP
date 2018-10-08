@@ -26,7 +26,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Product Name</th>
                                         <th>HS Code</th>
                                         <th>Type</th>
@@ -34,7 +34,7 @@
                                         <th>Pattern</th>
                                         <th>Set</th>
                                         <th>Brand</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

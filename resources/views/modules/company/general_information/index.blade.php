@@ -17,7 +17,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Company Name</th>
                                         <th>Phone Number</th>
                                         <th>Country</th>

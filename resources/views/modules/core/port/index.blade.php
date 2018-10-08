@@ -25,7 +25,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Port Name</th>
                                         <th>Contact Person Name</th>
                                         <th>Contact Person Phone Number</th>

@@ -24,11 +24,11 @@
                             <table id="datatable-buttons" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Commercial Invoice No</th>
-                                        <th scope="col">Commercial Invoice Date</th>
-                                        <th scope="col">Currency</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="25">#</th>
+                                        <th>Commercial Invoice No</th>
+                                        <th>Commercial Invoice Date</th>
+                                        <th>Currency</th>
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +38,7 @@
                                         <td>{{$item->commercial_invoice->commercial_invoice_no}}</td>
                                         <td>{{$item->commercial_invoice->date}}</td>
                                         <td>{{$item->currency}}</td>
-                                       <td class="text-right">
+                                       <td class="text-center">
                                             <a href="{{route('packing-list.show',$item)}}" class="btn btn-block btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>

@@ -5,7 +5,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Employee Profiles</h3>
+                <h3>Working Units List</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -15,48 +15,52 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Employee Profile <small>List</small></h2>
-                        {!! btnAddNew(['url'=>route('employee-profile.create')]) !!}
+                        <h2>Working Unit <small>List</small></h2>
+                        {!! btnAddNew(['url'=>route('working-unit.create')]) !!}
                         <div class="clearfix"></div>
                     </div>
-                    <div class="x_content" id="popup_area">
+                    <div class="x_content">
                         <br/>
                         {{-- Main content area --}}
-                        @include('partials.flash_msg')
                         @include('partials.paginate_header')
                         <div class="table-responsive">
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr class='primary'>
-                                        <th width="25">Employee_id</th>
+                                        <th>#</th>
                                         <th>Name</th>
-                                        <th>Blood Group</th>
-                                        <th>Nationality</th>
-                                        <th>NID</th>
-                                        <th>Present Address</th>
-                                        <th>Permanent Address</th>
+                                        <th>Short Name</th>
+                                        <th>Company</th>
+                                        <th>Parent Unit</th>
+                                        <th>Unit Type</th>
+                                        <th>In Charge</th>
+                                        <th>Country</th>
+                                        <th>Division</th>
+                                        <th>District</th>
                                         <th>Created At</th>
-                                        <th width="100">Edit/Delete</th>
+                                        <th width="100">Edit / Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($paginate->table as $row)
                                     <tr>
-                                        <td>{{ $row->employee_id }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>{{ empty($row->blood_group->name)?'':$row->blood_group->name }}</td>
-                                        <td>{{ $row->nationality }}</td>
-                                        <td>{{ $row->national_id }}</td>
-                                        <td>{{ $row->present_address }}</td>
-                                        <td>{{ $row->permanent_address }}</td>
+                                        <td>{{ $loop->interation}}</td>
+                                        <td>{{ $row->short_name }}</td>
+                                        <td>{{ empty($row->company->name)?'':$row->company->name }}</td>
+                                        <td>{{ empty($row->parent->name)?'':$row->parent->name }}</td>
+                                        <td>{{ empty($row->type->name)?'':$row->type->name }}</td>
+                                        <td>{{ empty($row->user_in_charge->name)?'':$row->user_in_charge->name }}</td>
+                                        <td>{{ empty($row->country->name)?'':$row->country->name }}</td>
+                                        <td>{{ empty($row->division->name)?'':$row->division->name }}</td>
+                                        <td>{{ empty($row->district->name)?'':$row->district->name }}</td>
                                         <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                                         <td>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                                 <div class="btn-group" role="group">
-                                                    {!! btnEdit(['url'=>route('employee-profile.edit', ['employee_profile'=>$row->id])]) !!}
+                                                    {!! btnEdit(['url'=>route('working-unit.edit', ['working_unit'=>$row->id])]) !!}
                                                 </div>
                                                 <div class="btn-group" role="group">
-                                                    {!! btnDelete(['url'=>route('employee-profile.destroy', ['employee_profile'=>$row->id])]) !!}
+                                                    {!! btnDelete(['url'=>route('working-unit.destroy', ['working_unit'=>$row->id])]) !!}
                                                 </div>
                                             </div>
                                         </td>

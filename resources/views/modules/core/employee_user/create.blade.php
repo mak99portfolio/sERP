@@ -38,7 +38,6 @@
                                 {{ BootForm::password('password', null, ['class'=>'input-sm']) }}
                                 {{ BootForm::password('password_confirmation', null, ['class'=>'input-sm']) }}
                                 {{ BootForm::select('roles[]', 'Roles', $roles, null, ['class'=>'input-sm select2', 'multiple']) }}
-                                <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                 {!! btnSubmitGroup() !!}
@@ -60,4 +59,12 @@
 {{-- Content end --}}
 </div>
 </div>
+@endsection
+
+@section('style')
+    <style>
+        .help-block{
+            position: inherit;
+        }
+    </style>
 @endsection

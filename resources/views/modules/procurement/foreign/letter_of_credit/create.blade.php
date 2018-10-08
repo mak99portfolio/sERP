@@ -26,28 +26,28 @@
                         <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('letter-of-credit.store')}}" method="POST">
                             @csrf
                             <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_no','LC No.', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::number('letter_of_credit_value','LC Value', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','data-popup'=> route('vendor.index')]) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_expire_date','LC Expire Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('letter_of_credit_status', 'LC Status', [''=>'-- Select Shipment --','1'=>'Open','2'=>'Close'], null, ['class'=>'form-control input-sm select2','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_shipment_date','LC Shipment Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('currency_id', 'Currency', $currency_list, null, ['class'=>'form-control input-sm select2','required']) }}
                                 </div>
                             </div>
@@ -57,15 +57,18 @@
                                         <div class="panel-heading">Beneficiary Bank info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                {{ BootForm::select('beneficiary_bank_id', 'Bank Account No', $currency_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ BootForm::text('beneficiary_ac_no','A/C No', null, ['class'=>'form-control input-sm','required']) }}
                                             </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_ac_name','A/C Name', null, ['class'=>'form-control input-sm','required']) }}
                                             </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_branch_name','Branch Name', null, ['class'=>'form-control input-sm','required']) }}
                                             </div>
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 item">
                                                 {{ BootForm::text('beneficiary_bank_name','Bank Name', null, ['class'=>'form-control input-sm','required']) }}
                                             </div>
                                         </div>
@@ -76,16 +79,19 @@
                                         <div class="panel-heading">Issue Bank info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_ac_no','A/C No ', null, ['class'=>'form-control input-sm','required']) }}
+                                                 {{ BootForm::select('issue_bank_id', 'Bank Account No', $company_bank_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'bank_account_no','ng-change'=>'searchBank()','required']) }}
+                                             </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                {{ BootForm::text('issue_account_no','A/C No ', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_no','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('issue_account_name','A/C Name', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_name','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('issue_account_branch_name','Branch Name', null, ['class'=>'form-control input-sm','ng-model'=>'issue_account_branch_name','required','readonly']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','required']) }}
+                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','ng-model'=>'issue_bank_name','required','readonly']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -325,6 +331,23 @@
             }
             return sum;
       }
+
+
+        $scope.searchBank = function () {
+            $scope.getBankDetails($scope.bank_account_no);
+        }
+
+        $scope.getBankDetails = function(id){
+            let url = "{{URL::to('get-bank-info')}}/" + id;
+            $http.get(url).then(function(response) {
+                $scope.issue_account_no = response.data.account_no;
+                $scope.issue_account_name = response.data.account_name;
+                $scope.issue_account_branch_name = response.data.branch_name;
+                $scope.issue_bank_name = response.data.bank.name;
+                // $scope.consignee_bank_address = response.data.address;
+            });
+        }
+
     });
 
 

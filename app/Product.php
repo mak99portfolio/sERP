@@ -15,7 +15,7 @@ class Product extends Model
         'name',
         'hs_code',
         'product_category_id',
-        'product_pattern_id',
+        'product_type_id',
         'product_group_id',
         'product_brand_id',
         'product_model_id',

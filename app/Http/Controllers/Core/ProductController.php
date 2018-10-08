@@ -75,7 +75,7 @@ class ProductController extends Controller
             'name' => 'required|unique:products',
             'hs_code' => 'required|unique:products',
             'product_category_id' => 'required',
-            'product_pattern_id' => 'required',
+            'product_type_id' => 'required',
             'product_group_id' => 'required',
             'product_brand_id' => 'required',
             'product_model_id' => 'required',

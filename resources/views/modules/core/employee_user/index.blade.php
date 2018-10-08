@@ -28,7 +28,7 @@
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr class='primary'>
-                            <th>ID</th>
+                            <th width="25">ID</th>
                             <th>Name</th>
                             <th>Username</th>
                             <th>Email</th>

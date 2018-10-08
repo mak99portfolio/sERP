@@ -17,7 +17,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Account No</th>
                                         <th>Account Name</th>
                                         <th>Bank Name</th>

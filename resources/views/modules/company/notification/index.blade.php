@@ -7,7 +7,7 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
                     <div class="x_title">
-                        <h2>Company</h2>
+                        <h2>Company - Notifications</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -16,7 +16,7 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Time</th>
                                         <th>Sender</th>
                                         <th>Subject</th>

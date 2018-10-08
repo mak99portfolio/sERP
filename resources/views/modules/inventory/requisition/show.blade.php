@@ -41,7 +41,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Item Status:</strong>  {{ $inventory_requisition->item_status->name }}</td>
-                                        <td><strong>Item Pattern:</strong>  {{ $inventory_requisition->item_pattern->name }}</td>
+                                        <td><strong>Item Type:</strong>  {{ $inventory_requisition->item_type->name }}</td>
                                         <td><strong>Initial Approver:</strong>  {{ $inventory_requisition->initial_approver->name ?? 'Not Specified' }}</td>
                                         <td colspan="2"><strong>Final Approver:</strong>  {{ $inventory_requisition->final_approver->name ?? 'Not Specified' }}</td>
                                     </tr>

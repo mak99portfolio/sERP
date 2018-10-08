@@ -42,7 +42,7 @@
                                     <tr>
                                         <td><strong>Requested To:</strong>  {{ $issue->requisition->requested_to->name }}</td>
                                         <td><strong>Item Status:</strong>  {{ $issue->requisition->item_status->name }}</td>
-                                        <td><strong>Item Pattern:</strong>  {{ $issue->requisition->item_pattern->name }}</td>
+                                        <td><strong>Item Type:</strong>  {{ $issue->requisition->item_type->name }}</td>
                                         <td><strong>Initial Approver:</strong>  {{ $issue->initial_approver->name ?? 'Not Specified' }}</td>
                                         <td><strong>Final Approver:</strong>  {{ $issue->final_approver->name ?? 'Not Specified' }}</td>
                                     </tr>

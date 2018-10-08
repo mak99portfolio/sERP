@@ -24,7 +24,7 @@
                         {{ BootForm::select('working_unit_id', 'Working Unit', $working_units, null, ['class'=>'input-sm select2']) }}
                         {{ BootForm::select('product_id', 'Product', $products, null, ['class'=>'input-sm select2']) }}
                         {{ BootForm::select('product_status_id', 'Status', $product_statuses, null, ['class'=>'input-sm select2']) }}
-                        {{ BootForm::select('product_pattern_id', 'Pattern', $product_patterns, null, ['class'=>'input-sm select2']) }}
+                        {{ BootForm::select('product_type_id', 'Type', $product_types, null, ['class'=>'input-sm select2']) }}
                         {{-- {{ BootForm::text('date_range', 'Select Date', null, ['class'=>'form-control input-sm date_range', ]) }} --}}
                         {{ BootForm::submit('submit', ['class'=>'btn btn-info btn-sm', 'style'=>'margin-top: 13px;']) }}
                         {{ BootForm::close() }}
@@ -46,7 +46,7 @@
                     </div>
                     <div class="x_content">
                         <br />
-                        <div class="table-responsive DivIdToPrint">
+                        <div class="table-responsive print-area">
 
                             <table class="table table-bordered">
                                 <thead>
@@ -63,7 +63,7 @@
                                     </tr>
                                     <tr>
                                         <td><strong>Status:</strong> <span id="status"></span></td>
-                                        <td><strong>Pattern:</strong> <span id="pattern"></span></td>
+                                        <td><strong>Type:</strong> <span id="type"></span></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -130,7 +130,7 @@
         $('#working_unit').html($('#working_unit_id :selected').text());
         $('#product').html($('#product_id :selected').text());
         $('#status').html($('#product_status_id :selected').text());
-        $('#pattern').html($('#product_pattern_id :selected').text());
+        $('#type').html($('#product_type_id :selected').text());
 
     });
 </script>

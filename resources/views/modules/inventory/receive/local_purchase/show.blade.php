@@ -40,7 +40,7 @@
                                     <tr>
                                         <td><strong>Purchase Order No:</strong> {{ $inventory_receive->local->purchase_order->purchase_order_no }}</td>
                                         <td><strong>Product Status:</strong> {{ $inventory_receive->item_status->name }}</td>
-                                        <td><strong>Product Pattern:</strong> {{ $inventory_receive->item_pattern->name }}</td>
+                                        <td><strong>Product Type:</strong> {{ $inventory_receive->item_type->name }}</td>
                                     </tr>
                                     <tr>
                                         <td colspan="3"><strong>Remarks:</strong> {{ $inventory_receive->remarks ?? 'Not Specified' }}</td>

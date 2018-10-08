@@ -25,7 +25,7 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>City Name</th>
                                         <th>Country</th>
                                     </tr>

@@ -36,8 +36,8 @@ class Stock extends Model{
     	return $this->belongsTo('App\ProductStatus', 'product_status_id');
     }
 
-    public function pattern(){
-    	return $this->belongsTo('App\ProductPattern', 'product_pattern_id');
+    public function type(){
+    	return $this->belongsTo('App\ProductType', 'product_type_id');
     }
 
     public function receive(){

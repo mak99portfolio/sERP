@@ -31,7 +31,7 @@ class StockReportController extends Controller{
         $data=[
             'working_units'=>\App\WorkingUnit::pluck('name', 'id')->prepend('All Working Unit', ''),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id')->prepend('All Status', ''),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')->prepend('All Pattern', ''),
+            'product_types'=>\App\ProductType::pluck('name', 'id')->prepend('All Type', ''),
             'products'=>\App\Product::pluck('name', 'id')->prepend('All Products', ''),
             'physical_quantity'=>$physical_quantity,
             'intransit_quantity'=>$intransit_quantity,
@@ -59,7 +59,7 @@ class StockReportController extends Controller{
             "working_unit_id",
             "product_id",
             "product_status_id",
-            "product_pattern_id"
+            "product_type_id"
         ];
 
         $filters=[];
@@ -148,7 +148,7 @@ class StockReportController extends Controller{
         $data=[
             'working_units'=>\App\WorkingUnit::pluck('name', 'id')->prepend('All Working Unit', ''),
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id')->prepend('All Status', ''),
-            'product_patterns'=>\App\ProductPattern::pluck('name', 'id')->prepend('All Pattern', ''),
+            'product_types'=>\App\ProductType::pluck('name', 'id')->prepend('All Type', ''),
             'products'=>\App\Product::pluck('name', 'id')->prepend('All Products', ''),
             'physical_quantity'=>$physical_quantity,
             'intransit_quantity'=>$intransit_quantity,

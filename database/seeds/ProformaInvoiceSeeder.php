@@ -27,7 +27,7 @@ class ProformaInvoiceSeeder extends Seeder
                 'payment_type'=> 'Cash',
                 'pre_carriage_by'=> 'Ship',
                 'customer_code'=> 'fdfdgh',
-                'consignee'=>'consignee' ,
+                'consignee_company_profile_id'=>1 ,
                 'beneficiary_bank_info'=>'beneficiary bank info',
                 'notes'=>'note'
             ],

@@ -233,6 +233,8 @@ class ApiController extends Controller
 
         }
 
+        //dd($previous_orders_quantity);
+
         foreach($data as $key=>$row){
 
             foreach($previous_orders_quantity as $inner_row){
@@ -301,9 +303,9 @@ class ApiController extends Controller
     {
         $product_group = ProductGroup::find($product_group_id);
         if($product_group){
-            return response()->json(Product::where('product_category_id', $product_group_id)->with('product_category')->with('product_size')->with('product_set')->with('product_type')->get());
+            return response()->json(Product::where('product_category_id', $product_group_id)->with('product_category')->with('product_size')->with('product_set')->with('product_type')->with('product_model')->get());
         }else{
-            return response()->json(Product::with('product_category')->with('product_size')->with('product_set')->with('product_type')->get());
+            return response()->json(Product::with('product_category')->with('product_size')->with('product_set')->with('product_type')->with('product_model')->get());
         }
     }
 

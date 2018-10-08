@@ -25,10 +25,10 @@
                             <table class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Brand Name</th>
                                         <th>Short Name</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

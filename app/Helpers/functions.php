@@ -76,8 +76,8 @@ function active($urls){
 
 function goBack($args=[]){
 	$attr=[
-		'class'=>'btn btn-default',
-		'icon'=>'text-info fa-reply',
+		'class'=>'pull-right btn btn-sm btn-primary',
+		'icon'=>'fa-reply',
 		'title'=>'Go back'
 	];
 	$attr=array_merge($attr,$args);
@@ -86,8 +86,8 @@ function goBack($args=[]){
 
 function btnAddNew($args=[]){
 	$attr=[
-		'class'=>'pull-right btn btn-default',
-		'icon'=>'text-info fa-plus-circle fa-lg',
+		'class'=>'pull-right btn btn-sm btn-primary',
+		'icon'=>'fa-plus-circle',
 		'title'=>'Add New',
 		'url'=>'#'
 	];

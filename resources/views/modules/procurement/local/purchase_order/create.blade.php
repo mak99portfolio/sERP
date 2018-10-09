@@ -24,7 +24,7 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials/flash_msg')
-                        <form class="form-horizontal form-label-left" action="{{route('local-purchase-order.store')}}" method="POST" autocomplete="off">
+                        <form class="form-horizontal form-label-left" action="{{ route('local-purchase-order.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <fieldset>
                                 <legend>Vendor Information:</legend>
@@ -121,7 +121,7 @@
                                                 <select data-placeholder="Select Req No" multiple required class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_ids[]" ng-model="req_id" ng-change="searchReqNo()">
                                                     <option value=""></option>
                                                     @foreach($requisition_list as $item)
-                                                    <option value="{{$item->id}}">{{$item->requisition_no}}</option>
+                                                    <option value="{{ $item->id }}">{{ $item->requisition_no }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
@@ -398,7 +398,7 @@
                 $scope.warning('Please select a payment type first');
                 return;
             }
-            
+
             if(!$scope.payment_terms_amount){
                 $scope.warning('Payment amount is empty');
                 return;
@@ -442,7 +442,7 @@
 
             condition.type = $scope.condition_type;
             condition.description = $scope.condition_description;
-            
+
             index = $scope.conditions.findIndex(value => value.type == condition.type);
 
             if(index >= 0){

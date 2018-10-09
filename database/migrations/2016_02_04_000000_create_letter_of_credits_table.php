@@ -25,14 +25,24 @@ class CreateLetterOfCreditsTable extends Migration
             $table->string('letter_of_credit_shipment_date')->nullable();
             $table->integer('currency_id')->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
-            $table->string('beneficiary_ac_no')->nullable();
-            $table->string('beneficiary_ac_name')->nullable();
-            $table->string('beneficiary_branch_name')->nullable();
-            $table->string('beneficiary_bank_name')->nullable();
-            $table->string('issue_ac_no')->nullable();
-            $table->string('issue_ac_name')->nullable();
-            $table->string('issue_branch_name')->nullable();
-            $table->string('issue_bank_name')->nullable();
+        
+            $table->integer('beneficiary_vendor_bank_id')->nullable();
+            $table->foreign('beneficiary_vendor_bank_id')->references('id')->on('vendor_banks')->onDelete('cascade');
+           
+            $table->integer('issue_company_bank_id')->nullable();
+            $table->foreign('issue_company_bank_id')->references('id')->on('company_banks')->onDelete('cascade');
+           
+           
+            // $table->string('beneficiary_ac_no')->nullable();
+            // $table->string('beneficiary_ac_name')->nullable();
+            // $table->string('beneficiary_branch_name')->nullable();
+            // $table->string('beneficiary_bank_name')->nullable();
+
+            // $table->string('issue_ac_no')->nullable();
+            // $table->string('issue_ac_name')->nullable();
+            // $table->string('issue_branch_name')->nullable();
+            // $table->string('issue_bank_name')->nullable();
+
             $table->integer('partial_shipment')->nullable();
             $table->integer('transhipment_information')->nullable();
             $table->integer('company_id')->unsigned()->nullable();

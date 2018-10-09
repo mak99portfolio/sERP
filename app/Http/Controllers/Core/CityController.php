@@ -79,7 +79,10 @@ class CityController extends Controller
      */
     public function edit(City $city)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('city_info',$city);
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
+        return $view;
     }
 
     /**
@@ -91,7 +94,15 @@ class CityController extends Controller
      */
     public function update(Request $request, City $city)
     {
-        //
+      
+      $request->validate([
+        'name' => 'required|unique:cities,name,'.$city->id,
+        'country_id' => 'required'
+    ]);
+
+    $city->fill($request->all());
+    if($city->save()) return back()->with('success', 'Form edited successfully');
+    return back()->with('danger', 'Form Submission failed!.');
     }
 
     /**

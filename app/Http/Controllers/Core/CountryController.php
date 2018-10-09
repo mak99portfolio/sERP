@@ -50,13 +50,25 @@ class CountryController extends Controller
 
     public function edit(Country $country)
     {
-        //
+
+       // dd($country);
+        $view = view($this->view_root.'edit');
+        $view->with('country_info',$country);
+        return $view;
     }
 
 
     public function update(Request $request, Country $country)
     {
-        //
+
+       // dd('fdfd');
+        $request->validate([
+            'name'=>'required|unique:countries,name,'.$country->id,
+            'short_name'=>'required|unique:countries,short_name,'.$country->id,
+        ]);
+        $country->fill($request->all());
+        if($country->save()) return back()->with('success', 'Form edited successfully');
+        return back()->with('danger', 'Form Submission failed!.');
     }
 
 

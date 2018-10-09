@@ -292,5 +292,16 @@
             $scope.itemlist.splice(index,1);
         }
     });
+
+    $(function(){
+        $('#date_expected').daterangepicker({
+            singleDatePicker: true,
+            singleClasses: "picker_3",
+            startDate: moment().startOf('hour'),
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        });
+    });
 </script>
 @endsection

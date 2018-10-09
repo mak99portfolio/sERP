@@ -34,11 +34,7 @@ class PortController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         $view = view($this->view_root.'create');
@@ -47,12 +43,7 @@ class PortController extends Controller
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+  
     public function store(Request $request)
     {
         $request->validate([
@@ -71,46 +62,39 @@ class PortController extends Controller
         return redirect()->route('port.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Port  $port
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Port $port)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Port  $port
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(Port $port)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('port_info', $port);
+        $view->with('city_list', City::pluck('name', 'id')->prepend('--select city--', ''));
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
+        return $view;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Port  $port
-     * @return \Illuminate\Http\Response
-     */
+  
     public function update(Request $request, Port $port)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:ports,name,'.$port->id,
+            'contact_person' => 'required|unique:ports,contact_person,'.$port->id,
+            'contact_person_number' => 'required|unique:ports,contact_person_number,'.$port->id,
+            'city_id' => 'required',
+            'country_id' => 'required'
+        ]);
+        $port->fill($request->all());
+        $port->update();
+        Session::put('alert-success',$port->name . ' updated successfully!');
+        return redirect()->route('port.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Port  $port
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Port $port)
     {
         //

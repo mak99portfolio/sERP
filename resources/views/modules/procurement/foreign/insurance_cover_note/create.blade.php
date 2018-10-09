@@ -15,7 +15,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Insurance Cover Note</h2>
-                        <a href="{{route('insurance-cover-note.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Insurance Cover Note</a>
+                        <a href="{{ route('insurance-cover-note.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Insurance Cover Note</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -26,13 +26,13 @@
                             <input type="hidden" name="company_bank_id" value='<% consignee_bank_account_no %>'>
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list,null, ['class'=>'form-control input-sm select2','data-popup'=> route('letter-of-credit.index')]) }}
+                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list,null, ['class'=>'form-control input-sm select2', 'required','data-popup'=> route('letter-of-credit.index')]) }}
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('insurance_cover_note_no','ICN No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('insurance_cover_note_no','ICN No', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list,null, ['class'=>'form-control input-sm select2', 'ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()', 'required','data-popup'=> route('vendor.index')]) }}
@@ -49,7 +49,7 @@
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label>Account No.</label>
-                                                    <select class="form-control input-sm select2" name="vendor_bank_id" ng-model="vendor_bank_id" ng-change="getIcnAccountDetails()">
+                                                    <select class="form-control input-sm select2" name="vendor_bank_id" ng-model="vendor_bank_id" ng-change="getIcnAccountDetails()" required>
                                                         <option value="" disabled>--Select Account No--</option>
                                                         <option ng-repeat="account in icn_account_list" value="<% account.id %>"><% account.ac_no %></option>
                                                     </select>
@@ -109,33 +109,33 @@
                                         <tbody>
                                             <tr>
                                                 <td>Marine</td>
-                                                <td>{{ Form::number('percent_of_marine', 0, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_marine', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_marine" ng-model="amount_of_marine" ng-init="amount_of_marine = 0"></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_marine" ng-model="amount_of_marine" ng-init="amount_of_marine = 0" required></td>
                                             </tr>
                                             <tr>
                                                 <td>WAR & SRCC</td>
-                                                <td>{{ Form::number('percent_of_war', 0, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_war', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_war" ng-model="amount_of_war" ng-init="amount_of_war = 0"></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_war" ng-model="amount_of_war" ng-init="amount_of_war = 0" required></td>
                                             </tr>
                                             <tr>
                                                 <td>Net Premium</td>
-                                                <td>{{ Form::number('percent_of_net_premium', 0, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_net_premium', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_net_premium" ng-model="amount_of_net_premium" ng-init="amount_of_net_premium = 0"></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_net_premium" ng-model="amount_of_net_premium" ng-init="amount_of_net_premium = 0" required></td>
                                             </tr>
                                             <tr>
                                                 <td>VAT</td>
-                                                <td>{{ Form::number('percent_of_vat', 0, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_vat', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" ng-init="amount_of_vat = 0"></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" ng-init="amount_of_vat = 0" required></td>
                                             </tr>
                                             <tr>
                                                 <td>Stamp Duty</td>
-                                                <td>{{ Form::number('percent_of_stamp_duty', 0, ['class'=>'form-control input-sm']) }}</td>
+                                                <td>{{ Form::number('percent_of_stamp_duty', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_stamp_duty" ng-model="amount_of_stamp_duty" ng-init="amount_of_stamp_duty = 0"></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_stamp_duty" ng-model="amount_of_stamp_duty" ng-init="amount_of_stamp_duty = 0" required></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">Grand Total</td>

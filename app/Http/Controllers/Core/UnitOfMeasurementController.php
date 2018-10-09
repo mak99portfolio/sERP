@@ -41,6 +41,7 @@ class UnitOfMeasurementController extends Controller
      */
     public function store(UnitOfMeasurementRequest $request)
     {
+        
         $umo = new UnitOfMeasurement;
         $umo->fill($request->input());
         $umo->creator_user_id = Auth::id();
@@ -68,19 +69,24 @@ class UnitOfMeasurementController extends Controller
      */
     public function edit(UnitOfMeasurement $unitOfMeasurement)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('uom_info', $unitOfMeasurement);
+        return $view;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\UnitOfMeasurement  $unitOfMeasurement
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, UnitOfMeasurement $unitOfMeasurement)
     {
-        //
+        dd('jj');
+        $request->validate([
+            'name'=>'required|unique:unit_of_measurements,name,'.$unitOfMeasurement->id,
+            'short_name'=>'required|unique:unit_of_measurements,short_name,'.$unitOfMeasurement->id,
+        ]);
+
+        $unitOfMeasurement->fill($request->all());
+        $unitOfMeasurement->update();
+        Session::put('alert-success',$unitOfMeasurement->name . ' updated successfully!');
+        return redirect()->route('unit-of-measurement.index');
     }
 
     /**

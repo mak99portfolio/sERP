@@ -134,7 +134,7 @@
                                                     <tr>
                                                         <th>SL NO</th>
                                                         <th>Purchase Requisition No</th>
-                                                        <th>Date</th>
+                                                        <th>Requisition Date</th>
                                                         <th>Purchase Requisition Name</th>
                                                     </tr>
                                                 </thead>
@@ -166,14 +166,14 @@
                                                 <th>#</th>
                                                 <th>Item Name</th>
                                                 <th>HS Code</th>
-                                                <th>Qty</th>
+                                                <th>Quantity</th>
                                                 <th>MOU</th>
-                                                <th>Price</th>
+                                                <th>Unit Price</th>
                                                 <th>Sub Total</th>
-                                                <th>D.Rt</th>
-                                                <th>Total Disc</th>
-                                                <th>VAT Rt(%)</th>
-                                                <th>VAT Amt</th>
+                                                <th>Discount Rate</th>
+                                                <th>Total Discount</th>
+                                                <th>VAT Rate(%)</th>
+                                                <th>VAT Amount</th>
                                                 <th>Total (Net)</th>
                                             </tr>
                                         </thead>
@@ -331,7 +331,7 @@
                                                     <tr ng-repeat="condition in conditions">
                                                         <td><% $index+1 %></td>
                                                         <td><% condition.type %><input name="terms_conditions[<% $index %>][terms_type]" type="hidden" value="<% condition.type %>"></td>
-                                                        <td><% condition.description %> <input name="terms_conditions[<% $index %>][descripton]" type="hidden" value="<% condition.description %>"></td>
+                                                        <td><% condition.description %> <input name="terms_conditions[<% $index %>][description]" type="hidden" value="<% condition.description %>"></td>
                                                         <td class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                     </tr>
                                                 </tbody>

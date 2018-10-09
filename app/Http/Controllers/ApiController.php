@@ -155,6 +155,36 @@ class ApiController extends Controller
         $data['last_po'] = $po;
         return response()->json($data);
     }
+    public function getCIByCIIds($ids)
+    {
+        $items = [];
+        $ci_list = CommercialInvoice::find(explode(',', $ids));
+        foreach ($ci_list as $ci) {
+            foreach ($ci->items as $item) {
+                $item_exist = false;
+                foreach ($items as $key => $value) {
+                    if ($value['product_id'] == $item->product->id) {
+                        $items[$key]['quantity'] += $item->quantity;
+                        $item_exist = true;
+                        break;
+                    }
+                }
+                if (!$item_exist) {
+                    $items[] = [
+                        'product_id' => $item->product->id,
+                        'name' => $item->product->name,
+                        'hs_code' => $item->product->hs_code,
+                        'uom' => $item->product->unit_of_measurement->name,
+                        'quantity' => $item->quantity,
+                        'unit_price' => $item->unit_price,
+                    ];
+                }
+            }
+        }
+        $data['ci_list'] = $ci_list;
+        $data['items'] = $items;
+        return response()->json($data);
+    }
 
     public function getForeignRequisitionByRequisitionIds($ids)
     {
@@ -433,5 +463,15 @@ class ApiController extends Controller
 
         return response()->json($data);
     }
+    public function getLcToCiList($id){
+        $data['commercial_invoice_list']=CommercialInvoice::where('letter_of_credit_id',$id)->get();
+        $data['lc_no']=LetterOfCredit::with('issue_bank')->find($id);
+        $data['lc_no']->issue_bank->bank;
+        $data['last_pi'] = $data['lc_no']->proforma_invoices->last();
+        return response()->json($data);
+    }
+    // public function getCiToProduct($ci_id){
+    //     return response()->json($ci_id);
+    // }
 
 }

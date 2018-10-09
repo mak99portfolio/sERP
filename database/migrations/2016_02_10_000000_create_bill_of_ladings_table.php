@@ -16,14 +16,15 @@ class CreateBillOfLadingsTable extends Migration
         Schema::create('bill_of_ladings', function (Blueprint $table) {
             $table->increments('id');
             $table->string('bill_of_lading_no');
-            $table->string('bill_of_lading_date');
+            $table->date('bill_of_lading_date');
+            $table->integer('letter_of_credit_id')->unsigned();
+            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
+            $table->date('letter_of_credit_date');
             $table->string('container_no');
             $table->string('container_size');
             $table->string('number_of_box');
             $table->integer('shipping_agency_vendor_id')->unsigned();
             $table->foreign('shipping_agency_vendor_id')->references('id')->on('vendors')->onDelete('cascade');
-            $table->integer('letter_of_credit_id')->unsigned();
-            $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->integer('local_agency_vendor_id')->unsigned();
             $table->foreign('local_agency_vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->integer('exporter_vendor_id')->unsigned();
@@ -32,8 +33,8 @@ class CreateBillOfLadingsTable extends Migration
             $table->string('acceptance');
             $table->integer('port_of_loading_port_id')->unsigned();
             $table->foreign('port_of_loading_port_id')->references('id')->on('ports')->onDelete('cascade');
-            $table->integer('port_of_dischare_port_id')->unsigned();
-            $table->foreign('port_of_dischare_port_id')->references('id')->on('ports')->onDelete('cascade');
+            $table->integer('port_of_discharge_port_id')->unsigned();
+            $table->foreign('port_of_discharge_port_id')->references('id')->on('ports')->onDelete('cascade');
             $table->string('place_of_delivery');
             $table->string('voyage_no');
             $table->string('place_of_transhipment');

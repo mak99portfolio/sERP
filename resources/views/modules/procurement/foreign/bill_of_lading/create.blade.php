@@ -22,23 +22,33 @@
                         <br />
                         <form class="form-horizontal form-label-left input_mask" autocomplete="off"  action="{{route('bill-of-lading.store')}}" method="POST">
                                 @csrf
-                                <input type="hidden" name="letter_of_credit_id" value='<% letter_of_credit_id %>'>
+                                {{-- <input type="hidden" name="letter_of_credit_id" value='<% letter_of_credit_id %>'> --}}
                             <div class="row">
                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_of_lading_date','Bill of Lading No', null, ['class'=>'form-control input-sm','required']) }}
+                                    {{ BootForm::text('bill_of_lading_no','Bill of Lading No', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_date','Bill of Lading Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'bill_of_lading_issue_date','required']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('letter_of_credit_id', 'Letter of Credit No', $letter_of_credit_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('letter-of-credit.index')]) }}
+                                    {{ BootForm::select('letter_of_credit_id', 'Letter of Credit No', $letter_of_credit_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'lc_id','ng-change'=>'getLcToCi()','required', 'data-popup'=> route('letter-of-credit.index')]) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('letter_of_credit_date','Letter of Credit Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'letter_of_credit_date','required']) }}
+                                    {{ BootForm::text('letter_of_credit_date','Letter of Credit Date', null, ['class'=>'form-control input-sm','ng-model'=>'letter_of_credit_date','required' ,'readonly']) }}
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('commercial_invoice_ids', 'Commercial Invoice', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('commercial-invoice.index')]) }}
+
+
+                                        <div class="form-group">
+                                                <label>Commercial Invoice</label>
+                                                <select class="form-control input-sm select2" data-placeholder="-- Select CI --" multiple name="commercial_invoice_ids[]" ng-model="commercial_invoice_ids" ng-change="getCI()">
+                                                    
+                                                    <option ng-repeat="ci in ci_list" value="<% ci.id %>"><% ci.commercial_invoice_no %></option>
+                                                </select>
+                                        </div>
+
+                                    {{-- {{ BootForm::select('commercial_invoice_ids', 'Commercial Invoice', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('commercial-invoice.index')]) }} --}}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no','required']) }}
@@ -67,7 +77,9 @@
                                                 <tbody>
                                                     <tr ng-repeat="ci in cilist">
                                                         <td scope="col"><% $index+1 %></td>
-                                                        <td scope="col"><% ci.commercial_invoice_no %></td>
+                                                        <td scope="col"><% ci.commercial_invoice_no %>
+                                                            <input type="hidden" class="form-control" name="ci_ids[]" value="<% ci.id %>">
+                                                        </td>
                                                         <td scope="col"><% ci.date %></td>
                                                     </tr>
                                                 </tbody>
@@ -130,16 +142,16 @@
                                         <div class="panel-heading">LC Issue Bank</div>
                                         <div class="panel-body">
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('issue_ac_no','A/C No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_no','required']) }}
+                                                {{ BootForm::text('issue_ac_no','A/C No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_no']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_name','required']) }}
+                                                {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_branch_name','required']) }}
+                                                {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_branch_name']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_bank_name','required']) }}
+                                                {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_bank_name']) }}
                                             </div>
                                         </div>
                                     </div>
@@ -148,10 +160,10 @@
                                         {{ BootForm::text('acceptance','Acceptance', null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('port_of_loading_port_id', 'Port Of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','data-popup'=> route('port.index')]) }}
+                                        {{ BootForm::select('port_of_loading_port_id', 'Port Of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'port_of_loading_port_id','data-popup'=> route('port.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('port_of_dischare_port_id', 'Port Of Dischrge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('port.index')]) }}
+                                        {{ BootForm::select('port_of_discharge_port_id', 'Port Of Discharge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'port_of_discharge_port_id', 'data-popup'=> route('port.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::text('place_of_delivery','Place Of Delivery', null, ['class'=>'form-control input-sm','required']) }}
@@ -211,28 +223,57 @@
         });
     app.controller('myCtrl', function($scope, $http) {
 
-        $scope.itemlist = [];
-        $scope.searchBL = function () {
-            $scope.itemlist = [];
-            $scope.addToItemList($scope.bl_no);
-        }
-        $scope.addToItemList = function(bl_no){
-            let url = "{{URL::to('get-all-by-bl-no')}}/" + bl_no;
-            $http.get(url)
-                    .then(function(response) {
-                        console.log(response.data);
-                        $scope.itemlist = response.data.items;
-                        $scope.cilist = response.data.ci;
-                        $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bill_of_lading_date;
-                        $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
-                        $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
-                        $scope.letter_of_credit_id = response.data.lc.id;
-                        $scope.issue_ac_no = response.data.lc.issue_ac_no;
-                        $scope.issue_ac_name = response.data.lc.issue_ac_name;
-                        $scope.issue_branch_name = response.data.lc.issue_branch_name;
-                        $scope.issue_bank_name = response.data.lc.issue_bank_name;
+        // $scope.itemlist = [];
+        // $scope.searchBL = function () {
+        //     $scope.itemlist = [];
+        //     $scope.addToItemList($scope.bl_no);
+        // }
+        // $scope.addToItemList = function(bl_no){
+        //     let url = "{{URL::to('get-all-by-bl-no')}}/" + bl_no;
+        //     $http.get(url)
+        //             .then(function(response) {
+        //                 console.log(response.data);
+        //                 $scope.itemlist = response.data.items;
+        //                 $scope.cilist = response.data.ci;
+        //                 $scope.bill_of_lading_issue_date = response.data.ci[response.data.ci.length-1].bill_of_lading_date;
+        //                 $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
+        //                 $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
+        //                 $scope.letter_of_credit_id = response.data.lc.id;
+                        
+        //                 $scope.issue_ac_no = response.data.lc.issue_ac_no;
+        //                 $scope.issue_ac_name = response.data.lc.issue_ac_name;
+        //                 $scope.issue_branch_name = response.data.lc.issue_branch_name;
+        //                 $scope.issue_bank_name = response.data.lc.issue_bank_name;
 
-                    });
+        //             });
+        // }
+        
+
+        $scope.ci_list = [];
+        $scope.getLcToCi = function(){
+            let url = "{{URL::to('get-lc-to-ci-list')}}/" + $scope.lc_id;
+            $http.get(url).then(function(response) {
+                $scope.ci_list = response.data.commercial_invoice_list;
+                $scope.letter_of_credit_no = response.data.lc_no.letter_of_credit_no;
+                $scope.letter_of_credit_date = response.data.lc_no.letter_of_credit_date;
+
+                $scope.issue_ac_no = response.data.lc_no.issue_bank.account_no;
+                $scope.issue_ac_name = response.data.lc_no.issue_bank.account_name;
+                $scope.issue_branch_name = response.data.lc_no.issue_bank.branch_name;
+                $scope.issue_bank_name = response.data.lc_no.issue_bank.bank.name;
+                
+                $scope.port_of_loading_port_id = response.data.last_pi.port_of_loading_port_id.toString();
+                $scope.port_of_discharge_port_id = response.data.last_pi.port_of_discharge_port_id.toString();
+            });
+        }
+
+        $scope.getCI = function () {
+            var ids = $scope.commercial_invoice_ids.join();
+            let url = "{{URL::to('get-ci-by-ci-ids')}}/" + ids;
+            $http.get(url).then(function(response) {
+                $scope.cilist = response.data.ci_list;
+                $scope.itemlist = response.data.items;
+            });
         }
     });
 </script>

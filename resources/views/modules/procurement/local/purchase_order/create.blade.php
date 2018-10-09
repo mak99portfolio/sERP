@@ -30,10 +30,10 @@
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select vendor', 'required','data-popup'=> route('vendor.index')]) }}
+                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Vendor', 'required','data-popup'=> route('vendor.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2', 'required']) }}
+                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Vendor Selection Criteria', [''=>'', 'Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Vendor Selection Criteria', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm', 'required']) }}
@@ -55,26 +55,26 @@
                                         {{ BootForm::text('purchase_order_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('inco_terms', 'Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm', 'required']) }}
+                                        {{ BootForm::select('inco_terms', 'Inco-Terms', [''=>'', 'FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Inco-Terms', 'required']) }}
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('procurement_type', 'Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2', 'required']) }}
+                                        {{ BootForm::select('procurement_type', 'Procurement Type', [''=>'', 'Local' => 'Local'], null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Procurement Type', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('purchase_order_type', 'Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2', 'required']) }}
+                                        {{ BootForm::select('purchase_order_type', 'Purchase Order Type', [''=>'', 'Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Purchase Order Type', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('shipping_method', 'Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2', 'required']) }}
+                                        {{ BootForm::select('shipping_method', 'Shipping Method', [''=>'', 'Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Shipping Method', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('payment_method', 'Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2', 'required']) }}
+                                        {{ BootForm::select('payment_method', 'Payment Method', [''=>'', 'Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Payment Method', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                         {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2', 'required']) }}
@@ -235,7 +235,7 @@
                                         <label>Payment Type</label>
                                         <div class="form-group">
                                             <select class="form-control input-sm select2" ng-model="payment_terms_type" required>
-                                                <option value="" disabled selected> Select type</option>
+                                                <option value="" disabled selected> Select Payment Type</option>
                                                 <option value="Fixed">Fixed</option>
                                                 <option value="Percentage">Percentage</option>
                                             </select>
@@ -302,7 +302,7 @@
                                         <div class="form-group">
                                             <label>Terms and Condition Type</label>
                                             <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type" required>
-                                                <option value="" disabled selected> Select..</option>
+                                                <option value="" disabled selected> Select Terms and Condition Type </option>
                                                 <option value="Delivery Terms">Delivery Terms</option>
                                                 <option value="Payment Condition">Payment Condition</option>
                                                 <option value="Warranty Terms">Warranty Terms</option>

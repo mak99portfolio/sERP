@@ -65,7 +65,7 @@ class LocalPurchaseOrderController extends Controller
     public function show(LocalPurchaseOrder $localPurchaseOrder)
     {
         $view = view($this->view_root . 'show');
-        $view->with('purchaseOrder',$localPurchaseOrder);
+        $view->with('localPurchaseOrder', $localPurchaseOrder);
         return $view;
     }
 

@@ -38,31 +38,35 @@ class PurchaseOrderController extends Controller
         return $view;
     }
 
-    public function store(ForeignPurchaseOrderRequest $request)
-    {
+    public function store(ForeignPurchaseOrderRequest $request){
+
+        //dd($request->all());
+
         // dd();
-        // $request->validate([
-            // 'foreign_requisition_id'=>'required',
-            // 'purchase_order_no'=>'required',
-            // 'vendor_id'=>'required',
-            // 'requisition_date'=>'required',
-            // 'purchase_order_date'=>'required',
-            // 'port_of_loading_port_id'=>'required',
-            // 'port_of_discharge_port_id'=>'required',
-            // 'final_destination_country_id'=>'required',
-            // 'final_destination_city_id'=>'required',
-            // 'origin_of_goods_country_id'=>'required',
-            // 'payment_type'=>'required',
-            // 'pre_carriage_by'=>'required',
-            // 'subject'=>'required',
-            // 'letter_header'=>'required',
-            // 'letter_footer'=>'required',
-        // ]);
+        $request->validate([
+            'foreign_requisition_id'=>'required',
+            'purchase_order_no'=>'required',
+            'vendor_id'=>'required',
+            'requisition_date'=>'required|date|date_format:d-m-Y',
+            'purchase_order_date'=>'required|date|date_format:d-m-Y|after:requisition_date',
+            'port_of_loading_port_id'=>'required',
+            'port_of_discharge_port_id'=>'required',
+            'final_destination_country_id'=>'required',
+            'final_destination_city_id'=>'required',
+            'origin_of_goods_country_id'=>'required',
+            'payment_type'=>'required',
+            'pre_carriage_by'=>'required',
+            'subject'=>'required',
+            'letter_header'=>'required',
+            'letter_footer'=>'required',
+        ]);
+
         $purchase_order = new PurchaseOrder;
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();
         // $purchase_order->purchase_order_no = time();
         $purchase_order->generate_purchase_order_number();
+        $purchase_order->purchase_order_date = \Carbon\Carbon::parse($request->purchase_order_date)->format('Y-m-d');
         $purchase_order->save();
         $requisitions = Array();
 

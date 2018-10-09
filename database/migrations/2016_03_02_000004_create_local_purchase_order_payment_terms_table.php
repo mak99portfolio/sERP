@@ -16,7 +16,7 @@ class CreateLocalPurchaseOrderPaymentTermsTable extends Migration {
             $table->increments('id');
 
             $table->string('payment_type')->nullable();
-            $table->string('payment_date')->nullable();
+            $table->date('payment_date')->nullable();
             $table->text('description')->nullable();
             $table->decimal('amount', 12, 2)->nullable();
             $table->integer('local_purchase_order_id')->unsigned();

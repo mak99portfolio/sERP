@@ -28,10 +28,10 @@
                                     {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('vendor.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('requisition_date','Requisition date', null, ['class'=>'form-control input-sm datepicker' ,'required']) }}
+                                    {{ BootForm::text('requisition_date','Requisition date', \Carbon\Carbon::now()->format('d-m-Y'), ['class'=>'form-control input-sm' ,'required', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('purchase_order_date','Purchase Order date', null, ['class'=>'form-control input-sm datepicker' ,'required']) }}
+                                        {{ BootForm::text('purchase_order_date','Purchase Order date', null, ['class'=>'form-control input-sm' ,'required']) }}
                                 </div>
                             </div>
                             <fieldset class="m-t-20">
@@ -183,6 +183,17 @@
             return sum;
         }
 
+    });
+
+    $(function(){
+        $('#purchase_order_date').daterangepicker({
+            singleDatePicker: true,
+            singleClasses: "picker_3",
+            minDate: moment().add('days', 1),
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        });
     });
 </script>
 @endsection

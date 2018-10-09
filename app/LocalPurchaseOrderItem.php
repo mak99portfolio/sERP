@@ -19,7 +19,26 @@ class LocalPurchaseOrderItem extends Model{
     }
 
     public function product(){
-    	return $this->belongsTo('App\Product', 'item_id');
+    	return $this->belongsTo('App\Product');
     }
 
+    public function sub_amount()
+    {
+        return $this->quantity * $this->unit_price;
+    }
+
+    public function discount_amount()
+    {
+        return ($this->sub_amount() * $this->discount_rate) / 100;
+    }
+
+    public function vat_amount()
+    {
+        return ($this->sub_amount() * $this->vat_rate) / 100;
+    }
+
+    public function net_amount()
+    {
+        return $this->sub_amount() - $this->discount_amount() + $this->vat_amount();
+    }
 }

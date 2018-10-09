@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                
+
             </div>
         </div>
         <div class="clearfix"></div>
@@ -38,26 +38,26 @@
                                         <td colspan="3" class="text-center">Foreign Purchase Order</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Requisition No:</strong> 
-                                        
+                                        <td><strong>Requisition No:</strong>
+
                                             @foreach($purchaseOrder->foreign_requisitions as $foreign_requisition)
 
-                                                 <strong>{{$foreign_requisition->requisition_no}},</strong> 
+                                                 <strong>{{$foreign_requisition->requisition_no}},</strong>
                                             @endforeach
                                         </td>
                                         <td><strong>Purchase Order No:</strong> {{$purchaseOrder->purchase_order_no}}</td>
                                         <td><strong>Vendor:</strong> {{$purchaseOrder->vendor->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Requisition date:</strong> 
+                                        <td><strong>Requisition date:</strong>
                                             @foreach($purchaseOrder->foreign_requisitions as $foreign_requisition)
 
-                                            <strong>{{date('Y-m-d', strtotime($foreign_requisition->issued_date))}},</strong> 
+                                            <strong>{{date('Y-m-d', strtotime($foreign_requisition->issued_date))}},</strong>
                                        @endforeach
-                                        
+
                                         </td>
                                         <td colspan="2"><strong>Purchase Order date:</strong>{{$purchaseOrder->requisition_date}}</td>
-                                        
+
                                     </tr>
                                 </tbody>
                             </table>

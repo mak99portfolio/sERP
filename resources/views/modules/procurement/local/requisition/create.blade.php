@@ -29,19 +29,19 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('requisition_title','Requisition Title', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
+                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                             </div>
 
@@ -71,7 +71,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-search"></i> Search
                                             </span>
-                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
+                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product" required>
                                             <span class="input-group-addon">
                                                 <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-list-ul"></i> Product List</a>
                                             </span>
@@ -124,7 +124,7 @@
                             <!--end table-->
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2]) }}
+                                    {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2, 'required']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <br />
@@ -234,6 +234,17 @@
     }
     return null;
     }
+    });
+
+    $(function(){
+        $('#date_expected').daterangepicker({
+            singleDatePicker: true,
+            singleClasses: "picker_3",
+            minDate: moment().add('days', 1),
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        });
     });
 </script>
 @endsection

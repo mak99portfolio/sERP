@@ -77,12 +77,33 @@
                                     {{ BootForm::textarea('note','Note', null, ['class'=>'form-control input-sm','rows'=>2]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">Cost Particulars</div>
+                                        <div class="panel-body">
+
+
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                            {{ BootForm::select('cost_particuler', 'Cost Particulars', $cost_particulars, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'cost_particular.id']) }}
+                                        </div>
+                                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            {{ BootForm::text('particular_parcentage', 'Parcentage', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.parcentage']) }}
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            {{ BootForm::text('particular_amount', 'Amount', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.amount']) }}
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                            <div class="form-group">
+                                                <label for=""></label>
+                                                <button type="button" class="form-control btn btn-primary  btn-sm" ng-click="addParticular()">Add</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-hover">
                                             <thead class="bg-primary">
-                                                <tr>
-                                                    <th colspan="5">Particulars</th>
-                                                </tr>
                                                 <tr>
                                                     <th>#</th>
                                                     <th>Cost Particulars</th>
@@ -96,24 +117,54 @@
                                                     <td>01</td>
                                                     <td>LC Margin</td>
                                                     <td>{{ Form::number('percent_of_lc_margin', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_margin', 'ng-init'=>"percent_of_lc_margin = 0"]) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_margin" ng-model="amount_of_lc_margin" value="<% amount_of_lc_margin = bdt_amount * (percent_of_lc_margin/100) %>" ng-init="amount_of_lc_margin = 0"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_margin" ng-model="amount_of_lc_margin" value="<% amount_of_lc_margin = bdt_amount * (percent_of_lc_margin/100) %>" ng-init="amount_of_lc_margin = 0" readonly></td>
                                                     <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_margin" ng-model="round_amount_of_lc_margin" ng-init="round_amount_of_lc_margin = 0"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>02</td>
                                                     <td>LC Commision</td>
                                                     <td>{{ Form::number('percent_of_lc_commision', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_commision', 'ng-init'=>"percent_of_lc_commision = 0"]) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_commision" ng-model="amount_of_lc_commision" value="<% amount_of_lc_commision = bdt_amount * (percent_of_lc_commision/100) %>" ng-init="amount_of_lc_commision = 0"></td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_commision" ng-model="amount_of_lc_commision" value="<% amount_of_lc_commision = bdt_amount * (percent_of_lc_commision/100) %>" ng-init="amount_of_lc_commision = 0" readonly></td>
                                                     <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_commision" ng-model="round_amount_of_lc_commision" ng-init="round_amount_of_lc_commision = 0"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>03</td>
                                                     <td>VAT</td>
-                                                    <td>{{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_vat', 'ng-init'=>"percent_of_vat = 0"]) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" value="<% amount_of_vat = amount_of_lc_commision * (percent_of_vat/100) %>" ng-init="amount_of_vat = 0"></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_vat" ng-model="round_amount_of_vat" ng-init="round_amount_of_vat = 0"></td>
+                                                    <td>
+                                                        {{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_vat', 'ng-init'=>"percent_of_vat = 0"]) }}
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" value="<% amount_of_vat = amount_of_lc_commision * (percent_of_vat/100) %>" ng-init="amount_of_vat = 0" readonly>
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" class="form-control input-sm" name="round_amount_of_vat" ng-model="round_amount_of_vat" ng-init="round_amount_of_vat = 0">
+                                                    </td>
+
                                                 </tr>
-                                                <tr>
+
+                                                <tr ng-repeat="other in others">
+                                                    <td scope="row">0<% $index+4 %></td>
+                                                    <td>
+                                                        <input type="hidden" name="other[<% $index %>][id]" value="<% other.id %>">
+                                                        <input type="hidden" name="other[<% $index %>][name]" value="<% other.name %>">
+                                                        <% other.name %>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control input-sm" name="other[<% $index %>][other.parcentage]" ng-model="other.parcentage"/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control input-sm" name="other[<% $index %>][other.amount]" ng-model="other.amount"/>
+                                                    </td>
+                                                    <td>
+                                                        <input type="text" class="form-control input-sm" name="other[<% $index %>][other.round]" ng-model="other.round"/>
+                                                    </td>
+{{--                                                     <td class="text-center">
+                                                        <a href="" class="btn btn-danger btn-xs" ng-click="remove($index)">
+                                                            <i class="fa fa-trash"></i>
+                                                        </a>
+                                                    </td> --}}
+                                                </tr>
+{{--                                                 <tr>
                                                     <td>04</td>
                                                     <td>SWIFT</td>
                                                     <td>{{ Form::number('percent_of_swift', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_swift', 'ng-init'=>"percent_of_swift = 0"]) }}</td>
@@ -154,7 +205,7 @@
                                                     <td>{{ Form::number('percent_of_others', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_others', 'ng-init'=>"percent_of_others = 0"]) }}</td>
                                                     <td><input type="number" class="form-control input-sm" name="amount_of_others" ng-model="amount_of_others" ng-init="amount_of_others = 0"></td>
                                                     <td><input type="number" class="form-control input-sm" name="round_amount_of_others" ng-model="round_amount_of_others" ng-init="round_amount_of_others = 0"></td>
-                                                </tr>
+                                                </tr> --}}
                                             </tbody>
                                             <tfoot>
                                                 <tr>
@@ -165,11 +216,16 @@
                                             </tfoot>
                                         </table>
                                     </div>
+
+
+
+</div></div></div>
+
+
                                 </div>
 
 
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-                                    <br />
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
@@ -195,6 +251,21 @@
         });
     app.controller('myCtrl', function($scope, $http) {
 
+        $scope.others=[];
+        $scope.amount_of_lc_margin=0;
+        $scope.amount_of_lc_commision=0;
+        $scope.amount_of_vat=0;
+        $scope.bdt_amount='';
+        $scope.exchange_rate='';
+        $scope.cost_particulars={!! $cost_particulars_array->toJson() !!};
+
+        $scope.cost_particular={
+            id:'',
+            name:'',
+            parcentage:'',
+            amount:''
+        };
+
         $scope.getLc = function () {
             $scope.getLcDetails($scope.letter_of_credit_id);
         }
@@ -218,16 +289,86 @@
             }
         }
 
-        $scope.get_total_amount = function () {
+        /*$scope.get_total_amount = function () {
             var total = 0;
             total = $scope.amount_of_lc_margin + $scope.amount_of_lc_commision + $scope.amount_of_vat + $scope.amount_of_swift + $scope.amount_of_stamp_charge + $scope.amount_of_lcaf_issue_charge + $scope.amount_of_imp + $scope.amount_of_lc_application_form + $scope.amount_of_others;
             return total;
+        }*/
+
+        $scope.get_total_amount = function () {
+            var total = 0;
+            total = $scope.amount_of_lc_margin + $scope.amount_of_lc_commision + $scope.amount_of_vat;
+            return total;
         }
 
+        /*
         $scope.get_total_amount_round = function () {
             var total = 0;
             total = $scope.round_amount_of_lc_margin + $scope.round_amount_of_lc_commision + $scope.round_amount_of_vat + $scope.round_amount_of_swift + $scope.round_amount_of_stamp_charge + $scope.round_amount_of_lcaf_issue_charge + $scope.round_amount_of_imp + $scope.round_amount_of_lc_application_form + $scope.round_amount_of_others;
             return total;
+        }
+        */
+
+        $scope.get_total_amount_round = function () {
+            var total = 0;
+            total = $scope.round_amount_of_lc_margin + $scope.round_amount_of_lc_commision + $scope.round_amount_of_vat;
+            return total;
+        }
+
+        $scope.addParticular=function(){
+
+            
+            $scope.cost_particulars.forEach(function(row){
+                if(row.id==$scope.cost_particular.id){
+                    $scope.cost_particular.name=row.name;
+                    //break;
+                }
+            });
+
+            if(!$scope.cost_particular.id){
+                $scope.warning('Please select a particular first');
+                return;
+            }
+
+
+            var exists=false;
+            var other={};
+
+
+            $scope.others.forEach(function(row){
+
+                if(row.id==$scope.cost_particular.id) exists=true;
+
+            });
+
+
+            if(exists){
+
+                $scope.warning('This particular cost already exists.');
+
+            }else{
+
+                other.id=$scope.cost_particular.id;
+                other.name=$scope.cost_particular.name;
+                other.parcentage=$scope.cost_particular.parcentage;
+                other.amount=$scope.cost_particular.amount;
+                other.round=0;
+                $scope.others.push(other);
+
+            }
+
+            console.log($scope.others);
+
+        }
+
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            new PNotify(data);
         }
 
     });

@@ -176,6 +176,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
     Route::get('/get-vendor-bank-info/{id}', ['as' => 'get-vendor-bank-info', 'uses' => 'ApiController@getVendorBankInfoById']);
     Route::get('/get-due-amount/{id}/{no}', ['as' => 'et-due-amount', 'uses' => 'ApiController@getDueAmount']);
+    Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'ApiController@getLcToCiList']);
+    Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
 });
 
 //ACL (Access Control Limit)

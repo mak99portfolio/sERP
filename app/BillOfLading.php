@@ -11,6 +11,7 @@ class BillOfLading extends Model
         'bill_of_lading_no',
         'bill_of_lading_date',
         'letter_of_credit_id',
+        'letter_of_credit_date',
         'container_no',
         'container_size',
         'number_of_box',
@@ -20,7 +21,7 @@ class BillOfLading extends Model
         'consignee',
         'acceptance',
         'port_of_loading_port_id',
-        'port_of_dischare_port_id',
+        'port_of_discharge_port_id',
         'place_of_delivery',
         'voyage_no',
         'place_of_transhipment',
@@ -50,11 +51,11 @@ class BillOfLading extends Model
     public function loading(){
         return $this->belongsTo('App\Port','port_of_loading_port_id');
     }
-    public function dischare(){
-        return $this->belongsTo('App\Port','port_of_dischare_port_id');
+    public function discharge(){
+        return $this->belongsTo('App\Port','port_of_discharge_port_id');
     }
     public function commercial_invoices(){
-        return $this->hasMany('App\CommercialInvoice','bill_of_lading_no','bill_of_lading_no');
+        return $this->belongsToMany('App\CommercialInvoice');
     }
     public function modes_of_transport(){
         return $this->belongsTo('App\ModesOfTransport','modes_of_transport_id');

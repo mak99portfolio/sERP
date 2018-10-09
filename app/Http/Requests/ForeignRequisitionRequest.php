@@ -27,7 +27,7 @@ class ForeignRequisitionRequest extends FormRequest
         return [
             'requisition_title'=> 'required',
             'issued_date'=> 'required',
-            'date_expected'=> 'required',
+            'date_expected'=> 'required|date|date_format:d-m-Y|after:issued_date',
             'requisition_purpose_id'=> 'required',
             'requisition_priority_id'=> 'required'
         ];

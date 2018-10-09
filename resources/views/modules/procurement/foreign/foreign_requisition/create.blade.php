@@ -102,7 +102,8 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="item in itemlist">
-                                            <td><% $index+1 %> <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
+                                            <td><% $index+1 %>
+                                                <input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
                                             <td><% item.name %></td>
                                             <td><% item.physical_stock %></td>
                                             <td><% item.goods_in_transit %></td>
@@ -297,7 +298,7 @@
         $('#date_expected').daterangepicker({
             singleDatePicker: true,
             singleClasses: "picker_3",
-            startDate: moment().startOf('hour'),
+            minDate: moment().add('days', 1),
             locale: {
                 format: 'DD-MM-YYYY',
             }

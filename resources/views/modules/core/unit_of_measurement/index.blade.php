@@ -19,7 +19,8 @@
                             <tr>
                                 <th width="25">#</th>
                                 <th>Unit Of Measurement Name</th>
-                                <th>Short Name</th>
+                                <th>Short Name</th>  
+                                <th class="text-center">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -28,6 +29,8 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->short_name }}</td>
+                                    <td class="text-center"><a href="{{ route('unit-of-measurement.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                
                                 </tr>
                             @endforeach
                             </tbody>

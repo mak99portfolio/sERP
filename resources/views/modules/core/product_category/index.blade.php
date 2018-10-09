@@ -20,7 +20,7 @@
                         <table class="table table-bordered">
                             <thead class="bg-primary">
                             <tr>
-                                <th>Product Name</th>
+                                <th>Product Category Name</th>
                                 <th>Short Name</th>
                             </tr>
                             <thead>

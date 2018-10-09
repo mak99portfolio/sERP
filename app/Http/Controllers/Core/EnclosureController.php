@@ -47,12 +47,23 @@ class EnclosureController extends Controller
 
     public function edit(Enclosure $enclosure)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('enclosure',$enclosure);
+        return $view;
     }
 
     public function update(Request $request, Enclosure $enclosure)
     {
-        //
+        $request->validate([
+            'name'=>'required|unique:enclosures,name,'.$enclosure->id,
+            'short_name'=>'required|unique:enclosures,short_name,'.$enclosure->id,
+        ]);
+        
+        $enclosure->fill($request->all());
+        $enclosure->update();
+        Session::put('alert-success',$enclosure->name . ' updated successfully!');
+        return redirect()->route('enclosure.index');
+
     }
 
     public function destroy(Enclosure $enclosure)

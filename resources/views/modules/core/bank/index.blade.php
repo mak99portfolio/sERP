@@ -30,6 +30,7 @@
                                         <th>Short Name</th>
                                         <th>Bank Description</th>
                                         <th>Country</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +41,7 @@
                                         <td>{{ $item->short_name }}</td>
                                         <td>{{ $item->description }}</td>
                                         <td>{{ $item->country->name }}</td>
+                                        <td class="text-center"><a href="{{ route('bank.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

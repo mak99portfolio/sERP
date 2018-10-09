@@ -7,11 +7,7 @@ use Session;
 use Auth;
 class ProductSizeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     private $view_root = 'modules/core/product_size/';
     public function index()
     {
@@ -20,25 +16,20 @@ class ProductSizeController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         $view = view($this->view_root.'create');
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:product_sizes',
+            'short_name' => 'required|unique:product_sizes'
+        ]);
         $product_size = new ProductSize;
         $product_size->fill($request->input());
         $product_size->creator_user_id = Auth::id();
@@ -47,46 +38,33 @@ class ProductSizeController extends Controller
         return redirect()->route('product-size.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ProductSize  $productSize
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(ProductSize $productSize)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProductSize  $productSize
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit(ProductSize $productSize)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('product_size',$productSize);
+        return $view;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductSize  $productSize
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, ProductSize $productSize)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:product_sizes,name,'.$productSize->id,
+            'short_name' => 'required|unique:product_sizes,short_name,'.$productSize->id,
+        ]);
+        $productSize->fill($request->all());
+        $productSize->update();
+        Session::put('alert-success',$productSize->name . ' updated successfully!');
+        return redirect()->route('product-size.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ProductSize  $productSize
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(ProductSize $productSize)
     {
         //

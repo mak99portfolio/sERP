@@ -24,10 +24,11 @@
                         <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('proforma-invoice.store')}}" method="POST">
                         @csrf
                             <div class="row">
+                                {{-- 
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('purchase_order_date','Purchase Order Date.', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-
+                                --}}
                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('proforma_invoice_no','Proforma Invoice No.', null, ['class'=>'form-control input-sm']) }}
                                 </div>

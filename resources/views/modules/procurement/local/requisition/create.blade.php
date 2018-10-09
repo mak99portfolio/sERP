@@ -235,5 +235,16 @@
     return null;
     }
     });
+
+    $(function(){
+        $('#date_expected').daterangepicker({
+            singleDatePicker: true,
+            singleClasses: "picker_3",
+            minDate: moment().add('days', 1),
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        });
+    });
 </script>
 @endsection

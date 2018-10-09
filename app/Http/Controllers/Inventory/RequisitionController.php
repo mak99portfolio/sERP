@@ -35,14 +35,27 @@ class RequisitionController extends Controller{
     public function create(){
 
         $working_unit=\Auth::user()->working_unit();
-        $sender_working_units=\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id');
-        $requested_working_units=\App\WorkingUnit::where('id', '<>', $working_unit->id)->pluck('name', 'id');
+        //$sender_working_units=\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id');
+        $sender_unit_is_child=\App\WorkingUnit::where('id', $working_unit->id)->whereHas('type', function($query){
+            $query->whereIn('name', ['Depot', 'Warehouse', 'Factory']);
+        })->exists();
+
+        if($sender_unit_is_child){
+
+            $requested_working_units=\App\WorkingUnit::where('id', '<>', $working_unit->id)
+            ->whereHas('type', function($query){
+
+                $query->where('name', 'Central Depot');
+
+            })->pluck('name', 'id');
+
+        }else $requested_working_units=\App\WorkingUnit::where('id', '<>', $working_unit->id)->pluck('name', 'id');
 
         $data=[
             'inventory_requisition'=>new \App\InventoryRequisition,
             'requisition_no'=>uCode('inventory_requisitions.inventory_requisition_no', 'IR00'),
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
-            'sender_working_units'=>$sender_working_units,
+            'sender_working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'),
             'requested_working_units'=>$requested_working_units,
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_types'=>\App\ProductType::pluck('name', 'id')

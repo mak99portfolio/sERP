@@ -35,7 +35,7 @@
                                     {{ BootForm::text('issued_date','Issued Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker' ]) }}
+                                    {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm' ]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list ,['class'=>'form-control input-sm']) }}
@@ -234,6 +234,17 @@
     }
     return null;
     }
+    });
+
+    $(function(){
+        $('#date_expected').daterangepicker({
+            singleDatePicker: true,
+            singleClasses: "picker_3",
+            minDate: moment().add('days', 1),
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        });
     });
 </script>
 @endsection

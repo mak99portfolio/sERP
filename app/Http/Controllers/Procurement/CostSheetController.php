@@ -23,11 +23,14 @@ class CostSheetController extends Controller
         return $view;
     }
 
-    public function create()
-    {
+    public function create(){
+
         $view = view($this->view_root . 'create');
         $view->with('lc_list', LetterOfCredit::all());
+        $view->with('cost_particulars', \App\CostParticular::pluck('name', 'id')->prepend('--Select Cost--', ''));
+        $view->with('cost_particulars_array', \App\CostParticular::all());
         return $view;
+
     }
 
     public function store(Request $request)

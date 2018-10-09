@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
+use App\ProductCategory;
 
 class LocalRequisitionController extends Controller
 {
@@ -37,6 +38,7 @@ class LocalRequisitionController extends Controller
         $view = view($this->view_root.'create');
        $view->with('requisition_purpose_list', RequisitionPurpose::pluck('name', 'id')->prepend('--select purpose--'));
        $view->with('requisition_priority_list', RequisitionPriority::pluck('name', 'id')->prepend('--select priority--'));
+       $view->with('product_group', ProductCategory::all());
         return $view;
     }
 
@@ -46,21 +48,31 @@ class LocalRequisitionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
+        //dd($request->all());
+
+        $request->validate([
+
+            'requisition_title'=>'required|string',
+            'issued_date'=>'required|date|date_format:d-m-Y',
+            'date_expected'=>'required|date|date_format:d-m-Y|after:issued_date',
+            'requisition_purpose_id'=>'required|integer',
+            'requisition_priority_id'=>'required|integer'
+
+        ]);
+
         $requisition = new LocalRequisition;
         $requisition->fill($request->input());
         $requisition->creator_user_id = Auth::id();
         $requisition->company_id = 1;
         $requisition->requisition_no = time();
         $requisition->save();
-        $items = Array();
-        foreach($request->items as $item){
-            array_push($items, new LocalRequisitionItem($item));
-        }
-        $requisition->items()->saveMany($items);
+        $requisition->items()->createMany($request->items);
+
         Session::put('alert-success', 'Requisition created successfully. Requisition No: ' . $requisition->requisition_no);
         return redirect()->route('local-requisition.index');
+
     }
 
     /**

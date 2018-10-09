@@ -73,7 +73,9 @@ class ProductBrandController extends Controller
      */
     public function edit(ProductBrand $productBrand)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('productBrand', $productBrand);
+        return $view;
     }
 
     /**
@@ -85,7 +87,14 @@ class ProductBrandController extends Controller
      */
     public function update(Request $request, ProductBrand $productBrand)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:product_brands,name,'.$productBrand->id,
+            'short_name' => 'required|unique:product_brands,short_name,'.$productBrand->id,
+        ]);
+        $productBrand->fill($request->all());
+        $productBrand->update();
+        Session::put('alert-success',$productBrand->name . ' updated successfully!');
+        return redirect()->route('product-brand.index');
     }
 
     /**

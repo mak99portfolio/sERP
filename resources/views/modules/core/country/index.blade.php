@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Country Name</th>
                                         <th>Short Name</th>
-                                        <th>Action</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,7 +37,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->short_name }}</td>
-                                        <td><a href="{{ route('country.edit',$item) }}" type="button" class="btn btn-primary btn-sm">Edit</a></td>
+                                        <td class="text-center"><a href="{{ route('country.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

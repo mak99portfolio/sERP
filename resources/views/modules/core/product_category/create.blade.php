@@ -48,7 +48,7 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
-                                <label>Shortname</label>
+                                <label>Short Name</label>
                                 <input class="form-control input-sm" type="text" name="short_name">
                             </div>
                         </div>
@@ -56,6 +56,7 @@
                             <br />
                             <div class="ln_solid"></div>
                             <div class="form-group">
+                                <a class="btn btn-default btn-sm" href="{{route('product-category.index')}}">Cancel</a>
                                 <button type="submit" class="btn btn-success btn-sm">Save</button>
                             </div>
                         </div>

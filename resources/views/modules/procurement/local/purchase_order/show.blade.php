@@ -74,7 +74,7 @@
                                         <td><strong>Remarks:</strong> {{ $localPurchaseOrder->remarks }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Ship To Information:</strong> {{ $localPurchaseOrder->ship_to_address }}</td>
+                                        <td><strong>Ship To Information:</strong> {{ $localPurchaseOrder->ship_info }}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -86,17 +86,19 @@
                                         <tr>
                                             <th>SL NO</th>
                                             <th>Purchase Requisition No</th>
-                                            <th>Date</th>
+                                            <th>Requisition Date</th>
                                             <th>Purchase Requisition Name</th>
                                         </tr>
                                 </thead>
                                 <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>4352525</td>
-                                            <td>2018-10-08 10:00:09</td>
-                                            <td>Test Requisition 2</td>
-                                        </tr>
+                                    @foreach ($localPurchaseOrder->requisitions as $item)
+                                    <tr>
+                                        <td> {{ $loop->iteration }} </td>
+                                        <td> {{ $item->requisition_no }} </td>
+                                        <td> {{ $item->issued_date }} </td>
+                                        <td> {{ $item->requisition_title }} </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -108,42 +110,44 @@
                                                 <th>#</th>
                                                 <th>Item Name</th>
                                                 <th>HS Code</th>
-                                                <th>Qty</th>
+                                                <th>Quantity</th>
                                                 <th>MOU</th>
-                                                <th>Price</th>
+                                                <th>Unit Price</th>
                                                 <th>Sub Total</th>
-                                                <th>D.Rt</th>
-                                                <th>Total Disc</th>
-                                                <th>VAT Rt(%)</th>
-                                                <th>VAT Amt</th>
+                                                <th>Discount Rate</th>
+                                                <th>Total Discount</th>
+                                                <th>VAT Rate(%)</th>
+                                                <th>VAT Amount</th>
                                                 <th>Total (Net)</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($localPurchaseOrder->items as $item)
                                             <tr>
-                                                <td>01</td>
-                                                <td>tube </td>
-                                                <td>sdfsdfhgf</td>
-                                                <td>550</td>
-                                                <td>kilogram</td>
-                                                <td>25</td>
-                                                <td>41</td>
-                                                <td>01</td>
-                                                <td>01</td>
-                                                <td>01</td>
-                                                <td>01</td>
-                                                <td>01</td>
+                                                <td> {{ $loop->iteration }} </td>
+                                                <td> {{ $item->product->name }} </td>
+                                                <td> {{ $item->product->hs_code }} </td>
+                                                <td> {{ $item->quantity }} </td>
+                                                <td> {{ $item->product->unit_of_measurement->name }} </td>
+                                                <td> {{ $item->unit_price }} </td>
+                                                <td> {{ $item->sub_amount() }} </td>
+                                                <td> {{ $item->discount_rate }} </td>
+                                                <td> {{ $item->discount_amount() }} </td>
+                                                <td> {{ $item->vat_rate }} </td>
+                                                <td> {{ $item->vat_amount() }} </td>
+                                                <td> {{ $item->net_amount() }} </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td colspan="6">Total</td>
-                                                <td>25</td>
+                                                <td> {{ $localPurchaseOrder->amount() }} </td>
                                                 <td></td>
-                                                <td>85</td>
+                                                <td> {{ $localPurchaseOrder->total_discount_amount() }} </td>
                                                 <td></td>
-                                                <td>85</td>
-                                                <td>25</td>
+                                                <td> {{ $localPurchaseOrder->total_vat_amount() }} </td>
+                                                <td> {{ $localPurchaseOrder->total_net_amount() }} </td>
                                             </tr>
                                         </tfoot>
                             </table>
@@ -161,13 +165,15 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($localPurchaseOrder->payment_terms as $item)
                                             <tr>
-                                                <td>01</td>
-                                                <td>tube </td>
-                                                <td>02-20-2018</td>
-                                                <td>550</td>
-                                                <td>52</td>
+                                                <td> {{ $loop->iteration }} </td>
+                                                <td> {{ $item->payment_type }} </td>
+                                                <td> {{ $item->payment_date }} </td>
+                                                <td> {{ $item->description }} </td>
+                                                <td> {{ $item->amount }} </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -182,11 +188,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($localPurchaseOrder->terms_conditions as $item)
                                             <tr>
-                                                <td>01</td>
-                                                <td>Warranty Terms</td>
-                                                <td>asdsa</td>
+                                                <td> {{ $loop->iteration }} </td>
+                                                <td> {{ $item->terms_type }} </td>
+                                                <td> {{ $item->description }} </td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                             </table>
                             <!--start approved by-->

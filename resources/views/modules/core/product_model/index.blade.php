@@ -28,13 +28,16 @@
                                         <th width="25">#</th>
                                         <th>Name</th>
                                         <th>Short Name</th>
+                                        <th  class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 @foreach($product_model_list as $product_model)
                                         <tr>
-                                            <th>{{$loop->iteration}}</th>
-                                            <th>{{$product_model->name}}</th>
-                                            <th>{{$product_model->short_name}}</th>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$product_model->name}}</td>
+                                            <td>{{$product_model->short_name}}</td>
+                                            <td class="text-center"><a href="{{ route('product-model.edit',$product_model) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                   
                                         </tr>
                                 @endforeach
                                 <tbody>

@@ -20,11 +20,11 @@ class CreateLocalPurchaseOrdersTable extends Migration
             $table->string('inco_term_info')->nullable();
             $table->string('procurement_type')->nullable();
             $table->string('purchase_order_type')->nullable();
-            $table->string('purchase_order_date')->nullable();
+            $table->date('purchase_order_date')->nullable();
             $table->string('status')->nullable();
             $table->string('shipping_method')->nullable();
             $table->string('payment_method')->nullable();
-            $table->string('ship_to_address')->nullable();
+            $table->string('ship_info')->nullable();
             $table->string('remarks')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');

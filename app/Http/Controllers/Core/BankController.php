@@ -86,7 +86,11 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('bank', $bank);
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
+
+        return $view;
     }
 
     /**
@@ -98,7 +102,16 @@ class BankController extends Controller
      */
     public function update(Request $request, Bank $bank)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:product_models,name,'.$bank->id,
+            'short_name' => 'required|unique:product_models,short_name,'.$bank->id,
+            'country_id' => 'required',
+            'description' => 'required'
+        ]);
+        $bank->fill($request->all());
+        $bank->update();
+        Session::put('alert-success',$bank->name . ' updated successfully!');
+        return redirect()->route('bank.index');
     }
 
     /**

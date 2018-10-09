@@ -7,9 +7,10 @@ use Illuminate\Database\Migrations\Migration;
 class CreateCostSheetParticularsTable extends Migration
 {
 
-    public function up()
-    {
-        Schema::create('cost_sheet_particulars', function (Blueprint $table) {
+    public function up(){
+
+        Schema::create('cost_sheet_particulars', function (Blueprint $table){
+
             $table->increments('id');
             $table->double('percent_of_lc_margin');
             $table->double('amount_of_lc_margin');
@@ -20,6 +21,8 @@ class CreateCostSheetParticularsTable extends Migration
             $table->double('percent_of_vat');
             $table->double('amount_of_vat');
             $table->double('round_amount_of_vat');
+
+/*
             $table->double('percent_of_swift');
             $table->double('amount_of_swift');
             $table->double('round_amount_of_swift');
@@ -38,10 +41,14 @@ class CreateCostSheetParticularsTable extends Migration
             $table->double('percent_of_others')->nullable();
             $table->double('amount_of_others')->nullable();
             $table->double('round_amount_of_others')->nullable();
+*/
+
             $table->integer('cost_sheet_id')->unsigned();
-            $table->foreign('cost_sheet_id')->references('id')->on('cost_sheets')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('cost_sheet_id')->references('id')->on('cost_sheets')->onDelete('cascade');
+
         });
     }
 

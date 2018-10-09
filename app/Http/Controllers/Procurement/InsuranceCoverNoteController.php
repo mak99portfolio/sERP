@@ -42,32 +42,13 @@ class InsuranceCoverNoteController extends Controller
         $request->validate([
             'letter_of_credit_id' => 'required|unique:insurance_cover_notes',
             'insurance_cover_note_no' => 'required|unique:insurance_cover_notes',
-            'insurance_cover_note_date' => 'required',
-            'vendor_id' => 'required',
-            'icn_bank_account_no' => 'required',
-            'icn_bank_account_name' => 'required',
-            'icn_bank_name' => 'required',
-            'icn_bank_address' => 'required',
-            'consignee_bank_account_no' => 'required',
-            'consignee_bank_account_name' => 'required',
-            'consignee_bank_name' => 'required',
-            'consignee_bank_address' => 'required',
-            'percent_of_marine' => 'required',
-            'amount_of_marine' => 'required',
-            'percent_of_war' => 'required',
-            'amount_of_war' => 'required',
-            'percent_of_net_premium' => 'required',
-            'amount_of_net_premium' => 'required',
-            'percent_of_vat' => 'required',
-            'amount_of_vat' => 'required',
-            'percent_of_stamp_duty' => 'required',
-            'amount_of_stamp_duty' => 'required'
         ]);
 
         $insurance_cover_note = new InsuranceCoverNote;
         $insurance_cover_note->fill($request->input());
         $insurance_cover_note->creator_user_id = Auth::id();
         $insurance_cover_note->company_id = 1;
+        $insurance_cover_note->insurance_cover_note_date = \Carbon\Carbon::parse($request->insurance_cover_note_date)->format('Y-m-d');;
         $insurance_cover_note->save();
         Session::put('alert-success', $insurance_cover_note->insurance_cover_note_no . " successfully created");
         return redirect()->route('insurance-cover-note.index');

@@ -33,8 +33,10 @@ class CostSheetController extends Controller
 
     }
 
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+
+        //dd($request->all());
+
         $request->validate([
             'letter_of_credit_id' => 'required|unique:cost_sheets',
             'currency' => 'required',
@@ -49,7 +51,8 @@ class CostSheetController extends Controller
             'percent_of_vat' => 'required',
             'amount_of_vat' => 'required',
             'round_amount_of_vat' => 'required',
-            'percent_of_swift' => 'required',
+            'others'=>'array',
+/*            'percent_of_swift' => 'required',
             'amount_of_swift' => 'required',
             'round_amount_of_swift' => 'required',
             'percent_of_stamp_charge' => 'required',
@@ -66,7 +69,7 @@ class CostSheetController extends Controller
             'round_amount_of_lc_application_form' => 'required',
             'percent_of_others' => 'required',
             'amount_of_others' => 'required',
-            'round_amount_of_others' => 'required'
+            'round_amount_of_others' => 'required'*/
         ]);
 
         $cost_sheet = new CostSheet;
@@ -78,6 +81,25 @@ class CostSheetController extends Controller
         $cost_sheet_particular = new CostSheetParticular;
         $cost_sheet_particular->fill($request->input());
         $cost_sheet->cost_sheet_particular()->save($cost_sheet_particular);
+
+        if($request->get('others')){
+
+            foreach($request->others as $row){
+                
+                \App\OtherLetterOfCreditCharge::create([
+
+                    'cost_sheet_id'=>$cost_sheet->id,
+                    'cost_particular_id'=>$row->id,
+                    'percentage'=>$row->percentage,
+                    'amount'=>$row->amount,
+                    'round_figure'=>$row->round_figure
+
+                ]);
+
+            }
+
+        }
+
         Session::put('alert-success', $cost_sheet->cost_sheet_no . " successfully created");
         return redirect()->route('cost-sheet.index');
     }

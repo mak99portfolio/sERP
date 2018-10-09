@@ -116,6 +116,7 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Particulars of Consignments Table</div>
                                         <div class="panel-body">
+
                                             <div class="row">
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
@@ -141,6 +142,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="table-responsive">
                                                 <table class="table table-bordered">
                                                     <thead class="bg-primary">
@@ -264,6 +266,7 @@
 
 
         $scope.particularlist = [];
+        
         $scope.addParticular = function(){
             var particular = {};
 

@@ -49,7 +49,7 @@ class CostSheetTableSeeder extends Seeder
                'percent_of_vat' => 15,
                'amount_of_vat' => 15113.25,
                'round_amount_of_vat' => 15114,
-               'percent_of_swift' => 1,
+               /*'percent_of_swift' => 1,
                'amount_of_swift' => 200,
                'round_amount_of_swift' => 20,
                'percent_of_stamp_charge' => 1,
@@ -67,6 +67,7 @@ class CostSheetTableSeeder extends Seeder
                'percent_of_others' => 1,
                'amount_of_others' => 200,
                'round_amount_of_others' => 20,
+               */
             ],
             [
                 'cost_sheet_id' => 2,
@@ -79,7 +80,7 @@ class CostSheetTableSeeder extends Seeder
                 'percent_of_vat' => 15,
                 'amount_of_vat' => 22669.875,
                 'round_amount_of_vat' => 22670,
-                'percent_of_swift' => 1,
+                /*'percent_of_swift' => 1,
                 'amount_of_swift' => 200,
                 'round_amount_of_swift' => 20,
                 'percent_of_stamp_charge' => 1,
@@ -97,6 +98,7 @@ class CostSheetTableSeeder extends Seeder
                 'percent_of_others' => 1,
                 'amount_of_others' => 200,
                 'round_amount_of_others' => 20,
+                */
             ]
        ]);
     }

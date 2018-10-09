@@ -37,10 +37,10 @@ class BillOfLadingController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
+        // $view->with('commercial_invoice_list', CommercialInvoice::pluck('bill_of_lading_no', 'bill_of_lading_no')->prepend('-- Select Bill Number --', ''));
         $view->with('exporter_list', Vendor::pluck('name', 'id')->prepend('-- Select --', ''));
-        $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
-        $view->with('letter_of_credit_list', LetterOfCredit::pluck('letter_of_credit_no','id')->prepend('-- Select Port --', ''));
+        $view->with('port_list', Port::pluck('name','id'));
+        $view->with('letter_of_credit_list', LetterOfCredit::pluck('letter_of_credit_no','id')->prepend('-- Select Letter of Credit --', ''));
         $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Modes Of Transport --', ''));
         $view->with('move_type_list', MoveType::pluck('name','id')->prepend('-- Select Move Type --', ''));
         return $view;
@@ -58,9 +58,13 @@ class BillOfLadingController extends Controller
         $bill_of_lading = new BillOfLading;
         $bill_of_lading->fill($request->input());
         $bill_of_lading->creator_user_id = Auth::id();
+        $bill_of_lading->bill_of_lading_date = date("Y-m-d",strtotime($request->bill_of_lading_date));
+        $bill_of_lading->letter_of_credit_date = date("Y-m-d",strtotime($request->letter_of_credit_date));
+
         $bill_of_lading->save();
 
-
+        $bill_of_lading->commercial_invoices()->sync($request->ci_ids);
+       
         $items = Array();
         foreach($request->items as $item){
             array_push($items, new BillOfLadingItem($item));

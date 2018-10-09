@@ -134,12 +134,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                    <td><strong>A/C No:</strong>{{$bill_of_lading->letter_of_credit->issue_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong>{{$bill_of_lading->letter_of_credit->issue_ac_name}}</td>
+                                    <td><strong>A/C No:</strong>{{$bill_of_lading->letter_of_credit->issue_bank->account_no}}</td>
+                                        <td><strong>A/C Name :</strong>{{$bill_of_lading->letter_of_credit->issue_bank->account_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Branch Name :</strong>{{$bill_of_lading->letter_of_credit->issue_branch_name}}</td>
-                                        <td><strong>Bank Name :</strong>{{$bill_of_lading->letter_of_credit->issue_bank_name}}</td>
+                                        <td><strong>Branch Name :</strong>{{$bill_of_lading->letter_of_credit->issue_bank->branch_name}}</td>
+                                        <td><strong>Bank Name :</strong>{{$bill_of_lading->letter_of_credit->issue_bank->bank->name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -148,7 +148,7 @@
                                     <tr>
                                         <td><strong>Acceptance:</strong>{{$bill_of_lading->acceptance}}</td>
                                         <td><strong>Port Of Loading :</strong>{{$bill_of_lading->loading->name}}</td>
-                                        <td><strong>Port Of Dischrge :</strong>{{$bill_of_lading->dischare->name}}</td>
+                                        <td><strong>Port Of Dischrge :</strong>{{$bill_of_lading->discharge->name}}</td>
                                     </tr>
                                     <tr>
                                         <td><strong>Place Of Delivery :</strong>{{$bill_of_lading->place_of_delivery}}</td>

@@ -39,6 +39,6 @@ class LocalPurchaseOrderItem extends Model{
 
     public function net_amount()
     {
-        return $this->sub_amount() - $this->discount_amount() / + $this->vat_amount();
+        return $this->sub_amount() - $this->discount_amount() + $this->vat_amount();
     }
 }

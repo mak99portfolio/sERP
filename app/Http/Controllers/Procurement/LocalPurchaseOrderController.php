@@ -6,6 +6,7 @@ use App\LocalRequisition;
 use App\LocalPurchaseOrder;
 use App\Vendor;
 use App\LocalPurchaseOrderVendor;
+use App\LocalPurchaseOrderPaymentTerm;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
 use App\Http\Controllers\Controller;
@@ -50,11 +51,18 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->fill($request->input());
         $local_purchase_order->creator_user_id = Auth::id();
         $local_purchase_order->generate_purchase_order_number();
+        $local_purchase_order->purchase_order_date = \Carbon\Carbon::parse($request->purchase_order_date)->format('Y-m-d');
         $local_purchase_order->save();
         $local_purchase_order->order_vendor()->save(new LocalPurchaseOrderVendor($request->vendor));
         $local_purchase_order->requisitions()->sync($request->get('foreign_requisition_ids'));
         $local_purchase_order->items()->createMany($request->get('items'));
-        $local_purchase_order->payment_terms()->createMany($request->get('payment_terms'));
+        foreach($request->payment_terms as $item){
+            $payment_term = new LocalPurchaseOrderPaymentTerm;
+            $payment_term->fill($item);
+            $payment_term->payment_date = \Carbon\Carbon::parse($item['payment_date'])->format('Y-m-d');
+            $payment_terms[] = $payment_term;
+        }
+        $local_purchase_order->payment_terms()->saveMany($payment_terms);
         $local_purchase_order->terms_conditions()->createMany($request->get('terms_conditions'));
         $local_purchase_order->save();
         Session::put('alert-success', 'Local Purchase order created successfully');

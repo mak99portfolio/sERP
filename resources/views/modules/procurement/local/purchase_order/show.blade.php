@@ -74,7 +74,7 @@
                                         <td><strong>Remarks:</strong> {{ $localPurchaseOrder->remarks }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Ship To Information:</strong> {{ $localPurchaseOrder->ship_to_address }}</td>
+                                        <td><strong>Ship To Information:</strong> {{ $localPurchaseOrder->ship_info }}</td>
                                     </tr>
                                 </tbody>
                             </table>

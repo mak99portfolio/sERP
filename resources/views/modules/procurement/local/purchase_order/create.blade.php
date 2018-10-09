@@ -30,19 +30,19 @@
                                 <legend>Vendor Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'vendor','data-popup'=> route('vendor.index')]) }}
+                                        {{ BootForm::select('vendor[vendor_id]', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select vendor', 'required','data-popup'=> route('vendor.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('vendor[vendor_selection_criteria]', 'Vendor Selection Criteria', ['Agreement' => 'Agreement', 'Quotation' => 'Quotation', 'Record' => 'Record', 'Others' => 'Others'], null, ['class'=>'form-control input-sm select2', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::text('vendor[reference_no]','Reference No', null, ['class'=>'form-control input-sm', 'required']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        {{ BootForm::textarea('vendor[additional_information]','Additional Information',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('vendor[additional_information]','Additional Information',null,['class'=>'form-control input-sm','rows'=>'2', 'required']) }}
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        {{ BootForm::textarea('vendor[address]','Address',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('vendor[address]','Address',null,['class'=>'form-control input-sm','rows'=>'2', 'required']) }}
                                     </div>
                                 </div>
                             </fieldset>
@@ -52,32 +52,32 @@
                                 <legend>Genaral PO Information:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('purchase_order_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                        {{ BootForm::text('purchase_order_date','Purchase Oder Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('inco_terms', 'Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::select('inco_terms', 'Inco-Terms', ['FOB' => 'FOB', 'FCA' => 'FCA', 'EXW' => 'EXW', 'FAS' => 'FAS', 'CFR' => 'CFR', 'CIF' => 'CIF', 'DDU' => 'DDU', 'DDP' => 'DDP', 'CPT' => 'CPT'], null, ['class'=>'form-control input-sm', 'required']) }}
                                     </div>
 
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::text('inco_term_info','Inco-Term Info', null, ['class'=>'form-control input-sm', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('procurement_type', 'Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('procurement_type', 'Procurement Type', ['Local' => 'Local'], null, ['class'=>'form-control input-sm select2', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('purchase_order_type', 'Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('purchase_order_type', 'Purchase Order Type', ['Raw Metarials Purchase' => 'Raw Metarials Purchase'], null, ['class'=>'form-control input-sm select2', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm']) }}
+                                        {{ BootForm::text('status','Status', null, ['class'=>'form-control input-sm', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('shipping_method', 'Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('shipping_method', 'Shipping Method', ['Air' => 'Air', 'Sea' => 'Sea','Ground' => 'Ground'], null, ['class'=>'form-control input-sm select2', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('payment_method', 'Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2']) }}
+                                        {{ BootForm::select('payment_method', 'Payment Method', ['Cash' => 'Cash', 'Cheque' => 'Cheque', 'LC' => 'LC'], null, ['class'=>'form-control input-sm select2', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2']) }}
+                                        {{ BootForm::textarea('remarks','Remarks',null,['class'=>'form-control input-sm','rows'=>'2', 'required']) }}
                                     </div>
                                 </div>
                             </fieldset>
@@ -234,7 +234,7 @@
                                     <div class="col-md-6 col-md-offset-3">
                                         <label>Payment Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm select2" ng-model="payment_terms_type">
+                                            <select class="form-control input-sm select2" ng-model="payment_terms_type" required>
                                                 <option value="" disabled selected> Select type</option>
                                                 <option value="Fixed">Fixed</option>
                                                 <option value="Percentage">Percentage</option>
@@ -252,13 +252,13 @@
                                                     </tr>
                                                     <tr>
                                                         <th>
-                                                            {{ BootForm::text('payment_terms_date','Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'payment_terms_date']) }}
+                                                            {{ BootForm::text('payment_date','Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'payment_terms_date']) }}
                                                         </th>
                                                         <th>
-                                                            {{ BootForm::text('payment_terms_description','Description',null,['class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'payment_terms_description']) }}
+                                                            {{ BootForm::text('payment_terms_description','Payment Description',null,['class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'payment_terms_description']) }}
                                                         </th>
                                                         <th>
-                                                            {{ BootForm::number('payment_terms_amount','Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
+                                                            {{ BootForm::number('payment_terms_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
                                                         </th>
                                                         <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-default">Add</button></th>
                                                     </tr>
@@ -271,7 +271,7 @@
                                                         <th>Payment term</th>
                                                         <th>Date</th>
                                                         <th>Description</th>
-                                                        <th>% or Fixed Amount</th>
+                                                        <th>% or Fixed Payment Amount</th>
                                                         <th class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
@@ -301,7 +301,7 @@
                                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label>Terms and Condition Type</label>
-                                            <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type">
+                                            <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type" required>
                                                 <option value="" disabled selected> Select..</option>
                                                 <option value="Delivery Terms">Delivery Terms</option>
                                                 <option value="Payment Condition">Payment Condition</option>
@@ -394,13 +394,31 @@
 
         $scope.add_terms = function(){
             var term = {};
+            if(!$scope.payment_terms_type){
+                $scope.warning('Please select a payment type first');
+                return;
+            }
+            
+            if(!$scope.payment_terms_amount){
+                $scope.warning('Payment amount is empty');
+                return;
+            }
+
+            if(!$scope.payment_terms_description){
+                $scope.warning('Payment description is empty');
+                return;
+            }
+
+            if(!$scope.payment_terms_date){
+                $scope.warning('Payment date is empty');
+                return;
+            }
+
             term.type = $scope.payment_terms_type;
             term.date = $scope.payment_terms_date;
             term.description = $scope.payment_terms_description;
             term.amount = $scope.payment_terms_amount;
             $scope.payment_terms.push(term);
-            $scope.payment_terms_description = null;
-            $scope.payment_terms_amount = null;
         }
 
         $scope.removeTerms = function(index){
@@ -412,10 +430,27 @@
 
         $scope.add_condition = function(){
             var condition = {};
+            if(!$scope.condition_type){
+                $scope.warning('Please select terms and condition type first');
+                return;
+            }
+
+            if(!$scope.condition_description){
+                $scope.warning('Description of terms and condition is empty');
+                return;
+            }
+
             condition.type = $scope.condition_type;
             condition.description = $scope.condition_description;
+            
+            index = $scope.conditions.findIndex(value => value.type == condition.type);
+
+            if(index >= 0){
+                $scope.warning('Terms and conditions already exist');
+                return;
+            }
+
             $scope.conditions.push(condition);
-            $scope.condition_description = null;
         }
 
         $scope.removeCondition = function(index){
@@ -430,7 +465,15 @@
             return sum;
         }
 
-        $scope
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            new PNotify(data);
+        }
 
     });
 </script>

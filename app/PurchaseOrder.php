@@ -62,4 +62,27 @@ class PurchaseOrder extends Model
                             ->whereMonth('created_at', date('m'))
                             ->count();
     }
+    public static function availablePurchaseOrder()
+    {
+        $purchase_orders = \App\ForeignRequisition::all();
+        $available_purchase_orders = [];
+        foreach ($purchase_orders as $purchase_order) {
+            $purchase_orders = $purchase_order->purchase_orders;
+            foreach ($purchase_order->items as $item) {
+                $pi_quantity = ProformaInvoiceItem::where('product_id', $item->product_id)->sum('quantity');
+                if ($item->quantity - $pi_quantity > 0) {
+                    $available_purchase_orders[] = $purchase_order;
+                    break;
+                }
+            }
+        }
+        return $available_purchase_orders;
+    }
+    public function availableItems()
+    {
+        foreach ($this->items as $key => $item) {
+            $this->items[$key]->quantity -= ProformaInvoiceItem::where('product_id', $item->product_id)->sum('quantity');
+        }
+        return $this->items;
+    }
 }

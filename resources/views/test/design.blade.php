@@ -23,6 +23,10 @@
     .closebt:hover {
         transform: rotate(90deg);
     }
+    #modal-02{
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+    }
 </style>
 @endsection
 @section('content')
@@ -86,13 +90,6 @@
 
                         <!--DEMO02-->
                         <div id="modal-02">
-                            <!--"THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID-->
-<!--                            <div  id="btn-close-modal" class="close-modal-02"> 
-                                CLOSE MODAL
-                            </div>-->
-                            <div id="closebt-container" class="close-modal-02">
-                                <img class="closebt" src="https://joaopereirawd.github.io/animatedModal.js/img/closebt.svg">
-                            </div>
                             <div class="modal-content">
                                 <!--Your modal content goes here-->
                             </div>

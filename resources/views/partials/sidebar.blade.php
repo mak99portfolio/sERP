@@ -174,7 +174,7 @@
   <a data-toggle="tooltip" data-placement="top" title="FullScreen">
     <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
   </a>
-  <a data-toggle="tooltip" data-placement="top" title="Lock">
+  <a data-toggle="tooltip" data-placement="top" title="Lock" id="lock_id" href="#lock_contant">
     <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
   </a>
   <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -182,3 +182,9 @@
   </a>
 </div>
 <!-- /menu footer buttons -->
+<!--lock window-->
+<!--    <div id="lock_contant">
+        <div class="modal-content">
+            Your modal content goes here
+        </div>
+    </div>-->

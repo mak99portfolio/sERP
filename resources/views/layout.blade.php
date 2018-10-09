@@ -38,7 +38,8 @@
         <link href="{{asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
-        
+        <!--animatedModal-->
+        <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">-->
         <!-- Custom Theme Style -->
         <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
@@ -64,6 +65,8 @@
             .breadcrumb :first-child {padding-left: 10px;}
             .breadcrumb :first-child:before {border: none}
 
+            
+            
         </style>
         @yield('style')
     </head>
@@ -185,11 +188,13 @@
         <script src="{{asset('assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
         <script src="{{asset('assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
-        
+        <!--animatedModal-->
+        <!--<script src="{{asset('assets/vendors/animatedModal/animatedModal.min.js')}}"></script>-->
         <!-- Custom Theme Scripts -->
         <script src="{{asset('assets/build/js/custom.js')}}"></script>
         <script src="{{asset('assets/build/js/init.js')}}"></script>
-
+        <script src="{{asset('assets/build/js/script.js')}}"></script>
+        
 
         @yield('script')
 

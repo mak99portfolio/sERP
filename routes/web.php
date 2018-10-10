@@ -18,6 +18,8 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
 
     Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('country', 'CountryController');
+    Route::resource('division', 'DivisionController');
+    Route::resource('district', 'DistrictController');
     Route::resource('city', 'CityController');
     Route::resource('port', 'PortController');
     Route::resource('product-brand', 'ProductBrandController');

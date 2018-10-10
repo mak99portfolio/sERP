@@ -75,6 +75,8 @@
       <li><a><i class="fa fa-cogs"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{route('country.index')}}">Country</a></li>
+          <li><a href="{{route('division.index')}}">Division</a></li>
+          <li><a href="{{route('district.index')}}">District</a></li>
           <li><a href="{{route('city.index')}}">City</a></li>
           <li><a href="{{route('port.index')}}">Port</a></li>
           <li><a href="{{route('unit-of-measurement.index')}}">Unit Of Measurement</a></li>

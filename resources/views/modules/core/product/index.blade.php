@@ -49,8 +49,10 @@
                                         <td>{{$product->product_set->name}}</td>
                                         <td>{{$product->product_brand->name}}</td>
                                         <td class="text-center">
-                                            <a href="{{route('product.show',$product)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{route('product.show',$product)}}" class="btn btn-block  btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('product.edit',$product) }}" type="button" class="btn btn-block btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a>
                                         </td>
+                                   
                                     </tr>
                                     @endforeach
                                 </tbody>

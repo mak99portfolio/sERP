@@ -129,8 +129,7 @@ class ApiController extends Controller
         $items = [];
         foreach (explode(',', $ids) as $id) {
             $po = PurchaseOrder::find($id);
-            $items = $po->items;
-            foreach ($items as $item) {
+            foreach ($po->availableItems() as $item) {
                 $item_exist = false;
                 foreach ($items as $key => $value) {
                     if ($value['product_id'] == $item->product->id) {
@@ -195,48 +194,48 @@ class ApiController extends Controller
 
             $req = ForeignRequisition::find($id);            
             
-            // $purchase_orders=$req->purchase_orders;
+            $purchase_orders=$req->purchase_orders;
 
 
-            // foreach ($req->items as $item){
+            foreach ($req->items as $item){
 
-            //     $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
-            //     ->where('product_id', $item->product_id)
-            //     ->sum('quantity');
+                $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
+                ->where('product_id', $item->product_id)
+                ->sum('quantity');
 
-            //     if(empty($previous_orders_quantity)){
+                if(empty($previous_orders_quantity)){
 
-            //         array_push($previous_orders_quantity, [
-            //             'previous_product_id'=>$item->product_id,
-            //             'previous_quantity'=>$previous_quantity
-            //         ]);
+                    array_push($previous_orders_quantity, [
+                        'previous_product_id'=>$item->product_id,
+                        'previous_quantity'=>$previous_quantity
+                    ]);
 
-            //     }else{
+                }else{
 
-            //         foreach($previous_orders_quantity as $key=>$row){
+                    foreach($previous_orders_quantity as $key=>$row){
 
-            //             if($row['previous_product_id']==$item->product_id){
+                        if($row['previous_product_id']==$item->product_id){
 
-            //                 $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
+                            $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
 
-            //             }else{
+                        }else{
 
-            //                 array_push($previous_orders_quantity, [
-            //                     'previous_product_id'=>$item->product_id,
-            //                     'previous_quantity'=>$previous_quantity
-            //                 ]);
+                            array_push($previous_orders_quantity, [
+                                'previous_product_id'=>$item->product_id,
+                                'previous_quantity'=>$previous_quantity
+                            ]);
 
-            //             }
+                        }
 
-            //         }
+                    }
 
-            //     }
+                }
 
 
-            // }
+            }
 
             
-            foreach ($req->availableItems() as $item) {
+            foreach ($req->items as $item) {
                 $item_exist = false;
                 foreach ($data as $key => $value) {
                     if ($value['product_id'] == $item->product->id) {

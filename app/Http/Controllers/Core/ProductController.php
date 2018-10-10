@@ -126,7 +126,20 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('product_category_list', ProductCategory::pluck('name', 'id')->prepend('-- Select Product Category --', ''));
+        $view->with('product_brand_list', ProductBrand::pluck('name', 'id')->prepend('-- Select Product Brand --', ''));
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('-- Select Country --', ''));
+        $view->with('unit_of_measurement_list', UnitOfMeasurement::pluck('name', 'id')->prepend('-- Select Unit Of Measurement --', ''));
+        $view->with('product_type_list', ProductType::pluck('name', 'id')->prepend('-- Select Product Type --', ''));
+        $view->with('product_model_list', ProductModel::pluck('name', 'id')->prepend('-- Select Product Model --', ''));
+        $view->with('product_set_list', ProductSet::pluck('name', 'id')->prepend('-- Select Product Set --', ''));
+        $view->with('product_size_list', ProductSize::pluck('name', 'id')->prepend('-- Select Product Size --', ''));
+        $view->with('product_group_list', ProductGroup::pluck('name', 'id'));
+        // dd(['id' => ProductGroup::pluck('id'), 'name' => ProductGroup::pluck('name')]);
+        $view->with('product_status_list', DB::table('product_statuses')->get());
+        $view->with('product',$product);
+        return $view;
     }
 
     /**
@@ -138,7 +151,35 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:products,name,'.$product->id,
+            'hs_code' => 'required|unique:products,hs_code,'.$product->id,
+            'product_category_id' => 'required',
+            'product_type_id' => 'required',
+            'product_group_id' => 'required',
+            'product_brand_id' => 'required',
+            'product_model_id' => 'required',
+            'serial' => 'required',
+            'part_number' => 'required',
+            'country_of_origin_country_id' => 'required',
+            'country_of_manufacture_country_id' => 'required',
+            'unit_of_measurement_id' => 'required',
+            'product_status_id' => 'required',
+            'tp_rate' => 'required',
+            'mrp_rate' => 'required',
+            'flat_rate' => 'required',
+            'special_rate' => 'required',
+            'distribution_rate' => 'required',
+            'other' => 'required',
+            'pack_size' => 'required',
+            'shipper_carton_size' => 'required',
+            'description' => 'required',
+        ]);
+        $product->fill($request->all());
+        $product->update();
+        Session::put('alert-success',$product->name . ' updated successfully!');
+        return redirect()->route('product.index');
+
     }
 
     /**

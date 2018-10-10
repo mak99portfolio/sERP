@@ -21,7 +21,8 @@
                             <thead class="bg-primary">
                             <tr>
                                 <th>Product Category Name</th>
-                                <th>Short Name</th>
+                                <th>Short Name</th>      
+                                <th class="text-center">Action</th>
                             </tr>
                             <thead>
                             <tbody>
@@ -29,6 +30,8 @@
                                 <tr>
                                     <td>{{$item->name}}</td>
                                     <td>{{$item->short_name}}</td>
+                                    <td class="text-center"><a href="{{ route('product-category.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                              
                                 </tr>
                             @endforeach
                             </tbody>

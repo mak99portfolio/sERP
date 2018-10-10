@@ -38,8 +38,7 @@
         <link href="{{asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
         <link href="{{asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
 
-        <!--animatedModal-->
-        <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">-->
+        
         <!-- Custom Theme Style -->
         <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
@@ -65,8 +64,6 @@
             .breadcrumb :first-child {padding-left: 10px;}
             .breadcrumb :first-child:before {border: none}
 
-            
-            
         </style>
         @yield('style')
     </head>
@@ -188,13 +185,11 @@
         <script src="{{asset('assets/vendors/pdfmake/build/pdfmake.min.js')}}"></script>
         <script src="{{asset('assets/vendors/pdfmake/build/vfs_fonts.js')}}"></script>
 
-        <!--animatedModal-->
-        <!--<script src="{{asset('assets/vendors/animatedModal/animatedModal.min.js')}}"></script>-->
+        
         <!-- Custom Theme Scripts -->
         <script src="{{asset('assets/build/js/custom.js')}}"></script>
         <script src="{{asset('assets/build/js/init.js')}}"></script>
-        <script src="{{asset('assets/build/js/script.js')}}"></script>
-        
+
 
         @yield('script')
 
@@ -243,9 +238,9 @@ $(function () {
         frameDoc.document.write('<html><head><title></title>');
         frameDoc.document.write('</head><body>');
         // address and logo
-        frameDoc.document.write('<div style="margin-bottom: 30px;"><table><tr><td><img src="{{asset('assets / build / images / logo1.png')}}" alt="company logo" class="img-responsive" style="max-width: 100px; max-height: 50px;"></td><td style="font-size: 12px; padding-left: 30px;"><p class="pull-right">531, Dhaur(Kamarpara), Turag, Dhaka-1230<br>Tel:(02)-8981941, Fax:+88-02-89819442, Mob:+88-01823-777992<br>E-mail:info@magnumenterprise.net, Web:www.magnumenterprise.net</p></td></tr></table></div>');
+        frameDoc.document.write('<div style="margin-bottom: 30px;"><table><tr><td><img src="{{asset('assets/build/images/logo1.png')}}" alt="company logo" class="img-responsive" style="max-width: 100px; max-height: 50px;"></td><td style="font-size: 12px; padding-left: 30px;"><p class="pull-right">531, Dhaur(Kamarpara), Turag, Dhaka-1230<br>Tel:(02)-8981941, Fax:+88-02-89819442, Mob:+88-01823-777992<br>E-mail:info@magnumenterprise.net, Web:www.magnumenterprise.net</p></td></tr></table></div>');
         //Append the external CSS file.
-        frameDoc.document.write('<link href="{{asset('assets / vendors / bootstrap / dist / css / bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
+        frameDoc.document.write('<link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />');
         //Append the DIV contents.
         frameDoc.document.write(contents);
         // footer

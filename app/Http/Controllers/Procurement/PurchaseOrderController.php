@@ -44,8 +44,7 @@ class PurchaseOrderController extends Controller
 
         // dd();
         $request->validate([
-            'foreign_requisition_id'=>'required',
-            'purchase_order_no'=>'required',
+            'foreign_requisition_ids'=>'required',
             'vendor_id'=>'required',
             'requisition_date'=>'required|date|date_format:d-m-Y',
             'purchase_order_date'=>'required|date|date_format:d-m-Y|after:requisition_date',

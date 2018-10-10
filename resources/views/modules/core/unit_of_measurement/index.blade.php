@@ -29,7 +29,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->short_name }}</td>
-                                    <td class="text-center"><a href="{{ route('unit-of-measurement.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                    <td class="text-center"><a href="{{ route('unit-of-measurement.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                 
                                 </tr>
                             @endforeach

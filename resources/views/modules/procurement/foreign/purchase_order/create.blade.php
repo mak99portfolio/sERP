@@ -21,7 +21,6 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
-                        @include('partials/flash_msg')
                         <form class="form-horizontal form-label-left" name="po" action="{{route('purchase-order.store')}}" method="POST" autocomplete="off">
                         @csrf
                             <div class="row">
@@ -102,7 +101,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="item in itemlist">
-                                                    <td class="text-center"><% $index+1 %><input  ng-disabled="!checked[$index]" type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                    <td class="text-center"><% $index+1 %><input type="hidden" ng-disabled="!checked[$index]" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td class="checkbox">
                                                         <label class="control-label">
                                                             <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
@@ -110,7 +109,7 @@
                                                     </td>
                                                     <td><% item.uom %></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]"  ng-init="unit_price[$index]=0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
                                                     <td class="text-right">
                                                     <span ng-if="quantity[$index]*unit_price[$index]"><% amount[$index] = quantity[$index]*unit_price[$index] %></span>
                                                     <span ng-if="!(quantity[$index]*unit_price[$index])">0</span>
@@ -165,10 +164,12 @@
         $scope.quantity = [];
         $scope.unit_price = [];
         $scope.amount = [];
-
-        $scope.searchReqNo = function(ids){
+        $scope.searchReqNo = function () {
             $scope.itemlist = [];
-            let url = "{{URL::to('get-foreign-requisition')}}/" + $scope.req_id.join();
+            $scope.addToItemList($scope.req_id.join());
+        }
+        $scope.addToItemList = function(ids){
+            let url = "{{URL::to('get-foreign-requisition')}}/" + ids;
             $http.get(url)
                     .then(function(response) {
                         $scope.itemlist = response.data;
@@ -188,7 +189,7 @@
         $('#purchase_order_date').daterangepicker({
             singleDatePicker: true,
             singleClasses: "picker_3",
-            minDate: moment().add(1, 'days'),
+            minDate: moment().add('days', 1),
             locale: {
                 format: 'DD-MM-YYYY',
             }

@@ -46,7 +46,7 @@ class InsuranceCoverNoteController extends Controller
         $insurance_cover_note->fill($request->input());
         $insurance_cover_note->creator_user_id = Auth::id();
         $insurance_cover_note->company_id = 1;
-        $insurance_cover_note->insurance_cover_note_date = \Carbon\Carbon::parse($request->insurance_cover_note_date)->format('Y-m-d');;
+        $insurance_cover_note->insurance_cover_note_date = \Carbon\Carbon::parse($request->insurance_cover_note_date)->format('Y-m-d');
         $insurance_cover_note->save();
         Session::put('alert-success', $insurance_cover_note->insurance_cover_note_no . " successfully created");
         return redirect()->route('insurance-cover-note.index');

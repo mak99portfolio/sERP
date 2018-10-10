@@ -90,20 +90,6 @@
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
-                                <tbody>
-                                    <tr>
-                                        <td><strong>Bill Of Lading No:</strong> {{$commercialInvoice->bill_of_lading_no}}</td>
-                                        <td><strong>Bill Of Lading Date :</strong> {{$commercialInvoice->bill_of_lading_date}}</td>
-                                        <td><strong>Vessel No / Flight No :</strong> {{$commercialInvoice->vessel_no}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Container No:</strong> {{$commercialInvoice->container_no}}</td>
-                                        <td><strong></strong></td>
-                                        <td><strong></strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                            <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th colspan="3">Table of Terms and Conditions</th>
@@ -116,9 +102,9 @@
                                         <td><strong>Country of Final Destination :</strong> {{$commercialInvoice->destination_country->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Final Destination :</strong> {{$commercialInvoice->city->name}}</td>
-                                        <td><strong>Country of Origin of Goods :</strong> {{$commercialInvoice->country_goods->name}}</td>
-                                        <td><strong></strong></td>
+                                        <td><strong>Final Destination :</strong> {{ $commercialInvoice->city->name }}</td>
+                                        <td><strong>Country of Origin of Goods :</strong> {{ $commercialInvoice->country_goods->name }}</td>
+                                        <td><strong>Vessel No / Flight No :</strong> {{ $commercialInvoice->vessel_no }}</td>
                                     </tr>
                                 </tbody>
                             </table>

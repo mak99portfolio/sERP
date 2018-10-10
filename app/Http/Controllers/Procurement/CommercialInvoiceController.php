@@ -37,7 +37,6 @@ class CommercialInvoiceController extends Controller {
     public function store(Request $request) {
   // dd($request->input());
         $request->validate([
-            // 'requisition_no'=>'required',
             'commercial_invoice_no' => 'required',
         ]);
         $commercial_invoice = new CommercialInvoice;

@@ -66,6 +66,11 @@ class CnfController extends Controller
         $cnf->company_id = 1;
         $cnf->status = 1;
         $cnf->cnf_no = time();
+        $cnf->bill_date = \Carbon\Carbon::parse($request->bill_date)->format('Y-m-d');
+        $cnf->bill_of_entry_date = \Carbon\Carbon::parse($request->bill_of_entry_date)->format('Y-m-d');
+        $cnf->arrival_date = \Carbon\Carbon::parse($request->arrival_date)->format('Y-m-d');
+        $cnf->delivery_date = \Carbon\Carbon::parse($request->delivery_date)->format('Y-m-d');
+        $cnf->duty_payment_date = \Carbon\Carbon::parse($request->duty_payment_date)->format('Y-m-d');
         $cnf->save();
         $consignment_particular_cnf = new ConsignmentParticularCnf;
         $consignment_particular_cnf->fill($request->input());

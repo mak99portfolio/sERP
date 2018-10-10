@@ -102,7 +102,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="item in itemlist">
-                                                    <td class="text-center"><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                    <td class="text-center"><% $index+1 %><input  ng-disabled="!checked[$index]" type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td class="checkbox">
                                                         <label class="control-label">
                                                             <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>

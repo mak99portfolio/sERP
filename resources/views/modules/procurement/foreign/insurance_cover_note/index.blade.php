@@ -21,7 +21,7 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table id="datatable-buttons" class="table table-bordered">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th scope="col">#</th>
@@ -30,7 +30,6 @@
                                         <th scope="col">Icn Date</th>
                                         <th scope="col">Icn Agency Name</th>
                                         <th scope="col">Icn Bank Account No</th>
-                                        <th scope="col">Icn Bank Account Name</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -43,7 +42,6 @@
                                         <td>{{ $item->insurance_cover_note_date }}</td>
                                         <td>{{ $item->vendor->name }}</td>
                                         <td>{{ $item->vendor_bank->ac_no }}</td>
-                                        <td>{{ $item->vendor_bank->ac_name }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('insurance-cover-note.show', $item) }}" class="btn btn-block  btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

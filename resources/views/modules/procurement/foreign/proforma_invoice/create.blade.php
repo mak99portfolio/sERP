@@ -21,6 +21,7 @@
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
+                        @include('partials.flash_msg')
                         <form class="form-horizontal form-label-left" autocomplete="off" action="{{route('proforma-invoice.store')}}" method="POST">
                         @csrf
                             <div class="row">
@@ -96,7 +97,7 @@
                                                             <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.product.name %>
                                                         </label>
                                                     </td>
-                                                    <td><% item.product.hs_code %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                    <td><% item.product.hs_code %><input ng-disabled="!checked[$index]" type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" required ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" required ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>

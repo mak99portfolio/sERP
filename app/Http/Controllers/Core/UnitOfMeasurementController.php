@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Core;
 
 use App\UnitOfMeasurement;
+use Illuminate\Http\Request;
 use App\Http\Requests\UnitOfMeasurementRequest;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -18,7 +19,7 @@ class UnitOfMeasurementController extends Controller
     public function index()
     {
         $view = view($this->view_root.'index');
-        $view->with('uom_list', UnitOfMeasurement::all());
+        $view->with('uom_list', UnitOfMeasurement::orderBy('id','desc')->get());
         return $view;
     }
 
@@ -77,7 +78,7 @@ class UnitOfMeasurementController extends Controller
    
     public function update(Request $request, UnitOfMeasurement $unitOfMeasurement)
     {
-        dd('jj');
+        // dd('jj');
         $request->validate([
             'name'=>'required|unique:unit_of_measurements,name,'.$unitOfMeasurement->id,
             'short_name'=>'required|unique:unit_of_measurements,short_name,'.$unitOfMeasurement->id,

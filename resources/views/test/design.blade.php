@@ -23,9 +23,11 @@
     .closebt:hover {
         transform: rotate(90deg);
     }
-    #modal-02{
-        opacity: 0.6;
-        filter: alpha(opacity=60);
+    .lock_wrapper {
+        right: 0;
+        margin: 15% auto 0;
+        max-width: 350px;
+        position: relative;
     }
 </style>
 @endsection
@@ -90,8 +92,39 @@
 
                         <!--DEMO02-->
                         <div id="modal-02">
-                            <div class="modal-content">
-                                <!--Your modal content goes here-->
+                            <div class="lock_wrapper">
+                                <div class="animate form login_form">
+                                    <section class="login_content">
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+
+                                            <img src="{{asset('assets/build/images/logo.png')}}" alt="" class="img-responsive" style="padding-bottom: 25px;">
+                                            <!--<h2>Lock Your Window <span>enter your password</span></h2>-->
+                                            <div>
+                                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" name="password" required>
+                                                @if ($errors->has('password'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <button type="submit" class="btn btn-default">
+                                                        {{ __('Login') }}
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                    {{ __('Forgot Your Password?') }}
+                                                </a>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+                                        </form>
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -109,103 +142,104 @@
 <script src="{{asset('assets/vendors/animatedModal/animatedModal.min.js')}}"></script>
 
 <script type="text/javascript">
-    $('.example-bounce-1').on('click', function () {
-        $.confirm({
-            animationBounce: 1
-        });
+$('.example-bounce-1').on('click', function () {
+    $.confirm({
+        animationBounce: 1
     });
+});
 
-    // confirmation
-    $('.example-p-2').on('click', function () {
-        $.confirm({
-            title: 'A secure action',
-            content: 'Its smooth to do multiple confirms at a time. <br> Click confirm or cancel for another modal',
-            icon: 'fa fa-question-circle',
-            animation: 'scale',
-            closeAnimation: 'scale',
-            opacity: 0.5,
-            buttons: {
-                'confirm': {
-                    text: 'Proceed',
-                    btnClass: 'btn-blue',
-                    action: function () {
-                        $.confirm({
-                            title: 'This maybe critical',
-                            content: 'Critical actions can have multiple confirmations like this one.',
-                            icon: 'fa fa-warning',
-                            animation: 'scale',
-                            closeAnimation: 'zoom',
-                            buttons: {
-                                confirm: {
-                                    text: 'Yes, sure!',
-                                    btnClass: 'btn-orange',
-                                    action: function () {
-                                        $.alert('A very critical action <strong>triggered!</strong>');
-                                    }
-                                },
-                                cancel: function () {
-                                    $.alert('you clicked on <strong>cancel</strong>');
+// confirmation
+$('.example-p-2').on('click', function () {
+    $.confirm({
+        title: 'A secure action',
+        content: 'Its smooth to do multiple confirms at a time. <br> Click confirm or cancel for another modal',
+        icon: 'fa fa-question-circle',
+        animation: 'scale',
+        closeAnimation: 'scale',
+        opacity: 0.5,
+        buttons: {
+            'confirm': {
+                text: 'Proceed',
+                btnClass: 'btn-blue',
+                action: function () {
+                    $.confirm({
+                        title: 'This maybe critical',
+                        content: 'Critical actions can have multiple confirmations like this one.',
+                        icon: 'fa fa-warning',
+                        animation: 'scale',
+                        closeAnimation: 'zoom',
+                        buttons: {
+                            confirm: {
+                                text: 'Yes, sure!',
+                                btnClass: 'btn-orange',
+                                action: function () {
+                                    $.alert('A very critical action <strong>triggered!</strong>');
                                 }
+                            },
+                            cancel: function () {
+                                $.alert('you clicked on <strong>cancel</strong>');
                             }
-                        });
-                    }
-                },
-                cancel: function () {
-                    $.alert('you clicked on <strong>cancel</strong>');
-                },
-                moreButtons: {
-                    text: 'something else',
-                    action: function () {
-                        $.alert('you clicked on <strong>something else</strong>');
-                    }
-                },
-            }
-        });
-    });
-    //demo 01
-    $("#demo01").animatedModal({
-        animatedIn:'zoomIn',
-        animatedOut:'bounceOut',
-        color:'#39BEB9',
-        beforeOpen: function() {
-
-            var children = $(".thumb");
-            var index = 0;
-
-            function addClassNextChild() {
-                if (index == children.length) return;
-                children.eq(index++).show().velocity("transition.expandIn", { opacity:1, stagger: 250 });
-                window.setTimeout(addClassNextChild, 200);
-            }
-
-            addClassNextChild();
-
-        },
-        afterClose: function() {
-          $(".thumb").hide();
-              
+                        }
+                    });
+                }
+            },
+            cancel: function () {
+                $.alert('you clicked on <strong>cancel</strong>');
+            },
+            moreButtons: {
+                text: 'something else',
+                action: function () {
+                    $.alert('you clicked on <strong>something else</strong>');
+                }
+            },
         }
     });
+});
+//demo 01
+$("#demo01").animatedModal({
+    animatedIn: 'zoomIn',
+    animatedOut: 'bounceOut',
+    color: '#39BEB9',
+    beforeOpen: function () {
 
-    //demo 02
-    $("#demo02").animatedModal({
-        modalTarget: 'modal-02',
-        animatedIn: 'lightSpeedIn',
-        animatedOut: 'bounceOutDown',
-        color: '#3498db',
-        // Callbacks
-        beforeOpen: function () {
-            console.log("The animation was called");
-        },
-        afterOpen: function () {
-            console.log("The animation is completed");
-        },
-        beforeClose: function () {
-            console.log("The animation was called");
-        },
-        afterClose: function () {
-            console.log("The animation is completed");
+        var children = $(".thumb");
+        var index = 0;
+
+        function addClassNextChild() {
+            if (index == children.length)
+                return;
+            children.eq(index++).show().velocity("transition.expandIn", {opacity: 1, stagger: 250});
+            window.setTimeout(addClassNextChild, 200);
         }
-    });
+
+        addClassNextChild();
+
+    },
+    afterClose: function () {
+        $(".thumb").hide();
+
+    }
+});
+
+//demo 02
+$("#demo02").animatedModal({
+    modalTarget: 'modal-02',
+    animatedIn: 'lightSpeedIn',
+    animatedOut: 'bounceOutDown',
+    color: '#3498db',
+    // Callbacks
+    beforeOpen: function () {
+        console.log("The animation was called");
+    },
+    afterOpen: function () {
+        console.log("The animation is completed");
+    },
+    beforeClose: function () {
+        console.log("The animation was called");
+    },
+    afterClose: function () {
+        console.log("The animation is completed");
+    }
+});
 </script>
 @endsection

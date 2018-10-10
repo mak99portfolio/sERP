@@ -126,6 +126,7 @@ Route::middleware('auth')->namespace('Company')->prefix('company')->group(functi
     Route::resource('company-bank', 'CompanyBankController');
     Route::resource('company-license', 'CompanyLicenseController');
     Route::resource('notification', 'NotificationController');
+    Route::resource('company-department', 'DepartmentController');
 });
 
 //Inventory without auth middleware

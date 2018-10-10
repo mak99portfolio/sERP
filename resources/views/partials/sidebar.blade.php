@@ -4,8 +4,8 @@
   <div class="menu_section">
     {{-- <h3>General</h3> --}}
     <ul class="nav side-menu">
-       <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-       <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
+    <li><a href="{{route('dashboard')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
@@ -40,13 +40,10 @@
               <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
               <li><a href="{{route('move-type.index')}}">Move Type</a></li>
               <li><a href="{{route('modes-of-transport.index')}}">Modes Of Transport</a></li>
-              <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
             </ul>
           </li>
         </ul>
       </li>
-
-      @can('access_to_inventory')
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
@@ -65,8 +62,6 @@
           </li>
         </ul>
       </li>
-      @endcan
-
       <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('product-costing.index') }}">Product Costing</a></li>
@@ -91,77 +86,50 @@
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{ route('company-profile.index')}}">General Information</a></li>
-          <li><a href="{{ route('working-unit.index')}}">Working Unit</a></li>
-          <li><a href="{{ route('employee-profile.index')}}">Employees</a></li>
-          <li><a href="{{ route('company-bank.index')}}">Bank Information</a></li>
-          <li><a href="{{ route('company-license.index')}}">Licenses</a></li>
-          <li><a href="{{ route('employee-user.index')}}">Employee Related User</a></li>
+          <li><a href="{{route('company-profile.index')}}">General Information</a></li>
+          <li><a href="{{route('working-unit.index')}}">Working Unit</a></li>
+          <li><a href="{{route('company-department.index')}}">Department</a></li>
+          <li><a href="{{route('employee-profile.index')}}">Employees</a></li>
+          <li><a href="{{route('company-bank.index')}}">Bank Information</a></li>
+          <li><a href="{{route('company-license.index')}}">Licenses</a></li>
         </ul>
       </li>
-
-      @can('view_developer_menu')
-      <li><a><i class="fa fa-key"></i> Access Control <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li><a href="{{ Route('user.index') }}">User List</a></li>
-          <li><a href="{{ route('role.index') }}">Roles</a></li>
-          <li><a href="{{ route('permission.index') }}">Permissions</a></li>
-          <li><a href="{{ Route('matrix.index') }}">Role Permission Matrix</a></li>
-          <li><a href="{{ Route('role-user-matrix') }}">Role User Matrix</a></li>
-          <li><a href="{{ Route('user-permission-matrix') }}">User Direct Permissions</a></li>
-        </ul>
-      </li>
-      @endcan
-
     </ul>
   </div>
   <div class="menu_section">
     <h3>Report</h3>
     <ul class="nav side-menu">
-      <li><a><i class="fa fa-truck"></i> Procurement <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-bug"></i> Procurement <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-            <li><a>Foreign Purchase<span class="fa fa-chevron-down"></span></a>
+          <li><a href="e_commerce.html">E-commerce</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="project_detail.html">Project Detail</a></li>
+          <li><a href="contacts.html">Contacts</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-windows"></i> Inventory <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a href="{{ route('stock-report.index') }}">Stock Report</a></li>
+        </ul>
+      </li>
+      <li><a><i class="fa fa-sitemap"></i> Sales <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+            <li><a href="#level1_1">Level One</a>
+            <li><a>Level One<span class="fa fa-chevron-down"></span></a>
               <ul class="nav child_menu">
-                <li><a href="#">Foreign Requisition</a></li>
-                <li><a href="{{ route('report-foreign-purchase-order') }}">Purchase Order</a></li>
-                <li><a href="{{ route('report-proforma-invoice') }}">Proforma Invoice</a></li>
-                <li><a href="#">LC Details</a></li>
-                <li><a href="#">Cost Sheet</a></li>
-                <li><a href="#">Insurance Cover Note</a></li>
-                <li><a href="{{ route('report-commercial-invoice') }}">Commercial Invoice</a></li>
-                <li><a href="#">CI Tracking</a></li>
-                <li><a href="#">Packing List</a></li>
-                <li><a href="#">Bill of Lading</a></li>
-                <li><a href="#">Duty Tax, Vat, CNF Bill</a></li>
-                <li><a href="#">Payments</a></li>
+                <li class="sub_menu"><a href="level2.html">Level Two</a>
+                </li>
+                <li><a href="#level2_1">Level Two</a>
+                </li>
+                <li><a href="#level2_2">Level Two</a>
+                </li>
               </ul>
             </li>
-            <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
-              <ul class="nav child_menu">
-                <li><a href="#">Local Requisition</a>
-                </li>
-                <li><a href="#">Purchase Order</a>
-                </li>
-              </ul>
+            <li><a href="#level1_2">Level One</a>
             </li>
-          </ul>
-        </li>
-        <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-          <li><a href="{{route('stock-report.index')}}">Stock Reports</a></li>
-          </ul>
-        </li>
-        <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
-          <ul class="nav child_menu">
-            <li><a href="#">Product Costing</a></li>
-          </ul>
-        </li>
-     </ul>
-  </div>
-  <div class="menu_section">
-    <h3>Developer Area</h3>
-    <ul class="nav side-menu">
-      <li><a href="{{ URL::to('/design') }}"><i class="fa fa-globe"></i> Design Test</span></a></li>
+        </ul>
+      </li>
      </ul>
   </div>
 

@@ -101,7 +101,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="item in itemlist">
-                                                    <td class="text-center"><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                    <td class="text-center"><% $index+1 %><input type="hidden" ng-disabled="!checked[$index]" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td class="checkbox">
                                                         <label class="control-label">
                                                             <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
@@ -109,7 +109,7 @@
                                                     </td>
                                                     <td><% item.uom %></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]"  ng-init="unit_price[$index]=0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
                                                     <td class="text-right">
                                                     <span ng-if="quantity[$index]*unit_price[$index]"><% amount[$index] = quantity[$index]*unit_price[$index] %></span>
                                                     <span ng-if="!(quantity[$index]*unit_price[$index])">0</span>

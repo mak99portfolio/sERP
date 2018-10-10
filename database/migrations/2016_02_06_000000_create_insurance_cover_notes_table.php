@@ -18,7 +18,7 @@ class CreateInsuranceCoverNotesTable extends Migration
             $table->integer('letter_of_credit_id')->unsigned();
             $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
             $table->string('insurance_cover_note_no');
-            $table->string('insurance_cover_note_date');
+            $table->date('insurance_cover_note_date');
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
             $table->integer('vendor_bank_id')->unsigned();

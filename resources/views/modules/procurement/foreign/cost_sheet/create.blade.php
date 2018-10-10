@@ -88,7 +88,7 @@
                                             {{ BootForm::select('cost_particuler', 'Cost Particulars', $cost_particulars, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'cost_particular.id']) }}
                                         </div>
                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            {{ BootForm::text('particular_parcentage', 'Parcentage', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.parcentage']) }}
+                                            {{ BootForm::text('particular_percentage', 'percentage', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.percentage']) }}
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             {{ BootForm::text('particular_amount', 'Amount', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.amount']) }}
@@ -145,18 +145,26 @@
                                                 <tr ng-repeat="other in others">
                                                     <td scope="row">0<% $index+4 %></td>
                                                     <td>
-                                                        <input type="hidden" name="other[<% $index %>][id]" value="<% other.id %>">
-                                                        <input type="hidden" name="other[<% $index %>][name]" value="<% other.name %>">
+                                                        <input type="hidden" name="others[<% $index %>][id]" value="<% other.id %>">
+                                                        <input type="hidden" name="others[<% $index %>][name]" value="<% other.name %>">
                                                         <% other.name %>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control input-sm" name="other[<% $index %>][other.parcentage]" ng-model="other.parcentage"/>
+                                                        <input type="text" class="form-control input-sm" name="others[<% $index %>][percentage]" ng-model="other.percentage"/>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control input-sm" name="other[<% $index %>][other.amount]" ng-model="other.amount"/>
+                                                        <input type="text" class="form-control input-sm" name="others[<% $index %>][amount]" ng-model="other.amount"/>
                                                     </td>
                                                     <td>
-                                                        <input type="text" class="form-control input-sm" name="other[<% $index %>][other.round]" ng-model="other.round"/>
+                                                        <div class="input-group">
+                                                            <input type="text" class="form-control input-sm" name="others[<% $index %>][round_figure]" ng-model="other.round_figure"/>
+                                                            <span class="input-group-btn">
+                                                                <button type="button" class="btn btn-default btn-sm" ng-click="remove($index)">
+                                                                    <span class="fa fa-times fa-lg text-danger"></span>
+                                                                </button>
+                                                            </span>
+                                                        </div>
+
                                                     </td>
 {{--                                                     <td class="text-center">
                                                         <a href="" class="btn btn-danger btn-xs" ng-click="remove($index)">
@@ -262,7 +270,7 @@
         $scope.cost_particular={
             id:'',
             name:'',
-            parcentage:'',
+            percentage:'',
             amount:''
         };
 
@@ -297,8 +305,15 @@
 
         $scope.get_total_amount = function () {
             var total = 0;
-            total = $scope.amount_of_lc_margin + $scope.amount_of_lc_commision + $scope.amount_of_vat;
-            return total;
+            total = parseFloat($scope.amount_of_lc_margin + $scope.amount_of_lc_commision + $scope.amount_of_vat);
+
+            var others_total_amount=0.00;
+
+            $scope.others.forEach(function(row){
+                if(row.amount) others_total_amount+=parseFloat(row.amount);
+            });
+
+            return total+others_total_amount;
         }
 
         /*
@@ -311,8 +326,15 @@
 
         $scope.get_total_amount_round = function () {
             var total = 0;
-            total = $scope.round_amount_of_lc_margin + $scope.round_amount_of_lc_commision + $scope.round_amount_of_vat;
-            return total;
+            total = parseFloat($scope.round_amount_of_lc_margin + $scope.round_amount_of_lc_commision + $scope.round_amount_of_vat);
+
+            var others_round_amount=0.00;
+
+            $scope.others.forEach(function(row){
+                if(row.round_figure) others_round_amount+=parseFloat(row.round_figure);
+            });
+
+            return total+others_round_amount;
         }
 
         $scope.addParticular=function(){
@@ -350,15 +372,19 @@
 
                 other.id=$scope.cost_particular.id;
                 other.name=$scope.cost_particular.name;
-                other.parcentage=$scope.cost_particular.parcentage;
+                other.percentage=$scope.cost_particular.percentage;
                 other.amount=$scope.cost_particular.amount;
-                other.round=0;
+                other.round_figure=0;
                 $scope.others.push(other);
 
             }
 
             console.log($scope.others);
 
+        }
+
+        $scope.remove = function(index){
+            $scope.others.splice(index,1);
         }
 
         $scope.warning = function(msg){

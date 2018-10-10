@@ -47,6 +47,9 @@ class PurchaseOrder extends Model
     public function foreign_requisitions(){
         return $this->belongsToMany('App\ForeignRequisition');
     }
+    public function proforma_invoices(){
+        return $this->belongsToMany('App\ProformaInvoice');
+    }
     public function amount()
     {
         return $this->items->sum(function ($item) {
@@ -61,5 +64,31 @@ class PurchaseOrder extends Model
         return PurchaseOrder::whereYear('created_at', date('Y'))
                             ->whereMonth('created_at', date('m'))
                             ->count();
+    }
+    public static function availablePurchaseOrder()
+    {
+        $purchase_orders = \App\PurchaseOrder::all();
+        $available_purchase_orders = [];
+        foreach ($purchase_orders as $purchase_order) {
+            foreach ($purchase_order->items as $item) {
+                $pi_quantity = ProformaInvoiceItem::where('product_id', $item->product_id)
+                                ->whereIn('proforma_invoice_id', $purchase_order->proforma_invoices->pluck('id')->toArray())
+                                ->sum('quantity');
+                if ($item->quantity > $pi_quantity) {
+                    $available_purchase_orders[] = $purchase_order;
+                    break;
+                }
+            }
+        }
+        return $available_purchase_orders;
+    }
+    public function availableItems()
+    {
+        foreach ($this->items as $key => $item) {
+            $this->items[$key]->quantity -= ProformaInvoiceItem::where('product_id', $item->product_id)
+                                            ->whereIn('proforma_invoice_id', $this->proforma_invoices->pluck('id')->toArray())
+                                            ->sum('quantity');
+        }
+        return $this->items;
     }
 }

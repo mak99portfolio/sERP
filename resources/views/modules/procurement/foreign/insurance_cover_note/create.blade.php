@@ -23,10 +23,10 @@
                         @include('partials.flash_msg')
                         <form class="form-horizontal form-label-left input_mask" action="{{ route('insurance-cover-note.store') }}" method="POST" autocomplete="off">
                             @csrf
-                            <input type="hidden" name="company_bank_id" value='<% consignee_bank_account_no %>'>
+                            <input type="hidden" name="company_bank_id" value='<% company_bank_id %>'>
                             <div class="row">
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list,null, ['class'=>'form-control input-sm select2', 'required','data-popup'=> route('letter-of-credit.index')]) }}
+                                    {{ BootForm::select('letter_of_credit_id', 'LC No', $lc_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select LC', 'required','data-popup'=> route('letter-of-credit.index')]) }}
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('insurance_cover_note_no','ICN No', null, ['class'=>'form-control input-sm', 'required']) }}
@@ -35,7 +35,7 @@
                                     {{ BootForm::text('insurance_cover_note_date','ICN Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list,null, ['class'=>'form-control input-sm select2', 'ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()', 'required','data-popup'=> route('vendor.index')]) }}
+                                    {{ BootForm::select('vendor_id', 'ICN Agency Name', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select ICN Agency Name', 'ng-model'=>'vendor_id', 'ng-change'=>'searchVendorBank()', 'required','data-popup'=> route('vendor.index')]) }}
                                 </div>
                             </div>
                             <div class="row">
@@ -72,8 +72,8 @@
                                         <div class="panel-heading">Consignee Bank Info</div>
                                         <div class="panel-body">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                {{-- {{ BootForm::text('consignee_bank_account_no','Account No', null, ['class'=>'form-control input-sm']) }} --}}
-                                                {{ BootForm::select('company_bank_id', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'consignee_bank_account_no','ng-change'=>'searchConsigneeBank()','required','data-popup'=> route('company-bank.index')]) }}
+                                                {{-- {{ BootForm::text('company_bank_id','Account No', null, ['class'=>'form-control input-sm']) }} --}}
+                                                {{ BootForm::select('company_bank_id', 'Account No', $account_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Account No', 'ng-model'=>'company_bank_id','ng-change'=>'searchConsigneeBank()','required','data-popup'=> route('company-bank.index')]) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                 {{ BootForm::text(null,'Account Name', null, ['class'=>'form-control input-sm', 'ng-model'=>'consignee_bank_account_name', 'readonly']) }}
@@ -111,31 +111,31 @@
                                                 <td>Marine</td>
                                                 <td>{{ Form::number('percent_of_marine', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_marine" ng-model="amount_of_marine" ng-init="amount_of_marine = 0" required></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_marine" ng-model="amount_of_marine" required></td>
                                             </tr>
                                             <tr>
                                                 <td>WAR & SRCC</td>
                                                 <td>{{ Form::number('percent_of_war', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_war" ng-model="amount_of_war" ng-init="amount_of_war = 0" required></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_war" ng-model="amount_of_war" required></td>
                                             </tr>
                                             <tr>
                                                 <td>Net Premium</td>
                                                 <td>{{ Form::number('percent_of_net_premium', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_net_premium" ng-model="amount_of_net_premium" ng-init="amount_of_net_premium = 0" required></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_net_premium" ng-model="amount_of_net_premium" required></td>
                                             </tr>
                                             <tr>
                                                 <td>VAT</td>
                                                 <td>{{ Form::number('percent_of_vat', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" ng-init="amount_of_vat = 0" required></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" required></td>
                                             </tr>
                                             <tr>
                                                 <td>Stamp Duty</td>
                                                 <td>{{ Form::number('percent_of_stamp_duty', 0, ['class'=>'form-control input-sm', 'required']) }}</td>
                                                 <td>Tk</td>
-                                                <td><input type="number" class="form-control input-sm" name="amount_of_stamp_duty" ng-model="amount_of_stamp_duty" ng-init="amount_of_stamp_duty = 0" required></td>
+                                                <td><input type="number" class="form-control input-sm" name="amount_of_stamp_duty" ng-model="amount_of_stamp_duty" required></td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">Grand Total</td>
@@ -174,6 +174,7 @@
     });
     app.controller('myCtrl', function($scope, $http) {
 
+
         $scope.amount_of_grand_total = function () {
             var total = 0;
             total = $scope.amount_of_marine + $scope.amount_of_war + $scope.amount_of_net_premium + $scope.amount_of_vat + $scope.amount_of_stamp_duty;
@@ -181,7 +182,7 @@
         }
 
         $scope.searchConsigneeBank = function () {
-            $scope.getConsigneeBankDetails($scope.consignee_bank_account_no);
+            $scope.getConsigneeBankDetails($scope.company_bank_id);
         }
 
         $scope.getConsigneeBankDetails = function(id){
@@ -192,15 +193,9 @@
                 $scope.consignee_bank_address = response.data.address;
             });
         }
-
-        $scope.searchVendorBank = function () {
-            $scope.getVendorBankDetails($scope.vendor_id);
-        }
-
-
         $scope.icn_account_list = [];
-        $scope.getVendorBankDetails = function(id){
-            let url = "{{URL::to('get-vendor-bank-info')}}/" + id;
+        $scope.searchVendorBank = function(){
+            let url = "{{URL::to('get-vendor-bank-info')}}/" + $scope.vendor_id;
             $http.get(url).then(function(response) {
                 $scope.icn_account_list = response.data;
                 // console.log($scope.icn_account_list[0].ac_no);
@@ -223,6 +218,23 @@
             $scope.icn_bank_address = account.address;
         }
 
+        // for old data holding in the field start
+
+        $scope.vendor_id = '{{ old('vendor_id') }}';
+        $scope.company_bank_id = '{{ old('company_bank_id') }}';
+        $scope.amount_of_marine = '{{ old('amount_of_marine') }}' | 0;
+        $scope.amount_of_war = '{{ old('amount_of_war') }}' | 0;
+        $scope.amount_of_net_premium = '{{ old('amount_of_net_premium') }}' | 0;
+        $scope.amount_of_vat = '{{ old('amount_of_vat') }}' | 0;
+        $scope.amount_of_stamp_duty = '{{ old('amount_of_stamp_duty') }}' | 0;
+        if($scope.vendor_id){
+            $scope.searchVendorBank();
+        }
+        if($scope.company_bank_id){
+            $scope.searchConsigneeBank();
+        }
+
+        // for old data holding in the field end
 
     });
 </script>

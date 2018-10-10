@@ -98,8 +98,8 @@
                                         <form method="POST" action="{{ route('login') }}">
                                             @csrf
 
-                                            <img src="{{asset('assets/build/images/logo.png')}}" alt="" class="img-responsive" style="padding-bottom: 25px;">
-                                            <!--<h2>Lock Your Window <span>enter your password</span></h2>-->
+                                            <!--<img src="{{asset('assets/build/images/logo.png')}}" alt="" class="img-responsive" style="padding-bottom: 25px;">-->
+                                            <h2>Lock Your Window enter your password </h2>
                                             <div>
                                                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Password" name="password" required>
                                                 @if ($errors->has('password'))

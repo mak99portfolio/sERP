@@ -39,7 +39,7 @@ class ProformaInvoiceController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('purchase_orders', PurchaseOrder::all());
+        $view->with('purchase_orders', PurchaseOrder::availablePurchaseOrder());
         $view->with('port_list', Port::pluck('name','id'));
         $view->with('country_list', Country::pluck('name','id'));
         $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('-- Select Company --', ''));

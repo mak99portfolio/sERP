@@ -46,13 +46,32 @@ class ForeignRequisition extends Model
     }
     public static function availableRequisitions()
     {
+        // $req_items  = ForeignRequisitionItem::select('product_id', \DB::raw('sum(quantity) as quantity'))->groupBy('product_id')->get();
+        // foreach($req_items as $key => $req_item){
+        //     $po_quantity = PurchaseOrderItem::where('product_id', $req_item->product_id)->sum('quantity');
+        //     $req_items[$key]['quantity'] -= $po_quantity;
+        // }
+        // dd($req_items);
+        // $requisitions = ForeignRequisition::all();
+        // foreach($requisitions as $req){
+        //     foreach($req->items as $req_item){
+        //         foreach($req_items as $available_item){
+        //             if($req_item->product_id == $available_item['product_id']){
+        //                 if($available_item['quantity'] > $req_item->quantity){
+                            
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         $requisitions = \App\ForeignRequisition::all();
         $available_requisitions = [];
         foreach ($requisitions as $requisition) {
-            $purchase_orders = $requisition->purchase_orders;
             foreach ($requisition->items as $item) {
-                $po_quantity = PurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
-                if ($item->quantity - $po_quantity > 0) {
+                $po_quantity = PurchaseOrderItem::where('product_id', $item->product_id)
+                                ->whereIn('purchase_order_id', $requisition->purchase_orders->pluck('id')->toArray())
+                                ->sum('quantity');
+                if ($item->quantity > $po_quantity) {
                     $available_requisitions[] = $requisition;
                     break;
                 }
@@ -63,7 +82,9 @@ class ForeignRequisition extends Model
     public function availableItems()
     {
         foreach ($this->items as $key => $item) {
-            $this->items[$key]->quantity -= PurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
+            $this->items[$key]->quantity -= PurchaseOrderItem::where('product_id', $item->product_id)
+                                            ->whereIn('purchase_order_id', $this->purchase_orders->pluck('id')->toArray())
+                                            ->sum('quantity');
         }
         return $this->items;
     }

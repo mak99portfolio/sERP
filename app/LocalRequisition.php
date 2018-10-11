@@ -31,10 +31,9 @@ class LocalRequisition extends Model
         $requisitions = \App\LocalRequisition::all();
         $available_requisitions = [];
         foreach ($requisitions as $requisition) {
-            $purchase_orders = $requisition->purchase_orders;
             foreach ($requisition->items as $item) {
                 $po_quantity = LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
-                if ($item->quantity - $po_quantity > 0) {
+                if ($item->quantity > $po_quantity) {
                     $available_requisitions[] = $requisition;
                     break;
                 }

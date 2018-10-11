@@ -24,7 +24,7 @@ class BillOfLadingTableSeeder extends Seeder
                 'local_agency_vendor_id' => 2,
                 'exporter_vendor_id' => 1,
                 'letter_of_credit_id' => 1,
-                'consignee' => 'Maghnum',
+                'consignee_company_profile_id' => 1,
                 'acceptance' => 'Janina',
                 'port_of_loading_port_id' => 1,
                 'port_of_discharge_port_id' => 2,

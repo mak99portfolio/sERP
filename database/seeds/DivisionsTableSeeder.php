@@ -7,14 +7,14 @@ class DivisionsTableSeeder extends Seeder{
     public function run(){
         
     	$data=[
-    		['id'=>1, 'country_id'=>1, 'name'=>'Barishal'],
-    		['id'=>2, 'country_id'=>1, 'name'=>'Chattogram'],
-    		['id'=>3, 'country_id'=>1, 'name'=>'Dhaka'],
-    		['id'=>4, 'country_id'=>1, 'name'=>'Khulna'],
-    		['id'=>5, 'country_id'=>1, 'name'=>'Rajshahi'],
-    		['id'=>6, 'country_id'=>1, 'name'=>'Rangpur'],
-    		['id'=>7, 'country_id'=>1, 'name'=>'Sylhet'],
-    		['id'=>8, 'country_id'=>1, 'name'=>'Mymensingh']
+    		['creator_user_id'=>1, 'country_id'=>1, 'name'=>'Barishal'],
+    		['creator_user_id'=>2, 'country_id'=>1, 'name'=>'Chattogram'],
+    		['creator_user_id'=>1, 'country_id'=>1, 'name'=>'Dhaka'],
+    		['creator_user_id'=>1, 'country_id'=>1, 'name'=>'Khulna'],
+    		['creator_user_id'=>1, 'country_id'=>1, 'name'=>'Rajshahi'],
+    		['creator_user_id'=>2, 'country_id'=>1, 'name'=>'Rangpur'],
+    		['creator_user_id'=>1, 'country_id'=>1, 'name'=>'Sylhet'],
+    		['creator_user_id'=>1, 'country_id'=>1, 'name'=>'Mymensingh']
     	];
 
     	\DB::table('divisions')->insert($data);

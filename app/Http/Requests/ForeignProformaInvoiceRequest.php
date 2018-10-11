@@ -24,7 +24,6 @@ class ForeignProformaInvoiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'purchase_order_date'=>'required',
             'proforma_invoice_no'=>'required',
             'proforma_invoice_date'=>'required',
             'proforma_invoice_receive_date'=>'required',

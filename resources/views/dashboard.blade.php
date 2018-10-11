@@ -84,14 +84,13 @@
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th>#</th>
-                                                <th>Container Size</th>
+                                                <th>Container  No.</th>
                                                 <th>No. of Box</th>
-                                                <th>Cntr.  No.</th>
-                                                <th>Prod. Pattern</th>
-                                                <th>Qty of Product</th>
+                                                <th>Product Pattern</th>
+                                                <th>Quantity of Product</th>
                                                 <th>Commercial Invoice No / Date</th>
-                                                <th>LC No / Date</th>
-                                                <th>BL No / Date</th>
+                                                <th>LC No / LC Date</th>
+                                                <th>BL No / BL Date</th>
                                                 <th>Document Arrived At Bank</th>
                                                 <th>Document Send At Port</th>
                                                 <th>Document Value Payment</th>
@@ -105,9 +104,18 @@
                                             @foreach($commercial_invoice_list as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $item->bill_of_lading->container_size }}</td>
-                                                <td>{{ $item->bill_of_lading->number_of_box }}</td>
-                                                <td>{{ $item->container_no }}</td>
+                                                <td>
+                                                    @foreach($item->bill_of_ladings as $row)
+                                                        {{ $row->container_no }}
+                                                        {{ $loop->last?null:'<hr>' }}
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    @foreach($item->bill_of_ladings as $row)
+                                                        {{ $row->number_of_box }}
+                                                        {{ $loop->last?null:'<hr>' }}
+                                                    @endforeach
+                                                </td>
                                                 <td>
                                                     @foreach($item->items as $row)
                                                     {{ $row->product->product_model->name }}
@@ -126,7 +134,12 @@
                                                 </td>
                                                 <td>{{ $item->commercial_invoice_no }} / {{ $item->date }}</td>
                                                 <td>{{ $item->letter_of_credit->letter_of_credit_no }} / {{ $item->letter_of_credit->letter_of_credit_date }}</td>
-                                                <td>{{ $item->bill_of_lading->bill_of_lading_no }} / {{ $item->bill_of_lading->bill_of_lading_date }}</td>
+                                                <td>
+                                                    @foreach($item->bill_of_ladings as $row)
+                                                        {{ $row->bill_of_lading_no }} / {{ $row->bill_of_lading_date }}
+                                                        {{ $loop->last?null:'<hr>' }}
+                                                    @endforeach
+                                                </td>
                                                 <td>{{ $item->tracking->document_arrived_at_bank_date ?? "Pending" }}</td>
                                                 <td>{{ $item->tracking->document_send_at_port_date ?? "Pending" }}</td>
                                                 <td>{{ $item->tracking->document_value_payment_date ?? "Pending" }}</td>

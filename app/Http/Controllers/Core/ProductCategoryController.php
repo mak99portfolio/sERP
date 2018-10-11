@@ -10,11 +10,7 @@ use Session;
 
 class ProductCategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     private $view_root = 'modules/core/product_category/';
     public function index()
     {
@@ -24,11 +20,7 @@ class ProductCategoryController extends Controller
         return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $view = view($this->view_root.'create');
@@ -36,12 +28,7 @@ class ProductCategoryController extends Controller
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $request->validate([
@@ -57,46 +44,36 @@ class ProductCategoryController extends Controller
         return redirect()->route('product-category.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
+  
     public function show(ProductCategory $productCategory)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(ProductCategory $productCategory)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('product_category_tree', ProductCategory::whereNull('parent_product_category_id')->get());
+        $view->with('productCategory', $productCategory);
+        return $view;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, ProductCategory $productCategory)
     {
-        //
+        $request->validate([
+            // 'parent_product_category_id' => 'required',
+            'name' => 'required|unique:product_categories,name,'.$productCategory->id,
+            'short_name' => 'required|unique:product_categories,short_name,'.$productCategory->id,
+        ]);
+        $productCategory->fill($request->all());
+        $productCategory->update();
+        Session::put('alert-success',$productCategory->name . ' updated successfully!');
+        return redirect()->route('product-category.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\ProductCategory  $productCategory
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(ProductCategory $productCategory)
     {
         //

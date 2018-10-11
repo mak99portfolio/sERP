@@ -18,7 +18,7 @@ class BillOfLading extends Model
         'shipping_agency_vendor_id',
         'local_agency_vendor_id',
         'exporter_vendor_id',
-        'consignee',
+        'consignee_company_profile_id',
         'acceptance',
         'port_of_loading_port_id',
         'port_of_discharge_port_id',
@@ -87,6 +87,9 @@ class BillOfLading extends Model
     }
     public function product_costing(){
         return $this->hasOne('App\ProductCosting');
+    }
+    public function company_profile(){
+        return $this->belongsTo('App\CompanyProfile','consignee_company_profile_id');
     }
 
 }

@@ -110,19 +110,19 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Container No :</strong>{{$bill_of_lading->container_no}}</td>
-                                        <td><strong>Container Size :</strong>{{$bill_of_lading->container_size}}</td>
-                                        <td><strong>Number Of Box :</strong>{{$bill_of_lading->number_of_box}}</td>
+                                        <td><strong>Container No : </strong>{{$bill_of_lading->container_no}}</td>
+                                        <td><strong>Container Size : </strong>{{$bill_of_lading->container_size}}</td>
+                                        <td><strong>Number Of Box : </strong>{{$bill_of_lading->number_of_box}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Shipping Agency Name :</strong>{{$bill_of_lading->shipping_agency->name}}</td>
-                                        <td><strong>Shipping Agency Address :</strong>{{$bill_of_lading->shipping_agency->address}}</td>
-                                        <td><strong>Local Agency Name :</strong>{{$bill_of_lading->local_agency->name}}</td>
+                                        <td><strong>Shipping Agency Name : </strong>{{$bill_of_lading->shipping_agency->name}}</td>
+                                        <td><strong>Shipping Agency Address : </strong>{{$bill_of_lading->shipping_agency->address}}</td>
+                                        <td><strong>Local Agency Name : </strong>{{$bill_of_lading->local_agency->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Local Agency Address :</strong>{{$bill_of_lading->local_agency->address}}</td>
-                                        <td><strong>Exporter:</strong>{{$bill_of_lading->exporter->name}}</td>
-                                    <td><strong>Consignee:</strong>{{$bill_of_lading->consignee}}</td>
+                                        <td><strong>Local Agency Address : </strong>{{$bill_of_lading->local_agency->address}}</td>
+                                        <td><strong>Exporter: </strong>{{$bill_of_lading->exporter->name}}</td>
+                                    <td><strong>Consignee: </strong>{{$bill_of_lading->company_profile->name}}</td>
                                     </tr>
                                 </tbody>
                             </table>

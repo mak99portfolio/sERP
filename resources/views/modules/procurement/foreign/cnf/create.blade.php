@@ -21,11 +21,11 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST" autocomplete="off">
+                        <form id="cnf_store" class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index')]) }}
+                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index'), 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_date', 'readonly']) }}
@@ -53,7 +53,7 @@
                                                     <th scope="col">#</th>
                                                     <th scope="col">Commercial Invoice No</th>
                                                     <th scope="col">Commercial Invoice Date</th>
-                                                    <th scope="col">Container No</th>
+                                                    <th scope="col">Vessel No</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -61,47 +61,47 @@
                                                     <td scope="col"><% $index+1 %></td>
                                                     <td scope="col"><% ci.commercial_invoice_no %></td>
                                                     <td scope="col"><% ci.date %></td>
-                                                    <td scope="col"><% ci.container_no %></td>
+                                                    <td scope="col"><% ci.vessel_no %></td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_no','Bill No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('bill_no','Bill No', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_of_entry_date','B/E Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('bill_of_entry_date','B/E Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('arrival_date','Arrival Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('arrival_date','Arrival Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('delivery_date','Delivery Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('delivery_date','Delivery Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('job_no','Job No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('job_no','Job No', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::number('total_day','Total Days', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::number('total_day','Total Days', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2','data-popup'=> route('vendor.index')]) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2','data-popup'=> route('vendor.index'), 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::number('cnf_value','C&F Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'cnf_value']) }}
+                                    {{ BootForm::number('cnf_value','C&F Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'cnf_value', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate']) }}
+                                    {{ BootForm::number('exchange_rate','Exchange Rate', null, ['class'=>'form-control input-sm', 'ng-model'=>'exchange_rate', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     <div class="form-group">
@@ -110,7 +110,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('duty_payment_date','Duty Payment Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
@@ -131,7 +131,7 @@
                                                 </div>
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
-                                                        <label for="">Amount</label>
+                                                        <label for="">Consignment Amount</label>
                                                         <input type="text" class="form-control input-sm" name="amount" ng-model="amount">
                                                     </div>
                                                 </div>
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <button id='btn_submit' type="submit" class="btn btn-success">Save</button>
                                         <a href="{{route('cnf.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                     </div>
                                 </div>
@@ -230,6 +230,7 @@
 @endsection
 @section('script')
 <script>
+
     var app = angular.module('myApp', [], function($interpolateProvider) {
             $interpolateProvider.startSymbol('<%');
             $interpolateProvider.endSymbol('%>');
@@ -266,12 +267,16 @@
 
 
         $scope.particularlist = [];
-        
+
         $scope.addParticular = function(){
             var particular = {};
 
             if(!$scope.consignment_particular){
                 $scope.warning('Please select a particular first');
+                return;
+            }
+            if(!$scope.amount){
+                $scope.warning('Consignment amount is empty');
                 return;
             }
 
@@ -314,6 +319,18 @@
             };
             new PNotify(data);
         }
+
+    });
+
+    $(function(){
+        //option A
+        $("#cnf_store").on('submit', function(event){
+
+            event.preventDefault();
+
+            alert('working...');
+
+        });
 
     });
 </script>

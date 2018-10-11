@@ -19,9 +19,9 @@ class CreateDepartmentsTable extends Migration
             $table->text('description');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('updator_user_id')->unsigned();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->tinyInteger('status');
+            $table->tinyInteger('status')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

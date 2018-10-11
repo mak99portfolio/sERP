@@ -52,4 +52,10 @@ class CommercialInvoice extends Model {
         return $this->belongsTo('App\Country','origin_of_goods_country_id');
     }
 
+    public function bill_of_ladings(){
+        return $this->belongsToMany('App\BillOfLading', 'bill_of_lading_commercial_invoice', 'commercial_invoice_id', 'bill_of_lading_id');
+    }
+
+
+
 }

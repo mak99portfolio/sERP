@@ -15,7 +15,7 @@ class DashboardController extends Controller
     {
         // dd(CommercialInvoice::whereHas('bill_of_lading')->get());
         $view = view($this->view_root . 'dashboard');
-        $view->with('commercial_invoice_list', CommercialInvoice::whereHas('bill_of_lading')->get());
+        $view->with('commercial_invoice_list', CommercialInvoice::whereHas('bill_of_ladings')->with('bill_of_ladings')->get());
         return $view;
     }
 

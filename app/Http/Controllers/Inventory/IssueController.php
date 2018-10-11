@@ -57,10 +57,23 @@ class IssueController extends Controller{
 
     public function edit(\App\InventoryIssue $issue){
 
+        $requested_depot=$issue->requisition->requested_to;
+
+        //dd($requested_depot_type);
+
+        $forward_units=[''=>'--select Working Unit--'];
+
+        if($requested_depot->type->name=='Central Depot'){
+            $forward_units=\App\WorkingUnit::where('id', '<>', $requested_depot->id)
+            ->pluck('name', 'id')
+            ->prepend('--select Working Unit--', '');
+        }
+
         $data=[
             'issue'=>$issue,
             'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
             'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'forward_units'=>$forward_units,
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
             'product_types'=>\App\ProductType::pluck('name', 'id'),
             'carbon'=>new \Carbon\Carbon
@@ -76,7 +89,8 @@ class IssueController extends Controller{
                     'id'=>$row->product_id,
                     'quantity'=>$row->requested_quantity,
                     'batch_no'=>$row->batch_no,
-                    'expiration_date'=>$row->expiration_date
+                    'expiration_date'=>$row->expiration_date,
+                    'forward'=>0
                 ]);
 
             }

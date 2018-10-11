@@ -16,6 +16,7 @@ class DepartmentController extends Controller
     {
         $view = view($this->view_root . 'index');
         $view->with('department_list', Department::all());
+        $view->with('department_tree', Department::whereNull('parent_department_id')->get());
         return $view;
     }
 
@@ -23,6 +24,7 @@ class DepartmentController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('department_tree', Department::whereNull('parent_department_id')->get());
         return $view;
     }
 
@@ -38,7 +40,7 @@ class DepartmentController extends Controller
         $department->creator_user_id = Auth::id();
         $department->save();
         Session::put('alert-success',$department->name . " successfully created");
-        return redirect()->route('company-department.index');
+        return redirect()->route('department.index');
     }
 
     
@@ -50,8 +52,9 @@ class DepartmentController extends Controller
    
     public function edit(Department $department)
     {
-     //   dd($department);
+      // dd($department);
         $view = view($this->view_root.'edit');
+        $view->with('department_tree', Department::whereNull('parent_department_id')->get());
         $view->with('department',$department);
         return $view;
     }
@@ -60,14 +63,14 @@ class DepartmentController extends Controller
     public function update(Request $request, Department $department)
     {
         $request->validate([
-            'name' => 'required|unique:department,name,'.$department->id,
+            'name' => 'required|unique:departments,name,'.$department->id,
             'description' => 'required'
         ]);
 
         $department->fill($request->all());
         $department->update();
         Session::put('alert-success',$department->name . ' updated successfully!');
-        return redirect()->route('company-department.index');
+        return redirect()->route('department.index');
     }
 
    

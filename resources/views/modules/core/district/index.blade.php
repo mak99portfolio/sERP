@@ -29,6 +29,8 @@
                                         <th>District Name</th>
                                         <th>Division Name</th>
                                         <th>Country Name</th>
+                                        <th>Latitute</th>
+                                        <th>Longitude</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -39,6 +41,8 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->division->name }}</td>
                                         <td>{{ $item->country->name }}</td>
+                                        <td>{{ $item->latitute }}</td>
+                                        <td>{{ $item->longitude }}</td>
                                         <td class="text-center"><a href="{{ route('district.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                     </tr>
                                     @endforeach

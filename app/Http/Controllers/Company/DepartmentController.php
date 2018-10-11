@@ -36,7 +36,6 @@ class DepartmentController extends Controller
         $department = new Department;
         $department->fill($request->all());
         $department->creator_user_id = Auth::id();
-        $department->updator_user_id = Auth::id();
         $department->save();
         Session::put('alert-success',$department->name . " successfully created");
         return redirect()->route('company-department.index');
@@ -51,7 +50,10 @@ class DepartmentController extends Controller
    
     public function edit(Department $department)
     {
-        //
+     //   dd($department);
+        $view = view($this->view_root.'edit');
+        $view->with('department',$department);
+        return $view;
     }
 
     

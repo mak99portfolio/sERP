@@ -43,7 +43,7 @@
                                         <div class="form-group">
                                                 <label>Commercial Invoice</label>
                                                 <select class="form-control input-sm select2" data-placeholder="-- Select CI --" multiple name="commercial_invoice_ids[]" ng-model="commercial_invoice_ids" ng-change="getCI()">
-                                                    
+
                                                     <option ng-repeat="ci in ci_list" value="<% ci.id %>"><% ci.commercial_invoice_no %></option>
                                                 </select>
                                         </div>
@@ -135,7 +135,7 @@
                                     {{ BootForm::select('exporter_vendor_id', 'Exporter', $exporter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('vendor.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee',$company_profile_list,null, ['class'=>'form-control input-sm select2', 'required', 'required','data-popup'=> route('company-profile.index')]) }}
+                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee',$company_profile_list,null, ['class'=>'form-control input-sm select2', 'required','data-popup'=> route('company-profile.index')]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
@@ -239,7 +239,7 @@
         //                 $scope.letter_of_credit_no = response.data.lc.letter_of_credit_no;
         //                 $scope.letter_of_credit_date = response.data.lc.letter_of_credit_date;
         //                 $scope.letter_of_credit_id = response.data.lc.id;
-                        
+
         //                 $scope.issue_ac_no = response.data.lc.issue_ac_no;
         //                 $scope.issue_ac_name = response.data.lc.issue_ac_name;
         //                 $scope.issue_branch_name = response.data.lc.issue_branch_name;
@@ -247,7 +247,7 @@
 
         //             });
         // }
-        
+
 
         $scope.ci_list = [];
         $scope.getLcToCi = function(){
@@ -261,7 +261,7 @@
                 $scope.issue_ac_name = response.data.lc_no.issue_bank.account_name;
                 $scope.issue_branch_name = response.data.lc_no.issue_bank.branch_name;
                 $scope.issue_bank_name = response.data.lc_no.issue_bank.bank.name;
-                
+
                 $scope.port_of_loading_port_id = response.data.last_pi.port_of_loading_port_id.toString();
                 $scope.port_of_discharge_port_id = response.data.last_pi.port_of_discharge_port_id.toString();
             });

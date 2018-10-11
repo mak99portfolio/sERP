@@ -78,7 +78,7 @@
                                         <tr>
                                             <td><strong>Bill No:</strong> {{ $cnf->bill_no }} </td>
                                             <td><strong>Bill Date:</strong> {{ $cnf->bill_date }} </td>
-                                            <td><strong>Consignee:</strong> {{ $cnf->consignee }} </td>
+                                            <td><strong>Consignee:</strong> {{ $cnf->company_profile->name }} </td>
                                         </tr>
                                         <tr>
                                             <td><strong>B/E No:</strong> {{ $cnf->bill_of_entry_no }} </td>

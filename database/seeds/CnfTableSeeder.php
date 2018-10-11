@@ -15,7 +15,6 @@ class CnfTableSeeder extends Seeder
             [
                 'cnf_no' => 1313165,
                 'bill_of_lading_id' => 1,
-                'consignee' => 'maghnum',
                 'bill_no' => 9786565,
                 'bill_date' => \Carbon\Carbon::now(),
                 'bill_of_entry_no' => 8911325,
@@ -24,6 +23,7 @@ class CnfTableSeeder extends Seeder
                 'delivery_date' => \Carbon\Carbon::now(),
                 'job_no' => 74720,
                 'cnf_value' => 6545445,
+                'consignee_company_profile_id' => 1,
                 'exchange_rate' => 65,
                 'bdt_amount' => 95466520,
                 'total_day' => 21,

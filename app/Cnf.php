@@ -13,7 +13,7 @@ class Cnf extends Model
         // 'letter_of_credit_id',
         // 'commercial_invoice_id',
         'vendor_id',
-        'consignee',
+        'consignee_company_profile_id',
         'bill_no',
         'bill_date',
         'bill_of_entry_no',
@@ -63,6 +63,10 @@ class Cnf extends Model
 
     public function amount(){
         return $this->consignment_particular_cnf()->sum('amount');
+    }
+
+    public function company_profile(){
+        return $this->belongsTo('App\CompanyProfile','consignee_company_profile_id');
     }
 
 }

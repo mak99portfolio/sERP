@@ -1,5 +1,8 @@
 @extends('layout')
 @section('title', 'Department')
+@section('style')
+<link rel="stylesheet" href="{{asset('assets/vendors/jstree/default/style.min.css')}}">
+@endsection
 @section('content')
 
 <!-- page content -->
@@ -44,6 +47,16 @@
                             </table>
                         </div>
                         <!--end table-->
+                        <label>Department Tree</label>
+                    <div id="jstree">
+                        <ul>
+                            <li data-jstree='{"selected":true}'>Root
+                                <ul>
+                                    {{ generate_tree($department_tree) }}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -51,4 +64,19 @@
     </div>
 </div>
 <!-- /page content -->
+@endsection
+@section('script')
+
+<script src="{{asset('assets/vendors/jstree/jstree.min.js')}}"></script>
+<script>
+    $(function () {
+        // 6 create an instance when the DOM is ready
+        $('#jstree').jstree();
+        // 7 bind to events triggered on the tree
+        $('#jstree').on("changed.jstree", function (e, data) {
+            // console.log(data.selected[0]);
+            $('#treeField').val($('#'+data.selected[0]).data('category-id'))
+        });
+    });
+</script>
 @endsection

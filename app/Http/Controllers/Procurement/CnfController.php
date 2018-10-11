@@ -8,7 +8,9 @@ use App\ConsignmentParticular;
 use App\BillOfLading;
 use App\LetterOfCredit;
 use App\Vendor;
+use App\CompanyProfile;
 use App\CommercialInvoice;
+use App\Http\Requests\CnfRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Auth;
@@ -32,33 +34,17 @@ class CnfController extends Controller
         $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('--select vendor--', ''));
         $view->with('bill_of_lading_list', BillOfLading::pluck('bill_of_lading_no', 'id')->prepend('-- Select Bill Number --', ''));
         $view->with('consignment_partucular_list', ConsignmentParticular::all());
+        $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('-- Select Company --', ''));
 
         return $view;
     }
 
-    public function store(Request $request)
+    public function store(CnfRequest $request)
     {
         // dd($request->input());
-        $request->validate([
-            'vendor_id' => 'required',
-            'consignee' => 'required',
-            'bill_of_lading_id' => 'required',
-            'bill_no' => 'required',
-            'bill_date' => 'required',
-            'bill_of_entry_no' => 'required',
-            'bill_of_entry_date' => 'required',
-            'arrival_date' => 'required',
-            'delivery_date' => 'required',
-            'job_no' => 'required',
-            'cnf_value' => 'required',
-            'exchange_rate' => 'required',
-            'bdt_amount' => 'required',
-            'total_day' => 'required',
-            'duty_payment_date' => 'required'
-
-            // 'previous_due_amount' => 'required',
-            // 'cash_recieved_amount' => 'required',
-        ]);
+        if(!$request->consignment_particular_validate()){
+            return redirect()->back();
+        }
 
         $cnf = new Cnf;
         $cnf->fill($request->input());

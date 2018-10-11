@@ -47,6 +47,9 @@ class PurchaseOrder extends Model
     public function foreign_requisitions(){
         return $this->belongsToMany('App\ForeignRequisition');
     }
+    public function proforma_invoices(){
+        return $this->belongsToMany('App\ProformaInvoice');
+    }
     public function amount()
     {
         return $this->items->sum(function ($item) {
@@ -64,13 +67,14 @@ class PurchaseOrder extends Model
     }
     public static function availablePurchaseOrder()
     {
-        $purchase_orders = \App\ForeignRequisition::all();
+        $purchase_orders = \App\PurchaseOrder::all();
         $available_purchase_orders = [];
         foreach ($purchase_orders as $purchase_order) {
-            $purchase_orders = $purchase_order->purchase_orders;
             foreach ($purchase_order->items as $item) {
-                $pi_quantity = ProformaInvoiceItem::where('product_id', $item->product_id)->sum('quantity');
-                if ($item->quantity - $pi_quantity > 0) {
+                $pi_quantity = ProformaInvoiceItem::where('product_id', $item->product_id)
+                                ->whereIn('proforma_invoice_id', $purchase_order->proforma_invoices->pluck('id')->toArray())
+                                ->sum('quantity');
+                if ($item->quantity > $pi_quantity) {
                     $available_purchase_orders[] = $purchase_order;
                     break;
                 }
@@ -81,7 +85,9 @@ class PurchaseOrder extends Model
     public function availableItems()
     {
         foreach ($this->items as $key => $item) {
-            $this->items[$key]->quantity -= ProformaInvoiceItem::where('product_id', $item->product_id)->sum('quantity');
+            $this->items[$key]->quantity -= ProformaInvoiceItem::where('product_id', $item->product_id)
+                                            ->whereIn('proforma_invoice_id', $this->proforma_invoices->pluck('id')->toArray())
+                                            ->sum('quantity');
         }
         return $this->items;
     }

@@ -15,4 +15,7 @@ class ForeignRequisitionItem extends Model
     public function product(){
         return $this->belongsTo('App\Product');
     }
+    public function requisition(){
+        return $this->belongsTo('App\ForeignRequisition', 'foreign_requisition_id');
+    }
 }

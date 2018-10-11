@@ -14,10 +14,7 @@ class CommercialInvoice extends Model {
         'commercial_invoice_no',
         'date',
         'letter_of_credit_id',
-        'bill_of_lading_no',
-        'bill_of_lading_date',
         'vessel_no',
-        'container_no',
         'port_of_loading_port_id',
         'port_of_discharge_port_id',
         'final_destination_city_id',
@@ -38,9 +35,6 @@ class CommercialInvoice extends Model {
     }
     function letter_of_credit() {
         return $this->belongsTo('App\LetterOfCredit');
-    }
-    function bill_of_lading() {
-        return $this->belongsTo('App\BillOfLading', 'bill_of_lading_no', 'bill_of_lading_no');
     }
     function loading_port() {
         return $this->belongsTo('App\Port','port_of_loading_port_id');

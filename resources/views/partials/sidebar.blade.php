@@ -88,7 +88,7 @@
         <ul class="nav child_menu">
           <li><a href="{{route('company-profile.index')}}">General Information</a></li>
           <li><a href="{{route('working-unit.index')}}">Working Unit</a></li>
-          <li><a href="{{route('company-department.index')}}">Department</a></li>
+          <li><a href="{{route('department.index')}}">Department</a></li>
           <li><a href="{{route('employee-profile.index')}}">Employees</a></li>
           <li><a href="{{route('company-bank.index')}}">Bank Information</a></li>
           <li><a href="{{route('company-license.index')}}">Licenses</a></li>

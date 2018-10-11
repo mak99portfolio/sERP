@@ -50,7 +50,7 @@ class DepartmentController extends Controller
    
     public function edit(Department $department)
     {
-     //   dd($department);
+      // dd($department);
         $view = view($this->view_root.'edit');
         $view->with('department',$department);
         return $view;

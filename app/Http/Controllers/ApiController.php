@@ -160,6 +160,7 @@ class ApiController extends Controller
         $data['items'] = $items;
         $data['last_po'] = $po;
         return response()->json($data);
+        // return response()->json(PurchaseOrder::with('items')->find(explode(',', $ids)));
     }
     public function getCIByCIIds($ids)
     {
@@ -194,91 +195,97 @@ class ApiController extends Controller
 
     public function getForeignRequisitionByRequisitionIds($ids)
     {
-        $data = [];
-        $previous_orders_quantity=[];
+        // $data = [];
+        // $previous_orders_quantity=[];
 
-        foreach (explode(',', $ids) as $id) {
+        // foreach (explode(',', $ids) as $id) {
 
-            $req = ForeignRequisition::find($id);            
+        //     $req = ForeignRequisition::find($id);            
             
-            $purchase_orders=$req->purchase_orders;
+        //     $purchase_orders=$req->purchase_orders;
 
 
-            foreach ($req->items as $item){
+        //     foreach ($req->items as $item){
 
-                $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
-                ->where('product_id', $item->product_id)
-                ->sum('quantity');
+        //         $previous_quantity=\App\PurchaseOrderItem::whereIn('purchase_order_id', $purchase_orders->pluck('id')->toArray())
+        //         ->where('product_id', $item->product_id)
+        //         ->sum('quantity');
 
-                if(empty($previous_orders_quantity)){
+        //         if(empty($previous_orders_quantity)){
 
-                    array_push($previous_orders_quantity, [
-                        'previous_product_id'=>$item->product_id,
-                        'previous_quantity'=>$previous_quantity
-                    ]);
+        //             array_push($previous_orders_quantity, [
+        //                 'previous_product_id'=>$item->product_id,
+        //                 'previous_quantity'=>$previous_quantity
+        //             ]);
 
-                }else{
+        //         }else{
 
-                    foreach($previous_orders_quantity as $key=>$row){
+        //             foreach($previous_orders_quantity as $key=>$row){
 
-                        if($row['previous_product_id']==$item->product_id){
+        //                 if($row['previous_product_id']==$item->product_id){
 
-                            $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
+        //                     $previous_orders_quantity[$key]['previous_quantity']=$row['previous_quantity']+$previous_quantity;
 
-                        }else{
+        //                 }else{
 
-                            array_push($previous_orders_quantity, [
-                                'previous_product_id'=>$item->product_id,
-                                'previous_quantity'=>$previous_quantity
-                            ]);
+        //                     array_push($previous_orders_quantity, [
+        //                         'previous_product_id'=>$item->product_id,
+        //                         'previous_quantity'=>$previous_quantity
+        //                     ]);
 
-                        }
+        //                 }
 
-                    }
+        //             }
 
-                }
+        //         }
 
 
-            }
+        //     }
 
             
-            foreach ($req->items as $item) {
-                $item_exist = false;
-                foreach ($data as $key => $value) {
-                    if ($value['product_id'] == $item->product->id) {
-                        $data[$key]['quantity'] += $item->quantity;
-                        $item_exist = true;
-                        break;
-                    }
-                }
-                if (!$item_exist) {
-                    $data[] = [
-                        'product_id' => $item->product->id,
-                        'name' => $item->product->name,
-                        'hs_code' => $item->product->hs_code,
-                        'uom' => $item->product->unit_of_measurement->name,
-                        'quantity' => $item->quantity,
-                    ];
-                }
-            }
+        //     foreach ($req->items as $item) {
+        //         $item_exist = false;
+        //         foreach ($data as $key => $value) {
+        //             if ($value['product_id'] == $item->product->id) {
+        //                 $data[$key]['quantity'] += $item->quantity;
+        //                 $item_exist = true;
+        //                 break;
+        //             }
+        //         }
+        //         if (!$item_exist) {
+        //             $data[] = [
+        //                 'product_id' => $item->product->id,
+        //                 'name' => $item->product->name,
+        //                 'hs_code' => $item->product->hs_code,
+        //                 'uom' => $item->product->unit_of_measurement->name,
+        //                 'quantity' => $item->quantity,
+        //             ];
+        //         }
+        //     }
 
-        }
+        // }
 
-        //dd($previous_orders_quantity);
+        // //dd($previous_orders_quantity);
 
-        foreach($data as $key=>$row){
+        // foreach($data as $key=>$row){
 
-            foreach($previous_orders_quantity as $inner_row){
+        //     foreach($previous_orders_quantity as $inner_row){
 
-                if($row['product_id']==$inner_row['previous_product_id']){
-                    $data[$key]['quantity']=$row['quantity']-$inner_row['previous_quantity'];
-                }
+        //         if($row['product_id']==$inner_row['previous_product_id']){
+        //             $data[$key]['quantity']=$row['quantity']-$inner_row['previous_quantity'];
+        //         }
 
-            }
+        //     }
 
-        }
+        // }
 
-        return response()->json($data);
+        // return response()->json($data);
+        
+        return response()->json(ForeignRequisition::with(['items' => function($query){
+            $query->with(['product'=>function($query){
+                $query->with('unit_of_measurement');
+            }]);
+        }])->find(explode(',', $ids)));
     }
 
     public function getLocalRequisitionByRequisitionIds($ids)

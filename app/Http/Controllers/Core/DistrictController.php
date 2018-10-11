@@ -26,6 +26,7 @@ class DistrictController extends Controller
     {
         $view = view($this->view_root.'create');
         $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
+        $view->with('division_list', Division::pluck('name', 'id')->prepend('--select division--', ''));
         return $view;
     }
 

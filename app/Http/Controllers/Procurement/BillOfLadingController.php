@@ -10,6 +10,7 @@ use App\Vendor;
 use App\LetterOfCredit;
 use App\ModesOfTransport;
 use App\MoveType;
+use App\CompanyProfile;
 use App\Port;
 use Illuminate\Http\Request;
 use Auth;
@@ -43,6 +44,7 @@ class BillOfLadingController extends Controller
         $view->with('letter_of_credit_list', LetterOfCredit::pluck('letter_of_credit_no','id')->prepend('-- Select Letter of Credit --', ''));
         $view->with('modes_of_transport_list', ModesOfTransport::pluck('name','id')->prepend('-- Select Modes Of Transport --', ''));
         $view->with('move_type_list', MoveType::pluck('name','id')->prepend('-- Select Move Type --', ''));
+        $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('-- Select Company --', ''));
         return $view;
     }
 

@@ -124,7 +124,8 @@ $MENU_TOGGLE.on('click', function() {
 	$SIDEBAR_MENU.find('a').filter(function () {
 		//alert(this.href);
 		//var regEdit=new RegExp(this.href + "/([0-9]+)/edit", 'g');
-		return this.href == CURRENT_URL || this.href+'/create' == CURRENT_URL; //|| CURRENT_URL.match(regEdit);
+		// return this.href == CURRENT_URL || this.href+'/create' == CURRENT_URL; //|| CURRENT_URL.match(regEdit);
+		return this.href.split('/')['7'] == CURRENT_URL.split('/')['7'];
 	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
 		setContentHeight();
 	}).parent().addClass('active');

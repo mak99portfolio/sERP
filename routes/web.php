@@ -10,12 +10,11 @@ Route::namespace('Dev')->prefix('dev')->group(function(){
 //Common
 Auth::routes();
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@index']);
-Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->middleware('auth');
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index'])->prefix('home')->middleware('auth');
 Route::get('/get_toaster_notification', ['as' => 'get_toaster_notification', 'uses' => 'HomeController@get_toaster_notification']);
 
 //Core
 Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
-
     Route::resource('working-unit', 'WorkingUnitController');
     Route::resource('country', 'CountryController');
     Route::resource('division', 'DivisionController');

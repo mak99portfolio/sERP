@@ -70,6 +70,7 @@ class CostSheetController extends Controller
             'percent_of_others' => 'required',
             'amount_of_others' => 'required',
             'round_amount_of_others' => 'required'*/
+            'note'=>'required'
         ]);
 
         $cost_sheet = new CostSheet;
@@ -89,10 +90,10 @@ class CostSheetController extends Controller
                 \App\OtherLetterOfCreditCharge::create([
 
                     'cost_sheet_id'=>$cost_sheet->id,
-                    'cost_particular_id'=>$row->id,
-                    'percentage'=>$row->percentage,
-                    'amount'=>$row->amount,
-                    'round_figure'=>$row->round_figure
+                    'cost_particular_id'=>$row['id'],
+                    'percentage'=>$row['percentage'],
+                    'amount'=>$row['amount'],
+                    'round_figure'=>$row['round_figure']
 
                 ]);
 

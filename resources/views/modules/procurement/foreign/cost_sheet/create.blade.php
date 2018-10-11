@@ -74,7 +74,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::textarea('note','Note', null, ['class'=>'form-control input-sm','rows'=>2]) }}
+                                    {{ BootForm::textarea('note','Note', NULL, ['class'=>'form-control input-sm','rows'=>2]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
@@ -85,13 +85,13 @@
 
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                            {{ BootForm::select('cost_particuler', 'Cost Particulars', $cost_particulars, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'cost_particular.id']) }}
+                                            {{ BootForm::select(NULL, 'Cost Particulars', $cost_particulars, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'cost_particular.id']) }}
                                         </div>
                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            {{ BootForm::text('particular_percentage', 'percentage', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.percentage']) }}
+                                            {{ BootForm::text(NULL, 'percentage', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.percentage']) }}
                                         </div>
                                         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                            {{ BootForm::text('particular_amount', 'Amount', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.amount']) }}
+                                            {{ BootForm::text(NULL, 'Amount', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.amount']) }}
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
                                             <div class="form-group">
@@ -116,28 +116,28 @@
                                                 <tr>
                                                     <td>01</td>
                                                     <td>LC Margin</td>
-                                                    <td>{{ Form::number('percent_of_lc_margin', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_margin', 'ng-init'=>"percent_of_lc_margin = 0"]) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_margin" ng-model="amount_of_lc_margin" value="<% amount_of_lc_margin = bdt_amount * (percent_of_lc_margin/100) %>" ng-init="amount_of_lc_margin = 0" readonly></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_margin" ng-model="round_amount_of_lc_margin" ng-init="round_amount_of_lc_margin = 0"></td>
+                                                    <td>{{ Form::number('percent_of_lc_margin', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_margin']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_margin" ng-model="amount_of_lc_margin" value="<% amount_of_lc_margin = bdt_amount * (percent_of_lc_margin/100) %>" readonly></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_margin" ng-model="round_amount_of_lc_margin"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>02</td>
                                                     <td>LC Commision</td>
-                                                    <td>{{ Form::number('percent_of_lc_commision', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_commision', 'ng-init'=>"percent_of_lc_commision = 0"]) }}</td>
-                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_commision" ng-model="amount_of_lc_commision" value="<% amount_of_lc_commision = bdt_amount * (percent_of_lc_commision/100) %>" ng-init="amount_of_lc_commision = 0" readonly></td>
-                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_commision" ng-model="round_amount_of_lc_commision" ng-init="round_amount_of_lc_commision = 0"></td>
+                                                    <td>{{ Form::number('percent_of_lc_commision', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_lc_commision']) }}</td>
+                                                    <td><input type="number" class="form-control input-sm" name="amount_of_lc_commision" ng-model="amount_of_lc_commision" value="<% amount_of_lc_commision = bdt_amount * (percent_of_lc_commision/100) %>" readonly></td>
+                                                    <td><input type="number" class="form-control input-sm" name="round_amount_of_lc_commision" ng-model="round_amount_of_lc_commision" ></td>
                                                 </tr>
                                                 <tr>
                                                     <td>03</td>
                                                     <td>VAT</td>
                                                     <td>
-                                                        {{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_vat', 'ng-init'=>"percent_of_vat = 0"]) }}
+                                                        {{ Form::number('percent_of_vat', null, ['class'=>'form-control input-sm', 'ng-model'=>'percent_of_vat']) }}
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" value="<% amount_of_vat = amount_of_lc_commision * (percent_of_vat/100) %>" ng-init="amount_of_vat = 0" readonly>
+                                                        <input type="number" class="form-control input-sm" name="amount_of_vat" ng-model="amount_of_vat" value="<% amount_of_vat = amount_of_lc_commision * (percent_of_vat/100) %>" readonly>
                                                     </td>
                                                     <td>
-                                                        <input type="number" class="form-control input-sm" name="round_amount_of_vat" ng-model="round_amount_of_vat" ng-init="round_amount_of_vat = 0">
+                                                        <input type="number" class="form-control input-sm" name="round_amount_of_vat" ng-model="round_amount_of_vat">
                                                     </td>
 
                                                 </tr>
@@ -253,19 +253,35 @@
 @endsection
 @section('script')
 <script>
-    var app = angular.module('myApp', [], function($interpolateProvider) {
-            $interpolateProvider.startSymbol('<%');
-            $interpolateProvider.endSymbol('%>');
-        });
+
+    var app=angular.module('myApp', [], function($interpolateProvider) {
+        $interpolateProvider.startSymbol('<%');
+        $interpolateProvider.endSymbol('%>');
+    });
+
+    var parseNum=function(value=0){
+        value=parseFloat(value);
+        if(isNaN(value)) return 0;
+        return value;
+    }
+
     app.controller('myCtrl', function($scope, $http) {
 
-        $scope.others=[];
+        $scope.letter_of_credit_id='{{ old('letter_of_credit_id') }}';
+        $scope.others={!! old('others')?collect(old('others'))->toJson():'[]' !!};
         $scope.amount_of_lc_margin=0;
         $scope.amount_of_lc_commision=0;
         $scope.amount_of_vat=0;
-        $scope.bdt_amount='';
-        $scope.exchange_rate='';
+        $scope.bdt_amount=0;
+        $scope.exchange_rate={{ old('exchange_rate') ?? 0}};
         $scope.cost_particulars={!! $cost_particulars_array->toJson() !!};
+
+        $scope.percent_of_lc_margin={{ old('percent_of_lc_margin') ?? 0 }};
+        $scope.round_amount_of_lc_margin={{ old('round_amount_of_lc_margin') ?? 0 }};
+        $scope.percent_of_lc_commision={{ old('percent_of_lc_commision') ?? 0 }};
+        $scope.round_amount_of_lc_commision={{ old('round_amount_of_lc_commision') ?? 0 }};
+        $scope.percent_of_vat={{ old('percent_of_vat') ?? 0 }};
+        $scope.round_amount_of_vat={{ old('round_amount_of_vat') ?? 0 }};
 
         $scope.cost_particular={
             id:'',
@@ -274,29 +290,38 @@
             amount:''
         };
 
-        $scope.getLc = function () {
-            $scope.getLcDetails($scope.letter_of_credit_id);
-        }
-
         $scope.getLcDetails = function(id){
-            let url = "{{URL::to('get-lc')}}/" + id;
-            $http.get(url).then(function(response) {
-                $scope.letter_of_credit_date = response.data.letter_of_credit_date;
-                $scope.letter_of_credit_value = parseInt(response.data.letter_of_credit_value);
-                $scope.issue_ac_no = response.data.issue_ac_no;
-                $scope.issue_ac_name = response.data.issue_ac_name;
-                $scope.issue_bank_name = response.data.issue_bank_name;
-                $scope.issue_branch_name = response.data.issue_branch_name;
-            });
+
+            if(id){
+
+                $http.get("{{ url('get-lc') }}/" + id).then(function(response){
+
+                    $scope.letter_of_credit_date = response.data.letter_of_credit_date;
+                    $scope.letter_of_credit_value = parseNum(response.data.letter_of_credit_value);
+                    $scope.issue_ac_no = response.data.issue_ac_no;
+                    $scope.issue_ac_name = response.data.issue_ac_name;
+                    $scope.issue_bank_name = response.data.issue_bank_name;
+                    $scope.issue_branch_name = response.data.issue_branch_name;
+
+                });
+
+            }
 
             $scope.amount_in_bdt = function () {
                 var total = 0;
-                total = $scope.letter_of_credit_value * $scope.exchange_rate;
+                total = parseNum($scope.letter_of_credit_value) * parseNum($scope.exchange_rate);
                 $scope.bdt_amount = total;
                 return $scope.bdt_amount;
             }
         }
 
+        $scope.getLc = function () {
+            $scope.getLcDetails($scope.letter_of_credit_id);
+        }
+
+        $scope.getLc();
+
+        //$scope.getLc();
         /*$scope.get_total_amount = function () {
             var total = 0;
             total = $scope.amount_of_lc_margin + $scope.amount_of_lc_commision + $scope.amount_of_vat + $scope.amount_of_swift + $scope.amount_of_stamp_charge + $scope.amount_of_lcaf_issue_charge + $scope.amount_of_imp + $scope.amount_of_lc_application_form + $scope.amount_of_others;
@@ -305,12 +330,12 @@
 
         $scope.get_total_amount = function () {
             var total = 0;
-            total = parseFloat($scope.amount_of_lc_margin + $scope.amount_of_lc_commision + $scope.amount_of_vat);
+            total = parseNum($scope.amount_of_lc_margin) + parseNum($scope.amount_of_lc_commision) + parseNum($scope.amount_of_vat);
 
             var others_total_amount=0.00;
 
             $scope.others.forEach(function(row){
-                if(row.amount) others_total_amount+=parseFloat(row.amount);
+                if(row.amount) others_total_amount+=parseNum(row.amount);
             });
 
             return total+others_total_amount;
@@ -326,12 +351,12 @@
 
         $scope.get_total_amount_round = function () {
             var total = 0;
-            total = parseFloat($scope.round_amount_of_lc_margin + $scope.round_amount_of_lc_commision + $scope.round_amount_of_vat);
+            total = parseNum($scope.round_amount_of_lc_margin + $scope.round_amount_of_lc_commision + $scope.round_amount_of_vat);
 
             var others_round_amount=0.00;
 
             $scope.others.forEach(function(row){
-                if(row.round_figure) others_round_amount+=parseFloat(row.round_figure);
+                if(row.round_figure) others_round_amount+=parseNum(row.round_figure);
             });
 
             return total+others_round_amount;
@@ -377,9 +402,16 @@
                 other.round_figure=0;
                 $scope.others.push(other);
 
+                $scope.cost_particular={
+                    id:'',
+                    name:'',
+                    percentage:'',
+                    amount:''
+                };
+
             }
 
-            console.log($scope.others);
+            //console.log($scope.others);
 
         }
 

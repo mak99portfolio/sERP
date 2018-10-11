@@ -102,7 +102,18 @@
                                         <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_vat, 2) }}</td>
                                         <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_vat, 2) }}</td>
                                     </tr>
+
+                                    @foreach($costSheet->other_charges as $key=>$other_charge)
                                     <tr>
+                                        <td><strong></strong>{{ $key+4 }}</td>
+                                        <td><strong>{{ $other_charge->cost_particular->name }}</strong></td>
+                                        <td class="text-center"><strong></strong> {{ $other_charge->percentage }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($other_charge->amount, 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($other_charge->round_figure, 2) }}</td>
+                                    </tr>
+                                    @endforeach
+
+{{--                                     <tr>
                                         <td><strong></strong>4</td>
                                         <td><strong>SWIFT </strong></td>
                                         <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_swift }}</td>
@@ -143,11 +154,11 @@
                                         <td class="text-center"><strong></strong> {{ $costSheet->cost_sheet_particular->percent_of_others }}</td>
                                         <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->amount_of_others, 2) }}</td>
                                         <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->round_amount_of_others, 2) }}</td>
-                                    </tr>
+                                    </tr> --}}
                                     <tr>
                                         <td colspan="3"><strong>Total </strong></td>
-                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->get_total_amount(), 2) }}</td>
-                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->get_total_amount_round(), 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->get_total_amount() + $costSheet->other_charges()->sum('amount'), 2) }}</td>
+                                        <td class="text-right"><strong></strong> {{ number_format($costSheet->cost_sheet_particular->get_total_amount_round() + $costSheet->other_charges()->sum('round_figure'), 2) }}</td>
                                     </tr>
                                 </tbody>
                             </table>

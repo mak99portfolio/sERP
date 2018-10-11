@@ -47,7 +47,7 @@
                                     {{ BootForm::text('date', 'Date', $carbon->parse($issue->requisition->date)->format('d-m-Y'), ['class'=>'form-control input-sm datepicker', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('forward_working_unit_id', 'Forward To', $working_units->prepend('--select Working Unit--',''), null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::select('forward_working_unit_id', 'Forward To', $forward_units, null, ['class'=>'form-control input-sm']) }}
                                 </div>
 
                             </div>
@@ -55,7 +55,7 @@
                             <div id="vue_app">
                             <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
+{{--                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>HS Code</label>
                                             <!--<input class="form-control input-sm" type="text">-->
@@ -66,10 +66,10 @@
                                             </span>
                                         </div><!-- /input-group -->
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>Product Name</label>
+                                            <label>Search Product</label>
                                             <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
                                             <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="add_product">
@@ -87,7 +87,7 @@
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>Requested Quantity</label>
+                                            <label>Issue Quantity</label>
                                             <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity' v-on:keydown.enter.prevent="add_product">
                                         </div>
                                     </div>
@@ -101,15 +101,16 @@
                                     <tr>
                                         <th style="width: 125px;">id</th>
                                         <th>Item name</th>
-                                        <th style="width: 150px;">Stock</th>
+                                        <th style="width: 150px;" class="text-center">Stock</th>
                                         <th style="width: 150px;">Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
-                                        <th style="width: 125px;">Delete</th>
+                                        <th style="width: 150px;"  class="text-center">Check To Forward</th>
+                                        <th style="width: 125px;" class="text-center">Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
   										                  <td v-html='product.id'></td>
   										                  <td v-html='product.name'></td>
-  										                  <td v-html='product.stock'></td>
+  										                  <td v-html='product.stock' class="text-right"></td>
   										                  <td>
                                           <div class="form-group">
                                               <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
@@ -122,7 +123,10 @@
                                               <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' v-on:change="get_batch_stock(index)" min="0"/>
                                           </div>
                                         </td>
-                                      	<td>
+                                        <td class="text-center">
+                                            <input type="checkbox" v-bind:name="'products['+index+'][forward]'" v-model="product.forward">
+                                        </td>
+                                      	<td class="text-center">
   	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
   	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
   	                                		</button>

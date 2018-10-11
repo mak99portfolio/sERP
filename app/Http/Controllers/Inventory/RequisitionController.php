@@ -350,7 +350,8 @@ class RequisitionController extends Controller{
                     'id'=>$product->id,
                     'hs_code'=>$product->hs_code,
                     'name'=>$product->name,
-                    'quantity'=>$row['quantity']
+                    'quantity'=>$row['quantity'],
+                    'forward'=>empty($row['forward'])?0:$row['forward']
                 ];
 
                 if(empty($row['batch_no'])){

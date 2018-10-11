@@ -161,24 +161,24 @@ Route::middleware('auth')->namespace('Report')->prefix('report')->group(function
 });
 
 //API
-Route::middleware('auth')->group(function(){
-    Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
-    Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
-    Route::get('/get-foreign-requisition/{ids}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionIds']);
-    Route::get('/get-local-requisition/{ids}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getLocalRequisitionByRequisitionIds']);
-    Route::get('/get-po/{ids}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOIds']);
-    Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
-    Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
-    Route::get('/get-all-product/{product_group_id}', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
-    Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
-    Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
-    Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
-    Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
-    Route::get('/get-vendor-bank-info/{id}', ['as' => 'get-vendor-bank-info', 'uses' => 'ApiController@getVendorBankInfoById']);
-    Route::get('/get-due-amount/{id}/{no}', ['as' => 'et-due-amount', 'uses' => 'ApiController@getDueAmount']);
-    Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'ApiController@getLcToCiList']);
-    Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
-});
+
+Route::get('/search-product', ['as' => 'search-product', 'uses' => 'ApiController@searchProduct']);
+Route::get('/get-product/{id}', ['as' => 'get-product', 'uses' => 'ApiController@getProductByProductId']);
+Route::get('/get-foreign-requisition/{ids}', ['as' => 'get-foreign-requisition', 'uses' => 'ApiController@getForeignRequisitionByRequisitionIds']);
+Route::get('/get-local-requisition/{ids}', ['as' => 'get-local-requisition', 'uses' => 'ApiController@getLocalRequisitionByRequisitionIds']);
+Route::get('/get-po/{ids}', ['as' => 'get-po', 'uses' => 'ApiController@getPOByPOIds']);
+Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPiItem']);
+Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
+Route::get('/get-all-product/{product_group_id}', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
+Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
+Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
+Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
+Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
+Route::get('/get-vendor-bank-info/{id}', ['as' => 'get-vendor-bank-info', 'uses' => 'ApiController@getVendorBankInfoById']);
+Route::get('/get-due-amount/{id}/{no}', ['as' => 'et-due-amount', 'uses' => 'ApiController@getDueAmount']);
+Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'ApiController@getLcToCiList']);
+Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
+
 
 //ACL (Access Control Limit)
 Route::middleware(['auth', 'hasPermission:access_to_acl'])

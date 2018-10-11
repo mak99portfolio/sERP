@@ -42,6 +42,8 @@ class ApiController extends Controller
     {
         $lc = LetterOfCredit::find($id);
 
+        //dd($lc);
+
         $lc_items = $lc->items;
         $pi_numbers = $lc->proforma_invoices;
 
@@ -53,12 +55,14 @@ class ApiController extends Controller
                 'unit_price' => $lc_item->unit_price,
             ];
         }
-        foreach ($pi_numbers as $pi_number) {
+        foreach ($pi_numbers as $pi_number){
+
             $numbers['pi_list'][] = [
                 'proforma_invoice_date' => $pi_number->proforma_invoice_date,
                 'proforma_invoice_no' => $pi_number->proforma_invoice_no,
                 'customer_code' => $pi_number->customer_code,
             ];
+
             $numbers['pi_terms'] = [
                 'port_of_loading_port_id' => $pi_number->port_of_loading_port_id,
                 'port_of_discharge_port_id' => $pi_number->port_of_discharge_port_id,
@@ -67,23 +71,26 @@ class ApiController extends Controller
                 'origin_of_goods_country_id' => $pi_number->origin_of_goods_country_id
             ];
         }
+
         $data['items'] = $items;
         $data['pi'] = $numbers;
        //dd($data);
         $data['vendor_name'] = $lc->vendor->name;
 
         $data['letter_of_credit_date'] = $lc->letter_of_credit_date;
-        $data['beneficiary_ac_no'] = $lc->beneficiary_ac_no;
-        $data['beneficiary_ac_name'] = $lc->beneficiary_ac_name;
-        $data['beneficiary_bank_name'] = $lc->beneficiary_bank_name;
-        $data['beneficiary_branch_name'] = $lc->beneficiary_branch_name;
+        $data['beneficiary_ac_no'] = $lc->beneficiary_vendor_bank->ac_no;
+        $data['beneficiary_ac_name'] = $lc->beneficiary_vendor_bank->ac_name;
+        $data['beneficiary_bank_name'] = $lc->beneficiary_vendor_bank->bank_name;
+        $data['beneficiary_branch_name'] = $lc->beneficiary_vendor_bank->branch_name;
 
         $data['letter_of_credit_value'] = $lc->letter_of_credit_value;
-        $data['issue_ac_no'] = $lc->issue_ac_no;
-        $data['issue_ac_name'] = $lc->issue_ac_name;
-        $data['issue_branch_name'] = $lc->issue_branch_name;
-        $data['issue_bank_name'] = $lc->issue_bank_name;
+        $data['issue_ac_no'] = $lc->issue_bank->account_no;
+        $data['issue_ac_name'] = $lc->issue_bank->account_name;
+        $data['issue_branch_name'] = $lc->issue_bank->branch_name;
+        $data['issue_bank_name'] = $lc->issue_bank->bank->name;
+
         return response()->json($data);
+
     }
 
     public function getProductByProductId($id)

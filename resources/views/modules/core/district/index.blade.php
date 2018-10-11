@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Division')
+@section('title', 'District')
 @section('content')
 
 <!-- page content -->
@@ -39,7 +39,7 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->division->name }}</td>
                                         <td>{{ $item->country->name }}</td>
-                                        <td class="text-center"><a href="{{ route('district.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                        <td class="text-center"><a href="{{ route('district.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

@@ -14,7 +14,6 @@ class CreateCnfsTable extends Migration
             $table->string('cnf_no');
             $table->integer('bill_of_lading_id')->unsigned();
             $table->foreign('bill_of_lading_id')->references('id')->on('bill_of_ladings')->onDelete('cascade');
-            $table->string('consignee');
             $table->string('bill_no');
             $table->date('bill_date');
             $table->string('bill_of_entry_no');
@@ -31,6 +30,8 @@ class CreateCnfsTable extends Migration
             // $table->double('cash_recieved_amount');
             $table->integer('vendor_id')->unsigned();
             $table->foreign('vendor_id')->references('id')->on('vendors')->onDelete('cascade');
+            $table->integer('consignee_company_profile_id')->nullable();
+            $table->foreign('consignee_company_profile_id')->references('id')->on('company_profiles')->onDelete('cascade');
             $table->text('note')->nullable();
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

@@ -136,7 +136,7 @@
                                     <br />
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="!itemlist.length > 0">Save</button>
+                                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="itemlist.length < 1">Save</button>
                                         <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
                                     </div>
                                 </div>
@@ -190,14 +190,14 @@
                                                     <td class="text-center">
                                                         <button ng-if="checkAvailable(product.id)" type="button" class="btn btn-danger btn-sm" ng-click="removeItemById(product.id)"><i class="fa fa-times"></i></button>
                                                         <button ng-if="!checkAvailable(product.id)" type="button" class="btn btn-success btn-sm" ng-click="addToItemList(product.id)"><i class="fa fa-plus"></i></button>
-                                                        
+
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="modal-footer">
-                                        
+
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                 </div>
             </div>
         </div>
-        
+
         {{-- Content end --}}
     </div>
     <div class="clearfix"></div>
@@ -244,7 +244,7 @@
                 $scope.warning('Please type and select a product first');
                 return;
             }
-            
+
             index = $scope.itemlist.findIndex(item => item.id==product_id);
             if(index < 0){
                 let url = "{{URL::to('get-product')}}/" + product_id;

@@ -16,27 +16,28 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left" action="{{ route('district.store') }}" method="POST" autocomplete="off">
-                            {{ csrf_field() }}
+                        <form class="form-horizontal form-label-left" action="{{ route('district.update',$district) }}" method="POST" autocomplete="off">
+                        <input name="_method" type="hidden" value="PUT"> 
+                        {{ csrf_field() }}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('country_id', 'Country', $country_list, $district->country_id, ['class'=>'form-control input-sm select2']) }}
                             </div>
                          
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('division_id', 'Division', $division_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('division_id', 'Division', $division_list, $district->division_id, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('name','District Name', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('name','District Name', $district->name, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('latitute','Latitute', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('latitute','Latitute', $district->latitute, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('longitude','Longitude', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('longitude','Longitude', $district->longitude, ['class'=>'form-control input-sm']) }}
                             </div>
                             <br>
                             <div class="col-md-12">
-                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                <button type="submit" class="btn btn-success btn-sm">Update</button>
                                 <a class="btn btn-default btn-sm" href="{{route('district.index')}}">Cancel</a>
                             </div>
                         </form>

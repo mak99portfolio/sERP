@@ -34,8 +34,9 @@ class DistrictController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:divisions',
-            'country_id' => 'required'
+            'name' => 'required|unique:districts',
+            'country_id' => 'required',
+            'division_id' => 'required'
         ]);
 
         $district = new District;
@@ -59,23 +60,25 @@ class DistrictController extends Controller
        // dd($country);
         $view = view($this->view_root.'edit');
         $view->with('country_list', Country::pluck('name', 'id')->prepend('--select country--', ''));
-        $view->with('division',$division);
+        $view->with('division_list', Division::pluck('name', 'id')->prepend('--select division--', ''));
+        $view->with('district',$district);
         return $view;
     }
 
 
-    public function update(Request $request, Division $division)
+    public function update(Request $request, District $district)
     {
 
         $request->validate([
-            'name' => 'required|unique:divisions,name,'.$division->id,
-            'country_id' => 'required'
+            'name' => 'required|unique:districts,name,'.$district->id,
+            'country_id' => 'required',
+            'division_id' => 'required'
         ]);
 
-        $division->fill($request->all());
-        $division->update();
-        Session::put('alert-success',$division->name . ' updated successfully!');
-        return redirect()->route('division.index');
+        $district->fill($request->all());
+        $district->update();
+        Session::put('alert-success',$district->name . ' updated successfully!');
+        return redirect()->route('district.index');
     }
 
 

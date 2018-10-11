@@ -17,6 +17,8 @@ class CreateDepartmentsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->text('description');
+            $table->integer('parent_department_id')->unsigned()->nullable();
+            $table->foreign('parent_department_id')->references('id')->on('departments')->onDelete('cascade');
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

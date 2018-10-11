@@ -21,11 +21,11 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <br />
                         @include('partials.flash_msg')
-                        <form id="cnf_store" class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST" autocomplete="off">
+                        <form class="form-horizontal form-label-left input_mask" action="{{ route('cnf.store') }}" method="POST" autocomplete="off">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bl_no','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index'), 'required']) }}
+                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bill_of_lading_id','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_date', 'readonly']) }}
@@ -74,7 +74,7 @@
                                     {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm', 'required']) }}
+                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee', $company_profile_list, null, ['class'=>'form-control input-sm select2', 'required', 'data-popup'=> route('company-profile.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm', 'required']) }}
@@ -214,7 +214,7 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
-                                        <button id='btn_submit' type="submit" class="btn btn-success">Save</button>
+                                        <button type="submit" class="btn btn-success" ng-disabled="particularlist.length < 1">Save</button>
                                         <a href="{{route('cnf.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                     </div>
                                 </div>
@@ -240,7 +240,7 @@
 
 
         $scope.searchBL = function () {
-            $scope.getLcAndCiDetails($scope.bl_no);
+            $scope.getLcAndCiDetails($scope.bill_of_lading_id);
         }
 
         $scope.getLcAndCiDetails = function(id){
@@ -309,7 +309,6 @@
             $scope.particularlist.splice(index,1);
         }
 
-
         $scope.warning = function(msg){
             var data = {
                 'title': 'Warning!',
@@ -320,17 +319,17 @@
             new PNotify(data);
         }
 
-    });
+         // for old data holding in the field start
 
-    $(function(){
-        //option A
-        $("#cnf_store").on('submit', function(event){
+            $scope.bill_of_lading_id = '{{ old('bill_of_lading_id') }}';
+            $scope.cnf_value = '{{ old('cnf_value') }}';
+            $scope.exchange_rate = '{{ old('exchange_rate') }}';
 
-            event.preventDefault();
+            if($scope.bill_of_lading_id){
+                $scope.searchBL();
+            }
 
-            alert('working...');
-
-        });
+        // for old data holding in the field end
 
     });
 </script>

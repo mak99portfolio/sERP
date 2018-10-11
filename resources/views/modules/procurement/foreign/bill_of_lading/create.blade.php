@@ -135,8 +135,8 @@
                                     {{ BootForm::select('exporter_vendor_id', 'Exporter', $exporter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('vendor.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('consignee','Consignee', null, ['class'=>'form-control input-sm','required']) }}
-                                    </div>
+                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee',$company_profile_list,null, ['class'=>'form-control input-sm select2', 'required', 'required','data-popup'=> route('company-profile.index')]) }}
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">LC Issue Bank</div>

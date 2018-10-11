@@ -94,6 +94,7 @@
                                                     <th>#</th>
                                                     <th>Product Name</th>
                                                     <th>UOM</th>
+                                                    <th>Req Qty</th>
                                                     <th>Quantity</th>
                                                     <th>Unit Price</th>
                                                     <th class="text-center">Total Amount</th>
@@ -108,7 +109,8 @@
                                                         </label>
                                                     </td>
                                                     <td><% item.uom %></td>
-                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"></td>
+                                                    <td><% max_quantity[$index]=item.quantity %></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]"  ng-change="quantityValidate(<% $index %>)">  </td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]"  ng-init="unit_price[$index]=0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
                                                     <td class="text-right">
                                                     <span ng-if="quantity[$index]*unit_price[$index]"><% amount[$index] = quantity[$index]*unit_price[$index] %></span>
@@ -118,9 +120,8 @@
                                             </tbody>
                                             <tfoot class="font-bold">
                                                 <tr>
-                                                    <td colspan="5" class="text-right">Total</td>
-
-                                                <td colspan="1" class="text-right"><% sum(amount) %></td>
+                                                    <td colspan="6" class="text-right">Total</td>
+                                                    <td colspan="1" class="text-right"><% sum(amount) %></td>
                                                 </tr>
                                             </tfoot>
                                     </table>
@@ -162,6 +163,7 @@
 
         $scope.itemlist = [];
         $scope.quantity = [];
+        $scope.max_quantity = [];
         $scope.unit_price = [];
         $scope.amount = [];
         $scope.searchReqNo = function () {
@@ -183,13 +185,22 @@
             return sum;
         }
 
+        $scope.quantityValidate = function(index){
+            if($scope.quantity[index] > $scope.max_quantity[index]){
+                $scope.quantity[index] = $scope.max_quantity[index];
+            }
+            if($scope.quantity[index]<1){
+                $scope.quantity[index] = 1;
+            }
+        }
+
     });
 
     $(function(){
         $('#purchase_order_date').daterangepicker({
             singleDatePicker: true,
             singleClasses: "picker_3",
-            minDate: moment().add('days', 1),
+            minDate: moment().add(1,'days'),
             locale: {
                 format: 'DD-MM-YYYY',
             }

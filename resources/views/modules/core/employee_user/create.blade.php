@@ -33,6 +33,11 @@
 
 
                                 {{ BootForm::select('employee_profile_id', 'Select Employee', $employees, null, ['class'=>'input-sm select2']) }}
+
+                                {{-- {{ BootForm::checkbox('existing_user', 'Select From Existing User', 'existing_user') }} --}}
+
+                                {{-- {{ BootForm::select('user_id', 'Select User To Associate', $users, null, ['class'=>'input-sm select2 hide']) }} --}}
+
                                 {{ BootForm::text('username', null, null, ['class'=>'input-sm']) }}
                                 {{ BootForm::text('email', null, null, ['class'=>'input-sm']) }}
                                 {{ BootForm::password('password', null, ['class'=>'input-sm']) }}

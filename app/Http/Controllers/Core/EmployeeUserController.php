@@ -38,7 +38,8 @@ class EmployeeUserController extends Controller{
         $data=[
             'user'=>new \App\User,
         	'employees'=>\App\EmployeeProfile::doesntHave('user')->pluck('name', 'id'),
-            'roles'=>Role::pluck('name', 'id')
+            'roles'=>Role::pluck('name', 'id'),
+            'users'=>\App\User::all()->pluck('name', 'id')
         ];
 
         return view($this->path('create'), $data);

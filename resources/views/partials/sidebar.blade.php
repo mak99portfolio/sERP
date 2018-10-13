@@ -44,6 +44,19 @@
           </li>
         </ul>
       </li>
+
+{{-- Sales --}}
+      <li><a><i class="fa fa-truck"></i> Sales <span class="fa fa-chevron-down"></span></a>
+        <ul class="nav child_menu">
+          <li><a>Setting <span class="fa fa-chevron-down"></span></a>
+            <ul class="nav child_menu">
+              <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+
+
       @can('access_to_inventory')
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">

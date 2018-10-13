@@ -18,8 +18,8 @@ class CreateInventoryIssuesTable extends Migration
             $table->increments('id');
             $table->string('inventory_issue_no')->unique();
             $table->integer('inventory_requisition_id')->unsigned()->nullable();
-            $table->integer('sender_working_unit_id')->unsigned();
-            $table->integer('requested_working_unit_id')->unsigned();
+            $table->integer('sender_working_unit_id')->unsigned()->nullable();
+            $table->integer('requested_working_unit_id')->unsigned()->nullable();
             $table->integer('forward_working_unit_id')->unsigned()->nullable();
             $table->integer('initial_approver_id')->unsigned()->nullable();
             $table->integer('final_approver_id')->unsigned()->nullable();

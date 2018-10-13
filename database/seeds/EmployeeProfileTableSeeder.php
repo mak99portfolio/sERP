@@ -9,7 +9,7 @@ class EmployeeProfileTableSeeder extends Seeder{
         $data=[
         	[
                 'creator_user_id'=>1,
-                'employee_id'=> '35451121',
+                'employee_no'=>'EMP001',
                 'name'=>'Libon Khan',
                 'national_id'=>'123456789',
                 'nationality'=>'Bangladeshi',
@@ -20,7 +20,7 @@ class EmployeeProfileTableSeeder extends Seeder{
             ],
         	[
                 'creator_user_id'=>1,
-                'employee_id'=> '65484564',
+                'employee_no'=>'EMP002',
                 'name'=>'Alvi Taz',
                 'national_id'=>'4654656789',
                 'nationality'=>'Bangladeshi',
@@ -28,6 +28,16 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'present_address'=>'Azimpur',
                 'permanent_address'=>'Lalbagh',
                 'user_id'=>3
+            ],[
+                'creator_user_id'=>1,
+                'employee_no'=>'EMP003',
+                'name'=>'Factory Manager',
+                'national_id'=>'4654656789',
+                'nationality'=>'Bangladeshi',
+                'blood_group_id'=>'4',
+                'present_address'=>'Azimpur',
+                'permanent_address'=>'Lalbagh',
+                'user_id'=>4
             ]
         ];
 
@@ -46,6 +56,13 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'department_id'=>1,
                 'designation_id'=>3,
                 'working_unit_id'=>2,
+                'employee_org_info_status_id'=>2,
+                'employee_org_info_type_id'=>1,
+            ],[
+                'employee_profile_id'=>3,
+                'department_id'=>1,
+                'designation_id'=>3,
+                'working_unit_id'=>3,
                 'employee_org_info_status_id'=>2,
                 'employee_org_info_type_id'=>1,
             ],

@@ -15,9 +15,7 @@ class IssueController extends Controller{
     public function index(){
 
         $working_unit=\Auth::user()->working_unit();
-        $inventory_issues=\App\InventoryIssue::whereHas('requisition', function($query) use($working_unit){
-            $query->where('requested_working_unit_id', $working_unit->id);
-        });
+        $inventory_issues=\App\InventoryIssue::where('requested_working_unit_id', $working_unit->id);
         
         $data=[
             'paginate'=>new Paginate($inventory_issues, ['id'=>'ID']),
@@ -59,7 +57,7 @@ class IssueController extends Controller{
 
         //dd($issue);
 
-        $requested_depot=$issue->requisition->requested_to;
+        $requested_depot=$issue->requested_to;
 
         $forward_units=[''=>'--select Working Unit--'];
 
@@ -83,11 +81,11 @@ class IssueController extends Controller{
 
             $products=[];
 
-            foreach($issue->allocated_items as $row){
+            foreach($issue->items as $row){
 
                 array_push($products, [
                     'id'=>$row->product_id,
-                    'quantity'=>$row->requested_quantity,
+                    'quantity'=>$row->issued_quantity,
                     'batch_no'=>$row->batch_no,
                     'expiration_date'=>$row->expiration_date,
                     'forward'=>$row->forward
@@ -181,7 +179,7 @@ class IssueController extends Controller{
 
         }
 
-        $issue->allocated_items()->delete();
+        $issue->items()->delete();
         $issue->forward_working_unit_id=$request->get('forward_working_unit_id');
         $issue->save();
 
@@ -196,7 +194,7 @@ class IssueController extends Controller{
             \App\InventoryIssueItem::create([
                 'inventory_issue_id'=>$issue->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$row['quantity'],
+                'issued_quantity'=>$row['quantity'],
                 'product_status_id'=>$issue->requisition->product_status_id,
                 'product_type_id'=>$issue->requisition->product_type_id,
                 'batch_no'=>$row['batch_no'],
@@ -230,13 +228,14 @@ class IssueController extends Controller{
 
             $requisition=$issue->requisition;
             $forwarded_issue->requisition()->associate($requisition);
-            $forwarded_issue->
+            $forwarded_issue->requisition_sender()->associate($issue->requisition_sender);
+            $forwarded_issue->requested_to()->associate($issue->forward_working_unit);
             $forwarded_issue->items()->createMany(
                 $issue->items()->where('forward', 1)->select(
                     'product_id',
                     'product_status_id',
                     'product_type_id',
-                    'requested_quantity',
+                    'issued_quantity',
                     'batch_no',
                     'expiration_date'
                 )->get()->toArray()

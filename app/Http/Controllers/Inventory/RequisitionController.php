@@ -207,6 +207,9 @@ class RequisitionController extends Controller{
             'inventory_issue_no'=>uCode('inventory_issues.inventory_issue_no', 'IIS00')
         ]);
 
+        $issue->requisition_sender()->associate($requisition->sender);
+        $issue->requested_to()->associate($requisition->requested_to);
+
         $issue_status=\App\InventoryIssueStatus::where('code', 'pending')->first();
         $issue->status()->associate($issue_status);
         $issue->save();
@@ -232,7 +235,7 @@ class RequisitionController extends Controller{
             \App\InventoryIssueItem::create([
                 'inventory_issue_id'=>$issue->id,
                 'product_id'=>$product->id,
-                'requested_quantity'=>$row['quantity'],
+                'issued_quantity'=>0,
                 'product_status_id'=>$requisition->product_status_id,
                 'product_type_id'=>$requisition->product_type_id
             ]);

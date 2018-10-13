@@ -15,6 +15,7 @@ class CreateInventoryRequisitionItemsTable extends Migration{
             $table->integer('product_status_id')->unsigned()->nullable();
             $table->integer('product_type_id')->unsigned()->nullable();
             $table->integer('requested_quantity')->unsigned()->default(0);
+            $table->integer('issued_quantity')->unsigned()->default(0);
             $table->softDeletes();
             $table->timestamps();
 

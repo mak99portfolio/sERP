@@ -9,17 +9,20 @@ class UsersTableSeeder extends Seeder{
         $data=[
         	[     
                 'name'=>'Shah Rakibur',
-                'username'=>'libon123',
-                'email'=>'swa@gmail.com',
+                'username'=>'libon',
+                'email'=>'libon@gmail.com',
                 'password'=>bcrypt('12345678')
-            ],
-        	[
+            ],[     
+                'name'=>'Alvi Ahmed',
+                'username'=>'alvi',
+                'email'=>'alvi@gmail.com',
+                'password'=>bcrypt('12345678')
+            ],[
                 'name'=>'Arif Khan',
                 'username'=>'arif123',
                 'email'=>'arif@gmail.com',
                 'password'=>bcrypt('12345678')
-            ],
-        	[
+            ],[
                 'name'=>'Asraful islam',
                 'username'=>'asraful3161',
                 'email'=>'asraful3161@gmail.com',

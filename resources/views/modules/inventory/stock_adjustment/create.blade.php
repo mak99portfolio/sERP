@@ -187,11 +187,11 @@ $(function(){
           vm.remote_data=null;
           vm.reset_active_record();
 
-          requested_depot_id=$('#working_unit_id').val();
+          requested_working_unit_id=$('#working_unit_id').val();
 
-          if(slug && requested_depot_id){
+          if(slug && requested_working_unit_id){
 
-            axios.get(this.config.base_url + '/' + requested_depot_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + requested_working_unit_id + '/' +slug).then(function(response){
 
               vm.remote_data=response.data;
               vm.active_record=vm.remote_data;
@@ -231,12 +231,12 @@ $(function(){
             var vm=this;
             var loading=$.loading();
 
-            requested_depot_id=$('#working_unit_id').val();
+            requested_working_unit_id=$('#working_unit_id').val();
             product_status_id=$('#product_status_id').val();
             product_type_id=$('#product_type_id').val();
 
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();

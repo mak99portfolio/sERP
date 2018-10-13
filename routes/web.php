@@ -96,6 +96,7 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
 Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'])->namespace('Inventory')->prefix('inventory')->group(function(){
 
     Route::resource('requisition', 'RequisitionController');
+    Route::get('incoming/requisition', 'RequisitionController@incoming')->name('requisition.incoming');
     Route::resource('issue', 'IssueController');
 
     Route::resource('receive', 'ReceiveController');
@@ -135,7 +136,7 @@ Route::middleware('auth')->namespace('Company')->prefix('company')->group(functi
     Route::resource('department', 'DepartmentController');
 });
 
-//Inventory without auth middleware
+//Inventory Related API without auth middleware
 Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
     Route::get('get-product-info/{working_unit}/{product_status}/{product_type}/{slug}', 'RequisitionController@get_product_info');

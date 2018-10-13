@@ -100,7 +100,7 @@ class StockReportController extends Controller{
 
                     $query->whereNotNull('final_approver_id')->doesntHave('receive')->whereHas('requisition', function($query) use($filters){
 
-                        $query->where('sender_depot_id', $filters['working_unit_id']);
+                        $query->where('sender_working_unit_id', $filters['working_unit_id']);
 
                     });
 
@@ -126,7 +126,7 @@ class StockReportController extends Controller{
 
                     $query->whereNull('final_approver_id')->whereHas('requisition', function($query) use($filters){
 
-                        $query->where('sender_depot_id', $filters['working_unit_id']);
+                        $query->where('sender_working_unit_id', $filters['working_unit_id']);
 
                     });
 

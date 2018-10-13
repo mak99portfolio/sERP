@@ -15,9 +15,7 @@ class CreateEmployeeOrgInfosTable extends Migration
     {
         Schema::create('employee_org_infos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('employee_profile_id')->unsigned()->nullable();
-            $table->foreign('employee_profile_id')->references('id')->on('employee_profiles')->onDelete('cascade');
-            
+            $table->integer('employee_profile_id')->unsigned()->nullable();            
             $table->integer('department_id')->unsigned()->nullable();
             $table->integer('designation_id')->unsigned()->nullable();
             $table->integer('working_unit_id')->unsigned()->nullable();
@@ -29,6 +27,8 @@ class CreateEmployeeOrgInfosTable extends Migration
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('employee_profile_id')->references('id')->on('employee_profiles')->onDelete('cascade');
         });
     }
 

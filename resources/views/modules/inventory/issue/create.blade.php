@@ -32,10 +32,10 @@
                                     {{ BootForm::select('inventory_requisition_type_id', 'Requisition Type', $inventory_requisition_types, $issue->requisition->inventory_requisition_type_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('sender_depot_id', 'Requisition Sender Depot', $working_units, $issue->requisition->sender_depot_id, ['class'=>'form-control input-sm', 'disabled']) }}
+                                    {{ BootForm::select('sender_working_unit_id', 'Requisition Sender Depot', $working_units, $issue->requisition->sender_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requested_depot_id', 'Requested Depot', $working_units, $issue->requisition->requested_depot_id, ['class'=>'form-control input-sm', 'disabled']) }}
+                                    {{ BootForm::select('requested_working_unit_id', 'Requested Depot', $working_units, $issue->requisition->requested_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, $issue->requisition->product_status_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
@@ -210,13 +210,13 @@ $(function(){
           vm.remote_data=null;
           vm.reset_active_record();
 
-          requested_depot_id=$('#requested_depot_id').val();
+          requested_working_unit_id=$('#requested_working_unit_id').val();
           product_status_id=$('#product_status_id').val();
           product_type_id=$('#product_type_id').val();
 
-          if(slug && requested_depot_id){
+          if(slug && requested_working_unit_id){
 
-            axios.get(this.config.base_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
 
               vm.remote_data=response.data;
               vm.active_record=vm.remote_data;
@@ -258,12 +258,12 @@ $(function(){
             var vm=this;
             var loading=$.loading();
 
-            requested_depot_id=$('#requested_depot_id').val();
+            requested_working_unit_id=$('#requested_working_unit_id').val();
             product_status_id=$('#product_status_id').val();
             product_type_id=$('#product_type_id').val();
 
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();
@@ -280,7 +280,7 @@ $(function(){
           var loading = $.loading();
           loading.open(3000);
 
-          var requested_depot_id=$('#requested_depot_id').val();
+          var requested_working_unit_id=$('#requested_working_unit_id').val();
           var product_status_id=$('#product_status_id').val();
           var product_type_id=$('#product_type_id').val();
           var product=vm.products[index].id;
@@ -288,7 +288,7 @@ $(function(){
 
           if(!slug) slug='reset';
 
-          axios.get(this.config.batch_stock_url + '/' + requested_depot_id + '/' + product_status_id + '/' + product_type_id + '/' + product + '/' +slug).then(function(response){
+          axios.get(this.config.batch_stock_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' + product + '/' +slug).then(function(response){
 
             vm.products[index].stock=response.data;
               

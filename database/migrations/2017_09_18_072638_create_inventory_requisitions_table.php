@@ -14,8 +14,8 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->date('date')->nullable();
 
             $table->integer('inventory_requisition_type_id')->unsigned();
-            $table->integer('sender_depot_id')->unsigned();
-            $table->integer('requested_depot_id')->unsigned();
+            $table->integer('sender_working_unit_id')->unsigned();
+            $table->integer('requested_working_unit_id')->unsigned();
             $table->integer('product_status_id')->unsigned()->nullable();
             $table->integer('product_type_id')->unsigned()->nullable();
             $table->integer('initial_approver_id')->unsigned()->nullable();
@@ -28,8 +28,8 @@ class CreateInventoryRequisitionsTable extends Migration{
             $table->timestamps();
 
             $table->foreign('inventory_requisition_type_id')->references('id')->on('inventory_requisition_types')->onDelete('cascade');
-            $table->foreign('sender_depot_id')->references('id')->on('working_units')->onDelete('cascade');
-            $table->foreign('requested_depot_id')->references('id')->on('working_units')->onDelete('cascade');
+            $table->foreign('sender_working_unit_id')->references('id')->on('working_units')->onDelete('cascade');
+            $table->foreign('requested_working_unit_id')->references('id')->on('working_units')->onDelete('cascade');
             $table->foreign('product_status_id')->references('id')->on('product_statuses')->onDelete('cascade');
             $table->foreign('product_type_id')->references('id')->on('product_types')->onDelete('cascade');
             $table->foreign('initial_approver_id')->references('id')->on('users')->onDelete('cascade');

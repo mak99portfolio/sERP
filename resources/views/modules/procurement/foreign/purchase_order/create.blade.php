@@ -178,10 +178,7 @@
             $http.get(url)
                     .then(function(response) {
                         $scope.itemlist = response.data;
-<<<<<<< HEAD
                         console.log($scope.quantity);
-=======
->>>>>>> 70c851594b94a0d9f9d47b3040f5cc5393e82be8
                     });
         }
         $scope.sum = function($arr){

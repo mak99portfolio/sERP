@@ -45,7 +45,6 @@
                                     {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2','required']) }}
                                 </div>
                             </div>
-
                             <div class="panel panel-default bg-light m-t-15">
                                 <div class="panel-heading">
                                     <div class="row">

@@ -71,7 +71,7 @@
                                             <span class="input-group-addon">
                                                 <i class="fa fa-search"></i> Search
                                             </span>
-                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product" required>
+                                            <input type="text" class="form-control input-lg" placeholder="Please add products to requisition list" id="search_product">
                                             <span class="input-group-addon">
                                                 <a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-list-ul"></i> Product List</a>
                                             </span>
@@ -124,7 +124,7 @@
                             <!--end table-->
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2, 'required']) }}
+                                    {{ BootForm::textarea('note','Notes',null,['class'=>'form-control input-sm','rows'=>2]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <br />
@@ -194,7 +194,7 @@
 <!-- /page content -->
 @endsection
 @section('script')
-<script src="{{asset('assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
+<script src="{{ asset('assets/vendors/jquery-ui/jquery-ui.js') }}"></script>
 <script>
     var app = angular.module('myApp', [], function($interpolateProvider) {
     $interpolateProvider.startSymbol('<%');
@@ -204,15 +204,15 @@
 
     $scope.itemlist = [];
     $('#search_product').autocomplete({
-    source: "{{route('search-product')}}",
-            minlength: 1,
-            autoFocus: true,
-            select: function (e, ui) {
-            $scope.addToItemList(ui.item);
-            $scope.$apply();
-            console.log($scope.itemlist);
-            }
-    });
+        source: "{{route('search-product')}}",
+                minlength: 1,
+                autoFocus: true,
+                select: function (e, ui) {
+                    $scope.addToItemList(ui.item);
+                    $scope.$apply();
+                    console.log($scope.itemlist);
+                }
+        });
     $scope.addToItemList = function(item){
     let url = "{{URL::to('get-product')}}/" + item.id;
     $http.get(url)
@@ -224,15 +224,15 @@
     // }
     }
     $scope.removeItem = function(index){
-    $scope.itemlist.splice(index);
+        $scope.itemlist.splice(index);
     }
     $scope.search = function (nameKey, myArray, indexName) {
-    for (var i = 0; i < myArray.length; i++) {
-    if (myArray[i][indexName] == nameKey) {
-    return i;
-    }
-    }
-    return null;
+        for (var i = 0; i < myArray.length; i++) {
+            if (myArray[i][indexName] == nameKey) {
+                return i;
+            }
+        }
+        return null;
     }
     });
 

@@ -141,11 +141,21 @@ class IssueController extends Controller{
 
             }
 
-            if(empty($row['forward']) && $balance < $row['quantity']){
+            if(empty($row['forward'])){
 
-                return back()
-                ->with('failed', 'Sorry!, your issue product quantity exceeds stock quantity.')
-                ->withInput();
+                if($row['quantity'] < 1){
+
+                    return back()
+                    ->with('failed', 'Sorry!, product quantity can\'t zero.')
+                    ->withInput();
+
+                }elseif($row['quantity'] > $balance){
+
+                    return back()
+                    ->with('failed', 'Sorry!, your issue product quantity exceeds stock quantity.')
+                    ->withInput();
+
+                }
 
             }
 

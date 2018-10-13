@@ -7,6 +7,7 @@ use App\LocalRequisitionItem;
 use App\RequisitionPurpose;
 use App\RequisitionPriority;
 use Illuminate\Http\Request;
+use App\Http\Requests\LocalRequisitionRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
@@ -48,27 +49,25 @@ class LocalRequisitionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
+    public function store(LocalRequisitionRequest $request){
 
         //dd($request->all());
-
-        $request->validate([
-
-            'requisition_title'=>'required|string',
-            'issued_date'=>'required|date|date_format:d-m-Y',
-            'date_expected'=>'required|date|date_format:d-m-Y|after:issued_date',
-            'requisition_purpose_id'=>'required|integer',
-            'requisition_priority_id'=>'required|integer'
-
-        ]);
+        if(!$request->item_validate()){
+            return redirect()->back();
+        }
 
         $requisition = new LocalRequisition;
         $requisition->fill($request->input());
         $requisition->creator_user_id = Auth::id();
         $requisition->company_id = 1;
-        $requisition->requisition_no = time();
+        $requisition->generateRequisitionNumber();
         $requisition->save();
-        $requisition->items()->createMany($request->items);
+        // $requisition->items()->createMany($request->items);
+        $items = Array();
+        foreach($request->items as $item){
+            array_push($items, new LocalRequisitionItem($item));
+        }
+        $requisition->items()->saveMany($items);
 
         Session::put('alert-success', 'Requisition created successfully. Requisition No: ' . $requisition->requisition_no);
         return redirect()->route('local-requisition.index');
@@ -83,7 +82,9 @@ class LocalRequisitionController extends Controller
      */
     public function show(LocalRequisition $localRequisition)
     {
-        //
+        $view = view($this->view_root.'show');
+        $view->with('localRequisition', $localRequisition);
+        return $view;
     }
 
     /**

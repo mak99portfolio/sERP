@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Local Requisition List')
+@section('title', 'Quotation List')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Local Requisition List</h2>
-                        <a href="{{route('local-requisition.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Requisition</a>
+                        <h2>Quotation List</h2>
+                        <a href="{{route('quotation.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Quotation</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -25,23 +25,23 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th width="25">#</th>
-                                        <th>Requisition No</th>
-                                        <th>Requisition Title</th>
+                                        <th>#</th>
+                                        <th>Vendor</th>
+                                        <th>Requisition</th>
+                                        <th>Delivery Date</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($requisition_list as $item)
                                     <tr>
-                                        <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->requisition_no}}</td>
-                                        <td>{{$item->requisition_title}}</td>
-                                        <td class="text-center" width="30">
-                                            <a href="{{ route('local-requisition.show',$item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <td>01</td>
+                                        <td>ewr</td>
+                                        <td>fsdf1</td>
+                                        <td>20/03/2018</td>
+                                        <td class="text-center">
+                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
-                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

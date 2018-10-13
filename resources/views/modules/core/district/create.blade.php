@@ -19,11 +19,11 @@
                         <form class="form-horizontal form-label-left" action="{{ route('district.store') }}" method="POST" autocomplete="off">
                             {{ csrf_field() }}
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('country.index')]) }}
                             </div>
                          
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('division_id', 'Division', $division_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('division_id', 'Division', $division_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('division.index')]) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('name','District Name', null, ['class'=>'form-control input-sm']) }}

@@ -44,20 +44,18 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     {{ BootForm::select('working_unit_type_id', 'Select Unit Type', $working_unit_types, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
-                             
-
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                             <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                {{ BootForm::select('company_id', 'Select Company', $companies, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('company_id', 'Select Company', $companies, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('company.index')]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 {{ BootForm::select('in_charge', 'Select In-charge', $users, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                {{ BootForm::select('country_id', 'Country', $countries,null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('country_id', 'Country', $countries,null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('country')]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 {{ BootForm::select('division_id', 'Division', $divisions,null, ['class'=>'form-control input-sm select2','id'=>'division_id']) }}

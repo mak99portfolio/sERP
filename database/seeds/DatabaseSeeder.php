@@ -82,5 +82,12 @@ class DatabaseSeeder extends Seeder
         
         $this->call(InventoryRequisitionStatusesTableSeeder::class);
         $this->call(InventoryIssueStatusesTableSeeder::class);
+        
+        // Sales
+        $this->call(CustomerTypeTableSeeder::class);
+
+
+
+
     }
 }

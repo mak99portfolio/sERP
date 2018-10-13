@@ -37,10 +37,10 @@
 
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                    {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2','required', 'data-popup'=> route('country.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('vendor_category_id', 'Vendor Category', $vendor_category_list, null, ['class'=>'form-control input-sm select2','required']) }}
+                                    {{ BootForm::select('vendor_category_id', 'Vendor Category', $vendor_category_list, null, ['class'=>'form-control input-sm select2','required', 'data-popup'=> route('vendor-category.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('zip_code','Zip Code', null, ['class'=>'form-control input-sm']) }}

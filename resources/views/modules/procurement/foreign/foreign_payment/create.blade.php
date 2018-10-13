@@ -30,10 +30,10 @@
                                 {{ BootForm::text('payment_date','Payment Date', null, ['class'=>'form-control input-sm datepicker']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('type_vendor_category_id', 'Select Vendor Type', $vendor_category_list , null,['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('type_vendor_category_id', 'Select Vendor Type', $vendor_category_list , null,['class'=>'form-control input-sm select2', 'data-popup'=> route('vendor-category.index')]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list , null,['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('vendor_id', 'Select Vendor', $vendor_list , null,['class'=>'form-control input-sm select2', 'data-popup'=> route('vendor.index')]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('payment_by_id', 'Payment By', $payment_by_list , null,['class'=>'form-control input-sm select2','ng-model'=>'payment_by_id']) }}

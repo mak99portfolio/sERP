@@ -16,7 +16,8 @@ class CreatePurchaseOrderItemsTable extends Migration
         Schema::create('purchase_order_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('quantity');
-            $table->double('unit_price');
+            $table->integer('foreign_requisition_id')->unsigned();
+            $table->foreign('foreign_requisition_id')->references('id')->on('foreign_requisitions')->onDelete('cascade');
             $table->integer('purchase_order_id')->unsigned();
             $table->foreign('purchase_order_id')->references('id')->on('purchase_orders')->onDelete('cascade');
             $table->integer('product_id')->unsigned();

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Requisition List')
+@section('title', 'Foreign Requisition List')
 @section('content')
 
 <!-- page content -->
@@ -38,7 +38,7 @@
                                         <td>{{$item->requisition_no}}</td>
                                         <td>{{$item->requisition_title}}</td>
                                         <td  width="30" class="text-center">
-                                            <a href="{{route('foreign-requisition.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('foreign-requisition.show',$item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

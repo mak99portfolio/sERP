@@ -36,19 +36,19 @@ class ForeignPurchaseOrderTableSeeder extends Seeder
         $items = [
             [
                 'quantity'=>20,
-                'unit_price'=>127,
+                'foreign_requisition_id'=>1,
                 'purchase_order_id'=>1,
                 'product_id'=>1
             ],
             [
                 'quantity'=>20,
-                'unit_price'=>121,
+                'foreign_requisition_id'=>1,
                 'purchase_order_id'=>1,
                 'product_id'=>2
             ],
             [
                 'quantity'=>20,
-                'unit_price'=>120,
+                'foreign_requisition_id'=>2,
                 'purchase_order_id'=>1,
                 'product_id'=>3
             ],

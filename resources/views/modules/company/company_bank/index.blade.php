@@ -7,7 +7,7 @@
           <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
                     <div class="x_title">
-                        <h2>Company</h2>
+                        <h2>Bank Information</h2>
                         <a href="{{ route('company-bank.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Bank Information</a>
                         <div class="clearfix"></div>
                     </div>

@@ -69,6 +69,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     //Local
     Route::resource('local-requisition', 'LocalRequisitionController');
     Route::resource('local-purchase-order', 'LocalPurchaseOrderController');
+    Route::resource('quotation', 'QuotationController');
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');
@@ -82,6 +83,12 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::get('/commercial-invoice-tracking', ['as' => 'commercial-invoice-tracking.index', 'uses' => 'CommercialInvoiceTrackingController@index']);
     Route::get('/commercial-invoice-tracking/create', ['as' => 'get-ci-with-tracking', 'uses' => 'CommercialInvoiceTrackingController@getCIWithTracking']);
     Route::post('/commercial-invoice-tracking/save-tracking_date', ['as' => 'save-tracking-date', 'uses' => 'CommercialInvoiceTrackingController@saveDate']);
+
+});
+//Sales
+Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
+    // Setting
+    Route::resource('customer-profile', 'CustomerProfileController');
 
 });
 

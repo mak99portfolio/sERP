@@ -26,7 +26,7 @@
                             {{ BootForm::tel('phone','Phone Number', null, ['class'=>'form-control input-sm']) }}
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                            {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=>route('country.index')]) }}
                         </div>
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             {{ BootForm::textarea('address','Address', null, ['class'=>'form-control input-sm', 'rows' => '3']) }}

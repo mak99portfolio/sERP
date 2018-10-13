@@ -32,7 +32,7 @@
                                     {{ BootForm::text('date', 'Date', null, ['class'=>'form-control input-sm datepicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('working_unit_id', 'Working Unit', $working_units, null, ['class'=>'form-control input-sm selectpicker']) }}
+                                    {{ BootForm::select('working_unit_id', 'Working Unit', $working_units, null, ['class'=>'form-control input-sm selectpicker','required', 'data-popup'=> route('working-unit.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('selected_pattern_id', 'Select Product Type', $product_types, null, ['class'=>'form-control input-sm selectpicker']) }}

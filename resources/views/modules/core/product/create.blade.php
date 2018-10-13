@@ -33,7 +33,7 @@
                                 {{ BootForm::text('hs_code','HS Code', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_category_id', 'Category', $product_category_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_category_id', 'Category', $product_category_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('product-category.index')]) }}
                                 {{-- <div class="form-group">
                                     <label>Select list:</label>
                                     <select class="form-control input-sm">
@@ -45,10 +45,10 @@
                                 {{ BootForm::select('product_type_id', 'Product Type', $product_type_list, null, ['class'=>'form-control input-sm select2']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_model_id', 'Product Model', $product_model_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_model_id', 'Product Model', $product_model_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('product-model.index')]) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_size_id', 'Product Size', $product_size_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_size_id', 'Product Size', $product_size_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('product-size.index')]) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('product_set_id', 'Product Set', $product_set_list, null, ['class'=>'form-control input-sm select2']) }}
@@ -100,7 +100,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('product_brand_id', 'Select Brand', $product_brand_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('product_brand_id', 'Select Brand', $product_brand_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('product-brand.index')]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('serial','Product Serial', null, ['class'=>'form-control input-sm']) }}
@@ -109,13 +109,13 @@
                                 {{ BootForm::text('part_number','Part No', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_of_origin_country_id', 'Country of Origin', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('country_of_origin_country_id', 'Country of Origin', $country_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('country.index')]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_of_manufacture_country_id', 'Country of Manufacture', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('country_of_manufacture_country_id', 'Country of Manufacture', $country_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('country.index')]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('unit_of_measurement_id', 'Unit of Measurement', $unit_of_measurement_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('unit_of_measurement_id', 'Unit of Measurement', $unit_of_measurement_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('unit-of-measurement.index')]) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default">

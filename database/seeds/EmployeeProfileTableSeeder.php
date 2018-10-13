@@ -15,7 +15,8 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'nationality'=>'Bangladeshi',
                 'blood_group_id'=>'3',
                 'present_address'=>'Lalbagh',
-                'permanent_address'=>'Mirpur'
+                'permanent_address'=>'Mirpur',
+                'user_id'=>2
             ],
         	[
                 'creator_user_id'=>1,
@@ -25,7 +26,8 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'nationality'=>'Bangladeshi',
                 'blood_group_id'=>'4',
                 'present_address'=>'Azimpur',
-                'permanent_address'=>'Lalbagh'
+                'permanent_address'=>'Lalbagh',
+                'user_id'=>3
             ]
         ];
 

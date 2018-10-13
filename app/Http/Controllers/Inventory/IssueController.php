@@ -16,7 +16,7 @@ class IssueController extends Controller{
 
         $working_unit=\Auth::user()->working_unit();
         $inventory_issues=\App\InventoryIssue::whereHas('requisition', function($query) use($working_unit){
-            $query->where('requested_depot_id', $working_unit->id);
+            $query->where('requested_working_unit_id', $working_unit->id);
         });
         
         $data=[
@@ -207,7 +207,7 @@ class IssueController extends Controller{
             if($approval=='final' && empty($row['forward'])){
 
                 \App\Stock::create([
-                    'working_unit_id'=>$issue->requisition->requested_depot_id,
+                    'working_unit_id'=>$issue->requisition->requested_working_unit_id,
                     'inventory_issue_id'=>$issue->id,
                     'product_id'=>$product->id,
                     'issue_quantity'=>$row['quantity'],
@@ -230,6 +230,7 @@ class IssueController extends Controller{
 
             $requisition=$issue->requisition;
             $forwarded_issue->requisition()->associate($requisition);
+            $forwarded_issue->
             $forwarded_issue->items()->createMany(
                 $issue->items()->where('forward', 1)->select(
                     'product_id',
@@ -245,12 +246,14 @@ class IssueController extends Controller{
 
             if(!$issue->items()->exists()) $issue->delete();
 
-            /*$issue->requisition->requested_depot_id=$request->get('forward_working_unit_id');
+            /*
+            $issue->requisition->requested_working_unit_id=$request->get('forward_working_unit_id');
             $issue->requisition->save();
             $issue->initial_approver_id=null;
             $issue->final_approver_id=null;
             $issue->save();
-            return redirect()->route('issue.index')->with('success', 'Requisition forwarded successfully!.');*/
+            return redirect()->route('issue.index')->with('success', 'Requisition forwarded successfully!.');
+            */
 
         }
 

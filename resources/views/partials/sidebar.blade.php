@@ -47,7 +47,8 @@
       @can('access_to_inventory')
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{ route('requisition.index') }}">Requisition</a></li>
+          <li><a href="{{ route('requisition.index') }}">Outgoing Requisition</a></li>
+          <li><a href="{{ route('requisition.incoming') }}">Incoming Requisition</a></li>
           <li><a href="{{ route('issue.index') }}">Issue</a></li>
           <li><a href="{{ route('receive.index') }}">Receive Item</a></li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>

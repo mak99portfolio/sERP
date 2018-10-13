@@ -18,7 +18,7 @@ class RequisitionController extends Controller{
 
         $working_unit=\Auth::user()->working_unit();
 
-        $inventory_requisitions=\App\InventoryRequisition::where('sender_depot_id', $working_unit->id);
+        $inventory_requisitions=\App\InventoryRequisition::where('sender_working_unit_id', $working_unit->id);
 
         $data=[
             'paginate'=>new Paginate($inventory_requisitions, ['inventory_requisition_no'=>'Requisition No']),
@@ -28,6 +28,12 @@ class RequisitionController extends Controller{
         //dd($data['paginate']);
 
         return view($this->path('index'), $data);
+
+    }
+
+    public function incoming(){
+
+        
 
     }
 
@@ -77,8 +83,8 @@ class RequisitionController extends Controller{
         $request->validate([
             'inventory_requisition_no'=>'required|unique:inventory_requisitions',
             'inventory_requisition_type_id'=>'required|integer',
-            'sender_depot_id'=>'required|integer',
-            'requested_depot_id'=>'required|integer|different:sender_depot_id',
+            'sender_working_unit_id'=>'required|integer',
+            'requested_working_unit_id'=>'required|integer|different:sender_working_unit_id',
             'product_status_id'=>'required|integer',
             'product_type_id'=>'required|integer',
             'date'=>'required|date',
@@ -175,8 +181,8 @@ class RequisitionController extends Controller{
         $request->validate([
             'inventory_requisition_no'=>'required|unique:inventory_requisitions,inventory_requisition_no,'.$requisition->id,
             'inventory_requisition_type_id'=>'required|integer',
-            'sender_depot_id'=>'required|integer',
-            'requested_depot_id'=>'required|integer|different:sender_depot_id',
+            'sender_working_unit_id'=>'required|integer',
+            'requested_working_unit_id'=>'required|integer|different:sender_working_unit_id',
             'product_status_id'=>'required|integer',
             'product_type_id'=>'required|integer',
             'date'=>'required|date',
@@ -233,7 +239,7 @@ class RequisitionController extends Controller{
 
         }
 
-        $requested_working_unit=\App\WorkingUnit::find($request->get('requested_depot_id'));
+        $requested_working_unit=\App\WorkingUnit::find($request->get('requested_working_unit_id'));
 
         foreach($requested_working_unit->employees as $row){
 

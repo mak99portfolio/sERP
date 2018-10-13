@@ -32,10 +32,10 @@
                                     {{ BootForm::select('inventory_requisition_type_id', 'Select Requisition Type', $inventory_requisition_types, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('sender_depot_id', 'Requisition Sender Depot', $sender_working_units, null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('sender_working_unit_id', 'Requisition Sender Depot', $sender_working_units, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requested_depot_id', 'Requested Depot', $requested_working_units, null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('requested_working_unit_id', 'Requested Depot', $requested_working_units, null, ['class'=>'form-control input-sm select2']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, null, ['class'=>'form-control input-sm select2']) }}
@@ -184,13 +184,13 @@ $(function(){
           vm.remote_data=null;
           vm.reset_active_record();
 
-          sender_depot_id=$('#sender_depot_id').val();
+          sender_working_unit_id=$('#sender_working_unit_id').val();
           product_status_id=$('#product_status_id').val();
           product_type_id=$('#product_type_id').val();
 
-          if(slug && sender_depot_id){
+          if(slug && sender_working_unit_id){
 
-            axios.get(this.config.base_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + sender_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
 
               vm.remote_data=response.data;
               vm.active_record=vm.remote_data;
@@ -229,12 +229,12 @@ $(function(){
             var vm=this;
             var loading=$.loading();
 
-            sender_depot_id=$('#sender_depot_id').val();
+            sender_working_unit_id=$('#sender_working_unit_id').val();
             product_status_id=$('#product_status_id').val();
             product_type_id=$('#product_type_id').val();
 
             loading.open(3000);
-            axios.get(this.config.old_data_url + '/' + sender_depot_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
+            axios.get(this.config.old_data_url + '/' + sender_working_unit_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
               vm.products=response.data;                
               loading.close();

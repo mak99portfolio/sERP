@@ -13,11 +13,11 @@ class InventoryRequisition extends Model{
 	}
 
 	public function sender(){
-		return $this->belongsTo('App\WorkingUnit', 'sender_depot_id');
+		return $this->belongsTo('App\WorkingUnit', 'sender_working_unit_id');
 	}
 
 	public function requested_to(){
-		return $this->belongsTo('App\WorkingUnit', 'requested_depot_id');
+		return $this->belongsTo('App\WorkingUnit', 'requested_working_unit_id');
 	}
 
 	public function item_status(){

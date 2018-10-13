@@ -49,7 +49,9 @@ class AccessControlSeeder extends Seeder{
 
     	//Data for role user pivot
     	$data=[
-    		['role_id'=>1, 'model_type'=>'App\User', 'model_id'=>$dev->id]
+            ['role_id'=>1, 'model_type'=>'App\User', 'model_id'=>$dev->id],
+            ['role_id'=>2, 'model_type'=>'App\User', 'model_id'=>2],
+    		['role_id'=>2, 'model_type'=>'App\User', 'model_id'=>3],
     	];
 
     	\DB::table('model_has_roles')->insert($data);

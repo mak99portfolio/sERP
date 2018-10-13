@@ -37,7 +37,10 @@
                                         <td>{{ $item->expire_date }}</td>
                                         <td class="text-center">
                                             <a href="{{route('company-license.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('company-license.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a>
                                         </td>
+                                 
+                                    
                                     </tr>
                                     @endforeach
                                 </tbody>

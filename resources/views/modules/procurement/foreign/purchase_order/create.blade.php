@@ -91,11 +91,11 @@
                                                     <th colspan="8">Product Table</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Req No & Date</th>
+                                                    <th>#</th>
                                                     <th>Product Name</th>
+                                                    <th>UOM</th>
                                                     <th>Req Qty</th>
                                                     <th>Quantity</th>
-                                                    <th>UOM</th>
                                                     <th>Unit Price</th>
                                                     <th class="text-center">Total Amount</th>
                                                 </tr>
@@ -121,7 +121,7 @@
                                             <tfoot class="font-bold">
                                                 <tr>
                                                     <td colspan="6" class="text-right">Total</td>
-                                                    <td colspan="1" class="text-right"><%  %></td>
+                                                    <td colspan="1" class="text-right"><% sum(amount) %></td>
                                                 </tr>
                                             </tfoot>
                                     </table>
@@ -175,7 +175,6 @@
             $http.get(url)
                     .then(function(response) {
                         $scope.itemlist = response.data;
-                        console.log($scope.itemlist);
                     });
         }
         $scope.sum = function($arr){

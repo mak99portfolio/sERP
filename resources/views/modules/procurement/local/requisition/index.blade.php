@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Requisition List')
+@section('title', 'Local Requisition List')
 @section('content')
 
 <!-- page content -->
@@ -25,9 +25,9 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
-                                        <th>Requisition Title</th>
+                                        <th width="25">#</th>
                                         <th>Requisition No</th>
+                                        <th>Requisition Title</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
@@ -35,10 +35,10 @@
                                     @foreach($requisition_list as $item)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->requisition_title}}</td>
                                         <td>{{$item->requisition_no}}</td>
-                                        <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <td>{{$item->requisition_title}}</td>
+                                        <td class="text-center" width="30">
+                                            <a href="{{ route('local-requisition.show',$item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

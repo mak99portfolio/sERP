@@ -7,21 +7,12 @@ use Session;
 
 class ForeignRequisitionRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
@@ -48,7 +39,7 @@ class ForeignRequisitionRequest extends FormRequest
                 }
             }
         }else{
-            Session::put('alert-danger', 'You need to select item(s) for requisition');
+            Session::put('alert-danger', 'You need to select product(s) for requisition');
             return false;
         }
     }

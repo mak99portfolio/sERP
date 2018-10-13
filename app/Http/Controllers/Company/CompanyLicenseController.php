@@ -54,12 +54,25 @@ class CompanyLicenseController extends Controller
 
     public function edit(CompanyLicense $companyLicense)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('company_profile_list', CompanyProfile::pluck('name', 'id')->prepend('-- Select Company --', ''));
+        $view->with('companyLicense',$companyLicense);
+        return $view;
     }
 
     public function update(Request $request, CompanyLicense $companyLicense)
     {
-        //
+        $request->validate([
+            'company_profile_id'=> 'required',
+            'license_name'=> 'required',
+            'license_no'=> 'required',
+            'renewed_date'=> 'required',
+            'expire_date'=> 'required'
+        ]);
+        $companyLicense->fill($request->all());
+        $companyLicense->update();
+        Session::put('alert-success', $companyLicense->license_name .' updated successfully!');
+        return redirect()->route('company-license.index');
     }
 
     public function destroy(CompanyLicense $companyLicense)

@@ -31,6 +31,14 @@ class CompanyBankController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'account_no' => 'required|unique:company_banks',
+            'account_name' => 'required',
+            'bank_id' => 'required',
+            'company_id' => 'required',
+            'branch_name' => 'required',
+            'swift_code' => 'required',
+        ]);
         $bank = new CompanyBank;
         $bank->fill($request->input());
         $bank->creator_user_id = Auth::id();
@@ -48,12 +56,29 @@ class CompanyBankController extends Controller
 
     public function edit(CompanyBank $companyBank)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('company_list', CompanyProfile::pluck('name', 'id')->prepend('--select company--', ''));
+        $view->with('bank_list', Bank::pluck('name', 'id')->prepend('--select bank--', ''));
+        $view->with('companyBank', $companyBank);
+        return $view;
     }
 
     public function update(Request $request, CompanyBank $companyBank)
     {
-        //
+
+        $request->validate([
+            'account_no' => 'required|unique:company_banks,account_no,'.$companyBank->id,
+            'account_name' => 'required',
+            'bank_id' => 'required',
+            'company_id' => 'required',
+            'branch_name' => 'required',
+            'swift_code' => 'required',
+        ]);
+      
+        $companyBank->fill($request->all());
+        $companyBank->update();
+        Session::put('alert-success',$companyBank->name . ' updated successfully!');
+        return redirect()->route('company-bank.index');
     }
 
     public function destroy(CompanyBank $companyBank)

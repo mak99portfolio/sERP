@@ -37,7 +37,15 @@ class CommercialInvoiceController extends Controller {
     public function store(Request $request) {
   // dd($request->input());
         $request->validate([
-            'commercial_invoice_no' => 'required',
+            'commercial_invoice_no' => 'required|unique:commercial_invoices',
+            'date' => 'required',
+            'letter_of_credit_id' => 'required',
+            'vessel_no' => 'required',
+            'port_of_loading_port_id' => 'required',
+            'port_of_discharge_port_id' => 'required',
+            'final_destination_city_id' => 'required',
+            'origin_of_goods_country_id' => 'required',
+            'final_destination_country_id' => 'required',
         ]);
         $commercial_invoice = new CommercialInvoice;
         $commercial_invoice->fill($request->input());

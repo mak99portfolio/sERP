@@ -280,12 +280,23 @@ class ApiController extends Controller
         // }
 
         // return response()->json($data);
-        
-        return response()->json(ForeignRequisition::with(['items' => function($query){
-            $query->with(['product'=>function($query){
-                $query->with('unit_of_measurement');
-            }]);
-        }])->find(explode(',', $ids)));
+        foreach (explode(',', $ids) as $id) {
+            $requisition = ForeignRequisition::find($id); 
+            foreach($requisition->availableItems() as $item){
+                if($item->quantity < 1){
+                    continue;
+                }
+                $data[] = [
+                    'requisition_id' => $requisition->id,
+                    'requisition_no' => $requisition->requisition_no,
+                    'product_id' => $item->product_id,
+                    'product_name' => $item->product->name,
+                    'quantity' => $item->quantity,
+                    'uom' => $item->product->unit_of_measurement->name,
+                ];
+            }
+        }
+        return response()->json($data);
     }
 
     public function getLocalRequisitionByRequisitionIds($ids)

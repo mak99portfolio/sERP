@@ -43,7 +43,7 @@
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'form-control input-sm']) }}
+                                                {{ BootForm::select('working_unit_id', 'Select Working Unit', $working_units, null, ['class'=>'input-sm select2','required','data-popup'=> route('working-unit.index')]) }}
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">

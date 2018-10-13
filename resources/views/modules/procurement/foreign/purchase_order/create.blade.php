@@ -91,39 +91,41 @@
                                                     <th colspan="8">Product Table</th>
                                                 </tr>
                                                 <tr>
-                                                    <th>Req No & Date</th>
+                                                    <th>Req No</th>
                                                     <th>Product Name</th>
                                                     <th>Req Qty</th>
                                                     <th>Quantity</th>
                                                     <th>UOM</th>
-                                                    <th>Unit Price</th>
-                                                    <th class="text-center">Total Amount</th>
+                                                    {{-- <th>Unit Price</th>
+                                                    <th class="text-center">Total Amount</th> --}}
                                                 </tr>
                                             </thead>
-                                            <tbody ng-repeat="req in itemlist">
-                                                <tr ng-repeat="item in req.items">
-                                                    <td class="text-center" ng-if="$index == 0" rowspan="<% req.items.length %>"><% req.requisition_no %> <br><% req.issued_date %><input type="hidden" ng-disabled="!checked[$index]" class="form-control" name="items[<% $parent.$index %>][<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                            <tbody ng-repeat="item in itemlist">
+                                                <tr>
+                                                    <td class="text-center"><% item.requisition_no %></td>
                                                     <td class="checkbox">
                                                         <label class="control-label">
-                                                            <input type="checkbox" ng-init="checked[$parent.$index][$index] = true" ng-model="checked[$parent.$index][$index]"><% item.product.name %>
+                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.product_name %>
+                                                            <input type="hidden" ng-disabled="!checked[$index]" class="form-control" name="items[<% $index %>][foreign_requisition_id]" value="<% item.requisition_id %>">
+                                                            <input type="hidden" ng-disabled="!checked[$index]" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
                                                         </label>
                                                     </td>
-                                                    <td><% max_quantity[$parent.$index][$index]=item.quantity %></td>
-                                                    <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="quantity[$parent.$index][$index]" ng-init="quantity[$parent.$index][$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $parent.$index %>][<% $index %>][quantity]"  ng-change="quantityValidate(<% $index %>)">  </td>
-                                                    <td><% item.product.unit_of_measurement.name %></td>
-                                                    <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="unit_price[$parent.$index][$index]" ng-init="unit_price[$parent.$index][$index]=0" class="form-control input-sm" type="number" name="items[<% $parent.$index %>][<% $index %>][unit_price]" required></td>
+                                                    <td><% max_quantity[$index]=item.quantity %></td>
+                                                    <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]">  </td>
+                                                    <td><% item.uom %></td>
+                                                    {{-- <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required></td>
                                                     <td class="text-right">
-                                                    <span ng-if="quantity[$parent.$index][$index]*unit_price[$parent.$index][$index]"><% amount[$parent.$index][$index] = quantity[$parent.$index][$index]*unit_price[$parent.$index][$index] %></span>
-                                                    <span ng-if="!(quantity[$parent.$index][$index]*unit_price[$parent.$index][$index])">0</span>
-                                                    </td>
+                                                    <span ng-if="quantity[$index]*unit_price[$index]"><% amount[$index] = quantity[$index]*unit_price[$index] %></span>
+                                                    <span ng-if="!(quantity[$index]*unit_price[$index])">0</span>
+                                                    </td> --}}
                                                 </tr>
                                             </tbody>
-                                            <tfoot class="font-bold">
+                                            {{-- <tfoot class="font-bold">
                                                 <tr>
                                                     <td colspan="6" class="text-right">Total</td>
                                                     <td colspan="1" class="text-right"><%  %></td>
                                                 </tr>
-                                            </tfoot>
+                                            </tfoot> --}}
                                     </table>
                                 </div>
                                 </div>
@@ -175,7 +177,7 @@
             $http.get(url)
                     .then(function(response) {
                         $scope.itemlist = response.data;
-                        console.log($scope.itemlist);
+                        console.log($scope.quantity);
                     });
         }
         $scope.sum = function($arr){

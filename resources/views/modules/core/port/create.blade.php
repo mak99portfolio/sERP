@@ -20,10 +20,10 @@
                                 {{ BootForm::text('name', 'Port Name', null, ['class'=>'form-control input-sm']) }}
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('country_id', 'Country', $country_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('country.index')]) }}
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('city_id', 'City', $city_list, null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('city_id', 'City', $city_list, null, ['class'=>'form-control input-sm select2', 'data-popup'=> route('city.index')]) }}
                           </div>
                           <div class="col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('contact_person', 'Contact Person Name', null, ['class'=>'form-control input-sm']) }}

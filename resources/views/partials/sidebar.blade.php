@@ -25,10 +25,9 @@
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{Route('local-requisition.index')}}">Local Requisition</a>
-              </li>
-              <li><a href="{{route('local-purchase-order.index')}}">Purchase Order</a>
-              </li>
+              <li><a href="{{Route('local-requisition.index')}}">Local Requisition</a></li>
+              <li><a href="{{Route('quotation.index')}}">Quotation</a></li>
+              <li><a href="{{route('local-purchase-order.index')}}">Purchase Order</a></li>
             </ul>
           </li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>

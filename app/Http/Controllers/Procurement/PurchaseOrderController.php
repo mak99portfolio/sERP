@@ -29,7 +29,7 @@ class PurchaseOrderController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('requisition_list', ForeignRequisition::all());
+        $view->with('requisition_list', ForeignRequisition::availableRequisitions());
         $view->with('port_list', Port::pluck('name','id')->prepend('-- Select Port --', ''));
         $view->with('country_list', Country::pluck('name','id')->prepend('-- Select Country --', ''));
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
@@ -40,9 +40,7 @@ class PurchaseOrderController extends Controller
 
     public function store(ForeignPurchaseOrderRequest $request){
 
-        //dd($request->all());
-
-        // dd();
+        // dd($request->items);
         $request->validate([
             'foreign_requisition_ids'=>'required',
             'vendor_id'=>'required',

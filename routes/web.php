@@ -69,6 +69,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     //Local
     Route::resource('local-requisition', 'LocalRequisitionController');
     Route::resource('local-purchase-order', 'LocalPurchaseOrderController');
+    Route::resource('quotation', 'QuotationController');
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');

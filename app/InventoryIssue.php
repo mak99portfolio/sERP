@@ -40,4 +40,8 @@ class InventoryIssue extends Model{
 		return $this->belongsTo('App\InventoryIssueStatus', 'inventory_issue_status_id');
 	}
 
+	public function forward_working_unit(){
+		return $this->belongsTo('\App\WorkingUnit', 'forward_working_unit_id');
+	}
+
 }

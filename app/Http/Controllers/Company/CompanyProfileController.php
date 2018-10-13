@@ -29,6 +29,11 @@ class CompanyProfileController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:company_profiles',
+            'email' => 'required|unique:company_profiles',
+        ]);
+
         $company_profile = new CompanyProfile;
         $company_profile->fill($request->input());
         $company_profile->creator_user_id = Auth::id();
@@ -46,12 +51,25 @@ class CompanyProfileController extends Controller
 
     public function edit(CompanyProfile $companyProfile)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('select country', ''));
+        $view->with('companyProfile',$companyProfile );
+        return $view;
     }
 
     public function update(Request $request, CompanyProfile $companyProfile)
     {
-        //
+        {
+            $request->validate([
+                'name' => 'required|unique:company_profiles,name,'.$companyProfile->id,
+                'email' => 'required|unique:company_profiles,email,'.$companyProfile->id,
+            ]);
+
+            $companyProfile->fill($request->all());
+            $companyProfile->update();
+            Session::put('alert-success',$companyProfile->name . ' updated successfully!');
+            return redirect()->route('company-profile.index');
+        }
     }
 
     public function destroy(CompanyProfile $companyProfile)

@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LocalRequisition extends Model
 {
+    use SoftDeletes;
     protected $guarded = ['id'];
     protected $fillable = [
         'requisition_priority_id',
@@ -21,10 +23,14 @@ class LocalRequisition extends Model
         return $this->hasMany('App\LocalRequisitionItem');
     }
     public function priority(){
-        return $this->belongsTo('App\RequisitionPriority');
+        return $this->belongsTo('App\RequisitionPriority', 'requisition_priority_id');
     }
     public function purpose(){
-        return $this->belongsTo('App\RequisitionPurpose');
+        return $this->belongsTo('App\RequisitionPurpose', 'requisition_purpose_id');
+    }
+    public function purchase_orders()
+    {
+        return $this->belongsToMany('App\LocalPurchaseOrder');
     }
     public static function availableRequisitions()
     {
@@ -47,5 +53,17 @@ class LocalRequisition extends Model
             $this->items[$key]->quantity -= LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
         }
         return $this->items;
+    }
+
+    public function generateRequisitionNumber()
+    {
+        $serial = $this->count_last_serial() + 1;
+        $this->requisition_no = 'LOCAL-REQ-' . date('Y-m-') . str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+    private function count_last_serial()
+    {
+        return LocalRequisition::whereYear('created_at', date('Y'))
+            ->whereMonth('created_at', date('m'))
+            ->count();
     }
 }

@@ -205,7 +205,7 @@ class RequisitionController extends Controller{
         $issue->status()->associate($issue_status);
         $issue->save();
 
-        $requisition->issue()->save($issue);
+        $requisition->issues()->save($issue);
 
         $requisition->save();
 

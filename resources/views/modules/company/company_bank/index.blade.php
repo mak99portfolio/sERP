@@ -22,7 +22,7 @@
                                         <th>Account Name</th>
                                         <th>Bank Name</th>
                                         <th>Branch Name</th>
-                                        <th>Swift Code</th>
+                                        <th>Swift Code</th> <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -33,7 +33,9 @@
                                         <td>{{ $item->account_name }}</td>
                                         <td>{{ $item->bank->name }}</td>
                                         <td>{{ $item->branch_name }}</td>
-                                        <td>{{ $item->swift_code }}</td>
+                                        <td>{{ $item->swift_code }}</td>  
+                                        <td class="text-center"><a href="{{ route('company-bank.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                 
                                     </tr>
                                     @endforeach
                                 </tbody>

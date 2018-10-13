@@ -18,6 +18,7 @@ class CreateInventoryIssueItemsTable extends Migration{
             $table->integer('requested_quantity')->unsigned()->default(0);
             $table->string('batch_no')->nullable();
             $table->date('expiration_date')->nullable();
+            $table->boolean('forward')->default(0);
             $table->softDeletes();
             $table->timestamps();
 

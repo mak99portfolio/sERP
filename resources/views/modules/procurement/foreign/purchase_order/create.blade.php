@@ -91,13 +91,23 @@
                                                     <th colspan="8">Product Table</th>
                                                 </tr>
                                                 <tr>
+<<<<<<< HEAD
                                                     <th>Req No</th>
+=======
+                                                    <th>#</th>
+>>>>>>> 70c851594b94a0d9f9d47b3040f5cc5393e82be8
                                                     <th>Product Name</th>
+                                                    <th>UOM</th>
                                                     <th>Req Qty</th>
                                                     <th>Quantity</th>
+<<<<<<< HEAD
                                                     <th>UOM</th>
                                                     {{-- <th>Unit Price</th>
                                                     <th class="text-center">Total Amount</th> --}}
+=======
+                                                    <th>Unit Price</th>
+                                                    <th class="text-center">Total Amount</th>
+>>>>>>> 70c851594b94a0d9f9d47b3040f5cc5393e82be8
                                                 </tr>
                                             </thead>
                                             <tbody ng-repeat="item in itemlist">
@@ -123,7 +133,7 @@
                                             {{-- <tfoot class="font-bold">
                                                 <tr>
                                                     <td colspan="6" class="text-right">Total</td>
-                                                    <td colspan="1" class="text-right"><%  %></td>
+                                                    <td colspan="1" class="text-right"><% sum(amount) %></td>
                                                 </tr>
                                             </tfoot> --}}
                                     </table>
@@ -177,7 +187,10 @@
             $http.get(url)
                     .then(function(response) {
                         $scope.itemlist = response.data;
+<<<<<<< HEAD
                         console.log($scope.quantity);
+=======
+>>>>>>> 70c851594b94a0d9f9d47b3040f5cc5393e82be8
                     });
         }
         $scope.sum = function($arr){

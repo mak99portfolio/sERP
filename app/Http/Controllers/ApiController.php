@@ -100,6 +100,7 @@ class ApiController extends Controller
         $goods_in_transit = CommercialInvoiceItem::where('product_id', $id)->sum('quantity');
         $pending = PurchaseOrderItem::where('product_id', $id)->sum('quantity');
         $total_quantity = $physical_stock + $goods_in_transit + $pending;
+        $total_local_quantity = $physical_stock + $pending;
         $data = [
             'id' => $product->id,
             'name' => $product->name,
@@ -109,6 +110,7 @@ class ApiController extends Controller
             'goods_in_transit' => $goods_in_transit,
             'pending' => $pending,
             'total_quantity' => $total_quantity,
+            'total_local_quantity' => $total_local_quantity,
         ];
         return response()->json($data);
     }
@@ -200,8 +202,8 @@ class ApiController extends Controller
 
         // foreach (explode(',', $ids) as $id) {
 
-        //     $req = ForeignRequisition::find($id);            
-            
+        //     $req = ForeignRequisition::find($id);
+
         //     $purchase_orders=$req->purchase_orders;
 
 
@@ -242,7 +244,7 @@ class ApiController extends Controller
 
         //     }
 
-            
+
         //     foreach ($req->items as $item) {
         //         $item_exist = false;
         //         foreach ($data as $key => $value) {

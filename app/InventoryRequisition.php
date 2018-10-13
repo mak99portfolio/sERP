@@ -52,8 +52,8 @@ class InventoryRequisition extends Model{
 		return $this->belongsTo('App\InventoryRequisitionStatus', 'inventory_requisition_status_id');
 	}
 
-	public function issue(){
-		return $this->hasOne('App\InventoryIssue');
+	public function issues(){
+		return $this->hasMany('App\InventoryIssue');
 	}
 
 	public function items(){

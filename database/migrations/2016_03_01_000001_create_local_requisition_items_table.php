@@ -16,8 +16,10 @@ class CreateLocalRequisitionItemsTable extends Migration
         Schema::create('local_requisition_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('local_requisition_id');
-            $table->integer('product_id');
-            $table->integer('quantity');
+            $table->foreign('local_requisition_id')->references('id')->on('local_requisitions')->onDelete('cascade');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('quantity')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

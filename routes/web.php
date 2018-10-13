@@ -85,6 +85,12 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::post('/commercial-invoice-tracking/save-tracking_date', ['as' => 'save-tracking-date', 'uses' => 'CommercialInvoiceTrackingController@saveDate']);
 
 });
+//Sales
+Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
+    // Setting
+    Route::resource('customer-profile', 'CustomerProfileController');
+
+});
 
 //Inventory
 Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'])->namespace('Inventory')->prefix('inventory')->group(function(){

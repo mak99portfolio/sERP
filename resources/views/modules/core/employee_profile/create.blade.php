@@ -110,7 +110,7 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::text('employee_id', null, null, ['class'=>'input-sm']) }}
+                            {{ BootForm::text('employee_no', null, $employee_no, ['class'=>'input-sm', 'readonly']) }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             {{ BootForm::text('name', null, null, ['class'=>'input-sm']) }}

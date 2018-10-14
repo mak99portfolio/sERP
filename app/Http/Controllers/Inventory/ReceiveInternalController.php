@@ -178,7 +178,7 @@ class ReceiveInternalController extends Controller{
 
             array_push($products, [
                 'id'=>$row->product_id,
-                'quantity'=>$related_issue->items()->where('product_id', $row->product_id)->first()->requested_quantity,
+                'quantity'=>$related_issue->items()->where('product_id', $row->product_id)->first()->issued_quantity,
                 'requisition_quantity'=>$related_issue->requisition->items()->where('product_id', $row->product_id)->first()->requested_quantity,
                 'return_quantity'=>$return_quantity,
                 'return_status_id'=>$return_status_id

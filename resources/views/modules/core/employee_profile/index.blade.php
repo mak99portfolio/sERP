@@ -28,7 +28,7 @@
                             <table class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr class='primary'>
-                                        <th width="25">Employee_id</th>
+                                        <th width="25">Employee No</th>
                                         <th>Name</th>
                                         <th>Blood Group</th>
                                         <th>Nationality</th>
@@ -42,7 +42,7 @@
                                 <tbody>
                                     @foreach($paginate->table as $row)
                                     <tr>
-                                        <td>{{ $row->employee_id }}</td>
+                                        <td>{{ $row->employee_no }}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ empty($row->blood_group->name)?'':$row->blood_group->name }}</td>
                                         <td>{{ $row->nationality }}</td>

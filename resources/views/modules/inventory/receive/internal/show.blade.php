@@ -73,8 +73,8 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $stock->product->hs_code }}</td>
                                         <td>{{ $stock->product->name }}</td>
-                                        <td>{{ $inventory_receive->internal->issue->requisition->items()->where('product_id', $stock->product_id)->first()->requested_quantity }}</td>
-                                        <td>{{ $inventory_receive->internal->issue->items()->where('product_id', $stock->product_id)->first()->requested_quantity }}</td>
+                                        <td>{{ $inventory_receive->internal->issue->requisition->items()->where('product_id', $stock->product_id)->first()->issued_quantity }}</td>
+                                        <td>{{ $inventory_receive->internal->issue->items()->where('product_id', $stock->product_id)->first()->issued_quantity }}</td>
                                         <td>{{ $inventory_receive->internal->issue->return_items()->where('product_id', $stock->product_id)->first()->return_quantity ?? 0 }}</td>
                                         <td>{{ $inventory_receive->internal->issue->return_items()->where('product_id', $stock->product_id)->first()->status->name ?? 'Not Specified' }}</td>
                                     </tr>

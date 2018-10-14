@@ -12,8 +12,12 @@ class InventoryIssue extends Model{
 		return $this->belongsTo('App\InventoryRequisition', 'inventory_requisition_id');
 	}
 
-	public function allocated_items(){
-		return $this->hasMany('App\InventoryIssueItem', 'inventory_issue_id');
+	public function requisition_sender(){
+		return $this->belongsTo('App\WorkingUnit', 'sender_working_unit_id');
+	}
+
+	public function requested_to(){
+		return $this->belongsTo('App\WorkingUnit', 'requested_working_unit_id');
 	}
 
 	public function initial_approver(){

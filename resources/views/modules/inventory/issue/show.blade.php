@@ -71,7 +71,7 @@
                                         <td>{{ $row->product->hs_code }}</td>
                                         <td>{{ $row->product->name }}</td>
                                         <td>{{ $issue->requisition->items()->where('product_id', $row->product->id)->first()->requested_quantity }}</td>
-                                        <td>{{ $row->requested_quantity }}</td>
+                                        <td>{{ $row->issued_quantity }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

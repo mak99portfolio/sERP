@@ -152,7 +152,7 @@ class ReceiveReturnController extends Controller{
 
             array_push($products, [
                 'id'=>$row->product_id,
-                'quantity'=>$related_issue->items()->where('product_id', $row->product_id)->first()->requested_quantity,
+                'quantity'=>$related_issue->items()->where('product_id', $row->product_id)->first()->issued_quantity,
                 'return_quantity'=>$row->receive_quantity,
                 'batch_no'=>$row->batch_no,
                 'expiration_date'=>$row->expiration_date,

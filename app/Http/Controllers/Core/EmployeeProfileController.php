@@ -16,7 +16,7 @@ class EmployeeProfileController extends Controller{
 
         $data=[
             'paginate'=>new Paginate('\App\EmployeeProfile', [
-                'employee_id'=>'Employee ID',
+                'employee_no'=>'Employee No',
                 'name'=>'Name',
                 'nationality'=>'Nationality',
                 'Present Address'=>'present_address',
@@ -34,7 +34,8 @@ class EmployeeProfileController extends Controller{
 
         $data=[
             'employee_profile'=>new \App\EmployeeProfile,
-            'bloodGroups'=>\App\BloodGroup::pluck('name', 'id')
+            'bloodGroups'=>\App\BloodGroup::pluck('name', 'id'),
+            'employee_no'=>uCode('employee_profiles.employee_no', 'EMP00')
         ];
 
         return view($this->path('create'), $data);
@@ -49,7 +50,7 @@ class EmployeeProfileController extends Controller{
         //dd($request->all());
 
         $request->validate([
-            'employee_id'=>'required|unique:employee_profiles',
+            'employee_no'=>'required|unique:employee_profiles',
             'name'=>'required',
             'blood_group_id'=>'required',
             'nationality'=>'required',
@@ -89,7 +90,8 @@ class EmployeeProfileController extends Controller{
         
         $data=[
             'employee_profile'=>$employee_profile,
-            'bloodGroups'=>\App\BloodGroup::pluck('name', 'id')
+            'bloodGroups'=>\App\BloodGroup::pluck('name', 'id'),
+            'employee_no'=>$employee_profile->employee_no
         ];
 
         return view($this->path('create'), $data);
@@ -101,7 +103,7 @@ class EmployeeProfileController extends Controller{
         //dd($employee_profile->organizational_information);
 
         $request->validate([
-            'employee_id'=>'required|unique:employee_profiles,employee_id,'.$employee_profile->id,
+            'employee_no'=>'required|unique:employee_profiles,employee_no,'.$employee_profile->id,
             'name'=>'required',
             'blood_group_id'=>'required',
             'nationality'=>'required',

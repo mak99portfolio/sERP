@@ -20,13 +20,13 @@ class StockReportController extends Controller{
 
             $query->whereNotNull('final_approver_id')->doesntHave('receive');
 
-        })->get()->sum('requested_quantity');
+        })->get()->sum('issued_quantity');
 
         $pending_quantity=\App\InventoryIssueItem::whereHas('issue', function($query){
 
             $query->whereNull('final_approver_id');
 
-        })->get()->sum('requested_quantity');
+        })->get()->sum('issued_quantity');
 
         $data=[
             'working_units'=>\App\WorkingUnit::pluck('name', 'id')->prepend('All Working Unit', ''),
@@ -81,13 +81,13 @@ class StockReportController extends Controller{
 
                 $query->whereNotNull('final_approver_id')->doesntHave('receive');
 
-            })->get()->sum('requested_quantity');
+            })->get()->sum('issued_quantity');
 
             $pending_quantity=\App\InventoryIssueItem::whereHas('issue', function($query){
 
                 $query->whereNull('final_approver_id');
 
-            })->get()->sum('requested_quantity');
+            })->get()->sum('issued_quantity');
 
         }else{
 
@@ -117,7 +117,7 @@ class StockReportController extends Controller{
 
             //dd($intransit_quantity->toSql());
 
-            $intransit_quantity=$intransit_quantity->get()->sum('requested_quantity');
+            $intransit_quantity=$intransit_quantity->get()->sum('issued_quantity');
 
             $pending_quantity=\App\InventoryIssueItem::whereHas('issue', function($query) use($filters){
 
@@ -141,7 +141,7 @@ class StockReportController extends Controller{
                 
             }
 
-            $pending_quantity=$pending_quantity->get()->sum('requested_quantity');
+            $pending_quantity=$pending_quantity->get()->sum('issued_quantity');
 
         }
 

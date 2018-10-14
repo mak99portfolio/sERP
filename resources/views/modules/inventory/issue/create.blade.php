@@ -35,7 +35,7 @@
                                     {{ BootForm::select('sender_working_unit_id', 'Requisition Sender Depot', $working_units, $issue->requisition->sender_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requested_working_unit_id', 'Requested Depot', $working_units, $issue->requisition->requested_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
+                                    {{ BootForm::select('requested_working_unit_id', 'Requested Depot', $working_units, $issue->requested_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, $issue->requisition->product_status_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
@@ -102,7 +102,7 @@
                                         <th style="width: 125px;">id</th>
                                         <th>Item name</th>
                                         <th style="width: 150px;" class="text-center">Stock</th>
-                                        <th style="width: 150px;">Quantity</th>
+                                        <th style="width: 150px;">Issue Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
                                         <th style="width: 150px;"  class="text-center">Check To Forward</th>
                                         <th style="width: 125px;" class="text-center">Delete</th>

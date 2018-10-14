@@ -14,12 +14,17 @@
                     <div class="x_content" ng-controller="myCtrl">
                         <form class="form-horizontal form-label-left input_mask" autocomplete="off">
                             <div class="col-lg-4 ol-md-6 col-sm-6 col-xs-12 col-lg-offset-4 col-md-offset-3 col-sm-offset-3">
-                                <form>
+                                <form action="{{route('get-ci-with-tracking')}}" method="GET">
                                     <label for="">Commercial Invoice Tracking No Search</label>
                                     <div class="input-group">
-                                        <input type="text" name="ci_no" ng-model="ci_no" class="form-control" placeholder="Commercial Invoice Tracking No Search..">
+                                        <select data-placeholder="Select CI No"  required class="form-control input-sm" name="ci_no">
+                                            <option></option>
+                                            @foreach($ci_list as $item)
+                                            <option {{ ($item->commercial_invoice_no == $ci->commercial_invoice_no) ? "selected":null }} value="{{$item->commercial_invoice_no}}">{{$item->commercial_invoice_no}}</option>
+                                            @endforeach
+                                        </select>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button" ng-click="searchCI()"><i class="fa fa-search"></i></button>
+                                            <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
                                         </span>
                                     </div>
                                 </form>

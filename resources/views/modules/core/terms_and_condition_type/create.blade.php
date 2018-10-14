@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Payment Type')
+@section('title', 'Terms And Condition Type')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -7,14 +7,14 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Payment Type</h2>
-                        <a class="btn btn-primary btn-sm pull-right" href="{{route('payment-type.index')}}"><i class="fa fa-list-ul"></i> Payment Type List</a>
+                        <h2>Terms And Condition Type</h2>
+                        <a class="btn btn-primary btn-sm pull-right" href="{{route('terms-condition-type.index')}}"><i class="fa fa-list-ul"></i> Payment Type List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
                         <br />
                         {{-- @include('partials.flash_msg') --}}
-                        <form class="form-horizontal form-label-left" action="{{route('payment-type.store')}}" method="POST" autocomplete="off">
+                        <form class="form-horizontal form-label-left" action="{{route('terms-condition-type.store')}}" method="POST" autocomplete="off">
                             {{csrf_field()}}
                             <div class="col-md-6 offset-md-3 col-sm-6 col-xs-12">
                                 {{ BootForm::text('name', 'Name', null, ['class'=>'form-control input-sm','required'=>'required']) }}

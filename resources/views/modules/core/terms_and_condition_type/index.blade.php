@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Payment Type')
+@section('title', 'Terms And Condition Type')
 @section('content')
 
 <!-- page content -->

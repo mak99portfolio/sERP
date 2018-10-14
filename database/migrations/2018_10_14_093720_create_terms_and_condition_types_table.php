@@ -22,6 +22,7 @@ class CreateTermsAndConditionTypesTable extends Migration
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 

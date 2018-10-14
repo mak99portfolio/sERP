@@ -26,10 +26,10 @@
                             <div class="row">
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker']) }}
+                                    {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker','id'=>'date_expected']) }}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                      <div class="form-group">
@@ -97,7 +97,7 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm']) }}
+                                    {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset class="m-t-20">
@@ -244,6 +244,17 @@
             }
             return sum;
         }
+    });
+
+    $(function(){
+        $('#date_expected').daterangepicker({
+            singleDatePicker: true,
+            singleClasses: "picker_3",
+            minDate: moment().add('days', 1),
+            locale: {
+                format: 'DD-MM-YYYY',
+            }
+        });
     });
 </script>
 @endsection

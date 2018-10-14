@@ -51,7 +51,7 @@
                                     {{ BootForm::select('currency_id', 'Currency', $currency_list, null, ['class'=>'form-control input-sm select2','required']) }}
                                 </div>
                             </div>
-                            <div class="row m-t-20">
+                            <div class="row m-t-20" ng-show="icn_account_list.length > 0">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Beneficiary Bank info</div>
@@ -400,33 +400,33 @@
 
 // lca add value
 
-$(document).ready(function () {
-    var counter = 1;
+// $(document).ready(function () {
+//     var counter = 1;
 
-    $("#add").on("click", function () {
-        var newRow = $("<tr>");
-        var cols = "";
-        var lca_no = $('#lca_no').val();
+//     $("#add").on("click", function () {
+//         var newRow = $("<tr>");
+//         var cols = "";
+//         var lca_no = $('#lca_no').val();
 
-        cols += '<td>'+ counter + '</td>';
-        cols += '<td><input type="text" class="form-control" id="lca_no_value' + counter + '" name="mail' + counter + '"/></td>';
-        cols += '<td><input type="button" class="ibtnDel btn btn-danger btn-sm"  value="Delete"></td>';
+//         cols += '<td>'+ counter + '</td>';
+//         cols += '<td><input type="text" class="form-control" id="lca_no_value' + counter + '" name="mail' + counter + '"/></td>';
+//         cols += '<td><input type="button" class="ibtnDel btn btn-danger btn-sm"  value="Delete"></td>';
 
-        newRow.append(cols);
-        $('#lca_no_table').append(newRow);
-        $("#lca_no_value" + counter).val(lca_no);
-        counter++;
-    });
-
-
-
-    $('#lca_no_table').on("click", ".ibtnDel", function (event) {
-        $(this).closest("tr").remove();
-        counter -= 1
-    });
+//         newRow.append(cols);
+//         $('#lca_no_table').append(newRow);
+//         $("#lca_no_value" + counter).val(lca_no);
+//         counter++;
+//     });
 
 
-});
+
+//     $('#lca_no_table').on("click", ".ibtnDel", function (event) {
+//         $(this).closest("tr").remove();
+//         counter -= 1
+//     });
+
+
+// });
 
 
 

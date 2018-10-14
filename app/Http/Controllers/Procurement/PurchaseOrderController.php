@@ -61,22 +61,17 @@ class PurchaseOrderController extends Controller
         $purchase_order = new PurchaseOrder;
         $purchase_order->fill($request->input());
         $purchase_order->creator_user_id = Auth::id();
-        // $purchase_order->purchase_order_no = time();
         $purchase_order->generate_purchase_order_number();
         $purchase_order->purchase_order_date = \Carbon\Carbon::parse($request->purchase_order_date)->format('Y-m-d');
         $purchase_order->save();
         $requisitions = Array();
 
-
-        // foreach($request->foreign_requisition_ids as $foreign_requisition_id){
-        //     array_push($requisitions, new ForeignRequisitionPurchaseOrder([
-        //         'foreign_requisition_id' => $foreign_requisition_id
-        //     ]));
-        // }
         $purchase_order->foreign_requisitions()->sync($request->foreign_requisition_ids);
         $items = Array();
-        foreach($request->items as $item){
-            array_push($items, new PurchaseOrderItem($item));
+        foreach($request->items as $itemlist){
+            foreach($itemlist as $item){
+                array_push($items, new PurchaseOrderItem($item));
+            }
         }
         $purchase_order->items()->saveMany($items);
 

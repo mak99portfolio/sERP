@@ -87,6 +87,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 });
 //Sales
 Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
+    Route::resource('sales-order', 'SalesOrderController');
     // Setting
     Route::resource('customer-profile', 'CustomerProfileController');
 

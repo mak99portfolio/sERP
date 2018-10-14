@@ -31,10 +31,10 @@ class CnfController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('lc_list', LetterOfCredit::all());
-        $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('--select vendor--', ''));
-        $view->with('bill_of_lading_list', BillOfLading::pluck('bill_of_lading_no', 'id')->prepend('-- Select Bill Number --', ''));
+        $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('', ''));
+        $view->with('bill_of_lading_list', BillOfLading::pluck('bill_of_lading_no', 'id')->prepend('', ''));
         $view->with('consignment_partucular_list', ConsignmentParticular::all());
-        $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('-- Select Company --', ''));
+        $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('', ''));
 
         return $view;
     }

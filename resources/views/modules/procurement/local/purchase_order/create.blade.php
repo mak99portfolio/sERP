@@ -16,9 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Local Purchase Order</h2>
-
                         <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> List Local Purchase</a>
-
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -299,8 +297,8 @@
                                 <legend>Terms and Condition:</legend>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                        <label>Terms and Condition Type</label>
                                         <div class="form-group">
-                                            <label>Terms and Condition Type</label>
                                             <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type" required>
                                                 <option value="" disabled selected> Select Terms and Condition Type </option>
                                                 <option value="Delivery Terms">Delivery Terms</option>

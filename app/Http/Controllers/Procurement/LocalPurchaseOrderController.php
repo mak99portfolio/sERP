@@ -16,6 +16,7 @@ use Session;
 class LocalPurchaseOrderController extends Controller
 {
     private $view_root = 'modules/procurement/local/purchase_order/';
+
     public function search_msg(Request $request){
        $purchase_requisition_no = $request->purchase_requisition_no;
       // dd($purchase_requisition_no);
@@ -35,7 +36,7 @@ class LocalPurchaseOrderController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', LocalRequisition::availableRequisitions());
-        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('', ''));
         return $view;
     }
 

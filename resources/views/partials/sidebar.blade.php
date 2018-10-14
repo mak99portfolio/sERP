@@ -45,11 +45,20 @@
       </li>
 
 {{-- Sales --}}
-      <li><a><i class="fa fa-truck"></i> Sales <span class="fa fa-chevron-down"></span></a>
+      <li><a><i class="fa fa-sitemap"></i> Sales <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
+          <li><a href="{{ route('sales-order.index') }}">Sales Order</a></li>
+          <li><a href="#">Sales Order Cancel</a></li>
+          <li><a href="#">Challan</a></li>
+          <li><a href="#">Invoice</a></li>
+          <li><a href="#">Invoice Cancel</a></li>
+          <li><a href="#">Collection Schedule</a></li>
+          <li><a href="#">Payment Schedule</a></li>
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
+              <li><a href="#">Customer Zone</a></li>
+              <li><a href="#">Rule Setup</a></li>
             </ul>
           </li>
         </ul>

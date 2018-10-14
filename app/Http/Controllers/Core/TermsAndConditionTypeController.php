@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 
 use App\TermsAndConditionType;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class TermsAndConditionTypeController extends Controller
 {

@@ -27,9 +27,9 @@ class CommercialInvoiceController extends Controller {
 
 
         $view = view($this->view_root . 'create');
-        $view->with('country_list', Country ::pluck('name', 'id'));
-        $view->with('port_list', Port ::pluck('name', 'id'));
-        $view->with('city_list', City ::pluck('name', 'id'));
+        $view->with('country_list', Country ::pluck('name', 'id')->prepend('-- Select Country --', ''));
+        $view->with('port_list', Port ::pluck('name', 'id')->prepend('-- Select Port --', ''));
+        $view->with('city_list', City ::pluck('name', 'id')->prepend('-- Select City --', ''));
         $view->with('lc_list', LetterOfCredit::all());
         return $view;
     }

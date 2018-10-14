@@ -262,7 +262,7 @@
                                     <button ng-disabled="person.length<=1" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreasePerson()"><i class="fa fa-minus"></i> Remove Person</button>
                                 </div>
                             </fieldset>
-                            <fieldset>
+                             <fieldset>
                                 <legend>Enclosures Information:</legend>
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12">

@@ -138,7 +138,7 @@ class ApiController extends Controller
         $items = [];
         foreach (explode(',', $ids) as $id) {
             $po = PurchaseOrder::find($id);
-            foreach ($po->availableItems() as $item) {
+            foreach ($po->items as $item) {
                 $item_exist = false;
                 foreach ($items as $key => $value) {
                     if ($value['product_id'] == $item->product->id) {
@@ -150,7 +150,7 @@ class ApiController extends Controller
                 if (!$item_exist) {
                     $items[] = [
                         'product_id' => $item->product->id,
-                        'name' => $item->product->name,
+                        'product_name' => $item->product->name,
                         'hs_code' => $item->product->hs_code,
                         'uom' => $item->product->unit_of_measurement->name,
                         'quantity' => $item->quantity,
@@ -282,13 +282,13 @@ class ApiController extends Controller
         // }
 
         // return response()->json($data);
-        foreach (explode(',', $ids) as $id) {
+        foreach (explode(',', $ids) as $key => $id) {
             $requisition = ForeignRequisition::find($id); 
             foreach($requisition->availableItems() as $item){
                 if($item->quantity < 1){
                     continue;
                 }
-                $data[] = [
+                $data[$key][] = [
                     'requisition_id' => $requisition->id,
                     'requisition_no' => $requisition->requisition_no,
                     'product_id' => $item->product_id,

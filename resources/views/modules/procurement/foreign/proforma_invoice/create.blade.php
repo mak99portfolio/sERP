@@ -94,10 +94,10 @@
                                                     <td class="text-center"><% $index+1 %></td>
                                                     <td class="checkbox">
                                                         <label class="i-checks">
-                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.product.name %>
+                                                            <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.product_name %>
                                                         </label>
                                                     </td>
-                                                    <td><% item.product.hs_code %><input ng-disabled="!checked[$index]" type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
+                                                    <td><% item.hs_code %><input ng-disabled="!checked[$index]" type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="quantity[$index]" required ng-init="quantity[$index]=number(item.quantity)" class="form-control input-sm" type="number" name="items[<% $index %>][quantity]"></td>
                                                     <td><input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" required ng-init="unit_price[$index]=number(item.unit_price)" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]"></td>
                                                     <td>

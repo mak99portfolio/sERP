@@ -17,9 +17,15 @@
                                         <form action="{{route('get-ci-with-tracking')}}" method="GET">
                                             <label for="">Commercial Invoice Tracking No Search</label>
                                             <div class="input-group">
-                                                <input type="text" name="ci_no" class="form-control" placeholder="Commercial Invoice Tracking No Search..">
+                                                {{-- <input type="text" name="ci_no" class="form-control" placeholder="Commercial Invoice Tracking No Search.."> --}}
+                                                <select data-placeholder="Select CI No"  required class="form-control input-sm select2" name="ci_no">
+                                                    <option></option>
+                                                    @foreach($ci_list as $item)
+                                                    <option @isset($ci){{ ($item->commercial_invoice_no == $ci->commercial_invoice_no) ? "selected":null }}@endisset value="{{$item->commercial_invoice_no}}">{{$item->commercial_invoice_no}}</option>
+                                                    @endforeach
+                                                </select>
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="submit"><i class="fa fa-search"></i></button>
+                                                    <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-search"></i></button>
                                                 </span>
                                             </div>
                                         </form>

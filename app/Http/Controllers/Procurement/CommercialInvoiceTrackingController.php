@@ -14,17 +14,16 @@ class CommercialInvoiceTrackingController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-
+        $view->with('ci_list', CommercialInvoice::all());
         return $view;
     }
 
     public function getCIWithTracking(Request $request)
     {
-        // dd('fdsfs');
         $view = view($this->view_root . 'index');
         $ci = CommercialInvoice::where('commercial_invoice_no', $request->ci_no)->first();
+        $view->with('ci_list', CommercialInvoice::all());
         $view->with('ci', $ci);
-        // dd($ci);
         $ci_tracking = null;
         if ($ci) {
             $ci_tracking = CommercialInvoiceTracking::where('commercial_invoice_id', $ci->id)->first();

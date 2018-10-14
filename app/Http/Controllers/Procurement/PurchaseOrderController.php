@@ -75,8 +75,10 @@ class PurchaseOrderController extends Controller
         // }
         $purchase_order->foreign_requisitions()->sync($request->foreign_requisition_ids);
         $items = Array();
-        foreach($request->items as $item){
-            array_push($items, new PurchaseOrderItem($item));
+        foreach($request->items as $itemlist){
+            foreach($itemlist as $item){
+                array_push($items, new PurchaseOrderItem($item));
+            }
         }
         $purchase_order->items()->saveMany($items);
 

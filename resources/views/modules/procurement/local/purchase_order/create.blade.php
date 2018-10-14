@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Purchase order')
+@section('title', 'Local Purchase order')
 @section('content')
 
 <!-- page content -->
@@ -116,7 +116,7 @@
                                         <div class="well">
                                             <div class="input-group">
                                                 <span class="input-group-addon">Select Req. No</span>
-                                                <select data-placeholder="Select Req No" multiple required class="form-control input-sm select2" style="width: 100%" name="foreign_requisition_ids[]" ng-model="req_id" ng-change="searchReqNo()">
+                                                <select data-placeholder="Select Req No" multiple required class="form-control input-sm select2" style="width: 100%" name="local_requisition_ids[]" ng-model="req_id" ng-change="searchReqNo()">
                                                     <option value=""></option>
                                                     @foreach($requisition_list as $item)
                                                     <option value="{{ $item->id }}">{{ $item->requisition_no }}</option>

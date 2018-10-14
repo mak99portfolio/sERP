@@ -45,6 +45,8 @@ class LocalRequisitionController extends Controller
         $requisition->fill($request->input());
         $requisition->creator_user_id = Auth::id();
         $requisition->company_id = 1;
+        $requisition->issued_date = \Carbon\Carbon::parse($request->issued_date)->format('Y-m-d');
+        $requisition->date_expected = \Carbon\Carbon::parse($request->date_expected)->format('Y-m-d');
         $requisition->generateRequisitionNumber();
         $requisition->save();
         // $requisition->items()->createMany($request->items);

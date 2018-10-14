@@ -36,8 +36,6 @@ class CommercialInvoiceTrackingController extends Controller
     }
     public function saveDate(Request $request)
     {
-        // dd($request->commercial_invoice_issue_date);
-
         $request->commercial_invoice_issue_date
         ? CommercialInvoiceTracking::updateOrCreate([
             'commercial_invoice_id' => $request->commercial_invoice_id], [

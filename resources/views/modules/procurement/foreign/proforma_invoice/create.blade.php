@@ -41,10 +41,6 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('proforma_invoice_receive_date','Proforma Invoice receive date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-
-                                {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','data-popup'=> route('vendor.index')]) }}
-                                </div>
 
                             </div>
 
@@ -62,6 +58,7 @@
                             <div class="row"> <br />
                                 <div class="col-sm-6 col-sm-offset-3">
                                     <div class="well">
+                                            {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','data-popup'=> route('vendor.index')]) }}
                                            <div class="form-group">
                                         <label>Purchase Order No.</label>
                                         <select data-placeholder="Select PO No" multiple  required class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">

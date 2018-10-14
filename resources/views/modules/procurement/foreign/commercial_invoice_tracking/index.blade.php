@@ -17,7 +17,6 @@
                                         <form action="{{route('get-ci-with-tracking')}}" method="GET">
                                             <label for="">Commercial Invoice Tracking No Search</label>
                                             <div class="input-group">
-                                                {{-- <input type="text" name="ci_no" class="form-control" placeholder="Commercial Invoice Tracking No Search.."> --}}
                                                 <select data-placeholder="Select CI No"  required class="form-control input-sm select2" name="ci_no">
                                                     <option></option>
                                                     @foreach($ci_list as $item)

@@ -16,7 +16,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Inventory Requisition <small>List</small></h2>
-                {!! btnAddNew(['url'=>route('requisition.create')]) !!}
+                {!! btnAddNew(['url'=>route('issue.create'), 'title'=>'Submit Issue']) !!}
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -42,22 +42,16 @@
                     <tbody>
                     @foreach($paginate->table as $row)
                         <tr>
-                            <td>{{ $row->inventory_requisition_no }}</td>
-                            <td>{{ $row->type->name }}</td>
+                            <td>{{ $row->requisition->inventory_requisition_no }}</td>
+                            <td>{{ $row->requisition->type->name }}</td>
                             <td>{{ $row->sender->name }}</td>
                             <td>{{ $row->requested_to->name }}</td>
-                            <td>{{ $row->item_status->name }}</td>
-                            <td>{{ $row->initial_approver->name }}</td>
-                            <td>
-                            @if($row->final_approver()->exists())
-								{{ $row->final_approver->name }}
-                            @else
-                            	{!! btnCustom(['title'=>'Final Submit', 'url'=>route('requisition.edit', ['requisition'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm btn-block']) !!}
-                            @endif
-                        	</td>
-                            <td>{{ $row->remarks ?? 'Not Specified' }}</td>
-                            <td>{{ $carbon->parse($row->date)->toFormattedDateString() }}</td>
-                            <td>{!! btnCustom(['title'=>'Show', 'url'=>route('requisition.show', ['requisition'=>$row->id])]) !!}</td>
+                            <td>{{ $row->requisition->item_status->name }}</td>
+                            <td>{{ $row->requisition->initial_approver->name }}</td>
+                            <td>{{ $row->requisition->final_approver->name }}</td>
+                            <td>{{ $row->requisition->remarks ?? 'Not Specified' }}</td>
+                            <td>{{ $carbon->parse($row->requisition->date)->toFormattedDateString() }}</td>
+                            <td>{!! btnCustom(['title'=>'Show', 'url'=>route('requisition.show_incoming', ['inventory_issue_request'=>$row->id])]) !!}</td>
                         </tr>
                     @endforeach
                     </tbody>

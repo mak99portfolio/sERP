@@ -33,7 +33,29 @@ class RequisitionController extends Controller{
 
     public function incoming(){
 
-        
+        $working_unit=\Auth::user()->working_unit();
+
+        $incoming_requisitions=\App\InventoryIssueRequest::where('requested_working_unit_id', $working_unit->id);
+
+         $data=[
+            'paginate'=>new Paginate($incoming_requisitions, ['inventory_requisition_no'=>'Requisition No']),
+            'carbon'=>new \Carbon\Carbon
+        ];
+
+        //dd($data['paginate']);
+
+        return view($this->path('incoming'), $data);
+
+    }
+
+    public function show_incoming(\App\InventoryIssueRequest $inventory_issue_request){
+
+        $data=[
+            'inventory_issue_request'=>$inventory_issue_request,
+            'carbon'=>new \carbon\Carbon
+        ];
+
+        return view($this->path('show_incoming'), $data);
 
     }
 
@@ -202,40 +224,30 @@ class RequisitionController extends Controller{
 
         $requisition_status=\App\InventoryRequisitionStatus::where('code', 'confirmed')->first();
         $requisition->status()->associate($requisition_status);
-
-        $issue=\App\InventoryIssue::create([
-            'inventory_issue_no'=>uCode('inventory_issues.inventory_issue_no', 'IIS00')
-        ]);
-
-        $issue->requisition_sender()->associate($requisition->sender);
-        $issue->requested_to()->associate($requisition->requested_to);
-
-        $issue_status=\App\InventoryIssueStatus::where('code', 'pending')->first();
-        $issue->status()->associate($issue_status);
-        $issue->save();
-
-        $requisition->issues()->save($issue);
-
         $requisition->save();
+
+        $issue_request=new \App\InventoryIssueRequest;
+        $issue_request->requisition()->associate($requisition);
+        $issue_request->sender()->associate($requisition->sender);
+        $issue_request->requested_to()->associate($requisition->requested_to);
+        $issue_request->save();
 
         $products=$request->get('products');
 
         foreach($products as $row){
-            
-            $product=\App\Product::find($row['id']);
 
             \App\InventoryRequisitionItem::create([
                 'inventory_requisition_id'=>$requisition->id,
-                'product_id'=>$product->id,
+                'product_id'=>$row['id'],
                 'requested_quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
                 'product_type_id'=>$requisition->product_type_id
             ]);
 
-            \App\InventoryIssueItem::create([
-                'inventory_issue_id'=>$issue->id,
-                'product_id'=>$product->id,
-                'issued_quantity'=>0,
+            \App\InventoryIssueRequestItem::create([
+                'inventory_issue_request_id'=>$issue_request->id,
+                'product_id'=>$row['id'],
+                'quantity'=>$row['quantity'],
                 'product_status_id'=>$requisition->product_status_id,
                 'product_type_id'=>$requisition->product_type_id
             ]);
@@ -252,7 +264,7 @@ class RequisitionController extends Controller{
                     new SimpleNotification([
                         'subject'=>'Inventory Requisition',
                         'sender_id'=>$requisition->final_approver_id,
-                        'url'=>route('issue.index'),
+                        'url'=>route('requisition.incoming'),
                         'message'=>'An Inventory Requisition Requested To Your Working Unit'
                     ])
                 );

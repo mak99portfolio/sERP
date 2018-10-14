@@ -85,6 +85,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::post('/commercial-invoice-tracking/save-tracking_date', ['as' => 'save-tracking-date', 'uses' => 'CommercialInvoiceTrackingController@saveDate']);
 
 });
+
 //Sales
 Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
     // Setting
@@ -97,6 +98,7 @@ Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'
 
     Route::resource('requisition', 'RequisitionController');
     Route::get('incoming/requisition', 'RequisitionController@incoming')->name('requisition.incoming');
+    Route::get('incoming/requisition/{inventory_issue_request}', 'RequisitionController@show_incoming')->name('requisition.show_incoming');
     Route::resource('issue', 'IssueController');
 
     Route::resource('receive', 'ReceiveController');
@@ -158,6 +160,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
         //route for status adjustment
         Route::get('product-info-for-adjusment/{working_unit}/{selected_type}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
+        Route::get('fetch-requisition/{requested_working_unit}/{slug}', 'IssueController@fetch_requisition');
 
     });
 

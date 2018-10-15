@@ -6,10 +6,11 @@ use App\CustomerContactPerson;
 use App\CustomerProfile;
 use App\CustomerType;
 use App\Enclosure;
+use App\CustomerZone;
 use App\CustomerEnclosure;
 use App\Http\Controllers\Controller;
 use Auth;
-use Illuminate\Http\Request;
+use App\Http\Requests\CustomerProfileRequest;
 use Session;
 
 class CustomerProfileController extends Controller
@@ -36,6 +37,7 @@ class CustomerProfileController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('customer_type_list', CustomerType::pluck('name', 'id'));
+        $view->with('customer_zone_list', CustomerZone::pluck('name', 'id'));
         $view->with('enclosure_list', Enclosure::all());
         return $view;
     }
@@ -46,9 +48,10 @@ class CustomerProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CustomerProfileRequest $request)
     {
 
+        // dd($request->input());
         $customer_profile = new CustomerProfile;
         $customer_profile->fill($request->input());
         $customer_profile->creator_user_id = Auth::id();
@@ -101,6 +104,7 @@ class CustomerProfileController extends Controller
     public function show(CustomerProfile $customerProfile)
     {
         $view = view($this->view_root . 'show');
+        $view->with('customer_profile' , $customerProfile);
         return $view;
     }
 

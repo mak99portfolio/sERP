@@ -122,7 +122,7 @@
                                                     <div class="form-group">
                                                         <label>Particulars of Consignments</label>
                                                         <select class="form-control input-sm select2" ng-model="consignment_particular" required>
-                                                            <option value="">--Select Particulars of Consignments--</option>
+                                                            <option value="" disabled>--Select Particulars of Consignments--</option>
                                                             @foreach($consignment_partucular_list as $item)
                                                             <option value="{{$item}}">{{$item->name}}</option>
                                                             @endforeach

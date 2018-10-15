@@ -20,10 +20,10 @@
                                 {{ BootForm::text('name', 'Zone Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('name', 'Zone Short Name', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('short_name', 'Zone Short Name', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('city_ids', 'City', $city_list, null, ['class'=>'form-control input-sm select2','multiple', 'data-placeholder'=>'Select City', 'required']) }}
+                                {{ BootForm::select('city_ids[]', 'City', $city_list, null, ['class'=>'form-control input-sm select2','multiple', 'data-placeholder'=>'Select City']) }}
                             </div>
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />

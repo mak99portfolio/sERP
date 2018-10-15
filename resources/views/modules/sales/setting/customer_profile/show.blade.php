@@ -16,13 +16,13 @@
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Customer Name: </h2></div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Customer Name: {{$customer_profile->customer_name}}</h2></div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                         </div>
                         <div class="visible-xs col-xs-6"><button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</button></div>
                         <div class="visible-xs col-xs-6"><button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button></div>
-                        <div class="visible-xs col-xs-12"><h2 class="text-center">Customer Name : </h2></div>
+                        <div class="visible-xs col-xs-12"><h2 class="text-center">Customer Name : {{$customer_profile->customer_name}} </h2></div>
                     </div>
                     <div class="x_title">
                         <div class="clearfix"></div>
@@ -38,32 +38,32 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Customer Name:</strong> 3123</td>
-                                        <td><strong>Customer Type:</strong> 3123</td>
-                                        <td><strong>Status:</strong>3123</td>
+                                        <td><strong>Customer Name:</strong> {{$customer_profile->customer_name}}</td>
+                                        <td><strong>Customer Type:</strong> {{$customer_profile->customer_type->name}}</td>
+                                        <td><strong>Status:</strong>{{$customer_profile->status}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Establishment:</strong> 3123</td>
-                                        <td><strong>Customer Zone:</strong> 3123</td>
-                                        <td><strong>Contact No:</strong>3123</td>
+                                        <td><strong>Establishment:</strong> {{$customer_profile->establishment_date}}</td>
+                                        <td><strong>Customer Zone:</strong> {{$customer_profile->zone->name}}</td>
+                                        <td><strong>Contact No:</strong>{{$customer_profile->contact_number}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Fax:</strong> 3123</td>
-                                        <td><strong>Website:</strong> 3123</td>
-                                        <td><strong>Email:</strong>3123</td>
+                                        <td><strong>Fax:</strong> {{$customer_profile->fax}}</td>
+                                        <td><strong>Website:</strong> {{$customer_profile->website}}</td>
+                                        <td><strong>Email:</strong>31{{$customer_profile->email}}23</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>TIN Number:</strong> 3123</td>
-                                        <td><strong>Trade License No:</strong> 3123</td>
-                                        <td><strong>Trade License Issue Date:</strong>3123</td>
+                                        <td><strong>TIN Number:</strong> {{$customer_profile->tin_number}}</td>
+                                        <td><strong>Trade License No:</strong> {{$customer_profile->trade_license_number}}</td>
+                                        <td><strong>Trade License Issue Date:</strong>{{$customer_profile->trade_license_issue_date}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Certificate Of Incorporation:</strong> 3123</td>
-                                        <td><strong>Incorporation Date:</strong> 3123</td>
-                                        <td><strong>Vat No:</strong>3123</td>
+                                        <td><strong>Certificate Of Incorporation:</strong> {{$customer_profile->certificate_of_incorporation}}</td>
+                                        <td><strong>Incorporation Date:</strong> {{$customer_profile->incorporation_date}}</td>
+                                        <td><strong>Vat No:</strong>{{$customer_profile->vat_number}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Address :</strong> 3123</td>
+                                        <td colspan="3"><strong>Address :</strong> {{$customer_profile->address}}</td>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -74,7 +74,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>LTD company</td>
+                                        <td>{{$customer_profile->type_of_business}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -84,23 +84,25 @@
                                         <th colspan="2">Bank Information</th>
                                     </tr>
                                 </thead>
+                                @foreach($customer_profile->customer_banks as $customer_bank)
                                 <tbody>
                                     <tr>
-                                        <td colspan="2"><strong>Bank-1</strong></td>
+                                        <td colspan="2"><strong>Bank-{{$loop->iteration}}</strong></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>A/C no</strong> 2134</td>
-                                        <td><strong>A/C Name</strong> 2134</td>
+                                        <td><strong>A/C no : </strong> {{$customer_bank->account_number}}</td>
+                                        <td><strong>A/C Name : </strong> {{$customer_bank->account_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Bank Name</strong> 2134</td>
-                                        <td><strong>Branch</strong> 2134</td>
+                                        <td><strong>Bank Name : </strong> {{$customer_bank->bank_name}}</td>
+                                        <td><strong>Branch : </strong> {{$customer_bank->branch}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Swift Code</strong> 2134</td>
-                                        <td><strong>Bank Address</strong> 2134</td>
+                                        <td><strong>Swift Code : </strong> {{$customer_bank->swift_code}}</td>
+                                        <td><strong>Bank Address : </strong> {{$customer_bank->bank_address}}</td>
                                     </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                             <table class="table table-bordered">
                                 <thead>
@@ -108,26 +110,28 @@
                                         <th colspan="2">Contact Person Information</th>
                                     </tr>
                                 </thead>
+                                @foreach($customer_profile->contact_person as $contact_person)
                                 <tbody>
                                     <tr>
-                                        <td colspan="2"><strong>Contact Person-1</strong></td>
+                                    <td colspan="2"><strong>Contact Person-{{ $loop->iteration}}</strong></td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Contact Name</strong> 2134</td>
-                                        <td><strong>Designation</strong> 2134</td>
+                                    <td><strong>Contact Name : </strong> {{$contact_person->contact_name}}</td>
+                                        <td><strong>Designation : </strong>  {{$contact_person->designation}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Contact No</strong> 2134</td>
-                                        <td><strong>Email</strong> 2134</td>
+                                        <td><strong>Contact No : </strong>  {{$contact_person->contact_number}}</td>
+                                        <td><strong>Email : </strong>  {{$contact_person->email}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Job Role</strong> 2134</td>
-                                        <td><strong>Tell No</strong> 2134</td>
+                                        <td><strong>Job Role : </strong>  {{$contact_person->job_role}}</td>
+                                        <td><strong>Tell No : </strong>  {{$contact_person->tell_number}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2"><strong>Cell No</strong> 2134</td>
+                                        <td colspan="2"><strong>Cell No : </strong>  {{$contact_person->cell_number}}</td>
                                     </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                             <table class="table table-bordered">
                                 <thead>
@@ -136,17 +140,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                     @foreach($customer_profile->customer_enclosure as $customer_enclosure)
                                     <tr>
-                                        <td class="text-center">01</td>
-                                        <td>Enclosure 1</td>
-                                        <td><a href="#" title="Download Attachment" target="_blank">Attachment name</a></td>
+                                    <td class="text-center">{{$loop->iteration}}</td>
+                                        <td>{{$customer_enclosure->enclosure->name}}</td>
+                                        <td><a target="_blank" href="{{ asset($customer_enclosure->file_directory . $customer_enclosure->file_name) }}"><i class="fa fa-file"></i> {{ $customer_enclosure->file_name }}</a></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Notes:</strong> 2342</td>
+                                        <td><strong>Notes:</strong> {{$customer_profile->notes}}</td>
                                     </tr>
                                 </tbody>
                             </table>

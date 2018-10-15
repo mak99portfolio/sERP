@@ -25,23 +25,27 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
+                                        <th>Quotation No</th>
                                         <th>Vendor</th>
-                                        <th>Requisition</th>
+                                        <th>Requisition No</th>
                                         <th>Delivery Date</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($quotation_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>ewr</td>
-                                        <td>fsdf1</td>
-                                        <td>20/03/2018</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->quotation_no }}</td>
+                                        <td>{{ $item->vendor->name }}</td>
+                                        <td>{{ $item->local_requisition->requisition_no }}</td>
+                                        <td>{{ $item->delivery_date }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('quotation.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

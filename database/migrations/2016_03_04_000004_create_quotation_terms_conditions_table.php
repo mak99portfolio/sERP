@@ -10,10 +10,11 @@ class CreateQuotationTermsConditionsTable extends Migration
     {
         Schema::create('quotation_terms_conditions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('terms_type');
             $table->text('description')->nullable();
             $table->integer('quotation_id')->unsigned();
             $table->foreign('quotation_id')->references('id')->on('quotations')->onDelete('cascade');
+            $table->integer('terms_and_condition_type_id')->unsigned();
+            $table->foreign('terms_and_condition_type_id')->references('id')->on('terms_and_condition_types')->onDelete('cascade');
             $table->timestamps();
         });
     }

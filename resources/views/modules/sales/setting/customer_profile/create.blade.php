@@ -226,6 +226,8 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
+                                        <br />
+                                        <div class="ln_solid"></div>
                                         <button type="submit" class="btn btn-success btn-sm">Save</button>
                                         <a href="" class="btn btn-default btn-sm">Cancel</a>
                                     </div>

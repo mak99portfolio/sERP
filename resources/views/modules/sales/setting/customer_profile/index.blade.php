@@ -26,15 +26,26 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Purchase Order No</th>
-                                        <th>Purchase Order Date</th>
-                                        <th>Create time</th>
-                                        <th>Vendor</th>
+                                        <th>Customer Name</th>
+                                        <th>Customer Type</th>
+                                        <th>Status</th>
+                                        <th>Created</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach($customer_profile_list as $item)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->customer_name}}</td>
+                                        <td>{{$item->customer_type->name}}</td>
+                                        <td>{{$item->status}}</td>
+                                        <td>{{$item->created_at}}</td>
+                                        <td class="text-center">
+                                            <a href="{{ route('customer-profile.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block">View</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

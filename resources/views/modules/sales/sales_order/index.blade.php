@@ -26,15 +26,24 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Purchase Order No</th>
-                                        <th>Purchase Order Date</th>
-                                        <th>Create time</th>
-                                        <th>Vendor</th>
+                                        <th>Sales Order No</th>
+                                        <th>Sales Order Date</th>
+                                        <th>Sales Reference</th>
+                                        <th>Currency</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <tr>
+                                        <td>01</td>
+                                        <td>231</td>
+                                        <td>01/03/2018</td>
+                                        <td>011</td>
+                                        <td>01</td>
+                                        <td class="text-center">
+                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>

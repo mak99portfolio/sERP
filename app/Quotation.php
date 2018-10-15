@@ -16,6 +16,12 @@ class Quotation extends Model
         'local_requisition_id'
     ];
 
+    public function items(){
+        return $this->hasMany('App\QuotationItem', 'quotation_id');
+    }
+    public function local_requisition(){
+        return $this->belongsTo('App\LocalRequisition');
+    }
     public function vendor(){
         return $this->belongsTo('App\Vendor');
     }
@@ -23,6 +29,16 @@ class Quotation extends Model
         return $this->hasMany('App\QuotationPaymentTerm');
     }
     public function terms_conditions(){
-        return $this->hasMany('App\QuotationTermsCondition');
+        return $this->hasMany('App\QuotationTermsCondition', 'quotation_id');
+    }
+    public function generate_purchase_order_number(){
+        $serial = $this->count_last_serial() + 1;
+        $this->quotation_no =  'Quo-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+
+    private function count_last_serial(){
+        return Quotation::whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', date('m'))
+                            ->count();
     }
 }

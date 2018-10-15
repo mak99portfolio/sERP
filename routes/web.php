@@ -30,7 +30,8 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('bank', 'BankController');
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
-    Route::resource('terms-condition-type', 'TermsAndConditionTypeController');
+    Route::resource('payment-type', 'PaymentTypeController');
+    Route::resource('terms-and-condition-type', 'TermsAndConditionTypeController');
 
     Route::get(
         'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@organizational_info_form'
@@ -79,7 +80,7 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::resource('consignment-particular', 'ConsignmentParticularController');
     Route::resource('move-type', 'MoveTypeController');
     Route::resource('modes-of-transport', 'ModesOfTransportController');
-    Route::resource('payment-type', 'PaymentTypeController');
+
     //CI Tracking
     Route::get('/commercial-invoice-tracking', ['as' => 'commercial-invoice-tracking.index', 'uses' => 'CommercialInvoiceTrackingController@index']);
     Route::get('/commercial-invoice-tracking/create', ['as' => 'get-ci-with-tracking', 'uses' => 'CommercialInvoiceTrackingController@getCIWithTracking']);
@@ -90,8 +91,16 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 //Sales
 Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
     Route::resource('sales-order', 'SalesOrderController');
+    Route::resource('sales-order-cancel', 'SalesOrderCancelController');
+    Route::resource('sales-challan', 'SalesChallanController');
+    Route::resource('sales-invoice', 'SalesInvoiceController');
+    Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
+    Route::resource('collection-schedule', 'CollectionScheduleController');
+    Route::resource('payment-schedule', 'PaymentScheduleController');
     // Setting
     Route::resource('customer-profile', 'CustomerProfileController');
+    Route::resource('rule-setup', 'RuleSetupController');
+    Route::resource('customer-zone', 'CustomerZoneController');
 
 });
 
@@ -194,6 +203,7 @@ Route::get('/get-vendor-bank-info/{id}', ['as' => 'get-vendor-bank-info', 'uses'
 Route::get('/get-due-amount/{id}/{no}', ['as' => 'et-due-amount', 'uses' => 'ApiController@getDueAmount']);
 Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'ApiController@getLcToCiList']);
 Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
+Route::get('/get-requisition-items-by-requisition-id/{id}', ['as' => 'get-requisition-items-by-requisition-id', 'uses' => 'ApiController@getRequisitionItemsForQuotationByLocalRequisitionId']);
 
 
 //ACL (Access Control Limit)

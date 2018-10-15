@@ -38,12 +38,16 @@ class TermsAndConditionTypeController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|unique:terms_and_condition_types',
+            'short_name' => 'required|unique:terms_and_condition_types'
+        ]);
         $terms_condition_type = new TermsAndConditionType;
         $terms_condition_type->fill($request->input());
         $terms_condition_type->creator_user_id = Auth::id();
         $terms_condition_type->save();
         Session::put('alert-success', 'Terms And Condition Type type created successfully');
-        return redirect()->route('terms-condition-type.index');
+        return redirect()->route('terms-and-condition-type.index');
     }
 
     /**
@@ -65,7 +69,10 @@ class TermsAndConditionTypeController extends Controller
      */
     public function edit(TermsAndConditionType $termsAndConditionType)
     {
-        //
+       // dd($termsAndConditionType);
+        $view = view($this->view_root.'edit');
+        $view->with('termsAndConditionType',$termsAndConditionType);
+        return $view;
     }
 
     /**
@@ -77,7 +84,14 @@ class TermsAndConditionTypeController extends Controller
      */
     public function update(Request $request, TermsAndConditionType $termsAndConditionType)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:terms_and_condition_types,name,'.$termsAndConditionType->id,
+            'short_name' => 'required|unique:terms_and_condition_types,short_name,'.$termsAndConditionType->id,
+        ]);
+        $termsAndConditionType->fill($request->all());
+        $termsAndConditionType->update();
+        Session::put('alert-success',$termsAndConditionType->name . ' updated successfully!');
+        return redirect()->route('terms-and-condition-type.index');
     }
 
     /**

@@ -57,7 +57,7 @@
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
-              <li><a href="#">Customer Zone</a></li>
+            <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
               <li><a href="#">Rule Setup</a></li>
             </ul>
           </li>

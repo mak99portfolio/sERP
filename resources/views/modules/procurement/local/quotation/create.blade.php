@@ -34,7 +34,7 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::select('local_requisition_id', 'Requisitions', $local_requisition_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Requisition', 'ng-model'=>'local_requisition_id', 'ng-change'=>'searchReqItem()', 'required','data-popup'=> route('local-requisition.index')]) }}
                                         </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="itemlist.length >=1">
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
                                                 <thead>
@@ -168,7 +168,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
                                             <button class="btn btn-success btn-sm">Save</button>
-                                            <a href="" class="btn btn-default btn-sm">Cancel</a>
+                                            <a href="{{ route('quotation.index') }}" class="btn btn-default btn-sm">Cancel</a>
                                         </div>
                                     </div>
                                 </div>

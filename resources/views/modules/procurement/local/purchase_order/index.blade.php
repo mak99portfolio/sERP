@@ -45,7 +45,7 @@
                                             <a href="{{ route('local-purchase-order.show', $item) }}" class="btn btn-default btn-xs btn-block"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
-                                     @endforeach
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

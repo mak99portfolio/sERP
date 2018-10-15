@@ -19,6 +19,9 @@ class Quotation extends Model
     public function items(){
         return $this->hasMany('App\QuotationItem');
     }
+    public function local_requisition(){
+        return $this->belongsTo('App\LocalRequisition');
+    }
     public function vendor(){
         return $this->belongsTo('App\Vendor');
     }

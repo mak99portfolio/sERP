@@ -283,7 +283,7 @@ class ApiController extends Controller
 
         // return response()->json($data);
         foreach (explode(',', $ids) as $key => $id) {
-            $requisition = ForeignRequisition::find($id); 
+            $requisition = ForeignRequisition::find($id);
             foreach($requisition->availableItems() as $item){
                 if($item->quantity < 1){
                     continue;
@@ -328,6 +328,22 @@ class ApiController extends Controller
             }
         }
         $data['items'] = $req_items;
+        return response()->json($data);
+    }
+
+    public function getRequisitionItemsForQuotationByLocalRequisitionId($id){
+        $req = LocalRequisition::find($id);
+        $items = $req->items;
+        foreach ($items as $item) {
+            $req_items[] = [
+                'product_id' => $item->product->id,
+                'name' => $item->product->name,
+                'hs_code' => $item->product->hs_code,
+                'uom' => $item->product->unit_of_measurement->name,
+                'quantity' => $item->quantity,
+            ];
+        }
+         $data['items'] = $req_items;
         return response()->json($data);
     }
 

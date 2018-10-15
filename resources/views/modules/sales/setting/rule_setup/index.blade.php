@@ -26,10 +26,10 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Rule Setup No</th>
-                                        <th>Rule Setup Date</th>
-                                        <th>Sales Reference</th>
-                                        <th>Currency</th>
+                                        <th>Customer</th>
+                                        <th>Amount</th>
+                                        <th>Duration</th>
+                                        <th>Status</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>
@@ -37,7 +37,7 @@
                                     <tr>
                                         <td>01</td>
                                         <td>231</td>
-                                        <td>01/03/2018</td>
+                                        <td>0018</td>
                                         <td>011</td>
                                         <td>01</td>
                                         <td class="text-center">

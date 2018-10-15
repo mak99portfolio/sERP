@@ -24,6 +24,7 @@ class CreateInventoryIssuesTable extends Migration
             $table->integer('initial_approver_id')->unsigned()->nullable();
             $table->integer('final_approver_id')->unsigned()->nullable();
             $table->integer('inventory_issue_status_id')->unsigned()->nullable();
+            $table->string('challan_no')->unique();
             $table->softDeletes();
             $table->timestamps();
 

@@ -52,10 +52,13 @@ class InventoryRequisition extends Model{
 		return $this->belongsTo('App\InventoryRequisitionStatus', 'inventory_requisition_status_id');
 	}
 
+	public function issue_requests(){
+		return $this->hasMany('App\InventoryIssueRequest', 'inventory_requisition_id');
+	}
+
 	public function issues(){
 		return $this->hasMany('App\InventoryIssue');
 	}
-
 	public function items(){
 		return $this->hasMany('App\InventoryRequisitionItem', 'inventory_requisition_id');
 	}

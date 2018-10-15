@@ -23,7 +23,7 @@ class CustomerProfileController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('bill_of_lading_list', BillOfLading::all());
+        $view->with('customer_profile_list', CustomerProfile::all());
         return $view;
     }
 
@@ -100,7 +100,8 @@ class CustomerProfileController extends Controller
      */
     public function show(CustomerProfile $customerProfile)
     {
-        //
+        $view = view($this->view_root . 'show');
+        return $view;
     }
 
     /**

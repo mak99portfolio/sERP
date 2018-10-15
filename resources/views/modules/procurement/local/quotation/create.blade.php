@@ -127,7 +127,7 @@
                                         </fieldset>
                                         <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <label data-popup = "{{ route('terms-condition-type.index') }}">Terms and Conditions Type</label>
+                                                <label data-popup = "{{ route('terms-and-condition-type.index') }}">Terms and Conditions Type</label>
                                                 <select class="form-control input-sm select2" ng-model="terms_and_condition_type"  required>
                                                     <option value="" disabled>--Select Terms and Conditions Type--</option>
                                                     @foreach($terms_conditions_type_list as $item)

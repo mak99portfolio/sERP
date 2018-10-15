@@ -72,8 +72,8 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::text('vat_number','Vat No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
-                                <div class="col-lg-8 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::textarea('address','Address *', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"1"]) }}
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{ BootForm::textarea('address','Address *', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"2"]) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
@@ -226,6 +226,8 @@
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
+                                        <br />
+                                        <div class="ln_solid"></div>
                                         <button type="submit" class="btn btn-success btn-sm">Save</button>
                                         <a href="" class="btn btn-default btn-sm">Cancel</a>
                                     </div>

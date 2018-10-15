@@ -31,7 +31,7 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
     Route::resource('payment-type', 'PaymentTypeController');
-    Route::resource('terms-condition-type', 'TermsAndConditionTypeController');
+    Route::resource('terms-and-condition-type', 'TermsAndConditionTypeController');
 
     Route::get(
         'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@organizational_info_form'
@@ -87,11 +87,20 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     Route::post('/commercial-invoice-tracking/save-tracking_date', ['as' => 'save-tracking-date', 'uses' => 'CommercialInvoiceTrackingController@saveDate']);
 
 });
+
 //Sales
 Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
     Route::resource('sales-order', 'SalesOrderController');
+    Route::resource('sales-order-cancel', 'SalesOrderCancelController');
+    Route::resource('sales-challan', 'SalesChallanController');
+    Route::resource('sales-invoice', 'SalesInvoiceController');
+    Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
+    Route::resource('collection-schedule', 'CollectionScheduleController');
+    Route::resource('payment-schedule', 'PaymentScheduleController');
     // Setting
     Route::resource('customer-profile', 'CustomerProfileController');
+    Route::resource('rule-setup', 'RuleSetupController');
+    Route::resource('customer-zone', 'CustomerZoneController');
 
 });
 
@@ -100,6 +109,7 @@ Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'
 
     Route::resource('requisition', 'RequisitionController');
     Route::get('incoming/requisition', 'RequisitionController@incoming')->name('requisition.incoming');
+    Route::get('incoming/requisition/{inventory_issue_request}', 'RequisitionController@show_incoming')->name('requisition.show_incoming');
     Route::resource('issue', 'IssueController');
 
     Route::resource('receive', 'ReceiveController');
@@ -161,6 +171,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
 
         //route for status adjustment
         Route::get('product-info-for-adjusment/{working_unit}/{selected_type}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
+        Route::get('fetch-requisition/{requested_working_unit}/{slug}', 'IssueController@fetch_requisition');
 
     });
 

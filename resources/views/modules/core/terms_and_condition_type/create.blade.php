@@ -8,7 +8,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Terms And Condition Type</h2>
-                        <a class="btn btn-primary btn-sm pull-right" href="{{route('terms-condition-type.index')}}"><i class="fa fa-list-ul"></i> Payment Type List</a>
+                        <a class="btn btn-primary btn-sm pull-right" href="{{route('terms-and-condition-type.index')}}"><i class="fa fa-list-ul"></i> Payment Type List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -27,7 +27,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('payment-type.index')}}">Cancel</a>
+                                    <a class="btn btn-default btn-sm" href="{{route('terms-condition-type.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </form>

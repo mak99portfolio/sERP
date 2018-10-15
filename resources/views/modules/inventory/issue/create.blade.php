@@ -23,97 +23,55 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-						              {{ BootForm::open(['model'=>$issue, /*'store'=>'issue.store',*/ 'update'=>'issue.update']) }}
+						              {{ BootForm::open(['model'=>$issue, 'store'=>'issue.store', 'update'=>'issue.update']) }}
+                              <div id="vue_app">
                             <div class="row">
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('inventory_requisition_no', 'Requisition No', $issue->requisition->inventory_requisition_no, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    {{ BootForm::text('inventory_requisition_no', 'Requisition No', null, ['class'=>'input-sm', 'suffix' => BootForm::addonButton(fa('fa-search fa-lg text-primary'), ['class' => 'btn-default btn-sm', 'v-on:click'=>'fetch_requisition']), 'v-model'=>'inventory_requisition_no', 'v-on:change'=>'fetch_requisition', 'v-on:keydown.enter.prevent'=>'fetch_requisition']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('inventory_requisition_type_id', 'Requisition Type', $inventory_requisition_types, $issue->requisition->inventory_requisition_type_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    {{ BootForm::text('requisition[type][name]', 'Requisition Type', null, ['class'=>'input-sm', 'readonly'=>'true', 'v-model'=>'requisition.type.name']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('sender_working_unit_id', 'Requisition Sender Depot', $working_units, $issue->requisition->sender_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    {{ BootForm::text('requisition[sender][name]', 'Requisition Sender Depot', null, ['class'=>'input-sm', 'readonly', 'v-model'=>'requisition.sender.name']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('requested_working_unit_id', 'Requested Depot', $working_units, $issue->requested_working_unit_id, ['class'=>'form-control input-sm', 'disabled']) }}
+
+                                {{-- {{ BootForm::hidden('requested_working_unit_id', $requested_depot->id) }} --}}
+
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    {{ BootForm::text('requisition[item_status][name]', 'Product Status', null, ['class'=>'form-control input-sm', 'readonly'=>'true', 'v-model'=>'requisition.item_status.name']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_status_id', 'Item Status', $product_statuses, $issue->requisition->product_status_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    {{ BootForm::text('requisition[item_type][name]', 'Product Type', null, ['class'=>'form-control input-sm', 'readonly'=>'true', 'v-model'=>'requisition.item_type.name']) }}
                                 </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('product_type_id', 'Item Type', $product_types, $issue->requisition->product_type_id, ['class'=>'form-control input-sm', 'disabled'=>'true']) }}
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('date', 'Date', $carbon->parse($issue->requisition->date)->format('d-m-Y'), ['class'=>'form-control input-sm datepicker', 'disabled']) }}
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
                                     {{ BootForm::select('forward_working_unit_id', 'Forward To', $forward_units, null, ['class'=>'form-control input-sm']) }}
                                 </div>
 
                             </div>
                             <hr>
-                            <div id="vue_app">
-                            <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
-                                <div class="row">
-{{--                                     <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>HS Code</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)' v-on:keydown.enter.prevent="add_product">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                        </div>
-                                    </div> --}}
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Search Product</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="add_product">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Available Quantity</label>
-                                            <input class="form-control input-sm" type="text" v-model='active_record.stock' readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>Issue Quantity</label>
-                                            <input class="form-control input-sm" type="number" min="0" v-model='active_record.quantity' v-on:keydown.enter.prevent="add_product">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <button type="button" class="btn btn-success btn-sm m-t-25" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
-                                    </div>
-                                </div>
-                            </div>
+                            {{-- <div id="vue_app"> --}}
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th style="width: 125px;">id</th>
                                         <th>Item name</th>
                                         <th style="width: 150px;" class="text-center">Stock</th>
+                                        <th style="width: 150px;">Requested Quantity</th>
                                         <th style="width: 150px;">Issue Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
-                                        <th style="width: 150px;"  class="text-center">Check To Forward</th>
+                                        <th style="width: 150px;" class="text-center">Check To Forward</th>
                                         <th style="width: 125px;" class="text-center">Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
-  										                  <td v-html='product.id'></td>
   										                  <td v-html='product.name'></td>
   										                  <td v-html='product.stock' class="text-right"></td>
+                                        <td v-html="product.requested_quantity" class="text-right"></td>
   										                  <td>
                                           <div class="form-group">
                                               <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
+                                              <input v-bind:name="'products['+index+'][name]'" class="form-control input-sm" type="hidden" v-bind:value='product.name'/>
+                                              <input v-bind:name="'products['+index+'][stock]'" class="form-control input-sm" type="hidden" v-bind:value='product.stock'/>
+                                              <input v-bind:name="'products['+index+'][requested_quantity]'" class="form-control input-sm" type="hidden" v-bind:value='product.requested_quantity'/>
                                               <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
                                           </div>
   										                  </td>
@@ -156,8 +114,7 @@
                                   @endif
                                 </div>
                             </div>
-                            {{ BootForm::close() }}
-                        </form>
+                          {{ BootForm::close() }}
                     </div>
                 </div>
             </div>
@@ -183,79 +140,93 @@ $(function(){
           base_url: "{{ url('inventory/get-product-info/') }}",
           old_data_url: "{{ url('inventory/vue-old-products') }}",
           batch_stock_url: "{{ url('inventory/get-batch-stock') }}",
+          requisition: "{{ url('inventory/api/fetch-requisition') }}"
         },
-  			products:[/*
-  				{id:1, name:'First Table', stock:10, quantity:8},
-  				{id:2, name:'Second Table', stock:15, quantity:10}*/
-  			],
-  			active_record:{
-  				hs_code:'',
-  				id:'',
-  				name:'',
-  				stock:'',
-  				quantity:''
-  			},
-  			remote_data:'Working..'
+  			products:{!! old('products')?collect(old('products'))->toJson():'[]' !!},
+        inventory_requisition_no:'{{ old('inventory_requisition_no') }}',
+        requisition:{}
   		},
   		methods:{
-  			alert:function(event){
-  				alert('Working...');
-  				console.log(event.target);
-  			},
-  			fetch_product:function(slug){
+        alert:function(msg='Sorry!, try again later.', type='error'){
 
-  				var vm=this;
-          var loading = $.loading();
-          loading.open(3000);
-          vm.remote_data=null;
-          vm.reset_active_record();
+            new PNotify({
+              title: 'Message',
+              text: msg,
+              type: type,
+              styling: 'bootstrap3'
+            });
 
-          requested_working_unit_id=$('#requested_working_unit_id').val();
-          product_status_id=$('#product_status_id').val();
-          product_type_id=$('#product_type_id').val();
+        },
+        reset_requisition(old=null){
 
-          if(slug && requested_working_unit_id){
+          var ref=this;
 
-            axios.get(this.config.base_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
+          if(old){
 
-              vm.remote_data=response.data;
-              vm.active_record=vm.remote_data;
-              vm.active_record.quantity=0
-                
+            ref.requisition=old;
+
+          }else{
+
+            ref.requisition={
+              type:{
+                name:''
+              },
+              sender:{
+                name:''
+              },
+              item_status:{
+                name:''
+              },
+              item_type:{
+                name:''
+              }
+            }
+
+          }
+
+        },
+        fetch_requisition:function(){
+          
+          var ref=this;
+          var requested_working_unit_id={{ $requested_depot->id }};
+
+          if(ref.inventory_requisition_no){
+
+            ref.reset_requisition();
+            ref.products=[];
+            var loading = $.loading();
+            loading.open(3000);
+
+            axios.get(ref.config.requisition + '/' + requested_working_unit_id + '/' + ref.inventory_requisition_no).then(function(response){
+
               loading.close();
+
+              if(response.data){
+
+                ref.requisition=response.data.requisition;
+                ref.products=response.data.products;
+
+              }else ref.alert('Sorry!, requested requsition does not found.');
 
             }).catch(function(){
 
               loading.close();
+              ref.alert('Sorry!, requested requsition does not found.');
 
             });
 
-          }else loading.close();
+          }else{
 
-  			},
+            ref.alert('Please!, insert requisition number.');
+
+          }
+
+        },
   			delete_product:function(product){
 			    this.products.splice(this.products.indexOf(product), 1);
   			 },
-         reset_active_record:function(){
-          this.active_record={hs_code:'', id:'', name:'', stock:'', quantity:''};
-         },
-         add_product:function(){
-          if(this.active_record.stock > 0 && this.active_record.quantity > 0 && this.active_record.quantity <= this.active_record.stock){
-            this.products.push(this.active_record);
-            this.reset_active_record();
-          }else{
-
-            new PNotify({
-              'title': 'Failed!',
-              'text': 'Sorry!, inserted quantity amount is zero or available stock below inserted quantity.',
-              'type': 'error',
-              'styling': 'bootstrap3'
-            });
-
-          }
-         },
          load_old:function(){
-            var vm=this;
+            var ref=this;
             var loading=$.loading();
 
             requested_working_unit_id=$('#requested_working_unit_id').val();
@@ -265,7 +236,7 @@ $(function(){
             loading.open(3000);
             axios.get(this.config.old_data_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
-              vm.products=response.data;                
+              ref.products=response.data;                
               loading.close();
 
             }).catch(function(){
@@ -276,21 +247,21 @@ $(function(){
          },
          get_batch_stock:function(index){
 
-          var vm=this;
+          var ref=this;
           var loading = $.loading();
           loading.open(3000);
 
           var requested_working_unit_id=$('#requested_working_unit_id').val();
           var product_status_id=$('#product_status_id').val();
           var product_type_id=$('#product_type_id').val();
-          var product=vm.products[index].id;
-          var slug=vm.products[index].batch_no;
+          var product=ref.products[index].id;
+          var slug=ref.products[index].batch_no;
 
           if(!slug) slug='reset';
 
           axios.get(this.config.batch_stock_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' + product + '/' +slug).then(function(response){
 
-            vm.products[index].stock=response.data;
+            ref.products[index].stock=response.data;
               
             loading.close();
 
@@ -302,13 +273,9 @@ $(function(){
 
          }//End of method get_batch_stock
   		},
-      watch:{
-        remote_data:function(){
-
-        }
-      },
       beforeMount(){
-        this.load_old();
+        this.reset_requisition({!! old('requisition')?collect(old('requisition'))->toJson():'null' !!});
+        //this.load_old();
       }
 	})//End of vue js
 

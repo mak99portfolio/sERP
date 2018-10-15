@@ -14,7 +14,7 @@
                     <div class="x_content">
                         <br />
                         {{-- @include('partials.flash_msg') --}}
-                        <form class="form-horizontal form-label-left" action="{{route('terms-condition-type.store')}}" method="POST" autocomplete="off">
+                        <form class="form-horizontal form-label-left" action="{{route('terms-and-condition-type.store')}}" method="POST" autocomplete="off">
                             {{csrf_field()}}
                             <div class="col-md-6 offset-md-3 col-sm-6 col-xs-12">
                                 {{ BootForm::text('name', 'Name', null, ['class'=>'form-control input-sm','required'=>'required']) }}
@@ -27,7 +27,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('terms-condition-type.index')}}">Cancel</a>
+                                    <a class="btn btn-default btn-sm" href="{{route('terms-and-condition-type.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </form>

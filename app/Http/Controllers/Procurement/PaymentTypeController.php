@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Procurement;
 use App\Http\Controllers\Controller;
 use App\PaymentType;
 use App\Http\Requests\PaymentTypeRequest;
+use Illuminate\Http\Request;
 use Auth;
 use Session;
 class PaymentTypeController extends Controller
@@ -49,38 +50,30 @@ class PaymentTypeController extends Controller
         return redirect()->route('payment-type.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\PaymentType  $paymentType
-     * @return \Illuminate\Http\Response
-     */
     public function show(PaymentType $paymentType)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\PaymentType  $paymentType
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(PaymentType $paymentType)
     {
-        //
+        $view = view($this->view_root . 'edit');
+        $view->with('paymentType', $paymentType);
+        return $view;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\PaymentType  $paymentType
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, PaymentType $paymentType)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:payment_types,name,'.$paymentType->id,
+            'short_name' => 'required|unique:payment_types,short_name,'.$paymentType->id,
+        ]);
+        $paymentType->fill($request->all());
+        $paymentType->update();
+        Session::put('alert-success',$paymentType->name . ' updated successfully!');
+        return redirect()->route('payment-type.index');
     }
 
     /**

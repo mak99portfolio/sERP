@@ -48,17 +48,17 @@
       <li><a><i class="fa fa-sitemap"></i> Sales <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('sales-order.index') }}">Sales Order</a></li>
-          <li><a href="#">Sales Order Cancel</a></li>
-          <li><a href="#">Challan</a></li>
-          <li><a href="#">Invoice</a></li>
-          <li><a href="#">Invoice Cancel</a></li>
-          <li><a href="#">Collection Schedule</a></li>
-          <li><a href="#">Payment Schedule</a></li>
+          <li><a href="{{ route('sales-order-cancel.index') }}">Sales Order Cancel</a></li>
+          <li><a href="{{ route('sales-challan.index') }}">Challan</a></li>
+          <li><a href="{{ route('sales-invoice.index') }}">Invoice</a></li>
+          <li><a href="{{ route('sales-invoice-cancel.index') }}">Invoice Cancel</a></li>
+          <li><a href="{{ route('collection-schedule.index') }}">Collection Schedule</a></li>
+          <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
-            <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
-              <li><a href="#">Rule Setup</a></li>
+              <li><a href="{{ route('rule-setup.index') }}">Rule Setup</a></li>
+              <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
             </ul>
           </li>
         </ul>
@@ -107,7 +107,7 @@
           <li><a href="{{route('bank.index')}}">Bank</a></li>
           <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
           <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
-          <li><a href="{{route('terms-condition-type.index')}}">Terms and Condition Type</a></li>
+          <li><a href="{{route('terms-and-condition-type.index')}}">Terms and Condition Type</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>

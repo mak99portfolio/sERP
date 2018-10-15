@@ -90,8 +90,15 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
 //Sales
 Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function(){
     Route::resource('sales-order', 'SalesOrderController');
+    Route::resource('sales-order-cancel', 'SalesOrderCancelController');
+    Route::resource('sales-challan', 'SalesChallanController');
+    Route::resource('sales-invoice', 'SalesInvoiceController');
+    Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
+    Route::resource('collection-schedule', 'CollectionScheduleController');
+    Route::resource('payment-schedule', 'PaymentScheduleController');
     // Setting
     Route::resource('customer-profile', 'CustomerProfileController');
+    Route::resource('rule-setup', 'RuleSetupController');
 
 });
 

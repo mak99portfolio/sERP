@@ -27,7 +27,8 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
-                                        <th>Short Name</th>
+                                        <th>Short Name</th>  
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -35,7 +36,9 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $item->name }}</td>
-                                        <td>{{ $item->short_name }}</td>
+                                        <td>{{ $item->short_name }}</td>   
+                                        <td class="text-center"><a href="{{ route('payment-type.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                  
                                     </tr>
                                     @endforeach
                                 </tbody>

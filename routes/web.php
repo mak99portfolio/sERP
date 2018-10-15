@@ -30,7 +30,7 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
     Route::resource('bank', 'BankController');
     Route::resource('enclosure', 'EnclosureController');
     Route::resource('employee-profile', 'EmployeeProfileController');
-    Route::resource('terms-condition-type', 'TermsAndConditionTypeController');
+    Route::resource('terms-and-condition-type', 'TermsAndConditionTypeController');
 
     Route::get(
         'employee-organizational-info/{organizational_info}', 'EmployeeProfileController@organizational_info_form'
@@ -99,6 +99,7 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     // Setting
     Route::resource('customer-profile', 'CustomerProfileController');
     Route::resource('rule-setup', 'RuleSetupController');
+    Route::resource('customer-zone', 'CustomerZoneController');
 
 });
 

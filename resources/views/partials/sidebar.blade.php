@@ -57,8 +57,8 @@
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
               <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
-              <li><a href="#">Customer Zone</a></li>
               <li><a href="{{ route('rule-setup.index') }}">Rule Setup</a></li>
+              <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
             </ul>
           </li>
         </ul>
@@ -107,7 +107,7 @@
           <li><a href="{{route('bank.index')}}">Bank</a></li>
           <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
           <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
-          <li><a href="{{route('terms-condition-type.index')}}">Terms and Condition Type</a></li>
+          <li><a href="{{route('terms-and-condition-type.index')}}">Terms and Condition Type</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>

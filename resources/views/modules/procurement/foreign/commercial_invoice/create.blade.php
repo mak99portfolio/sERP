@@ -144,14 +144,14 @@
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="item in itemlist">
-                                                    <th><% $index+1 %> <input  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
+                                                    <th><% $index+1 %> <input  ng-disabled="!checked[$index]"  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
                                                      <td class="checkbox">
                                                         <label class="i-checks">
                                                             <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
+                                                        <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm", required>
                                                     </td>
                                                     <td>
                                                         <input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=item.unit_price" type="text" name="items[<%$index%>][unit_price]" class="form-control input-sm" readonly>

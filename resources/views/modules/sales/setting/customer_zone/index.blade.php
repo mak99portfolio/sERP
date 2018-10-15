@@ -26,15 +26,24 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Customer Name</th>
-                                        <th>Customer Type</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
+                                        <th>Short Name </th>
                                         <th>Created</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    @foreach($customer_zone_list as $item)
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->name}}</td>
+                                        <td>{{$item->short_name}}</td>
+                                        <td>{{$item->created_at}}</td>
+                                        <td class="text-center">
+                                            {{-- <a href="{{ route('customer-zone.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block">View</a> --}}
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

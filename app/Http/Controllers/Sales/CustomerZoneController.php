@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\CustomerZone;
 use App\City;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class CustomerZoneController extends Controller
 {
@@ -17,7 +19,7 @@ class CustomerZoneController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
-        // $view->with('customer_profile_list', CustomerProfile::all());
+        $view->with('customer_zone_list', CustomerZone::all());
         return $view;
     }
 
@@ -41,7 +43,22 @@ class CustomerZoneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd( $request->input());
+        $request->validate([
+            'name' => 'required|unique:customer_zones',
+            'short_name' => 'required|unique:customer_zones',
+            'city_ids' => 'required'
+        ]);
+        $customer_zone = new CustomerZone;
+        $customer_zone->fill($request->input());
+        $customer_zone->creator_user_id = Auth::id();
+        $customer_zone->save();
+
+        $customer_zone->zone_cities()->sync($request->city_ids);
+
+        Session::put('alert-success', 'Customer zone created successfully');
+        return redirect()->route('customer-zone.index');
     }
 
     /**

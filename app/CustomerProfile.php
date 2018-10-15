@@ -13,6 +13,7 @@ class CustomerProfile extends Model
         'customer_type_id',
         'status',
         'establishment_date',
+        'customer_zone_id',
         'contact_number',
         'fax',
         'website',
@@ -24,12 +25,15 @@ class CustomerProfile extends Model
         'incorporation_date',
         'vat_number',
         'address',
+        'notes',
         'type_of_business',
     ];
 
     public function customer_type(){
-
         return $this->belongsTo('App\CustomerType','customer_type_id');
+    }
+    public function zone(){
+        return $this->belongsTo('App\CustomerZone','customer_zone_id');
     }
     public function customer_banks()
     {

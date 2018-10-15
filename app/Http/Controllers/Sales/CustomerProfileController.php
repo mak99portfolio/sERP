@@ -100,7 +100,8 @@ class CustomerProfileController extends Controller
      */
     public function show(CustomerProfile $customerProfile)
     {
-        //
+        $view = view($this->view_root . 'show');
+        return $view;
     }
 
     /**

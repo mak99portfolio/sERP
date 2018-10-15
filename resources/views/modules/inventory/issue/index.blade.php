@@ -16,7 +16,7 @@
         <div class="x_panel">
             <div class="x_title">
                 <h2>Inventory Issue <small>List</small></h2>
-                {{-- {!! btnAddNew(['url'=>route('requisition.create')]) !!} --}}
+                {!! btnAddNew(['url'=>route('issue.create')]) !!}
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -29,6 +29,7 @@
                         <tr class='primary'>
                             <th>Issue No</th>
                             <th>Requisition No</th>
+                            <th>Challan No</th>
                             <th>Type</th>
                             <th>Sender</th>
                             <th>Requested To</th>
@@ -45,6 +46,7 @@
                         <tr>
                             <td>{{ $row->inventory_issue_no }}</td>
                             <td>{{ $row->requisition->inventory_requisition_no }}</td>
+                            <td>{{ $row->challan_no }}</td>
                             <td>{{ $row->requisition->type->name }}</td>
                             <td>{{ $row->requisition->sender->name }}</td>
                             <td>{{ $row->requisition->requested_to->name }}</td>

@@ -192,22 +192,22 @@ class ReceiveController extends Controller{
 
     public function get_inventory_requisition(\App\WorkingUnit $working_unit, string $slug){
 
-        $requisition=$working_unit->outgoing_requisitions()->where('inventory_requisition_no', $slug)->first();
+        $inventory_issue=\App\InventoryIssue::where(['sender_working_unit_id'=>$working_unit->id, 'challan_no'=>$slug])->first();
 
-        if($requisition && $requisition->issue()->exists() && $requisition->issue->final_approver()->exists()){
+        //dd($inventory_issue);
 
-            $items=$requisition->issue->items;
+        if($inventory_issue && $inventory_issue->final_approver()->exists()){
 
             $products=[];
 
-            foreach($items as $item){
+            foreach($inventory_issue->items as $item){
 
                 $return_quantity='';
                 $return_status_id=1;
 
-                if($requisition->issue->return_items()->exists()){
+                if($inventory_issue->return_items()->exists()){
 
-                    $return_item=$requisition->issue->return_items()->where('product_id', $item->product_id)->first();
+                    $return_item=$inventory_issue->return_items()->where('product_id', $item->product_id)->first();
 
                     if($return_item){
                         $return_quantity=$return_item->return_quantity;
@@ -222,7 +222,7 @@ class ReceiveController extends Controller{
                     'hs_code'=>$item->product->hs_code,
                     'name'=>$item->product->name,
                     'quantity'=>$item->issued_quantity,
-                    'requisition_quantity'=>$requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity,
+                    'requisition_quantity'=>$inventory_issue->requisition->items()->where('product_id', $item->product->id)->first()->requested_quantity,
                     'return_quantity'=>$return_quantity,
                     'return_status_id'=>$return_status_id,
                     'batch_no'=>$item->batch_no,
@@ -234,9 +234,9 @@ class ReceiveController extends Controller{
 
             return response()->json([
                 'requisition'=>[
-                    'inventory_requisition_no'=>$requisition->inventory_requisition_no,
-                    'receive_from'=>$requisition->requested_to->name,
-                    'inventory_issue_id'=>$requisition->issue->id
+                    'inventory_requisition_no'=>$inventory_issue->requisition->inventory_requisition_no,
+                    'receive_from'=>$inventory_issue->requested_to->name,
+                    'inventory_issue_id'=>$inventory_issue->id
                 ],
                 'products'=>$products
             ]);

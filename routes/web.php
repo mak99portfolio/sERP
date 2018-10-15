@@ -163,6 +163,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         //route for status adjustment
         Route::get('product-info-for-adjusment/{working_unit}/{selected_type}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
         Route::get('fetch-requisition/{requested_working_unit}/{slug}', 'IssueController@fetch_requisition');
+        Route::get('get-batch-stock/{working_unit}/{product}/{inventory_requisition_no}/{slug}', 'IssueController@get_batch_stock');
 
     });
 

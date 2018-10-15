@@ -27,6 +27,10 @@ class CustomerProfile extends Model
         'type_of_business',
     ];
 
+    public function customer_type(){
+
+        return $this->belongsTo('App\CustomerType','customer_type_id');
+    }
     public function customer_banks()
     {
         return $this->hasMany('App\CustomerBank');

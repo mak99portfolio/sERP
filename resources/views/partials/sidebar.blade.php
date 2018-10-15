@@ -98,7 +98,7 @@
           <li><a href="{{route('bank.index')}}">Bank</a></li>
           <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
           <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
-          <li><a href="{{route('terms-condition-type.index')}}">Terms and Condition Type</a></li>
+          <li><a href="{{route('terms-and-condition-type.index')}}">Terms and Condition Type</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>

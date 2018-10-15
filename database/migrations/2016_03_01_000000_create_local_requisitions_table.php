@@ -21,8 +21,8 @@ class CreateLocalRequisitionsTable extends Migration
             $table->foreign('requisition_purpose_id')->references('id')->on('requisition_purposes')->onDelete('cascade');
             $table->string('requisition_no')->nullable();
             $table->string('requisition_title')->nullable();
-            $table->string('issued_date');
-            $table->string('date_expected')->nullable();
+            $table->date('issued_date');
+            $table->date('date_expected')->nullable();
             $table->text('note')->nullable();
             $table->integer('company_id')->unsigned();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');

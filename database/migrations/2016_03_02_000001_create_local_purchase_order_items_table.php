@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLocalPurchaseOrderItemsTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up() {
         Schema::create('local_purchase_order_items', function (Blueprint $table) {
             $table->increments('id');
@@ -29,11 +24,6 @@ class CreateLocalPurchaseOrderItemsTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down() {
         Schema::dropIfExists('local_purchase_order_items');
     }

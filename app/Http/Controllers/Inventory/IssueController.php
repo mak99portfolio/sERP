@@ -29,14 +29,61 @@ class IssueController extends Controller{
 
     public function create(){
 
-        return back();
-        $data=[];
+         //dd($issue);
+
+        $requested_depot=\Auth::user()->working_unit();
+
+        $forward_units=[''=>'--select Working Unit--'];
+
+        if($requested_depot->type->name=='Central Depot'){
+            $forward_units=\App\WorkingUnit::where('id', '<>', $requested_depot->id)
+            ->pluck('name', 'id')
+            ->prepend('--select Working Unit--', '');
+        }
+
+        $data=[
+            'issue'=>new \App\InventoryIssue,
+            'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
+            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'forward_units'=>$forward_units,
+            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
+            'product_types'=>\App\ProductType::pluck('name', 'id'),
+            'carbon'=>new \Carbon\Carbon,
+            'requested_depot'=>$requested_depot
+        ];
+
+        /*
+
+        if(!\Session::has('vue_products')){
+
+            $products=[];
+
+            foreach($issue->items as $row){
+
+                array_push($products, [
+                    'id'=>$row->product_id,
+                    'quantity'=>$row->issued_quantity,
+                    'batch_no'=>$row->batch_no,
+                    'expiration_date'=>$row->expiration_date,
+                    'forward'=>$row->forward
+                ]);
+
+            }
+
+            //dd($requisition->requested_items);
+
+            \Session::put('vue_products', $products);
+            */
+
         return view($this->path('create'), $data);
         
     }
 
 
     public function store(Request $request){
+
+        //dd($request->all());
+        return back()->withInput();
         
     }
 
@@ -275,4 +322,61 @@ class IssueController extends Controller{
     public function destroy(Issue $issue){
         
     }
+
+    public function fetch_requisition(Request $request, \App\WorkingUnit $requested_working_unit, String $slug){
+
+        $issue_request=\App\InventoryIssueRequest::where('requested_working_unit_id', $requested_working_unit->id)->first();
+
+        $products=[];
+
+        foreach($issue_request->items as $row){
+
+            $issue_exists=\App\InventoryIssue::where('requested_working_unit_id', $requested_working_unit->id)->first();
+            $requested_quantity=$row->quantity;
+
+            if($issue_exists){
+                $issued_quantity=$issue_exists->items()->where('product_id', $row->product_id)->sum('issued_quantity');
+                $requested_quantity=$row->quantity-$issue_quantity;
+            }            
+
+            $temp=[
+                'id'=>$row->product->id,
+                'hs_code'=>$row->product->hs_code,
+                'name'=>$row->product->name,
+                'requested_quantity'=>$requested_quantity,
+                'quantity'=>0,
+                'forward'=>0,
+                'batch_no'=>'',
+                'expiration_date'=>''
+
+            ];
+
+            $temp['stock']=stock_balance($requested_working_unit, $row->product, [
+                'product_status_id'=>$row->product_status_id,
+                'product_type_id'=>$row->product_type_id
+            ]);
+            
+            array_push($products, $temp);
+
+        }
+
+        return response()->json([
+            'requisition'=>\App\InventoryRequisition::with([
+                'item_type',
+                'item_status',
+                'type',
+                'sender'
+            ])
+            ->where('inventory_requisition_no', $slug)
+            ->whereHas('issue_requests', function($query)use($issue_request){
+
+                $query->where('requested_working_unit_id', $issue_request->requested_working_unit_id);
+
+            })->first(),
+            'products'=>$products
+            
+        ]);
+
+    }
+
 }

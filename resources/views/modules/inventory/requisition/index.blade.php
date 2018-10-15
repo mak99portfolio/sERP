@@ -50,7 +50,7 @@
                             <td>{{ $row->initial_approver->name }}</td>
                             <td>
                             @if($row->final_approver()->exists())
-								{{ $row->initial_approver->name }}
+								{{ $row->final_approver->name }}
                             @else
                             	{!! btnCustom(['title'=>'Final Submit', 'url'=>route('requisition.edit', ['requisition'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm btn-block']) !!}
                             @endif

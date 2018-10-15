@@ -16,6 +16,7 @@ use Session;
 class LocalPurchaseOrderController extends Controller
 {
     private $view_root = 'modules/procurement/local/purchase_order/';
+
     public function search_msg(Request $request){
        $purchase_requisition_no = $request->purchase_requisition_no;
       // dd($purchase_requisition_no);
@@ -35,7 +36,7 @@ class LocalPurchaseOrderController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', LocalRequisition::availableRequisitions());
-        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('', ''));
         return $view;
     }
 
@@ -54,7 +55,7 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->purchase_order_date = \Carbon\Carbon::parse($request->purchase_order_date)->format('Y-m-d');
         $local_purchase_order->save();
         $local_purchase_order->order_vendor()->save(new LocalPurchaseOrderVendor($request->vendor));
-        $local_purchase_order->requisitions()->sync($request->get('foreign_requisition_ids'));
+        $local_purchase_order->requisitions()->sync($request->get('local_requisition_ids'));
         $local_purchase_order->items()->createMany($request->get('items'));
         foreach($request->payment_terms as $item){
             $payment_term = new LocalPurchaseOrderPaymentTerm;
@@ -65,7 +66,7 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->payment_terms()->saveMany($payment_terms);
         $local_purchase_order->terms_conditions()->createMany($request->get('terms_conditions'));
         $local_purchase_order->save();
-        Session::put('alert-success', 'Local Purchase order created successfully');
+        Session::put('alert-success', 'Local Purchase order created successfully. Purchase Order No: ' . $local_purchase_order->purchase_order_no);
         return redirect()->route('local-purchase-order.index');
     }
 

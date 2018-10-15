@@ -6,15 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLocalPurchaseOrderPaymentTermsTable extends Migration {
 
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up() {
         Schema::create('local_purchase_order_payment_terms', function (Blueprint $table) {
             $table->increments('id');
-
             $table->string('payment_type')->nullable();
             $table->date('payment_date')->nullable();
             $table->text('description')->nullable();
@@ -30,11 +24,6 @@ class CreateLocalPurchaseOrderPaymentTermsTable extends Migration {
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down() {
         Schema::dropIfExists('local_purchase_order_payment_terms');
     }

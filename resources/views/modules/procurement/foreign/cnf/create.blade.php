@@ -25,7 +25,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'bill_of_lading_id','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index')]) }}
+                                    {{ BootForm::select('bill_of_lading_id', 'BL No', $bill_of_lading_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select BL No','style'=>"width: 100%;",'required','ng-model'=>'bill_of_lading_id','ng-change'=>'searchBL()','data-popup'=> route('bill-of-lading.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_lading_date','BL Date', null, ['class'=>'form-control input-sm','ng-model'=>'bill_of_lading_date', 'readonly']) }}
@@ -74,7 +74,7 @@
                                     {{ BootForm::text('bill_date','Bill Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee', $company_profile_list, null, ['class'=>'form-control input-sm select2', 'required', 'data-popup'=> route('company-profile.index')]) }}
+                                    {{ BootForm::select('consignee_company_profile_id', 'Consignee', $company_profile_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Consignee', 'required', 'data-popup'=> route('company-profile.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('bill_of_entry_no','B/E No', null, ['class'=>'form-control input-sm', 'required']) }}
@@ -95,7 +95,7 @@
                                     {{ BootForm::number('total_day','Total Days', null, ['class'=>'form-control input-sm', 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2','data-popup'=> route('vendor.index'), 'required']) }}
+                                    {{ BootForm::select('vendor_id', 'CNF Agent', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select CNF Agent','data-popup'=> route('vendor.index'), 'required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::number('cnf_value','C&F Value (USD)', null, ['class'=>'form-control input-sm', 'ng-model'=>'cnf_value', 'required']) }}

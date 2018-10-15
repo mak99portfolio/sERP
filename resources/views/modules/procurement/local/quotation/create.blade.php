@@ -97,12 +97,12 @@
                                                 <table class="table table-bordered table-hover">
                                                     <thead ng-if="payment_terms.length >=1">
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th width="40">#</th>
                                                             <th>Payment term</th>
                                                             <th>Date</th>
                                                             <th>Description</th>
                                                             <th>% or Fixed Payment Amount</th>
-                                                            <th class="text-center">Action</th>
+                                                            <th width="40" class="text-center">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -147,7 +147,7 @@
                                                 <table class="table table-bordered">
                                                     <thead>
                                                         <tr>
-                                                            <th>#</th>
+                                                            <th width="40">#</th>
                                                             <th>Term & Condition</th>
                                                             <th>Description</th>
                                                             <th class="text-center">Action</th>
@@ -158,7 +158,7 @@
                                                             <td><% $index+1 %></td>
                                                             <td><% condition.name %><input name="terms_conditions[<% $index %>][terms_and_condition_type_id]" type="hidden" value="<% condition.id %>"></td>
                                                             <td><% condition.description %> <input name="terms_conditions[<% $index %>][description]" type="hidden" value="<% condition.description %>"></td>
-                                                            <td class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
+                                                            <td width="40" class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

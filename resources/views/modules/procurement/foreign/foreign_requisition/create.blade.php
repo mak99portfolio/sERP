@@ -250,7 +250,9 @@
                 $http.get(url)
                         .then(function(response) {
                             $scope.itemlist.push(response.data);
-                        });
+                        });else{
+                PNotify.removeAll();
+            }
             }else{
                 $scope.warning('Item already exist');
             }
@@ -282,6 +284,7 @@
                 'type': 'notice',
                 'styling': 'bootstrap3',
             };
+            PNotify.removeAll();
             new PNotify(data);
         }
         $scope.removeItem = function(index){

@@ -22,6 +22,10 @@ class LocalRequisition extends Model
     public function items(){
         return $this->hasMany('App\LocalRequisitionItem');
     }
+    public function local_po_items()
+    {
+        return $this->hasMany('App\LocalPurchaseOrderItem');
+    }
     public function priority(){
         return $this->belongsTo('App\RequisitionPriority', 'requisition_priority_id');
     }
@@ -32,17 +36,28 @@ class LocalRequisition extends Model
     {
         return $this->belongsToMany('App\LocalPurchaseOrder');
     }
+    // public static function availableRequisitions()
+    // {
+    //     $requisitions = \App\LocalRequisition::all();
+    //     $available_requisitions = [];
+    //     foreach ($requisitions as $requisition) {
+    //         foreach ($requisition->items as $item) {
+    //             $po_quantity = LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
+    //             if ($item->quantity > $po_quantity) {
+    //                 $available_requisitions[] = $requisition;
+    //                 break;
+    //             }
+    //         }
+    //     }
+    //     return $available_requisitions;
+    // }
     public static function availableRequisitions()
     {
         $requisitions = \App\LocalRequisition::all();
         $available_requisitions = [];
         foreach ($requisitions as $requisition) {
-            foreach ($requisition->items as $item) {
-                $po_quantity = LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
-                if ($item->quantity > $po_quantity) {
-                    $available_requisitions[] = $requisition;
-                    break;
-                }
+            if($requisition->items->sum('quantity') > $requisition->local_po_items->sum('quantity')){
+                $available_requisitions[] = $requisition;
             }
         }
         return $available_requisitions;
@@ -50,10 +65,19 @@ class LocalRequisition extends Model
     public function availableItems()
     {
         foreach ($this->items as $key => $item) {
-            $this->items[$key]->quantity -= LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
+            $this->items[$key]->quantity -= LocalPurchaseOrderItem::where('product_id', $item->product_id)
+                                            ->where('local_requisition_id', $this->id)
+                                            ->sum('quantity');
         }
         return $this->items;
     }
+    // public function availableItems()
+    // {
+    //     foreach ($this->items as $key => $item) {
+    //         $this->items[$key]->quantity -= LocalPurchaseOrderItem::where('product_id', $item->product_id)->sum('quantity');
+    //     }
+    //     return $this->items;
+    // }
 
     public function generateRequisitionNumber()
     {

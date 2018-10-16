@@ -15,13 +15,13 @@
                     <form class="form-horizontal form-label-left input_mask">
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('seles_order_no','Seles Order No', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('sales_order_no','Sales Order No', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('seles_date','Seles Date', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::text('sales_date','Sales Date', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('seles_reference','Sales Reference',[],null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                {{ BootForm::select('sales_reference','Sales Reference',[],null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('currency','Currency', null, ['class'=>'form-control input-sm']) }}

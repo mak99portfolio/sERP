@@ -58,14 +58,14 @@
                             <div class="row"> <br />
                                 <div class="col-sm-6 col-sm-offset-3">
                                     <div class="well">
-                                            {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','data-popup'=> route('vendor.index')]) }}
+                                            {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2','required','ng-model'=>'vendor_id','ng-change'=>'vendorWisePo()','data-placeholder'=>'Select Vendor','data-popup'=> route('vendor.index')]) }}
                                            <div class="form-group">
                                         <label>Purchase Order No.</label>
                                         <select data-placeholder="Select PO No" multiple  required class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">
                                             <option></option>
-                                            @foreach($purchase_orders as $item)
-                                            <option value="{{$item->id}}">{{$item->purchase_order_no}}</option>
-                                            @endforeach
+                                            
+                                            <option ></option>
+                                            <option ng-repeat="po in polist" value="<% po.id %>"><% po.purchase_order_no %></option>
                                         </select>
                                     </div>
                                    </div>
@@ -231,6 +231,14 @@
                 sum += $array[i];
             }
             return sum;
+      }
+      $scope.vendorWisePo=function(){
+         var vendor_id = $scope.vendor_id;
+         let url = "{{URL::to('get-vendor-wise-po')}}/" + vendor_id;
+            $http.get(url)
+                    .then(function(response) {
+                        $scope.polist = response.data;
+         });
       }
     });
 </script>

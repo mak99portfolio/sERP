@@ -86,6 +86,7 @@ class DatabaseSeeder extends Seeder
         
         // Sales
         $this->call(CustomerTypeTableSeeder::class);
+        $this->call(SalseOrderSeeder::class);
 
 
 

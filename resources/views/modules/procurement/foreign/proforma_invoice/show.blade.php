@@ -100,16 +100,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $sum=0;
+                                    @endphp
+                                    @foreach($proformaInvoice->items as  $key=>$item)
                                     <tr>
-                                        @foreach($proformaInvoice->items as  $key=>$item)
                                         <td>{{$key+1}}</td>
                                         <td>{{$item->product->hs_code}}</td>
                                         <td>{{$item->product->name}}</td>
                                         <td>{{$item->quantity}}</td>
                                         <td>{{$item->unit_price}}</td>
                                         <td class="text-right">{{number_format($item->unit_price * $item->quantity,2)}}</td>
+                                        {{$sum+=$item->unit_price * $item->quantity}}
                                     </tr>
                                     @endforeach
+                                    <tr>
+                                        <td colspan="5" class="text-right">Total </td>
+                                        <td class="text-right">{{number_format($sum,2)}}</td>
+                                    </tr>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">

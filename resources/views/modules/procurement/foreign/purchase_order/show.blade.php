@@ -103,21 +103,29 @@
                                             <th>Product Name</th>
                                             <th>UOM</th>
                                             <th class="text-right">Quantity</th>
-                                            <th class="text-right">Unit Price</th>
+                                            {{-- <th class="text-right">Unit Price</th> --}}
                                             <th class="text-right">Total Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
+                                            @php
+                                            $sum=0;
+                                            @endphp
                                   @foreach($purchaseOrder->items as $key =>$item)
                                        <tr>
-                                       <td>{{$key+1}}</td>
+                                           <td>{{$key+1}}</td>
                                            <td>{{$item->product->name}}</td>
                                            <td>{{$item->product->unit_of_measurement->name}}</td>
                                            <td class="text-right">{{$item->quantity}}</td>
-                                           <td class="text-right">{{$item->unit_price}}</td>
+                                           {{-- <td class="text-right">{{$item->unit_price}}</td> --}}
                                            <td class="text-right">{{number_format($item->quantity * $item->unit_price,2)}}</td>
+                                           {{$sum+=$item->quantity * $item->unit_price}}
                                        </tr>
                                        @endforeach
+                                            <tr>
+                                                <td colspan="4" class="text-right">Total</td>
+                                            <td class="text-right">{{number_format($sum,2)}}</td>
+                                            </tr>
                                     </tbody>
                                 </table>
                                 <table class="table table-bordered">

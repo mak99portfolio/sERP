@@ -536,5 +536,10 @@ class ApiController extends Controller
     // public function getCiToProduct($ci_id){
     //     return response()->json($ci_id);
     // }
+    public function getVendorWisePo($vendor_id)
+    {
+        $data=PurchaseOrder::where('vendor_id',$vendor_id)->get();
+        return response()->json($data);
+    }
 
 }

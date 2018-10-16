@@ -43,7 +43,7 @@ class ProformaInvoiceController extends Controller
         $view->with('port_list', Port::pluck('name','id'));
         $view->with('country_list', Country::pluck('name','id'));
         $view->with('company_profile_list', CompanyProfile::pluck('name','id')->prepend('-- Select Company --', ''));
-        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('-- Select Vendor --', ''));
+        $view->with('vendor_list', Vendor::pluck('name','id')->prepend('', ''));
         $view->with('city_list', City::pluck('name','id'));
         return $view;
     }

@@ -38,10 +38,10 @@
                                 <legend>Table of Terms and Conditions:</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('port.index')]) }}
+                                    {{ BootForm::select('port_of_loading_port_id', 'Port of Loading', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'port_of_loading_port_id', 'ng-change'=>'validateLoading()','data-popup'=> route('port.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('port.index')]) }}
+                                    {{ BootForm::select('port_of_discharge_port_id', 'Port of Discharge', $port_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required','ng-model'=>'port_of_discharge_port_id', 'ng-change'=>'validateDischarge()' ,'data-popup'=> route('port.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('final_destination_country_id', 'Country of Final Destination', $country_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('country.index')]) }}
@@ -195,6 +195,32 @@
             if($scope.quantity[index]<1){
                 $scope.quantity[index] = 1;
             }
+        }
+        $scope.validateLoading = function(){
+            if($scope.port_of_loading_port_id == $scope.port_of_discharge_port_id){
+                $scope.port_of_loading_port_id = "";
+                $scope.warning('Port of Loading and Port of discharge must be different!');
+            }else{
+                PNotify.removeAll();
+            }
+        }
+        $scope.validateDischarge = function(){
+            if($scope.port_of_discharge_port_id == $scope.port_of_loading_port_id){
+                $scope.port_of_discharge_port_id = "";
+                $scope.warning('Port of Loading and Port of discharge must be different!');
+            }else{
+                PNotify.removeAll();
+            }
+        }
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            PNotify.removeAll();
+            new PNotify(data);
         }
 
     });

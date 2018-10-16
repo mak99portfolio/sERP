@@ -27,9 +27,9 @@
                                     <tr>
                                         <th width="25">#</th>
                                         <th>Invoice No</th>
-                                        <th>Invoice Date</th>
-                                        <th>Sales Reference</th>
-                                        <th>Currency</th>
+                                        <th>Challan No</th>
+                                        <th>Challan Date</th>
+                                        <th>Sales Order No</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>

@@ -57,6 +57,7 @@
                                         <th>Item name</th>
                                         <th style="width: 150px;" class="text-center">Stock</th>
                                         <th style="width: 150px;">Requested Quantity</th>
+                                        <th style="width: 150px;">Issue Remain</th>
                                         <th style="width: 150px;">Issue Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
                                         <th style="width: 150px;" class="text-center">Check To Forward</th>
@@ -66,18 +67,22 @@
   										                  <td v-html='product.name'></td>
   										                  <td v-html='product.stock' class="text-right"></td>
                                         <td v-html="product.requested_quantity" class="text-right"></td>
+                                        <td v-html="product.issue_remain" class="text-right"></td>
   										                  <td>
                                           <div class="form-group">
+
                                               <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
                                               <input v-bind:name="'products['+index+'][name]'" class="form-control input-sm" type="hidden" v-bind:value='product.name'/>
                                               <input v-bind:name="'products['+index+'][stock]'" class="form-control input-sm" type="hidden" v-bind:value='product.stock'/>
                                               <input v-bind:name="'products['+index+'][requested_quantity]'" class="form-control input-sm" type="hidden" v-bind:value='product.requested_quantity'/>
-                                              <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
+                                              <input v-bind:name="'products['+index+'][issue_remain]'" class="form-control input-sm" type="hidden" v-bind:value='product.issue_remain'/>
+                                              <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="hidden" v-bind:value='product.expiration_date'/>
+                                              
+                                              <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0" v-on:change="check_remaining_issue(index)"/>
                                           </div>
-  										                  </td>
+                                        </td>
                                         <td>
                                           <div class="form-group">
-                                              <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="hidden" v-bind:value='product.expiration_date'/>
                                               <input v-bind:name="'products['+index+'][batch_no]'" class="form-control input-sm" type="text" v-model='product.batch_no' v-on:change="get_batch_stock(index)" min="0"/>
                                           </div>
                                         </td>
@@ -139,11 +144,11 @@ $(function(){
         config:{
           base_url: "{{ url('inventory/get-product-info/') }}",
           old_data_url: "{{ url('inventory/vue-old-products') }}",
-          batch_stock_url: "{{ url('inventory/get-batch-stock') }}",
+          batch_stock_url: "{{ url('inventory/api/get-batch-stock') }}",
           requisition: "{{ url('inventory/api/fetch-requisition') }}"
         },
-  			products:{!! old('products')?collect(old('products'))->toJson():'[]' !!},
-        inventory_requisition_no:'{{ old('inventory_requisition_no') }}',
+  			products:{!! old('products')?collect(old('products'))->toJson():(empty($edit['products'])?'[]':collect($edit['products'])->toJson()) !!},
+        inventory_requisition_no:'{{ old('inventory_requisition_no') ?? (empty($edit['inventory_requisition_no'])?'': $edit['inventory_requisition_no']) }}',
         requisition:{}
   		},
   		methods:{
@@ -182,6 +187,14 @@ $(function(){
               }
             }
 
+          }
+
+        },
+        check_remaining_issue(index){
+
+          if(this.products[index].issue_remain < this.products[index].quantity){
+            this.alert('Issue quantity can\'t exceeds remaining quantity');
+            this.products[index].quantity=this.products[index].issue_remain
           }
 
         },
@@ -250,16 +263,12 @@ $(function(){
           var ref=this;
           var loading = $.loading();
           loading.open(3000);
-
-          var requested_working_unit_id=$('#requested_working_unit_id').val();
-          var product_status_id=$('#product_status_id').val();
-          var product_type_id=$('#product_type_id').val();
           var product=ref.products[index].id;
           var slug=ref.products[index].batch_no;
 
           if(!slug) slug='reset';
 
-          axios.get(this.config.batch_stock_url + '/' + requested_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' + product + '/' +slug).then(function(response){
+          axios.get(this.config.batch_stock_url + '/{{ $requested_depot->id }}/' + product + '/' + ref.inventory_requisition_no + '/' +slug).then(function(response){
 
             ref.products[index].stock=response.data;
               
@@ -274,7 +283,7 @@ $(function(){
          }//End of method get_batch_stock
   		},
       beforeMount(){
-        this.reset_requisition({!! old('requisition')?collect(old('requisition'))->toJson():'null' !!});
+        this.reset_requisition({!! old('requisition')?collect(old('requisition'))->toJson():(empty($edit['requisition'])?'null': collect($edit['requisition'])->toJson()) !!});
         //this.load_old();
       }
 	})//End of vue js

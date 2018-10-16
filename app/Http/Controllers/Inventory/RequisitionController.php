@@ -142,7 +142,7 @@ class RequisitionController extends Controller{
         }
 
         \Session::forget('vue_products');
-        return back()->with('success', 'Form submitted successfully!.');
+        return redirect()->route('requisition.index')->with('success', 'Form submitted successfully!.');
 
     }
 

@@ -17,7 +17,7 @@ class Quotation extends Model
     ];
 
     public function items(){
-        return $this->hasMany('App\QuotationItem');
+        return $this->hasMany('App\QuotationItem', 'quotation_id');
     }
     public function local_requisition(){
         return $this->belongsTo('App\LocalRequisition');
@@ -29,7 +29,7 @@ class Quotation extends Model
         return $this->hasMany('App\QuotationPaymentTerm');
     }
     public function terms_conditions(){
-        return $this->hasMany('App\QuotationTermsCondition');
+        return $this->hasMany('App\QuotationTermsCondition', 'quotation_id');
     }
     public function generate_purchase_order_number(){
         $serial = $this->count_last_serial() + 1;

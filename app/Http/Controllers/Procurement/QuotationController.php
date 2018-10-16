@@ -61,6 +61,7 @@ class QuotationController extends Controller
 
     public function show(Quotation $quotation)
     {
+        //dd($quotation->find(2)->terms_conditions);
         $view = view($this->view_root . 'show');
         $view->with('quotation', $quotation);
         return $view;

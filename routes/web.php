@@ -172,6 +172,7 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         //route for status adjustment
         Route::get('product-info-for-adjusment/{working_unit}/{selected_type}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
         Route::get('fetch-requisition/{requested_working_unit}/{slug}', 'IssueController@fetch_requisition');
+        Route::get('get-batch-stock/{working_unit}/{product}/{inventory_requisition_no}/{slug}', 'IssueController@get_batch_stock');
 
     });
 
@@ -203,6 +204,7 @@ Route::get('/get-due-amount/{id}/{no}', ['as' => 'et-due-amount', 'uses' => 'Api
 Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'ApiController@getLcToCiList']);
 Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
 Route::get('/get-requisition-items-by-requisition-id/{id}', ['as' => 'get-requisition-items-by-requisition-id', 'uses' => 'ApiController@getRequisitionItemsForQuotationByLocalRequisitionId']);
+Route::get('/get-vendor-wise-po/{id}', ['as' => 'get-vendor-wise-po', 'uses' => 'ApiController@getVendorWisePo']);
 
 
 //ACL (Access Control Limit)

@@ -317,6 +317,7 @@
                 $scope.warning('This LCA No already exist');
                 return;
             }
+            PNotify.removeAll();
             var lca = {};
             lca.lca_no = lca_no;
             $scope.lcalist.push(lca);
@@ -331,6 +332,7 @@
                 'type': 'notice',
                 'styling': 'bootstrap3',
             };
+            PNotify.removeAll();
             new PNotify(data);
         }
 

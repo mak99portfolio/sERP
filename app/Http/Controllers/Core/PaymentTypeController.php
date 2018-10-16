@@ -55,7 +55,7 @@ class PaymentTypeController extends Controller
         //
     }
 
-    
+
     public function edit(PaymentType $paymentType)
     {
         $view = view($this->view_root . 'edit');
@@ -63,7 +63,7 @@ class PaymentTypeController extends Controller
         return $view;
     }
 
-    
+
     public function update(Request $request, PaymentType $paymentType)
     {
         $request->validate([

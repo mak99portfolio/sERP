@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LocalPurchaseOrderItem extends Model{
 
     protected $fillable = [
+        "local_requisition_id",
         "product_id",
         "quantity",
         "unit_price",

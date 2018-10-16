@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Procurement;
 
 use App\LocalRequisition;
 use App\LocalPurchaseOrder;
+use App\LocalPurchaseOrderItem;
 use App\Vendor;
 use App\LocalPurchaseOrderVendor;
 use App\LocalPurchaseOrderPaymentTerm;
@@ -56,7 +57,14 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->save();
         $local_purchase_order->order_vendor()->save(new LocalPurchaseOrderVendor($request->vendor));
         $local_purchase_order->requisitions()->sync($request->get('local_requisition_ids'));
-        $local_purchase_order->items()->createMany($request->get('items'));
+        // $local_purchase_order->items()->createMany($request->get('items'));
+        $items = Array();
+        foreach($request->items as $itemlist){
+            foreach($itemlist as $item){
+                array_push($items, new LocalPurchaseOrderItem($item));
+            }
+        }
+        $local_purchase_order->items()->saveMany($items);
         foreach($request->payment_terms as $item){
             $payment_term = new LocalPurchaseOrderPaymentTerm;
             $payment_term->fill($item);

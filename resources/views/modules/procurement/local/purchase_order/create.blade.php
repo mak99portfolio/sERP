@@ -161,10 +161,11 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>#</th>
+                                                <th>Requisition No</th>
                                                 <th>Item Name</th>
                                                 <th>HS Code</th>
-                                                <th>Quantity</th>
+                                                <th>Req Qty</th>
+                                                <th>Purchase Quantity</th>
                                                 <th>MOU</th>
                                                 <th>Unit Price</th>
                                                 <th>Sub Total</th>
@@ -175,38 +176,42 @@
                                                 <th>Total (Net)</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr ng-repeat="item in itemlist">
-                                                <td>
-                                                    <% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
+                                        <tbody ng-repeat="req in itemlist">
+                                            <tr ng-repeat="item in req">
+                                                <td ng-if="$index == 0" rowspan="<% req.length %>">
+                                                    <% item.requisition_no %>
                                                 </td>
                                                 <td class="checkbox">
                                                     <label class="control-label">
-                                                        <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                        <input type="checkbox" ng-init="checked[$parent.$index][$index] = true" ng-model="checked[$parent.$index][$index]"><% item.product_name %>
+                                                        <input type="hidden" class="form-control" name="items[<% $parent.$index %>][<% $index %>][local_requisition_id]" value="<% item.requisition_id %>">
+                                                        <input type="hidden" class="form-control" name="items[<% $parent.$index %>][<% $index %>][product_id]" value="<% item.product_id %>">
                                                     </label>
                                                 </td>
                                                 <td><% item.hs_code %></td>
+                                                <td><% item.quantity %></td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]">
+                                                    <input type="hidden" ng-model="max_quantity[$parent.$index][$index]" ng-init="max_quantity[$parent.$index][$index]=item.quantity">
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="quantity[$parent.$index][$index]" ng-init="quantity[$parent.$index][$index]=item.quantity" ng-change = "quantityValidate($parent.$index, $index)" class="form-control input-sm" required type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][quantity]">
                                                 </td>
                                                 <td><% item.uom %></td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="unit_price[$parent.$index][$index]" ng-init="unit_price[$parent.$index][$index]= 0" class="form-control input-sm" type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][unit_price]" required>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][amount]" value="<% amount[$index] = quantity[$index]*unit_price[$index] %>"><% amount[$index] = quantity[$index]*unit_price[$index] %>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="amount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][amount]" value="<% amount[$parent.$index][$index] = quantity[$parent.$index][$index]*unit_price[$parent.$index][$index] %>"><% amount[$parent.$index][$index] = quantity[$parent.$index][$index]*unit_price[$parent.$index][$index] %>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="discount_rate[$index]" ng-init="discount_rate[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][discount_rate]" required>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="discount_rate[$parent.$index][$index]" ng-init="discount_rate[$parent.$index][$index]= 0" class="form-control input-sm" type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][discount_rate]" required>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="total_discount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][total_discount]" value="<% total_discount[$index] = amount[$index]*discount_rate[$index]/100 %>"><% total_discount[$index] = amount[$index]*discount_rate[$index]/100 %>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="total_discount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][total_discount]" value="<% total_discount[$parent.$index][$index] = amount[$parent.$index][$index]*discount_rate[$parent.$index][$index]/100 %>"><% total_discount[$parent.$index][$index] = amount[$parent.$index][$index]*discount_rate[$parent.$index][$index]/100 %>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="vat_rate[$index]" ng-init="vat_rate[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][vat_rate]" required>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="vat_rate[$parent.$index][$index]" ng-init="vat_rate[$parent.$index][$index]= 0" class="form-control input-sm" type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][vat_rate]" required>
                                                 </td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="vat_amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][vat_amount]" value="<% vat_amount[$index] = amount[$index]*vat_rate[$index]/100 %>"><% vat_amount[$index] = amount[$index]*vat_rate[$index]/100 %></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="total_net_amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][total_net_amount]" value="<% total_net_amount[$index] = amount[$index]-total_discount[$index]+vat_amount[$index] %>"><% total_net_amount[$index] = amount[$index]-total_discount[$index]+vat_amount[$index] %></td>
+                                                <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="vat_amount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][vat_amount]" value="<% vat_amount[$parent.$index][$index] = amount[$parent.$index][$index]*vat_rate[$parent.$index][$index]/100 %>"><% vat_amount[$parent.$index][$index] = amount[$parent.$index][$index]*vat_rate[$parent.$index][$index]/100 %></td>
+                                                <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="total_net_amount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][total_net_amount]" value="<% total_net_amount[$parent.$index][$index] = amount[$parent.$index][$index]-total_discount[$parent.$index][$index]+vat_amount[$parent.$index][$index] %>"><% total_net_amount[$parent.$index][$index] = amount[$parent.$index][$index]-total_discount[$parent.$index][$index]+vat_amount[$parent.$index][$index] %></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
@@ -360,6 +365,7 @@
 
         $scope.itemlist = [];
         $scope.requisitions = [];
+        $scope.max_quantity = [];
         $scope.quantity = [];
         $scope.unit_price = [];
         $scope.amount = [];
@@ -379,8 +385,8 @@
             let url = "{{URL::to('get-local-requisition')}}/" + ids;
             $http.get(url)
                     .then(function(response) {
-                        $scope.requisitions = response.data.requisitions;
                         $scope.itemlist = response.data.items;
+                        $scope.requisitions = response.data.requisitions;
                     });
         }
 
@@ -458,7 +464,11 @@
         $scope.sum = function($arr){
             var sum = 0;
             for(i=0; i<$arr.length; i++){
-                sum += $arr[i];
+                if($arr[i] instanceof Object){
+                    sum += $scope.sum(Object.values($arr[i]));
+                }else{
+                    sum += $arr[i];
+                }
             }
             return sum;
         }
@@ -471,6 +481,15 @@
                 'styling': 'bootstrap3',
             };
             new PNotify(data);
+        }
+
+        $scope.quantityValidate = function(parentIndex, index){
+            if($scope.quantity[parentIndex][index] > $scope.max_quantity[parentIndex][index] ){
+                $scope.quantity[parentIndex][index] = $scope.max_quantity[parentIndex][index] ;
+            }
+            if($scope.quantity[index]<1){
+                $scope.quantity[index] = 1;
+            }
         }
 
     });

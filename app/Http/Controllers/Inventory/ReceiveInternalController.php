@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Inventory;  use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Inventory;
 
+use App\Http\Controllers\Controller;
 use App\ReceiveInternal;
 use Illuminate\Http\Request;
 
@@ -44,6 +45,7 @@ class ReceiveInternalController extends Controller{
             'inventory_requisition_no'=>$request->get('inventory_requisition_no'),
             'receive_from'=>$request->get('receive_from'),
             'inventory_issue_id'=>$request->get('inventory_issue_id'),
+            'challan_no'=>$request->get('challan_no')
         ]);
 
         \Session::put('vue_products', $request->get('products'));
@@ -73,7 +75,13 @@ class ReceiveInternalController extends Controller{
 
 
         $internal_receive=new \App\InventoryReceiveInternal;
+
+        //To set issued chalan is received
         $inventory_issue=\App\InventoryIssue::find($request->get('inventory_issue_id'));
+        $inventory_issue_status=\App\InventoryIssueStatus::where('code', 'received')->first();
+        $inventory_issue->status()->associate($inventory_issue_status);
+        $inventory_issue->save();
+
         $internal_receive->issue()->associate($inventory_issue);
         $internal_receive->inventory_receive()->associate($inventory_receive);
         $internal_receive->challan_no=$request->get('challan_no');
@@ -192,6 +200,7 @@ class ReceiveInternalController extends Controller{
             'inventory_requisition_no'=>$receive_internal->internal->issue->requisition->inventory_requisition_no,
             'receive_from'=>$receive_internal->internal->issue->requisition->requested_to->name,
             'inventory_issue_id'=>$receive_internal->internal->issue->id,
+            'challan_no'=>$receive_internal->internal->issue->challan_no,
         ]);
         
         return view($this->path('create'), $data);

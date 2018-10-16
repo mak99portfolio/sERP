@@ -25,23 +25,21 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th width="25">#</th>
-                                        <th>Sales Order Cancel No</th>
-                                        <th>Sales Order Cancel Date</th>
-                                        <th>Sales Reference</th>
-                                        <th>Currency</th>
-                                        <th width="30">Action</th>
+                                        <th width="35">#</th>
+                                        <th>Cancel Id</th>
+                                        <th>Sales Order No</th>
+                                        <th>Reason</th>
+                                        <th width="35" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>01</td>
                                         <td>231</td>
-                                        <td>01/03/2018</td>
-                                        <td>011</td>
-                                        <td>01</td>
+                                        <td>01018</td>
+                                        <td>01s1</td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                 </tbody>

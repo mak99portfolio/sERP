@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Inventory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
+use App\Notifications\SimpleNotification;
 
 class IssueController extends Controller{
 
@@ -29,7 +30,6 @@ class IssueController extends Controller{
 
     public function create(){
 
-         //dd($issue);
 
         $requested_depot=\Auth::user()->working_unit();
 
@@ -42,38 +42,10 @@ class IssueController extends Controller{
         }
 
         $data=[
-            'issue'=>new \App\InventoryIssue,
-            'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
+            'issue'=>new \App\InventoryIssue, 
             'forward_units'=>$forward_units,
-            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_types'=>\App\ProductType::pluck('name', 'id'),
-            'carbon'=>new \Carbon\Carbon,
             'requested_depot'=>$requested_depot
         ];
-
-        /*
-
-        if(!\Session::has('vue_products')){
-
-            $products=[];
-
-            foreach($issue->items as $row){
-
-                array_push($products, [
-                    'id'=>$row->product_id,
-                    'quantity'=>$row->issued_quantity,
-                    'batch_no'=>$row->batch_no,
-                    'expiration_date'=>$row->expiration_date,
-                    'forward'=>$row->forward
-                ]);
-
-            }
-
-            //dd($requisition->requested_items);
-
-            \Session::put('vue_products', $products);
-            */
 
         return view($this->path('create'), $data);
         
@@ -82,8 +54,67 @@ class IssueController extends Controller{
 
     public function store(Request $request){
 
-        //dd($request->all());
-        return back()->withInput();
+        //dd(uCode('inventory_issues.challan_no', 'CLN00'));
+
+        $request->validate([
+            'inventory_requisition_no'=>'required|exists:inventory_requisitions',
+            'products'=>'required|array'
+        ]);
+
+        $requested_depot=\Auth::user()->working_unit();
+
+        $inventory_requisition=\App\InventoryRequisition::where(
+            'inventory_requisition_no', $request->inventory_requisition_no
+        )->first();
+
+        $issue_request=$inventory_requisition->issue_requests()->where('requested_working_unit_id', $requested_depot->id)->first();
+
+        if(empty($requested_depot) || empty($issue_request)){
+
+            return back()->with('failed', 'Sorry!, logged in user does\'t not associated with any working unit');
+
+        }elseif(!\Auth::user()->can('approve_initial_issue')){
+
+            return back()->withInput()->with('failed', 'Sorry!, you can\'t perform this action.');
+
+        }
+
+        $inventory_issue=new \App\InventoryIssue;
+        $inventory_issue->inventory_issue_no=uCode('inventory_issues.inventory_issue_no', 'IIS00');
+        $inventory_issue->requisition()->associate($inventory_requisition);
+        $status=\App\InventoryIssueStatus::where('code', 'initially_approved')->first();
+        $inventory_issue->status()->associate($status);
+        $inventory_issue->requisition_sender()->associate($issue_request->sender);
+        $inventory_issue->requested_to()->associate($requested_depot);
+        $inventory_issue->initial_approver()->associate(\Auth::user());
+        $inventory_issue->forward_working_unit_id=$request->get('forward_working_unit_id');
+        $inventory_issue->challan_no=uCode('inventory_issues.challan_no', 'CLN00');
+        $inventory_issue->save();
+
+        foreach($request->products as $row){
+            
+            $product=\App\Product::find($row['id']);
+
+            $expiration_date=empty($row['expiration_date'])?NULL:\Carbon\Carbon::parse($row['expiration_date']);
+
+            $forward=(bool) (isset($row['forward']) && $row['forward']);
+
+            //if($row['quantity'] < 1) continue;
+
+            \App\InventoryIssueItem::create([
+                'inventory_issue_id'=>$inventory_issue->id,
+                'product_id'=>$product->id,
+                'issued_quantity'=>$row['quantity'],
+                'product_status_id'=>$inventory_issue->requisition->product_status_id,
+                'product_type_id'=>$inventory_issue->requisition->product_type_id,
+                'batch_no'=>$row['batch_no'],
+                'expiration_date'=>$expiration_date,
+                'forward'=>$forward
+            ]);
+
+        }
+
+        return redirect()->route('issue.index')->with('success', 'Issue created successfully!.');
         
     }
 
@@ -102,9 +133,9 @@ class IssueController extends Controller{
 
     public function edit(\App\InventoryIssue $issue){
 
-        //dd($issue);
+        //dd($this->populate_old_data($issue));
 
-        $requested_depot=$issue->requested_to;
+        $requested_depot=\Auth::user()->working_unit();
 
         $forward_units=[''=>'--select Working Unit--'];
 
@@ -116,35 +147,12 @@ class IssueController extends Controller{
 
         $data=[
             'issue'=>$issue,
-            'inventory_requisition_types'=>\App\InventoryRequisitionType::pluck('name', 'id'),
-            'working_units'=>\App\WorkingUnit::pluck('name', 'id'),
             'forward_units'=>$forward_units,
-            'product_statuses'=>\App\ProductStatus::pluck('name', 'id'),
-            'product_types'=>\App\ProductType::pluck('name', 'id'),
-            'carbon'=>new \Carbon\Carbon
+            'requested_depot'=>$requested_depot,
+            'edit'=>$this->populate_old_issue($issue)
         ];
 
-        if(!\Session::has('vue_products')){
-
-            $products=[];
-
-            foreach($issue->items as $row){
-
-                array_push($products, [
-                    'id'=>$row->product_id,
-                    'quantity'=>$row->issued_quantity,
-                    'batch_no'=>$row->batch_no,
-                    'expiration_date'=>$row->expiration_date,
-                    'forward'=>$row->forward
-                ]);
-
-            }
-
-            //dd($requisition->requested_items);
-
-            \Session::put('vue_products', $products);
-            
-        }
+        //dd($data['edit']);
 
         return view($this->path('create'), $data);
         
@@ -153,8 +161,7 @@ class IssueController extends Controller{
 
     public function update(Request $request, \App\InventoryIssue $issue){
 
-        \Session::put('vue_products', $request->get('products'));
-
+        //return back()->withInput();
 
         $request->validate([
             'products'=>'required|array'
@@ -208,15 +215,7 @@ class IssueController extends Controller{
 
         }
 
-        $approval=$request->get('approval');
-
-        //$approval='initial';
-
-        if($approval=='initial' && \Auth::user()->can('approve_initial_issue')){
-
-            $issue->initial_approver()->associate(\Auth::user());
-
-        }elseif($approval=='final' && \Auth::user()->can('approve_final_issue')){
+        if(\Auth::user()->can('approve_final_issue')){
 
             if($request->get('forward_working_unit_id') && empty($forward_product_exists)){
 
@@ -259,7 +258,7 @@ class IssueController extends Controller{
                 'forward'=>$forward
             ]);
 
-            if($approval=='final' && empty($row['forward'])){
+            if($issue->final_approver()->exists() && empty($row['forward'])){
 
                 \App\Stock::create([
                     'working_unit_id'=>$issue->requisition->requested_working_unit_id,
@@ -279,41 +278,53 @@ class IssueController extends Controller{
 
         if($issue->forward_working_unit()->exists() && $issue->final_approver()->exists() && isset($forward_product_exists)){
 
-            $forwarded_issue=\App\InventoryIssue::create([
-                'inventory_issue_no'=>uCode('inventory_issues.inventory_issue_no', 'IIS00')
-            ]);
+            $related_issue_request=$issue->requisition->issue_requests()->where('requested_working_unit_id', $issue->requested_to->id)->first();
 
-            $requisition=$issue->requisition;
-            $forwarded_issue->requisition()->associate($requisition);
-            $forwarded_issue->requisition_sender()->associate($issue->requisition_sender);
-            $forwarded_issue->requested_to()->associate($issue->forward_working_unit);
-            $forwarded_issue->items()->createMany(
-                $issue->items()->where('forward', 1)->select(
-                    'product_id',
-                    'product_status_id',
-                    'product_type_id',
-                    'issued_quantity',
-                    'batch_no',
-                    'expiration_date'
-                )->get()->toArray()
-            );
-            $forwarded_issue->save();
+            $forward_issue_request=new \App\InventoryIssueRequest;
+            $forward_issue_request->requisition()->associate($issue->requisition);
+            $forward_issue_request->sender()->associate($issue->requisition_sender);
+            $forward_issue_request->requested_to()->associate($issue->forward_working_unit);
+            $forward_issue_request->save();
+
+            foreach($issue->items()->where('forward', 1)->get() as $row){
+
+                $requested_quantity=$related_issue_request->items()->where('product_id', $row->product_id)->first();
+
+                $forward_issue_request->items()->create([
+                    'product_id'=>$row->product_id,
+                    'product_status_id'=>$row->product_status_id,
+                    'product_type_id'=>$row->product_type_id,
+                    'quantity'=>$requested_quantity->quantity
+                ]);
+                
+            }
+
+            $related_issue_request->items()->whereIn('product_id', $forward_issue_request->items()->pluck('product_id'))->delete();
+
+            $forward_issue_request->save();
+
             $issue->items()->where('forward', 1)->delete();
-
             if(!$issue->items()->exists()) $issue->delete();
 
-            /*
-            $issue->requisition->requested_working_unit_id=$request->get('forward_working_unit_id');
-            $issue->requisition->save();
-            $issue->initial_approver_id=null;
-            $issue->final_approver_id=null;
-            $issue->save();
-            return redirect()->route('issue.index')->with('success', 'Requisition forwarded successfully!.');
-            */
+            foreach($forward_issue_request->requested_to->employees as $row){
+
+                if(!empty($row->employee_profile->user)){
+
+                    $row->employee_profile->user->notify(
+                        new SimpleNotification([
+                            'subject'=>'Inventory Requisition',
+                            'sender_id'=>$forward_issue_request->requisition->final_approver_id,
+                            'url'=>route('requisition.incoming'),
+                            'message'=>'An Inventory Requisition Requested To Your Working Unit'
+                        ])
+                    );
+
+                }
+                
+            }
 
         }
 
-        \Session::forget('vue_products');
         return redirect()->route('issue.index')->with('success', 'Form submitted successfully!.');
 
     }
@@ -325,25 +336,33 @@ class IssueController extends Controller{
 
     public function fetch_requisition(Request $request, \App\WorkingUnit $requested_working_unit, String $slug){
 
-        $issue_request=\App\InventoryIssueRequest::where('requested_working_unit_id', $requested_working_unit->id)->first();
+        $issue_request=\App\InventoryIssueRequest::where('requested_working_unit_id', $requested_working_unit->id)
+        ->whereHas('requisition', function($query)use($slug){
+            $query->where('inventory_requisition_no', $slug);
+        })->first();
 
         $products=[];
 
         foreach($issue_request->items as $row){
 
-            $issue_exists=\App\InventoryIssue::where('requested_working_unit_id', $requested_working_unit->id)->first();
-            $requested_quantity=$row->quantity;
+            $previous_issues=\App\InventoryIssue::where([
+                'requested_working_unit_id'=>$requested_working_unit->id,
+                'inventory_requisition_id'=>$issue_request->requisition->id
+            ])->pluck('id');
 
-            if($issue_exists){
-                $issued_quantity=$issue_exists->items()->where('product_id', $row->product_id)->sum('issued_quantity');
-                $requested_quantity=$row->quantity-$issue_quantity;
-            }            
+            $previous_issued_quantity=\App\InventoryIssueItem::whereIn('inventory_issue_id', $previous_issues)->where('product_id', $row->product_id)->sum('issued_quantity');
+
+            $issue_remain=$row->quantity;
+
+            if($previous_issues) $issue_remain=$row->quantity-$previous_issued_quantity;
+
+            if($issue_remain < 1) continue;
 
             $temp=[
                 'id'=>$row->product->id,
-                'hs_code'=>$row->product->hs_code,
                 'name'=>$row->product->name,
-                'requested_quantity'=>$requested_quantity,
+                'requested_quantity'=>$row->quantity,
+                'issue_remain'=>$issue_remain,
                 'quantity'=>0,
                 'forward'=>0,
                 'batch_no'=>'',
@@ -376,6 +395,92 @@ class IssueController extends Controller{
             'products'=>$products
             
         ]);
+
+    }
+
+    protected function populate_old_issue(\App\InventoryIssue $inventory_issue){
+
+        $issue_request=\App\InventoryIssueRequest::where('requested_working_unit_id', $inventory_issue->requested_to->id)
+        ->whereHas('requisition', function($query)use($inventory_issue){
+            $query->where('inventory_requisition_no', $inventory_issue->requisition->inventory_requisition_no);
+        })->first();
+
+        $products=[];
+
+        foreach($inventory_issue->items as $row){
+
+            $previous_issues=\App\InventoryIssue::where([
+                'requested_working_unit_id'=>$inventory_issue->requested_to->id,
+                'inventory_requisition_id'=>$inventory_issue->requisition->id
+            ])->pluck('id');
+
+            //dd($previous_issues);
+
+            $previous_issued_quantity=\App\InventoryIssueItem::whereIn('inventory_issue_id', $previous_issues)->where('product_id', $row->product_id)->sum('issued_quantity');
+
+            $requested_quantity=$issue_request->items()->where('product_id', $row->product_id)->sum('quantity');
+
+            $issue_remain=$requested_quantity;
+
+            if($previous_issues) $issue_remain=$requested_quantity-$previous_issued_quantity;
+
+            if($issue_remain < 1) continue;
+
+            $temp=[
+                'id'=>$row->product->id,
+                'name'=>$row->product->name,
+                'requested_quantity'=>$requested_quantity,
+                'issue_remain'=>$issue_remain,
+                'quantity'=>$row->issued_quantity,
+                'forward'=>$row->forward,
+                'batch_no'=>$row->batch_no,
+                'expiration_date'=>$row->expiration_date?\Carbon\Carbon::parse($row->expiration_date)->format('d/m/Y'):''
+            ];
+
+            $temp['stock']=stock_balance($inventory_issue->requested_to, $row->product, [
+                'product_status_id'=>$row->product_status_id,
+                'product_type_id'=>$row->product_type_id
+            ]);
+            
+            array_push($products, $temp);
+
+        }
+
+        return [
+            'inventory_requisition_no'=>$inventory_issue->requisition->inventory_requisition_no,
+            'requisition'=>$inventory_issue->requisition->with([
+                'item_type',
+                'item_status',
+                'type',
+                'sender'
+            ])->first(),
+            'products'=>$products
+        ];
+
+    }
+
+    public function get_batch_stock(\App\WorkingUnit $working_unit, \App\Product $product, string $inventory_requisition_no, string $slug){
+
+        $inventory_requisition=\App\InventoryRequisition::where('inventory_requisition_no', $inventory_requisition_no)->first();
+
+        if($slug=='reset'){
+
+            $stock_balance=stock_balance($working_unit, $product, [
+                'product_status_id'=>$inventory_requisition->product_status_id,
+                'product_type_id'=>$inventory_requisition->product_type_id
+            ]);
+
+        }else{
+
+            $stock_balance=stock_balance($working_unit, $product, [
+                'product_status_id'=>$inventory_requisition->product_status_id,
+                'product_type_id'=>$inventory_requisition->product_type_id,
+                'batch_no'=>$slug
+            ]);
+
+        }
+
+        return response()->json($stock_balance);
 
     }
 

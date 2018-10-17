@@ -57,7 +57,7 @@
           <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
+              <li><a href="{{route('customer.index')}}">Customer Profile</a></li>
               <li><a href="{{ route('rule-setup.index') }}">Rule Setup</a></li>
               <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
             </ul>
@@ -109,17 +109,19 @@
           <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
           <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
           <li><a href="{{route('terms-and-condition-type.index')}}">Terms and Condition Type</a></li>
+          <li><a href="{{route('designation.index')}}">Designation</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{route('company-profile.index')}}">General Information</a></li>
-          <li><a href="{{route('working-unit.index')}}">Working Unit</a></li>
-          <li><a href="{{route('department.index')}}">Department</a></li>
-          <li><a href="{{route('employee-profile.index')}}">Employees</a></li>
-          <li><a href="{{route('company-bank.index')}}">Bank Information</a></li>
-          <li><a href="{{route('company-license.index')}}">Licenses</a></li>
-          <li><a href="{{ route('employee-user.index')}}">Employee Related User</a></li>
+          <li><a href="{{ route('company-profile.index') }}">General Information</a></li>
+          <li><a href="{{ route('working-unit.index') }}">Working Unit</a></li>
+          <li><a href="{{ route('department.index') }}">Department</a></li>
+          <li><a href="{{ route('employee-profile.index') }}">Employees</a></li>
+          <li><a href="{{ route('company-bank.index') }}">Bank Information</a></li>
+          <li><a href="{{ route('company-license.index') }}">Licenses</a></li>
+          <li><a href="{{ route('employee-user.index') }}">Employee Related User</a></li>
+          <li><a href="{{ route('own-vehicle.index') }}">Own Vehicle</a></li>
         </ul>
       </li>
       @can('view_developer_menu')

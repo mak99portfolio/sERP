@@ -3,28 +3,28 @@ namespace App\Http\Controllers\Sales;
 
 use App\CustomerBank;
 use App\CustomerContactPerson;
-use App\CustomerProfile;
+use App\Customer;
 use App\CustomerType;
 use App\Enclosure;
 use App\CustomerZone;
 use App\CustomerEnclosure;
 use App\Http\Controllers\Controller;
 use Auth;
-use App\Http\Requests\CustomerProfileRequest;
+use App\Http\Requests\CustomerRequest;
 use Session;
 
-class CustomerProfileController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    private $view_root = 'modules/sales/setting/customer_profile/';
+    private $view_root = 'modules/sales/setting/customer/';
     public function index()
     {
         $view = view($this->view_root . 'index');
-        $view->with('customer_profile_list', CustomerProfile::all());
+        $view->with('customer_list', Customer::all());
         return $view;
     }
 
@@ -48,30 +48,30 @@ class CustomerProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CustomerProfileRequest $request)
+    public function store(CustomerRequest $request)
     {
 
         // dd($request->input());
-        $customer_profile = new CustomerProfile;
-        $customer_profile->fill($request->input());
-        $customer_profile->creator_user_id = Auth::id();
-        $customer_profile->establishment_date = date('Y-m-d', strtotime($request->establishment_date));
-        $customer_profile->trade_license_issue_date = date('Y-m-d', strtotime($request->trade_license_issue_date));
-        $customer_profile->incorporation_date = date('Y-m-d', strtotime($request->incorporation_date));
-        $customer_profile->save();
+        $customer = new Customer;
+        $customer->fill($request->input());
+        $customer->creator_user_id = Auth::id();
+        $customer->establishment_date = date('Y-m-d', strtotime($request->establishment_date));
+        $customer->trade_license_issue_date = date('Y-m-d', strtotime($request->trade_license_issue_date));
+        $customer->incorporation_date = date('Y-m-d', strtotime($request->incorporation_date));
+        $customer->save();
 
         // Customer Bank
         $customer_banks = array();
         foreach ($request->banks as $bank) {
             array_push($customer_banks, new CustomerBank($bank));
         }
-        $customer_profile->customer_banks()->saveMany($customer_banks);
+        $customer->customer_banks()->saveMany($customer_banks);
         // Customer Contact Person
         $contact_person = array();
         foreach ($request->persons as $person) {
             array_push($contact_person, new CustomerContactPerson($person));
         }
-        $customer_profile->contact_person()->saveMany($contact_person);
+        $customer->contact_person()->saveMany($contact_person);
         // Customer enclosures
         $enclosures = array();
         if ($request->enclosures) {
@@ -89,7 +89,7 @@ class CustomerProfileController extends Controller
                 }
             }
         }
-        $customer_profile->customer_enclosure()->saveMany($enclosures);
+        $customer->customer_enclosure()->saveMany($enclosures);
 
         Session::put('alert-success', 'Customer created successfully');
         return redirect()->route('customer-profile.index');
@@ -98,23 +98,23 @@ class CustomerProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\CustomerProfile  $customerProfile
+     * @param  \App\Customer  $Customer
      * @return \Illuminate\Http\Response
      */
-    public function show(CustomerProfile $customerProfile)
+    public function show(Customer $Customer)
     {
         $view = view($this->view_root . 'show');
-        $view->with('customer_profile' , $customerProfile);
+        $view->with('customer' , $Customer);
         return $view;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CustomerProfile  $customerProfile
+     * @param  \App\Customer  $Customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(CustomerProfile $customerProfile)
+    public function edit(Customer $Customer)
     {
         //
     }
@@ -123,10 +123,10 @@ class CustomerProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CustomerProfile  $customerProfile
+     * @param  \App\Customer  $Customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CustomerProfile $customerProfile)
+    public function update(Request $request, Customer $Customer)
     {
         //
     }
@@ -134,10 +134,10 @@ class CustomerProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CustomerProfile  $customerProfile
+     * @param  \App\Customer  $Customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CustomerProfile $customerProfile)
+    public function destroy(Customer $Customer)
     {
         //
     }

@@ -22,8 +22,8 @@ class CreateCustomerContactPeopleTable extends Migration
             $table->string('job_role')->nullable();
             $table->string('tell_number')->nullable();
             $table->string('cell_number')->nullable();
-            $table->integer('customer_profile_id')->unsigned();
-            $table->foreign('customer_profile_id')->references('id')->on('customer_profiles')->onDelete('cascade');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

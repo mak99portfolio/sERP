@@ -15,7 +15,7 @@ class CreateDesignationsTable extends Migration
     {
         Schema::create('designations', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('designation_id')->nullable();
+            $table->string('designation_no')->nullable();
             $table->string('name');
             $table->string('short_name')->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();

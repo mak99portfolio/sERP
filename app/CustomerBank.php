@@ -17,6 +17,6 @@ class CustomerBank extends Model
     ];
     public function customer()
     {
-        return $this->belongsTo('App\CustomerProfile');
+        return $this->belongsTo('App\Customer');
     }
 }

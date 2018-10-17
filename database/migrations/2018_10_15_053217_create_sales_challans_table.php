@@ -21,7 +21,7 @@ class CreateSalesChallansTable extends Migration{
             $table->softDeletes();
 
             $table->foreign('mushak_number_id')->references('id')->on('mushak_numbers')->onDelete('cascade');
-            $table->foreign('delivery_person_id')->references('id')->on('empolyee_profiles')->onDelete('cascade');
+            $table->foreign('delivery_person_id')->references('id')->on('employee_profiles')->onDelete('cascade');
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
         });

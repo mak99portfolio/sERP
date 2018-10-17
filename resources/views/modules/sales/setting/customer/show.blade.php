@@ -16,13 +16,13 @@
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Back</button>
                         </div>
-                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Customer Name: {{$customer_profile->customer_name}}</h2></div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-4 hidden-xs"><h2 class="text-center">Customer Name: {{$customer->customer_name}}</h2></div>
                         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-4 hidden-xs">
                             <button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button>
                         </div>
                         <div class="visible-xs col-xs-6"><button type="button" onclick="window.history.back();" class="btn btn-sm btn-default pull-left"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>&nbsp;Back</button></div>
                         <div class="visible-xs col-xs-6"><button type="button" class="btn btn-sm btn-info pull-right print-btn" value='Print'><i class="fa fa-print" aria-hidden="true"></i> Print</button></div>
-                        <div class="visible-xs col-xs-12"><h2 class="text-center">Customer Name : {{$customer_profile->customer_name}} </h2></div>
+                        <div class="visible-xs col-xs-12"><h2 class="text-center">Customer Name : {{$customer->customer_name}} </h2></div>
                     </div>
                     <div class="x_title">
                         <div class="clearfix"></div>
@@ -38,32 +38,32 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>Customer Name:</strong> {{$customer_profile->customer_name}}</td>
-                                        <td><strong>Customer Type:</strong> {{$customer_profile->customer_type->name}}</td>
-                                        <td><strong>Status:</strong>{{$customer_profile->status}}</td>
+                                        <td><strong>Customer Name:</strong> {{$customer->customer_name}}</td>
+                                        <td><strong>Customer Type:</strong> {{$customer->customer_type->name}}</td>
+                                        <td><strong>Status:</strong>{{$customer->status}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Establishment:</strong> {{$customer_profile->establishment_date}}</td>
-                                        <td><strong>Customer Zone:</strong> {{$customer_profile->zone->name}}</td>
-                                        <td><strong>Contact No:</strong>{{$customer_profile->contact_number}}</td>
+                                        <td><strong>Establishment:</strong> {{$customer->establishment_date}}</td>
+                                        <td><strong>Customer Zone:</strong> {{$customer->zone->name}}</td>
+                                        <td><strong>Contact No:</strong>{{$customer->contact_number}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Fax:</strong> {{$customer_profile->fax}}</td>
-                                        <td><strong>Website:</strong> {{$customer_profile->website}}</td>
-                                        <td><strong>Email:</strong>31{{$customer_profile->email}}23</td>
+                                        <td><strong>Fax:</strong> {{$customer->fax}}</td>
+                                        <td><strong>Website:</strong> {{$customer->website}}</td>
+                                        <td><strong>Email:</strong>31{{$customer->email}}23</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>TIN Number:</strong> {{$customer_profile->tin_number}}</td>
-                                        <td><strong>Trade License No:</strong> {{$customer_profile->trade_license_number}}</td>
-                                        <td><strong>Trade License Issue Date:</strong>{{$customer_profile->trade_license_issue_date}}</td>
+                                        <td><strong>TIN Number:</strong> {{$customer->tin_number}}</td>
+                                        <td><strong>Trade License No:</strong> {{$customer->trade_license_number}}</td>
+                                        <td><strong>Trade License Issue Date:</strong>{{$customer->trade_license_issue_date}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Certificate Of Incorporation:</strong> {{$customer_profile->certificate_of_incorporation}}</td>
-                                        <td><strong>Incorporation Date:</strong> {{$customer_profile->incorporation_date}}</td>
-                                        <td><strong>Vat No:</strong>{{$customer_profile->vat_number}}</td>
+                                        <td><strong>Certificate Of Incorporation:</strong> {{$customer->certificate_of_incorporation}}</td>
+                                        <td><strong>Incorporation Date:</strong> {{$customer->incorporation_date}}</td>
+                                        <td><strong>Vat No:</strong>{{$customer->vat_number}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Address :</strong> {{$customer_profile->address}}</td>
+                                        <td colspan="3"><strong>Address :</strong> {{$customer->address}}</td>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -74,7 +74,7 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>{{$customer_profile->type_of_business}}</td>
+                                        <td>{{$customer->type_of_business}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -84,7 +84,7 @@
                                         <th colspan="2">Bank Information</th>
                                     </tr>
                                 </thead>
-                                @foreach($customer_profile->customer_banks as $customer_bank)
+                                @foreach($customer->customer_banks as $customer_bank)
                                 <tbody>
                                     <tr>
                                         <td colspan="2"><strong>Bank-{{$loop->iteration}}</strong></td>
@@ -110,7 +110,7 @@
                                         <th colspan="2">Contact Person Information</th>
                                     </tr>
                                 </thead>
-                                @foreach($customer_profile->contact_person as $contact_person)
+                                @foreach($customer->contact_person as $contact_person)
                                 <tbody>
                                     <tr>
                                     <td colspan="2"><strong>Contact Person-{{ $loop->iteration}}</strong></td>
@@ -140,7 +140,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     @foreach($customer_profile->customer_enclosure as $customer_enclosure)
+                                     @foreach($customer->customer_enclosure as $customer_enclosure)
                                     <tr>
                                     <td class="text-center">{{$loop->iteration}}</td>
                                         <td>{{$customer_enclosure->enclosure->name}}</td>
@@ -152,7 +152,7 @@
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
-                                        <td><strong>Notes:</strong> {{$customer_profile->notes}}</td>
+                                        <td><strong>Notes:</strong> {{$customer->notes}}</td>
                                     </tr>
                                 </tbody>
                             </table>

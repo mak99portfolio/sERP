@@ -26,10 +26,10 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Vendor', 'required','data-popup'=> route('vendor.index')]) }}
+                                        {{ BootForm::select('vendor_id', 'Vendor', $vendor_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'vendor_id', 'data-placeholder'=>'Select Vendor', 'required','data-popup'=> route('vendor.index')]) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('delivery_date','Delivery Date', null, ['class'=>'form-control input-sm datepicker', 'required']) }}
+                                        {{ BootForm::text('delivery_date','Delivery Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model'=>'delivery_date', 'required']) }}
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                             {{ BootForm::select('local_requisition_id', 'Requisitions', $local_requisition_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Requisition', 'ng-model'=>'local_requisition_id', 'ng-change'=>'searchReqItem()', 'required','data-popup'=> route('local-requisition.index')]) }}
@@ -90,7 +90,7 @@
                                                             <th>
                                                                 {{ BootForm::number('payment_terms_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
                                                             </th>
-                                                            <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-default">Add</button></th>
+                                                            <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-primary">Add</button></th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -140,7 +140,7 @@
                                             {{ BootForm::textarea(null,'Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                            <button type="button" ng-click="add_condition()" class="btn btn-sm btn-default m-t-20"><strong>Add</strong></button>
+                                            <button type="button" ng-click="add_condition()" class="btn btn-sm btn-primary m-t-20"><strong>Add</strong></button>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="conditions.length >=1">
                                             <div class="table-responsive">
@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="form-group">
-                                            <button class="btn btn-success btn-sm">Save</button>
+                                            <button type="submit" class="btn btn-success btn-sm" ng-disabled="(conditions.length < 1 || payment_terms.length < 1)">Save</button>
                                             <a href="{{ route('quotation.index') }}" class="btn btn-default btn-sm">Cancel</a>
                                         </div>
                                     </div>
@@ -194,6 +194,9 @@
 
         $scope.itemlist = [];
         $scope.unit_price = [];
+        $scope.payment_terms = [];
+        $scope.conditions = [];
+
 
         $scope.searchReqItem = function(){
             $scope.itemlist = [];
@@ -204,8 +207,6 @@
                     });
         }
 
-
-        $scope.payment_terms = [];
 
         $scope.add_terms = function(){
             var term = {};
@@ -237,6 +238,8 @@
             term.description = $scope.payment_terms_description;
             term.amount = $scope.payment_terms_amount;
             $scope.payment_terms.push(term);
+            $scope.payment_terms_description = null;
+            $scope.payment_terms_amount = null;
         }
 
         $scope.removeTerms = function(index){
@@ -244,7 +247,6 @@
         }
 
 
-        $scope.conditions = [];
 
         $scope.add_condition = function(){
             var condition = {};
@@ -271,6 +273,7 @@
             condition.name = item.name;
             condition.description = $scope.condition_description;
             $scope.conditions.push(condition);
+            $scope.condition_description = null;
         }
 
         $scope.removeCondition = function(index){
@@ -286,6 +289,18 @@
             };
             new PNotify(data);
         }
+
+        // for old data holding in the field start
+
+        $scope.vendor_id = '{{ old('vendor_id') }}';
+        $scope.local_requisition_id = '{{ old('local_requisition_id') }}';
+        $scope.delivery_date = '{{ old('delivery_date') }}';
+        $scope.payment_type = '{{ old('payment_type') }}';
+        if($scope.local_requisition_id){
+            $scope.searchReqItem();
+        }
+
+        // for old data holding in the field end
 
     });
 </script>

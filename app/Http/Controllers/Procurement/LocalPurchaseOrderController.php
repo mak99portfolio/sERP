@@ -4,9 +4,14 @@ namespace App\Http\Controllers\Procurement;
 
 use App\LocalRequisition;
 use App\LocalPurchaseOrder;
+use App\LocalPurchaseOrderItem;
 use App\Vendor;
+use App\PaymentType;
+use App\TermsAndConditionType;
 use App\LocalPurchaseOrderVendor;
 use App\LocalPurchaseOrderPaymentTerm;
+use App\LocalPurchaseOrderTermsCondition;
+use App\Http\Requests\LocalPurchaseOrderRequest;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
 use App\Http\Controllers\Controller;
@@ -36,17 +41,22 @@ class LocalPurchaseOrderController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', LocalRequisition::availableRequisitions());
+        $view->with('payment_type_list', PaymentType::all());
+        $view->with('terms_conditions_type_list', TermsAndConditionType::all());
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('', ''));
         return $view;
     }
 
 
-    public function store(Request $request){
+    public function store(LocalPurchaseOrderRequest $request){
         // dd($request->all());
-        $request->validate([
-           // 'requisition_no'=>'required',
+        if(!$request->payment_type_validate()){
+            return redirect()->back();
+        }
 
-        ]);
+        if(!$request->terms_and_condition_type_validate()){
+            return redirect()->back();
+        }
 
         $local_purchase_order = new LocalPurchaseOrder;
         $local_purchase_order->fill($request->input());
@@ -56,7 +66,14 @@ class LocalPurchaseOrderController extends Controller
         $local_purchase_order->save();
         $local_purchase_order->order_vendor()->save(new LocalPurchaseOrderVendor($request->vendor));
         $local_purchase_order->requisitions()->sync($request->get('local_requisition_ids'));
-        $local_purchase_order->items()->createMany($request->get('items'));
+        // $local_purchase_order->items()->createMany($request->get('items'));
+        $items = Array();
+        foreach($request->items as $itemlist){
+            foreach($itemlist as $item){
+                array_push($items, new LocalPurchaseOrderItem($item));
+            }
+        }
+        $local_purchase_order->items()->saveMany($items);
         foreach($request->payment_terms as $item){
             $payment_term = new LocalPurchaseOrderPaymentTerm;
             $payment_term->fill($item);

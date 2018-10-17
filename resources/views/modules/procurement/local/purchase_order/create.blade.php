@@ -133,7 +133,7 @@
                                                         <th>SL NO</th>
                                                         <th>Purchase Requisition No</th>
                                                         <th>Requisition Date</th>
-                                                        <th>Purchase Requisition Name</th>
+                                                        <th>Purchase Requisition Title</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -161,10 +161,11 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
                                             <tr>
-                                                <th>#</th>
+                                                <th>Requisition No</th>
                                                 <th>Item Name</th>
                                                 <th>HS Code</th>
-                                                <th>Quantity</th>
+                                                <th>Req Qty</th>
+                                                <th>Purchase Quantity</th>
                                                 <th>MOU</th>
                                                 <th>Unit Price</th>
                                                 <th>Sub Total</th>
@@ -175,43 +176,47 @@
                                                 <th>Total (Net)</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr ng-repeat="item in itemlist">
-                                                <td>
-                                                    <% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
+                                        <tbody ng-repeat="req in itemlist">
+                                            <tr ng-repeat="item in req">
+                                                <td ng-if="$index == 0" rowspan="<% req.length %>">
+                                                    <% item.requisition_no %>
                                                 </td>
                                                 <td class="checkbox">
                                                     <label class="control-label">
-                                                        <input type="checkbox" ng-init="checked[$index] = true" ng-model="checked[$index]"><% item.name %>
+                                                        <input type="checkbox" ng-init="checked[$parent.$index][$index] = true" ng-model="checked[$parent.$index][$index]"><% item.product_name %>
+                                                        <input type="hidden" class="form-control" name="items[<% $parent.$index %>][<% $index %>][local_requisition_id]" value="<% item.requisition_id %>">
+                                                        <input type="hidden" class="form-control" name="items[<% $parent.$index %>][<% $index %>][product_id]" value="<% item.product_id %>">
                                                     </label>
                                                 </td>
                                                 <td><% item.hs_code %></td>
+                                                <td><% item.quantity %></td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $index %>][quantity]">
+                                                    <input type="hidden" ng-model="max_quantity[$parent.$index][$index]" ng-init="max_quantity[$parent.$index][$index]=item.quantity">
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="quantity[$parent.$index][$index]" ng-init="quantity[$parent.$index][$index]=item.quantity" ng-change = "quantityValidate($parent.$index, $index)" class="form-control input-sm" required type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][quantity]">
                                                 </td>
                                                 <td><% item.uom %></td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][unit_price]" required>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="unit_price[$parent.$index][$index]" ng-init="unit_price[$parent.$index][$index]= 0" class="form-control input-sm" type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][unit_price]" required>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][amount]" value="<% amount[$index] = quantity[$index]*unit_price[$index] %>"><% amount[$index] = quantity[$index]*unit_price[$index] %>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="amount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][amount]" value="<% amount[$parent.$index][$index] = quantity[$parent.$index][$index]*unit_price[$parent.$index][$index] %>"><% amount[$parent.$index][$index] = quantity[$parent.$index][$index]*unit_price[$parent.$index][$index] %>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="discount_rate[$index]" ng-init="discount_rate[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][discount_rate]" required>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="discount_rate[$parent.$index][$index]" ng-init="discount_rate[$parent.$index][$index]= 0" class="form-control input-sm" type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][discount_rate]" required>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="total_discount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][total_discount]" value="<% total_discount[$index] = amount[$index]*discount_rate[$index]/100 %>"><% total_discount[$index] = amount[$index]*discount_rate[$index]/100 %>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="total_discount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][total_discount]" value="<% total_discount[$parent.$index][$index] = amount[$parent.$index][$index]*discount_rate[$parent.$index][$index]/100 %>"><% total_discount[$parent.$index][$index] = amount[$parent.$index][$index]*discount_rate[$parent.$index][$index]/100 %>
                                                 </td>
                                                 <td>
-                                                    <input ng-disabled="!checked[$index]" ng-model="vat_rate[$index]" ng-init="vat_rate[$index]= 0" class="form-control input-sm" type="number" name="items[<% $index %>][vat_rate]" required>
+                                                    <input ng-disabled="!checked[$parent.$index][$index]" ng-model="vat_rate[$parent.$index][$index]" ng-init="vat_rate[$parent.$index][$index]= 0" class="form-control input-sm" type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][vat_rate]" required>
                                                 </td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="vat_amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][vat_amount]" value="<% vat_amount[$index] = amount[$index]*vat_rate[$index]/100 %>"><% vat_amount[$index] = amount[$index]*vat_rate[$index]/100 %></td>
-                                                <td><input ng-disabled="!checked[$index]" ng-model="total_net_amount[$index]" class="form-control input-sm" type="hidden" name="items[<% $index %>][total_net_amount]" value="<% total_net_amount[$index] = amount[$index]-total_discount[$index]+vat_amount[$index] %>"><% total_net_amount[$index] = amount[$index]-total_discount[$index]+vat_amount[$index] %></td>
+                                                <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="vat_amount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][vat_amount]" value="<% vat_amount[$parent.$index][$index] = amount[$parent.$index][$index]*vat_rate[$parent.$index][$index]/100 %>"><% vat_amount[$parent.$index][$index] = amount[$parent.$index][$index]*vat_rate[$parent.$index][$index]/100 %></td>
+                                                <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="total_net_amount[$parent.$index][$index]" class="form-control input-sm" type="hidden" name="items[<% $parent.$index %>][<% $index %>][total_net_amount]" value="<% total_net_amount[$parent.$index][$index] = amount[$parent.$index][$index]-total_discount[$parent.$index][$index]+vat_amount[$parent.$index][$index] %>"><% total_net_amount[$parent.$index][$index] = amount[$parent.$index][$index]-total_discount[$parent.$index][$index]+vat_amount[$parent.$index][$index] %></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="6">Total</td>
+                                                <td colspan="7">Total</td>
                                                 <td><% sum(amount) %></td>
                                                 <td></td>
                                                 <td><% sum(total_discount) %></td>
@@ -230,12 +235,13 @@
                                 <legend>Payment Terms:</legend>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <label>Payment Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm select2" ng-model="payment_terms_type" required>
-                                                <option value="" disabled selected> Select Payment Type</option>
-                                                <option value="Fixed">Fixed</option>
-                                                <option value="Percentage">Percentage</option>
+                                            <label data-popup = "{{ route('payment-type.index') }}">Payment Type</label>
+                                            <select class="form-control input-sm select2" ng-model="payment_type"  required>
+                                                <option value="" disabled>--Select Payment Type--</option>
+                                                @foreach($payment_type_list as $item)
+                                                <option value="{{$item}}">{{$item->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -276,7 +282,7 @@
                                                 <tbody>
                                                     <tr ng-repeat="terms in payment_terms">
                                                         <td><% $index+1 %></td>
-                                                        <td><% terms.type %> <input name="payment_terms[<% $index %>][payment_type]" type="hidden" value="<% terms.type %>"></td>
+                                                        <td><% terms.name %> <input name="payment_terms[<% $index %>][payment_type_id]" type="hidden" value="<% terms.id %>"></td>
                                                         <td><% terms.date %> <input name="payment_terms[<% $index %>][payment_date]" type="hidden" value="<% terms.date %>"></td>
                                                         <td><% terms.description %> <input name="payment_terms[<% $index %>][description]" type="hidden" value="<% terms.description %>"></td>
                                                         <td><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
@@ -297,14 +303,13 @@
                                 <legend>Terms and Condition:</legend>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                                        <label>Terms and Condition Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type" required>
-                                                <option value="" disabled selected> Select Terms and Condition Type </option>
-                                                <option value="Delivery Terms">Delivery Terms</option>
-                                                <option value="Payment Condition">Payment Condition</option>
-                                                <option value="Warranty Terms">Warranty Terms</option>
-                                                <option value="Security Terms">Security Terms</option>
+                                            <label data-popup = "{{ route('terms-and-condition-type.index') }}">Terms and Conditions Type</label>
+                                            <select class="form-control input-sm select2" ng-model="terms_and_condition_type"  required>
+                                                <option value="" disabled>--Select Terms and Conditions Type--</option>
+                                                @foreach($terms_conditions_type_list as $item)
+                                                <option value="{{$item}}">{{$item->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -328,7 +333,7 @@
                                                 <tbody id="mytable1">
                                                     <tr ng-repeat="condition in conditions">
                                                         <td><% $index+1 %></td>
-                                                        <td><% condition.type %><input name="terms_conditions[<% $index %>][terms_type]" type="hidden" value="<% condition.type %>"></td>
+                                                        <td><% condition.name %><input name="terms_conditions[<% $index %>][terms_and_condition_type_id]" type="hidden" value="<% condition.id %>"></td>
                                                         <td><% condition.description %> <input name="terms_conditions[<% $index %>][description]" type="hidden" value="<% condition.description %>"></td>
                                                         <td class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                     </tr>
@@ -340,7 +345,12 @@
                                 </div>
                             </fieldset>
                             <!---------Terms and Condition end-------->
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="(conditions.length < 1 || payment_terms.length < 1)">Save</button>
+                                    <a href="{{ route('local-purchase-order.index') }}" class="btn btn-default btn-sm">Cancel</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -360,6 +370,7 @@
 
         $scope.itemlist = [];
         $scope.requisitions = [];
+        $scope.max_quantity = [];
         $scope.quantity = [];
         $scope.unit_price = [];
         $scope.amount = [];
@@ -368,6 +379,8 @@
         $scope.total_discount = [];
         $scope.vat_amount = [];
         $scope.total_net_amount = [];
+        $scope.payment_terms = [];
+        $scope.conditions = [];
 
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
@@ -379,8 +392,8 @@
             let url = "{{URL::to('get-local-requisition')}}/" + ids;
             $http.get(url)
                     .then(function(response) {
-                        $scope.requisitions = response.data.requisitions;
                         $scope.itemlist = response.data.items;
+                        $scope.requisitions = response.data.requisitions;
                     });
         }
 
@@ -388,11 +401,10 @@
             $scope.itemlist.splice(index, 1);
         }
 
-        $scope.payment_terms = [];
 
         $scope.add_terms = function(){
             var term = {};
-            if(!$scope.payment_terms_type){
+            if(!$scope.payment_type){
                 $scope.warning('Please select a payment type first');
                 return;
             }
@@ -412,11 +424,16 @@
                 return;
             }
 
-            term.type = $scope.payment_terms_type;
+            var item = JSON.parse($scope.payment_type);
+
+            term.id = item.id;
+            term.name = item.name;
             term.date = $scope.payment_terms_date;
             term.description = $scope.payment_terms_description;
             term.amount = $scope.payment_terms_amount;
             $scope.payment_terms.push(term);
+            $scope.payment_terms_description = null;
+            $scope.payment_terms_amount = null;
         }
 
         $scope.removeTerms = function(index){
@@ -424,11 +441,10 @@
         }
 
 
-        $scope.conditions = [];
 
         $scope.add_condition = function(){
             var condition = {};
-            if(!$scope.condition_type){
+            if(!$scope.terms_and_condition_type){
                 $scope.warning('Please select terms and condition type first');
                 return;
             }
@@ -438,17 +454,20 @@
                 return;
             }
 
-            condition.type = $scope.condition_type;
-            condition.description = $scope.condition_description;
+            var item = JSON.parse($scope.terms_and_condition_type);
 
-            index = $scope.conditions.findIndex(value => value.type == condition.type);
+            index = $scope.conditions.findIndex(value => value.id == item.id);
 
             if(index >= 0){
                 $scope.warning('Terms and conditions already exist');
                 return;
             }
 
+            condition.id = item.id;
+            condition.name = item.name;
+            condition.description = $scope.condition_description;
             $scope.conditions.push(condition);
+            $scope.condition_description = null;
         }
 
         $scope.removeCondition = function(index){
@@ -458,7 +477,11 @@
         $scope.sum = function($arr){
             var sum = 0;
             for(i=0; i<$arr.length; i++){
-                sum += $arr[i];
+                if($arr[i] instanceof Object){
+                    sum += $scope.sum(Object.values($arr[i]));
+                }else{
+                    sum += $arr[i];
+                }
             }
             return sum;
         }
@@ -471,6 +494,15 @@
                 'styling': 'bootstrap3',
             };
             new PNotify(data);
+        }
+
+        $scope.quantityValidate = function(parentIndex, index){
+            if($scope.quantity[parentIndex][index] > $scope.max_quantity[parentIndex][index] ){
+                $scope.quantity[parentIndex][index] = $scope.max_quantity[parentIndex][index] ;
+            }
+            if($scope.quantity[index]<1){
+                $scope.quantity[index] = 1;
+            }
         }
 
     });

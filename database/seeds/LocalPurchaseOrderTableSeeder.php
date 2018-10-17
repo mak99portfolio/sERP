@@ -17,7 +17,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'inco_term_info' => 'Inco Term Info',
                 'procurement_type' => '1',
                 'purchase_order_type' => '1',
-                'purchase_order_date' => \Carbon\Carbon::now(),
+                'purchase_order_date' => \Carbon\Carbon::now()->format('Y-m-d'),
                 'status' => '1',
                 'shipping_method' => '1',
                 'payment_method' => '1',
@@ -31,7 +31,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
                 'inco_term_info' => '1',
                 'procurement_type' => '1',
                 'purchase_order_type' => '1',
-                'purchase_order_date' => \Carbon\Carbon::now(),
+                'purchase_order_date' => \Carbon\Carbon::now()->format('Y-m-d'),
                 'status' => '1',
                 'shipping_method' => '1',
                 'payment_method' => '1',
@@ -44,6 +44,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
         \DB::table('local_purchase_order_items')->insert([
             [
                 'product_id' => 1,
+                'local_requisition_id' => '1',
                 'quantity' => rand(1, 20),
                 'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
@@ -55,6 +56,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
             ],
             [
                 'product_id' => 2,
+                'local_requisition_id' => '1',
                 'quantity' => rand(1, 20),
                 'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
@@ -66,6 +68,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
             ],
             [
                 'product_id' => 3,
+                'local_requisition_id' => '1',
                 'quantity' => rand(1, 20),
                 'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
@@ -77,6 +80,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
             ],
             [
                 'product_id' => 1,
+                'local_requisition_id' => '1',
                 'quantity' => rand(1, 20),
                 'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
@@ -88,6 +92,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
             ],
             [
                 'product_id' => 2,
+                'local_requisition_id' => '1',
                 'quantity' => rand(1, 20),
                 'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),
@@ -99,6 +104,7 @@ class LocalPurchaseOrderTableSeeder extends Seeder {
             ],
             [
                 'product_id' => 3,
+                'local_requisition_id' => '1',
                 'quantity' => rand(1, 20),
                 'unit_price' => rand(100, 5000),
                 'discount_rate' => rand(1, 20),

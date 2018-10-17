@@ -12,7 +12,7 @@ class CreateSalesChallanItemsTable extends Migration{
             $table->increments('id');
             $table->integer('sales_challan_id')->unsigned();
             $table->integer('sales_order_id')->unsigned();
-            $table->integer('porduct_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->integer('quantity')->default(0);
             $table->timestamps();
 

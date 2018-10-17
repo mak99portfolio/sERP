@@ -16,4 +16,9 @@ class EmployeeOrgInfo extends Model{
 		return $this->belongsTo('App\WorkingUnit', 'working_unit_id');
 	}
 
+	public function designation(){
+		return $this->belongsTo('App\Designation');
+	}
+	
+
 }

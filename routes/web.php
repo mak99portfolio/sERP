@@ -43,6 +43,7 @@ Route::middleware('auth')->namespace('Core')->prefix('core')->group(function(){
 
     Route::resource('employee-user', 'EmployeeUserController');
     Route::get('country-detail', 'CountryController@country_detail');
+    Route::resource('designation', 'DesignationController');
 
 });
 
@@ -116,6 +117,7 @@ Route::middleware('auth')->namespace('Company')->prefix('company')->group(functi
     Route::resource('company-license', 'CompanyLicenseController');
     Route::resource('notification', 'NotificationController');
     Route::resource('department', 'DepartmentController');
+    Route::resource('own-vehicle', 'OwnVehicleController');
 });
 
 //Inventory

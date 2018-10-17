@@ -11,7 +11,6 @@ class SalesChallansTableSeeder extends Seeder{
     			'sales_challan_no'=>'SCL001',
     			'challan_date'=>\Carbon\Carbon::now(),
     			'mushak_number_id'=>1,
-    			'delivary_medium'=>'own_vehicle',
     			'delivery_person_id'=>1
     		]
     	];
@@ -36,7 +35,7 @@ class SalesChallansTableSeeder extends Seeder{
     		],
     	];
 
-    	\DB::table('sales_challan_vehicles')->insert($sales_own_vehicles);
+    	\DB::table('sales_challan_vehicles')->insert($sales_challan_vehicles);
 
     }
 }

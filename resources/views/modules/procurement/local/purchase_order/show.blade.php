@@ -87,7 +87,7 @@
                                             <th>SL NO</th>
                                             <th>Purchase Requisition No</th>
                                             <th>Requisition Date</th>
-                                            <th>Purchase Requisition Name</th>
+                                            <th>Purchase Requisition Title</th>
                                         </tr>
                                 </thead>
                                 <tbody>
@@ -108,9 +108,10 @@
                                             </tr>
                                             <tr>
                                                 <th>#</th>
+                                                <th>Requisition No</th>
                                                 <th>Item Name</th>
                                                 <th>HS Code</th>
-                                                <th>Quantity</th>
+                                                <th>Purchase Quantity</th>
                                                 <th>MOU</th>
                                                 <th>Unit Price</th>
                                                 <th>Sub Total</th>
@@ -125,6 +126,7 @@
                                             @foreach ($localPurchaseOrder->items as $item)
                                             <tr>
                                                 <td> {{ $loop->iteration }} </td>
+                                                <td> {{ $item->requisitions->requisition_no }} </td>
                                                 <td> {{ $item->product->name }} </td>
                                                 <td> {{ $item->product->hs_code }} </td>
                                                 <td> {{ $item->quantity }} </td>
@@ -141,7 +143,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="6">Total</td>
+                                                <td colspan="7">Total</td>
                                                 <td> {{ $localPurchaseOrder->amount() }} </td>
                                                 <td></td>
                                                 <td> {{ $localPurchaseOrder->total_discount_amount() }} </td>
@@ -168,7 +170,7 @@
                                             @foreach ($localPurchaseOrder->payment_terms as $item)
                                             <tr>
                                                 <td> {{ $loop->iteration }} </td>
-                                                <td> {{ $item->payment_type }} </td>
+                                                <td> {{ $item->payment_type->name }} </td>
                                                 <td> {{ $item->payment_date }} </td>
                                                 <td> {{ $item->description }} </td>
                                                 <td> {{ $item->amount }} </td>
@@ -191,7 +193,7 @@
                                             @foreach ($localPurchaseOrder->terms_conditions as $item)
                                             <tr>
                                                 <td> {{ $loop->iteration }} </td>
-                                                <td> {{ $item->terms_type }} </td>
+                                                <td> {{ $item->terms_condition_type->name }} </td>
                                                 <td> {{ $item->description }} </td>
                                             </tr>
                                             @endforeach

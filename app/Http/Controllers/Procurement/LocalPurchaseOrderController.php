@@ -6,8 +6,11 @@ use App\LocalRequisition;
 use App\LocalPurchaseOrder;
 use App\LocalPurchaseOrderItem;
 use App\Vendor;
+use App\PaymentType;
+use App\TermsAndConditionType;
 use App\LocalPurchaseOrderVendor;
 use App\LocalPurchaseOrderPaymentTerm;
+use App\LocalPurchaseOrderTermsCondition;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
 use App\Http\Controllers\Controller;
@@ -37,6 +40,8 @@ class LocalPurchaseOrderController extends Controller
     {
         $view = view($this->view_root . 'create');
         $view->with('requisition_list', LocalRequisition::availableRequisitions());
+        $view->with('payment_type_list', PaymentType::all());
+        $view->with('terms_conditions_type_list', TermsAndConditionType::all());
         $view->with('vendor_list', Vendor::pluck('name','id')->prepend('', ''));
         return $view;
     }

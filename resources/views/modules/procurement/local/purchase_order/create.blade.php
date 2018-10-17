@@ -133,7 +133,7 @@
                                                         <th>SL NO</th>
                                                         <th>Purchase Requisition No</th>
                                                         <th>Requisition Date</th>
-                                                        <th>Purchase Requisition Name</th>
+                                                        <th>Purchase Requisition Title</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -216,7 +216,7 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="6">Total</td>
+                                                <td colspan="7">Total</td>
                                                 <td><% sum(amount) %></td>
                                                 <td></td>
                                                 <td><% sum(total_discount) %></td>
@@ -235,12 +235,13 @@
                                 <legend>Payment Terms:</legend>
                                 <div class="row">
                                     <div class="col-md-6 col-md-offset-3">
-                                        <label>Payment Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm select2" ng-model="payment_terms_type" required>
-                                                <option value="" disabled selected> Select Payment Type</option>
-                                                <option value="Fixed">Fixed</option>
-                                                <option value="Percentage">Percentage</option>
+                                            <label data-popup = "{{ route('payment-type.index') }}">Payment Type</label>
+                                            <select class="form-control input-sm select2" ng-model="payment_type"  required>
+                                                <option value="" disabled>--Select Payment Type--</option>
+                                                @foreach($payment_type_list as $item)
+                                                <option value="{{$item}}">{{$item->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -281,7 +282,7 @@
                                                 <tbody>
                                                     <tr ng-repeat="terms in payment_terms">
                                                         <td><% $index+1 %></td>
-                                                        <td><% terms.type %> <input name="payment_terms[<% $index %>][payment_type]" type="hidden" value="<% terms.type %>"></td>
+                                                        <td><% terms.name %> <input name="payment_terms[<% $index %>][payment_type_id]" type="hidden" value="<% terms.id %>"></td>
                                                         <td><% terms.date %> <input name="payment_terms[<% $index %>][payment_date]" type="hidden" value="<% terms.date %>"></td>
                                                         <td><% terms.description %> <input name="payment_terms[<% $index %>][description]" type="hidden" value="<% terms.description %>"></td>
                                                         <td><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
@@ -302,14 +303,13 @@
                                 <legend>Terms and Condition:</legend>
                                 <div class="row">
                                     <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                                        <label>Terms and Condition Type</label>
                                         <div class="form-group">
-                                            <select class="form-control input-sm select2" id="terms_and_condition" ng-model="condition_type" required>
-                                                <option value="" disabled selected> Select Terms and Condition Type </option>
-                                                <option value="Delivery Terms">Delivery Terms</option>
-                                                <option value="Payment Condition">Payment Condition</option>
-                                                <option value="Warranty Terms">Warranty Terms</option>
-                                                <option value="Security Terms">Security Terms</option>
+                                            <label data-popup = "{{ route('terms-and-condition-type.index') }}">Terms and Conditions Type</label>
+                                            <select class="form-control input-sm select2" ng-model="terms_and_condition_type"  required>
+                                                <option value="" disabled>--Select Terms and Conditions Type--</option>
+                                                @foreach($terms_conditions_type_list as $item)
+                                                <option value="{{$item}}">{{$item->name}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -333,7 +333,7 @@
                                                 <tbody id="mytable1">
                                                     <tr ng-repeat="condition in conditions">
                                                         <td><% $index+1 %></td>
-                                                        <td><% condition.type %><input name="terms_conditions[<% $index %>][terms_type]" type="hidden" value="<% condition.type %>"></td>
+                                                        <td><% condition.name %><input name="terms_conditions[<% $index %>][terms_and_condition_type_id]" type="hidden" value="<% condition.id %>"></td>
                                                         <td><% condition.description %> <input name="terms_conditions[<% $index %>][description]" type="hidden" value="<% condition.description %>"></td>
                                                         <td class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                     </tr>
@@ -374,6 +374,8 @@
         $scope.total_discount = [];
         $scope.vat_amount = [];
         $scope.total_net_amount = [];
+        $scope.payment_terms = [];
+        $scope.conditions = [];
 
         $scope.searchReqNo = function () {
             $scope.itemlist = [];
@@ -394,11 +396,10 @@
             $scope.itemlist.splice(index, 1);
         }
 
-        $scope.payment_terms = [];
 
         $scope.add_terms = function(){
             var term = {};
-            if(!$scope.payment_terms_type){
+            if(!$scope.payment_type){
                 $scope.warning('Please select a payment type first');
                 return;
             }
@@ -418,11 +419,16 @@
                 return;
             }
 
-            term.type = $scope.payment_terms_type;
+            var item = JSON.parse($scope.payment_type);
+
+            term.id = item.id;
+            term.name = item.name;
             term.date = $scope.payment_terms_date;
             term.description = $scope.payment_terms_description;
             term.amount = $scope.payment_terms_amount;
             $scope.payment_terms.push(term);
+            $scope.payment_terms_description = null;
+            $scope.payment_terms_amount = null;
         }
 
         $scope.removeTerms = function(index){
@@ -430,11 +436,10 @@
         }
 
 
-        $scope.conditions = [];
 
         $scope.add_condition = function(){
             var condition = {};
-            if(!$scope.condition_type){
+            if(!$scope.terms_and_condition_type){
                 $scope.warning('Please select terms and condition type first');
                 return;
             }
@@ -444,17 +449,20 @@
                 return;
             }
 
-            condition.type = $scope.condition_type;
-            condition.description = $scope.condition_description;
+            var item = JSON.parse($scope.terms_and_condition_type);
 
-            index = $scope.conditions.findIndex(value => value.type == condition.type);
+            index = $scope.conditions.findIndex(value => value.id == item.id);
 
             if(index >= 0){
                 $scope.warning('Terms and conditions already exist');
                 return;
             }
 
+            condition.id = item.id;
+            condition.name = item.name;
+            condition.description = $scope.condition_description;
             $scope.conditions.push(condition);
+            $scope.condition_description = null;
         }
 
         $scope.removeCondition = function(index){

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerProfilesTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCustomerProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_profiles', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('customer_name');
             $table->integer('customer_type_id')->unsigned();
@@ -51,6 +51,6 @@ class CreateCustomerProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_profiles');
+        Schema::dropIfExists('customers');
     }
 }

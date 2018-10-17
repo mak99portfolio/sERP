@@ -99,7 +99,7 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('collection-schedule', 'CollectionScheduleController');
     Route::resource('payment-schedule', 'PaymentScheduleController');
     // Setting
-    Route::resource('customer-profile', 'CustomerProfileController');
+    Route::resource('customer', 'CustomerController');
     Route::resource('rule-setup', 'RuleSetupController');
     Route::resource('customer-zone', 'CustomerZoneController');
 

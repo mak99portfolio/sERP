@@ -15,8 +15,8 @@ class CreateCustomerEnclosuresTable extends Migration
     {
         Schema::create('customer_enclosures', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_profile_id')->unsigned();
-            $table->foreign('customer_profile_id')->references('id')->on('customer_profiles')->onDelete('cascade');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->integer('enclosure_id')->unsigned();
             $table->foreign('enclosure_id')->references('id')->on('enclosures')->onDelete('cascade');
             $table->string('file_directory');

@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Customer Profile</h2>
-                        <a href="{{ route('customer-profile.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Customer</a>
+                        <a href="{{ route('customer.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Customer</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -34,7 +34,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($customer_profile_list as $item)
+                                    @foreach($customer_list as $item)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->customer_name}}</td>
@@ -42,7 +42,7 @@
                                         <td>{{$item->status}}</td>
                                         <td>{{$item->created_at}}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('customer-profile.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block">View</a>
+                                            <a href="{{ route('customer.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block">View</a>
                                         </td>
                                     </tr>
                                     @endforeach

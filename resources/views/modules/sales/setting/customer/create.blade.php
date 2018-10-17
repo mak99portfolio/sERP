@@ -8,12 +8,12 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Customer Profile</h2>
-                        <a href="{{ route('customer-profile.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Customer Profile</a>
+                        <a href="{{ route('customer.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Customer Profile</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content"  ng-controller="myCtrl">
                             @include('partials.flash_msg')
-                        <form class="form-horizontal form-label-left input_mask" action="{{route('customer-profile.store')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
+                        <form class="form-horizontal form-label-left input_mask" action="{{route('customer.store')}}" method="POST" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">

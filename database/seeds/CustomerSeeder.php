@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CustomerProfileSeeder extends Seeder
+class CustomerSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -35,7 +35,7 @@ class CustomerProfileSeeder extends Seeder
                 ]
         ];
 
-        \DB::table('customer_profiles')->insert($data);
+        \DB::table('customers')->insert($data);
 
 
         $data=[
@@ -46,7 +46,7 @@ class CustomerProfileSeeder extends Seeder
                 'branch'=>'Mirpur-1',
                 'swift_code'=>'sw-123-56',
                 'bank_address'=>'Shah Ali Bag',
-                'customer_profile_id'=>1
+                'customer_id'=>1
                 ]
         ];
 
@@ -60,14 +60,14 @@ class CustomerProfileSeeder extends Seeder
                 'job_role'=>'job_role',
                 'tell_number'=>'123456789',
                 'cell_number'=>'852741558585',
-                'customer_profile_id'=>1,
+                'customer_id'=>1,
                 ]
         ];
 
         \DB::table('customer_contact_people')->insert($data);
         $data=[
         	[
-                'customer_profile_id'=>1, 
+                'customer_id'=>1, 
                 'enclosure_id'=>1,
                 'file_directory'=>'storage/',
                 'file_name'=>'1539754412-asd.csv',

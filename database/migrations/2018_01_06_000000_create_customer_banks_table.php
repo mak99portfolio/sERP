@@ -21,8 +21,8 @@ class CreateCustomerBanksTable extends Migration
             $table->string('branch')->nullable();
             $table->string('swift_code')->nullable();
             $table->string('bank_address')->nullable();
-            $table->integer('customer_profile_id')->unsigned();
-            $table->foreign('customer_profile_id')->references('id')->on('customer_profiles')->onDelete('cascade');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

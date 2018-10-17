@@ -87,7 +87,7 @@ class DatabaseSeeder extends Seeder
         // Sales
         $this->call(CustomerTypeTableSeeder::class);
         $this->call(CustomerZoneSeeder::class);
-        $this->call(CustomerProfileSeeder::class);
+        $this->call(CustomerSeeder::class);
         $this->call(SalseOrderSeeder::class);
         $this->call(MushakNumbersTableSeeder::class);
 

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class LocalPurchaseOrderItem extends Model{
 
     protected $fillable = [
+        "local_requisition_id",
         "product_id",
         "quantity",
         "unit_price",
@@ -20,6 +21,9 @@ class LocalPurchaseOrderItem extends Model{
 
     public function product(){
     	return $this->belongsTo('App\Product');
+    }
+    public function requisitions(){
+        return $this->belongsTo('App\LocalRequisition', 'local_requisition_id');
     }
 
     public function sub_amount()

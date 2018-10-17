@@ -9,6 +9,7 @@ use App\PaymentType;
 use App\TermsAndConditionType;
 use App\QuotationPaymentTerm;
 use App\QuotationTermsCondition;
+use App\Http\Requests\QuotationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -35,9 +36,18 @@ class QuotationController extends Controller
         return $view;
     }
 
-    public function store(Request $request)
+    public function store(QuotationRequest $request)
     {
         // dd($request->all());
+
+        if(!$request->payment_type_validate()){
+            return redirect()->back();
+        }
+
+        if(!$request->terms_and_condition_type_validate()){
+            return redirect()->back();
+        }
+
         $quotation = new Quotation;
         $quotation->fill($request->input());
         $quotation->creator_user_id = Auth::id();

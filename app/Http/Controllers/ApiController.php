@@ -303,31 +303,52 @@ class ApiController extends Controller
 
     public function getLocalRequisitionByRequisitionIds($ids)
     {
-        $req_items = [];
-        foreach (explode(',', $ids) as $id) {
-            $req = LocalRequisition::find($id);
-            $data['requisitions'][] = $req;
-            foreach ($req->availableItems() as $item) {
-                $item_exist = false;
-                foreach ($req_items as $key => $value) {
-                    if ($value['product_id'] == $item->product->id) {
-                        $req_items[$key]['quantity'] += $item->quantity;
-                        $item_exist = true;
-                        break;
-                    }
+        // $req_items = [];
+        // foreach (explode(',', $ids) as $id) {
+        //     $req = LocalRequisition::find($id);
+        //     $data['requisitions'][] = $req;
+        //     foreach ($req->availableItems() as $item) {
+        //         $item_exist = false;
+        //         foreach ($req_items as $key => $value) {
+        //             if ($value['product_id'] == $item->product->id) {
+        //                 $req_items[$key]['quantity'] += $item->quantity;
+        //                 $item_exist = true;
+        //                 break;
+        //             }
+        //         }
+        //         if (!$item_exist) {
+        //             $req_items[] = [
+        //                 'product_id' => $item->product->id,
+        //                 'name' => $item->product->name,
+        //                 'hs_code' => $item->product->hs_code,
+        //                 'uom' => $item->product->unit_of_measurement->name,
+        //                 'quantity' => $item->quantity,
+        //             ];
+        //         }
+        //     }
+        // }
+        // $data['items'] = $req_items;
+        // return response()->json($data);
+        foreach (explode(',', $ids) as $key => $id) {
+            $requisition = ForeignRequisition::find($id);
+            $data['requisitions'][] = $requisition;
+            foreach($requisition->availableItems() as $item){
+                if($item->quantity < 1){
+                    continue;
                 }
-                if (!$item_exist) {
-                    $req_items[] = [
-                        'product_id' => $item->product->id,
-                        'name' => $item->product->name,
-                        'hs_code' => $item->product->hs_code,
-                        'uom' => $item->product->unit_of_measurement->name,
-                        'quantity' => $item->quantity,
-                    ];
-                }
+                $data['items'][$key][] = [
+                    'requisition_id' => $requisition->id,
+                    'requisition_title' => $requisition->requisition_title,
+                    'requisition_no' => $requisition->requisition_no,
+                    'requisition_date' => $requisition->issued_date,
+                    'product_id' => $item->product_id,
+                    'product_name' => $item->product->name,
+                    'hs_code' => $item->product->hs_code,
+                    'quantity' => $item->quantity,
+                    'uom' => $item->product->unit_of_measurement->name,
+                ];
             }
         }
-        $data['items'] = $req_items;
         return response()->json($data);
     }
 

@@ -9,7 +9,6 @@ class LocalPurchaseOrder extends Model
      use SoftDeletes;
 
     protected $fillable = [
-        'purchase_order_no',
         'inco_terms',
         'inco_term_info',
         'procurement_type',

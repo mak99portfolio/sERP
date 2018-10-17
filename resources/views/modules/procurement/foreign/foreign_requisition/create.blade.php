@@ -250,9 +250,8 @@
                 $http.get(url)
                         .then(function(response) {
                             $scope.itemlist.push(response.data);
-                        });else{
+                        });
                 PNotify.removeAll();
-            }
             }else{
                 $scope.warning('Item already exist');
             }
@@ -300,7 +299,7 @@
         $('#date_expected').daterangepicker({
             singleDatePicker: true,
             singleClasses: "picker_3",
-            minDate: moment().add('days', 1),
+            minDate: moment().add(1, 'days'),
             locale: {
                 format: 'DD-MM-YYYY',
             }

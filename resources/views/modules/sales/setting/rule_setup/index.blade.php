@@ -16,8 +16,8 @@
                         <!-- required for floating -->
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs tabs-left">
-                            <li class="active"><a href="#credit_rule" data-toggle="tab">Credit Rule</a></li>
-                            <li><a href="#discount_customer" data-toggle="tab">Discount Customer Wise</a></li>
+                            <li><a href="#credit_rule" data-toggle="tab">Credit Rule</a></li>
+                            <li class="active"><a href="#discount_customer" data-toggle="tab">Discount Customer Wise</a></li>
                             <li><a href="#discount_generic" data-toggle="tab">Discount Generic</a></li>
                             <li><a href="#free_bonus_customer" data-toggle="tab">Free/Bonus(Customer Wise)</a></li>
                             <li><a href="#free_bonus_generic" data-toggle="tab">Free/Bonus(Generic)</a></li>
@@ -27,7 +27,7 @@
                     <div class="col-xs-9">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane active" id="credit_rule">
+                            <div class="tab-pane" id="credit_rule">
                                 <div class="x_title">
                                     <h2>Credit Rule</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
@@ -76,7 +76,7 @@
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane" id="discount_customer">
+                            <div class="tab-pane active" id="discount_customer">
                                 <div class="x_title">
                                     <h2>Discount Customer Wise</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>

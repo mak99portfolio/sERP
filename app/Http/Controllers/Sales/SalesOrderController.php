@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Sales;
 
 use App\SalesOrder;
+use App\ProductCategory;
+use App\TermsAndConditionType;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,6 +20,10 @@ class SalesOrderController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        // $view->with('requisition_purpose_list', RequisitionPurpose::pluck('name', 'id')->prepend('--select purpose--',''));
+        // $view->with('requisition_priority_list', RequisitionPriority::pluck('name', 'id')->prepend('--select priority--',''));
+        $view->with('terms_conditions_type_list', TermsAndConditionType::all());
+        $view->with('product_group', ProductCategory::all());
         return $view;
     }
 

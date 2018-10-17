@@ -13,37 +13,31 @@
                 </div>
                 <div class="x_content">
                     <div class="col-xs-3">
-                        <!-- required for floating -->
                         <!-- Nav tabs -->
-                        <ul class="nav nav-tabs tabs-left">
-                            <li {{ ($tab == 'credit-rule') ? "class=active" : null }}><a href="#credit_rule" data-toggle="tab">Credit Rule</a></li>
-                            <li {{ ($tab == 'discount-customer-wise') ? "class=active" : null }}><a href="#discount_customer" data-toggle="tab">Discount <small>(Customer Wise)</small></a></li>
-                            <li {{ ($tab == 'discount-generic') ? "class=active" : null }}><a href="#discount_generic" data-toggle="tab">Discount <small>(Generic)</small></a></li>
-                            <li {{ ($tab == 'free-bonus-customer-wise') ? "class=active" : null }}><a href="#free_bonus_customer" data-toggle="tab">Free/Bonus <small>(Customer Wise)</small></a></li>
-                            <li {{ ($tab == 'free-bonus-generic') ? "class=active" : null }}><a href="#free_bonus_generic" data-toggle="tab">Free/Bonus <small>(Generic)</small></a></li>
-                        </ul>
+                        @include('modules.sales.setting.rule_setup.tabs')
                     </div>
 
                     <div class="col-xs-9">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane {{ ($tab == 'credit-rule') ? "active" : null }}" id="credit_rule">
+                            <div class="tab-pane active" id="credit_rule">
                                 <div class="x_title">
                                     <h2>Credit Rule</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                                     <div class="clearfix"></div>
                                 </div>
-                                <form class="form-horizontal form-label-left input_mask" action="{{ route('rule-setup.store') }}">
-                                    @csrf
+                                {{-- @include('partials/flash_msg') --}}
+                                {{ BootForm::open(['model' => $credit_rule, 'store' => 'credit-rule.store', 'update' => 'credit-rule.update']) }}
+                                    <input type="hidden" name="rule_type" value="credit-rule">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                            {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::number('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::number('duration','Duration', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::text('deadline','Deadline', null, ['class'=>'form-control input-sm datepicker']) }}
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <br />
@@ -54,7 +48,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                {{ BootForm::close() }}
                                 <div class="table-responsive m-t-30">
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -62,22 +56,24 @@
                                                 <th width="40">#</th>
                                                 <th>Customer</th>
                                                 <th>Amount</th>
-                                                <th>Duration</th>
+                                                <th>Deadline</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @foreach ($credit_rule_list as $item)
                                             <tr>
-                                                <td>01</td>
-                                                <td>Customer</td>
-                                                <td>02</td>
-                                                <td>03</td>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->customer->name }}</td>
+                                                <td>{{ $item->credit_amount }}</td>
+                                                <td>{{ $item->deadline }}</td>
                                             </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane {{ ($tab == 'discount-customer-wise') ? "active" : null }}" id="discount_customer">
+                            <div class="tab-pane {{ (Request::is('sales/discount-customer-wise')) ? "active" : null }}" id="discount_customer">
                                 <div class="x_title">
                                     <h2>Discount Customer Wise</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
@@ -135,7 +131,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                {{ BootForm::close() }}
                                 <div class="table-responsive m-t-30">
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -160,8 +156,8 @@
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane {{ ($tab == 'discount-generic') ? "active" : null }}" id="discount_generic">Discount Generic</div>
-                            <div class="tab-pane {{ ($tab == 'free-bonus-customer-wise') ? "active" : null }}" id="free_bonus_customer">
+                            <div class="tab-pane {{ (Request::is('sales/discount-generic')) ? "active" : null }}" id="discount_generic">Discount Generic</div>
+                            <div class="tab-pane {{ (Request::is('sales/free-bonus-customer-wise')) ? "active" : null }}" id="free_bonus_customer">
                                 <div class="x_title">
                                     <h2>Free/Bonus(Customer Wise)</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
@@ -267,7 +263,7 @@
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane {{ ($tab == 'free-bonus-generic') ? "active" : null }}" id="free_bonus_generic">Free/Bonus(Generic)</div>
+                            <div class="tab-pane {{ (Request::is('sales/free-bonus-generic')) ? "active" : null }}" id="free_bonus_generic">Free/Bonus(Generic)</div>
                         </div>
                     </div>
                 </div>

@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 
 class FreeBonusCustomerWiseController extends Controller
 {
-    private $view_root = 'modules/sales/rule_setup/';
+    private $view_root = 'modules/sales/setting/rule_setup/';
     public function index()
     {
         $view = view($this->view_root . 'free_bonus_customer_wise');

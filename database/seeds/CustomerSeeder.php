@@ -13,7 +13,7 @@ class CustomerSeeder extends Seeder
     {
         $data=[
         	[
-                'customer_name'=>'Shah Rakibur Rahman', 
+                'name'=>'Shah Rakibur Rahman', 
                 'customer_type_id'=>1,
                 'establishment_date'=>'2018-12-30',
                 'status'=>'Active',

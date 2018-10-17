@@ -9,7 +9,7 @@ class OwnVehicle extends Model{
     protected $guarded=['id'];
 
     public function employee(){
-    	return $this->belongsTo('App\EmployeeProfile');
+    	return $this->belongsTo('App\EmployeeProfile', 'employee_profile_id');
     }
 
     public function creator(){

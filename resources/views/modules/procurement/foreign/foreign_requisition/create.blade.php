@@ -229,14 +229,12 @@
                 autoFocus: true,
                 select: function (e, ui) {
                     $scope.product_id = ui.item.id;
-                // $scope.addToItemList(ui.item);
-                $scope.$apply();
-                console.log($scope.itemlist);
                 }
         });
         $scope.searchProduct = function(){
             $('#search_product').val(null);
             $scope.addToItemList($scope.product_id);
+            $scope.product_id = null;
         }
         $scope.addToItemList = function(product_id){
             if(!product_id){

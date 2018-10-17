@@ -38,6 +38,16 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'present_address'=>'Azimpur',
                 'permanent_address'=>'Lalbagh',
                 'user_id'=>4
+            ],[
+                'creator_user_id'=>1,
+                'employee_no'=>'EMP004',
+                'name'=>'Own Driver',
+                'national_id'=>'4654656790',
+                'nationality'=>'Bangladeshi',
+                'blood_group_id'=>'4',
+                'present_address'=>'Motijheel',
+                'permanent_address'=>'Bogura',
+                'user_id'=>4
             ]
         ];
 
@@ -62,6 +72,13 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'employee_profile_id'=>3,
                 'department_id'=>1,
                 'designation_id'=>3,
+                'working_unit_id'=>3,
+                'employee_org_info_status_id'=>2,
+                'employee_org_info_type_id'=>1,
+            ],[
+                'employee_profile_id'=>4,
+                'department_id'=>1,
+                'designation_id'=>5,
                 'working_unit_id'=>3,
                 'employee_org_info_status_id'=>2,
                 'employee_org_info_type_id'=>1,

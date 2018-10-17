@@ -22,7 +22,7 @@
                     <div class="x_content" id="popup_area">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
@@ -40,7 +40,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->vehicle_no }}</td>
                                         <td>{{ $row->employee->name }}</td>
-                                        <td>{{ $row->license_nimber }}</td>
+                                        <td>{{ $row->license_number }}</td>
                                         <td>{{ $row->creator->name ?? 'Not Specified' }}</td>
                                         <td>{{ empty($row->created_at)?'Not Specified':$row->created_at->diffForHumans() }}</td>
                                         <td class="text-center"><a href="{{ route('own-vehicle.edit', $row->id) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>

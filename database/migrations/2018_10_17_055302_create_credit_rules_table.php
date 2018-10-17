@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductCostingsTable extends Migration
+class CreateCreditRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,17 @@ class CreateProductCostingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_costings', function (Blueprint $table) {
+        Schema::create('credit_rules', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bill_of_lading_id');
-            $table->foreign('bill_of_lading_id')->references('id')->on('bill_of_ladings')->onDelete('cascade');
-            $table->double('retirement');
-            $table->double('remittance');
-            $table->double('dh_charge');
-            $table->double('transport_charge');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->double('credit_amount');
+            $table->date('deadline');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -36,6 +35,6 @@ class CreateProductCostingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_costings');
+        Schema::dropIfExists('credit_rules');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCustomerBanksTable extends Migration
+class CreateCreditRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateCustomerBanksTable extends Migration
      */
     public function up()
     {
-        Schema::create('customer_banks', function (Blueprint $table) {
+        Schema::create('credit_rules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('account_number')->nullable();
-            $table->string('account_name')->nullable();
-            $table->string('bank_name')->nullable();
-            $table->string('branch')->nullable();
-            $table->string('swift_code')->nullable();
-            $table->string('bank_address')->nullable();
             $table->integer('customer_id')->unsigned();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->double('credit_amount');
+            $table->date('deadline');
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -35,6 +35,6 @@ class CreateCustomerBanksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('customer_banks');
+        Schema::dropIfExists('credit_rules');
     }
 }

@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Customer::class, function (Faker $faker) {
+$factory->define(App\FreeBonusGeneric::class, function (Faker $faker) {
     return [
         //
     ];

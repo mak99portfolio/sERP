@@ -27,6 +27,7 @@
             <ul class="nav child_menu">
               <li><a href="{{Route('local-requisition.index')}}">Local Requisition</a></li>
               <li><a href="{{Route('quotation.index')}}">Quotation</a></li>
+              <li><a href="{{Route('quotation-compare.index')}}">Quotation Compare</a></li>
               <li><a href="{{route('local-purchase-order.index')}}">Purchase Order</a></li>
             </ul>
           </li>
@@ -56,7 +57,7 @@
           <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{route('customer-profile.index')}}">Customer Profile</a></li>
+              <li><a href="{{route('customer.index')}}">Customer Profile</a></li>
               <li><a href="{{ route('rule-setup.index') }}">Rule Setup</a></li>
               <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
             </ul>

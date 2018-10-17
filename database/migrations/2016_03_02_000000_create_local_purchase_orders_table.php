@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateLocalPurchaseOrdersTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('local_purchase_orders', function (Blueprint $table) {
@@ -35,11 +30,6 @@ class CreateLocalPurchaseOrdersTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('local_purchase_orders');

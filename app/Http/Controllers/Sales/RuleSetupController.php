@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sales;
 
 use App\RuleSetup;
+use App\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,24 +13,14 @@ class RuleSetupController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+        $view->with('tab', 'credit-rule');
+        $view->with('customer_list', Customer::pluck('name', 'id'));
         return $view;
     }
 
-    public function create()
-    {
-        $view = view($this->view_root . 'create');
-        return $view;
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        dd($request->input());
     }
 
     /**

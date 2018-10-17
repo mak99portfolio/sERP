@@ -16,40 +16,41 @@
                         <!-- required for floating -->
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs tabs-left">
-                            <li><a href="#credit_rule" data-toggle="tab">Credit Rule</a></li>
-                            <li class="active"><a href="#discount_customer" data-toggle="tab">Discount <small>(Customer Wise)</small></a></li>
-                            <li><a href="#discount_generic" data-toggle="tab">Discount <small>(Generic)</small></a></li>
-                            <li><a href="#free_bonus_customer" data-toggle="tab">Free/Bonus <small>(Customer Wise)</small></a></li>
-                            <li><a href="#free_bonus_generic" data-toggle="tab">Free/Bonus <small>(Generic)</small></a></li>
+                            <li {{ ($tab == 'credit-rule') ? "class=active" : null }}><a href="#credit_rule" data-toggle="tab">Credit Rule</a></li>
+                            <li {{ ($tab == 'discount-customer-wise') ? "class=active" : null }}><a href="#discount_customer" data-toggle="tab">Discount <small>(Customer Wise)</small></a></li>
+                            <li {{ ($tab == 'discount-generic') ? "class=active" : null }}><a href="#discount_generic" data-toggle="tab">Discount <small>(Generic)</small></a></li>
+                            <li {{ ($tab == 'free-bonus-customer-wise') ? "class=active" : null }}><a href="#free_bonus_customer" data-toggle="tab">Free/Bonus <small>(Customer Wise)</small></a></li>
+                            <li {{ ($tab == 'free-bonus-generic') ? "class=active" : null }}><a href="#free_bonus_generic" data-toggle="tab">Free/Bonus <small>(Generic)</small></a></li>
                         </ul>
                     </div>
 
                     <div class="col-xs-9">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane" id="credit_rule">
+                            <div class="tab-pane {{ ($tab == 'credit-rule') ? "active" : null }}" id="credit_rule">
                                 <div class="x_title">
                                     <h2>Credit Rule</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                                     <div class="clearfix"></div>
                                 </div>
-                                <form class="form-horizontal form-label-left input_mask">
+                                <form class="form-horizontal form-label-left input_mask" action="{{ route('rule-setup.store') }}">
+                                    @csrf
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::select('customer_id', 'Customer', [], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                            {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::number('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('duration','Duration', null, ['class'=>'form-control input-sm']) }}
+                                            {{ BootForm::number('duration','Duration', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <br />
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
-                                                <button type="button" id="save_credit_rule" class="btn btn-success btn-sm">Save</button>
-                                                <a href="{{ route('rule-setup.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                <button type="button" class="btn btn-default btn-sm">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -76,7 +77,7 @@
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane active" id="discount_customer">
+                            <div class="tab-pane {{ ($tab == 'discount-customer-wise') ? "active" : null }}" id="discount_customer">
                                 <div class="x_title">
                                     <h2>Discount Customer Wise</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
@@ -129,8 +130,8 @@
                                             <br />
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                                <a href="{{ route('rule-setup.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                    <button type="button" class="btn btn-default btn-sm">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -159,8 +160,8 @@
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane" id="discount_generic">Discount Generic</div>
-                            <div class="tab-pane" id="free_bonus_customer">
+                            <div class="tab-pane {{ ($tab == 'discount-generic') ? "active" : null }}" id="discount_generic">Discount Generic</div>
+                            <div class="tab-pane {{ ($tab == 'free-bonus-customer-wise') ? "active" : null }}" id="free_bonus_customer">
                                 <div class="x_title">
                                     <h2>Free/Bonus(Customer Wise)</h2>
                                     <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
@@ -238,8 +239,8 @@
                                             <br />
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                                <a href="{{ route('rule-setup.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                    <button type="button" class="btn btn-default btn-sm">Cancel</button>
                                             </div>
                                         </div>
                                     </div>
@@ -266,7 +267,7 @@
                                 </div>
                                 <!--end table-->
                             </div>
-                            <div class="tab-pane" id="free_bonus_generic">Free/Bonus(Generic)</div>
+                            <div class="tab-pane {{ ($tab == 'free-bonus-generic') ? "active" : null }}" id="free_bonus_generic">Free/Bonus(Generic)</div>
                         </div>
                     </div>
                 </div>

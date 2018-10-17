@@ -23,7 +23,7 @@
                                     </div>
                                 </div> --}}
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::text('customer_name','Customer Name *', null, ['class'=>'form-control input-sm','required']) }}
+                                    {{ BootForm::text('name','Customer Name *', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('customer_type_id', 'Customer Type *',$customer_type_list , null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Customer Type','required']) }}

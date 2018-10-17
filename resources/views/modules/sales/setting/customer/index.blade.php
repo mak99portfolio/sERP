@@ -37,7 +37,7 @@
                                     @foreach($customer_list as $item)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
-                                        <td>{{$item->customer_name}}</td>
+                                        <td>{{$item->name}}</td>
                                         <td>{{$item->customer_type->name}}</td>
                                         <td>{{$item->status}}</td>
                                         <td>{{$item->created_at}}</td>

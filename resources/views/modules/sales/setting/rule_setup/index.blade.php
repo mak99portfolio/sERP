@@ -17,10 +17,10 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs tabs-left">
                             <li><a href="#credit_rule" data-toggle="tab">Credit Rule</a></li>
-                            <li class="active"><a href="#discount_customer" data-toggle="tab">Discount Customer Wise</a></li>
-                            <li><a href="#discount_generic" data-toggle="tab">Discount Generic</a></li>
-                            <li><a href="#free_bonus_customer" data-toggle="tab">Free/Bonus(Customer Wise)</a></li>
-                            <li><a href="#free_bonus_generic" data-toggle="tab">Free/Bonus(Generic)</a></li>
+                            <li class="active"><a href="#discount_customer" data-toggle="tab">Discount <small>(Customer Wise)</small></a></li>
+                            <li><a href="#discount_generic" data-toggle="tab">Discount <small>(Generic)</small></a></li>
+                            <li><a href="#free_bonus_customer" data-toggle="tab">Free/Bonus <small>(Customer Wise)</small></a></li>
+                            <li><a href="#free_bonus_generic" data-toggle="tab">Free/Bonus <small>(Generic)</small></a></li>
                         </ul>
                     </div>
 
@@ -36,7 +36,7 @@
                                 <form class="form-horizontal form-label-left input_mask">
                                     <div class="row">
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::select('customer', 'Customer', [], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                            {{ BootForm::select('customer_id', 'Customer', [], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                             {{ BootForm::text('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
@@ -48,7 +48,7 @@
                                             <br />
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
-                                                <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                <button type="button" id="save_credit_rule" class="btn btn-success btn-sm">Save</button>
                                                 <a href="{{ route('rule-setup.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                             </div>
                                         </div>

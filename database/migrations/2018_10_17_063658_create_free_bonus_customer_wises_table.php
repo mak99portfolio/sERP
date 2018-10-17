@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductCostingsTable extends Migration
+class CreateFreeBonusCustomerWisesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,20 @@ class CreateProductCostingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_costings', function (Blueprint $table) {
+        Schema::create('free_bonus_customer_wises', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bill_of_lading_id');
-            $table->foreign('bill_of_lading_id')->references('id')->on('bill_of_ladings')->onDelete('cascade');
-            $table->double('retirement');
-            $table->double('remittance');
-            $table->double('dh_charge');
-            $table->double('transport_charge');
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->integer('product_id')->unsigned();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->string('bonus_type');
+            $table->double('bonus_value');
+            $table->boolean('active');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -36,6 +38,6 @@ class CreateProductCostingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_costings');
+        Schema::dropIfExists('free_bonus_customer_wises');
     }
 }

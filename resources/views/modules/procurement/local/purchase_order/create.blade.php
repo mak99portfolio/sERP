@@ -345,7 +345,12 @@
                                 </div>
                             </fieldset>
                             <!---------Terms and Condition end-------->
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-sm" ng-disabled="(conditions.length < 1 || payment_terms.length < 1)">Save</button>
+                                    <a href="{{ route('local-purchase-order.index') }}" class="btn btn-default btn-sm">Cancel</a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

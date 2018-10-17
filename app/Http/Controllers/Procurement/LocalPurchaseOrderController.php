@@ -11,6 +11,7 @@ use App\TermsAndConditionType;
 use App\LocalPurchaseOrderVendor;
 use App\LocalPurchaseOrderPaymentTerm;
 use App\LocalPurchaseOrderTermsCondition;
+use App\Http\Requests\LocalPurchaseOrderRequest;
 use Illuminate\Http\Request;
 use App\Helpers\Paginate;
 use App\Http\Controllers\Controller;
@@ -47,12 +48,15 @@ class LocalPurchaseOrderController extends Controller
     }
 
 
-    public function store(Request $request){
+    public function store(LocalPurchaseOrderRequest $request){
         // dd($request->all());
-        $request->validate([
-           // 'requisition_no'=>'required',
+        if(!$request->payment_type_validate()){
+            return redirect()->back();
+        }
 
-        ]);
+        if(!$request->terms_and_condition_type_validate()){
+            return redirect()->back();
+        }
 
         $local_purchase_order = new LocalPurchaseOrder;
         $local_purchase_order->fill($request->input());

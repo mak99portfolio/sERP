@@ -27,6 +27,7 @@
             <ul class="nav child_menu">
               <li><a href="{{Route('local-requisition.index')}}">Local Requisition</a></li>
               <li><a href="{{Route('quotation.index')}}">Quotation</a></li>
+              <li><a href="{{Route('quotation-compare.index')}}">Quotation Compare</a></li>
               <li><a href="{{route('local-purchase-order.index')}}">Purchase Order</a></li>
             </ul>
           </li>

@@ -113,7 +113,7 @@
                             {{ BootForm::select('department_id', 'Select Department', $depatrments, null, ['class'=>'input-sm select2']) }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('designation_no', 'Select Designation', $designations, null, ['class'=>'input-sm select2']) }}
+                            {{ BootForm::select('designation_id', 'Select Designation', $designations, null, ['class'=>'input-sm select2']) }}
                         </div>
 
                     </div>

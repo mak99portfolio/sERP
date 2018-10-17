@@ -50,12 +50,12 @@ class OwnVehicleController extends Controller{
     public function store(Request $request){
 
         $request->validate([
-            'name'=>'required|unique:designations',
-            'short_name'=>'required|unique:designations'
+            'license_number'=>'required|unique:own_vehicles',
+            'employee_profile_id'=>'required|integer'
         ]);
-
-        $model=\App\OwnVehicle::create($request->all());
-        $model->designation_no=uCode('designations.designation_no', 'DG000');
+        $model=new \App\OwnVehicle;
+        $model->fill($request->all());
+        $model->vehicle_no=uCode('own_vehicles.vehicle_no', 'VHI00');
         $model->creator()->associate(\Auth::user());
         $model->save();
 
@@ -73,9 +73,18 @@ class OwnVehicleController extends Controller{
 
         $data=[
 
-            'model'=>$designation,
-            'route_name'=>'designation',
-            'title'=>'Designation'
+            'model'=>$own_vehicle,
+            'route_name'=>'own-vehicle',
+            'title'=>'Own Vehicle',
+            'employees'=>\App\EmployeeProfile::wherehas('organizational_information', function($query){
+
+                $query->wherehas('designation', function($query){
+
+                    $query->where('name', 'Driver');
+
+                });
+
+            })->pluck('name', 'id')
 
         ];
 
@@ -89,8 +98,8 @@ class OwnVehicleController extends Controller{
         $model=$own_vehicle;
 
         $request->validate([
-            'name'=>'required|unique:designations,name,'.$model->id,
-            'short_name'=>'required|unique:designations,short_name,'.$model->id
+            'license_number'=>'required|unique:own_vehicles,license_number,'.$model->id,
+            'employee_profile_id'=>'required|integer'
         ]);
 
         $model->fill($request->all());

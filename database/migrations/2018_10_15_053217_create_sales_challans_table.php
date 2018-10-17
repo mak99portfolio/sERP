@@ -13,7 +13,6 @@ class CreateSalesChallansTable extends Migration{
             $table->string('sales_challan_no')->unique();
             $table->date('challan_date')->nullable();
             $table->integer('mushak_number_id')->unsigned()->nullable();
-            $table->enum('delivary_medium', ['Own', 'Customer Agency', 'Customer', 'Others'])->unique();
             $table->integer('delivery_person_id')->unsigned()->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->integer('updator_user_id')->unsigned()->nullable();

@@ -170,16 +170,38 @@ function stock_balance(\App\WorkingUnit $working_unit, \App\Product $product, ar
 
 }
 
-function total_stock_balance(\App\Product $product){
+function total_stock_balance(\App\Product $product, array $filters=[]){
 
-    $receive_quantity=\App\Stock::where('product_id', $product->id)->sum('receive_quantity');
-    $issue_quantity=\App\Stock::where('product_id', $product->id)->sum('issue_quantity');
-    $allocated_quantity=\App\Stock::where('product_id', $product->id)->sum('allocated_quantity');
-    return $receive_quantity - $issue_quantity - $allocated_quantity;
+	if(empty($filters)){
+
+	    $receive_quantity=\App\Stock::where('product_id', $product->id)->sum('receive_quantity');
+	    $issue_quantity=\App\Stock::where('product_id', $product->id)->sum('issue_quantity');
+	    $allocated_quantity=\App\Stock::where('product_id', $product->id)->sum('allocated_quantity');
+	    return $receive_quantity - $issue_quantity - $allocated_quantity;
+
+	}else{
+
+    	$receive_quantity=\App\Stock::where('product_id', $product->id)
+    	->where($filters)
+    	->sum('receive_quantity');
+
+    	$issue_quantity=\App\Stock::where('product_id', $product->id)
+    	->where($filters)
+    	->sum('issue_quantity');
+
+    	$allocated_quantity=\App\Stock::where('product_id', $product->id)
+    	->where($filters)
+    	->sum('allocated_quantity');
+
+    	return $receive_quantity - $issue_quantity - $allocated_quantity;
+
+	}
 
 }
-function number_to_word($number)
-{
+
+
+function number_to_word($number){
+
 	$no = floor($number);
     $point =  round(($number-$no)*100);
 	$hundred = null;

@@ -76,7 +76,7 @@
             <ul class="nav child_menu">
               <li><a href="{{ route('status-adjustment.index') }}">Item Status Adjustment</a></li>
               <li><a href="{{ route('stock-adjustment.index') }}">Item Stock Adjustment</a></li>
-              {{-- <li><a href="{{ route('item-status.index') }}">Item Status List</a></li> --}}
+              <li><a href="{{ route('safety-stock.index') }}">Sefety Stock</a></li>
               <li><a href="{{ route('adjustment-purpose.index') }}">Adjustment Purpose List</a></li>
               <li><a href="{{ route('return-reason.index') }}">Return Reason List</a></li>
               <li><a href="{{ route('requisition-type.index') }}">Requisition Type List</a></li>

@@ -196,7 +196,7 @@ class ReceiveController extends Controller{
 
         //dd($inventory_issue);
 
-        if($inventory_issue && $inventory_issue->final_approver()->exists()){
+        if($inventory_issue && $inventory_issue->final_approver()->exists() && $inventory_issue->status->code!="received"){
 
             $products=[];
 
@@ -236,7 +236,8 @@ class ReceiveController extends Controller{
                 'requisition'=>[
                     'inventory_requisition_no'=>$inventory_issue->requisition->inventory_requisition_no,
                     'receive_from'=>$inventory_issue->requested_to->name,
-                    'inventory_issue_id'=>$inventory_issue->id
+                    'inventory_issue_id'=>$inventory_issue->id,
+                    'challan_no'=>$inventory_issue->challan_no
                 ],
                 'products'=>$products
             ]);

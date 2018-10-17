@@ -145,6 +145,8 @@ class IssueController extends Controller{
             ->prepend('--select Working Unit--', '');
         }
 
+        //dd($this->populate_old_issue($issue));
+
         $data=[
             'issue'=>$issue,
             'forward_units'=>$forward_units,
@@ -424,7 +426,7 @@ class IssueController extends Controller{
 
             if($previous_issues) $issue_remain=$requested_quantity-$previous_issued_quantity;
 
-            if($issue_remain < 1) continue;
+            //if($issue_remain < 1) continue;
 
             $temp=[
                 'id'=>$row->product->id,

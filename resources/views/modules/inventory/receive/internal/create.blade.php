@@ -58,20 +58,20 @@
                                                 
                                                     <label>Requisition No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
-                                                    <div class="input-group">
-                                                        {{ Form::text('inventory_requisition_no', null, ['class'=>'form-control input-sm', "v-model"=>"requisition.inventory_requisition_no", "v-on:change"=>"fetch_requisition(requisition.inventory_requisition_no)"]) }}
-                                                        <span class="input-group-btn">
-                                                            <button class="btn btn-default btn-sm" type="button" v-on:click="fetch_requisition(requisition.inventory_requisition_no)">
-                                                                <i class="fa fa-search" aria-hidden="true"></i>
-                                                            </button>
-                                                        </span>
+                                                    <div class="form-group">
+                                                        {{ Form::text('inventory_requisition_no', null, [
+                                                            'class'=>'form-control input-sm',
+                                                            "v-model"=>"requisition.inventory_requisition_no",
+                                                            'readonly'
+                                                            ]) 
+                                                        }}
                                                     </div><!-- /input-group -->
                                                 
                                             </div>
 
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
-                                                    {{ BootForm::text('challan_no', null, null, ['class'=>'form-control input-sm']) }}
+                                                    {{ BootForm::text('challan_no', null, null, ['v-model'=>'requisition.challan_no', 'v-on:change'=>'fetch_requisition', 'v-on:keydown.enter.prevent'=>'fetch_requisition', 'class'=>'form-control input-sm', 'suffix'=>BootForm::addonButton(fa('fa-search fa-lg text-primary'), ['class' => 'btn-default btn-sm', 'v-on:click'=>'fetch_requisition'])]) }}
                                                 </div>
                                             </div>
 
@@ -235,24 +235,37 @@ $(function(){
             requisition:{
                 inventory_requisition_no:'',
                 receive_from: '', //Requested working units name
-                inventory_issue_id: ''
+                inventory_issue_id: '',
+                challan_no:''
             },
             product_statuses:null
         },
         methods:{
+            alert:function(msg='Sorry!, try again later.', type='error'){
 
-            fetch_requisition:function(slug){
+                new PNotify({
+                  title: 'Message',
+                  text: msg,
+                  type: type,
+                  styling: 'bootstrap3'
+                });
 
-                var vm=this;
+            },
+            fetch_requisition:function(){
+
+                var ref=this;
                 var loading = $.loading();
                 loading.open(3000);
 
+                var slug=ref.requisition.challan_no;
+
                 //reset models
-                vm.products=[];
-                vm.requisition={
+                ref.products=[];
+                ref.requisition={
                     inventory_requisition_no:'',
                     receive_from: '',
-                    inventory_issue_id: ''
+                    inventory_issue_id: '',
+                    challan_no: ''
                 }
 
                 if(slug){
@@ -261,13 +274,14 @@ $(function(){
 
                     axios.get(this.config.get_requisition_url + '/' + working_unit + '/' + slug).then(function(response){
 
-                        vm.requisition=response.data.requisition;
-                        vm.products=response.data.products;                
+                        ref.requisition=response.data.requisition;
+                        ref.products=response.data.products;                
                         loading.close();
 
                     }).catch(function(){
 
                         loading.close();
+                        ref.alert('Please!, insert a valid challan number.')
 
                     });
 
@@ -276,27 +290,28 @@ $(function(){
             },
             fetch_product:function(slug){
 
-                var vm=this;
+                var ref=this;
                 var loading = $.loading();
                 loading.open(3000);
-                vm.remote_data=null;
-                vm.reset_active_record();
+                ref.remote_data=null;
+                ref.reset_active_record();
 
                 if(slug){
 
                     axios.get(this.config.base_url + '/' + slug).then(function(response){
 
-                        vm.remote_data=response.data;
-                        vm.active_record=vm.remote_data;
-                        vm.active_record.quantity=0;
-                        vm.active_record.return_quantity=0;
-                        vm.active_record.return_status_id=1;
+                        ref.remote_data=response.data;
+                        ref.active_record=ref.remote_data;
+                        ref.active_record.quantity=0;
+                        ref.active_record.return_quantity=0;
+                        ref.active_record.return_status_id=1;
                 
                         loading.close();
 
                     }).catch(function(){
 
                         loading.close();
+                        ref.alert('Sorry!, requested product does not found.')
 
                     });
 
@@ -318,25 +333,20 @@ $(function(){
             },
             add_product:function(){
                 if(this.active_record.quantity > 0){
+
                     this.products.push(this.active_record);
                     this.reset_active_record();
-                }else{
-                    new PNotify({
-                      'title': 'Failed!',
-                      'text': 'Sorry!, inserted quantity amount is zero.',
-                      'type': 'error',
-                      'styling': 'bootstrap3'
-                    });
-                }
+
+                }else this.alert('Sorry!, inserted quantity amount is zero.')
             },
             load_old:function(){
-                var vm=this;
+                var ref=this;
                 var loading=$.loading();
                 loading.open(3000);
 
                 axios.get(this.config.old_data_url).then(function(response){
 
-                    vm.products=response.data;                
+                    ref.products=response.data;                
                     loading.close();
 
                 }).catch(function(){
@@ -349,7 +359,7 @@ $(function(){
 
                 axios.get(this.config.old_inputs_url).then(function(response){
 
-                    vm.requisition=response.data;                
+                    ref.requisition=response.data;                
                     loading.close();
 
                 }).catch(function(){
@@ -359,12 +369,12 @@ $(function(){
                 });//End of axios
          },
          fetch_product_statuses:function(){
-                var vm=this;
+                var ref=this;
                 var loading=$.loading();
                 loading.open(3000);
                 axios.get(this.config.product_status_url).then(function(response){
 
-                    vm.product_statuses=response.data;                
+                    ref.product_statuses=response.data;                
                     loading.close();
 
                 }).catch(function(){

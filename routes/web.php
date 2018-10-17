@@ -104,6 +104,20 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
 
 });
 
+//Accounts
+Route::middleware('auth')->namespace('Accounts')->prefix('accounts')->group(function(){
+    Route::resource('product-costing', 'ProductCostingController');
+});
+
+//Company
+Route::middleware('auth')->namespace('Company')->prefix('company')->group(function(){
+    Route::resource('company-profile', 'CompanyProfileController');
+    Route::resource('company-bank', 'CompanyBankController');
+    Route::resource('company-license', 'CompanyLicenseController');
+    Route::resource('notification', 'NotificationController');
+    Route::resource('department', 'DepartmentController');
+});
+
 //Inventory
 Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'])->namespace('Inventory')->prefix('inventory')->group(function(){
 
@@ -126,6 +140,7 @@ Route::middleware(['auth', 'hasPermission:access_to_inventory', 'hasWorkingUnit'
     Route::resource('requisition-type', 'RequisitionTypeController');
     Route::resource('record-type', 'RecordTypeController');
     Route::resource('stock-report', 'StockReportController');
+    Route::resource('safety-stock', 'SafetyStockController');
 
 });
 
@@ -133,20 +148,6 @@ Route::middleware(['auth'])->namespace('Inventory')->prefix('inventory')->group(
 
     Route::resource('stock-report', 'StockReportController');
 
-});
-
-//Accounts
-Route::middleware('auth')->namespace('Accounts')->prefix('accounts')->group(function(){
-    Route::resource('product-costing', 'ProductCostingController');
-});
-
-//Company
-Route::middleware('auth')->namespace('Company')->prefix('company')->group(function(){
-    Route::resource('company-profile', 'CompanyProfileController');
-    Route::resource('company-bank', 'CompanyBankController');
-    Route::resource('company-license', 'CompanyLicenseController');
-    Route::resource('notification', 'NotificationController');
-    Route::resource('department', 'DepartmentController');
 });
 
 //Inventory Related API without auth middleware
@@ -173,6 +174,9 @@ Route::namespace('Inventory')->prefix('inventory')->group(function(){
         Route::get('product-info-for-adjusment/{working_unit}/{selected_type}/{selected_status}/{slug}', 'StatusAdjustmentController@product_info_for_adjusment');
         Route::get('fetch-requisition/{requested_working_unit}/{slug}', 'IssueController@fetch_requisition');
         Route::get('get-batch-stock/{working_unit}/{product}/{inventory_requisition_no}/{slug}', 'IssueController@get_batch_stock');
+
+        //route to fetch safety stock
+        Route::get('fetch-safety-stock/{working_unit}/{product}', 'SafetyStockController@fetch_safety_stock');
 
     });
 

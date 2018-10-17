@@ -90,6 +90,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CustomerSeeder::class);
         $this->call(SalseOrderSeeder::class);
         $this->call(MushakNumbersTableSeeder::class);
+        $this->call(OwnVehiclesTableSeeder::class);
+        $this->call(SalesChallansTableSeeder::class);
 
     }
 }

@@ -25,6 +25,8 @@ class MushakNumbersTableSeeder extends Seeder{
     			'number'=>'3625-1235-14785-1227'
     		],
     	];
+
+        \DB::table('mushak_numbers')->insert($data);
         
     }
 

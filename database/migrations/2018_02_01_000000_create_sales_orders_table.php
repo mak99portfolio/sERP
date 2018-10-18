@@ -15,7 +15,7 @@ class CreateSalesOrdersTable extends Migration
     {
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('salse_order_no');
+            $table->string('sales_order_no');
             $table->date('sales_date');
             $table->integer('sales_reference_id');
             $table->foreign('sales_reference_id')->references('id')->on('employee_profiles')->onDelete('cascade');

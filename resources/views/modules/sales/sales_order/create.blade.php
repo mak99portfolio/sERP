@@ -212,34 +212,33 @@
                     <form class="form-horizontal form-label-left" action="{{route('sales-order.store')}}" method="POST" autocomplete="off">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                            {{-- <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('sales_order_no','Sales Order No', null, ['class'=>'form-control input-sm']) }}
+                            </div> --}}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::text('sales_date','Sales Date', null, ['class'=>'form-control input-sm datepicker']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('sales_date','Sales Date', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::select('currency_id','Currency',$currency_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Currency','style'=>"width: 100%;"]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('designation','Designation',$designations_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'designation_id','ng-change'=>'getEmployee()','data-placeholder'=>"Select Designation",'style'=>"width: 100%;"]) }}
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                        <label data-popup = "{{ route('terms-and-condition-type.index') }}">Sales Reference</label>
-                                        <select class="form-control input-sm select2" ng-model="terms_and_condition_type" name="sales_reference_id" required>
-                                            <option value="" disabled>--Select Sales Reference--</option>
-                                            <option ng-repeat='employee in employeelist' value="<% employee.id %>"><% employee.name %></option>
-                                        </select>
-                                    </div>
-                            
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('currency','Currency',$currency_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Currency','style'=>"width: 100%;"]) }}
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm']) }}
+                                {{ BootForm::number('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('customer_id','Customer',$customer_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Customer','style'=>"width: 100%;"]) }}
                             </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    {{ BootForm::select('designation','Designation',$designations_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'designation_id','ng-change'=>'getEmployee()','data-placeholder'=>"Select Designation",'style'=>"width: 100%;"]) }}
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="form-group">
+                                            <label>Sales Reference</label>
+                                            <select class="form-control input-sm select2" ng-model="terms_and_condition_type" name="sales_reference_id" required>
+                                                <option value="" disabled>--Select Sales Reference--</option>
+                                                <option ng-repeat='employee in employeelist' value="<% employee.id %>"><% employee.name %></option>
+                                            </select>
+                                    </div>
+                                </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset>
                                         <legend>Terms and Conditions</legend>
@@ -350,13 +349,13 @@
                                         <td><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
                                         <td><% item.name %></td>
                                         <td><% item.uom %></td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" required> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" required> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" required> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" required> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" required> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][vat]" required> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][discont]" required> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][vat]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][discont]" > </td>
                                         <td>10</td>
                                
                                         <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>

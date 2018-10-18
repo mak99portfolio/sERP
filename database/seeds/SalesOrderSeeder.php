@@ -57,22 +57,22 @@ class SalesOrderSeeder extends Seeder
         \DB::table('sales_orders')->insert($data);
         $data = [
             [
-                'salse_order_id' => 1,
+                'sales_order_id' => 1,
                 'terms_and_condition_id' => 1,
                 'description' => 'description',
             ],
             [
-                'salse_order_id' => 2,
+                'sales_order_id' => 2,
                 'terms_and_condition_id' => 1,
                 'description' => 'description',
             ],
             [
-                'salse_order_id' => 3,
+                'sales_order_id' => 3,
                 'terms_and_condition_id' => 1,
                 'description' => 'description',
             ],
             [
-                'salse_order_id' => 4,
+                'sales_order_id' => 4,
                 'terms_and_condition_id' => 1,
                 'description' => 'description',
             ],
@@ -81,7 +81,7 @@ class SalesOrderSeeder extends Seeder
         \DB::table('sales_order_terms_and_conditions')->insert($data);
         $data = [
             [
-                'salse_order_id' => 1,
+                'sales_order_id' => 1,
                 'product_id' => 1,
                 'unit_price' => 100,
                 'quantity' => 10,
@@ -91,7 +91,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 1,
+                'sales_order_id' => 1,
                 'product_id' => 2,
                 'unit_price' => 100,
                 'quantity' => 10,
@@ -101,7 +101,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 2,
+                'sales_order_id' => 2,
                 'product_id' => 1,
                 'unit_price' => 100,
                 'quantity' => 10,
@@ -111,7 +111,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 2,
+                'sales_order_id' => 2,
                 'product_id' => 2,
                 'unit_price' => 100,
                 'quantity' => 10,
@@ -121,7 +121,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 3,
+                'sales_order_id' => 3,
                 'product_id' => 1,
                 'unit_price' => 100,
                 'quantity' => 20,
@@ -131,7 +131,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 3,
+                'sales_order_id' => 3,
                 'product_id' => 2,
                 'unit_price' => 100,
                 'quantity' => 410,
@@ -141,7 +141,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 4,
+                'sales_order_id' => 4,
                 'product_id' => 1,
                 'unit_price' => 100,
                 'quantity' => 14,
@@ -151,7 +151,7 @@ class SalesOrderSeeder extends Seeder
                 'discont' => 10
             ],
             [
-                'salse_order_id' => 4,
+                'sales_order_id' => 4,
                 'product_id' => 3,
                 'unit_price' => 100,
                 'quantity' => 100,

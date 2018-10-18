@@ -10,7 +10,6 @@ class SalesOrder extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'sales_order_no',
         'sales_date',
         'sales_reference_id',
         'currency_id',
@@ -22,5 +21,19 @@ class SalesOrder extends Model
     {
         return $this->belongsTo('App\Customer');
     }
-
+    public function terms_and_condition()
+    {
+        return $this->hasMany('App\SalesOrderTermsAndCondition');
+    }
+    public function generateSalesOrderNumber()
+    {
+        $serial = $this->count_last_serial() + 1;
+        $this->sales_order_no = 'SO-' . date('Y-m-') . str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+    private function count_last_serial()
+    {
+        return SalesOrder::whereYear('created_at', date('Y'))
+            ->whereMonth('created_at', date('m'))
+            ->count();
+    }
 }

@@ -39,8 +39,8 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->sales_order_no}}</td>
                                         <td>{{$item->sales_date}}</td>
-                                        <td>011</td>
-                                        <td>01</td>
+                                        <td>{{$item->sales_reference->name}}</td>
+                                        <td>{{$item->currency->name}}</td>
                                         <td class="text-center">
                                         <a href="{{ route('sales-order.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

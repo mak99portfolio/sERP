@@ -203,7 +203,7 @@
             <div class="x_panel" ng-app="myApp">
                 <div class="x_title">
                     <h2>Sales Order</h2>
-                    <a href="{{route('foreign-requisition.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Requisition Lists</a>
+                    <a href="{{route('sales-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Requisition Lists</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" ng-controller="myCtrl">
@@ -385,7 +385,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm" ng-disabled="itemlist.length < 1">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
+                                    <a class="btn btn-default btn-sm" href="{{route('sales-order.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </div>

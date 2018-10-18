@@ -17,9 +17,10 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="customer_id" class="control-label">Customer</label>
-                                    <select class="form-control input-sm bSelect" id="customer_id" name="customer_id" v-model="field.customer_id">
-                                          <option v-for="(customer, index) in model.customers" v-bind:value="customer.id" v-html="customer.name"></option>
+                                    <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id">
+                                          <option v-for="(customer, index) in resource.customers.data" v-bind:value="customer.id" v-html="customer.name"></option>
                                     </select>
+                                    {{-- <v-select label="name" :options="model.customers" v-model="field.customer_id"></v-select> --}}
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -32,14 +33,15 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="challan_date" class="control-label">Challan Date</label>
+                                    {{-- <input type="text" class="form-control input-sm datepicker" ref="challan_date" v-model="field.challan_date"/> --}}
                                     <vuejs-datepicker v-model="field.challan_date" input-class="form-control input-sm"></vuejs-datepicker>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="mushak_id" class="control-label">Mushak No</label>
-                                    <select class="form-control input-sm select2" id="mushak_id" name="mushak_id">
-                                        
+                                    <select class="form-control input-sm bSelect" ref="mushak_id" id="mushak_id" name="mushak_id" v-model="field.mushak_id">
+                                        <option v-for="(row, index) in resource.mushak_numbers.data" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
                                 </div>
                             </div>
@@ -57,20 +59,19 @@
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
-                                    <label for="">Delivery Medium</label>
-                                <div class="input-group">
-                                    <select name="delivery_vehicle" class="form-control input-sm select2">
-                                        <option value="">Own Vehicle</option>
-                                        <option value="">Transport Agency</option>
-                                        <option value="">Customer</option>
-                                        <option value="">Others</option>
-                                    </select>
-                                    <span class="input-group-btn">
-                                      <button class="btn btn-default btn-sm" type="button">
-                                         <span class="fa fa-lg fa-plus-circle text-primary"></span>
-                                      </button>
-                                    </span>
-                                </div>
+                                    <label for="">Delivery Vehicle</label>
+                                    <div class="input-group">
+
+                                        <select name="delivery_vehicle" class="form-control input-sm bSelect" ref="delivery_vehicle" v-model="field.delivery_vehicle">
+                                            <option v-for="(row, index) in resource.delivery_vehicles" v-bind:value="row.id" v-html="row.name"></option>
+                                        </select>
+
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-default" type="button">
+                                             <span class="fa fa-lg fa-plus-circle text-primary"></span>
+                                          </button>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -212,9 +213,11 @@
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 <script src="https://unpkg.com/vuejs-datepicker"></script>
+<script src="https://unpkg.com/vue-select@latest"></script>
 
 <script>
 $(function(){
+    //Vue.component('v-select', VueSelect.VueSelect);
     var vue=new Vue({
         el: '#main',
         components:{
@@ -222,7 +225,9 @@ $(function(){
         },
         data:{
             url:{
-                customers:"{{ url('api/customers') }}"
+                customers:"{{ url('api/resource/customers') }}",
+                mushak_numbers:"{{ url('api/resource/mushak-numbers') }}",
+                sales_orders:"{{ url('') }}"
             },
             field:{
                 customer_id:'',
@@ -230,15 +235,22 @@ $(function(){
                 challan_date:'',
                 mushak_id:'',
                 delivery_person_id:'',
-                shipping_address:''
+                shipping_address:'',
+                delivery_vehicle:''
             },
-            model:{
-                customers:[
-                    {id:1, name:'CS1'},
-                    {id:2, name:'CS2'},
-                    {id:3, name:'CS3'},
-                    {id:4, name:'CS4'}
-                ]
+            resource:{
+                customers:{
+                    data:[]
+                },
+                mushak_numbers:{
+                    data:[]
+                },
+                delivery_vehicles:[
+                    {id: 'own_vehicle', name: 'Own Vehicle'},
+                    {id: 'transport_agency', name: 'Transport Agency'},
+                    {id: 'customer', name: 'Customer'},
+                    {id: 'Others', name: 'Others'},
+                ],
             },
             temp:null
         },
@@ -252,16 +264,15 @@ $(function(){
                   styling: 'bootstrap3'
                 });
             },
-            fetch_model:function(url){
+            fetch_resource:function(url, reference){
 
-                ref=this;
                 var loading=$.loading();
                 loading.open(3000);
 
                 axios.get(url).then(function(response){
 
-                    console.log(response);
-                    ref.model.customers=response;
+                    reference.data=response.data.data;
+                    loading.close();
 
                 }).catch(function(){
 
@@ -271,20 +282,29 @@ $(function(){
 
                 });
 
+            },
+            fetch_sales_orders:function(){
+
             }
 
         },
         beforeMount(){
-            this.fetch_model(this.url.customers);
+            this.fetch_resource(this.url.customers, this.resource.customers);
+            this.fetch_resource(this.url.mushak_numbers, this.resource.mushak_numbers);
+            //this.resource.customers=this.temp.data;
             //this.model.customers=this.temp;
-        }
+        },//End of beforeMount
+        updated(){
+            $(this.$refs.customer_id).selectpicker('refresh');
+            $(this.$refs.mushak_id).selectpicker('refresh');
+        }//end of updated
     })//End of vue js
 
     $('.datepicker').daterangepicker({
       singleDatePicker: true,
       singleClasses: "picker_3",
       locale: {
-          format: 'DD-MM-YYYY'
+          format: 'DD-MMM-YYYY'
       }
     });
     //$('.datepicker').datetimepicker();

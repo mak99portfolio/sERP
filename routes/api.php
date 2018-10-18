@@ -17,9 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('customers', function(){
-	return App\Http\Resources\Customer::collection(\App\Customer::all());
+Route::namespace('Api')->prefix('resource')->group(function(){
+	Route::get('customers', 'ResourceController@customers');
+	Route::get('mushak-numbers', 'ResourceController@mushak_numbers');
 });
+
+Route::prefix('sales-challan')->group(function(){
+	Route::get('sales-orders/{customer}', 'SalesChallanController@sales_orders');
+});
+
 
 
 // Route::get('get_ci_by_ci_no/{id}', ['as' => 'get_ci_by_ci_no', 'uses' => 'ReceivePurchaseController@getCommercialInvoice']);

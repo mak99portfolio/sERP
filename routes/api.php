@@ -22,8 +22,8 @@ Route::namespace('Api')->prefix('resource')->group(function(){
 	Route::get('mushak-numbers', 'ResourceController@mushak_numbers');
 });
 
-Route::prefix('sales-challan')->group(function(){
-	Route::get('sales-orders/{customer}', 'SalesChallanController@sales_orders');
+Route::namespace('Sales')->prefix('sales')->group(function(){
+	Route::get('challan/orders/{customer}', 'SalesChallanController@sales_orders');
 });
 
 

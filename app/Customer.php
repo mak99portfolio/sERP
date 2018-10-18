@@ -47,4 +47,8 @@ class Customer extends Model
     {
         return $this->hasMany('App\CustomerEnclosure');
     }
+
+    public function sales_orders(){
+        return $this->hasmany('App\SalesOrder', 'customer_id');
+    }
 }

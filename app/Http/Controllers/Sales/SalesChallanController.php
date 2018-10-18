@@ -79,7 +79,7 @@ class SalesChallanController extends Controller
 
     public function sales_orders(\App\Customer $customer){
 
-        return true;
+        return $customer->sales_orders;
 
     }
 

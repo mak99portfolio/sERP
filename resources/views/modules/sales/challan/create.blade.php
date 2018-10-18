@@ -17,7 +17,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="customer_id" class="control-label">Customer</label>
-                                    <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id">
+                                    <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id" v-on:change="fetch_sales_orders">
                                           <option v-for="(customer, index) in resource.customers.data" v-bind:value="customer.id" v-html="customer.name"></option>
                                     </select>
                                     {{-- <v-select label="name" :options="model.customers" v-model="field.customer_id"></v-select> --}}
@@ -26,7 +26,8 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="sales_orders[]" class="control-label">Sales Orders</label>
-                                    <select class="form-control input-sm bSelect" id="sales_orders[]" name="sales_orders[]">
+                                    <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" multiple>
+                                        <option v-for="(row, index) in resource.sales_orders" v-bind:value="row.id" v-html="row.sales_order_no"></option>
                                     </select>
                                 </div>
                             </div>
@@ -76,7 +77,7 @@
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default">
-                                    <div class="panel-heading">Delivery Mediums</div>
+                                    <div class="panel-heading">Delivery Vehicles</div>
                                     <div class="panel-body">
 
                                         <div class="row">
@@ -227,11 +228,11 @@ $(function(){
             url:{
                 customers:"{{ url('api/resource/customers') }}",
                 mushak_numbers:"{{ url('api/resource/mushak-numbers') }}",
-                sales_orders:"{{ url('') }}"
+                sales_orders:"{{ url('api/sales/challan/orders') }}"
             },
             field:{
                 customer_id:'',
-                sales_order_ids:[],
+                sales_orders:[],
                 challan_date:'',
                 mushak_id:'',
                 delivery_person_id:'',
@@ -251,6 +252,7 @@ $(function(){
                     {id: 'customer', name: 'Customer'},
                     {id: 'Others', name: 'Others'},
                 ],
+                sales_orders:[]
             },
             temp:null
         },
@@ -285,6 +287,25 @@ $(function(){
             },
             fetch_sales_orders:function(){
 
+                var ref=this;
+                var loading=$.loading();
+                loading.open(3000);
+
+                if(!ref.field.customer_id) ref.alert('Please!, select a customer.')
+
+                axios.get(ref.url.sales_orders + '/' + ref.field.customer_id).then(function(response){
+
+                    ref.resource.sales_orders=response.data;
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+                    ref.alert('Sorry!, failed to fetch remote data.');
+
+
+                });
+
             }
 
         },
@@ -297,6 +318,7 @@ $(function(){
         updated(){
             $(this.$refs.customer_id).selectpicker('refresh');
             $(this.$refs.mushak_id).selectpicker('refresh');
+            $(this.$refs.sales_orders).selectpicker('refresh');
         }//end of updated
     })//End of vue js
 

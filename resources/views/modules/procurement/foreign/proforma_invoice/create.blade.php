@@ -63,8 +63,6 @@
                                         <label>Purchase Order No.</label>
                                         <select data-placeholder="Select PO No" multiple  required class="form-control input-sm select2" name="purchase_order_ids[]" ng-model="po_id" ng-change="searchPO()">
                                             <option></option>
-                                            
-                                            <option ></option>
                                             <option ng-repeat="po in polist" value="<% po.id %>"><% po.purchase_order_no %></option>
                                         </select>
                                     </div>

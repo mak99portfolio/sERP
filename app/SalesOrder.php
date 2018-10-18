@@ -25,6 +25,10 @@ class SalesOrder extends Model
     {
         return $this->hasMany('App\SalesOrderTermsAndCondition');
     }
+    public function items()
+    {
+        return $this->hasMany('App\SalesOrderItem');
+    }
     public function generateSalesOrderNumber()
     {
         $serial = $this->count_last_serial() + 1;

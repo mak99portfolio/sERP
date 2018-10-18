@@ -88,7 +88,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 1,
@@ -98,7 +98,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 2,
@@ -108,7 +108,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 2,
@@ -118,7 +118,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 3,
@@ -128,7 +128,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 3,
@@ -138,7 +138,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 4,
@@ -148,7 +148,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
             [
                 'sales_order_id' => 4,
@@ -158,7 +158,7 @@ class SalesOrderSeeder extends Seeder
                 'bonus_quantity' => 2,
                 'total_quantity' => 12,
                 'net_price' => 120,
-                'discont' => 10
+                'discount' => 10
             ],
         ];
 

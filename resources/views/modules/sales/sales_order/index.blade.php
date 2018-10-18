@@ -34,16 +34,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($sales_order_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>231</td>
-                                        <td>01/03/2018</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->sales_order_no}}</td>
+                                        <td>{{$item->sales_date}}</td>
                                         <td>011</td>
                                         <td>01</td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <a href="{{ route('sales-order.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>

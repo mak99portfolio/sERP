@@ -49,13 +49,15 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="delivery_person_id" class="control-label">Delivery Person</label>
-                                    <select class="form-control input-sm select2" id="delivery_person_id" name="delivery_person_id"></select>
+                                    <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
+                                        <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="shipping_address" class="control-label">Shipping Address</label>
-                                    <textarea class="form-control input-sm" rows="2" id="shipping_address" name="shipping_address" cols="50"></textarea>
+                                    <textarea class="form-control input-sm" rows="2" id="shipping_address" name="shipping_address" cols="50" v-model="field.shipping_address"></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -68,7 +70,7 @@
                                         </select>
 
                                         <span class="input-group-btn">
-                                          <button class="btn btn-default" type="button">
+                                          <button class="btn btn-default" type="button" v-on:click="add_delivery_vehicle">
                                              <span class="fa fa-lg fa-plus-circle text-primary"></span>
                                           </button>
                                         </span>
@@ -80,29 +82,39 @@
                                     <div class="panel-heading">Delivery Vehicles</div>
                                     <div class="panel-body">
 
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="row" v-for="(row, index) in field.delivery_vehicles">
+
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" v-if="row.transport_agency_id">
                                                 <div class="form-group">
-                                                    <label for="">Vehicle</label>
+                                                    <label for="">Transport Agency</label>
                                                     <select class="form-control input-sm select2" id="delivery_person_id" name="delivery_person_id"></select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" v-if="row.own_vehicle_id">
+                                                <div class="form-group">
+                                                    <label for="">Vehicle</label>
+                                                    <select class="form-control input-sm" id="own_vehicle_id" name="own_vehicle_id"></select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label for="">Driver Name</label>
                                                     <input type="text" name="driver_name" class="form-control input-sm" readonly>
                                                 </div>
                                             </div>
+
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label for="">Phone No</label>
                                                     <input type="text" name="phone_no" class="form-control input-sm" readonly>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <hr>
 
-                                        <div class="row">
+                                        </div>
+
+{{--                                         <div class="row" v-for="(row, index) in field.transport_agencies">
                                             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label for="">Transport Agency</label>
@@ -128,9 +140,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
 
-                                        <div class="row">
+                                        <div class="row" v-for="(row, index) in field.customers">
                                              <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                                 <div class="form-group">
                                                     <label for="">Vehicle No</label>
@@ -150,6 +161,31 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="row" v-for="(row, index) in field.others">
+                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Vehicle No</label>
+                                                    <input type="text" name="vehicle_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Driver Name</label>
+                                                    <input type="text" name="driver_name" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Phone No</label>
+                                                    <input type="text" name="phone_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+                                        <h5 class="text-center" v-if='flag.add_vehicle_indication'>
+                                            Add Delivery Vehicles
+                                        </h5>
 
                                     </div>
                                 </div>
@@ -228,7 +264,8 @@ $(function(){
             url:{
                 customers:"{{ url('api/resource/customers') }}",
                 mushak_numbers:"{{ url('api/resource/mushak-numbers') }}",
-                sales_orders:"{{ url('api/sales/challan/orders') }}"
+                sales_orders:"{{ url('api/sales/challan/orders') }}",
+                delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}"
             },
             field:{
                 customer_id:'',
@@ -237,24 +274,29 @@ $(function(){
                 mushak_id:'',
                 delivery_person_id:'',
                 shipping_address:'',
-                delivery_vehicle:''
+                delivery_vehicle:'',
+                delivery_vehicles:[]
             },
             resource:{
                 customers:{
-                    data:[]
+                    data:[{id:0, name:'--Select Customers--'}]
                 },
                 mushak_numbers:{
-                    data:[]
+                    data:[{id:0, name:'--Select Mushak Number--'}]
                 },
                 delivery_vehicles:[
                     {id: 'own_vehicle', name: 'Own Vehicle'},
                     {id: 'transport_agency', name: 'Transport Agency'},
                     {id: 'customer', name: 'Customer'},
-                    {id: 'Others', name: 'Others'},
+                    {id: 'others', name: 'Others'},
                 ],
-                sales_orders:[]
+                sales_orders:[{id:0, name:'--Select orders--'}],
+                delivery_persons:[{id:0, name:'--Select Delivery Persons--'}]
             },
-            temp:null
+            temp:null,
+            flag:{
+                add_vehicle_indication:true
+            }
         },
         methods:{
 
@@ -291,7 +333,18 @@ $(function(){
                 var loading=$.loading();
                 loading.open(3000);
 
-                if(!ref.field.customer_id) ref.alert('Please!, select a customer.')
+                if(!ref.field.customer_id){
+                    ref.alert('Please!, select a customer.');
+                    loading.close();
+                    return false;
+                }
+
+                ref.resource.customers.data.filter(row=>{
+                    //return obj.id===ref.field.customer_id;
+                    if(row.id==ref.field.customer_id){
+                        ref.field.shipping_address=row.address;
+                    }
+                })
 
                 axios.get(ref.url.sales_orders + '/' + ref.field.customer_id).then(function(response){
 
@@ -306,12 +359,66 @@ $(function(){
 
                 });
 
+            },
+            fetch_delivery_persons:function(){
+                var ref=this;
+                var loading=$.loading();
+                loading.open(3000);
+
+                axios.get(ref.url.delivery_persons).then(function(response){
+
+                    ref.resource.delivery_persons=response.data;
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+                    ref.alert('Sorry!, failed to fetch remote data.');
+
+
+                });
+            },
+            add_delivery_vehicle:function(){
+
+                if(this.field.delivery_vehicle=='own_vehicle'){
+
+                    alert(this.field.delivery_vehicle);
+
+                }else if(this.field.delivery_vehicle=='transport_agency'){
+
+                    this.field.own_vehicles.push({transport_agency_id: 10, driver_name: 'Md. Asraful Islam'});
+
+                }else if(this.field.delivery_vehicle=='customer'){
+
+
+                }else if(this.field.delivery_vehicle=='others'){
+
+
+                }
+
+            },
+            remove_delivery_vehicle:function(index, delivery_medium){
+
+            }
+
+        },
+        watch:{
+
+            field:{
+                deep:true,
+                handler:function(val, oldVal){
+                    
+                    if(val.field.delivery_vehicles) val.flag.add_vehicle_indication=false;
+                    else val.flag.add_vehicle_indication=true;
+
+                }
             }
 
         },
         beforeMount(){
             this.fetch_resource(this.url.customers, this.resource.customers);
             this.fetch_resource(this.url.mushak_numbers, this.resource.mushak_numbers);
+            this.fetch_delivery_persons();
             //this.resource.customers=this.temp.data;
             //this.model.customers=this.temp;
         },//End of beforeMount
@@ -319,6 +426,8 @@ $(function(){
             $(this.$refs.customer_id).selectpicker('refresh');
             $(this.$refs.mushak_id).selectpicker('refresh');
             $(this.$refs.sales_orders).selectpicker('refresh');
+            $(this.$refs.delivery_person_id).selectpicker('refresh');
+            $(this.$refs.delivery_vehicle).selectpicker('refresh');
         }//end of updated
     })//End of vue js
 

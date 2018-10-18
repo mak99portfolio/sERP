@@ -23,7 +23,12 @@ Route::namespace('Api')->prefix('resource')->group(function(){
 });
 
 Route::namespace('Sales')->prefix('sales')->group(function(){
-	Route::get('challan/orders/{customer}', 'SalesChallanController@sales_orders');
+
+	Route::prefix('challan')->group(function(){
+		Route::get('orders/{customer}', 'SalesChallanController@sales_orders');
+		Route::get('delivery-persons', 'SalesChallanController@delivery_persons');
+	});
+
 });
 
 

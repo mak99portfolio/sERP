@@ -83,4 +83,14 @@ class SalesChallanController extends Controller
 
     }
 
+    public function delivery_persons(){
+
+        return \App\EmployeeProfile::whereHas('organizational_information', function($query){
+            $query->whereHas('designation', function($query){
+                $query->whereIn('name', ['Depo Admin', 'Depo User']);
+            });
+        })->get();
+
+    }
+
 }

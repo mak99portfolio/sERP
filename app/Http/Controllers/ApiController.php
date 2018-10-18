@@ -15,6 +15,7 @@ use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
 use App\BillOfLading;
+use App\EmployeeProfile;
 use App\CompanyBank;
 use App\VendorBank;
 use Illuminate\Http\Request;
@@ -539,6 +540,13 @@ class ApiController extends Controller
     public function getVendorWisePo($vendor_id)
     {
         $data=PurchaseOrder::where('vendor_id',$vendor_id)->get();
+        return response()->json($data);
+    }
+    public function getEmployeeByDesignation($designation_id)
+    {
+        $data=EmployeeProfile::whereHas('organizational_information',function($query)use($designation_id){
+            $query->where('designation_id',$designation_id);
+        })->get();
         return response()->json($data);
     }
 

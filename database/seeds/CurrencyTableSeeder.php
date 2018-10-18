@@ -13,6 +13,7 @@ class CurrencyTableSeeder extends Seeder
     {
         $data=[
         	['name'=>'Dollar', 'short_name'=>'do','creator_user_id'=>1],
+        	['name'=>'BDT', 'short_name'=>'bdt','creator_user_id'=>1],
         ];
 
         \DB::table('currencies')->insert($data);

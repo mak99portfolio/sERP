@@ -15,11 +15,14 @@ class CreateSalesOrdersTable extends Migration
     {
         Schema::create('sales_orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('salse_order_no');
+            $table->string('sales_order_no');
             $table->date('sales_date');
-            $table->string('sales_reference');
+            $table->integer('sales_reference_id');
+            $table->foreign('sales_reference_id')->references('id')->on('employee_profiles')->onDelete('cascade');
             $table->integer('currency_id');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            $table->integer('customer_id');
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string('conversion_rate');
             $table->text('remarks');
             $table->integer('creator_user_id')->unsigned()->nullable();

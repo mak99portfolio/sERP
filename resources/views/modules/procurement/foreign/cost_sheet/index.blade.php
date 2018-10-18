@@ -41,7 +41,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->letter_of_credit->letter_of_credit_no }}</td>
                                         <td>{{ $item->letter_of_credit->letter_of_credit_date }}</td>
-                                        <td>{{ $item->currency }}</td>
+                                        <td>{{ $item->currency->name }}</td>
                                         <td>{{ $item->letter_of_credit->letter_of_credit_value }}</td>
                                         <td>{{ $item->exchange_rate }}</td>
                                         <td>{{ $item->bdt_amount }}</td>

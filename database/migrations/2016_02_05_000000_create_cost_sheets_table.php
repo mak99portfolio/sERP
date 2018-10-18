@@ -13,7 +13,8 @@ class CreateCostSheetsTable extends Migration
             $table->integer('cost_sheet_no');
             $table->integer('letter_of_credit_id')->unsigned();
             $table->foreign('letter_of_credit_id')->references('id')->on('letter_of_credits')->onDelete('cascade');
-            $table->text('currency')->nullable();
+            $table->integer('currency_id')->nullable();
+            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
             $table->integer('exchange_rate');
             $table->double('bdt_amount');
             $table->text('note')->nullable();

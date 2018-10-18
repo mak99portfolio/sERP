@@ -40,7 +40,7 @@
                                     {{ BootForm::text('letter_of_credit_date','LC Opening Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date', 'readonly']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('currency', 'Currency', [''=>'-- select currency --','Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm select2']) }}
+                                    {{ BootForm::select('currency_id', 'Currency', $currency_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Currency','required']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
@@ -85,7 +85,7 @@
 
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                            {{ BootForm::select(NULL, 'Cost Particulars', $cost_particulars, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'cost_particular.id']) }}
+                                            {{ BootForm::select(NULL, 'Cost Particulars', $cost_particulars, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Cost Particulars', 'ng-model'=>'cost_particular.id']) }}
                                         </div>
                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                             {{ BootForm::text(NULL, 'percentage', NULL, ['class'=>'form-control input-sm', 'ng-model'=>'cost_particular.percentage']) }}
@@ -364,7 +364,7 @@
 
         $scope.addParticular=function(){
 
-            
+
             $scope.cost_particulars.forEach(function(row){
                 if(row.id==$scope.cost_particular.id){
                     $scope.cost_particular.name=row.name;

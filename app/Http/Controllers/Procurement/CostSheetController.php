@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Procurement;
 
 use App\CostSheet;
+use App\Currency;
 use App\CostSheetParticular;
 use App\LetterOfCredit;
 use App\Http\Controllers\Controller;
@@ -27,7 +28,8 @@ class CostSheetController extends Controller
 
         $view = view($this->view_root . 'create');
         $view->with('lc_list', LetterOfCredit::all());
-        $view->with('cost_particulars', \App\CostParticular::pluck('name', 'id')->prepend('--Select Cost--', ''));
+        $view->with('cost_particulars', \App\CostParticular::pluck('name', 'id')->prepend('', ''));
+        $view->with('currency_list', Currency::pluck('name', 'id')->prepend('', ''));
         $view->with('cost_particulars_array', \App\CostParticular::all());
         return $view;
 
@@ -86,7 +88,7 @@ class CostSheetController extends Controller
         if($request->get('others')){
 
             foreach($request->others as $row){
-                
+
                 \App\OtherLetterOfCreditCharge::create([
 
                     'cost_sheet_id'=>$cost_sheet->id,

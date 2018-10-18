@@ -203,7 +203,7 @@
             <div class="x_panel" ng-app="myApp">
                 <div class="x_title">
                     <h2>Sales Order</h2>
-                    <a href="{{route('foreign-requisition.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Requisition Lists</a>
+                    <a href="{{route('sales-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Requisition Lists</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content" ng-controller="myCtrl">
@@ -233,7 +233,7 @@
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     <div class="form-group">
                                             <label>Sales Reference</label>
-                                            <select class="form-control input-sm select2" ng-model="terms_and_condition_type" name="sales_reference_id" required>
+                                            <select class="form-control input-sm select2" name="sales_reference_id" required>
                                                 <option value="" disabled>--Select Sales Reference--</option>
                                                 <option ng-repeat='employee in employeelist' value="<% employee.id %>"><% employee.name %></option>
                                             </select>
@@ -274,8 +274,8 @@
                                                 <tbody id="mytable1">
                                                     <tr ng-repeat="condition in conditions">
                                                         <td><% $index+1 %></td>
-                                                        <td><% condition.name %><input name="terms_conditions[<% $index %>][terms_and_condition_type_id]" type="hidden" value="<% condition.id %>"></td>
-                                                        <td><% condition.description %> <input name="terms_conditions[<% $index %>][description]" type="hidden" value="<% condition.description %>"></td>
+                                                        <td><% condition.name %><input name="terms_and_conditions[<% $index %>][terms_and_condition_id]" type="hidden" value="<% condition.id %>"></td>
+                                                        <td><% condition.description %> <input name="terms_and_conditions[<% $index %>][description]" type="hidden" value="<% condition.description %>"></td>
                                                         <td width="40" class="text-center"><button class="btn btn-danger btn-xs" ng-click="removeCondition($index)"><i class="fa fa-times"></i></button></td>
                                                     </tr>
                                                 </tbody>
@@ -355,7 +355,7 @@
                                         <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" > </td>
                                         <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" > </td>
                                         <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][vat]" > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][discont]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][discount]" > </td>
                                         <td>10</td>
                                
                                         <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
@@ -385,7 +385,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm" ng-disabled="itemlist.length < 1">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('foreign-requisition.index')}}">Cancel</a>
+                                    <a class="btn btn-default btn-sm" href="{{route('sales-order.index')}}">Cancel</a>
                                 </div>
                             </div>
                         </div>

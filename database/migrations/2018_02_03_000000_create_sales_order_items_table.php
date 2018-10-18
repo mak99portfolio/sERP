@@ -24,7 +24,8 @@ class CreateSalesOrderItemsTable extends Migration
             $table->integer('bonus_quantity');
             $table->integer('total_quantity');
             $table->double('net_price');
-            $table->double('discont');
+            $table->double('discount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

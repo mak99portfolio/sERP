@@ -212,6 +212,8 @@ Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'A
 Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
 Route::get('/get-requisition-items-by-requisition-id/{id}', ['as' => 'get-requisition-items-by-requisition-id', 'uses' => 'ApiController@getRequisitionItemsForQuotationByLocalRequisitionId']);
 Route::get('/get-vendor-wise-po/{id}', ['as' => 'get-vendor-wise-po', 'uses' => 'ApiController@getVendorWisePo']);
+// Sales
+Route::get('/get-all-employee-by-designation/{id}', ['as' => 'get-all-employee-by-designation', 'uses' => 'ApiController@getEmployeeByDesignation']);
 
 
 //ACL (Access Control Limit)

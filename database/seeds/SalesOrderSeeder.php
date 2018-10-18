@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class SalseOrderSeeder extends Seeder
+class SalesOrderSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,7 +15,8 @@ class SalseOrderSeeder extends Seeder
             [
                 'salse_order_no' => 'SO-12-12-2018',
                 'sales_date' => '2018-12-30',
-                'sales_reference' => '123',
+                'customer_id' => 1,
+                'sales_reference_id' => 1,
                 'currency_id' => 1,
                 'conversion_rate' => 90,
                 'remarks' => 'Text',

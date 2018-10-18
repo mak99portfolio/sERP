@@ -209,7 +209,7 @@
                 <div class="x_content" ng-controller="myCtrl">
                     <br />
                     @include('partials/flash_msg')
-                    <form class="form-horizontal form-label-left" action="{{route('foreign-requisition.store')}}" method="POST" autocomplete="off">
+                    <form class="form-horizontal form-label-left" action="{{route('sales-order.store')}}" method="POST" autocomplete="off">
                         @csrf
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -219,13 +219,26 @@
                                 {{ BootForm::text('sales_date','Sales Date', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('sales_reference','Sales Reference',[],null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
+                                {{ BootForm::select('designation','Designation',$designations_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'designation_id','ng-change'=>'getEmployee()','data-placeholder'=>"Select Designation",'style'=>"width: 100%;"]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('currency','Currency', null, ['class'=>'form-control input-sm']) }}
+                                <div class="form-group">
+                                        <label data-popup = "{{ route('terms-and-condition-type.index') }}">Sales Reference</label>
+                                        <select class="form-control input-sm select2" ng-model="terms_and_condition_type" name="sales_reference_id" required>
+                                            <option value="" disabled>--Select Sales Reference--</option>
+                                            <option ng-repeat='employee in employeelist' value="<% employee.id %>"><% employee.name %></option>
+                                        </select>
+                                    </div>
+                            
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::select('currency','Currency',$currency_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Currency','style'=>"width: 100%;"]) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm']) }}
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::select('customer_id','Customer',$customer_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Customer','style'=>"width: 100%;"]) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset>
@@ -513,9 +526,18 @@
             }
         }
 
+        $scope.getEmployee=function(){
+            let url = "{{URL::to('get-all-employee-by-designation')}}/" + $scope.designation_id;
+                $http.get(url)
+                        .then(function(response) {
+                            $scope.employeelist = response.data;
+                            // console.log($scope.productlist);
+                        });
+
+        }
 
 
-// ttttttttttt
+// Terms and Conditions
 $scope.add_condition = function(){
             var condition = {};
             if(!$scope.terms_and_condition_type){
@@ -558,7 +580,7 @@ $scope.add_condition = function(){
             new PNotify(data);
         }
 
-// ttttttttttt
+// Terms and Conditions
 
         $scope.warning = function(msg){
             var data = {

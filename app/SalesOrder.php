@@ -17,6 +17,14 @@ class SalesOrder extends Model
         'conversion_rate',
         'remarks',
     ];
+    public function currency()
+    {
+        return $this->belongsTo('App\Currency');
+    }
+    public function sales_reference()
+    {
+        return $this->belongsTo('App\EmployeeProfile','sales_reference_id');
+    }
     public function customer()
     {
         return $this->belongsTo('App\Customer');

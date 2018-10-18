@@ -64,7 +64,9 @@ class SalesOrderController extends Controller
 
     public function show(SalesOrder $salesOrder)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('sales_order', $salesOrder);
+        return $view;
     }
 
     public function edit(SalesOrder $salesOrder)

@@ -35,15 +35,19 @@ class SalesOrderController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request->input());
-
-
         $sales_order = new SalesOrder;
         $sales_order->fill($request->input());
         $sales_order->creator_user_id = Auth::id();
+        $sales_order->sales_date=date('Y-m-d',strtotime($request->sales_date));
         $sales_order->generateSalesOrderNumber();
         $sales_order->save();
-        Session::put('alert-success', 'Requisition created successfully. <br><strong>Requisition No: ' . $requisition->requisition_no . '</strong>');
+        
+        $terms_and_conditions = Array();
+        foreach($request->terms_and_conditions as $terms_and_condition){
+            array_push($terms_and_conditions, new SalesOrderTermsAndCondition($terms_and_condition));
+        }
+        $sales_order->terms_and_condition()->saveMany($terms_and_conditions);
+        Session::put('alert-success', 'Requisition created successfully. <br><strong>Requisition No: ' . $sales_order->sales_order_no . '</strong>');
         return redirect()->route('sales-order.index');
     }
 

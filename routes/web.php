@@ -101,8 +101,13 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('payment-schedule', 'PaymentScheduleController');
     // Setting
     Route::resource('customer', 'CustomerController');
-    Route::resource('rule-setup', 'RuleSetupController');
     Route::resource('customer-zone', 'CustomerZoneController');
+    Route::resource('rule-setup', 'RuleSetupController');
+    Route::resource('credit-rule', 'CreditRuleController');
+    Route::resource('discount-customer-wise', 'DiscountCustomerWiseController');
+    Route::resource('discount-generic', 'DiscountGenericController');
+    Route::resource('free-bonus-customer-wise', 'FreeBonusCustomerWiseController');
+    Route::resource('free-bonus-generic', 'FreeBonusGenericController');
 
 });
 

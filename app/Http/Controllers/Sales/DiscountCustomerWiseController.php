@@ -5,13 +5,20 @@ namespace App\Http\Controllers\Sales;
 use App\DiscountCustomerWise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Customer;
+use Auth;
+use Session;
+use Carbon\Carbon;
 
 class DiscountCustomerWiseController extends Controller
 {
-    private $view_root = 'modules/sales/rule_setup/';
+    private $view_root = 'modules/sales/setting/rule_setup/';
     public function index()
     {
         $view = view($this->view_root . 'discount_customer_wise');
+        $view->with('discount_customer_wise', new DiscountCustomerWise);
+        $view->with('customer_list', Customer::pluck('name', 'id')->prepend('',''));
+        $view->with('discount_customer_wise_list', DiscountCustomerWise::orderBy('id', 'desc')->get());
         return $view;
     }
 

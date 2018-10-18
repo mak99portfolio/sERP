@@ -12,26 +12,27 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form class="form-horizontal form-label-left input_mask" id='main'>
+                    <div class="form-horizontal form-label-left input_mask" id='main'>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="customer_id" class="control-label">Customer</label>
-                                    <select class="form-control input-sm select2" id="customer_id" name="customer_id">                
+                                    <select class="form-control input-sm bSelect" id="customer_id" name="customer_id" v-model="field.customer_id">
+                                          <option v-for="(customer, index) in model.customers" v-bind:value="customer.id" v-html="customer.name"></option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="sales_orders[]" class="control-label">Sales Orders</label>
-                                    <select class="form-control input-sm select2" id="sales_orders[]" name="sales_orders[]">
+                                    <select class="form-control input-sm bSelect" id="sales_orders[]" name="sales_orders[]">
                                     </select>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="challan_date" class="control-label">Challan Date</label>
-                                    <input class="form-control input-sm" id="challan_date" name="challan_date" type="text">
+                                    <vuejs-datepicker v-model="field.challan_date" input-class="form-control input-sm"></vuejs-datepicker>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -193,7 +194,7 @@
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -201,18 +202,27 @@
 </div>
 @endsection
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+@endsection
+
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+<script src="https://unpkg.com/vuejs-datepicker"></script>
 
 <script>
 $(function(){
     var vue=new Vue({
         el: '#main',
+        components:{
+            vuejsDatepicker
+        },
         data:{
-            resource:{
-
+            url:{
+                customers:"{{ url('api/customers') }}"
             },
             field:{
                 customer_id:'',
@@ -221,12 +231,53 @@ $(function(){
                 mushak_id:'',
                 delivery_person_id:'',
                 shipping_address:''
-            }
+            },
+            model:{
+                customers:[
+                    {id:1, name:'CS1'},
+                    {id:2, name:'CS2'},
+                    {id:3, name:'CS3'},
+                    {id:4, name:'CS4'}
+                ]
+            },
+            temp:null
         },
         methods:{
 
+            alert:function(msg='Sorry!, try again later.', type='error'){
+                new PNotify({
+                  title: 'Message',
+                  text: msg,
+                  type: type,
+                  styling: 'bootstrap3'
+                });
+            },
+            fetch_model:function(url){
+
+                ref=this;
+                var loading=$.loading();
+                loading.open(3000);
+
+                axios.get(url).then(function(response){
+
+                    console.log(response);
+                    ref.model.customers=response;
+
+                }).catch(function(){
+
+                    loading.close();
+                    ref.alert('Sorry!, failed to fetch remote data.');
+
+
+                });
+
+            }
+
         },
-        beforeMount(){}
+        beforeMount(){
+            this.fetch_model(this.url.customers);
+            //this.model.customers=this.temp;
+        }
     })//End of vue js
 
     $('.datepicker').daterangepicker({
@@ -235,6 +286,12 @@ $(function(){
       locale: {
           format: 'DD-MM-YYYY'
       }
+    });
+    //$('.datepicker').datetimepicker();
+
+    $('.bSelect').selectpicker({
+        liveSearch:true,
+        size:5
     });
 
 });

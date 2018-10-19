@@ -21,6 +21,7 @@ window.Vue = require('vue');
  Vue.use(uiv);
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('sales-challan-component', require('./components/SalesChallanComponent.vue'));
 
 const app = new Vue({
     el: '#app'

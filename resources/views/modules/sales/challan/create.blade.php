@@ -391,7 +391,7 @@ $(function(){
 
             },
             remove_delivery_vehicle:function(index, delivery_medium){
-
+                this.field.delivery_vehicles.splice(index, 1);
             }
 
         },
@@ -423,7 +423,7 @@ $(function(){
             $(this.$refs.delivery_person_id).selectpicker('refresh');
             $(this.$refs.delivery_vehicle).selectpicker('refresh');
         }//end of updated
-    })//End of vue js
+    });//End of vue js
 
     $('.datepicker').daterangepicker({
       singleDatePicker: true,

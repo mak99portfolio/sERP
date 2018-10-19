@@ -82,69 +82,111 @@
                                     <div class="panel-heading">Delivery Vehicles</div>
                                     <div class="panel-body">
 
-                                        <div class="table-responsive">
-                                            <table class="table table-condensed table-hover table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Delivery Medium</th>
-                                                        <th>Select Vehicle</th>
-                                                        <th>Vehicle No</th>
-                                                        <th>Driver name</th>
-                                                        <th>Phone Number</th>
-                                                        <th>Remove</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr v-for="(row, index) in field.delivery_vehicles">
-                                                        <td v-html="row.medium_name"></td>
-                                                        <td v-if="row.own_vehicle_id">
-                                                            <select class="form-control input-sm" v-model="row.own_vehicle_id">
-                                                                  <option v-for="(row, index) in resource.own_vehicles.data" v-bind:value="row.id" v-html="row.vehicle_no"></option>
-                                                            </select>
-                                                        </td>
-                                                        <td v-else-if="row.transport_agency_id">
-                                                            <select class="form-control input-sm" v-model="row.transport_agency_id">
-                                                                  <option v-for="(row, index) in resource.customers.data" v-bind:value="row.id" v-html="row.name"></option>
-                                                            </select>
-                                                        </td>
-                                                        <td v-else></td>
-                                                        <td>
-                                                            <input
-                                                                type="text"
-                                                                name="vehicle_no"
-                                                                class="form-control input-sm"
-                                                                v-model="row.vehicle_no"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <input
-                                                                type="text"
-                                                                name="driver_name"
-                                                                class="form-control input-sm"
-                                                                v-model="row.driver_name"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <input
-                                                                type="text"
-                                                                name="phone_no"
-                                                                class="form-control input-sm"
-                                                                v-model="row.phone_no"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-default btn-sm"
-                                                                v-on:click="remove_delivery_vehicle(index)"
-                                                            >
-                                                                <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
+                                        <div class="row" v-for="(row, index) in field.delivery_vehicles">
+
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12" v-if="row.transport_agency_id">
+                                                <div class="form-group">
+                                                    <label for="">Transport Agency</label>
+                                                    <select class="form-control input-sm select2" id="delivery_person_id" name="delivery_person_id"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" v-if="row.own_vehicle_id">
+                                                <div class="form-group">
+                                                    <label for="">Vehicle</label>
+                                                    <select class="form-control input-sm" id="own_vehicle_id" name="own_vehicle_id"></select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Driver Name</label>
+                                                    <input type="text" name="driver_name" class="form-control input-sm" readonly>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Phone No</label>
+                                                    <input type="text" name="phone_no" class="form-control input-sm" readonly>
+                                                </div>
+                                            </div>
+
                                         </div>
+
+{{--                                         <div class="row" v-for="(row, index) in field.transport_agencies">
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Transport Agency</label>
+                                                    <select class="form-control input-sm select2" id="delivery_person_id" name="delivery_person_id"></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Vehicle No</label>
+                                                    <input type="text" name="vehicle_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Driver Name</label>
+                                                    <input type="text" name="driver_name" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Phone No</label>
+                                                    <input type="text" name="phone_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" v-for="(row, index) in field.customers">
+                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Vehicle No</label>
+                                                    <input type="text" name="vehicle_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Driver Name</label>
+                                                    <input type="text" name="driver_name" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Phone No</label>
+                                                    <input type="text" name="phone_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row" v-for="(row, index) in field.others">
+                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Vehicle No</label>
+                                                    <input type="text" name="vehicle_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Driver Name</label>
+                                                    <input type="text" name="driver_name" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label for="">Phone No</label>
+                                                    <input type="text" name="phone_no" class="form-control input-sm">
+                                                </div>
+                                            </div>
+                                        </div> --}}
+
+                                        <h5 class="text-center" v-if='flag.add_vehicle_indication'>
+                                            Add Delivery Vehicles
+                                        </h5>
+
                                     </div>
                                 </div>
                             </div>
@@ -220,7 +262,8 @@ $(function(){
         },
         data:{
             url:{
-                resource:"{{ url('api/resource') }}",
+                customers:"{{ url('api/resource/customers') }}",
+                mushak_numbers:"{{ url('api/resource/mushak-numbers') }}",
                 sales_orders:"{{ url('api/sales/challan/orders') }}",
                 delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}"
             },
@@ -248,10 +291,7 @@ $(function(){
                     {id: 'others', name: 'Others'},
                 ],
                 sales_orders:[{id:0, name:'--Select orders--'}],
-                delivery_persons:[{id:0, name:'--Select Delivery Persons--'}],
-                own_vehicles:{
-                    data:[{id:0, name:'--Select Own Vehicle--'}]
-                }
+                delivery_persons:[{id:0, name:'--Select Delivery Persons--'}]
             },
             temp:null,
             flag:{
@@ -340,53 +380,20 @@ $(function(){
             },
             add_delivery_vehicle:function(){
 
-                var ref=this;
-
-                var medium_name=ref.resource.delivery_vehicles.find(row=>{
-                    return row.id==ref.field.delivery_vehicle;
-                }).name;
-
                 if(this.field.delivery_vehicle=='own_vehicle'){
 
-                    this.field.delivery_vehicles.push({
-                        medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
-                        own_vehicle_id: 1,
-                        vehicle_no: 0,
-                        driver_name: '',
-                        phone_no: ''
-                    });
+                    alert(this.field.delivery_vehicle);
 
                 }else if(this.field.delivery_vehicle=='transport_agency'){
 
-                    this.field.delivery_vehicles.push({
-                        medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
-                        transport_agency_id: 1,
-                        vehicle_no: 0,
-                        driver_name: '',
-                        phone_no: ''
-                    });
+                    this.field.own_vehicles.push({transport_agency_id: 10, driver_name: 'Md. Asraful Islam'});
 
                 }else if(this.field.delivery_vehicle=='customer'){
 
-                    this.field.delivery_vehicles.push({
-                        medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
-                        vehicle_no: 0,
-                        driver_name: '',
-                        phone_no: ''
-                    });
 
                 }else if(this.field.delivery_vehicle=='others'){
 
-                    this.field.delivery_vehicles.push({
-                        medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
-                        vehicle_no: 0,
-                        driver_name: '',
-                        phone_no: ''
-                    });
+
                 }
 
             },
@@ -401,17 +408,16 @@ $(function(){
                 deep:true,
                 handler:function(val, oldVal){
                     
-                    //if(val.field.delivery_vehicles) val.flag.add_vehicle_indication=false;
-                    //else val.flag.add_vehicle_indication=true;
+                    if(val.field.delivery_vehicles) val.flag.add_vehicle_indication=false;
+                    else val.flag.add_vehicle_indication=true;
 
                 }
             }
 
         },
         beforeMount(){
-            this.fetch_resource(this.url.resource + '/customer', this.resource.customers);
-            this.fetch_resource(this.url.resource + '/mushak-number', this.resource.mushak_numbers);
-            this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
+            this.fetch_resource(this.url.customers, this.resource.customers);
+            this.fetch_resource(this.url.mushak_numbers, this.resource.mushak_numbers);
             this.fetch_delivery_persons();
             //this.resource.customers=this.temp.data;
             //this.model.customers=this.temp;

@@ -17,9 +17,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::namespace('Api')->prefix('resource')->group(function(){
-	Route::get('customers', 'ResourceController@customers');
-	Route::get('mushak-numbers', 'ResourceController@mushak_numbers');
+Route::namespace('Api')->group(function(){
+	Route::get('resource/{name}','ResourceController@dynamic_resource');
 });
 
 Route::namespace('Sales')->prefix('sales')->group(function(){

@@ -26,6 +26,8 @@ Route::namespace('Sales')->prefix('sales')->group(function(){
 	Route::prefix('challan')->group(function(){
 		Route::get('orders/{customer}', 'SalesChallanController@sales_orders');
 		Route::get('delivery-persons', 'SalesChallanController@delivery_persons');
+		Route::get('sales-orders-items', 'SalesChallanController@sales_orders_items');
+		//Route::post('store', 'SalesChallanController@store');
 	});
 
 });

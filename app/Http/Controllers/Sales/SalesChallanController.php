@@ -9,72 +9,73 @@ use App\Http\Controllers\Controller;
 class SalesChallanController extends Controller
 {
     private $view_root = 'modules/sales/challan/';
-    public function index()
-    {
+
+    public function index(){
+
         $view = view($this->view_root . 'index');
         return $view;
+
     }
 
-    public function create()
-    {
+    public function create(){
+
         $view = view($this->view_root . 'create');
         return $view;
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+
+    public function store(Request $request){
+
+        \Log::info(print_r($request->all(), true));
+
+        $validation = \Validator::make($request->all(),[ 
+            'customer_id'=>'required|integer|exists:customers,id',
+            'challan_date'=>'required|date',
+            'mushak_id'=>'required|integer|exists:mushak_numbers,id',
+            'delivery_person_id'=>'required|integer|exists:employee_profiles,id',
+            'delivery_vehicles'=>'required|array',
+            'sales_order_items'=>'required|array'
+        ]);
+
+        if($validation->fails()){
+
+            return response()->json($validation->errors(), 422);
+
+        }else{
+
+
+
+        }
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SalesChallan  $salesChallan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SalesChallan $salesChallan)
-    {
+
+    public function show(SalesChallan $salesChallan){
+
         //
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SalesChallan  $salesChallan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SalesChallan $salesChallan)
-    {
+
+    public function edit(SalesChallan $salesChallan){
+
         //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SalesChallan  $salesChallan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SalesChallan $salesChallan)
-    {
+    public function update(Request $request, SalesChallan $salesChallan){
+
         //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\SalesChallan  $salesChallan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SalesChallan $salesChallan)
-    {
+
+    public function destroy(SalesChallan $salesChallan){
+
         //
+
     }
 
     public function sales_orders(\App\Customer $customer){
@@ -91,6 +92,12 @@ class SalesChallanController extends Controller
             });
         })->get();
 
+    }
+
+    public function sales_orders_items(){
+        return \App\SalesOrder::whereIn('id', request()->all())->with(['items'=>function($query){
+            $query->with('product');
+        }])->get();
     }
 
 }

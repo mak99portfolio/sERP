@@ -30,11 +30,20 @@
                                     <div class="row">
                                         <div class="well">
                                             <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
                                                     {{ BootForm::select('customer_id', 'Customer Id', [], null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;"]) }}
                                                 </div>
-                                                <div class="col-lg-6 ol-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3">
-                                                    {{ BootForm::text('add_product', null, null, ['class'=>'form-control input-sm select2', 'suffix'=>BootForm::addonButton(fa('fa-plus-circle fa-lg text-primary'), ['class' => 'btn-default btn-sm'])]) }}
+                                                <div class="col-lg-6 ol-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
+                                                    <label>Add Product</label>
+                                                    <div class="input-group">
+                                                        <select class="form-control input-sm select2" style="width: 100%;">
+                                                            <option>1</option>
+                                                            <option>2</option>
+                                                        </select>
+                                                        <span class="input-group-btn">
+                                                            <button class="btn btn-default btn-sm" type="button"><i class="fa fa-plus-circle fa-lg text-primary"></i></button>
+                                                        </span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

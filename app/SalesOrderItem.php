@@ -16,4 +16,9 @@ class SalesOrderItem extends Model
         'net_price',
         'discount',
     ];
+
+    public function product(){
+        return $this->belongsTo('App\Product', 'product_id');
+    }
+
 }

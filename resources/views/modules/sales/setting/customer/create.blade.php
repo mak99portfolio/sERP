@@ -121,7 +121,7 @@
                                                     {{ BootForm::select('addresses[<% $index %>][city_id]', 'City *', $city_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select City','required']) }}
                                                 </div>
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    {{ BootForm::textarea('address','Address *', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"2",'required']) }}
+                                                    {{ BootForm::textarea('addresses[<% $index %>][address]','Address *', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"2",'required']) }}
                                                 </div>
                                             </div>
                                         </div>

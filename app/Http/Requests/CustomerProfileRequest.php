@@ -31,7 +31,6 @@ class CustomerRequest extends FormRequest
             'customer_zone_id'=>'required',
             'contact_number'=>'required',
             'trade_license_number'=>'required',
-            'address'=>'required',
             'type_of_business'=>'required',
             // 'banks'=>'present|array',
             // 'banks.*.account_number'=>'required',

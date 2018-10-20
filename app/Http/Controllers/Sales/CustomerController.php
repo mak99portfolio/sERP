@@ -12,6 +12,7 @@ use App\Country;
 use App\Division;
 use App\District;
 use App\City;
+use App\CustomerAddress;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Http\Requests\CustomerRequest;
@@ -68,6 +69,13 @@ class CustomerController extends Controller
         $customer->incorporation_date = date('Y-m-d', strtotime($request->incorporation_date));
         $customer->save();
 
+        // Customer address
+        $customer_addresses = array();
+        foreach ($request->addresses as $address) {
+            array_push($customer_addresses, new CustomerAddress($address));
+        }
+        $customer->customer_addresses()->saveMany($customer_addresses);
+
         // Customer Bank
         $customer_banks = array();
         foreach ($request->banks as $bank) {
@@ -100,7 +108,7 @@ class CustomerController extends Controller
         $customer->customer_enclosure()->saveMany($enclosures);
 
         Session::put('alert-success', 'Customer created successfully');
-        return redirect()->route('customer-profile.index');
+        return redirect()->route('customer.index');
     }
 
     /**

@@ -8,12 +8,9 @@ use App\Http\Resources\ResourcePlaceholder;
 
 class ResourceController extends Controller{
 
-	public function customers(){
-		return ResourcePlaceholder::collection(\App\Customer::all());
-	}
-
-	public function mushak_numbers(){
-		return ResourcePlaceholder::collection(\App\MushakNumber::all());
+	public function dynamic_resource($name){
+		$resource='\App\\'.str_replace(['_', '-'], '', ucwords($name, '_-'));
+		return ResourcePlaceholder::collection($resource::all());
 	}
 
 }

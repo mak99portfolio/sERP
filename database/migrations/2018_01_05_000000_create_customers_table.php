@@ -32,7 +32,6 @@ class CreateCustomersTable extends Migration
             $table->string('certificate_of_incorporation')->nullable();
             $table->date('incorporation_date')->nullable();
             $table->string('vat_number')->nullable();
-            $table->text('address');
             $table->text('notes')->nullable();
             $table->string('type_of_business')->nullable();
             $table->integer('creator_user_id')->unsigned();

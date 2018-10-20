@@ -68,9 +68,6 @@
                                     {{ BootForm::text('vat_number','Vat No', null, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    {{ BootForm::textarea('address','Address *', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"2",'required']) }}
-                                </div>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Type Of Business *</div>
                                         <div class="panel-body">
@@ -103,6 +100,37 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <fieldset>
+                                    <legend>Address *</legend>
+                                    <div class="panel panel-default" ng-repeat="i in address track by $index">
+                                    <div class="panel-heading" ng-bind="'Address-' + (1+$index)"></div>
+                                        <div class="panel-body">
+                                           <div class="row">
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    {{ BootForm::select('addresses[<% $index %>][country_id]', 'Country *', $country_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Country','required']) }}
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    {{ BootForm::select('addresses[<% $index %>][division_id]', 'Division *', $division_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Division','required']) }}
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    {{ BootForm::select('addresses[<% $index %>][district_id]', 'District *', $division_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select District','required']) }}
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    {{ BootForm::select('addresses[<% $index %>][city_id]', 'City *', $city_list, null, ['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select City','required']) }}
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    {{ BootForm::textarea('address','Address *', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"2",'required']) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button ng-disabled="address.length>=5" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="increaseAddress()"><i class="fa fa-plus"></i> Add Address</button>
+                                        <button ng-disabled="address.length<=1" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreaseAddress()"><i class="fa fa-minus"></i> Remove Address</button>
+                                    </div>
+                                </fieldset>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset>
@@ -240,6 +268,25 @@
             $interpolateProvider.endSymbol('%>');
         });
         app.controller('myCtrl',function($scope){
+        //    Address
+            $scope.minAddress = 1;
+            $scope.maxAddress = 5;
+
+            $scope.getNumberAddress = function(num) {
+                $scope.address = new Array(num);
+            }
+            $scope.getNumberAddress(1);
+            $scope.increaseAddress = function(){
+                if($scope.address.length < $scope.maxAddress){
+                    $scope.getNumberAddress($scope.address.length+1);
+                }
+            }
+            $scope.decreaseAddress = function(){
+                if($scope.address.length > $scope.minAddress){
+                    $scope.getNumberAddress($scope.address.length-1);
+                }
+            }
+        //    Address
         //    Bank
             $scope.minBank = 1;
             $scope.maxBank = 5;

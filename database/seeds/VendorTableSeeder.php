@@ -56,6 +56,31 @@ class VendorTableSeeder extends Seeder
                 'credit_period'=>'5',
                 'credit_limit'=>'300000',
                 'address'=>'Khulna'
+            ],
+            [
+                'creator_user_id'=>1,
+                'name'=>'Local Transport Agency',
+                'vendor_id'=>'456545790',
+                'status_id'=>'1',
+                'establishment_date'=> \Carbon\Carbon::now(),
+                'country_id'=>'1',
+                'vendor_category_id'=>'1',
+                'zip_code'=>'1523',
+                'telephone'=>'984523121',
+                'fax'=>'fax-43246',
+                'website'=>'oman.oil.com',
+                'email'=>'oman.oil@gmail.com',
+                'tin_no'=>'tin-345546',
+                'trade_license_no'=>'trade-3235464',
+                'trade_license_issue_date'=> \Carbon\Carbon::now(),
+                'certificate_of_incorporation'=>'certificate',
+                'incorporation_date'=> \Carbon\Carbon::now(),
+                'vat_no'=>'vat-845445646',
+                'business_type'=>serialize(['Partnership']),
+                'business_nature'=>serialize(['Transport Agency']),
+                'credit_period'=>'5',
+                'credit_limit'=>'300000',
+                'address'=>'Khulna'
             ]
         ];
 
@@ -69,6 +94,13 @@ class VendorTableSeeder extends Seeder
             ],
         	[
                 'vendor_id'=>'2',
+                'net_days'=>'45',
+                'payment_discount'=>'2',
+                'other_discount'=>'0',
+                'discount_terms'=>'no'
+            ],
+            [
+                'vendor_id'=>'3',
                 'net_days'=>'45',
                 'payment_discount'=>'2',
                 'other_discount'=>'0',
@@ -130,6 +162,15 @@ class VendorTableSeeder extends Seeder
                 'branch_name' => 'Dhaka branch',
                 'swift_code' => 'Asian-123',
                 'address' => 'Dhaka',
+            ],
+            [
+               'vendor_id' => '3',
+                'ac_no' => 'AC-23416568984',
+                'ac_name' => 'Oil Account',
+                'bank_name' => 'Asian Bank',
+                'branch_name' => 'Dhaka branch',
+                'swift_code' => 'Asian-123',
+                'address' => 'Dhaka',
             ]
         ];
 
@@ -145,6 +186,15 @@ class VendorTableSeeder extends Seeder
             ],
             [
                'vendor_id' => '2',
+               'name'=> 'Atik Rahman',
+               'designation'=> 'UI Designer',
+               'telephone'=> '20155656',
+               'email'=> 'atik@gmail.com',
+               'role'=> 'UI',
+               'mobile'=> '01617415654'
+            ],
+            [
+               'vendor_id' => '3',
                'name'=> 'Atik Rahman',
                'designation'=> 'UI Designer',
                'telephone'=> '20155656',

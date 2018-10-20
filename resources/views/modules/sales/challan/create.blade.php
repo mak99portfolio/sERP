@@ -15,7 +15,7 @@
                     <div class="form-horizontal form-label-left input_mask" id='main'>
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ">
+                                <div class="form-group " v-bind:class="{ 'has-error': errors.customer_id }">
                                     <label for="customer_id" class="control-label">Customer</label>
                                     <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id" v-on:change="fetch_sales_orders">
                                           <option v-for="(customer, index) in resource.customers.data" v-bind:value="customer.id" v-html="customer.name"></option>
@@ -26,7 +26,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group ">
                                     <label for="sales_orders[]" class="control-label">Sales Orders</label>
-                                    <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" multiple>
+                                    <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" v-on:change="update_sales_order_list" multiple>
                                         <option v-for="(row, index) in resource.sales_orders" v-bind:value="row.id" v-html="row.sales_order_no"></option>
                                     </select>
                                 </div>
@@ -112,7 +112,7 @@
                                                         </td>
                                                         <td v-else-if="row.transport_agency_id">
                                                             <select class="form-control input-sm" v-model="row.transport_agency_id">
-                                                                  <option v-for="(row, index) in resource.customers.data" v-bind:value="row.id" v-html="row.name"></option>
+                                                                  <option v-for="(row, index) in resource.vendors.data" v-bind:value="row.id" v-html="row.name"></option>
                                                             </select>
                                                         </td>
                                                         <td v-else></td>
@@ -175,18 +175,30 @@
                                                         <th>Challan Quantity</th>
                                                     </tr>
                                                 </thead>
+                                                <tbody v-for="(row, index) in field.sales_order_items">
+                                                    <tr>
+                                                        <td colspan="6" class="text-center">Sales Order No: @{{ row.sales_order_no }}</td>
+                                                    </tr>
+                                                    <tr v-for="(inner_row, innder_index) in row.items">
+                                                        <td v-html="inner_row.product.name"></td>
+                                                        <td v-html="inner_row.quantity"></td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>0</td>
+                                                        <td>
+                                                            <input
+                                                                class="form-control input-sm"
+                                                                type="text"
+                                                                v-model="inner_row.challan_quantity"
+                                                                v-on:change="total_challan_quantity"
+                                                            />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
                                                 <tbody>
                                                     <tr>
-                                                        <td>aa</td>
-                                                        <td>5</td>
-                                                        <td>8</td>
-                                                        <td>4</td>
-                                                        <td>5</td>
-                                                        <td>4</td>
-                                                    </tr>
-                                                    <tr>
                                                         <td colspan="5" class="text-right">Total Challan Quantity</td>
-                                                        <td></td>
+                                                        <td v-html="field.total_challan_quantity"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -197,7 +209,8 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    {!! btnSubmitGroup() !!}
+                                    {{-- {!! btnSubmitGroup() !!} --}}
+                                    <button type="button" class="btn btn-sm btn-success" v-on:click="submit">Submit</button>
                                 </div>
                             </div>
                         </div>
@@ -233,9 +246,12 @@ $(function(){
             url:{
                 resource:"{{ url('api/resource') }}",
                 sales_orders:"{{ url('api/sales/challan/orders') }}",
-                delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}"
+                delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}",
+                sales_order_items:"{{ url('api/sales/challan/sales-orders-items') }}",
+                submit:"{{ route('sales-challan.store') }}"
             },
             field:{
+                csrf_token: "{{ csrf_token() }}",
                 customer_id:'',
                 sales_orders:[],
                 challan_date:'',
@@ -243,7 +259,9 @@ $(function(){
                 delivery_person_id:'',
                 shipping_address:'',
                 delivery_vehicle:'',
-                delivery_vehicles:[]
+                delivery_vehicles:[],
+                sales_order_items:[],
+                total_challan_quantity:0
             },
             resource:{
                 customers:{
@@ -264,16 +282,25 @@ $(function(){
                     data:[{id:0, vehicle_no:'--Select Own Vehicle--'}]
                 },
                 employees:{
-                    data:[{id:0, name:'--Select Employee'}]
+                    data:[{id:0, name:'--Select Employee--'}]
+                },
+                vendors:{
+                    data:[{id:0, name:'--Select Transport Agency--'}]
                 }
             },
             temp:null,
-            flag:{
-                add_vehicle_indication:true
+            errors:{
+                customer_id:false
             }
         },
         methods:{
-
+            parse_num:function(val){
+                if(typeof val=='undefined'){
+                    return 0.00;
+                }else if(parseFloat(val)){
+                    return parseFloat(val);
+                }else return 0.00;
+            },
             alert:function(msg='Sorry!, try again later.', type='error'){
                 new PNotify({
                   title: 'Message',
@@ -429,6 +456,69 @@ $(function(){
                 this.field.delivery_vehicles[index].driver_name=driver.name;
                 this.field.delivery_vehicles[index].vehicle_no=own_vehicle.vehicle_no;
 
+            },
+            update_sales_order_list:function(){
+                var ref=this;
+                var sales_order_ids=this.field.sales_orders;
+
+                //return console.log(sales_order_ids);
+
+                var loading=$.loading();
+                loading.open(3000);
+
+                if(!sales_order_ids){
+                    ref.alert('Please!, select a sales order.');
+                    loading.close();
+                    return false;
+                }
+
+                axios.get(ref.url.sales_order_items, {params: sales_order_ids}).then(function(response){
+
+                    ref.field.sales_order_items=response.data;
+                    loading.close();
+
+                }).catch(function(){
+
+                    loading.close();
+                    ref.alert('Sorry!, failed to fetch remote data.');
+
+
+                });
+
+            },
+            total_challan_quantity:function(){
+
+                var ref=this;
+                ref.field.total_challan_quantity=0;
+                ref.field.sales_order_items.forEach(function(row){
+
+                    //console.log(row);
+                    row.items.forEach(function(inner_row){
+                        ref.field.total_challan_quantity+=ref.parse_num(inner_row.challan_quantity);
+                    });
+
+                });
+
+            },
+            submit:function(){
+
+                var ref=this;
+
+                axios({
+                    method: 'post',
+                    url: ref.url.submit,
+                    data: ref.field,
+                    config: { headers: {'Content-Type': 'multipart/form-data' }}
+                }).then(function(response){
+                    
+
+                    console.log(response);
+                }).catch(function (error){
+                    ref.errors=error.response.data;
+                    ref.alert('Sorry!, form submit validation failed.');
+                    //console.log(error.response.data);
+                });
+
             }
 
         },
@@ -450,6 +540,7 @@ $(function(){
             this.fetch_resource(this.url.resource + '/mushak-number', this.resource.mushak_numbers);
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
+            this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);
             this.fetch_delivery_persons();
             //this.resource.customers=this.temp.data;
             //this.model.customers=this.temp;

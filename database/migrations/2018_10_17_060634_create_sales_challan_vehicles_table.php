@@ -15,7 +15,7 @@ class CreateSalesChallanVehiclesTable extends Migration{
             $table->enum('delivary_medium', ['own_vehicle', 'transport_agency', 'customer', 'others'])->nullable();
             $table->integer('own_vehicle_id')->unsigned()->nullable();
             $table->integer('transport_agency_id')->unsigned()->nullable();
-            $table->integer('customer_id')->unsigned()->nullable();
+            // $table->integer('customer_id')->unsigned()->nullable();
             $table->string('vehicle_no')->nullable();
             $table->string('driver_name')->nullable();
             $table->string('phone_no')->nullable();
@@ -25,7 +25,7 @@ class CreateSalesChallanVehiclesTable extends Migration{
             $table->foreign('sales_challan_id')->references('id')->on('sales_challans')->onDelete('cascade');
             $table->foreign('own_vehicle_id')->references('id')->on('own_vehicles')->onDelete('cascade');
             $table->foreign('transport_agency_id')->references('id')->on('vendors')->onDelete('cascade');
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            // $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
 
         });
 

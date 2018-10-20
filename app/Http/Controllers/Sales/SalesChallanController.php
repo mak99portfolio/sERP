@@ -31,6 +31,7 @@ class SalesChallanController extends Controller
 
         $validation = \Validator::make($request->all(),[ 
             'customer_id'=>'required|integer|exists:customers,id',
+            'sales_orders'=>'required|array',
             'challan_date'=>'required|date',
             'mushak_id'=>'required|integer|exists:mushak_numbers,id',
             'delivery_person_id'=>'required|integer|exists:employee_profiles,id',

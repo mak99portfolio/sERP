@@ -13,6 +13,22 @@
                 </div>
                 <div class="x_content">
                     <div class="form-horizontal form-label-left input_mask" id='main'>
+
+                        <div class="row" v-show="errors_msg">
+                            <div class="col-md-12">
+                                    <div class="alert bg-danger text-danger">
+                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
+                                        <span class="font-breeSerif">
+                                            <i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
+                                            <strong>Form submission failed!</strong>
+                                        </span>
+                                        <ul v-for="(row, index) in errors">
+                                            <li v-html="row[0]"></li>
+                                        </ul>
+                                    </div>
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group " v-bind:class="{ 'has-error': errors.customer_id }">
@@ -20,38 +36,43 @@
                                     <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id" v-on:change="fetch_sales_orders">
                                           <option v-for="(customer, index) in resource.customers.data" v-bind:value="customer.id" v-html="customer.name"></option>
                                     </select>
+                                    <span class="help-block" v-show="errors.customer_id" v-html="errors.customer_id[0]"></span>
                                     {{-- <v-select label="name" :options="model.customers" v-model="field.customer_id"></v-select> --}}
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.sales_orders }">
                                     <label for="sales_orders[]" class="control-label">Sales Orders</label>
                                     <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" v-on:change="update_sales_order_list" multiple>
                                         <option v-for="(row, index) in resource.sales_orders" v-bind:value="row.id" v-html="row.sales_order_no"></option>
                                     </select>
+                                    <span class="help-block" v-show="errors.sales_orders" v-html="errors.sales_orders[0]"></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.challan_date }">
                                     <label for="challan_date" class="control-label">Challan Date</label>
                                     {{-- <input type="text" class="form-control input-sm datepicker" ref="challan_date" v-model="field.challan_date"/> --}}
                                     <vuejs-datepicker v-model="field.challan_date" input-class="form-control input-sm"></vuejs-datepicker>
+                                    <span class="help-block" v-show="errors.challan_date" v-html="errors.challan_date[0]"></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.mushak_id }">
                                     <label for="mushak_id" class="control-label">Mushak No</label>
                                     <select class="form-control input-sm bSelect" ref="mushak_id" id="mushak_id" name="mushak_id" v-model="field.mushak_id">
                                         <option v-for="(row, index) in resource.mushak_numbers.data" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
+                                    <span class="help-block" v-show="errors.mushak_id" v-html="errors.mushak_id[0]"></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
                                     <label for="delivery_person_id" class="control-label">Delivery Person</label>
                                     <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
                                         <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
+                                    <span class="help-block" v-show="errors.delivery_person_id" v-html="errors.delivery_person_id[0]"></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -289,8 +310,13 @@ $(function(){
                 }
             },
             temp:null,
+            errors_msg:false,
             errors:{
-                customer_id:false
+                customer_id:false,
+                sales_orders:false,
+                challan_date:false,
+                mushak_id:false,
+                delivery_person_id:false
             }
         },
         methods:{
@@ -514,9 +540,11 @@ $(function(){
 
                     console.log(response);
                 }).catch(function (error){
+
+                    ref.errors_msg=true;
                     ref.errors=error.response.data;
                     ref.alert('Sorry!, form submit validation failed.');
-                    //console.log(error.response.data);
+
                 });
 
             }

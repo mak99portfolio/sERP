@@ -35,6 +35,10 @@ class Customer extends Model
     public function zone(){
         return $this->belongsTo('App\CustomerZone','customer_zone_id');
     }
+    public function customer_addresses()
+    {
+        return $this->hasMany('App\CustomerAddress');
+    }
     public function customer_banks()
     {
         return $this->hasMany('App\CustomerBank');

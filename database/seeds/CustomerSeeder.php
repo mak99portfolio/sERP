@@ -118,5 +118,41 @@ class CustomerSeeder extends Seeder
         ];
 
         \DB::table('customer_enclosures')->insert($data);
+        $data = [
+            [
+                'customer_id' => 1,
+                'country_id' => 1,
+                'division_id' =>1,
+                'district_id' =>1,
+                'city_id' =>1,
+                'address' =>'Mirpur-1',
+            ],
+            [
+                'customer_id' => 1,
+                'country_id' => 2,
+                'division_id' =>2,
+                'district_id' =>2,
+                'city_id' =>2,
+                'address' =>'Mirpur-1,Dhaka',
+            ],
+            [
+                'customer_id' => 2,
+                'country_id' => 1,
+                'division_id' =>1,
+                'district_id' =>1,
+                'city_id' =>1,
+                'address' =>'Mirpur-1',
+            ],
+            [
+                'customer_id' => 2,
+                'country_id' => 2,
+                'division_id' =>2,
+                'district_id' =>2,
+                'city_id' =>2,
+                'address' =>'Mirpur-1,Dhaka',
+            ]
+        ];
+
+        \DB::table('customer_addresses')->insert($data);
     }
 }

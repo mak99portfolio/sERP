@@ -62,8 +62,6 @@
                                         <td><strong>Incorporation Date:</strong> {{$customer->incorporation_date}}</td>
                                         <td><strong>Vat No:</strong>{{$customer->vat_number}}</td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="3"><strong>Address :</strong> {{$customer->address}}</td>
                                 </tbody>
                             </table>
                             <table class="table table-bordered">
@@ -77,6 +75,32 @@
                                         <td>{{$customer->type_of_business}}</td>
                                     </tr>
                                 </tbody>
+                            </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Address</th>
+                                    </tr>
+                                </thead>
+                                @foreach($customer->customer_addresses as $customer_address)
+                                <tbody>
+                                    <tr>
+                                        <td colspan="2"><strong>Address-{{$loop->iteration}}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Country : </strong> {{$customer_address->country->name}}</td>
+                                        <td><strong>Division : </strong> {{$customer_address->division->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>District : </strong> {{$customer_address->district->name}}</td>
+                                        <td><strong>City : </strong> {{$customer_address->city->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><strong>Address : </strong> {{$customer_address->address}}</td>
+                                    </tr>
+                                    </tr>
+                                </tbody>
+                                @endforeach
                             </table>
                             <table class="table table-bordered">
                                 <thead>

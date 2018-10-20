@@ -41,7 +41,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencyTableSeeder::class);
         $this->call(InventoryRecordTypesSeeder::class);
         $this->call(InventoryRequisitionTypesSeeder::class);
-        $this->call(InventoryItemStatusesSeeder::class);
         $this->call(RequisitionPurposeTableSeeder::class);
         $this->call(EmployeeProfileTableSeeder::class);
         $this->call(RequisitionPriorityTableSeeder::class);
@@ -57,7 +56,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LocalRequisitionTableSeeder::class);
         $this->call(LetterOfCreditTableSeeder::class);
         $this->call(LetterOfCreditItemTableSeeder::class);
-        $this->call(InventoryItemTypesSeeder::class);
         $this->call(WorkingUnitsTableSeeder::class);
         $this->call(StocksTableSeeder::class);
         $this->call(InventoryAdjustmentPurposesSeeder::class);

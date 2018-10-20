@@ -41,7 +41,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CurrencyTableSeeder::class);
         $this->call(InventoryRecordTypesSeeder::class);
         $this->call(InventoryRequisitionTypesSeeder::class);
-        $this->call(InventoryItemStatusesSeeder::class);
         $this->call(RequisitionPurposeTableSeeder::class);
         $this->call(EmployeeProfileTableSeeder::class);
         $this->call(RequisitionPriorityTableSeeder::class);
@@ -52,12 +51,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CompanyProfileTableSeeder::class);
         $this->call(CompanyBankTableSeeder::class);
         $this->call(CompanyLicenseTableSeeder::class);
-        
+
         $this->call(ProformaInvoiceSeeder::class);
         $this->call(LocalRequisitionTableSeeder::class);
         $this->call(LetterOfCreditTableSeeder::class);
         $this->call(LetterOfCreditItemTableSeeder::class);
-        $this->call(InventoryItemTypesSeeder::class);
         $this->call(WorkingUnitsTableSeeder::class);
         $this->call(StocksTableSeeder::class);
         $this->call(InventoryAdjustmentPurposesSeeder::class);
@@ -75,15 +73,15 @@ class DatabaseSeeder extends Seeder
         $this->call(InsuranceCoverNoteTableSeeder::class);
         $this->call(CnfTableSeeder::class);
         $this->call(AccessControlSeeder::class);
-        
+
         $this->call(DepartmentsTableSeeder::class);
         $this->call(EmployeeOrgInfoTypesTableSeeder::class);
         $this->call(EmployeeOrgInfoStatusesTableSeeder::class);
-        
+
         $this->call(InventoryRequisitionStatusesTableSeeder::class);
         $this->call(InventoryIssueStatusesTableSeeder::class);
         $this->call(TermsAndConditionTypeTableSeeder::class);
-        
+
         // Sales
         $this->call(CustomerTypeTableSeeder::class);
         $this->call(CustomerZoneSeeder::class);

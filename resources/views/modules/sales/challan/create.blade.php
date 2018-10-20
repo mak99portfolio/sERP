@@ -8,7 +8,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Challan</h2>
-                    <a href="{{ route('sales-challan.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Challan List</a>
+                    <a href="{{ route('sales-challan.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Challan List</a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -17,13 +17,13 @@
                         <div class="row" v-show="errors_msg">
                             <div class="col-md-12">
                                     <div class="alert bg-danger text-danger">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
+                                        <button type="button" class="close" v-on:click="errors_msg=false"><i class="fa fa-times"></i></button>
                                         <span class="font-breeSerif">
                                             <i class="fa fa-exclamation-triangle fa-lg" aria-hidden="true"></i>
                                             <strong>Form submission failed!</strong>
                                         </span>
-                                        <ul v-for="(row, index) in errors">
-                                            <li v-html="row[0]"></li>
+                                        <ul v-for="row in errors">
+                                            <li v-for="inner_row in row" v-html="inner_row"></li>
                                         </ul>
                                     </div>
                             </div>
@@ -36,8 +36,11 @@
                                     <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id" v-on:change="fetch_sales_orders">
                                           <option v-for="(customer, index) in resource.customers.data" v-bind:value="customer.id" v-html="customer.name"></option>
                                     </select>
-                                    <span class="help-block" v-show="errors.customer_id" v-html="errors.customer_id[0]"></span>
-                                    {{-- <v-select label="name" :options="model.customers" v-model="field.customer_id"></v-select> --}}
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.customer_id"
+                                        v-html="row"
+                                    ></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -46,7 +49,11 @@
                                     <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" v-on:change="update_sales_order_list" multiple>
                                         <option v-for="(row, index) in resource.sales_orders" v-bind:value="row.id" v-html="row.sales_order_no"></option>
                                     </select>
-                                    <span class="help-block" v-show="errors.sales_orders" v-html="errors.sales_orders[0]"></span>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.sales_orders"
+                                        v-html="row"
+                                    ></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -54,16 +61,24 @@
                                     <label for="challan_date" class="control-label">Challan Date</label>
                                     {{-- <input type="text" class="form-control input-sm datepicker" ref="challan_date" v-model="field.challan_date"/> --}}
                                     <vuejs-datepicker v-model="field.challan_date" input-class="form-control input-sm"></vuejs-datepicker>
-                                    <span class="help-block" v-show="errors.challan_date" v-html="errors.challan_date[0]"></span>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.challan_date"
+                                        v-html="row"
+                                    ></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group" v-bind:class="{ 'has-error': errors.mushak_id }">
-                                    <label for="mushak_id" class="control-label">Mushak No</label>
-                                    <select class="form-control input-sm bSelect" ref="mushak_id" id="mushak_id" name="mushak_id" v-model="field.mushak_id">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.mushak_number_id }">
+                                    <label for="mushak_number_id" class="control-label">Mushak No</label>
+                                    <select class="form-control input-sm bSelect" ref="mushak_number_id" id="mushak_number_id" name="mushak_number_id" v-model="field.mushak_number_id">
                                         <option v-for="(row, index) in resource.mushak_numbers.data" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
-                                    <span class="help-block" v-show="errors.mushak_id" v-html="errors.mushak_id[0]"></span>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.mushak_number_id"
+                                        v-html="row"
+                                    ></span>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
@@ -72,15 +87,29 @@
                                     <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
                                         <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
-                                    <span class="help-block" v-show="errors.delivery_person_id" v-html="errors.delivery_person_id[0]"></span>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.delivery_person_id"
+                                        v-html="row"
+                                    ></span>
                                 </div>
                             </div>
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group ">
-                                    <label for="shipping_address" class="control-label">Shipping Address</label>
-                                    <textarea class="form-control input-sm" rows="2" id="shipping_address" name="shipping_address" cols="50" v-model="field.shipping_address"></textarea>
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.shipping_address_id }">
+                                    <label for="shipping_address_id" class="control-label">Shipping Address</label>
+                                    <select class="form-control input-sm bSelect"  ref="shipping_address_id" id="shipping_address_id" v-model="field.shipping_address_id">
+                                        <option v-for="(row, index) in resource.customer_addresses.data
+                                        " v-bind:value="row.id" v-html="row.address"></option>
+                                    </select>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.shipping_address_id"
+                                        v-html="row"
+                                    ></span>
                                 </div>
                             </div>
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label for="">Delivery Vehicle</label>
@@ -194,13 +223,14 @@
                                                         <th>Intransit</th>
                                                         <th>Pending</th>
                                                         <th>Challan Quantity</th>
+                                                        <th>Remove</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody v-for="(row, index) in field.sales_order_items">
                                                     <tr>
-                                                        <td colspan="6" class="text-center">Sales Order No: @{{ row.sales_order_no }}</td>
+                                                        <td colspan="7" class="text-center" v-html="'Sales Order No: '+row.sales_order_no"></td>
                                                     </tr>
-                                                    <tr v-for="(inner_row, innder_index) in row.items">
+                                                    <tr v-for="(inner_row, inner_index) in row.items">
                                                         <td v-html="inner_row.product.name"></td>
                                                         <td v-html="inner_row.quantity"></td>
                                                         <td>0</td>
@@ -209,17 +239,26 @@
                                                         <td>
                                                             <input
                                                                 class="form-control input-sm"
-                                                                type="text"
+                                                                type="number"
                                                                 v-model="inner_row.challan_quantity"
                                                                 v-on:change="total_challan_quantity"
                                                             />
+                                                        </td>
+                                                        <td>
+                                                            <button
+                                                                type="button"
+                                                                class="btn btn-default btn-sm"
+                                                                v-on:click="remove_order_item(index, inner_index)"
+                                                            >
+                                                                <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 </tbody>
                                                 <tbody>
                                                     <tr>
                                                         <td colspan="5" class="text-right">Total Challan Quantity</td>
-                                                        <td v-html="field.total_challan_quantity"></td>
+                                                        <td v-html="field.total_challan_quantity" colspan="2"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -269,6 +308,7 @@ $(function(){
                 sales_orders:"{{ url('api/sales/challan/orders') }}",
                 delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}",
                 sales_order_items:"{{ url('api/sales/challan/sales-orders-items') }}",
+                customer_addresses:"{{ url('api/sales/challan/customer-addresses') }}",
                 submit:"{{ route('sales-challan.store') }}"
             },
             field:{
@@ -276,13 +316,13 @@ $(function(){
                 customer_id:'',
                 sales_orders:[],
                 challan_date:'',
-                mushak_id:'',
+                mushak_number_id:'',
                 delivery_person_id:'',
-                shipping_address:'',
                 delivery_vehicle:'',
                 delivery_vehicles:[],
                 sales_order_items:[],
-                total_challan_quantity:0
+                total_challan_quantity:0,
+                shipping_address_id:''
             },
             resource:{
                 customers:{
@@ -307,17 +347,14 @@ $(function(){
                 },
                 vendors:{
                     data:[{id:0, name:'--Select Transport Agency--'}]
+                },
+                customer_addresses:{
+                    data:[{id:0, address:'--Select Customer Address--'}]
                 }
             },
             temp:null,
             errors_msg:false,
-            errors:{
-                customer_id:false,
-                sales_orders:false,
-                challan_date:false,
-                mushak_id:false,
-                delivery_person_id:false
-            }
+            errors:null
         },
         methods:{
             parse_num:function(val){
@@ -335,7 +372,7 @@ $(function(){
                   styling: 'bootstrap3'
                 });
             },
-            fetch_resource:function(url, reference){
+            fetch_resource:function(url, reference, callback=null){
 
                 var loading=$.loading();
                 loading.open(3000);
@@ -344,6 +381,9 @@ $(function(){
 
                     reference.data=response.data.data;
                     loading.close();
+                    if(typeof callback==='function'){
+                        callback();
+                    }
 
                 }).catch(function(){
 
@@ -366,12 +406,12 @@ $(function(){
                     return false;
                 }
 
-                ref.resource.customers.data.filter(row=>{
-                    //return obj.id===ref.field.customer_id;
-                    if(row.id==ref.field.customer_id){
-                        ref.field.shipping_address=row.address;
-                    }
-                })
+                ref.fetch_resource(ref.url.resource + '/customer-address', ref.resource.customer_addresses, function(){
+                    ref.field.shipping_address_id='';
+                    ref.resource.customer_addresses.data=ref.resource.customer_addresses.data.filter(row=>{
+                        return row.customer_id==ref.field.customer_id;
+                    });
+                });
 
                 axios.get(ref.url.sales_orders + '/' + ref.field.customer_id).then(function(response){
 
@@ -467,6 +507,13 @@ $(function(){
             remove_delivery_vehicle:function(index){
                 this.field.delivery_vehicles.splice(index, 1);
             },
+            remove_order_item:function(index, inner_index){
+                this.field.sales_order_items[index].items.splice(inner_index, 1);
+                if(this.field.sales_order_items[index].items.length < 1){
+                    this.field.sales_order_items.splice(index, 1);
+                }
+                this.total_challan_quantity();
+            },
             update_own_vehicle:function(index){
 
                 var own_vehicle_id=this.field.delivery_vehicles[index].own_vehicle_id;
@@ -530,24 +577,44 @@ $(function(){
 
                 var ref=this;
 
+                //if(ref.field.total_challan_quantity)
+
+                this.reset_error();
+
                 axios({
                     method: 'post',
                     url: ref.url.submit,
                     data: ref.field,
                     config: { headers: {'Content-Type': 'multipart/form-data' }}
                 }).then(function(response){
-                    
 
-                    console.log(response);
+                    ref.alert(response.data, 'success')                    
+
+                    //console.log(response);
                 }).catch(function (error){
 
                     ref.errors_msg=true;
                     ref.errors=error.response.data;
-                    ref.alert('Sorry!, form submit validation failed.');
+                    //ref.alert('Sorry!, form submit validation failed.');
 
                 });
 
+            },
+            reset_error:function(){
+
+                this.errors_msg=false;
+
+                this.errors={
+                    customer_id:false,
+                    sales_orders:false,
+                    challan_date:false,
+                    mushak_number_id:false,
+                    delivery_person_id:false,
+                    shipping_address_id:false
+                }
+
             }
+
 
         },
         watch:{
@@ -569,16 +636,19 @@ $(function(){
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);
+            //this.fetch_resource(this.url.resource + '/customer-address', this.resource.customer_addresses);
             this.fetch_delivery_persons();
+            this.reset_error();
             //this.resource.customers=this.temp.data;
             //this.model.customers=this.temp;
         },//End of beforeMount
         updated(){
             $(this.$refs.customer_id).selectpicker('refresh');
-            $(this.$refs.mushak_id).selectpicker('refresh');
+            $(this.$refs.mushak_number_id).selectpicker('refresh');
             $(this.$refs.sales_orders).selectpicker('refresh');
             $(this.$refs.delivery_person_id).selectpicker('refresh');
             $(this.$refs.delivery_vehicle).selectpicker('refresh');
+            $(this.$refs.shipping_address_id).selectpicker('refresh');
         }//end of updated
     });//End of vue js
 

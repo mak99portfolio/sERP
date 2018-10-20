@@ -98,8 +98,16 @@
                                                     <tr v-for="(row, index) in field.delivery_vehicles">
                                                         <td v-html="row.medium_name"></td>
                                                         <td v-if="row.own_vehicle_id">
-                                                            <select class="form-control input-sm" v-model="row.own_vehicle_id">
-                                                                  <option v-for="(row, index) in resource.own_vehicles.data" v-bind:value="row.id" v-html="row.vehicle_no"></option>
+                                                            <select
+                                                                class="form-control input-sm"
+                                                                v-model="row.own_vehicle_id"
+                                                                v-on:change="update_own_vehicle(index)"
+                                                            >
+                                                                <option
+                                                                    v-for="(row, index) in resource.own_vehicles.data"
+                                                                    v-bind:value="row.id"
+                                                                    v-html="row.vehicle_no"
+                                                                ></option>
                                                             </select>
                                                         </td>
                                                         <td v-else-if="row.transport_agency_id">
@@ -114,6 +122,7 @@
                                                                 name="vehicle_no"
                                                                 class="form-control input-sm"
                                                                 v-model="row.vehicle_no"
+                                                                v-bind:readonly="row.own_vehicle_id"
                                                             />
                                                         </td>
                                                         <td>
@@ -122,6 +131,7 @@
                                                                 name="driver_name"
                                                                 class="form-control input-sm"
                                                                 v-model="row.driver_name"
+                                                                v-bind:readonly="row.own_vehicle_id"
                                                             />
                                                         </td>
                                                         <td>
@@ -130,6 +140,7 @@
                                                                 name="phone_no"
                                                                 class="form-control input-sm"
                                                                 v-model="row.phone_no"
+                                                                {{-- v-bind:readonly="row.own_vehicle_id" --}}
                                                             />
                                                         </td>
                                                         <td>
@@ -250,7 +261,10 @@ $(function(){
                 sales_orders:[{id:0, name:'--Select orders--'}],
                 delivery_persons:[{id:0, name:'--Select Delivery Persons--'}],
                 own_vehicles:{
-                    data:[{id:0, name:'--Select Own Vehicle--'}]
+                    data:[{id:0, vehicle_no:'--Select Own Vehicle--'}]
+                },
+                employees:{
+                    data:[{id:0, name:'--Select Employee'}]
                 }
             },
             temp:null,
@@ -348,12 +362,17 @@ $(function(){
 
                 if(this.field.delivery_vehicle=='own_vehicle'){
 
+                    first_own_vehicle=this.resource.own_vehicles.data[0];
+                    var driver=this.resource.employees.data.find(row=>{
+                        return row.id==first_own_vehicle.employee_profile_id;
+                    });
+
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
                         delivary_medium: ref.field.delivery_vehicle,
-                        own_vehicle_id: 1,
-                        vehicle_no: 0,
-                        driver_name: '',
+                        own_vehicle_id: first_own_vehicle.id,
+                        vehicle_no: first_own_vehicle.vehicle_no,
+                        driver_name: driver.name,
                         phone_no: ''
                     });
 
@@ -363,7 +382,7 @@ $(function(){
                         medium_name: medium_name,
                         delivary_medium: ref.field.delivery_vehicle,
                         transport_agency_id: 1,
-                        vehicle_no: 0,
+                        vehicle_no: '',
                         driver_name: '',
                         phone_no: ''
                     });
@@ -373,7 +392,7 @@ $(function(){
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
                         delivary_medium: ref.field.delivery_vehicle,
-                        vehicle_no: 0,
+                        vehicle_no: '',
                         driver_name: '',
                         phone_no: ''
                     });
@@ -383,15 +402,33 @@ $(function(){
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
                         delivary_medium: ref.field.delivery_vehicle,
-                        vehicle_no: 0,
+                        vehicle_no: '',
                         driver_name: '',
                         phone_no: ''
                     });
                 }
 
+                this.field.delivery_vehicle='';
+
             },
-            remove_delivery_vehicle:function(index, delivery_medium){
+            remove_delivery_vehicle:function(index){
                 this.field.delivery_vehicles.splice(index, 1);
+            },
+            update_own_vehicle:function(index){
+
+                var own_vehicle_id=this.field.delivery_vehicles[index].own_vehicle_id;
+
+                var own_vehicle=this.resource.own_vehicles.data.find(row=>{
+                    return row.id==own_vehicle_id;
+                });
+
+                var driver=this.resource.employees.data.find(row=>{
+                    return row.id==own_vehicle.employee_profile_id;
+                });
+
+                this.field.delivery_vehicles[index].driver_name=driver.name;
+                this.field.delivery_vehicles[index].vehicle_no=own_vehicle.vehicle_no;
+
             }
 
         },
@@ -412,6 +449,7 @@ $(function(){
             this.fetch_resource(this.url.resource + '/customer', this.resource.customers);
             this.fetch_resource(this.url.resource + '/mushak-number', this.resource.mushak_numbers);
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
+            this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_delivery_persons();
             //this.resource.customers=this.temp.data;
             //this.model.customers=this.temp;

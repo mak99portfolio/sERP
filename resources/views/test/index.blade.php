@@ -15,7 +15,9 @@
                     </div>
                     <div class="x_content">
                         <br />
-
+                        <div id="app">                            
+                            <date-picker/>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -23,4 +25,8 @@
         <div class="clearfix"></div>
     </div>
 </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/app.js') }}" defer></script>
 @endsection

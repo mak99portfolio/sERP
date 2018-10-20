@@ -36,7 +36,7 @@
                                     <tr>
                                         <td><strong>L/C No: </strong> {{ $costSheet->letter_of_credit->letter_of_credit_no }}</td>
                                         <td><strong>L/C Opening Date: </strong> {{ $costSheet->letter_of_credit->letter_of_credit_date }}</td>
-                                        <td><strong>Currency: </strong> {{ $costSheet->currency }}</td>
+                                        <td><strong>Currency: </strong> {{ $costSheet->currency->name }}</td>
                                     </tr>
                                 </tbody>
                             </table>

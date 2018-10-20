@@ -10,7 +10,7 @@ class CostSheet extends Model
     use SoftDeletes;
     protected $fillable = [
         'letter_of_credit_id',
-        'currency',
+        'currency_id',
         'exchange_rate',
         'bdt_amount',
         'note',
@@ -18,6 +18,11 @@ class CostSheet extends Model
 
     public function letter_of_credit(){
         return $this->belongsTo('App\LetterOfCredit', 'letter_of_credit_id');
+    }
+
+    public function currency()
+    {
+        return $this->belongsTo('App\Currency');
     }
 
     public function cost_sheet_particular(){

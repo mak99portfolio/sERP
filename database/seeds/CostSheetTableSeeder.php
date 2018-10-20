@@ -15,7 +15,7 @@ class CostSheetTableSeeder extends Seeder
             [
                 'cost_sheet_no' => 213213,
                 'letter_of_credit_id' => 1,
-                'currency' => 'Dollar',
+                'currency_id' => 1,
                 'exchange_rate' => 80,
                 'bdt_amount' => 1074720,
                 'note' => 'seeder 1',
@@ -26,7 +26,7 @@ class CostSheetTableSeeder extends Seeder
             [
                 'cost_sheet_no' => 654213,
                 'letter_of_credit_id' => 1,
-                'currency' => 'Dollar',
+                'currency_id' => 1,
                 'exchange_rate' => 75,
                 'bdt_amount' => 1007550,
                 'note' => 'seeder 2',

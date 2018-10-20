@@ -8,6 +8,10 @@ use App\CustomerType;
 use App\Enclosure;
 use App\CustomerZone;
 use App\CustomerEnclosure;
+use App\Country;
+use App\Division;
+use App\District;
+use App\City;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Http\Requests\CustomerRequest;
@@ -36,6 +40,10 @@ class CustomerController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('country_list', Country::pluck('name', 'id')->prepend('',''));
+        $view->with('division_list', Division::pluck('name', 'id')->prepend('',''));
+        $view->with('distric_list', District::pluck('name', 'id')->prepend('',''));
+        $view->with('city_list', City::pluck('name', 'id')->prepend('',''));
         $view->with('customer_type_list', CustomerType::pluck('name', 'id'));
         $view->with('customer_zone_list', CustomerZone::pluck('name', 'id'));
         $view->with('enclosure_list', Enclosure::all());

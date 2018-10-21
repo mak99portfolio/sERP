@@ -6,28 +6,32 @@ use App\SalesChallan;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SalesChallanController extends Controller
-{
-    private $view_root = 'modules/sales/challan/';
+class SalesChallanController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules.sales.challan.{$suffix}";
+    }
 
     public function index(){
 
-        $view = view($this->view_root . 'index');
-        return $view;
+        $data=[
+            'paginate'=>\App\SalesChallan::all()
+        ];
+
+        return view($this->path('index'), $data);
 
     }
 
     public function create(){
 
-        $view = view($this->view_root . 'create');
-        return $view;
+        return view($this->path('create'));
 
     }
 
 
     public function store(Request $request){
 
-        \Log::info(print_r($request->all(), true));
+        //\Log::info(print_r($request->all(), true));
 
         $validation = \Validator::make($request->all(),[ 
             'customer_id'=>'required|integer|exists:customers,id',
@@ -38,7 +42,8 @@ class SalesChallanController extends Controller
             'delivery_vehicles'=>'required|array',
             'sales_order_items'=>'required|array',
             'shipping_address_id'=>'required|integer|exists:customer_addresses,id',
-            'total_challan_quantity'=>'required|numeric|min:1'
+            'total_challan_quantity'=>'required|numeric|min:1',
+            'sales_orders'=>'required|array'
         ]);
 
         if($validation->fails()){
@@ -48,14 +53,14 @@ class SalesChallanController extends Controller
         }else{
 
             $sales_challan=new \App\SalesChallan;
-            $sales_challan->sales_challan_no=uCode('sales_challans.sales_challan_no', 'SCLN00');
+            $sales_challan->sales_challan_no=uCode('sales_challans.sales_challan_no', 'SCL00');
             $sales_challan->creator()->associate(\Auth::user());
             $sales_challan->challan_date=\Carbon\Carbon::parse($request->get('challan_date'));
 
             $sales_challan->fill($request->only(
                 'customer_id',
                 //'challan_date',
-                'mushak_id',
+                'mushak_number_id',
                 'delivery_person_id',
                 'shipping_address_id'
             ));
@@ -63,6 +68,8 @@ class SalesChallanController extends Controller
             //dd($request->only('delivery_vehicles'));
 
             $sales_challan->save();
+
+            $sales_challan->sales_orders()->sync($request->get('sales_orders'));
             $sales_challan->vehicles()->createMany($request->get('delivery_vehicles'));
             $sales_challan->save();
 
@@ -82,29 +89,34 @@ class SalesChallanController extends Controller
     }
 
 
-    public function show(SalesChallan $salesChallan){
+    public function show(SalesChallan $sales_challan){
 
-        //
+        $data=[
+            'sales_challan'=>$sales_challan,
+            'carbon'=>new \Carbon\Carbon
+        ];
 
-    }
-
-
-    public function edit(SalesChallan $salesChallan){
-
-        //
-
-    }
-
-    public function update(Request $request, SalesChallan $salesChallan){
-
-        //
+        return view($this->path('show'), $data);
 
     }
 
 
-    public function destroy(SalesChallan $salesChallan){
+    public function edit(SalesChallan $sales_challan){
 
-        //
+        return back();
+
+    }
+
+    public function update(Request $request, SalesChallan $sales_challan){
+
+        return back();
+
+    }
+
+
+    public function destroy(SalesChallan $sales_challan){
+
+        return back();
 
     }
 

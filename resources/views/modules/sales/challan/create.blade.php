@@ -315,7 +315,7 @@ $(function(){
                 csrf_token: "{{ csrf_token() }}",
                 customer_id:'',
                 sales_orders:[],
-                challan_date:'',
+                challan_date: Date.now(),
                 mushak_number_id:'',
                 delivery_person_id:'',
                 delivery_vehicle:'',
@@ -462,7 +462,7 @@ $(function(){
 
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
+                        delivery_medium: ref.field.delivery_vehicle,
                         own_vehicle_id: first_own_vehicle.id,
                         vehicle_no: first_own_vehicle.vehicle_no,
                         driver_name: driver.name,
@@ -473,7 +473,7 @@ $(function(){
 
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
+                        delivery_medium: ref.field.delivery_vehicle,
                         transport_agency_id: 1,
                         vehicle_no: '',
                         driver_name: '',
@@ -484,7 +484,7 @@ $(function(){
 
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
+                        delivery_medium: ref.field.delivery_vehicle,
                         vehicle_no: '',
                         driver_name: '',
                         phone_no: ''
@@ -494,7 +494,7 @@ $(function(){
 
                     this.field.delivery_vehicles.push({
                         medium_name: medium_name,
-                        delivary_medium: ref.field.delivery_vehicle,
+                        delivery_medium: ref.field.delivery_vehicle,
                         vehicle_no: '',
                         driver_name: '',
                         phone_no: ''
@@ -588,7 +588,8 @@ $(function(){
                     config: { headers: {'Content-Type': 'multipart/form-data' }}
                 }).then(function(response){
 
-                    ref.alert(response.data, 'success')                    
+                    ref.alert(response.data, 'success');
+                    window.location.replace("{{ route('sales-challan.index') }}");
 
                     //console.log(response);
                 }).catch(function (error){

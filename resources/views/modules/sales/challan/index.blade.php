@@ -26,24 +26,24 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Sales Order No</th>
-                                        <th>Sales Order Date</th>
+                                        <th>Sales Orders</th>
                                         <th>Challan No</th>
                                         <th>Challan Date</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($paginate as $index=>$row)
                                     <tr>
-                                        <td>01</td>
-                                        <td>231</td>
-                                        <td>01/03/2018</td>
-                                        <td>011</td>
-                                        <td>01</td>
+                                        <td>{{ $index+1 }}</td>
+                                        <td>{!! labels($row->sales_orders->pluck('sales_order_no')) !!}</td>
+                                        <td>{{ $row->sales_challan_no }}</td>
+                                        <td>{{ $row->challan_date->diffForHumans() }}</td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <a href="{{ route('sales-challan.show', ['sales_challan'=>$row]) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

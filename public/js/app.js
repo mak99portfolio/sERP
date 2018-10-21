@@ -52463,7 +52463,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                                                                 this.field.delivery_vehicles.push({
                                                                                 medium_name: medium_name,
-                                                                                delivary_medium: ref.field.delivery_vehicle,
+                                                                                delivery_medium: ref.field.delivery_vehicle,
                                                                                 own_vehicle_id: 1,
                                                                                 vehicle_no: 0,
                                                                                 driver_name: '',
@@ -52473,7 +52473,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                                                                 this.field.delivery_vehicles.push({
                                                                                 medium_name: medium_name,
-                                                                                delivary_medium: ref.field.delivery_vehicle,
+                                                                                delivery_medium: ref.field.delivery_vehicle,
                                                                                 transport_agency_id: 1,
                                                                                 vehicle_no: 0,
                                                                                 driver_name: '',
@@ -52483,7 +52483,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                                                                 this.field.delivery_vehicles.push({
                                                                                 medium_name: medium_name,
-                                                                                delivary_medium: ref.field.delivery_vehicle,
+                                                                                delivery_medium: ref.field.delivery_vehicle,
                                                                                 vehicle_no: 0,
                                                                                 driver_name: '',
                                                                                 phone_no: ''
@@ -52492,7 +52492,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                                                                 this.field.delivery_vehicles.push({
                                                                                 medium_name: medium_name,
-                                                                                delivary_medium: ref.field.delivery_vehicle,
+                                                                                delivery_medium: ref.field.delivery_vehicle,
                                                                                 vehicle_no: 0,
                                                                                 driver_name: '',
                                                                                 phone_no: ''

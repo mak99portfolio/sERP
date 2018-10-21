@@ -12,7 +12,7 @@ class CreateSalesChallanVehiclesTable extends Migration{
 
             $table->increments('id');
             $table->integer('sales_challan_id')->unsigned();
-            $table->enum('delivary_medium', ['own_vehicle', 'transport_agency', 'customer', 'others'])->nullable();
+            $table->enum('delivery_medium', ['own_vehicle', 'transport_agency', 'customer', 'others'])->nullable();
             $table->integer('own_vehicle_id')->unsigned()->nullable();
             $table->integer('transport_agency_id')->unsigned()->nullable();
             // $table->integer('customer_id')->unsigned()->nullable();

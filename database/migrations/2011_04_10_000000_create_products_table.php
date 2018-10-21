@@ -55,7 +55,7 @@ class CreateProductsTable extends Migration
             $table->text('other');
             $table->integer('pack_size');
             $table->integer('shipper_carton_size');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

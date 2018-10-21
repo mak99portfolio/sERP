@@ -106,6 +106,7 @@ class ApiController extends Controller
             'id' => $product->id,
             'name' => $product->name,
             'hs_code' => $product->hs_code,
+            'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
             'physical_stock' => $physical_stock,
             'goods_in_transit' => $goods_in_transit,

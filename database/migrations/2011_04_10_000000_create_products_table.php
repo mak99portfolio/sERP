@@ -35,7 +35,7 @@ class CreateProductsTable extends Migration
             $table->foreign('product_model_id')->references('id')->on('product_models')->onDelete('cascade');
             $table->integer('product_size_id')->unsigned();
             $table->foreign('product_size_id')->references('id')->on('product_sizes')->onDelete('cascade');
-            $table->integer('product_set_id')->unsigned();
+            $table->integer('product_set_id')->unsigned()->nullable();
             $table->foreign('product_set_id')->references('id')->on('product_sets')->onDelete('cascade');
             $table->string('serial');
             $table->string('part_number');
@@ -55,7 +55,7 @@ class CreateProductsTable extends Migration
             $table->text('other');
             $table->integer('pack_size');
             $table->integer('shipper_carton_size');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

@@ -93,7 +93,7 @@ class ProductController extends Controller
             'other' => 'required',
             'pack_size' => 'required',
             'shipper_carton_size' => 'required',
-            'description' => 'required',
+            // 'description' => 'required',
         ]);
 
         $product = new Product;

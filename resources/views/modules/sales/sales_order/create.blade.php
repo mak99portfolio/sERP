@@ -338,26 +338,51 @@
                                         <th>Bonus Quantity</th>
                                         <th>Total Quantity</th>
                                         <th>Net Price</th>
-                                        <th>Discont</th>
+                                        <th>Discont (%)</th>
                                         <th>Total Amount</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="item in itemlist">
-                                        <td><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
+                                        <td><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" ng-model="bonus_product_id[$index]" value="<% item.id %>"></td>
                                         <td><% item.name %></td>
                                         <td><% item.uom %></td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>"> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]"> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]"> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% quantity[$index] + bonus_quantity[$index] %>"> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" value="<% quantity[$index] * item.unit_price %>"> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][discount]" > </td>
-                                        <td>10</td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>" readonly> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" ng-change="getProductBonus($index)" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]" readonly> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% total_product_quantity[$index] = quantity[$index] + bonus_quantity[$index] %>" readonly> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" value="<% total_net_price[$index] =  quantity[$index] * item.unit_price %>" readonly> </td>
+                                        <td> 
+                                            <input type="number" class="form-control" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
+                                            <input type="hidden" class="form-control"   value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>"> 
+                                        </td>
+                                        <td>
+                                                <span><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span>
+                                        </td>
                                
                                         <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                     </tr>
+                                    <tr>
+                                        <td colspan="9" class="text-right" > Total Quantity </td>
+                                        <td colspan="2"> <% grandProductSum(total_product_quantity) %> </td>
+                                     </tr>
+                                    <tr>
+                                        <td colspan="9" class="text-right" > Total Net Price </td>
+                                        <td colspan="2"> <% totalNetPrice(total_net_price) %> </td>
+                                     </tr>
+                                    <tr>
+                                        <td colspan="9" class="text-right" > Total Discount </td>
+                                        <td colspan="2"> <% totalDiscount(total_discount) %> </td>
+                                     </tr>
+                                    <tr>
+                                        <td colspan="9" class="text-right" > Total Vat(10%) </td>
+                                        <td colspan="2"> <% totalNetPrice(total_net_price)*10/100 %> </td>
+                                     </tr>
+                                    <tr>
+                                        <td colspan="9" class="text-right" >Grand Total</td>
+                                        <td colspan="2"> <% (totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount) %> </td>
+                                     </tr>
                                 </tbody>
                                 <!-- <tfoot class="font-bold">
                                     <tr>
@@ -469,6 +494,11 @@
     app.controller('myCtrl', function($scope, $http) {
         $scope.itemlist = [];
         $scope.conditions = [];
+        $scope.quantity = [];
+        $scope.bonus_quantity = [];
+        $scope.total_product_quantity = [];
+        $scope.total_net_price = [];
+        $scope.total_discount = [];
         $('#search_product').autocomplete({
         source: "{{route('search-product')}}",
                 minlength: 1,
@@ -492,7 +522,7 @@
 
             index = $scope.itemlist.findIndex(item => item.id==product_id);
             if(index < 0){
-                let url = "{{URL::to('get-product')}}/" + product_id;
+                let url = "{{URL::to('get-product-for-sales-order')}}/" + product_id;
                 $http.get(url)
                         .then(function(response) {
                             $scope.itemlist.push(response.data);
@@ -534,6 +564,44 @@
         }
 
 
+        // Product Bonus
+        $scope.getProductBonus=function(index){
+         let url = "{{URL::to('get-product-bonus')}}/" + $scope.quantity[index];
+                $http.get(url)
+                        .then(function(response) {
+                            $scope.bonus_quantity[index] = parseInt(response.data);
+                            // console.log($scope.productlist);
+                        });
+        }
+        // Product Bonus
+
+        // grand Product Sum
+        $scope.grandProductSum=function($array){
+            var sum = 0;
+                for(i=0; i<$array.length; i++){
+                    sum += $array[i];
+                }
+                return sum;
+        }
+        // grand Product Sum
+        // totalNetPrice
+        $scope.totalNetPrice=function($array){
+            var sum = 0;
+                for(i=0; i<$array.length; i++){
+                    sum += $array[i];
+                }
+                return sum;
+        }
+        // totalNetPrice
+        // totalDiscount
+        $scope.totalDiscount=function($array){
+            var sum = 0;
+                for(i=0; i<$array.length; i++){
+                    sum += $array[i];
+                }
+                return sum;
+        }
+        // totalDiscount
 // Terms and Conditions
 $scope.add_condition = function(){
             var condition = {};

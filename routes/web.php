@@ -110,6 +110,7 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('discount-generic', 'DiscountGenericController');
     Route::resource('free-bonus-customer-wise', 'FreeBonusCustomerWiseController');
     Route::resource('free-bonus-generic', 'FreeBonusGenericController');
+    Route::resource('sales-order-cancel-reason', 'SalesOrderCancelReasonController');
 
 });
 
@@ -221,6 +222,8 @@ Route::get('/get-requisition-items-by-requisition-id/{id}', ['as' => 'get-requis
 Route::get('/get-vendor-wise-po/{id}', ['as' => 'get-vendor-wise-po', 'uses' => 'ApiController@getVendorWisePo']);
 // Sales
 Route::get('/get-all-employee-by-designation/{id}', ['as' => 'get-all-employee-by-designation', 'uses' => 'ApiController@getEmployeeByDesignation']);
+Route::get('/get-product-for-sales-order/{id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
+Route::get('/get-product-bonus/{id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
 
 
 //ACL (Access Control Limit)

@@ -33,13 +33,13 @@
           </li>
           <li><a>Setting<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{route('vendor.index')}}">Vendor</a></li>
-              <li><a href="{{route('vendor-category.index')}}">Vendor Category</a></li>
-              <li><a href="{{route('requisition-purpose.index')}}">Requisition Purpose</a></li>
-              <li><a href="{{route('cost-particular.index')}}">Cost Particulars</a></li>
-              <li><a href="{{route('consignment-particular.index')}}">Consignmnet Particulars</a></li>
-              <li><a href="{{route('move-type.index')}}">Move Type</a></li>
-              <li><a href="{{route('modes-of-transport.index')}}">Modes Of Transport</a></li>
+              <li><a href="{{ route('vendor.index') }}">Vendor</a></li>
+              <li><a href="{{ route('vendor-category.index') }}">Vendor Category</a></li>
+              <li><a href="{{ route('requisition-purpose.index') }}">Requisition Purpose</a></li>
+              <li><a href="{{ route('cost-particular.index') }}">Cost Particulars</a></li>
+              <li><a href="{{ route('consignment-particular.index') }}">Consignmnet Particulars</a></li>
+              <li><a href="{{ route('move-type.index') }}">Move Type</a></li>
+              <li><a href="{{ route('modes-of-transport.index') }}">Modes Of Transport</a></li>
             </ul>
           </li>
         </ul>
@@ -57,9 +57,10 @@
           <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
           <li><a>Setting <span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-              <li><a href="{{route('customer.index')}}">Customer Profile</a></li>
+              <li><a href="{{ route('customer.index') }}">Customer Profile</a></li>
               <li><a href="{{ route('credit-rule.index') }}">Rule Setup</a></li>
-              <li><a href="{{route('customer-zone.index')}}">Customer Zone</a></li>
+              <li><a href="{{ route('customer-zone.index') }}">Customer Zone</a></li>
+              <li><a href="{{ route('sales-order-cancel-reason.index') }}">Order Cancel Reasons</a></li>
             </ul>
           </li>
         </ul>
@@ -94,22 +95,22 @@
       </li>
       <li><a><i class="fa fa-cogs"></i> Master Data <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
-          <li><a href="{{route('country.index')}}">Country</a></li>
-          <li><a href="{{route('division.index')}}">Division</a></li>
-          <li><a href="{{route('district.index')}}">District</a></li>
-          <li><a href="{{route('city.index')}}">City</a></li>
-          <li><a href="{{route('port.index')}}">Port</a></li>
-          <li><a href="{{route('unit-of-measurement.index')}}">Unit Of Measurement</a></li>
-          <li><a href="{{route('product-category.index')}}">Product Category</a></li>
-          <li><a href="{{route('product-brand.index')}}">Product Brand</a></li>
-          <li><a href="{{route('product-model.index')}}">Product Model</a></li>
-          <li><a href="{{route('product-size.index')}}">Product Size</a></li>
-          <li><a href="{{route('product.index')}}">Product</a></li>
-          <li><a href="{{route('bank.index')}}">Bank</a></li>
-          <li><a href="{{route('enclosure.index')}}">Enclosure</a></li>
-          <li><a href="{{route('payment-type.index')}}">Payment Type</a></li>
-          <li><a href="{{route('terms-and-condition-type.index')}}">Terms and Condition Type</a></li>
-          <li><a href="{{route('designation.index')}}">Designation</a></li>
+          <li><a href="{{ route('country.index') }}">Country</a></li>
+          <li><a href="{{ route('division.index') }}">Division</a></li>
+          <li><a href="{{ route('district.index') }}">District</a></li>
+          <li><a href="{{ route('city.index') }}">City</a></li>
+          <li><a href="{{ route('port.index') }}">Port</a></li>
+          <li><a href="{{ route('unit-of-measurement.index') }}">Unit Of Measurement</a></li>
+          <li><a href="{{ route('product-category.index') }}">Product Category</a></li>
+          <li><a href="{{ route('product-brand.index') }}">Product Brand</a></li>
+          <li><a href="{{ route('product-model.index') }}">Product Model</a></li>
+          <li><a href="{{ route('product-size.index') }}">Product Size</a></li>
+          <li><a href="{{ route('product.index') }}">Product</a></li>
+          <li><a href="{{ route('bank.index') }}">Bank</a></li>
+          <li><a href="{{ route('enclosure.index') }}">Enclosure</a></li>
+          <li><a href="{{ route('payment-type.index') }}">Payment Type</a></li>
+          <li><a href="{{ route('terms-and-condition-type.index') }}">Terms and Condition Type</a></li>
+          <li><a href="{{ route('designation.index') }}">Designation</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-industry"></i> Company Setting <span class="fa fa-chevron-down"></span></a>

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Sales Order Cancel')
+@section('title', 'Sales Order Cancel Reasons')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Sales Order Cancel</h2>
-                        <a href="{{ route('sales-order-cancel.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
+                        <h2>Sales Order Cancel Reasons</h2>
+                        <a href="{{ route('sales-order-cancel-reason.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -26,21 +26,19 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="35">#</th>
-                                        <th>Sales Order Cancel No</th>
-                                        <th>Sales Order No</th>
-                                        <th>Reason</th>
+                                        <th>Reason Title</th>
+                                        <th>Description</th>
                                         <th width="35" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($sales_order_cancel_list as $item)
+                                    @foreach($sales_order_cancel_reason_list as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->sales_order_cancel_no }}</td>
-                                        <td>{{ $item->sales_order->sales_order_no}}</td>
-                                        <td>{{ $item->sales_order_cancel_reason->name}}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->description }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('sales-order-cancel.show', $item ) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

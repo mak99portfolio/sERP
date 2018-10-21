@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Sales;
 
 use App\SalesOrderCancel;
+use App\SalesOrderCancelReason;
+use App\SalesOrder;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class SalesOrderCancelController extends Controller
 {
@@ -12,66 +16,51 @@ class SalesOrderCancelController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+        $view->with('sales_order_cancel_list', SalesOrderCancel::all());
         return $view;
     }
 
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('sales_order_list', SalesOrder::pluck('sales_order_no','id')->prepend('', ''));
+        $view->with('sales_order_cancel_reason_list', SalesOrderCancelReason::pluck('name','id')->prepend('', ''));
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'sales_order_id' => 'required',
+            'sales_order_cancel_reason_id' => 'required'
+        ]);
+        $sales_order_cancel_list = new SalesOrderCancel;
+        $sales_order_cancel_list->fill($request->input());
+        $sales_order_cancel_list->creator_user_id = Auth::id();
+        $sales_order_cancel_list->company_id = 1;
+        $sales_order_cancel_list->generate_sales_order_cancel_number();
+        $sales_order_cancel_list->save();
+        Session::put('alert-success', $sales_order_cancel_list->sales_order_cancel_no . ' created successfully');
+        return redirect()->route('sales-order-cancel.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SalesOrderCancel  $salesOrderCancel
-     * @return \Illuminate\Http\Response
-     */
     public function show(SalesOrderCancel $salesOrderCancel)
     {
-        //
+        $view = view($this->view_root . 'show');
+        $view->with('salesOrderCancel', $salesOrderCancel);
+        return $view;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SalesOrderCancel  $salesOrderCancel
-     * @return \Illuminate\Http\Response
-     */
     public function edit(SalesOrderCancel $salesOrderCancel)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SalesOrderCancel  $salesOrderCancel
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, SalesOrderCancel $salesOrderCancel)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\SalesOrderCancel  $salesOrderCancel
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(SalesOrderCancel $salesOrderCancel)
     {
         //

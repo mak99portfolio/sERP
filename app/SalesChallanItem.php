@@ -9,7 +9,7 @@ class SalesChallanItem extends Model{
     protected $fillable=[
 		'sales_order_id',
 		'product_id',
-		'quantity'
+		'challan_quantity'
     ];
 
     public function sales_challan(){

@@ -13,7 +13,7 @@ class CreateSalesChallanItemsTable extends Migration{
             $table->integer('sales_challan_id')->unsigned();
             $table->integer('sales_order_id')->unsigned();
             $table->integer('product_id')->unsigned();
-            $table->integer('quantity')->default(0);
+            $table->integer('challan_quantity')->default(0);
             $table->timestamps();
 
             $table->foreign('sales_challan_id')->references('id')->on('sales_challans')->onDelete('cascade');

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class SalesChallanVehicle extends Model{
     
     protected $fillable=[
-		'delivary_medium',
+		'delivery_medium',
 		'own_vehicle_id',
 		'transport_agency_id',
 		'vehicle_no',

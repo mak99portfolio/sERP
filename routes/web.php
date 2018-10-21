@@ -108,6 +108,7 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('discount-generic', 'DiscountGenericController');
     Route::resource('free-bonus-customer-wise', 'FreeBonusCustomerWiseController');
     Route::resource('free-bonus-generic', 'FreeBonusGenericController');
+    Route::resource('sales-order-cancel-reason', 'SalesOrderCancelReasonController');
 
 });
 

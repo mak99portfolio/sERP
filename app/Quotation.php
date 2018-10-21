@@ -31,7 +31,7 @@ class Quotation extends Model
     public function terms_conditions(){
         return $this->hasMany('App\QuotationTermsCondition', 'quotation_id');
     }
-    public function generate_purchase_order_number(){
+    public function generate_quotation_number(){
         $serial = $this->count_last_serial() + 1;
         $this->quotation_no =  'Quo-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
     }

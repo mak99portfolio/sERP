@@ -12,49 +12,28 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <form class="form-horizontal form-label-left input_mask">
+                    @include('partials.flash_msg')
+                    <form class="form-horizontal form-label-left input_mask" action="{{ route('sales-order-cancel.store') }}" method="POST" autocomplete="off">
+                        @csrf
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Cancel Id</label>
-                                    <input type="text" class="form-control input-sm">
-                                </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::select('sales_order_id', 'Sales Order No', $sales_order_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'sales_order_id', 'data-placeholder'=>'Select Sales Order No', 'required','data-popup'=> route('sales-order.index')]) }}
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Sales Order No</label>
-                                    <select name="sales_order_no" id="" class="form-control input-sm select2">
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Reason</label>
-                                    <select name="reason" id="" class="form-control input-sm select2">
-                                        <option value="">abc</option>
-                                        <option value="">def</option>
-                                    </select>
-                                </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::select('sales_order_cancel_reason_id', 'Reason', $sales_order_cancel_reason_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'sales_order_cancel_reason_id', 'data-placeholder'=>'Select Reason', 'required','data-popup'=> route('sales-order-cancel-reason.index')]) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Remarks</label>
-                                    <textarea name="remarks" id="" cols="30" rows="2" class="form-control input-sm"></textarea>
-                                </div>
+                                {{ BootForm::textarea('remarks','Remarks', NULL, ['class'=>'form-control input-sm','rows'=>2]) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <a href="#" class="btn btn-success btn-sm">Save</a>
+                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
                                     <a href="{{ route('sales-order-cancel.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                 </div>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>

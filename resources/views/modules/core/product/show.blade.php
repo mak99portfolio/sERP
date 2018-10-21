@@ -44,7 +44,7 @@
                                         <td><strong>Product Size :</strong>{{$product->product_size->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Product Set :</strong>{{$product->product_set->name}}</td>
+                                        <td><strong>Product Set :</strong>{{empty($product->product_set)?null:$product->product_set->name}}</td>
                                         <td colspan="2"><strong>Product Classification Group: </strong>{{$product->product_category->name}}</td>
                                     </tr>
                                 </tbody>

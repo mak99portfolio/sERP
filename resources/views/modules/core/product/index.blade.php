@@ -46,7 +46,7 @@
                                         <td>{{$product->product_category->name}}</td>
                                         <td>{{$product->product_size->name}}</td>
                                         <td>{{$product->product_type->name}}</td>
-                                        <td>{{$product->product_set->name}}</td>
+                                        <td>{{empty($product->product_set)?null:$product->product_set->name}}</td>
                                         <td>{{$product->product_brand->name}}</td>
                                         <td class="text-center">
                                             <a href="{{route('product.show',$product)}}" class="btn btn-block  btn-default btn-xs"><i class="fa fa-eye"></i>View</a>

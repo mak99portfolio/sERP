@@ -6,6 +6,7 @@ use App\DiscountCustomerWise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Customer;
+use App\Product;
 use Auth;
 use Session;
 use Carbon\Carbon;
@@ -18,6 +19,7 @@ class DiscountCustomerWiseController extends Controller
         $view = view($this->view_root . 'discount_customer_wise');
         $view->with('discount_customer_wise', new DiscountCustomerWise);
         $view->with('customer_list', Customer::pluck('name', 'id')->prepend('',''));
+        $view->with('product_list', Product::all());
         $view->with('discount_customer_wise_list', DiscountCustomerWise::orderBy('id', 'desc')->get());
         return $view;
     }
@@ -28,57 +30,38 @@ class DiscountCustomerWiseController extends Controller
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        foreach($request->items as $item){
+            $discountCustomerWise = new DiscountCustomerWise;
+            $discountCustomerWise->customer_id = $request->customer_id;
+            $discountCustomerWise->product_id = $item['product_id'];
+            $discountCustomerWise->discount_type = $item['discount_type'];
+            $discountCustomerWise->discount_value = $item['discount_value'];
+            $discountCustomerWise->active = isset($item['active']);
+            $discountCustomerWise->creator_user_id = Auth::id();
+            $discountCustomerWise->save();
+        }
+        Session::put('alert-success', 'New Discount rule added successfully!');
+        return redirect()->back();
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\DiscountCustomerWise  $discountCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function show(DiscountCustomerWise $discountCustomerWise)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\DiscountCustomerWise  $discountCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function edit(DiscountCustomerWise $discountCustomerWise)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DiscountCustomerWise  $discountCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, DiscountCustomerWise $discountCustomerWise)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\DiscountCustomerWise  $discountCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(DiscountCustomerWise $discountCustomerWise)
     {
         //

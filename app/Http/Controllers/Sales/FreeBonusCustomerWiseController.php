@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Sales;
 use App\FreeBonusCustomerWise;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Customer;
+use App\Product;
+use Auth;
+use Session;
+use Carbon\Carbon;
 
 class FreeBonusCustomerWiseController extends Controller
 {
@@ -12,6 +17,10 @@ class FreeBonusCustomerWiseController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'free_bonus_customer_wise');
+        $view->with('discount_customer_wise', new FreeBonusCustomerWise);
+        $view->with('customer_list', Customer::pluck('name', 'id')->prepend('',''));
+        $view->with('product_list', Product::all());
+        $view->with('discount_customer_wise_list', FreeBonusCustomerWise::orderBy('id', 'desc')->get());
         return $view;
     }
 

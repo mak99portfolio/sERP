@@ -45,7 +45,7 @@ class SalesOrderController extends Controller
         $sales_order->sales_date=date('Y-m-d',strtotime($request->sales_date));
         $sales_order->generateSalesOrderNumber();
         $sales_order->save();
-        // terms_and_conditions
+        // terms and conditions
         $terms_and_conditions = Array();
         foreach($request->terms_and_conditions as $terms_and_condition){
             array_push($terms_and_conditions, new SalesOrderTermsAndCondition($terms_and_condition));

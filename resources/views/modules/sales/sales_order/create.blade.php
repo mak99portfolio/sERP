@@ -338,7 +338,6 @@
                                         <th>Bonus Quantity</th>
                                         <th>Total Quantity</th>
                                         <th>Net Price</th>
-                                        <th>Vat</th>
                                         <th>Discont</th>
                                         <th>Total Amount</th>
                                         <th class="text-center">Action</th>
@@ -349,12 +348,11 @@
                                         <td><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
                                         <td><% item.name %></td>
                                         <td><% item.uom %></td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][vat]" > </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>"> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]"> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]"> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% quantity[$index] + bonus_quantity[$index] %>"> </td>
+                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" value="<% quantity[$index] * item.unit_price %>"> </td>
                                         <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][discount]" > </td>
                                         <td>10</td>
                                
@@ -513,9 +511,9 @@
                             // console.log($scope.productlist);
                         });
         }
-        $scope.addProducts = function(){
-            console.log($scope.product_ids);
-        }
+        // $scope.addProducts = function(){
+        //     console.log($scope.product_ids);
+        // }
         $scope.checkAvailable = function(product_id){
             index = $scope.itemlist.findIndex(item => item.id==product_id);
             if(index < 0){

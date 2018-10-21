@@ -25,6 +25,8 @@ class CreateSalesOrdersTable extends Migration
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->string('conversion_rate');
             $table->text('remarks')->nullable();
+            $table->integer('company_id')->unsigned()->nullable();
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->integer('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

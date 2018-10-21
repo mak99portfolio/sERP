@@ -52,7 +52,7 @@ class QuotationController extends Controller
         $quotation->fill($request->input());
         $quotation->creator_user_id = Auth::id();
         $quotation->company_id = 1;
-        $quotation->generate_purchase_order_number();
+        $quotation->generate_quotation_number();
         $quotation->delivery_date = \Carbon\Carbon::parse($request->delivery_date)->format('Y-m-d');
         $quotation->save();
         $quotation->items()->createMany($request->get('items'));

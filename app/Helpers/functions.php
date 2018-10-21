@@ -279,3 +279,21 @@ function generate_select_tree($categories, $generation = 0)
         }
     }
 }
+
+function labels($loop, $type="success"){
+
+	$opening="<span class='label label-{$type}'>";
+	$closing="</span> ";
+	$output='';
+
+	//dd($loop);
+
+	if(empty($loop) || count($loop) < 1){
+		$output.=$opening.'Not Specified'.$closing;
+	}else{
+		foreach ($loop as $row) $output.=$opening.$row.$closing;		
+	}
+
+	return $output;
+
+}

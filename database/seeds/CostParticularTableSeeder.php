@@ -12,8 +12,8 @@ class CostParticularTableSeeder extends Seeder
     public function run()
     {
         $data=[
-        	['creator_user_id'=>1, 'name'=>'LC Margin', 'short_name'=>'LCM'],
-        	['creator_user_id'=>1, 'name'=>'LC Commission', 'short_name'=>'LCC']
+        	['creator_user_id'=>1, 'name'=>'SWIFT', 'short_name'=>'SW'],
+        	['creator_user_id'=>1, 'name'=>'Stamp Charge', 'short_name'=>'SC']
         ];
 
         \DB::table('cost_particulars')->insert($data);

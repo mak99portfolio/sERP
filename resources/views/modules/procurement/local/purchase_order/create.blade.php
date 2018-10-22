@@ -500,8 +500,8 @@
             if($scope.quantity[parentIndex][index] > $scope.max_quantity[parentIndex][index] ){
                 $scope.quantity[parentIndex][index] = $scope.max_quantity[parentIndex][index] ;
             }
-            if($scope.quantity[index]<1){
-                $scope.quantity[index] = 1;
+            if($scope.quantity[parentIndex][index]<1){
+                $scope.quantity[parentIndex][index] = 1;
             }
         }
 

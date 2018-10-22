@@ -41,7 +41,7 @@ class LetterOfCreditController extends Controller
         $view->with('currency_list', Currency::pluck('name', 'id')->prepend('-- Select Currency --', ''));
         $view->with('vendor_list', Vendor::pluck('name', 'id')->prepend('-- Select Vendor --', ''));
         $view->with('company_bank_list', CompanyBank::pluck('account_no', 'id')->prepend('-- Select Account --', ''));
-        $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no', 'id')->prepend('-- Select proforma invoice --', ''));
+        $view->with('proforma_invoice_list', ProformaInvoice::pluck('proforma_invoice_no', 'id')->prepend('', ''));
         return $view;
     }
 

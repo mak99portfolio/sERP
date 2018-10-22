@@ -38,7 +38,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{$item->commercial_invoice_no}}</td>
                                         <td>{{$item->date}}</td>
-                                        <td>{{$item->letter_of_credit_id}}</td>
+                                        <td>{{$item->letter_of_credit->letter_of_credit_no}}</td>
                                         <td>{{$item->date}}</td>
                                         <td class="text-right">
                                             <a href="{{route('commercial-invoice.show',$item)}}" class="btn btn-default btn-block btn-xs"><i class="fa fa-eye"></i>View</a>

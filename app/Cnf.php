@@ -69,4 +69,15 @@ class Cnf extends Model
         return $this->belongsTo('App\CompanyProfile','consignee_company_profile_id');
     }
 
+    public function generate_cnf_number(){
+        $serial = $this->count_last_serial() + 1;
+        $this->cnf_no =  'CNF-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
+    }
+
+    private function count_last_serial(){
+        return Cnf::whereYear('created_at', date('Y'))
+                            ->whereMonth('created_at', date('m'))
+                            ->count();
+    }
+
 }

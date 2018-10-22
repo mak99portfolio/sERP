@@ -51,7 +51,7 @@ class CnfController extends Controller
         $cnf->creator_user_id = Auth::id();
         $cnf->company_id = 1;
         $cnf->status = 1;
-        $cnf->cnf_no = time();
+        $cnf->generate_cnf_number();
         $cnf->bill_date = \Carbon\Carbon::parse($request->bill_date)->format('Y-m-d');
         $cnf->bill_of_entry_date = \Carbon\Carbon::parse($request->bill_of_entry_date)->format('Y-m-d');
         $cnf->arrival_date = \Carbon\Carbon::parse($request->arrival_date)->format('Y-m-d');

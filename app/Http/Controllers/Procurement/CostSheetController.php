@@ -41,7 +41,6 @@ class CostSheetController extends Controller
 
         $request->validate([
             'letter_of_credit_id' => 'required|unique:cost_sheets',
-            'currency' => 'required',
             'exchange_rate' => 'required',
             'bdt_amount' => 'required',
             'percent_of_lc_margin' => 'required',

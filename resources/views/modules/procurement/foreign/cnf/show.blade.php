@@ -59,7 +59,7 @@
                                         <td>#</td>
                                         <td>Commercial Invoice No</td>
                                         <td>Commercial Invoice Date</td>
-                                        <td>Container No</td>
+                                        <td>Vessel No</td>
                                     </tr>
                                 </thead>
                                     <tbody>
@@ -68,7 +68,7 @@
                                             <td> {{ $loop->iteration }} </td>
                                             <td> {{ $item->commercial_invoice_no }} </td>
                                             <td> {{ $item->date }} </td>
-                                            <td> {{ $item->container_no }} </td>
+                                            <td> {{ $item->vessel_no }} </td>
                                         </tr>
                                         @endforeach
                                     </tbody>

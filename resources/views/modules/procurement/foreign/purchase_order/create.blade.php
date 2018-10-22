@@ -110,8 +110,11 @@
                                                             <input type="hidden" ng-disabled="!checked[$parent.$index][$index]" class="form-control" name="items[<% $parent.$index %>][<% $index %>][product_id]" value="<% item.product_id %>">
                                                         </label>
                                                     </td>
-                                                    <td><% max_quantity[$parent.$index][$index]=item.quantity %></td>
-                                                    <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="quantity[$parent.$index][$index]" ng-init="quantity[$parent.$index][$index]=item.quantity" class="form-control input-sm" required type="number" name="items[<% $parent.$index %>][<% $index %>][quantity]">  </td>
+                                                    <td><% item.quantity %></td>
+                                                    <td>
+                                                        <input type="hidden" ng-model="max_quantity[$parent.$index][$index]" ng-init="max_quantity[$parent.$index][$index]=item.quantity">
+                                                        <input ng-disabled="!checked[$parent.$index][$index]" ng-model="quantity[$parent.$index][$index]" ng-init="quantity[$parent.$index][$index]=item.quantity" ng-change = "quantityValidate($parent.$index, $index)" class="form-control input-sm" required type="number" min="0" name="items[<% $parent.$index %>][<% $index %>][quantity]">
+                                                    </td>
                                                     <td><% item.uom %></td>
                                                     {{-- <td><input ng-disabled="!checked[$parent.$index][$index]" ng-model="unit_price[$parent.$index][$index]" ng-init="unit_price[$parent.$index][$index]=0" class="form-control input-sm" type="number" name="items[<% $parent.$index %>][<% $index %>][unit_price]" required></td>
                                                     <td class="text-right">
@@ -188,14 +191,15 @@
             return sum;
         }
 
-        $scope.quantityValidate = function(index){
-            if($scope.quantity[index] > $scope.max_quantity[index]){
-                $scope.quantity[index] = $scope.max_quantity[index];
+        $scope.quantityValidate = function(parentIndex, index){
+            if($scope.quantity[parentIndex][index] > $scope.max_quantity[parentIndex][index] ){
+                $scope.quantity[parentIndex][index] = $scope.max_quantity[parentIndex][index] ;
             }
             if($scope.quantity[index]<1){
                 $scope.quantity[index] = 1;
             }
         }
+        
         $scope.validateLoading = function(){
             if($scope.port_of_loading_port_id == $scope.port_of_discharge_port_id){
                 $scope.port_of_loading_port_id = "";

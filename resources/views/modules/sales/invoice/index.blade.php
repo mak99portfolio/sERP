@@ -36,9 +36,9 @@
                                 <tbody>
                                     <tr>
                                         <td>01</td>
-                                        <td>231</td>
-                                        <td>01/03/2018</td>
+                                        <td>231</td> 
                                         <td>011</td>
+                                        <td>01/03/2018</td>
                                         <td>01</td>
                                         <td class="text-center">
                                         <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>

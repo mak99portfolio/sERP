@@ -76,7 +76,7 @@
                                                                     <option value="ratio">Ratio</option>
                                                                 </select>
                                                             </td>
-                                                            <td>
+                                                            <td class="text-center" style="width: 25%">
                                                                 <div class="item">
                                                                     <input type="text" class="form-control input-sm" name="items[<% $index %>][bonus_value]" ng-if="bonus_type[$index] == 'fixed'" required>
                                                                 </div>

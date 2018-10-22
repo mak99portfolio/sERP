@@ -31,7 +31,7 @@
                                         <div class="row">
                                             <div class="well">
                                                 <div class="row">
-                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-sm-offset-3">
                                                         {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer','required']) }}
                                                     </div>
                                                 </div>
@@ -77,7 +77,7 @@
                                                                     <option value="percent">Percent</option>
                                                                 </select>
                                                             </td>
-                                                            <td class="item"><input type="number" class="form-control" name="items[<% $index %>][discount_value]" required></td>
+                                                            <td class="item"><input type="number" class="form-control input-sm" name="items[<% $index %>][discount_value]" required></td>
                                                             <td>
                                                                 <label>
                                                                     <input type="checkbox" class="js-switch" checked name="items[<% $index %>][active]" value="1"/>

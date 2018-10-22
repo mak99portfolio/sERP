@@ -329,7 +329,7 @@ class ApiController extends Controller
         // $data['items'] = $req_items;
         // return response()->json($data);
         foreach (explode(',', $ids) as $key => $id) {
-            $requisition = ForeignRequisition::find($id);
+            $requisition = LocalRequisition::find($id);
             $data['requisitions'][] = $requisition;
             foreach ($requisition->availableItems() as $item) {
                 if ($item->quantity < 1) {

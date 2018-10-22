@@ -92,18 +92,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_of_lading_no','Bill Of Lading No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bill_of_lading_no']) }}
-                                </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('bill_of_lading_date','Bill Of Lading Date', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'bill_of_lading_date']) }}
-                                </div>
+                            
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('vessel_no','Vessel No / Flight No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'vessel_no']) }}
                                 </div>
-                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('container_no','Container No', null, ['class'=>'form-control input-sm','readonly'=>'readonly', 'ng-model'=>'container_no']) }}
-                                </div>
+                               
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <fieldset class="m-t-20">
                                         <legend>Table of Terms and Conditions:</legend>

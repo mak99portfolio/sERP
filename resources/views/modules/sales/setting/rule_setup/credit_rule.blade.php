@@ -23,32 +23,34 @@
                             <div class="tab-pane active" id="credit_rule">
                                 <div class="x_title">
                                     <h2>Credit Rule</h2>
-                                    <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
+                                    <button type="button" class="btn btn-sm btn-default btn-addon pull-right btn-form-toggle"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</button>
                                     <div class="clearfix"></div>
                                 </div>
                                 {{-- @include('partials/flash_msg') --}}
-                                {{ BootForm::open(['model' => $credit_rule, 'store' => 'credit-rule.store', 'update' => 'credit-rule.update']) }}
-                                    <input type="hidden" name="rule_type" value="credit-rule">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::number('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                            {{ BootForm::text('deadline','Deadline', null, ['class'=>'form-control input-sm datepicker']) }}
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <br />
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                                <button type="button" class="btn btn-default btn-sm">Cancel</button>
+                                <div id="form-area" style="display:none">
+                                    {{ BootForm::open(['model' => $credit_rule, 'store' => 'credit-rule.store', 'update' => 'credit-rule.update']) }}
+                                        <input type="hidden" name="rule_type" value="credit-rule">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::number('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                {{ BootForm::text('deadline','Deadline', null, ['class'=>'form-control input-sm datepicker']) }}
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <br />
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                    <button type="button" class="btn btn-default btn-sm btn-form-toggle"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {{ BootForm::close() }}
+                                    {{ BootForm::close() }}
+                                </div>
                                 <div class="table-responsive m-t-30">
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -83,5 +85,17 @@
 @endsection
 
 @section('script')
-
+    <script>
+        $(function(){
+        $('.btn-form-toggle').on('click', function(){
+            $('#form-area').slideToggle('fast', function() {
+                if ($(this).is(':visible')) {
+                    $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
+                } else {
+                    $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
+                }        
+            });
+        });
+    });
+    </script>
 @endsection

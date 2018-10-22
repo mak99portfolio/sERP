@@ -17,10 +17,10 @@ class FreeBonusCustomerWiseController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'free_bonus_customer_wise');
-        $view->with('discount_customer_wise', new FreeBonusCustomerWise);
+        $view->with('free_bonus_customer_wise', new FreeBonusCustomerWise);
         $view->with('customer_list', Customer::pluck('name', 'id')->prepend('',''));
         $view->with('product_list', Product::all());
-        $view->with('discount_customer_wise_list', FreeBonusCustomerWise::orderBy('id', 'desc')->get());
+        $view->with('free_bonus_customer_wise_list', FreeBonusCustomerWise::orderBy('id', 'desc')->get());
         return $view;
     }
 
@@ -30,57 +30,37 @@ class FreeBonusCustomerWiseController extends Controller
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        foreach($request->items as $item){
+            $discountCustomerWise = new FreeBonusCustomerWise;
+            $discountCustomerWise->customer_id = $request->customer_id;
+            $discountCustomerWise->product_id = $item['product_id'];
+            $discountCustomerWise->bonus_type = $item['bonus_type'];
+            $discountCustomerWise->bonus_value = $item['bonus_value'];
+            $discountCustomerWise->active = isset($item['active']);
+            $discountCustomerWise->creator_user_id = Auth::id();
+            $discountCustomerWise->save();
+        }
+        Session::put('alert-success', 'New Bonus rule added successfully!');
+        return redirect()->back();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\FreeBonusCustomerWise  $freeBonusCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function show(FreeBonusCustomerWise $freeBonusCustomerWise)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\FreeBonusCustomerWise  $freeBonusCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function edit(FreeBonusCustomerWise $freeBonusCustomerWise)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FreeBonusCustomerWise  $freeBonusCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, FreeBonusCustomerWise $freeBonusCustomerWise)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\FreeBonusCustomerWise  $freeBonusCustomerWise
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(FreeBonusCustomerWise $freeBonusCustomerWise)
     {
         //

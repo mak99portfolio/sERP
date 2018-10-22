@@ -23,79 +23,81 @@
                             <div class="tab-pane active" id="discount_customer">
                                 <div class="x_title">
                                     <h2>Discount Customer Wise</h2>
-                                    <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
+                                    <button type="button" class="btn btn-sm btn-default btn-addon pull-right btn-form-toggle"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</button>
                                     <div class="clearfix"></div>
                                 </div>
-                                {{ BootForm::horizontal(['model' => $discount_customer_wise, 'store' => 'discount-customer-wise.store', 'update' => 'discount-customer-wise.update']) }}
-                                    <div class="row">
-                                        <div class="well">
-                                            <div class="row">
-                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                    {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer','required']) }}
+                                <div id="form-area" style="display:none">
+                                    {{ BootForm::horizontal(['model' => $discount_customer_wise, 'store' => 'discount-customer-wise.store', 'update' => 'discount-customer-wise.update']) }}
+                                        <div class="row">
+                                            <div class="well">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer','required']) }}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <td colspan="5">
+                                                                <div class="col-lg-12 ol-md-12 col-sm-12 col-xs-12">
+                                                                    <div class="input-group">
+                                                                        <span class="input-group-addon">
+                                                                            Search Product
+                                                                        </span>
+                                                                        <select class="form-control input-sm select2"  data-placeholder="Select Product" ng-model='product_id'>
+                                                                            <option></option>
+                                                                            @foreach ($product_list as $item)
+                                                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                                            @endforeach
+                                                                            
+                                                                        </select>
+                                                                        <span class="input-group-btn">
+                                                                            <button class="btn btn-default btn-sm" type="button" ng-click="addItem()"><i class="fa fa-plus-circle fa-lg text-primary"></i></button>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr ng-show="itemlist.length > 0">
+                                                            <th>Product Name</th>
+                                                            <th>Discount Type</th>
+                                                            <th>Amount</th>
+                                                            <th>Active</th>
+                                                            <th class="text-center">Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr ng-repeat="item in itemlist">
+                                                            <td><% item.name %> <input type="hidden" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
+                                                            <td>
+                                                                <select class="form-control input-sm" name="items[<% $index %>][discount_type]">
+                                                                    <option value="fixed">Fixed</option>
+                                                                    <option value="percent">Percent</option>
+                                                                </select>
+                                                            </td>
+                                                            <td class="item"><input type="number" class="form-control" name="items[<% $index %>][discount_value]" required></td>
+                                                            <td>
+                                                                <label>
+                                                                    <input type="checkbox" class="js-switch" checked name="items[<% $index %>][active]" value="1"/>
+                                                                </label>
+                                                            </td>
+                                                            <td class="text-center"><button type="button" class="btn btn-danger btn-xs" ng-click="removeItem($index)"><i class="fa fa-close"></i></button></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="itemlist.length > 0">
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                                                    <button type="button" class="btn btn-default btn-sm btn-form-toggle"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                            <div class="col-lg-12 ol-md-12 col-sm-12 col-xs-12">
-                                                                <div class="input-group">
-                                                                    <span class="input-group-addon">
-                                                                        Search Product
-                                                                    </span>
-                                                                    <select class="form-control input-sm select2"  data-placeholder="Select Product" ng-model='product_id'>
-                                                                        <option></option>
-                                                                        @foreach ($product_list as $item)
-                                                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                                                        @endforeach
-                                                                        
-                                                                    </select>
-                                                                    <span class="input-group-btn">
-                                                                        <button class="btn btn-default btn-sm" type="button" ng-click="addItem()"><i class="fa fa-plus-circle fa-lg text-primary"></i></button>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr ng-show="itemlist.length > 0">
-                                                        <th>Product Name</th>
-                                                        <th>Discount Type</th>
-                                                        <th>Amount</th>
-                                                        <th>Active</th>
-                                                        <th class="text-center">Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr ng-repeat="item in itemlist">
-                                                        <td><% item.name %> <input type="hidden" name="items[<% $index %>][product_id]" value="<% item.id %>"></td>
-                                                        <td>
-                                                            <select class="form-control input-sm" name="items[<% $index %>][discount_type]">
-                                                                <option value="fixed">Fixed</option>
-                                                                <option value="percent">Percent</option>
-                                                            </select>
-                                                        </td>
-                                                        <td class="item"><input type="number" class="form-control" name="items[<% $index %>][discount_value]" required></td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="checkbox" class="js-switch" checked name="items[<% $index %>][active]" value="1"/>
-                                                            </label>
-                                                        </td>
-                                                        <td class="text-center"><button type="button" class="btn btn-danger btn-xs" ng-click="removeItem($index)"><i class="fa fa-close"></i></button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="itemlist.length > 0">
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
-                                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                                    <button type="button" class="btn btn-default btn-sm">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                {{ BootForm::close() }}
+                                    {{ BootForm::close() }}
+                                </div>
                                 <div class="table-responsive m-t-30">
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -172,6 +174,17 @@
             new PNotify(data);
         }
 
+    });
+    $(function(){
+        $('.btn-form-toggle').on('click', function(){
+            $('#form-area').slideToggle('fast', function() {
+                if ($(this).is(':visible')) {
+                    $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
+                } else {
+                    $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
+                }        
+            });
+        });
     });
 </script>
 @endsection

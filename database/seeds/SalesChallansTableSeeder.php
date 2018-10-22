@@ -22,7 +22,7 @@ class SalesChallansTableSeeder extends Seeder{
     			'sales_challan_id'=>1,
 				'sales_order_id'=>1,
 				'product_id'=>1,
-				'quantity'=>50,
+				'challan_quantity'=>50,
 			],
     	];
 

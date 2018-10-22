@@ -6,68 +6,45 @@ use App\SalesInvoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class SalesInvoiceController extends Controller
-{
-    private $view_root = 'modules/sales/invoice/';
-    public function index()
-    {
-        $view = view($this->view_root . 'index');
-        return $view;
+class SalesInvoiceController extends Controller{
+
+    protected function path(string $suffix){
+        return "modules.sales.invoice.{$suffix}";
     }
 
-    public function create()
-    {
-        $view = view($this->view_root . 'create');
-        return $view;
+    public function index(){
+
+        return view($this->path('index'));
+
     }
 
-    public function store(Request $request)
-    {
-        //
+    public function create(){
+
+        return view($this->path('create'));
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\SalesInvoice  $salesInvoice
-     * @return \Illuminate\Http\Response
-     */
-    public function show(SalesInvoice $salesInvoice)
-    {
-        //
+    public function ui(){
+        return view($this->path('ui'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\SalesInvoice  $salesInvoice
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(SalesInvoice $salesInvoice)
-    {
-        //
+    public function store(Request $request){
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SalesInvoice  $salesInvoice
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, SalesInvoice $salesInvoice)
-    {
-        //
+    public function show(SalesInvoice $salesInvoice){
+        
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\SalesInvoice  $salesInvoice
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(SalesInvoice $salesInvoice)
-    {
-        //
+    public function edit(SalesInvoice $salesInvoice){
+        
+    }
+
+    public function update(Request $request, SalesInvoice $salesInvoice){
+        
+    }
+
+    public function destroy(SalesInvoice $salesInvoice){
+        
     }
 }

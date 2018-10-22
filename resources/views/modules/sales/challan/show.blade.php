@@ -99,13 +99,13 @@
                                                     <td class="text-right">0</td>
                                                     <td class="text-right">0</td>
                                                     <td class="text-right">0</td>
-                                                    <td class="text-right">{{ $row->quantity }}</td>
+                                                    <td class="text-right">{{ $row->challan_quantity }}</td>
                                                 </tr>
                                             @endforeach
                                             <tr>
                                                 <td colspan="7" class="text-right">Total Challan Quantity:</td>
                                                 <td class="text-right">
-                                                    {{ $sales_challan->items()->sum('quantity') }}
+                                                    {{ $sales_challan->items()->sum('challan_quantity') }}
                                                 </td>
                                             </tr>
                                         </tbody>

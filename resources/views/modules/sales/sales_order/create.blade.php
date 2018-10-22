@@ -377,7 +377,7 @@
                                      </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" > Total Vat(10%) </td>
-                                        <td colspan="2"> <% totalNetPrice(total_net_price)*10/100 %> </td>
+                                        <td colspan="2"> <input type="hidden" name="vat" value="10"> <% totalNetPrice(total_net_price)*10/100 %> </td>
                                      </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" >Grand Total</td>

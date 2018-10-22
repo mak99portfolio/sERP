@@ -11,4 +11,7 @@ class SalesOrderTermsAndCondition extends Model
         'description',
         'terms_and_condition_id',
     ];
+    public function terms_and_condition(){
+        return $this->belongsTo('App\TermsAndConditionType', 'terms_and_condition_id');
+    }
 }

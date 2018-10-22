@@ -23,6 +23,7 @@ class CreateSalesOrdersTable extends Migration
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
             $table->integer('customer_id');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->double('vat');
             $table->string('conversion_rate');
             $table->text('remarks')->nullable();
             $table->integer('company_id')->unsigned()->nullable();

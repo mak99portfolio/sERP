@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Sales;
 
 use App\CollectionSchedule;
+use App\SalesInvoice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 class CollectionScheduleController extends Controller
 {
@@ -18,60 +21,42 @@ class CollectionScheduleController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
+        $view->with('sales_invoice_list', SalesInvoice::pluck('name','id')->prepend('-- Select Invoice No --', ''));
         return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        dd($request->input());
+        $request->validate([  
+            'invoice_id' => 'required',
+            'collection_date' => 'required',
+            'amount' => 'required'
+        ]);
+        $collection_schedule = new CollectionSchedule;
+        $collection_schedule->fill($request->input());
+        $collection_schedule->creator_user_id = Auth::id();
+        $collection_schedule->save();
+        Session::put('alert-success', 'Collection Schedule created successfully');
+        return redirect()->route('collection-schedule.create');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CollectionSchedule  $collectionSchedule
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(CollectionSchedule $collectionSchedule)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CollectionSchedule  $collectionSchedule
-     * @return \Illuminate\Http\Response
-     */
     public function edit(CollectionSchedule $collectionSchedule)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CollectionSchedule  $collectionSchedule
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, CollectionSchedule $collectionSchedule)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CollectionSchedule  $collectionSchedule
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(CollectionSchedule $collectionSchedule)
     {
         //

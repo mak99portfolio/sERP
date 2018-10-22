@@ -21,7 +21,7 @@ class ProductTableSeeder extends Seeder
                 'product_brand_id' => 1,
                 'product_model_id' => 1,
                 'product_size_id' => 2,
-                'product_set_id' => 1,
+                'product_set_id' => 4,
                 'serial' => 3,
                 'part_number' => 2,
                 'country_of_origin_country_id' => 1,

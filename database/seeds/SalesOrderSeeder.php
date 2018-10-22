@@ -19,6 +19,7 @@ class SalesOrderSeeder extends Seeder
                 'sales_reference_id' => 1,
                 'currency_id' => 1,
                 'conversion_rate' => 90,
+                'vat' => 90,
                 'remarks' => 'Text',
                 'creator_user_id' => 1
             ],
@@ -29,6 +30,7 @@ class SalesOrderSeeder extends Seeder
                 'sales_reference_id' => 1,
                 'currency_id' => 1,
                 'conversion_rate' => 90,
+                'vat' => 60,
                 'remarks' => 'Text',
                 'creator_user_id' => 1
             ],
@@ -39,6 +41,7 @@ class SalesOrderSeeder extends Seeder
                 'sales_reference_id' => 1,
                 'currency_id' => 1,
                 'conversion_rate' => 90,
+                'vat' => 70,
                 'remarks' => 'Text',
                 'creator_user_id' => 1
             ],
@@ -49,6 +52,7 @@ class SalesOrderSeeder extends Seeder
                 'sales_reference_id' => 1,
                 'currency_id' => 1,
                 'conversion_rate' => 90,
+                'vat' => 80,
                 'remarks' => 'Text',
                 'creator_user_id' => 1
             ],

@@ -164,7 +164,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-md-6 col-md-offset-3">
-                                            {{ BootForm::select('proforma_invoice_ids[]', 'Proforma Invoice NO', $proforma_invoice_list, null, ['class'=>'form-control input-sm select2' ,'multiple','ng-model'=>'pi_id', 'ng-change'=>'searchPI()','required']) }}
+                                            {{ BootForm::select('proforma_invoice_ids[]', 'Proforma Invoice NO', $proforma_invoice_list, null, ['class'=>'form-control input-sm select2' ,'multiple','data-placeholder'=>'Select Proforma Invoice','ng-model'=>'pi_id', 'ng-change'=>'searchPI()','required']) }}
                                         </div>
                                     </div>
                                     {{-- <div class="table-responsive">

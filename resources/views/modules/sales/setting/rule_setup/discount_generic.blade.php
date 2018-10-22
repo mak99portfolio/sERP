@@ -23,52 +23,54 @@
                             <div class="tab-pane active" id="discount_generic">
                                 <div class="x_title">
                                     <h2>Discount Generic</h2>
-                                    <a href="#" class="btn btn-sm btn-default btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
+                                    <button type="button" class="btn btn-sm btn-default btn-addon pull-right btn-form-toggle"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</button>
                                     <div class="clearfix"></div>
                                 </div>
                                 @include('partials/flash_msg')
-                                {{ BootForm::open(['model' => $discount_generic, 'store' => 'discount-generic.store', 'update' => 'discount-generic.update']) }}
-                                    <div class="row">
-                                        <div class="">
-                                            <table class="table table-bordered">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Product Name</th>
-                                                        <th>Discount Type</th>
-                                                        <th>Amount</th>
-                                                        <th>Active</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="item">
-                                                            {{ Form::select('product_id', $product_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Product']) }}
-                                                        </td>
-                                                        <td>
-                                                            <select class="form-control input-sm" name="discount_type">
-                                                                <option value="fixed">Fixed</option>
-                                                                <option value="percent">Percent</option>
-                                                            </select>
-                                                        </td>
-                                                        <td class="item">{{ BootForm::number('discount_value', false, null, ['class'=>'form-control input-sm','required']) }}</td>
-                                                        <td>
-                                                            <label>
-                                                                <input type="checkbox" class="js-switch" checked name="active" value="1"/>
-                                                            </label>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="ln_solid"></div>
-                                            <div class="form-group">
+                                <div id="form-area" style="display:none">
+                                    {{ BootForm::open(['model' => $discount_generic, 'store' => 'discount-generic.store', 'update' => 'discount-generic.update']) }}
+                                        <div class="row">
+                                            <div class="">
+                                                <table class="table table-bordered">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Product Name</th>
+                                                            <th>Discount Type</th>
+                                                            <th>Amount</th>
+                                                            <th>Active</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="item">
+                                                                {{ Form::select('product_id', $product_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Product']) }}
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control input-sm" name="discount_type">
+                                                                    <option value="fixed">Fixed</option>
+                                                                    <option value="percent">Percent</option>
+                                                                </select>
+                                                            </td>
+                                                            <td class="item">{{ BootForm::number('discount_value', false, null, ['class'=>'form-control input-sm','required']) }}</td>
+                                                            <td>
+                                                                <label>
+                                                                    <input type="checkbox" class="js-switch" checked name="active" value="1"/>
+                                                                </label>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="ln_solid"></div>
+                                                <div class="form-group">
                                                     <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                                    <button type="button" class="btn btn-default btn-sm">Cancel</button>
+                                                    <button type="button" class="btn btn-default btn-sm btn-form-toggle"><i class="fa fa-times" aria-hidden="true"></i> Close</button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                {{ BootForm::close() }}
+                                    {{ BootForm::close() }}
+                                </div>
                                 <div class="table-responsive m-t-30">
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
@@ -143,6 +145,17 @@
             new PNotify(data);
         }
 
+    });
+    $(function(){
+        $('.btn-form-toggle').on('click', function(){
+            $('#form-area').slideToggle('fast', function() {
+                if ($(this).is(':visible')) {
+                    $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
+                } else {
+                    $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
+                }        
+            });
+        });
     });
 </script>
 @endsection

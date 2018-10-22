@@ -15,6 +15,7 @@ class SalesOrder extends Model
         'currency_id',
         'customer_id',
         'conversion_rate',
+        'vat',
         'remarks',
     ];
     public function currency()

@@ -52,17 +52,19 @@
                                     <table class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th colspan="2">Terms and Conditions</th>
+                                            <th colspan="3">Terms and Conditions</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <tr>
+                                            <td><strong>#</strong></td>
                                             <td><strong>Term & Condition:</strong></td>
                                             <td><strong>Description:</strong></td>
                                         </tr>
                                         @foreach ($sales_order->terms_and_condition as $item)                                        
                                         <tr>
-                                            <td>{{$item->terms_and_condition_id}}</td>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->terms_and_condition->name}}</td>
                                             <td>{{$item->description}}</td>
                                         </tr>
                                         @endforeach
@@ -82,27 +84,51 @@
                                             <th class="text-center">Bonus Quantity</th>
                                             <th class="text-center">Total Quantity</th>
                                             <th class="text-center">Net Price</th>
-                                            <th class="text-center">Vat</th>
-                                            <th class="text-center">Discont</th>
+                                            <th class="text-center">Discount</th>
                                             <th class="text-center">Total Amount</th>
                                         </tr>
                                         </thead>
                                         <tbody>
+                                                @php
+                                                $total_discount=0;
+                                                @endphp
                                         @foreach ($sales_order->items as $item)
                                             <tr>
-                                                <td>01</td>
-                                                <td>01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
-                                                <td class="text-right">01</td>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$item->product->name}}</td>
+                                                <td>{{$item->product->unit_of_measurement->name}}</td>
+                                                <td>{{$item->unit_price}}</td>
+                                                <td>{{$item->quantity}}</td>
+                                                <td>{{$item->bonus_quantity}}</td>
+                                                <td>{{$item->quantity + $item->bonus_quantity}}</td>
+                                                <td>{{$item->quantity * $item->unit_price}}</td>
+                                                <td>{{$item->discount}}</td>
+                                                @php
+                                                $total_discount+=($item->quantity * $item->unit_price)*$item->discount/100;
+                                                @endphp
+                                                <td>{{($item->quantity * $item->unit_price)-(($item->quantity * $item->unit_price)*$item->discount/100)}}</td>
                                             </tr>
                                             @endforeach
+                                            <tr>
+                                                    <td colspan="9" class="text-right" > Total Quantity </td>
+                                                    <td colspan="2">{{$sales_order->items->sum(function($query){return $query->quantity+$query->bonus_quantity;})}}  </td>
+                                                 </tr>
+                                                <tr>
+                                                    <td colspan="9" class="text-right" > Total Net Price </td>
+                                                    <td colspan="2">{{$total_net_price=$sales_order->items->sum(function($query){return $query->quantity*$query->unit_price;})}} </td>
+                                                 </tr>
+                                                <tr>
+                                                    <td colspan="9" class="text-right" > Total Discount </td>
+                                                <td colspan="2"> {{$total_discount}}</td>
+                                                 </tr>
+                                                <tr>
+                                                    <td colspan="9" class="text-right" > Total Vat(10%) </td>
+                                                    <td colspan="2"> {{$total_vat=$sales_order->items->sum(function($query){return $query->quantity*$query->unit_price;})*$sales_order->vat/100}}</td>
+                                                 </tr>
+                                                <tr>
+                                                    <td colspan="9" class="text-right" >Grand Total</td>
+                                                    <td colspan="2">{{($total_net_price+$total_vat)-$total_discount}}  </td>
+                                                 </tr>
                                         </tbody>
                                     </table>
                                     <table class="table table-bordered">

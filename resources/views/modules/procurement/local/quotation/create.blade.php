@@ -47,7 +47,7 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr ng-repeat='item in itemlist'>
-                                                    <td><% index + 1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
+                                                    <td><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
                                                     </td>
                                                     <td><% item.name %></td>
                                                     <td><% item.uom %></td>

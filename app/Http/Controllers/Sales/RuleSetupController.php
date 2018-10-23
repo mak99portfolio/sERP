@@ -44,11 +44,10 @@ class RuleSetupController extends Controller
         $request->validate([
             'customer_id' => 'required|unique:credit_rules',
             'credit_amount' => 'required',
-            'deadline' => 'required',
+            'days' => 'required',
         ]);
         $credit_rule = new CreditRule;
         $credit_rule->fill($request->input());
-        $credit_rule->deadline = Carbon::parse($request->deadline)->format('Y-m-d');
         $credit_rule->creator_user_id = Auth::id();
         $credit_rule->save();
         Session::put('alert-success', 'New credit rule added successfully!');

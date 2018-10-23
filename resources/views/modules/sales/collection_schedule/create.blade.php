@@ -19,7 +19,7 @@
                         <div class="row">
                         <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                            
-                                    {{ BootForm::select('invoice_id', 'Invoice No',$sales_invoice_list, null, ['class'=>'form-control input-sm select2', 'ng-model'=>'invoice_no']) }}
+                                    {{ BootForm::select('invoice_id', 'Invoice No',['1'=>'1','2'=>'2'], null, ['class'=>'form-control input-sm select2', 'ng-model'=>'invoice_no']) }}
                                 </div>
                      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('invoice_date','Invoice Date', null, ['class'=>'form-control input-sm datepicker','id'=>'date_expected']) }}

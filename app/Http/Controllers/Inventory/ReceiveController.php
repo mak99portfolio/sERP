@@ -261,9 +261,9 @@ class ReceiveController extends Controller{
 
         if($issue) $requisition=$working_unit->incoming_requisitions()->find($issue->inventory_requisition_id);
 
-        if($requisition && $requisition->issue->final_approver()->exists()){
+        if($requisition && $issue->final_approver()->exists()){
 
-            $items=$requisition->issue->items;
+            $items=$issue->items;
 
             $products=[];
 
@@ -272,9 +272,9 @@ class ReceiveController extends Controller{
                 $return_quantity=0;
                 $return_status_id=1;
 
-                if($requisition->issue->return_items()->exists()){
+                if($issue->return_items()->exists()){
 
-                    $return_item=$requisition->issue->return_items()->where('product_id', $item->product_id)->first();
+                    $return_item=$issue->return_items()->where('product_id', $item->product_id)->first();
 
                     if($return_item){
                         $return_quantity=$return_item->return_quantity;
@@ -300,7 +300,7 @@ class ReceiveController extends Controller{
 
             return response()->json([
                 'issue'=>[
-                    'inventory_issue_no'=>$requisition->issue->inventory_issue_no,
+                    'inventory_issue_no'=>$issue->inventory_issue_no,
                     'inventory_requisition_no'=>$requisition->inventory_requisition_no,
                     'receive_from'=>$requisition->sender->name
                 ],

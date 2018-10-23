@@ -102,7 +102,7 @@ class ProductController extends Controller
         // dd($product);
         $product->save();
         Session::put('alert-success', $product->name . ' created successfully');
-        return redirect()->route('product.create');
+        return redirect()->route('product.index');
     }
 
     /**

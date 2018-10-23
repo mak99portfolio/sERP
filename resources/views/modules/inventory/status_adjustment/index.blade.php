@@ -31,7 +31,7 @@
                         	<th>Working Unit</th>
                             <th>Product Id</th>
                             <th>Product Name</th>
-                            <th>Selected Pattern</th>
+                            <th>Selected Type</th>
                             <th>Selected Status</th>
                             <th>Status Changed To</th>
                             <th>Adjusted Quantity</th>
@@ -48,7 +48,7 @@
                             <td>{{ $row->working_unit->name }}</td>
                             <td>{{ $row->product_id }}</td>
                             <td>{{ $row->product->name }}</td>
-                            <td>{{ $row->selected_pattern->name }}</td>
+                            <td>{{ $row->selected_type->name }}</td>
                             <td>{{ $row->selected_status->name }}</td>
                             <td>{{ $row->adjusted_status->name }}</td>
                             <td>{{ $row->quantity }}</td>

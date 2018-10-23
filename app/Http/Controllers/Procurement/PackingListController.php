@@ -64,7 +64,7 @@ class PackingListController extends Controller
         }
         $packing_list->items()->saveMany($packing_list_items);
         Session::put('alert-success', 'Packing List created successfully');
-        return redirect()->route('packing-list.create');
+        return redirect()->route('packing-list.index');
     }
 
     /**

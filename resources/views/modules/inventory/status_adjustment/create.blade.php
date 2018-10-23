@@ -35,7 +35,7 @@
                                     {{ BootForm::select('working_unit_id', 'Working Unit', $working_units, null, ['class'=>'form-control input-sm selectpicker','required', 'data-popup'=> route('working-unit.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                    {{ BootForm::select('selected_pattern_id', 'Select Product Type', $product_types, null, ['class'=>'form-control input-sm selectpicker']) }}
+                                    {{ BootForm::select('selected_type_id', 'Select Product Type', $product_types, null, ['class'=>'form-control input-sm selectpicker']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('selected_status_id', 'Select Product Status', $product_statuses, null, ['class'=>'form-control input-sm selectpicker']) }}
@@ -123,10 +123,10 @@ $(function(){
                 if(slug){
 
                     var working_unit=$('#working_unit_id').val();
-                    var selected_pattern=$('#selected_pattern_id').val();
+                    var selected_type=$('#selected_type_id').val();
                     var selected_status=$('#selected_status_id').val();
 
-                    axios.get(this.config.fetch_product_info_url + '/' + working_unit + '/' + selected_pattern + '/' + selected_status + '/' + slug).then(function(response){
+                    axios.get(this.config.fetch_product_info_url + '/' + working_unit + '/' + selected_type + '/' + selected_status + '/' + slug).then(function(response){
 
                         vm.product=response.data;                
                         loading.close();

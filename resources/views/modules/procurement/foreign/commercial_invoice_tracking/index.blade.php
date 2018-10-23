@@ -47,23 +47,14 @@
                                         <td>
                                             <form action="{{route('save-tracking-date')}}" method="POST">
                                                 @csrf
-                                                @isset($ci_tracking->commercial_invoice_issue_date)
-                                                <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->commercial_invoice_issue_date }}">
+                                                <div class="form-group">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{ $ci->id }}">
+                                                    <input type="text" name="commercial_invoice_issue_date" value="{{ \Carbon\Carbon::parse($ci->date)->format('d-m-Y') }}" class="form-control" readonly>
                                                 </div>
-                                                @else
-                                                <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="commercial_invoice_issue_date" class="form-control datepicker" autocomplete="off">
-                                                    <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
-                                                        </span>
-                                                </div>
-                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            @isset($ci_tracking->commercial_invoice_issue_date)
+                                            @isset($ci->date)
                                             <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>
@@ -79,23 +70,13 @@
                                         <td>
                                             <form action="{{route('save-tracking-date')}}" method="POST">
                                                 @csrf
-                                                @isset($ci_tracking->bill_of_lading_issue_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->bill_of_lading_issue_date }}">
+                                                    <input type="text" class="form-control" readonly value="{{ $ci->bill_of_ladings->first() ? \Carbon\Carbon::parse($ci->bill_of_ladings->first()->bill_of_lading_date)->format('d-m-Y') : null }}">
                                                 </div>
-                                                @else
-                                                <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="bill_of_lading_issue_date" class="form-control datepicker" autocomplete="off">
-                                                    <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
-                                                        </span>
-                                                </div>
-                                                @endisset
                                             </form>
                                         </td>
                                         <td>
-                                            @isset($ci_tracking->bill_of_lading_issue_date)
+                                            @isset($ci->bill_of_ladings->first()->bill_of_lading_date)
                                             <div class="form-group text-center">
                                                 <label class="label label-success">Done</label>
                                             </div>

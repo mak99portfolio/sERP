@@ -55,12 +55,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_ac_name}}</td>
-                                        <td><strong>Branch Name :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_branch_name}}</td>
+                                        <td><strong>A/C No :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_vendor_bank->ac_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_vendor_bank->ac_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_vendor_bank->branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="3"><strong>Bank Name:</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_bank_name}}</td>
+                                        <td colspan="3"><strong>Bank Name:</strong> {{$packingList->commercial_invoice->letter_of_credit->beneficiary_vendor_bank->bank_name}}</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -86,13 +86,10 @@
                             </table>
                             <table class="table table-bordered">
                                 <tbody>
-                                    <tr>
-                                        <td><strong>Bill Of Lading No:</strong> {{$packingList->commercial_invoice->bill_of_lading_no}}</td>
-                                        <td><strong>Bill Of Lading Date:</strong> {{$packingList->commercial_invoice->bill_of_lading_date}}</td>
-                                    </tr>
+                                   
                                     <tr>
                                         <td><strong>Vessel No / Flight No:</strong> {{$packingList->commercial_invoice->vessel_no}}</td>
-                                        <td><strong>Container No:</strong> {{$packingList->commercial_invoice->container_no}}</td>
+                                      
                                     </tr>
                                 </tbody>
                             </table>

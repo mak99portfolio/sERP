@@ -21,7 +21,7 @@ class CollectionScheduleController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        $view->with('sales_invoice_list', SalesInvoice::pluck('name','id')->prepend('-- Select Invoice No --', ''));
+      //  $view->with('sales_invoice_list', SalesInvoice::pluck('name','id')->prepend('-- Select Invoice No --', ''));
         return $view;
     }
 

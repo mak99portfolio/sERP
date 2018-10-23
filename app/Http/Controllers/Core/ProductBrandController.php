@@ -51,7 +51,7 @@ class ProductBrandController extends Controller
         $pb->creator_user_id = Auth::id();
         $pb->save();
         Session::put('alert-success', $pb->name . ' created successfully');
-        return redirect()->route('product-brand.create');
+        return redirect()->route('product-brand.index');
     }
 
     /**

@@ -58,12 +58,12 @@
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>A/C No :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_ac_no}}</td>
-                                        <td><strong>A/C Name :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_ac_name}}</td>
-                                        <td><strong>Branch Name :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_branch_name}}</td>
+                                        <td><strong>A/C No :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_vendor_bank->ac_no}}</td>
+                                        <td><strong>A/C Name :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_vendor_bank->ac_name}}</td>
+                                        <td><strong>Branch Name :</strong> {{$commercialInvoice->letter_of_credit->beneficiary_vendor_bank->branch_name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Bank Name</strong> {{$commercialInvoice->letter_of_credit->beneficiary_bank_name}}</td>
+                                        <td><strong>Bank Name:</strong> {{$commercialInvoice->letter_of_credit->beneficiary_vendor_bank->bank_name}}</td>
                                         <td><strong></strong></td>
                                         <td><strong></strong></td>
                                     </tr>

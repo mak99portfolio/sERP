@@ -216,13 +216,13 @@
                                 {{ BootForm::text('sales_order_no','Sales Order No', null, ['class'=>'form-control input-sm']) }}
                             </div> --}}
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::text('sales_date','Sales Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
+                                {{ BootForm::text('sales_date','Sales Date', date('Y-m-d'), ['class'=>'form-control input-sm','required','readonly']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('currency_id','Currency',$currency_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Currency','style'=>"width: 100%;",'required']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::number('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm','required']) }}
+                                {{ BootForm::number('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('customer_id','Customer',$customer_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Customer','style'=>"width: 100%;",'required']) }}

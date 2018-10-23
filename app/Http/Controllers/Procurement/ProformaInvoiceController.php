@@ -74,7 +74,7 @@ class ProformaInvoiceController extends Controller
         }
         $proforma_invoice->items()->saveMany($items);
         Session::put('alert-success', 'Proforma invoice created successfully');
-        return redirect()->route('proforma-invoice.create');
+        return redirect()->route('proforma-invoice.index');
     }
 
     /**

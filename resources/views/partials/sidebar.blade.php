@@ -16,11 +16,10 @@
               <li><a href="{{route('cost-sheet.index')}}">Cost Sheet</a></li>
               <li><a href="{{route('insurance-cover-note.index')}}">Insurance Cover Note</a></li>
               <li><a href="{{route('commercial-invoice.index')}}">Commercial Invoice</a></li>
-              <li><a href="{{route('commercial-invoice-tracking.index')}}">CI Tracking</a></li>
               <li><a href="{{route('packing-list.index')}}">Packing List</a></li>
               <li><a href="{{route('bill-of-lading.index')}}">Bill of Lading</a></li>
+              <li><a href="{{route('commercial-invoice-tracking.index')}}">CI Tracking</a></li>
               <li><a href="{{route('cnf.index')}}">Duty Tax, Vat, CNF Bill</a></li>
-              <li><a href="{{route('foreign-payment.index')}}">Payments</a></li>
             </ul>
           </li>
           <li><a>Local Purchase<span class="fa fa-chevron-down"></span></a>
@@ -44,29 +43,10 @@
           </li>
         </ul>
       </li>
+      
 
-{{-- Sales --}}
-      <li><a><i class="fa fa-sitemap"></i> Sales <span class="fa fa-chevron-down"></span></a>
-        <ul class="nav child_menu">
-          <li><a href="{{ route('sales-order.index') }}">Sales Order</a></li>
-          <li><a href="{{ route('sales-order-cancel.index') }}">Sales Order Cancel</a></li>
-          <li><a href="{{ route('sales-challan.index') }}">Challan</a></li>
-          <li><a href="{{ route('sales-invoice.index') }}">Invoice</a></li>
-          <li><a href="{{ route('sales-invoice-cancel.index') }}">Invoice Cancel</a></li>
-          <li><a href="{{ route('collection-schedule.index') }}">Collection Schedule</a></li>
-          <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
-          <li><a>Setting <span class="fa fa-chevron-down"></span></a>
-            <ul class="nav child_menu">
-              <li><a href="{{ route('customer.index') }}">Customer Profile</a></li>
-              <li><a href="{{ route('credit-rule.index') }}">Rule Setup</a></li>
-              <li><a href="{{ route('customer-zone.index') }}">Customer Zone</a></li>
-              <li><a href="{{ route('sales-order-cancel-reason.index') }}">Order Cancel Reasons</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-
-
+      
+      
       @can('access_to_inventory')
       <li><a><i class="fa fa-hdd-o"></i> Inventory <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
@@ -88,9 +68,32 @@
         </ul>
       </li>
       @endcan
+
+            {{-- Sales --}}
+            <li><a><i class="fa fa-sitemap"></i> Sales <span class="fa fa-chevron-down"></span></a>
+              <ul class="nav child_menu">
+                <li><a href="{{ route('sales-order.index') }}">Sales Order</a></li>
+                <li><a href="{{ route('sales-order-cancel.index') }}">Sales Order Cancel</a></li>
+                <li><a href="{{ route('sales-challan.index') }}">Challan</a></li>
+                <li><a href="{{ route('sales-invoice.index') }}">Invoice</a></li>
+                <li><a href="{{ route('sales-invoice-cancel.index') }}">Invoice Cancel</a></li>
+                <li><a href="{{ route('collection-schedule.index') }}">Collection Schedule</a></li>
+                <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
+                <li><a>Setting <span class="fa fa-chevron-down"></span></a>
+                  <ul class="nav child_menu">
+                    <li><a href="{{ route('customer.index') }}">Customer Profile</a></li>
+                    <li><a href="{{ route('credit-rule.index') }}">Rule Setup</a></li>
+                    <li><a href="{{ route('customer-zone.index') }}">Customer Zone</a></li>
+                    <li><a href="{{ route('sales-order-cancel-reason.index') }}">Order Cancel Reasons</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
       <li><a><i class="fa fa-dollar"></i> Accounts <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ route('product-costing.index') }}">Product Costing</a></li>
+          <li><a href="{{route('foreign-payment.index')}}">Payments</a></li>
         </ul>
       </li>
       <li><a><i class="fa fa-cogs"></i> Master Data <span class="fa fa-chevron-down"></span></a>

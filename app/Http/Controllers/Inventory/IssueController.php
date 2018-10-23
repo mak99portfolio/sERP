@@ -414,7 +414,7 @@ class IssueController extends Controller{
             $previous_issues=\App\InventoryIssue::where([
                 'requested_working_unit_id'=>$inventory_issue->requested_to->id,
                 'inventory_requisition_id'=>$inventory_issue->requisition->id
-            ])->pluck('id');
+            ])->whereNotNull('final_approver_id')->pluck('id');
 
             //dd($previous_issues);
 

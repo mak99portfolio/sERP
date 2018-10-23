@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Core;
 
 use App\ProductBrand;
 use Illuminate\Http\Request;
-use App\http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Auth;
 use Session;
 
@@ -51,7 +51,7 @@ class ProductBrandController extends Controller
         $pb->creator_user_id = Auth::id();
         $pb->save();
         Session::put('alert-success', $pb->name . ' created successfully');
-        return redirect()->route('product-brand.create');
+        return redirect()->route('product-brand.index');
     }
 
     /**

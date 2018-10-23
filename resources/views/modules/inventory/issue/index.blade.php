@@ -22,9 +22,9 @@
             <div class="x_content">
             <br/>
             {{-- Main content area --}}
-            @include('partials.paginate_header')
+            {{-- @include('partials.paginate_header') --}}
             <div class="table-responsive">
-                <table class="table table-hover table-striped table-bordered">
+                <table  id="datatable-buttons" class="table table-hover table-striped table-bordered">
                     <thead>
                         <tr class='primary'>
                             <th>Issue No</th>
@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($paginate->table as $row)
+                    @foreach($paginate as $row)
                         <tr>
                             <td>{{ $row->inventory_issue_no }}</td>
                             <td>{{ $row->requisition->inventory_requisition_no }}</td>
@@ -75,7 +75,7 @@
                     </tbody>
                 </table>
             </div>
-            @include('partials.paginate_footer')
+            {{-- @include('partials.paginate_footer') --}}
             {{-- End of Main content area --}}
            </div>
        </div>

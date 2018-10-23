@@ -19,7 +19,8 @@ class IssueController extends Controller{
         $inventory_issues=\App\InventoryIssue::where('requested_working_unit_id', $working_unit->id);
         
         $data=[
-            'paginate'=>new Paginate($inventory_issues, ['id'=>'ID']),
+            //'paginate'=>new Paginate($inventory_issues, ['id'=>'ID']),
+            'paginate'=>$inventory_issues->get(),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -414,7 +415,7 @@ class IssueController extends Controller{
             $previous_issues=\App\InventoryIssue::where([
                 'requested_working_unit_id'=>$inventory_issue->requested_to->id,
                 'inventory_requisition_id'=>$inventory_issue->requisition->id
-            ])->pluck('id');
+            ])->whereNotNull('final_approver_id')->pluck('id');
 
             //dd($previous_issues);
 

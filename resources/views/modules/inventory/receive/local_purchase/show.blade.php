@@ -66,7 +66,7 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $stock->product->hs_code }}</td>
                                         <td>{{ $stock->product->name }}</td>
-                                        <td>{{ $inventory_receive->local->purchase_order->items()->where('item_id', $stock->product_id)->first()->quantity }}</td>
+                                        <td>{{ $inventory_receive->local->purchase_order->items()->where('product_id', $stock->product_id)->first()->quantity }}</td>
                                         <td>{{ $stock->receive_quantity }}</td>
                                     </tr>
                                     @endforeach

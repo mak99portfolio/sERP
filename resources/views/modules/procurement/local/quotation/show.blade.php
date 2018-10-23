@@ -70,7 +70,7 @@
                                 <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th colspan="4">Payment Type</th>
+                                                <th colspan="5">Payment Type</th>
                                             </tr>
                                             <tr>
                                                 <th width="40">#</th>

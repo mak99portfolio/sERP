@@ -82,7 +82,7 @@ class LocalRequisition extends Model
     public function generateRequisitionNumber()
     {
         $serial = $this->count_last_serial() + 1;
-        $this->requisition_no = 'LOCAL-REQ-' . date('Y-m-') . str_pad($serial, 4, '0', STR_PAD_LEFT);
+        $this->requisition_no = 'LR-' . date('Y-m-') . str_pad($serial, 4, '0', STR_PAD_LEFT);
     }
     private function count_last_serial()
     {

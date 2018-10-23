@@ -34,7 +34,7 @@ class CommercialInvoice extends Model {
         return $this->hasOne('App\PackingList');
     }
     function letter_of_credit() {
-        return $this->belongsTo('App\LetterOfCredit');
+        return $this->belongsTo('App\LetterOfCredit','letter_of_credit_id');
     }
     function loading_port() {
         return $this->belongsTo('App\Port','port_of_loading_port_id');

@@ -26,7 +26,7 @@
                                     <button type="button" class="btn btn-sm btn-default btn-addon pull-right btn-form-toggle"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</button>
                                     <div class="clearfix"></div>
                                 </div>
-                                <div id="form-area" style="display:none">
+                                <div id="form-area" @if(!old()) style="display:none" @endif>
                                     {{ BootForm::horizontal(['model' => $free_bonus_customer_wise, 'store' => 'free-bonus-customer-wise.store', 'update' => 'free-bonus-customer-wise.update']) }}
                                         <div class="row">
                                             <div class="well">
@@ -191,15 +191,19 @@
 
     });
     $(function(){
+        changeButton();
         $('.btn-form-toggle').on('click', function(){
             $('#form-area').slideToggle('fast', function() {
-                if ($(this).is(':visible')) {
-                    $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
-                } else {
-                    $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
-                }        
+                changeButton();      
             });
         });
+        function changeButton(){
+            if ($('#form-area').is(':visible')) {
+                $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
+            } else {
+                $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
+            }  
+        }
     });
 </script>
 @endsection

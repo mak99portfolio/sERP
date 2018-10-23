@@ -21,7 +21,8 @@ class RequisitionController extends Controller{
         $inventory_requisitions=\App\InventoryRequisition::where('sender_working_unit_id', $working_unit->id);
 
         $data=[
-            'paginate'=>new Paginate($inventory_requisitions, ['inventory_requisition_no'=>'Requisition No']),
+            //'paginate'=>new Paginate($inventory_requisitions, ['inventory_requisition_no'=>'Requisition No']),
+            'paginate'=>$inventory_requisitions->get(),
             'carbon'=>new \Carbon\Carbon
         ];
 
@@ -38,7 +39,8 @@ class RequisitionController extends Controller{
         $incoming_requisitions=\App\InventoryIssueRequest::where('requested_working_unit_id', $working_unit->id);
 
          $data=[
-            'paginate'=>new Paginate($incoming_requisitions, ['inventory_requisition_no'=>'Requisition No']),
+            //'paginate'=>new Paginate($incoming_requisitions, ['inventory_requisition_no'=>'Requisition No']),
+            'paginate'=>$incoming_requisitions->get(),
             'carbon'=>new \Carbon\Carbon
         ];
 

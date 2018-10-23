@@ -22,9 +22,9 @@
                     <div class="x_content" id="popup_area">
                         <br/>
                         {{-- Main content area --}}
-                        @include('partials.paginate_header')
+                        {{-- @include('partials.paginate_header') --}}
                         <div class="table-responsive">
-                            <table class="table table-hover table-striped table-bordered">
+                            <table id="datatable-buttons" class="table table-hover table-striped table-bordered">
                                 <thead>
                                     <tr class='primary'>
                                         <th>Name</th>
@@ -41,7 +41,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($paginate->table as $row)
+                                    {{-- @foreach($paginate->table as $row) --}}
+                                    @foreach($paginate as $row)
                                     <tr>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->short_name }}</td>
@@ -68,7 +69,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        @include('partials.paginate_footer')
+                        {{-- @include('partials.paginate_footer') --}}
                         {{-- End of Main content area --}}
                     </div>
                 </div>

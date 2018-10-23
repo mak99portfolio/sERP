@@ -15,6 +15,15 @@ class CreateCollectionSchedulesTable extends Migration
     {
         Schema::create('collection_schedules', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('invoice_id')->unsigned();
+            $table->foreign('invoice_id')->references('id')->on('sales_invoices')->onDelete('cascade');
+            $table->date('collection_date');
+            $table->double('amount', 8, 2);
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

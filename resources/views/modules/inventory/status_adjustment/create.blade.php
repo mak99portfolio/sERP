@@ -123,10 +123,10 @@ $(function(){
                 if(slug){
 
                     var working_unit=$('#working_unit_id').val();
-                    var selected_pattern=$('#selected_pattern_id').val();
+                    var selected_type=$('#selected_type_id').val();
                     var selected_status=$('#selected_status_id').val();
 
-                    axios.get(this.config.fetch_product_info_url + '/' + working_unit + '/' + selected_pattern + '/' + selected_status + '/' + slug).then(function(response){
+                    axios.get(this.config.fetch_product_info_url + '/' + working_unit + '/' + selected_type + '/' + selected_status + '/' + slug).then(function(response){
 
                         vm.product=response.data;                
                         loading.close();

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Core;
 
 use App\ProductBrand;
 use Illuminate\Http\Request;
-use App\http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Auth;
 use Session;
 

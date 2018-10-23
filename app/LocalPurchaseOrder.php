@@ -64,7 +64,7 @@ class LocalPurchaseOrder extends Model
     }
     public function generate_purchase_order_number(){
         $serial = $this->count_last_serial() + 1;
-        $this->purchase_order_no =  'LOCAL-PO-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
+        $this->purchase_order_no =  'LPO-'.date('Y-m-').str_pad($serial, 4, '0', STR_PAD_LEFT);
     }
 
     private function count_last_serial(){

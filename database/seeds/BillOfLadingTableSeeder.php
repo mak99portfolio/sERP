@@ -63,5 +63,11 @@ class BillOfLadingTableSeeder extends Seeder
                 'unit_price' => 545,
             ]
        ]);
+        \DB::table('bill_of_lading_commercial_invoice')->insert([
+            [
+               'bill_of_lading_id' => 1,
+               'commercial_invoice_id' => 1
+            ]
+       ]);
     }
 }

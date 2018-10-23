@@ -15,7 +15,8 @@ class WorkingUnitController extends Controller{
     public function index(){
     	
     	$data=[
-    		'paginate'=>new Paginate('\App\WorkingUnit', ['name'=>'Name', 'short_name'=>'Short Name']),
+            //'paginate'=>new Paginate('\App\WorkingUnit', ['name'=>'Name', 'short_name'=>'Short Name']),
+    		'paginate'=>\App\WorkingUnit::all(),
     		'carbon'=>new \Carbon\Carbon
     	];
 

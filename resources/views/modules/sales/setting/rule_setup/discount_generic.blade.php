@@ -27,7 +27,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 @include('partials/flash_msg')
-                                <div id="form-area" style="display:none">
+                                <div id="form-area" @if(!old()) style="display:none" @endif>
                                     {{ BootForm::open(['model' => $discount_generic, 'store' => 'discount-generic.store', 'update' => 'discount-generic.update']) }}
                                         <div class="row">
                                             <div class="">
@@ -147,15 +147,19 @@
 
     });
     $(function(){
+        changeButton();
         $('.btn-form-toggle').on('click', function(){
             $('#form-area').slideToggle('fast', function() {
-                if ($(this).is(':visible')) {
-                    $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
-                } else {
-                    $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
-                }        
+                changeButton();      
             });
         });
+        function changeButton(){
+            if ($('#form-area').is(':visible')) {
+                $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
+            } else {
+                $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
+            }  
+        }
     });
 </script>
 @endsection

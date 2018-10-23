@@ -27,18 +27,18 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 {{-- @include('partials/flash_msg') --}}
-                                <div id="form-area" style="display:none">
+                                <div id="form-area" @if(!old()) style="display:none" @endif>
                                     {{ BootForm::open(['model' => $credit_rule, 'store' => 'credit-rule.store', 'update' => 'credit-rule.update']) }}
                                         <input type="hidden" name="rule_type" value="credit-rule">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer']) }}
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::select('customer_id', 'Customer', $customer_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;", 'data-placeholder'=>'Select Customer', 'required']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::number('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm']) }}
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::number('credit_amount','Credit Amount', null, ['class'=>'form-control input-sm', 'required']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                                {{ BootForm::text('deadline','Deadline', null, ['class'=>'form-control input-sm datepicker']) }}
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::number('days','Days', null, ['class'=>'form-control input-sm', 'required']) }}
                                             </div>
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <br />
@@ -58,7 +58,7 @@
                                                 <th width="40">#</th>
                                                 <th>Customer</th>
                                                 <th>Amount</th>
-                                                <th>Deadline</th>
+                                                <th>Days</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -67,7 +67,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->customer->name }}</td>
                                                 <td>{{ $item->credit_amount }}</td>
-                                                <td>{{ $item->deadline }}</td>
+                                                <td>{{ $item->days }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -87,15 +87,19 @@
 @section('script')
     <script>
         $(function(){
-        $('.btn-form-toggle').on('click', function(){
-            $('#form-area').slideToggle('fast', function() {
-                if ($(this).is(':visible')) {
+            changeButton();
+            $('.btn-form-toggle').on('click', function(){
+                $('#form-area').slideToggle('fast', function() {
+                    changeButton();      
+                });
+            });
+            function changeButton(){
+                if ($('#form-area').is(':visible')) {
                     $('.btn-form-toggle').html('<i class="fa fa-times" aria-hidden="true"></i> Close');               
                 } else {
                     $('.btn-form-toggle').html('<i class="fa fa-plus-circle" aria-hidden="true"></i> Add New');                
-                }        
-            });
+                }  
+            }
         });
-    });
     </script>
 @endsection

@@ -71,11 +71,12 @@
                                 </thead>
                                 <tbody>
                                     @foreach($inventory_receive->stocks as $index=>$stock)
+                                    {{-- {{ $inventory_receive->return->issue->requisition->items }} --}}
                                     <tr>
                                         <td>{{ $index+1 }}</td>
                                         <td>{{ $stock->product->hs_code }}</td>
                                         <td>{{ $stock->product->name }}</td>
-                                        <td>{{ $inventory_receive->return->issue->requisition->items()->where('product_id', $stock->product_id)->first()->issued_quantity }}</td>
+                                        <td>{{ $inventory_receive->return->issue->requisition->items()->where('product_id', $stock->product_id)->first()->requested_quantity }}</td>
                                         <td>{{ $inventory_receive->return->issue->items()->where('product_id', $stock->product_id)->first()->issued_quantity }}</td>
                                         <td>{{ $stock->receive_quantity }}</td>
                                         <td>{{ $stock->status->name }}</td>

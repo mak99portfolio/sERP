@@ -56,7 +56,7 @@ class CommercialInvoiceController extends Controller {
         }
         $commercial_invoice->items()->saveMany($ci_items);
         Session::put('alert-success', 'Commercial Invoice created successfully');
-        return redirect()->route('commercial-invoice.create');
+        return redirect()->route('commercial-invoice.index');
     }
 
     public function show(CommercialInvoice $commercialInvoice) {

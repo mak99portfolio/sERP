@@ -13,8 +13,8 @@ class CompanyProfileTableSeeder extends Seeder
     {
         $data=[
             [
-                'name'=>'Arif Prival Ltd.',  
-                'email'=>'a@gmail.com', 
+                'name'=>'Magnum Enterprise(Pvt) Ltd.',  
+                'email'=>'magnum@gmail.com', 
                 'phone'=>'01710355789', 
                 'address'=>'Dhaka', 
                 'country_id'=>'1',

@@ -11,6 +11,7 @@ class CreateSalesInvoicesTable extends Migration{
         Schema::create('sales_invoices', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sales_invoice_no')->unique();
+            $table->integer('customer_id')->unsigned();
             $table->integer('sales_challan_id')->unsigned();
             $table->enum('sales_invoice_status', ['pending', 'in_transit', 'delivered', 'cancelled'])->nullable();
             $table->date('sales_invoice_date')->nullable();

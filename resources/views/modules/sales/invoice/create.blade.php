@@ -83,8 +83,8 @@
                                             <tr>
                                                 <td v-html="index+1"></td>
                                                 <td v-html="row.sales_order_no"></td>
-                                                <td v-html="row.sales_reference_id"></td>
-                                                <td v-html="row.sales_reference_id"></td>
+                                                <td v-html="dFormat(row.sales_date)"></td>
+                                                <td v-html="fetch_reference(row.sales_reference_id)"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -368,6 +368,9 @@ $(function(){
             errors:null
         },
         methods:{
+            dFormat:function(val){
+                return moment(val).format('DD MMM YYYY');
+            },
             parse_num:function(val){
                 if(typeof val=='undefined'){
                     return 0.00;
@@ -383,12 +386,12 @@ $(function(){
                   styling: 'bootstrap3'
                 });
             },
-            fetch_resource:function(url, reference, callback=null){
+            fetch_resource:function(url, reference, callback=null, params=null){
 
                 var loading=$.loading();
                 loading.open(3000);
 
-                axios.get(url).then(function(response){
+                axios.get(url, {params: params}).then(function(response){
 
                     reference.data=response.data.data;
                     loading.close();
@@ -409,14 +412,27 @@ $(function(){
 
                 var ref=this;
 
-                if(!ref.field.customer_id){
+                if(!ref.field.sales_challan_id){
                     ref.alert('Please!, select a challan.');
                     return false;
                 }
 
-                var loading=$.loading();
-                loading.open(3000);
-                
+                var selected_challan=this.resource.sales_challans.data.find(row=>{
+                    return row.id==this.field.sales_challan_id;
+                });
+
+                this.resource.sales_orders.data=selected_challan.sales_orders;
+                this.field.challan_date=moment(selected_challan.challan_date).format('DD MMM YYYY');
+
+                //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
+
+            },
+            fetch_reference:function(id){
+                var referer=this.resource.employees.data.find(row=>{
+                    return row.id==id;
+                })
+
+                return referer.name;
             },
             fetch_sales_orders:function(){
 
@@ -656,8 +672,8 @@ $(function(){
 
         },
         beforeMount(){
-            this.fetch_resource(this.url.resource + '/sales-challan', this.resource.sales_challans);
-            this.fetch_resource(this.url.resource + '/sales-order', this.resource.sales_orders);
+            this.fetch_resource(this.url.resource + '/sales-challan', this.resource.sales_challans, null, {with:['sales_orders']});
+            //this.fetch_resource(this.url.resource + '/sales-order', this.resource.sales_orders);
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);

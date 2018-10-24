@@ -151,12 +151,12 @@ class EmployeeProfileController extends Controller{
 
         $data=[
             'organizational_info'=>$organizational_info,
-            'depatrments'=>\App\Department::pluck('name', 'id'),
-            'designations'=>\App\Designation::pluck('name', 'id'),
-            'workingUnits'=>\App\WorkingUnit::pluck('name', 'id'),
-            'statuses'=>\App\EmployeeOrgInfoStatus::pluck('name', 'id'),
-            'types'=>\App\EmployeeOrgInfoType::pluck('name', 'id'),
-            'companies'=>\App\Company::pluck('name', 'id')
+            'depatrments'=>\App\Department::pluck('name', 'id')->prepend('--Select Department--', ''),
+            'designations'=>\App\Designation::pluck('name', 'id')->prepend('--Select Designation--', ''),
+            'workingUnits'=>\App\WorkingUnit::pluck('name', 'id')->prepend('--Select Working Unit--', ''),
+            'statuses'=>\App\EmployeeOrgInfoStatus::pluck('name', 'id')->prepend('--Select Status--', ''),
+            'types'=>\App\EmployeeOrgInfoType::pluck('name', 'id')->prepend('--Select Type--', ''),
+            'companies'=>\App\Company::pluck('name', 'id')->prepend('--Select Company--', '')
         ];
 
         //dd($data);

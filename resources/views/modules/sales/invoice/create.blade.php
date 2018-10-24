@@ -93,6 +93,19 @@
 
 
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.customer_id }">
+                                    <label for="customer_name" class="control-label">Customer <span class="text-danger hide">*</span></label>
+                                    <input type="text" class="form-control input-sm " ref="customer_name" id="customer_name" v-model="field.customer_name" readonly/>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.customer_name"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
+
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
                                     <label for="delivery_person_id" class="control-label">Delivery Person</label>
                                     <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
@@ -324,6 +337,7 @@ $(function(){
             },
             field:{
                 csrf_token: "{{ csrf_token() }}",
+                customer_name:'',
                 customer_id:'',
                 sales_orders:[],
                 challan_date: '',

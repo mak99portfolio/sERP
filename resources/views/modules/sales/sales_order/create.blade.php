@@ -354,14 +354,14 @@
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>" readonly> </td>
                                         <td class="text-center">
                                             <div class="btn-group">
-                                                    <button type="button" class="btn btn-default btn-sm">20000.00</button>
-                                                    <button type="button" class="btn btn-default btn-sm">
-                                                      <a href="#" data-toggle="modal" data-target="#avi_stock_modal"><i class="fa fa-eye"></i></a>
+                                                    <button type="button" class="btn btn-default btn-sm"><% item.available %></button>
+                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#avi_stock_modal">
+                                                      <a href="#"><i class="fa fa-eye"></i></a>
                                                     </button>
                                             </div>
                                         </td>
-                                        <td> <span>0</span></td>
-                                        <td> <span>0</span></td>
+                                        <td class="text-right"> <% item.intransit %></td>
+                                        <td class="text-right"> <% item.pendign %></td>
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" ng-change="getProductBonus($index)" required > </td>
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]" readonly> </td>
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% total_product_quantity[$index] = quantity[$index] + bonus_quantity[$index] %>" readonly> </td>

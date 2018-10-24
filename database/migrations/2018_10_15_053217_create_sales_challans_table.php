@@ -12,6 +12,7 @@ class CreateSalesChallansTable extends Migration{
             $table->increments('id');
             $table->string('sales_challan_no')->unique();
             $table->date('challan_date')->nullable();
+            $table->enum('sales_challan_status', ['pending', 'pertial_invoiced', 'full_invoiced', 'cancelled'])->nullable();
             $table->integer('mushak_number_id')->unsigned()->nullable();
             $table->integer('delivery_person_id')->unsigned()->nullable();
             $table->integer('creator_user_id')->unsigned()->nullable();

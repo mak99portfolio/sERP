@@ -46,24 +46,10 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.challan_date }">
                                     <label for="challan_date" class="control-label">Challan Date</label>
-                                    {{-- <input type="text" class="form-control input-sm datepicker" ref="challan_date" v-model="field.challan_date"/> --}}
-                                    <vuejs-datepicker v-model="field.challan_date" input-class="form-control input-sm"></vuejs-datepicker>
+                                    <input type="text" class="form-control input-sm" ref="challan_date" v-model="field.challan_date" readonly/>
                                     <span
                                         class="help-block"
                                         v-for="row in errors.challan_date"
-                                        v-html="row"
-                                    ></span>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group" v-bind:class="{ 'has-error': errors.sales_orders }">
-                                    <label for="sales_orders[]" class="control-label">Sales Orders</label>
-                                    <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" v-on:change="update_sales_order_list" multiple>
-                                        <option v-for="(row, index) in resource.sales_orders" v-bind:value="row.id" v-html="row.sales_order_no"></option>
-                                    </select>
-                                    <span
-                                        class="help-block"
-                                        v-for="row in errors.sales_orders"
                                         v-html="row"
                                     ></span>
                                 </div>
@@ -79,19 +65,33 @@
                                     ></span>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group" v-bind:class="{ 'has-error': errors.mushak_number_id }">
-                                    <label for="mushak_number_id" class="control-label">Mushak No</label>
-                                    <select class="form-control input-sm bSelect" ref="mushak_number_id" id="mushak_number_id" name="mushak_number_id" v-model="field.mushak_number_id">
-                                        <option v-for="(row, index) in resource.mushak_numbers.data" v-bind:value="row.id" v-html="row.name"></option>
-                                    </select>
-                                    <span
-                                        class="help-block"
-                                        v-for="row in errors.mushak_number_id"
-                                        v-html="row"
-                                    ></span>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>SL#</th>
+                                                    <th>Sales Order No</th>
+                                                    <th>Order Date</th>
+                                                    <th>Reference</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody v-for="(row, index) in resource.sales_orders.data">
+                                                <tr>
+                                                    <td class="text-center" v-html="index+1"></td>
+                                                    <td class="text-center" v-html="row.sales_order_no"></td>
+                                                    <td class="text-center" v-html="row.sales_reference_id"></td>
+                                                    <td class="text-center" v-html="row.sales_reference_id"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>                                    
                                 </div>
                             </div>
+
+
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
                                     <label for="delivery_person_id" class="control-label">Delivery Person</label>
@@ -302,7 +302,7 @@
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
-<script src="https://unpkg.com/vuejs-datepicker"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuejs-datepicker@1.5.3/dist/vuejs-datepicker.min.js"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
 
 <script>
@@ -326,7 +326,7 @@ $(function(){
                 csrf_token: "{{ csrf_token() }}",
                 customer_id:'',
                 sales_orders:[],
-                challan_date: Date.now(),
+                challan_date: '',
                 invoice_date: Date.now(),
                 mushak_number_id:'',
                 delivery_person_id:'',
@@ -339,9 +339,6 @@ $(function(){
             resource:{
                 sales_challans:{
                     data:[{id:0, name:'--Select Customers--'}]
-                },
-                mushak_numbers:{
-                    data:[{id:0, name:'--Select Mushak Number--'}]
                 },
                 delivery_vehicles:[
                     {id: 'own_vehicle', name: 'Own Vehicle'},
@@ -645,7 +642,7 @@ $(function(){
         },
         beforeMount(){
             this.fetch_resource(this.url.resource + '/sales-challan', this.resource.sales_challans);
-            this.fetch_resource(this.url.resource + '/mushak-number', this.resource.mushak_numbers);
+            this.fetch_resource(this.url.resource + '/sales-order', this.resource.sales_orders);
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);
@@ -657,7 +654,6 @@ $(function(){
         },//End of beforeMount
         updated(){
             $(this.$refs.sales_challan_id).selectpicker('refresh');
-            $(this.$refs.mushak_number_id).selectpicker('refresh');
             $(this.$refs.sales_orders).selectpicker('refresh');
             $(this.$refs.delivery_person_id).selectpicker('refresh');
             $(this.$refs.delivery_vehicle).selectpicker('refresh');

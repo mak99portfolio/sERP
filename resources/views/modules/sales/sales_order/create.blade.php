@@ -327,13 +327,16 @@
                             <table class="table table-bordered table-hover" ng-if="itemlist.length >= 1">
                                 <thead class="bg-default">
                                     <tr>
-                                        <th colspan="12">Sales Order Items</th>
+                                        <th colspan="15">Sales Order Items</th>
                                     </tr>
                                     <tr>
                                         <th>#</th>
                                         <th>Product Name</th>
                                         <th>UOM</th>
                                         <th>Unit Price</th>
+                                        <th width="150px" class="text-center">Available Stock</th>
+                                        <th>Intransit</th>
+                                        <th>Pending</th>
                                         <th>Quantity</th>
                                         <th>Bonus Quantity</th>
                                         <th>Total Quantity</th>
@@ -348,14 +351,24 @@
                                         <td><% $index+1 %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" ng-model="bonus_product_id[$index]" value="<% item.id %>"></td>
                                         <td><% item.name %></td>
                                         <td><% item.uom %></td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>" readonly> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" ng-change="getProductBonus($index)" required > </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]" readonly> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% total_product_quantity[$index] = quantity[$index] + bonus_quantity[$index] %>" readonly> </td>
-                                        <td> <input type="number" class="form-control" min="1" name="items[<% $index %>][net_price]" value="<% total_net_price[$index] =  quantity[$index] * item.unit_price %>" readonly> </td>
+                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>" readonly> </td>
+                                        <td class="text-center">
+                                            <div class="btn-group">
+                                                    <button type="button" class="btn btn-default btn-sm">20000.00</button>
+                                                    <button type="button" class="btn btn-default btn-sm">
+                                                      <a href="#" data-toggle="modal" data-target="#avi_stock_modal"><i class="fa fa-eye"></i></a>
+                                                    </button>
+                                            </div>
+                                        </td>
+                                        <td> <span>0</span></td>
+                                        <td> <span>0</span></td>
+                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" ng-change="getProductBonus($index)" required > </td>
+                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]" readonly> </td>
+                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% total_product_quantity[$index] = quantity[$index] + bonus_quantity[$index] %>" readonly> </td>
+                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][net_price]" value="<% total_net_price[$index] =  quantity[$index] * item.unit_price %>" readonly> </td>
                                         <td> 
-                                            <input type="number" class="form-control" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
-                                            <input type="hidden" class="form-control"   value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>"> 
+                                            <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
+                                            <input type="hidden" class="form-control input-sm"   value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>"> 
                                         </td>
                                         <td>
                                                 {{-- <span><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span> --}}
@@ -364,31 +377,31 @@
                                                 <span ng-if="!(quantity[$index] * item.unit_price)">0</span>
                                         </td>
                                
-                                        <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
+                                        <td class="text-center"><button type="button" class="btn btn-default btn-xs" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="9" class="text-right" > Total Quantity </td>
+                                        <td colspan="12" class="text-right" > Total Quantity </td>
                                         <td colspan="2"> 
                                             <span ng-if="grandProductSum(total_product_quantity)"><% grandProductSum(total_product_quantity) %> </span>
                                             <span ng-if="!(grandProductSum(total_product_quantity))">0</span>
                                         </td>
                                      </tr>
                                     <tr>
-                                        <td colspan="9" class="text-right" > Total Net Price </td>
+                                        <td colspan="12" class="text-right" > Total Net Price </td>
                                         <td colspan="2"> 
                                             <span ng-if="totalNetPrice(total_net_price)"><% totalNetPrice(total_net_price) %>  </span>
                                             <span ng-if="!(totalNetPrice(total_net_price))">0</span>
                                         </td>
                                      </tr>
                                     <tr>
-                                        <td colspan="9" class="text-right" > Total Discount </td>
+                                        <td colspan="12" class="text-right" > Total Discount </td>
                                         <td colspan="2">
                                              <span ng-if="totalDiscount(total_discount)"><% totalDiscount(total_discount) %> </span>
                                              <span ng-if="!(totalDiscount(total_discount))">0</span>
                                         </td>
                                      </tr>
                                     <tr>
-                                        <td colspan="9" class="text-right" > Total Vat(10%) </td>
+                                        <td colspan="12" class="text-right" > Total Vat(10%) </td>
                                         <td colspan="2"> <input type="hidden" name="vat" value="10">
                                              
                                              <span ng-if="totalNetPrice(total_net_price)*10/100"><% totalNetPrice(total_net_price)*10/100 %>  </span>
@@ -396,7 +409,7 @@
                                             </td>
                                      </tr>
                                     <tr>
-                                        <td colspan="9" class="text-right" >Grand Total</td>
+                                        <td colspan="12" class="text-right" >Grand Total</td>
                                         <td colspan="2"> 
                                            
                                             <span ng-if="(totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount)"> <% (totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount) %>  </span>
@@ -433,7 +446,7 @@
                             </div>
                         </div>
                     </form>
-                    <!-- Modal -->
+                    <!--Product Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
                         <div class="modal-dialog modal-lg">
 
@@ -495,6 +508,42 @@
 
                         </div>
                     </div>
+                    {{-- end product modal --}}
+                    <!--Available Stock Modal -->
+                    <div class="modal fade" id="avi_stock_modal" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Available Stock List</h4>
+                                </div>
+                                <div class="modal-body" style="height: 75vh; overflow-y: auto">
+                                    <table class="table table-bordered m-t-lg table-hover">
+                                        <thead class="bg-default">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Depo Name</th>
+                                                <th>Available Stock</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>01</td>
+                                                <td>fgf</td>
+                                                <td>2572</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    {{-- end Available Stock Modal --}}
                 </div>
             </div>
         </div>

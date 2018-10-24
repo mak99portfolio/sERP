@@ -8,7 +8,7 @@ class SalesInvoicesTableSeeder extends Seeder{
         
         $data=[
         	[
-				'sales_invoice_no'=>'INV00',
+				'sales_invoice_no'=>'INV001',
 				'sales_challan_id'=>1,
 				'sales_invoice_status'=>'delivered',
 				'sales_invoice_date'=>\Carbon\Carbon::now(),
@@ -16,7 +16,7 @@ class SalesInvoicesTableSeeder extends Seeder{
 				'shipping_address_id'=>1,
 				'delivery_person_id'=>1
         	],[
-				'sales_invoice_no'=>'INV00',
+				'sales_invoice_no'=>'INV002',
 				'sales_challan_id'=>1,
 				'sales_invoice_status'=>'delivered',
 				'sales_invoice_date'=>\Carbon\Carbon::now(),

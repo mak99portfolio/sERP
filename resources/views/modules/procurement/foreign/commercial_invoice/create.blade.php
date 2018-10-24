@@ -151,13 +151,17 @@
                                                         </label>
                                                     </td>
                                                     <td>
-                                                        <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm", required>
+                                                    <input type="hidden" ng-model="max_quantity[$index]" ng-init="max_quantity[$index]=item.quantity">
+                                                        <input ng-disabled="!checked[$index]" ng-model="quantity[$index]" ng-init="quantity[$index]=item.quantity" type="number" name="items[<%$index%>][quantity]" ng-change="quantityValidate($index)" class="form-control input-sm", required>
                                                     </td>
                                                     <td>
                                                         <input ng-disabled="!checked[$index]" ng-model="unit_price[$index]" ng-init="unit_price[$index]=item.unit_price" type="text" name="items[<%$index%>][unit_price]" class="form-control input-sm" readonly>
                                                     </td>
                                                     <td>
-                                                        <input ng-disabled="!checked[$index]" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*unit_price[$index]" type="text" class="form-control input-sm" disabled>
+
+                                                     
+                                                       
+                                                        <input ng-disabled="!checked[$index]" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*unit_price[$index]" type="text"  class="form-control input-sm" disabled>
                                                     </td>
                                                 </tr>
                                                <tr>
@@ -204,6 +208,7 @@
         $scope.quantity = [];
         $scope.unit_price = [];
         $scope.amount = [];
+        $scope.max_quantity = [];
         $scope.freight = 0;
         $scope.getLc = function () {
             $scope.itemlist = [];
@@ -235,6 +240,15 @@
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index);
+        }
+
+         $scope.quantityValidate = function(index){
+            if($scope.quantity[index] > $scope.max_quantity[index] ){
+                $scope.quantity[index] = $scope.max_quantity[index] ;
+            }
+            if($scope.quantity[index]<1){
+                $scope.quantity[index] = 1;
+            }
         }
 
         $scope.sum = function($arr){

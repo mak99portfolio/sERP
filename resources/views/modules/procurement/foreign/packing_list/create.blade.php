@@ -155,10 +155,11 @@
                                                     <th><% $index+1 %> <input  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
                                                     <td class=""> <% item.name %></td>
                                                     <td>
-                                                        <input ng-change="netSum()"  ng-model="quantity[$index]" ng-init="quantity[$index] = item.quantity" type="number" name="items[<%$index%>][quantity]" class="form-control input-sm">
+                                                        <input type="hidden" ng-model="max_quantity[$index]" ng-init="max_quantity[$index]=item.quantity">
+                                                        <input ng-model="quantity[$index]" ng-init="quantity[$index] = item.quantity" type="number" name="items[<%$index%>][quantity]" ng-change="quantityValidate($index)" class="form-control input-sm">
                                                     </td>
                                                     <td>
-                                                        <input ng-change="netSum()" ng-model="per_unit_weight[$index]" ng-init="per_unit_weight[$index] = item.per_unit_weight" type="number" name="items[<%$index%>][per_unit_weight]" class="form-control input-sm">
+                                                        <input ng-model="per_unit_weight[$index]" ng-init="per_unit_weight[$index] = item.per_unit_weight" type="number" name="items[<%$index%>][per_unit_weight]" class="form-control input-sm">
                                                     </td>
                                                     <td>
                                                         <input ng-change="netSum()" ng-model="amount[$index]" ng-value="amount[$index]=quantity[$index]*per_unit_weight[$index]" type="text" class="form-control input-sm" disabled>
@@ -205,6 +206,7 @@
     app.controller('myCtrl', function($scope, $http) {
         $scope.itemlist = [];
         $scope.quantity = [];
+        $scope.max_quantity = [];
         $scope.per_unit_weight = [];
         $scope.total_weight = [];
         $scope.amount = [];
@@ -255,6 +257,15 @@
                 sum += $arr[i];
             }
             return sum;
+        }
+        $scope.quantityValidate = function(index){
+            if($scope.quantity[index] > $scope.max_quantity[index] ){
+                $scope.quantity[index] = $scope.max_quantity[index] ;
+            }
+            if($scope.quantity[index]<1){
+                $scope.quantity[index] = 1;
+            }
+
         }
     
     $scope.netTotal = function(){

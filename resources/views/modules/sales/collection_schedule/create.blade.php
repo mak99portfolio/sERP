@@ -34,7 +34,7 @@
                                                 {{ BootForm::text('payment_date','Payment Date', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::select('invoice_no','Invoice No', null, ['class'=>'form-control input-sm select2']) }}
+                                                {{ BootForm::select('invoice_no','Invoice No',[], null, ['class'=>'form-control input-sm select2']) }}
                                             </div>
                                         </div>
                                         <div class="text-center">

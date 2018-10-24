@@ -125,13 +125,18 @@ $MENU_TOGGLE.on('click', function() {
 		//alert(this.href);
 		//var regEdit=new RegExp(this.href + "/([0-9]+)/edit", 'g');
 		// return this.href == CURRENT_URL || this.href+'/create' == CURRENT_URL;
-		// console.log('href url', this.href);
-		// console.log('current url', CURRENT_URL);
-		var paragraph = 'abadwords';
-		var regex = /^((?!abadword).)*$/g;
-		var found = paragraph.match(regex);
+		// console.log('a url', this.href);
+		// console.log('b url', CURRENT_URL.substring(0, this.href.length));
+		// return this.href == CURRENT_URL.substring(0, this.href.length);
+		var href = this.href.split('/');
+		var current_url = CURRENT_URL.split('/');
+		for(i=0; i<href.length; i++){
+			if(href[i] != current_url[i]){
+				return false;
+			}
+		}
+		return true;
 
-		console.log(found);
 	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
 		setContentHeight();
 	}).parent().addClass('active');

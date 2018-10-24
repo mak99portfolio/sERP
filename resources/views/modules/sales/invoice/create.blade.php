@@ -33,7 +33,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group " v-bind:class="{ 'has-error': errors.sales_challan_id }">
                                     <label for="sales_challan_id" class="control-label">Sales Challan</label>
-                                    <select class="form-control input-sm bSelect" ref="sales_challan_id" id="sales_challan_id" v-model="field.sales_challan_id" v-on:change="fetch_sales_orders">
+                                    <select class="form-control input-sm bSelect" ref="sales_challan_id" id="sales_challan_id" v-model="field.sales_challan_id" v-on:change="update_sales_challan">
                                           <option v-for="(row, index) in resource.sales_challans.data" v-bind:value="row.id" v-html="row.sales_challan_no"></option>
                                     </select>
                                     <span
@@ -66,29 +66,29 @@
                                 </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>SL#</th>
-                                                    <th>Sales Order No</th>
-                                                    <th>Order Date</th>
-                                                    <th>Reference</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody v-for="(row, index) in resource.sales_orders.data">
-                                                <tr>
-                                                    <td class="text-center" v-html="index+1"></td>
-                                                    <td class="text-center" v-html="row.sales_order_no"></td>
-                                                    <td class="text-center" v-html="row.sales_reference_id"></td>
-                                                    <td class="text-center" v-html="row.sales_reference_id"></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>                                    
-                                </div>
+                            <br>
+
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>SL#</th>
+                                                <th>Sales Order No</th>
+                                                <th>Order Date</th>
+                                                <th>Reference</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody v-for="(row, index) in resource.sales_orders.data">
+                                            <tr>
+                                                <td v-html="index+1"></td>
+                                                <td v-html="row.sales_order_no"></td>
+                                                <td v-html="row.sales_reference_id"></td>
+                                                <td v-html="row.sales_reference_id"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>                                    
                             </div>
 
 
@@ -346,7 +346,9 @@ $(function(){
                     {id: 'customer', name: 'Customer'},
                     {id: 'others', name: 'Others'},
                 ],
-                sales_orders:[{id:0, name:'--Select orders--'}],
+                sales_orders:{
+                    data:[]
+                },
                 delivery_persons:[{id:0, name:'--Select Delivery Persons--'}],
                 own_vehicles:{
                     data:[{id:0, vehicle_no:'--Select Own Vehicle--'}]
@@ -403,6 +405,19 @@ $(function(){
                 });
 
             },
+            update_sales_challan:function(){
+
+                var ref=this;
+
+                if(!ref.field.customer_id){
+                    ref.alert('Please!, select a challan.');
+                    return false;
+                }
+
+                var loading=$.loading();
+                loading.open(3000);
+                
+            },
             fetch_sales_orders:function(){
 
                 var ref=this;
@@ -410,7 +425,7 @@ $(function(){
                 loading.open(3000);
 
                 if(!ref.field.customer_id){
-                    ref.alert('Please!, select a customer.');
+                    ref.alert('Please!, select a challan.');
                     loading.close();
                     return false;
                 }

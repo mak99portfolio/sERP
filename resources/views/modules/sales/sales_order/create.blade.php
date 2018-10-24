@@ -358,30 +358,50 @@
                                             <input type="hidden" class="form-control"   value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>"> 
                                         </td>
                                         <td>
-                                                <span><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span>
+                                                {{-- <span><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span> --}}
+
+                                                <span ng-if="quantity[$index] * item.unit_price "><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span>
+                                                <span ng-if="!(quantity[$index] * item.unit_price)">0</span>
                                         </td>
                                
                                         <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                     </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" > Total Quantity </td>
-                                        <td colspan="2"> <% grandProductSum(total_product_quantity) %> </td>
+                                        <td colspan="2"> 
+                                            <span ng-if="grandProductSum(total_product_quantity)"><% grandProductSum(total_product_quantity) %> </span>
+                                            <span ng-if="!(grandProductSum(total_product_quantity))">0</span>
+                                        </td>
                                      </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" > Total Net Price </td>
-                                        <td colspan="2"> <% totalNetPrice(total_net_price) %> </td>
+                                        <td colspan="2"> 
+                                            <span ng-if="totalNetPrice(total_net_price)"><% totalNetPrice(total_net_price) %>  </span>
+                                            <span ng-if="!(totalNetPrice(total_net_price))">0</span>
+                                        </td>
                                      </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" > Total Discount </td>
-                                        <td colspan="2"> <% totalDiscount(total_discount) %> </td>
+                                        <td colspan="2">
+                                             <span ng-if="totalDiscount(total_discount)"><% totalDiscount(total_discount) %> </span>
+                                             <span ng-if="!(totalDiscount(total_discount))">0</span>
+                                        </td>
                                      </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" > Total Vat(10%) </td>
-                                        <td colspan="2"> <input type="hidden" name="vat" value="10"> <% totalNetPrice(total_net_price)*10/100 %> </td>
+                                        <td colspan="2"> <input type="hidden" name="vat" value="10">
+                                             
+                                             <span ng-if="totalNetPrice(total_net_price)*10/100"><% totalNetPrice(total_net_price)*10/100 %>  </span>
+                                             <span ng-if="!(totalNetPrice(total_net_price)*10/100)">0</span>
+                                            </td>
                                      </tr>
                                     <tr>
                                         <td colspan="9" class="text-right" >Grand Total</td>
-                                        <td colspan="2"> <% (totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount) %> </td>
+                                        <td colspan="2"> 
+                                           
+                                            <span ng-if="(totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount)"> <% (totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount) %>  </span>
+                                            <span ng-if="!((totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount))">0</span>
+                                        </td>
                                      </tr>
                                 </tbody>
                                 <!-- <tfoot class="font-bold">
@@ -659,6 +679,12 @@ $scope.add_condition = function(){
         }
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index,1);
+            $scope.conditions.splice(index,1);
+            $scope.quantity.splice(index,1);
+            $scope.bonus_quantity.splice(index,1);
+            $scope.total_product_quantity.splice(index,1);
+            $scope.total_net_price.splice(index,1);
+            $scope.total_discount.splice(index,1);
         }
         $scope.removeItemById = function(product_id){
             index = $scope.itemlist.findIndex(item => item.id==product_id);

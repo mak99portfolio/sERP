@@ -39,7 +39,7 @@
                                         <td><strong>Product Name:</strong> {{ $status_adjustment->product->name }}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Selected Pattern:</strong> {{ $status_adjustment->selected_pattern->name ?? 'Not Specified' }}</td>
+                                        <td><strong>Selected Type:</strong> {{ $status_adjustment->selected_type->name ?? 'Not Specified' }}</td>
                                         <td><strong>Selected Status:</strong> {{ $status_adjustment->selected_status->name ?? 'Not Specified' }}</td>
                                         <td><strong>Selected Status:</strong> {{ $status_adjustment->adjusted_status->name ?? 'Not Specified' }}</td>
                                         <td><strong>Adjusted Quantity:</strong> {{ $status_adjustment->quantity ?? 'Not Specified' }} Pcs.</td>

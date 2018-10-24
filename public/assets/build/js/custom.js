@@ -124,8 +124,14 @@ $MENU_TOGGLE.on('click', function() {
 	$SIDEBAR_MENU.find('a').filter(function () {
 		//alert(this.href);
 		//var regEdit=new RegExp(this.href + "/([0-9]+)/edit", 'g');
-		return this.href == CURRENT_URL || this.href+'/create' == CURRENT_URL; //|| CURRENT_URL.match(regEdit);
-		// return this.href.split('/')['7'] == CURRENT_URL.split('/')['7'];
+		// return this.href == CURRENT_URL || this.href+'/create' == CURRENT_URL;
+		// console.log('href url', this.href);
+		// console.log('current url', CURRENT_URL);
+		var paragraph = 'abadwords';
+		var regex = /^((?!abadword).)*$/g;
+		var found = paragraph.match(regex);
+
+		console.log(found);
 	}).parent('li').addClass('current-page').parents('ul').slideDown(function() {
 		setContentHeight();
 	}).parent().addClass('active');

@@ -19,7 +19,7 @@ class CreateSalesInvoiceItemsTable extends Migration{
             $table->integer('discount_amount')->default(0);
             $table->timestamps();
 
-            $table->foreign('sales_invoice_id')->references('id')->on('sales_challans')->onDelete('cascade');
+            $table->foreign('sales_invoice_id')->references('id')->on('sales_invoices')->onDelete('cascade');
             $table->foreign('sales_challan_id')->references('id')->on('sales_challans')->onDelete('cascade');
             $table->foreign('sales_order_id')->references('id')->on('sales_orders')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

@@ -16,12 +16,15 @@ class CreateStocksTable extends Migration{
             $table->integer('product_status_id')->unsigned()->nullable();
             $table->integer('product_type_id')->unsigned()->nullable();
             $table->integer('inventory_receive_id')->unsigned()->nullable();
+            $table->integer('sales_order_id')->unsigned()->nullable();
             $table->integer('stock_adjustment_id')->unsigned()->nullable();
             $table->integer('status_adjustment_id')->unsigned()->nullable();
             $table->integer('receive_quantity')->unsigned()->default(0);
             $table->integer('inventory_issue_id')->unsigned()->nullable();
             $table->integer('issue_quantity')->unsigned()->default(0);
             $table->integer('allocated_quantity')->unsigned()->default(0);
+            $table->integer('booked_quantity')->unsigned()->default(0);
+            $table->integer('released_quantity')->unsigned()->default(0);
             $table->string('batch_no')->nullable();
             $table->date('expiration_date')->nullable();
             $table->text('remarks')->nullable();
@@ -37,6 +40,7 @@ class CreateStocksTable extends Migration{
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('cascade');
+            $table->foreign('sales_order_id')->references('id')->on('sales_orders')->onDelete('cascade');
             $table->foreign('inventory_issue_id')->references('id')->on('inventory_issues')->onDelete('cascade');
             $table->foreign('stock_adjustment_id')->references('id')->on('inventory_stock_adjustments')->onDelete('cascade');
 

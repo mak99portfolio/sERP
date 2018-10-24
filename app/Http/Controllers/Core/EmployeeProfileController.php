@@ -16,7 +16,7 @@ class EmployeeProfileController extends Controller{
 
         $data=[
             'paginate'=>new Paginate('\App\EmployeeProfile', [
-                'employee_no'=>'Employee No',
+                'employee_id'=>'Employee ID',
                 'name'=>'Name',
                 'nationality'=>'Nationality',
                 'Present Address'=>'present_address',
@@ -35,7 +35,7 @@ class EmployeeProfileController extends Controller{
         $data=[
             'employee_profile'=>new \App\EmployeeProfile,
             'bloodGroups'=>\App\BloodGroup::pluck('name', 'id'),
-            'employee_no'=>uCode('employee_profiles.employee_no', 'EMP00')
+            'employee_id'=>uCode('employee_profiles.employee_id', 'EMP00')
         ];
 
         return view($this->path('create'), $data);
@@ -50,7 +50,7 @@ class EmployeeProfileController extends Controller{
         //dd($request->all());
 
         $request->validate([
-            'employee_no'=>'required|unique:employee_profiles',
+            'employee_id'=>'required|unique:employee_profiles',
             'name'=>'required',
             'blood_group_id'=>'required',
             'nationality'=>'required',
@@ -91,7 +91,7 @@ class EmployeeProfileController extends Controller{
         $data=[
             'employee_profile'=>$employee_profile,
             'bloodGroups'=>\App\BloodGroup::pluck('name', 'id'),
-            'employee_no'=>$employee_profile->employee_no
+            'employee_id'=>$employee_profile->employee_id
         ];
 
         return view($this->path('create'), $data);
@@ -103,7 +103,7 @@ class EmployeeProfileController extends Controller{
         //dd($employee_profile->organizational_information);
 
         $request->validate([
-            'employee_no'=>'required|unique:employee_profiles,employee_no,'.$employee_profile->id,
+            'employee_id'=>'required|unique:employee_profiles,employee_id,'.$employee_profile->id,
             'name'=>'required',
             'blood_group_id'=>'required',
             'nationality'=>'required',
@@ -156,6 +156,7 @@ class EmployeeProfileController extends Controller{
             'workingUnits'=>\App\WorkingUnit::pluck('name', 'id'),
             'statuses'=>\App\EmployeeOrgInfoStatus::pluck('name', 'id'),
             'types'=>\App\EmployeeOrgInfoType::pluck('name', 'id'),
+            'companies'=>\App\Company::pluck('name', 'id')
         ];
 
         //dd($data);
@@ -173,7 +174,8 @@ class EmployeeProfileController extends Controller{
             'designation_id'=>'required',
             'working_unit_id'=>'required',
             'employee_org_info_status_id'=>'required',
-            'employee_org_info_type_id'=>'required'
+            'employee_org_info_type_id'=>'required',
+            'company_id'=>'required|integer|exists:companies,id'
         ]);
 
         $organizational_info->fill($request->all());

@@ -9,7 +9,7 @@ class EmployeeProfileTableSeeder extends Seeder{
         $data=[
         	[
                 'creator_user_id'=>1,
-                'employee_no'=>'EMP001',
+                'employee_id'=>'EMP001',
                 'name'=>'Libon Khan',
                 'national_id'=>'123456789',
                 'nationality'=>'Bangladeshi',
@@ -20,7 +20,7 @@ class EmployeeProfileTableSeeder extends Seeder{
             ],
         	[
                 'creator_user_id'=>1,
-                'employee_no'=>'EMP002',
+                'employee_id'=>'EMP002',
                 'name'=>'Alvi Taz',
                 'national_id'=>'4654656789',
                 'nationality'=>'Bangladeshi',
@@ -30,7 +30,7 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'user_id'=>3
             ],[
                 'creator_user_id'=>1,
-                'employee_no'=>'EMP003',
+                'employee_id'=>'EMP003',
                 'name'=>'Factory Manager',
                 'national_id'=>'4654656789',
                 'nationality'=>'Bangladeshi',
@@ -40,7 +40,7 @@ class EmployeeProfileTableSeeder extends Seeder{
                 'user_id'=>4
             ],[
                 'creator_user_id'=>1,
-                'employee_no'=>'EMP004',
+                'employee_id'=>'EMP004',
                 'name'=>'Own Driver',
                 'national_id'=>'4654656790',
                 'nationality'=>'Bangladeshi',

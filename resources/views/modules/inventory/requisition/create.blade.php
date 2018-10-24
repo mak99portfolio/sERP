@@ -49,6 +49,48 @@
                             </div>
                             <hr>
                             <div id="vue_app">
+
+                              {{-- Product Modal --}}
+                              <div class="modal fade in" id="product_list" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                                 <div class="modal-dialog">
+                                    <div class="modal-content">
+                                       <div class="modal-header">
+                                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                          <h4 class="modal-title" id="myModalLabel">
+                                             Add Product From List
+                                          </h4>
+                                       </div>
+                                       <div class="modal-body">
+                                        <div class="table-responsive m-t-20">
+                                            <div class="row">
+                                              <div class="col-lg-5 col-md-5 col-sm-5">
+                                                  <div class="form-group">
+                                                      <input class="form-control input-sm" type="text" placeholder="Search Product" v-model='search'>
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            <table class="table table-bordered">
+                                                <tr>
+                                                    <th>Product Name</th>
+                                                    <th>HS Code</th>
+                                                    <th>Add</th>
+                                                </tr>
+                                                <tr v-for="(row, index) in filter_products">
+                                                  <td v-html='row.name'></td>
+                                                  <td v-html='row.hs_code'></td>
+                                                  <td>
+                                                    <button type="button" class="btn btn-default btn-sm" v-on:click="add_product_from_list(index)">
+                                                      <i class="fa fa-plus-circle fa-lg text-primary" aria-hidden="true"></i> Add
+                                                    </button>
+                                                  </td>
+                                                 </tr>
+                                            </table>
+                                        </div>
+                                       </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal-dialog -->
+                              </div><!-- /.modal -->
+
                             <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
                                     {{-- <div class="col-lg-2 col-md-6 col-sm-6">
@@ -88,21 +130,25 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
+                                        <span class="btn-group">
+                                          <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
+                                          <button type="button" class="btn btn-default btn-md m-t-20"  data-toggle="modal" data-target="#product_list">
+                                            <i class="fa fa-bars text-primary"></i>
+                                            From List
+                                          </button>
+                                          </span>
                                     </div>
                                 </div>
                             </div>
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
                                     <tr>
-                                        <th>id</th>
                                         <th>Item name</th>
                                         <th>Stock</th>
                                         <th>Quantity</th>
                                         <th>Delete</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
-  										                <td v-html='product.id'></td>
   										                <td v-html='product.name'></td>
   										                <td v-html='product.stock'></td>
   										                <td>
@@ -143,6 +189,7 @@
         {{-- Content end --}}
     </div>
 </div>
+
 @endsection
 
 @section('script')
@@ -154,9 +201,11 @@ $(function(){
 	var vue=new Vue({
   		el: '#vue_app',
   		data:{
+        search:'',
         config:{
           base_url: "{{ url('inventory/get-product-info/') }}",
-          old_data_url: "{{ url('inventory/vue-old-products') }}"
+          old_data_url: "{{ url('inventory/vue-old-products') }}",
+          resource:"{{ url('api/resource') }}",
         },
   			products:[/*
   				{id:1, name:'First Table', stock:10, quantity:8},
@@ -169,7 +218,12 @@ $(function(){
   				stock:'',
   				quantity:''
   			},
-  			remote_data:'Working..'
+  			remote_data:'Working..',
+        resource:{
+          products:{
+            data:[]
+          }
+        }
   		},
   		methods:{
   			alert:function(event){
@@ -244,14 +298,53 @@ $(function(){
               loading.close();
 
             });
-         }
+         },
+         fetch_resource:function(url, reference, callback=null){
+
+            var loading=$.loading();
+            loading.open(3000);
+
+            axios.get(url).then(function(response){
+
+                reference.data=response.data.data;
+                loading.close();
+                if(typeof callback==='function'){
+                    callback();
+                }
+
+            }).catch(function(){
+
+                loading.close();
+                ref.alert('Sorry!, failed to fetch remote data.');
+
+            });
+
+        },
+        add_product_from_list:function(index){
+          var product=this.resource.products.data[index];
+          this.products.push({
+            hs_code:product.hs_code,
+            id:product.id,
+            name:product.name,
+            stock:'',
+            quantity:''
+          });
+        }
   		},
+      computed: {
+        filter_products() {
+          return this.resource.products.data.filter(row=>{
+            return row.name.toLowerCase().includes(this.search.toLowerCase());
+          })
+        }
+      },
       watch:{
         remote_data:function(){
 
         }
       },
       beforeMount(){
+        this.fetch_resource(this.config.resource + '/product', this.resource.products);
         this.load_old();
       }
 	})//End of vue js

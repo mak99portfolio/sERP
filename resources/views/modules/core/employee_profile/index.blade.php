@@ -42,7 +42,7 @@
                                 <tbody>
                                     @foreach($paginate->table as $row)
                                     <tr>
-                                        <td>{{ $row->employee_no }}</td>
+                                        <td>{{ $row->employee_id }}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ empty($row->blood_group->name)?'':$row->blood_group->name }}</td>
                                         <td>{{ $row->nationality }}</td>

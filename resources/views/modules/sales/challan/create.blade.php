@@ -291,8 +291,8 @@
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
-<script src="https://unpkg.com/vuejs-datepicker"></script>
-<script src="https://unpkg.com/vue-select@latest"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuejs-datepicker@1.5.3/dist/vuejs-datepicker.min.js"></script>
+{{-- <script src="https://unpkg.com/vue-select@latest"></script> --}}
 
 <script>
 $(function(){

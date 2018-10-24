@@ -25,21 +25,23 @@
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th width="25">#</th>
-                                        <th>Collection Schedule No</th>
-                                        <th>Collection Schedule Date</th>
-                                        <th>Sales Reference</th>
-                                        <th>Currency</th>
-                                        <th width="30">Action</th>
+                                    <th>#</th>
+                                        <th>Collection Id</th>
+                                        <th>Collection Date</th>
+                                        <th>Amount</th>
+                                        <th>Invoice Pending Amount</th>
+                                        <th>Status</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>01</td>
-                                        <td>231</td>
-                                        <td>01/03/2018</td>
-                                        <td>011</td>
                                         <td>01</td>
+                                        <td>01/03/2018</td>
+                                        <td>12000</td>
+                                        <td>1000</td>
+                                        <td><span class="label label-success">Success Label</span></td>
                                         <td class="text-center">
                                         <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>

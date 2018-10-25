@@ -17,8 +17,11 @@ use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
+use App\Quotation;
 use App\VendorBank;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ApiController extends Controller
 {
@@ -349,6 +352,22 @@ class ApiController extends Controller
             }
         }
         return response()->json($data);
+    }
+
+    public function getLocalRequisitionByDateForQuotationCompare(Request $request){
+        $date_range = explode(' - ', $request->date_range);
+        $start_date = Carbon::parse($date_range[0])->format('Y-m-d');
+        $end_date = Carbon::parse($date_range[1])->format('Y-m-d');
+
+        $requisitions = LocalRequisition::whereBetween('issued_date', [$start_date, $end_date])->get();
+        $data['requisitions'] = $requisitions;
+        return response()->json($data);
+    }
+
+    public function getLocalRequisitionItemsFromQuotationByRequisitionId($id){
+        $quo = Quotation::where("local_requisition_id", $id)->first()->items;
+        // dd($quo);
+        return response()->json($quo);
     }
 
     public function getRequisitionItemsForQuotationByLocalRequisitionId($id)

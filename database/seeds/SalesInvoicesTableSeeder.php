@@ -14,6 +14,7 @@ class SalesInvoicesTableSeeder extends Seeder{
 				'sales_invoice_status'=>'delivered',
 				'sales_invoice_date'=>\Carbon\Carbon::now(),
 				'invoice_address_id'=>1,
+				'gate_pass_id'=>1,
 				'shipping_address_id'=>1,
 				'delivery_person_id'=>1
         	],[
@@ -23,6 +24,7 @@ class SalesInvoicesTableSeeder extends Seeder{
 				'sales_invoice_status'=>'delivered',
 				'sales_invoice_date'=>\Carbon\Carbon::now(),
 				'invoice_address_id'=>1,
+				'gate_pass_id'=>1,
 				'shipping_address_id'=>1,
 				'delivery_person_id'=>1
         	],[
@@ -32,6 +34,7 @@ class SalesInvoicesTableSeeder extends Seeder{
 				'sales_invoice_status'=>'delivered',
 				'sales_invoice_date'=>\Carbon\Carbon::now(),
 				'invoice_address_id'=>1,
+				'gate_pass_id'=>1,
 				'shipping_address_id'=>1,
 				'delivery_person_id'=>1
         	],[
@@ -41,6 +44,7 @@ class SalesInvoicesTableSeeder extends Seeder{
 				'sales_invoice_status'=>'delivered',
 				'sales_invoice_date'=>\Carbon\Carbon::now(),
 				'invoice_address_id'=>1,
+				'gate_pass_id'=>1,
 				'shipping_address_id'=>1,
 				'delivery_person_id'=>1
         	],

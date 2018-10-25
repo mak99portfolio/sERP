@@ -40,7 +40,7 @@ class CreateStocksTable extends Migration{
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('inventory_receive_id')->references('id')->on('inventory_receives')->onDelete('cascade');
-            $table->foreign('sales_order_id')->references('id')->on('sales_orders')->onDelete('cascade');
+            //$table->foreign('sales_order_id')->references('id')->on('sales_orders')->onDelete('cascade');
             $table->foreign('inventory_issue_id')->references('id')->on('inventory_issues')->onDelete('cascade');
             $table->foreign('stock_adjustment_id')->references('id')->on('inventory_stock_adjustments')->onDelete('cascade');
 

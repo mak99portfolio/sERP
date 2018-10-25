@@ -8,7 +8,12 @@ class CompaniesTableSeeder extends Seeder{
         
         $data=[
         	[
-        		'name'=>'Megnum Enterprise Ltd.',
+                'name'=>'Megnum Enterprise Ltd.',
+                'location'=>'Dhaur Dhaka',
+                'email'=>'info@megnum-ltd.com',
+                'phone'=>'+88020202', 'creator_id'=>1
+            ],[
+        		'name'=>'Popular Motoros.',
         		'location'=>'Dhaur Dhaka',
         		'email'=>'info@megnum-ltd.com',
         		'phone'=>'+88020202', 'creator_id'=>1

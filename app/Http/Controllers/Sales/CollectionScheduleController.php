@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Sales;
 
 use App\CollectionSchedule;
 use App\SalesInvoice;
+use App\Customer;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -21,7 +22,7 @@ class CollectionScheduleController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-      //  $view->with('sales_invoice_list', SalesInvoice::pluck('name','id')->prepend('-- Select Invoice No --', ''));
+        $view->with('customer_list', Customer::pluck('name','id')->prepend('-- Select Customer --', ''));
         return $view;
     }
 

@@ -31,7 +31,8 @@ class CompanyProfileController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:company_profiles',
-            'email' => 'required|unique:company_profiles',
+            'email' => 'required',
+            'phone' => 'required',
         ]);
 
         $company_profile = new CompanyProfile;

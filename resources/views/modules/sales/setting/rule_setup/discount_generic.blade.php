@@ -114,36 +114,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        $scope.itemlist = [];
-        $scope.amount = [];
-        $scope.addItem = function () {
-            let url = "{{URL::to('get-product')}}/" + $scope.product_id;
-                $http.get(url)
-                        .then(function(response) {
-                            $scope.itemlist.push(response.data);
-                        });
-            // $scope.itemlist.push(item);
-        }
-        $scope.removeItem = function(index){
-            $scope.itemlist.splice(index,1);
-        }
-        $scope.sum = function($arr){
-            var sum = 0;
-            for(i=0; i<$arr.length; i++){
-                sum += $arr[i];
-            }
-            return sum;
-        }
-        $scope.warning = function(msg){
-            var data = {
-                'title': 'Warning!',
-                'text': msg,
-                'type': 'notice',
-                'styling': 'bootstrap3',
-            };
-            PNotify.removeAll();
-            new PNotify(data);
-        }
+      
 
     });
     $(function(){

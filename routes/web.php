@@ -101,6 +101,8 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
     Route::resource('collection-schedule', 'CollectionScheduleController');
     Route::resource('payment-schedule', 'PaymentScheduleController');
+    Route::resource('delivery-schedule', 'DeliveryScheduleController');
+    Route::resource('invoice-schedule', 'InvoiceScheduleController');
     // Setting
     Route::resource('customer', 'CustomerController');
     Route::resource('customer-zone', 'CustomerZoneController');
@@ -211,6 +213,7 @@ Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPi
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
 Route::get('/get-all-product/{product_group_id}', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
 Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
+Route::get('/get-invoice/{id}', ['as' => 'get-invoice', 'uses' => 'ApiController@getInvoiceByCustomerId']);
 Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
 Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
 Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
@@ -224,8 +227,8 @@ Route::get('/get-local-requisition-by-date-range', ['as' => 'get-local-requisiti
 Route::get('/get-local-requisition-items-from-quotation/{id}', ['as' => 'get-local-requisition-items-from-quotation', 'uses' => 'ApiController@getLocalRequisitionItemsFromQuotationByRequisitionId']);
 // Sales
 Route::get('/get-all-employee-by-designation/{id}', ['as' => 'get-all-employee-by-designation', 'uses' => 'ApiController@getEmployeeByDesignation']);
-Route::get('/get-product-for-sales-order/{id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
-Route::get('/get-product-bonus/{id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
+Route::get('/get-product-for-sales-order/{id}/{customer_id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
+Route::get('/get-product-bonus/{quantity}/{customer_id}/{product_id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
 
 
 //ACL (Access Control Limit)

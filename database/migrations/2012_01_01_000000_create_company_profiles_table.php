@@ -18,6 +18,9 @@ class CreateCompanyProfilesTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
+            $table->string('telephone')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('website')->nullable();
             $table->string('address')->nullable();
             $table->integer('country_id')->unsigned()->nullable();
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

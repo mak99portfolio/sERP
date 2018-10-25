@@ -56,6 +56,7 @@ class SalesChallanController extends Controller{
             $sales_challan->sales_challan_no=uCode('sales_challans.sales_challan_no', 'SCL00');
             $sales_challan->creator()->associate(\Auth::user());
             $sales_challan->challan_date=\Carbon\Carbon::parse($request->get('challan_date'));
+            $sales_challan->sales_challan_status='pending';
 
             $sales_challan->fill($request->only(
                 'customer_id',

@@ -28,6 +28,16 @@ class ResourceController extends Controller{
 
 		}
 
+		if(is_string($resource) && $request->get('where_in')){
+
+			$resource=$resource::whereIn($request->get('field'), $request->get('where_in'));
+
+		}elseif($request->get('where_in')){
+
+			$resource=$resource->WhereIn($request->get('field'), $request->get('where_in'));
+
+		}
+
 		if(is_string($resource)) return ResourcePlaceholder::collection($resource::all());
 		return ResourcePlaceholder::collection($resource->get());
 

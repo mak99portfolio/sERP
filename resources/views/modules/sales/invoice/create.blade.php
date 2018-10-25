@@ -104,6 +104,35 @@
                                 </div>
                             </div>
 
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.invoice_address_id }">
+                                    <label for="invoice_address_id" class="control-label">Invoice Address</label>
+                                    <select class="form-control input-sm bSelect"  ref="invoice_address_id" id="invoice_address_id" v-model="field.invoice_address_id">
+                                        <option v-for="(row, index) in resource.customer_addresses.data
+                                        " v-bind:value="row.id" v-html="row.address"></option>
+                                    </select>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.invoice_address_id"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.gate_pass_id }">
+                                    <label for="gate_pass_id" class="control-label">Gate Pass</label>
+                                    <select class="form-control input-sm bSelect"  ref="gate_pass_id" id="gate_pass_id" v-model="field.gate_pass_id">
+                                        <option v-for="(row, index) in resource.customer_addresses.data
+                                        " v-bind:value="row.id" v-html="row.address"></option>
+                                    </select>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.gate_pass_id"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
@@ -348,7 +377,8 @@ $(function(){
                 delivery_vehicles:[],
                 sales_order_items:[],
                 total_challan_quantity:0,
-                shipping_address_id:''
+                shipping_address_id:'',
+                invoice_address_id:''
             },
             resource:{
                 sales_challans:{
@@ -372,6 +402,9 @@ $(function(){
                 },
                 vendors:{
                     data:[{id:0, name:'--Select Transport Agency--'}]
+                },
+                customers:{
+                    data:[{id:0, name:'--Select Customer--'}]
                 },
                 customer_addresses:{
                     data:[{id:0, address:'--Select Customer Address--'}]
@@ -437,6 +470,18 @@ $(function(){
 
                 this.resource.sales_orders.data=selected_challan.sales_orders;
                 this.field.challan_date=moment(selected_challan.challan_date).format('DD MMM YYYY');
+
+                var related_customer=this.resource.customers.data.find(row=>{
+                    return row.id==selected_challan.customer_id;
+                });
+
+                this.field.customer_id='';
+                this.field.customer_name='';
+
+                if(related_customer){
+                    this.field.customer_id=related_customer.id;
+                    this.field.customer_name=related_customer.name;
+                }else this.alert('This challan does\'t associate with any customer');
 
                 //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
 
@@ -691,6 +736,7 @@ $(function(){
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);
+            this.fetch_resource(this.url.resource + '/customer', this.resource.customers);
             //this.fetch_resource(this.url.resource + '/customer-address', this.resource.customer_addresses);
             this.fetch_delivery_persons();
             this.reset_error();

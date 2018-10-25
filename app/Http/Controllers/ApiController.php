@@ -18,6 +18,7 @@ use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
 use App\VendorBank;
+use App\SalesInvoice;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -396,6 +397,11 @@ class ApiController extends Controller
         }
     }
 
+    public function getInvoiceByCustomerId($id)
+    {
+        $si_list = SalesInvoice::find($id);
+
+    }
     public function getCiByCiId($id)
     {
         $ci = CommercialInvoice::find($id);

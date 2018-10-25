@@ -18,7 +18,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('customer', 'Customer',$customer_list,null, ['class'=>'form-control input-sm select2']) }}
+                                {{ BootForm::select('customer', 'Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>"customer_id",'ng-change'=>"getInvoice()"]) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::number('dues','Dues', null, ['class'=>'form-control input-sm'])}}
@@ -105,52 +105,25 @@
         $scope.total_net_amount = [];
         $scope.payment_terms = [];
         $scope.conditions = [];
+        $scope.payments = [];
 
-       
+         $scope.getInvoice = function () {
+     alert($scope.customer_id);
+ 
+    }
        $scope.add_payment = function(){
-
+        var payment = {};
+        
+            payment.id = item.id;
+            payment.name = item.name;
+            payment.description = $scope.condition_description;
+            $scope.payments.push(payment);
+            $scope.condition_description = null;
             
 }
 
 
-        $scope.add_terms = function(){
-            var term = {};
-            if(!$scope.payment_type){
-                $scope.warning('Please select a payment type first');
-                return;
-            }
-
-            if(!$scope.payment_terms_amount){
-                $scope.warning('Payment amount is empty');
-                return;
-            }
-
-            if(!$scope.payment_terms_description){
-                $scope.warning('Payment description is empty');
-                return;
-            }
-
-            if(!$scope.payment_terms_date){
-                $scope.warning('Payment date is empty');
-                return;
-            }
-
-            var item = JSON.parse($scope.payment_type);
-
-            term.id = item.id;
-            term.name = item.name;
-            term.date = $scope.payment_terms_date;
-            term.description = $scope.payment_terms_description;
-            term.amount = $scope.payment_terms_amount;
-            $scope.payment_terms.push(term);
-            $scope.payment_terms_description = null;
-            $scope.payment_terms_amount = null;
-        }
-
-        $scope.removeTerms = function(index){
-            $scope.payment_terms.splice(index, 1);
-        }
-
+        
 
 
         $scope.add_condition = function(){

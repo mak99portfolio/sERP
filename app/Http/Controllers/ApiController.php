@@ -399,8 +399,8 @@ class ApiController extends Controller
 
     public function getInvoiceByCustomerId($id)
     {
-        $si_list = SalesInvoice::find($id);
-
+        $data['si_list']= SalesInvoice::where('customer_id', $id)->get();
+ dd($data['si_list']);
     }
     public function getCiByCiId($id)
     {
@@ -560,9 +560,6 @@ class ApiController extends Controller
 
     public function getProductForSalesOrder($id)
     {
-
-
-        $pendign = \App\SalesOrderItem::where('product_id',$id)->sum('quantity');
         $product = Product::find($id);
         $data = [
             'id' => $product->id,
@@ -570,9 +567,6 @@ class ApiController extends Controller
             'hs_code' => $product->hs_code,
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
-            'available' => 100,
-            'intransit' => 20,
-            'pendign' => $pendign,
             'discount' => 10,
         ];
         return response()->json($data);

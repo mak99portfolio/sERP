@@ -23,21 +23,35 @@
                                 {{ BootForm::select('so_no','SO No',[], null, ['class'=>'form-control input-sm select2'])}}
                             </div>
                             <div class="col-lg-12 col-sm-12 col-sm-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-hover">
+                                <div class="table-responsive m-t-20">
+                                    <table class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th width="25">#</th>
                                                 <th class="text-center">Name</th>
                                                 <th class="text-center">Quantity</th>
-                                                <th class="text-center">Delivery Quantity</th>
+                                                <th class="text-center" width="200px;">Delivery Quantity</th>
                                                 <th class="text-center">Date</th>
                                                 <th width="30">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>01</td>
+                                                <td rowspan="2">01</td>
+                                                <td class="text-center">product</td>
+                                                <td class="text-right">320</td>
+                                                <td class="text-center"><input type="text" class="form-control input-sm"></td>
+                                                <td class="text-center" rowspan="2">20/03/2018</td>
+                                                <td class="text-center" rowspan="2"><button type="button" class="btn btn-default btn-sm" title="Remove"><i class="fa fa-trash text-danger"></i></button></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-center">product</td>
+                                                <td class="text-right">320</td>
+                                                <td class="text-center"><input type="text" class="form-control input-sm"></td>
+                                                
+                                            </tr>
+                                            <tr>
+                                                <td>02</td>
                                                 <td class="text-center">product</td>
                                                 <td class="text-right">320</td>
                                                 <td class="text-center"><input type="text" class="form-control input-sm"></td>

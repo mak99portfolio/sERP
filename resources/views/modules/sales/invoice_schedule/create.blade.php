@@ -13,32 +13,31 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    @include("partials/flash_msg")
                     <form class="form-horizontal form-label-left" action="{{route('invoice-schedule.store')}}" method="POST" autocomplete="off">
-                        @csrf
+                        
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::select('customer', 'Customer',[], null, ['class'=>'form-control input-sm select2']) }}
                             </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::number('dues','Dues', null, ['class'=>'form-control input-sm'])}}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::select('so_no','SO No',[], null, ['class'=>'form-control input-sm select2'])}}
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                {{ BootForm::text('total_invoice_amount','Total Invoice Amount', null, ['class'=>'form-control input-sm'])}}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="panel panel-default">
+                                <div class="panel panel-default m-t-20">
                                     <div class="panel-body">
                                         <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::number('payment_amount','Payment Amount', null, ['class'=>'form-control input-sm']) }}
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::number('invoice_amount','Invoice Amount', null, ['class'=>'form-control input-sm']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('payment_date','Payment Date', null, ['class'=>'form-control input-sm']) }}
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::select('invoice_no','Invoice No',[], null, ['class'=>'form-control input-sm select2']) }}
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm']) }}
                                             </div>
                                         </div>
                                         <div class="text-center">
-                                            <button type="button" class="btn btn-default btn-sm" style="margin-top: 5px"><i class="fa fa-plus"></i> Add Multi Payment</button>
+                                            <button type="button" class="btn btn-default btn-sm" style="margin-top: 5px"><i class="fa fa-plus"></i> Add</button>
                                         </div>
                                     </div>
                                 </div>
@@ -49,9 +48,8 @@
                                     <thead class="bg-primary">
                                         <tr>
                                             <th width="25">#</th>
-                                            <th class="text-right">Amount</th>
+                                            <th class="text-center">Invoice Amount</th>
                                             <th class="text-center">Date</th>
-                                            <th class="text-right">Invoice No</th>
                                             <th width="30">Action</th>
                                         </tr>
                                     </thead>
@@ -60,7 +58,6 @@
                                             <td>01</td>
                                             <td class="text-right">200</td>
                                             <td class="text-center">20/03/2018</td>
-                                            <td class="text-right">32200</td>
                                             <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
@@ -71,7 +68,7 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
                                     <a href="{{ route('collection-schedule.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                 </div>
                             </div>

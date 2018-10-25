@@ -27,6 +27,7 @@
                                     <div class="clearfix"></div>
                                 </div>
                                 <div id="form-area" @if(!old()) style="display:none" @endif>
+                                    @include('partials/flash_msg')
                                     {{ BootForm::open(['model' => $free_bonus_generic, 'store' => 'free-bonus-generic.store', 'update' => 'free-bonus-generic.update']) }}
                                         <div class="row">
                                             <div class="">
@@ -50,15 +51,14 @@
                                                                     <option value="ratio">Ratio</option>
                                                                 </select>
                                                             </td>
-                                                            <td>
+                                                            <td class="text-center" style="width: 25%">
                                                                 <div class="item">
                                                                     <input type="text" class="form-control input-sm" name="bonus_value" ng-if="bonus_type == 'fixed'" required>
                                                                 </div>
                                                                 <div class="input-group item" ng-if="bonus_type == 'ratio'">
-                                                                    <input type="number" class="form-control input-sm" ng-model="free_quantity" placeholder="Free" required>
+                                                                    <input type="number" class="form-control input-sm" name="bonus_value" ng-model="bonus_value" placeholder="Free" required>
                                                                     <span class="input-group-addon">&ratio;</span>
-                                                                    <input type="number" class="form-control input-sm" ng-model="quantity" min="1" placeholder="Quantity" required>
-                                                                    <input type="hidden" value="<% free_quantity/quantity %>" name="bonus_value">
+                                                                    <input type="number" class="form-control input-sm" name="quantity" ng-model="quantity" min="1" placeholder="Quantity" required>
                                                                 </div>
                                                             </td>
                                                             <td>
@@ -98,7 +98,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->product->name }}</td>
                                                 <td>{{ $item->bonus_type }}</td>
-                                                <td>{{ $item->bonus_value }}</td>
+                                                <td>{{ $item->bonus_value }}{{ $item->bonus_type == 'ratio' ? " :" . $item->quantity : null }}</td>
                                                 <td>{{ $item->active ? "active": "inactive" }}</td>
                                             </tr>
                                             @endforeach
@@ -124,41 +124,7 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        $scope.itemlist = [];
-        $scope.bonus_type = [];
-        $scope.free_quantity = [];
-        $scope.quantity = [];
-        $scope.addItem = function () {
-            let url = "{{URL::to('get-product')}}/" + $scope.product_id;
-                $http.get(url)
-                        .then(function(response) {
-                            $scope.itemlist.push(response.data);
-                        });
-            // $scope.itemlist.push(item);
-        }
-        $scope.removeItem = function(index){
-            $scope.itemlist.splice(index,1);
-            $scope.bonus_type.splice(index,1);
-            $scope.free_quantity.splice(index,1);
-            $scope.quantity.splice(index,1);
-        }
-        $scope.sum = function($arr){
-            var sum = 0;
-            for(i=0; i<$arr.length; i++){
-                sum += $arr[i];
-            }
-            return sum;
-        }
-        $scope.warning = function(msg){
-            var data = {
-                'title': 'Warning!',
-                'text': msg,
-                'type': 'notice',
-                'styling': 'bootstrap3',
-            };
-            PNotify.removeAll();
-            new PNotify(data);
-        }
+        
 
     });
     $(function(){

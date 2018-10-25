@@ -225,7 +225,7 @@
                                 {{ BootForm::number('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('customer_id','Customer',$customer_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Customer','style'=>"width: 100%;",'required']) }}
+                                {{ BootForm::select('customer_id','Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'customer_id','data-placeholder'=>'Select Customer','style'=>"width: 100%;",'required']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('designation','Designation',$designations_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'designation_id','ng-change'=>'getEmployee()','data-placeholder'=>"Select Designation",'style'=>"width: 100%;",'required']) }}
@@ -341,7 +341,7 @@
                                         <th>Bonus Quantity</th>
                                         <th>Total Quantity</th>
                                         <th>Net Price</th>
-                                        <th>Discont (%)</th>
+                                        <th>Discount</th>
                                         <th>Total Amount</th>
                                         <th class="text-center">Action</th>
                                     </tr>
@@ -361,19 +361,29 @@
                                             </div>
                                         </td>
                                         <td class="text-right"> <% item.intransit %></td>
-                                        <td class="text-right"> <% item.pendign %></td>
-                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" ng-change="getProductBonus($index)" required > </td>
+                                        <td class="text-right"> <% item.pending %></td>
+                                        <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" ng-change="getProductBonus($index)" required ></td>
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][bonus_quantity]" ng-model="bonus_quantity[$index]" readonly> </td>
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][total_quantity]" ng-model="total_quantity[$index]" value="<% total_product_quantity[$index] = quantity[$index] + bonus_quantity[$index] %>" readonly> </td>
                                         <td> <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][net_price]" value="<% total_net_price[$index] =  quantity[$index] * item.unit_price %>" readonly> </td>
                                         <td> 
-                                            <input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
-                                            <input type="hidden" class="form-control input-sm"   value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>"> 
+                                            <input ng-if="item.discount_type=='fixed'" type="text" class="form-control input-sm" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
+                                            
+                                            <div class="input-group" ng-if="item.discount_type =='percent'">
+                                                <input type="text" class="form-control input-sm"  name="items[<% $index %>][discount]"  value="<% item.discount %>" readonly aria-describedby="basic-addon2">
+                                                <span class="input-group-addon" id="basic-addon2">%</span>
+                                            </div>
+                                            
+                                            <input ng-if="item.discount_type=='null'" type="text" class="form-control input-sm" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
+                                            
+                                            <input ng-if="item.discount_type=='fixed'" type="hidden" class="form-control input-sm"   value="<% total_discount[$index] = item.discount %>"> 
+                                            <input ng-if="item.discount_type=='percent'" type="hidden" class="form-control input-sm"   value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>">
+                                            <input ng-if="item.discount_type=='null'" type="hidden" class="form-control input-sm"   value="<% total_discount[$index] = item.discount %>"> 
                                         </td>
                                         <td>
                                                 {{-- <span><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span> --}}
 
-                                                <span ng-if="quantity[$index] * item.unit_price "><% (quantity[$index] * item.unit_price)-((quantity[$index] * item.unit_price)*item.discount/100) %></span>
+                                                <span ng-if="quantity[$index] * item.unit_price "><% (quantity[$index] * item.unit_price)-total_discount[$index] %></span>
                                                 <span ng-if="!(quantity[$index] * item.unit_price)">0</span>
                                         </td>
                                
@@ -396,8 +406,9 @@
                                     <tr>
                                         <td colspan="12" class="text-right" > Total Discount </td>
                                         <td colspan="2">
-                                             <span ng-if="totalDiscount(total_discount)"><% totalDiscount(total_discount) %> </span>
-                                             <span ng-if="!(totalDiscount(total_discount))">0</span>
+                                             <% totalDiscount(total_discount) %> 
+                                             {{-- <span ng-if="totalDiscount(total_discount)"><% totalDiscount(total_discount) %> </span>
+                                             <span ng-if="!(totalDiscount(total_discount))">0</span> --}}
                                         </td>
                                      </tr>
                                     <tr>
@@ -568,6 +579,7 @@
         $scope.total_product_quantity = [];
         $scope.total_net_price = [];
         $scope.total_discount = [];
+        $scope.bonus_product_id = [];
         $('#search_product').autocomplete({
         source: "{{route('search-product')}}",
                 minlength: 1,
@@ -584,6 +596,11 @@
             $scope.addToItemList($scope.product_id);
         }
         $scope.addToItemList = function(product_id){
+            
+            if(!$scope.customer_id){
+                $scope.warning('Please select customer first');
+                return;
+            }
             if(!product_id){
                 $scope.warning('Please type and select a product first');
                 return;
@@ -591,7 +608,7 @@
 
             index = $scope.itemlist.findIndex(item => item.id==product_id);
             if(index < 0){
-                let url = "{{URL::to('get-product-for-sales-order')}}/" + product_id;
+                let url = "{{URL::to('get-product-for-sales-order')}}/" + product_id +'/' + $scope.customer_id;
                 $http.get(url)
                         .then(function(response) {
                             $scope.itemlist.push(response.data);
@@ -635,7 +652,8 @@
 
         // Product Bonus
         $scope.getProductBonus=function(index){
-         let url = "{{URL::to('get-product-bonus')}}/" + $scope.quantity[index];
+            var product = $scope.productlist[index];
+         let url = "{{URL::to('get-product-bonus')}}/" + $scope.quantity[index] +'/' + $scope.customer_id+'/'+product.id;
                 $http.get(url)
                         .then(function(response) {
                             $scope.bonus_quantity[index] = parseInt(response.data);
@@ -668,7 +686,7 @@
                 for(i=0; i<$array.length; i++){
                     sum += $array[i];
                 }
-                return sum;
+                return parseInt(sum);
         }
         // totalDiscount
 // Terms and Conditions

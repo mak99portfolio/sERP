@@ -18,6 +18,7 @@ class CreateFreeBonusGenericsTable extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->string('bonus_type');
+            $table->double('quantity')->nullable();
             $table->double('bonus_value');
             $table->boolean('active');
             $table->integer('creator_user_id')->unsigned()->nullable();

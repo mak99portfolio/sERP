@@ -11,6 +11,9 @@ class CompanyProfile extends Model
         'name',
         'email',
         'phone',
+        'telephone',
+        'fax',
+        'website',
         'address',
         'country_id',
     ];

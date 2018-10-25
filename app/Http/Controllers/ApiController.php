@@ -18,6 +18,7 @@ use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
 use App\VendorBank;
+use App\SalesInvoice;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -396,6 +397,21 @@ class ApiController extends Controller
         }
     }
 
+    public function getInvoiceByCustomerId($id)
+    {
+        $invoice_lists= SalesInvoice::where('customer_id', $id)->get();
+        foreach ($invoice_lists as $invoice_list) {
+            $invoice[] = [
+                'invoice_id' => $invoice_list->id,
+                'invoice_no' => $invoice_list->sales_invoice_no,
+               
+            ];
+        }
+    // dd($invoice);
+     $data['invoices'] = $invoice;
+     $data['due'] = 10000;
+     return response()->json($data);
+    }
     public function getCiByCiId($id)
     {
         $ci = CommercialInvoice::find($id);
@@ -552,12 +568,25 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getProductForSalesOrder($id)
+    public function getProductForSalesOrder($product_id, $customer_id)
     {
 
+        $discount_customer_wise = \App\DiscountCustomerWise::where('customer_id', $customer_id)->where('product_id', $product_id)->where('active', 'true')->first();
+        $discount_generic = \App\DiscountGeneric::where('product_id', $product_id)->where('active', 'true')->first();
 
-        $pendign = \App\SalesOrderItem::where('product_id',$id)->sum('quantity');
-        $product = Product::find($id);
+        if ($discount_customer_wise) {
+            $discount_type = $discount_customer_wise->discount_type;
+            $discount = $discount_customer_wise->discount_value;
+        } else if ($discount_generic) {
+            $discount_type = $discount_generic->discount_type;
+            $discount = $discount_generic->discount_value;
+        } else {
+            $discount_type = null;
+            $discount = 0;
+        }
+
+        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity');
+        $product = Product::find($product_id);
         $data = [
             'id' => $product->id,
             'name' => $product->name,
@@ -566,13 +595,13 @@ class ApiController extends Controller
             'uom' => $product->unit_of_measurement->name,
             'available' => 100,
             'intransit' => 20,
-            'pendign' => $pendign,
-            'discount' => 10,
+            'pending' => $pending,
+            'discount_type' => $discount_type,
+            'discount' => (int)$discount,
         ];
         return response()->json($data);
     }
-
-    public function getBonusByProduct($product_id)
+    public function getBonusByProduct($quantity,$customer_id,$product_id)
     {
         return response()->json($product_id);
 

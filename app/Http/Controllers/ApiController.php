@@ -18,6 +18,7 @@ use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
 use App\VendorBank;
+use App\SalesInvoice;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -396,6 +397,21 @@ class ApiController extends Controller
         }
     }
 
+    public function getInvoiceByCustomerId($id)
+    {
+        $invoice_lists= SalesInvoice::where('customer_id', $id)->get();
+        foreach ($invoice_lists as $invoice_list) {
+            $invoice[] = [
+                'invoice_id' => $invoice_list->id,
+                'invoice_no' => $invoice_list->sales_invoice_no,
+               
+            ];
+        }
+    // dd($invoice);
+     $data['invoices'] = $invoice;
+     $data['due'] = 10000;
+     return response()->json($data);
+    }
     public function getCiByCiId($id)
     {
         $ci = CommercialInvoice::find($id);
@@ -554,9 +570,6 @@ class ApiController extends Controller
 
     public function getProductForSalesOrder($id)
     {
-
-
-        $pendign = \App\SalesOrderItem::where('product_id',$id)->sum('quantity');
         $product = Product::find($id);
         $data = [
             'id' => $product->id,
@@ -564,9 +577,6 @@ class ApiController extends Controller
             'hs_code' => $product->hs_code,
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
-            'available' => 100,
-            'intransit' => 20,
-            'pendign' => $pendign,
             'discount' => 10,
         ];
         return response()->json($data);

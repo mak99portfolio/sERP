@@ -83,14 +83,56 @@
                                             <tr>
                                                 <td v-html="index+1"></td>
                                                 <td v-html="row.sales_order_no"></td>
-                                                <td v-html="row.sales_reference_id"></td>
-                                                <td v-html="row.sales_reference_id"></td>
+                                                <td v-html="dFormat(row.sales_date)"></td>
+                                                <td v-html="fetch_reference(row.sales_reference_id)"></td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>                                    
                             </div>
 
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.customer_id }">
+                                    <label for="customer_name" class="control-label">Customer <span class="text-danger hide">*</span></label>
+                                    <input type="text" class="form-control input-sm " ref="customer_name" id="customer_name" v-model="field.customer_name" readonly/>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.customer_name"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.invoice_address_id }">
+                                    <label for="invoice_address_id" class="control-label">Invoice Address</label>
+                                    <select class="form-control input-sm bSelect"  ref="invoice_address_id" id="invoice_address_id" v-model="field.invoice_address_id">
+                                        <option v-for="(row, index) in resource.customer_addresses.data
+                                        " v-bind:value="row.id" v-html="row.address"></option>
+                                    </select>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.invoice_address_id"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.gate_pass_id }">
+                                    <label for="gate_pass_id" class="control-label">Gate Pass</label>
+                                    <select class="form-control input-sm bSelect"  ref="gate_pass_id" id="gate_pass_id" v-model="field.gate_pass_id">
+                                        <option v-for="(row, index) in resource.customer_addresses.data
+                                        " v-bind:value="row.id" v-html="row.address"></option>
+                                    </select>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.gate_pass_id"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
 
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
@@ -324,6 +366,7 @@ $(function(){
             },
             field:{
                 csrf_token: "{{ csrf_token() }}",
+                customer_name:'',
                 customer_id:'',
                 sales_orders:[],
                 challan_date: '',
@@ -334,7 +377,8 @@ $(function(){
                 delivery_vehicles:[],
                 sales_order_items:[],
                 total_challan_quantity:0,
-                shipping_address_id:''
+                shipping_address_id:'',
+                invoice_address_id:''
             },
             resource:{
                 sales_challans:{
@@ -359,6 +403,9 @@ $(function(){
                 vendors:{
                     data:[{id:0, name:'--Select Transport Agency--'}]
                 },
+                customers:{
+                    data:[{id:0, name:'--Select Customer--'}]
+                },
                 customer_addresses:{
                     data:[{id:0, address:'--Select Customer Address--'}]
                 }
@@ -368,6 +415,9 @@ $(function(){
             errors:null
         },
         methods:{
+            dFormat:function(val){
+                return moment(val).format('DD MMM YYYY');
+            },
             parse_num:function(val){
                 if(typeof val=='undefined'){
                     return 0.00;
@@ -383,12 +433,12 @@ $(function(){
                   styling: 'bootstrap3'
                 });
             },
-            fetch_resource:function(url, reference, callback=null){
+            fetch_resource:function(url, reference, callback=null, params=null){
 
                 var loading=$.loading();
                 loading.open(3000);
 
-                axios.get(url).then(function(response){
+                axios.get(url, {params: params}).then(function(response){
 
                     reference.data=response.data.data;
                     loading.close();
@@ -409,14 +459,39 @@ $(function(){
 
                 var ref=this;
 
-                if(!ref.field.customer_id){
+                if(!ref.field.sales_challan_id){
                     ref.alert('Please!, select a challan.');
                     return false;
                 }
 
-                var loading=$.loading();
-                loading.open(3000);
-                
+                var selected_challan=this.resource.sales_challans.data.find(row=>{
+                    return row.id==this.field.sales_challan_id;
+                });
+
+                this.resource.sales_orders.data=selected_challan.sales_orders;
+                this.field.challan_date=moment(selected_challan.challan_date).format('DD MMM YYYY');
+
+                var related_customer=this.resource.customers.data.find(row=>{
+                    return row.id==selected_challan.customer_id;
+                });
+
+                this.field.customer_id='';
+                this.field.customer_name='';
+
+                if(related_customer){
+                    this.field.customer_id=related_customer.id;
+                    this.field.customer_name=related_customer.name;
+                }else this.alert('This challan does\'t associate with any customer');
+
+                //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
+
+            },
+            fetch_reference:function(id){
+                var referer=this.resource.employees.data.find(row=>{
+                    return row.id==id;
+                })
+
+                return referer.name;
             },
             fetch_sales_orders:function(){
 
@@ -656,11 +731,12 @@ $(function(){
 
         },
         beforeMount(){
-            this.fetch_resource(this.url.resource + '/sales-challan', this.resource.sales_challans);
-            this.fetch_resource(this.url.resource + '/sales-order', this.resource.sales_orders);
+            this.fetch_resource(this.url.resource + '/sales-challan', this.resource.sales_challans, null, {with:['sales_orders']});
+            //this.fetch_resource(this.url.resource + '/sales-order', this.resource.sales_orders);
             this.fetch_resource(this.url.resource + '/own-vehicle', this.resource.own_vehicles);
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);
+            this.fetch_resource(this.url.resource + '/customer', this.resource.customers);
             //this.fetch_resource(this.url.resource + '/customer-address', this.resource.customer_addresses);
             this.fetch_delivery_persons();
             this.reset_error();

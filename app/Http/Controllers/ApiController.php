@@ -399,8 +399,18 @@ class ApiController extends Controller
 
     public function getInvoiceByCustomerId($id)
     {
-        $data['si_list']= SalesInvoice::where('customer_id', $id)->get();
- dd($data['si_list']);
+        $invoice_lists= SalesInvoice::where('customer_id', $id)->get();
+        foreach ($invoice_lists as $invoice_list) {
+            $invoice[] = [
+                'invoice_id' => $invoice_list->id,
+                'invoice_no' => $invoice_list->sales_invoice_no,
+               
+            ];
+        }
+    // dd($invoice);
+     $data['invoices'] = $invoice;
+     $data['due'] = 10000;
+     return response()->json($data);
     }
     public function getCiByCiId($id)
     {

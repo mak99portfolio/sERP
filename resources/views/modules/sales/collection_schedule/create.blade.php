@@ -21,7 +21,7 @@
                                 {{ BootForm::select('customer', 'Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>"customer_id",'ng-change'=>"getInvoice()"]) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::number('dues','Dues', null, ['class'=>'form-control input-sm'])}}
+                                {{ BootForm::number('due','Due', null, ['class'=>'form-control input-sm', 'ng-model'=>'due'])}}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="panel panel-default">
@@ -31,10 +31,16 @@
                                                 {{ BootForm::number('payment_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_amount']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('payment_date','Payment Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model' => 'payment_date']) }}
+                                                {{ BootForm::text('payment_date','Payment Date', null, ['id'=>'date_expected','class'=>'form-control input-sm datepicker', 'ng-model' => 'payment_date']) }}
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::select('invoice_no','Invoice No',[], null, ['class'=>'form-control input-sm select2', 'ng-model' => 'invoice_no']) }}
+                                                <div class="form-group">
+                                                    <label for="">Invoice No</label>
+                                                    <select name="invoice_no" id="" ng-model ="invoice_id" class="form-control input-sm select2" data-placeholder="Select Invoice">
+                                                        <option value=""></option>
+                                                        <option value="<% invoice.invoice_id %>" ng-repeat="invoice in invoice_list"><% invoice.invoice_no %></option>
+                                                    </select>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="text-center">
@@ -49,19 +55,19 @@
                                     <thead class="bg-primary">
                                         <tr>
                                             <th width="25">#</th>
-                                            <th class="text-right">Amount</th>
+                                            <th class="text-center">Amount</th>
                                             <th class="text-center">Date</th>
-                                            <th class="text-right">Invoice No</th>
+                                            <th class="text-center">Invoice No</th>
                                             <th width="30">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>01</td>
-                                            <td class="text-right">200</td>
-                                            <td class="text-center">20/03/2018</td>
-                                            <td class="text-right">32200</td>
-                                            <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove"><i class="fa fa-trash text-danger"></i></button></td>
+                                        <tr ng-repeat="payment in payment_list">
+                                            <td><% $index+1 %></td>
+                                            <td class="text-center"><% payment.payment_amount %></td>
+                                            <td class="text-center"><% payment.payment_date %></td>
+                                            <td class="text-center"><% payment.invoice_no %></td>
+                                            <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removePayment($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -91,108 +97,32 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-
-        $scope.itemlist = [];
-        $scope.requisitions = [];
-        $scope.max_quantity = [];
-        $scope.quantity = [];
-        $scope.unit_price = [];
-        $scope.amount = [];
-        $scope.discount_rate = [];
-        $scope.vat_rate = [];
-        $scope.total_discount = [];
-        $scope.vat_amount = [];
-        $scope.total_net_amount = [];
-        $scope.payment_terms = [];
-        $scope.conditions = [];
-        $scope.payments = [];
-
-         $scope.getInvoice = function () {
-     alert($scope.customer_id);
- 
-    }
+        $scope.payment_list = [];
+        $scope.invoice_list = [];
+        $scope.getInvoice = function () {
+            let url = "{{URL::to('get-invoice')}}/" + $scope.customer_id;
+            $http.get(url)
+                .then(function(response) {
+                    $scope.invoice_list = response.data.invoices;
+                    $scope.due = response.data.due;
+            });
+        }
        $scope.add_payment = function(){
-        var payment = {};
-        
-            payment.id = item.id;
-            payment.name = item.name;
-            payment.description = $scope.condition_description;
-            $scope.payments.push(payment);
-            $scope.condition_description = null;
-            
-}
-
-
-        
-
-
-        $scope.add_condition = function(){
-            var condition = {};
-            if(!$scope.terms_and_condition_type){
-                $scope.warning('Please select terms and condition type first');
-                return;
-            }
-
-            if(!$scope.condition_description){
-                $scope.warning('Description of terms and condition is empty');
-                return;
-            }
-
-            var item = JSON.parse($scope.terms_and_condition_type);
-
-            index = $scope.conditions.findIndex(value => value.id == item.id);
-
-            if(index >= 0){
-                $scope.warning('Terms and conditions already exist');
-                return;
-            }
-
-            condition.id = item.id;
-            condition.name = item.name;
-            condition.description = $scope.condition_description;
-            $scope.conditions.push(condition);
-            $scope.condition_description = null;
+           var payment = {};
+            payment.payment_amount = $scope.payment_amount;
+            payment.payment_date = $scope.payment_date;
+            payment.invoice_no = $scope.invoice_list.find(value => value.invoice_id == $scope.invoice_id).invoice_no;
+            $scope.payment_list.push(payment);
+            $scope.payment_amount = null;
+        }
+        $scope.removePayment = function(index){
+            $scope.payment_list.splice(index, 1);
         }
 
-        $scope.removeCondition = function(index){
-            $scope.conditions.splice(index, 1);
-        }
 
-        $scope.sum = function($arr){
-            var sum = 0;
-            for(i=0; i<$arr.length; i++){
-                if($arr[i] instanceof Object){
-                    sum += $scope.sum(Object.values($arr[i]));
-                }else{
-                    sum += $arr[i];
-                }
-            }
-            return sum;
-        }
+      });
 
-        $scope.warning = function(msg){
-            var data = {
-                'title': 'Warning!',
-                'text': msg,
-                'type': 'notice',
-                'styling': 'bootstrap3',
-            };
-            new PNotify(data);
-        }
-
-        $scope.quantityValidate = function(parentIndex, index){
-            if($scope.quantity[parentIndex][index] > $scope.max_quantity[parentIndex][index] ){
-                $scope.quantity[parentIndex][index] = $scope.max_quantity[parentIndex][index] ;
-            }
-            if($scope.quantity[parentIndex][index]<1){
-                $scope.quantity[parentIndex][index] = 1;
-            }
-        }
-
-    });
-</script>
-<script>
-    $(function () {
+        $(function(){
         $('#date_expected').daterangepicker({
             singleDatePicker: true,
             singleClasses: "picker_3",
@@ -203,5 +133,6 @@
         });
     });
 </script>
+
 @endsection
 

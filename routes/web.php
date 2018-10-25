@@ -101,6 +101,8 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
     Route::resource('collection-schedule', 'CollectionScheduleController');
     Route::resource('payment-schedule', 'PaymentScheduleController');
+    Route::resource('delivery-schedule', 'DeliveryScheduleController');
+    Route::resource('invoice-schedule', 'InvoiceScheduleController');
     // Setting
     Route::resource('customer', 'CustomerController');
     Route::resource('customer-zone', 'CustomerZoneController');

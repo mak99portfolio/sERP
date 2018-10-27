@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionScheduleItemsTable extends Migration
+class CreateBusinessTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCollectionScheduleItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collection_schedule_items', function (Blueprint $table) {
+        Schema::create('business_types', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateCollectionScheduleItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collection_schedule_items');
+        Schema::dropIfExists('business_types');
     }
 }

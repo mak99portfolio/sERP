@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Sales;
 
 use App\CollectionSchedule;
+use App\CollectionScheduleItem;
 use App\SalesInvoice;
 use App\Customer;
 use Illuminate\Http\Request;
@@ -16,6 +17,7 @@ class CollectionScheduleController extends Controller
     public function index()
     {
         $view = view($this->view_root . 'index');
+        $view->with('collection_schedule_list', CollectionSchedule::all());
         return $view;
     }
 
@@ -28,18 +30,24 @@ class CollectionScheduleController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->input());
+        //dd($request->input());
         $request->validate([  
-            'invoice_id' => 'required',
-            'collection_date' => 'required',
-            'amount' => 'required'
+            'customer_id' => 'required'
         ]);
         $collection_schedule = new CollectionSchedule;
         $collection_schedule->fill($request->input());
         $collection_schedule->creator_user_id = Auth::id();
+        $collection_schedule->collection_schedule_no = 999;
         $collection_schedule->save();
+
+        foreach ($request->collection_amounts as $collection_amount){
+            //dd($collection_amount);
+            $cs_items[] = new CollectionScheduleItem($collection_amount);
+        }
+        $collection_schedule->items()->saveMany($cs_items);
+
         Session::put('alert-success', 'Collection Schedule created successfully');
-        return redirect()->route('collection-schedule.create');
+        return redirect()->route('collection-schedule.index');
     }
 
    

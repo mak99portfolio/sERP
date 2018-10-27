@@ -6,6 +6,8 @@ namespace App\Http\Controllers\Procurement;
 use App\QuotationCompare;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use Session;
 
 
 class QuotationCompareController extends Controller

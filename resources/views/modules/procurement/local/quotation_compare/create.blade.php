@@ -6,22 +6,24 @@
 <div class="right_col" role="main">
     <div class="row">
         <div class="col-md-12 col-xs-12">
-            <div class="x_panel">
+            <div class="x_panel" ng-app="myApp">
                 <div class="x_title">
                     <h2>Quotation Compare</h2>
                     <a href="{{ route('quotation-compare.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Quotation Compare List</a>
                     <div class="clearfix"></div>
                 </div>
-                <div class="x_content">
-                    <form class="form-horizontal form-label-left input_mask">
+                <div class="x_content" ng-controller="myCtrl">
+                    @include('partials/flash_msg')
+                    <form class="form-horizontal form-label-left input_mask" action="{{ route('quotation-compare.store') }}" method="POST" autocomplete="off">
+                        @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                <label>Date Range Picker</label>
+                                <label>Date Range</label>
                                 <div class="control-group">
                                     <div class="controls">
                                         <div class="input-prepend input-group">
                                             <span class="add-on input-group-addon"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i></span>
-                                            <input type="text" name="reservation" id="reservation" class="form-control input-sm" value="01/01/2018 - 01/25/2018" />
+                                            <input type="text" name="reservation" id="reservation" class="form-control input-sm" ng-model="date_range" ng-change="searchReq()"/>
                                         </div>
                                     </div>
                                 </div>
@@ -29,9 +31,9 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Requisition No</label>
-                                    <select name="vendor" id="" class="form-control input-sm select2">
-                                        <option value="">One</option>
-                                        <option value="">Two</option>
+                                    <select name="local_requisition_id" ng-model="local_requisition_id" class="form-control input-sm select2" data-placeholder="Select Requisition">
+                                        <option value=""></option>
+                                        <option value="<% req.id %>" ng-repeat="req in requisition_list"><% req.requisition_no %></option>
                                     </select>
                                 </div>
                             </div>
@@ -75,9 +77,9 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2">Total</td>
-                                                <td class="text-right">125</td>
-                                                <td class="text-right">125</td>
-                                                <td class="text-right">125</td>
+                                                <td>125</td>
+                                                <td>125</td>
+                                                <td>125</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -87,13 +89,11 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <a href="" class="btn btn-success btn-sm">Approve</a>
-                                    <a href="" class="btn btn-default btn-sm">Cancel</a>
+                                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
+                                    <a href="{{ route('quotation-compare.index') }}" class="btn btn-default btn-sm">Cancel</a>
                                 </div>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>
@@ -101,4 +101,27 @@
     </div>
 </div>
 <!-- /page content -->
+@endsection
+@section('script')
+<script>
+    var app = angular.module('myApp', [], function($interpolateProvider) {
+            $interpolateProvider.startSymbol('<%');
+            $interpolateProvider.endSymbol('%>');
+        });
+    app.controller('myCtrl', function($scope, $http) {
+
+        $scope.requisition_list = [];
+
+        $scope.searchReq = function(){
+            // var from_date = new Date($scope.date_range.split(' - ')[0]).getMonth();
+            let url = "{{ URL::to('get-local-requisition-by-date-range') }}?date_range=" + $scope.date_range;
+            $http.get(url)
+                    .then(function(response) {
+                        $scope.requisition_list = response.data.requisitions;
+                    });
+        }
+
+
+    });
+</script>
 @endsection

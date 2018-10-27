@@ -21,6 +21,7 @@
                     </div>
                     <div class="x_content">
                         <br />
+                        @include('partials/flash_msg')
                         <div class="table-responsive">
                             <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">

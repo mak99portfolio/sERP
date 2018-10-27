@@ -355,7 +355,7 @@
                                         <td class="text-center">
                                             <div class="btn-group">
                                                     <button type="button" class="btn btn-default btn-sm"><% item.available %></button>
-                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#avi_stock_modal">
+                                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#avi_stock_modal" ng-click="getWorkingUnitWiseProductAvailable(item.id)">
                                                       <a href="#"><i class="fa fa-eye"></i></a>
                                                     </button>
                                             </div>
@@ -539,10 +539,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>fgf</td>
-                                                <td>2572</td>
+                                            <tr ng-repeat="working_unit in working_units">
+                                                <td><% $index+1 %></td>
+                                                <td><% working_unit.name %></td>
+                                                <td><% working_unit.physical_quantity %></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -650,6 +650,16 @@
         }
 
 
+        // Product Bonus
+        $scope.getWorkingUnitWiseProductAvailable=function(product_id){
+         let url = "{{URL::to('get-working-unit-wise-product-available')}}/" + product_id;
+                $http.get(url)
+                        .then(function(response) {
+                            $scope.working_units = response.data;
+                            // console.log($scope.productlist);
+                        });
+        }
+        // Product Bonus
         // Product Bonus
         $scope.getProductBonus=function(index){
             var product = $scope.productlist[index];

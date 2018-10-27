@@ -5,10 +5,10 @@
         <span class='font-breeSerif'>{{ request()->session()->pull('success') }}</span>
     </div>
 @elseif(request()->session()->has('info'))
-    <div class='alert alert-info flash'>
+    <div class='alert alert-info'>
         <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><i class="fa fa-times"></i></button>
-        <h4 class='font-breeSerif'><i class="fa fa-info-circle" aria-hidden="true"></i> Notification!</h4>
-        <span class='font-breeSerif'>{{ request()->session()->pull('info') }}</span>
+        {{-- <h4 class='font-breeSerif'><i class="fa fa-info-circle" aria-hidden="true"></i> Notification!</h4> --}}
+        <span class='font-breeSerif'><?= request()->session()->pull('info') ?></span>
     </div>
 @elseif(request()->session()->has('warning'))
     <div class='alert alert-warning flash'>

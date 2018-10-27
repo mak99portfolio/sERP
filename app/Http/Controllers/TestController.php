@@ -25,7 +25,32 @@ class TestController extends Controller{
         //\Auth::user()->assignRole($role);
         //echo 'passed permission middleware';
         //dd(uCode('working_units.working_unit_no', 'WU'));
-        return view($this->path('index'));
+        //return view($this->path('index'));
+
+        $units=\App\WorkingUnit::all()->toArray();
+        /*
+        foreach($units as $index=>$row){
+            $units[$index]['items']=\App\Stock::with('product')->where(['working_unit_id', $row['id'])->selectRaw("(CAST(SUM(receive_quantity) AS FLOAT)-CAST(SUM(issue_quantity) AS FLOAT)) AS physical_quantity, product_id")->groupBy('product_id')->get()->toArray();
+        }
+        */
+
+        foreach($units as $index=>$row){
+            $units[$index]['physical_quantity']=\App\Stock::where([
+                'working_unit_id'=>$row['id'],
+                'product_id'=>1,
+                'product_status_id'=>1,
+                'product_type_id'=>1
+            ])->sum('receive_quantity')-\App\Stock::where([
+                'working_unit_id'=>$row['id'],
+                'product_id'=>1,
+                'product_status_id'=>1,
+                'product_type_id'=>1
+            ])->sum('issue_quantity');
+
+            $units[$index]['product']=\App\Product::find(1)->toArray();
+        }
+
+        dd($units);
     }
 
     public function design(){

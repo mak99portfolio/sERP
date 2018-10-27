@@ -31,6 +31,7 @@ class ReceiveInternalController extends Controller{
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_types'=>\App\ProductType::pluck('name', 'id'), //Need to filter in future
+            'challans'=>$working_unit->inventory_challans()->whereNotNull('challan_no')->pluck('challan_no', 'challan_no')
         ];
         
         return view($this->path('create'), $data);

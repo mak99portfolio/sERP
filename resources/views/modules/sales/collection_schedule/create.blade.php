@@ -18,7 +18,7 @@
                         @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('customer', 'Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>"customer_id",'ng-change'=>"getInvoice()"]) }}
+                                {{ BootForm::select('customer_id', 'Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>"customer_id",'ng-change'=>"getInvoice()"]) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::number('due','Due', null, ['class'=>'form-control input-sm', 'ng-model'=>'due'])}}
@@ -64,9 +64,9 @@
                                     <tbody>
                                         <tr ng-repeat="payment in payment_list">
                                             <td><% $index+1 %></td>
-                                            <td class="text-center"><% payment.payment_amount %></td>
-                                            <td class="text-center"><% payment.payment_date %></td>
-                                            <td class="text-center"><% payment.invoice_no %></td>
+                                            <td class="text-center"><% payment.payment_amount %><input name="collection_amounts[<% $index %>][payment_amount]" type="hidden" value="<% payment.payment_amount %>"></td>
+                                            <td class="text-center"><% payment.payment_date %><input name="collection_amounts[<% $index %>][payment_date]" type="hidden" value="<% payment.payment_date %>"></td>
+                                            <td class="text-center"><% payment.invoice_no %><input name="collection_amounts[<% $index %>][invoice_id]" type="hidden" value="<% payment.invoice_id %>"></td>
                                             <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removePayment($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>
@@ -111,6 +111,7 @@
            var payment = {};
             payment.payment_amount = $scope.payment_amount;
             payment.payment_date = $scope.payment_date;
+            payment.invoice_id = $scope.invoice_id;
             payment.invoice_no = $scope.invoice_list.find(value => value.invoice_id == $scope.invoice_id).invoice_no;
             $scope.payment_list.push(payment);
             $scope.payment_amount = null;

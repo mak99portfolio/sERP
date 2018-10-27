@@ -58,8 +58,9 @@ class SalesOrderController extends Controller
         }
         $sales_order->items()->saveMany($items);
 
-        Session::put('alert-success', 'Requisition created successfully. <br><strong>Requisition No: ' . $sales_order->sales_order_no . '</strong>');
-        return redirect()->route('sales-order.index');
+
+        Session::put('alert-success', 'Sales Order created successfully.');
+        return redirect()->route('sales-order.index')->with('info', '<strong>Sales Order No:</strong> '. $sales_order->sales_order_no );
     }
 
     public function show(SalesOrder $salesOrder)

@@ -289,7 +289,7 @@ class RequisitionController extends Controller{
 
     public function get_product_info(\App\WorkingUnit $working_unit, \App\ProductStatus $product_status, \App\ProductType $product_type, string $slug){
 
-        $product=\App\Product::where('hs_code', $slug)->orWhere('name', $slug)->first();
+        $product=\App\Product::where('id', $slug)->orWhere('hs_code', $slug)->orWhere('name', $slug)->first();
 
         //dd($product);
 

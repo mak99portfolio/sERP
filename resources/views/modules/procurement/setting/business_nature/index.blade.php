@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Vendor Category List')
+@section('title', 'Business Nature List')
 @section('content')
 
 <!-- page content -->
@@ -26,8 +26,8 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Category Title</th>
-                                        <th>Short Title</th>
+                                        <th>Name</th>
+                                        <th>Short Name</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>

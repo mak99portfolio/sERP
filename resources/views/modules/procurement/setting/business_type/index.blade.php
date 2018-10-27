@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Vendor Category List')
+@section('title', 'Business Type List')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Vendor Category List</h2>
-                        <a href="{{route('vendor-category.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Category</a>
+                        <h2>Business Type List</h2>
+                        <a href="{{route('business-type.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" id="popup_area">
@@ -26,19 +26,19 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
-                                        <th>Category Title</th>
+                                        <th>Title</th>
                                         <th>Short Title</th>
                                         <th width="30">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($vendor_category_list as $item)
+                                    @foreach($business_type_list as $item)
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->short_name}}</td>
                                         <td class="text-center">
-                                        <a href="{{route('vendor-category.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">View</a>
+                                        <a href="{{route('business-type.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">View</a>
                                         </td>
                                     </tr>
                                     @endforeach

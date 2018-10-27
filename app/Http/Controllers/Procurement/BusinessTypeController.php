@@ -6,13 +6,16 @@ use App\Http\Controllers\Controller;
 
 use App\BusinessType;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class BusinessTypeController extends Controller
 {
     private $view_root = 'modules/procurement/setting/business_type/';
     public function index()
     {
-        $view = view($this->view_root . 'create');
+        $view = view($this->view_root . 'index');
+        $view->with('business_type_list', BusinessType::all());
         return $view;
     }
 
@@ -26,7 +29,15 @@ class BusinessTypeController extends Controller
    
     public function store(Request $request)
     {
-        //
+        $request->validate([  
+            'name' => 'required'
+        ]);
+        $business_type = new BusinessType;
+        $business_type->fill($request->input());
+        $business_type->creator_user_id = Auth::id();
+        $business_type->save();
+        Session::put('alert-success', $business_type->name . ' created successfully');
+        return redirect()->route('business-type.index');
     }
 
     /**

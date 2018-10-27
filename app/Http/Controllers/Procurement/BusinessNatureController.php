@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 
 use App\BusinessNature;
 use Illuminate\Http\Request;
+use Auth;
+use Session;
 
 class BusinessNatureController extends Controller
 {
@@ -27,7 +29,15 @@ class BusinessNatureController extends Controller
     
     public function store(Request $request)
     {
-        //
+        $request->validate([  
+            'name' => 'required'
+        ]);
+        $business_nature = new BusinessNature;
+        $business_nature->fill($request->input());
+        $business_nature->creator_user_id = Auth::id();
+        $business_nature->save();
+        Session::put('alert-success', $business_nature->name . ' created successfully');
+        return redirect()->route('business-nature.index');
     }
 
    

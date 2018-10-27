@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Product Brand')
+@section('title', 'Business Nature')
 @section('content')
 
 <!-- page content -->
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Product Brand</h2>
-                        <a href="{{route('business-nature.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Category Lists</a>
+                        <h2>Business Nature</h2>
+                        <a href="{{route('business-nature.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Business Nature  Lists</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -26,7 +26,7 @@
                         {{ BootForm::open(['store'=>'business-nature.store', 'update'=>'business-nature.update', 'left_column_class' => 'col-md-4 col-xs-12 col-sm-6',  'right_column_class' => 'col-md-8 col-xs-12 col-sm-6']) }}
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                            {{ BootForm::text('name','Category Title', null, ['class'=>'form-control input-sm', 'required']) }}
+                            {{ BootForm::text('name','Name', null, ['class'=>'form-control input-sm', 'required']) }}
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                             {{ BootForm::text('short_name','Short Title', null, ['class'=>'form-control input-sm']) }}
@@ -37,7 +37,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('vendor-category.index')}}">Cancel</a>
+                                    <a class="btn btn-default btn-sm" href="{{route('business-nature.index')}}">Cancel</a>
                                 </div>
                             </div>
                         {{ BootForm::close() }}

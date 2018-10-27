@@ -297,3 +297,9 @@ function labels($loop, $type="success"){
 	return $output;
 
 }
+
+function bundle($postfix, $type='js'){
+	$url=url("bundles/$postfix");
+	if($type=='js') return "<script src='{$url}.js'></script>";
+	return "<link rel='stylesheet' href='{$url}.css'>";
+}

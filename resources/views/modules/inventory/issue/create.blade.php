@@ -27,7 +27,7 @@
                               <div id="vue_app">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    {{ BootForm::text('inventory_requisition_no', 'Requisition No', null, ['class'=>'input-sm', 'suffix' => BootForm::addonButton(fa('fa-search fa-lg text-primary'), ['class' => 'btn-default btn-sm', 'v-on:click'=>'fetch_requisition']), 'v-model'=>'inventory_requisition_no', 'v-on:change'=>'fetch_requisition', 'v-on:keydown.enter.prevent'=>'fetch_requisition']) }}
+                                    {{ BootForm::select('inventory_requisition_no', 'Requisition No', $requisitions, null,['class'=>'input-sm bSelect', 'v-model'=>'inventory_requisition_no', 'v-on:change'=>'fetch_requisition', 'ref'=>'inventory_requisition_no']) }}
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
                                     {{ BootForm::text('requisition[type][name]', 'Requisition Type', null, ['class'=>'input-sm', 'readonly'=>'true', 'v-model'=>'requisition.type.name']) }}
@@ -131,10 +131,15 @@
 </div>
 @endsection
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+@endsection
+
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 
 <script>
 $(function(){
@@ -285,7 +290,10 @@ $(function(){
       beforeMount(){
         this.reset_requisition({!! old('requisition')?collect(old('requisition'))->toJson():(empty($edit['requisition'])?'null': collect($edit['requisition'])->toJson()) !!});
         //this.load_old();
-      }
+      },//End of beforeMount
+        updated(){
+            $(this.$refs.inventory_requisition_no).selectpicker('refresh');
+        }//end of updated
 	})//End of vue js
 
   $('.datepicker').daterangepicker({
@@ -294,6 +302,11 @@ $(function(){
       locale: {
           format: 'DD-MM-YYYY'
       }
+  });
+
+  $('.bSelect').selectpicker({
+      liveSearch:true,
+      size:5
   });
 
 });

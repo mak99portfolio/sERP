@@ -30,6 +30,7 @@ class ReceiveLocalPurchaseController extends Controller{
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
             'product_types'=>\App\ProductType::pluck('name', 'id'), //Need to filter in future
+            'local_purchase_orders'=>\App\LocalPurchaseOrder::pluck('purchase_order_no', 'purchase_order_no')
         ];
         
         return view($this->path('create'), $data);

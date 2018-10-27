@@ -60,7 +60,7 @@
                                              Add Product From List
                                           </h4>
                                        </div>
-                                       <div class="modal-body">
+                                       <div class="modal-body" style="height: 75vh; overflow-y: auto">
                                         <div class="table-responsive m-t-20">
                                             <div class="row">
                                               <div class="col-lg-5 col-md-5 col-sm-5">
@@ -93,28 +93,12 @@
 
                             <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
-                                    {{-- <div class="col-lg-2 col-md-6 col-sm-6">
-                                        <div class="form-group">
-                                            <label>HS Code</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by HS code" v-model='active_record.hs_code' v-on:change='fetch_product(active_record.hs_code)' v-on:keydown.enter.prevent="fetch_product(active_record.hs_code)">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.hs_code)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
-                                        </div>
-                                    </div> --}}
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
-                                            <label>Search Product</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
-                                            <div class="input-group">
-                                            <input type="text" class="form-control input-sm" placeholder="Search by name" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
-                                            </span>
-                                        </div><!-- /input-group -->
+                                            <label for='product_id'>Products</label>
+                                              <select class="form-control input-sm" data-live-search="true" data-size='5' id="product_id" ref='product_id' v-model='product_id' v-on:change="fetch_product">
+                                                <option v-for="(row, index) in resource.products.data" v-bind:value='row.id' v-html='row.name'></option>
+                                              </select>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -192,16 +176,24 @@
 
 @endsection
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+@endsection
+
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
+<script src="{{ asset('js/vue-mixing.js') }}"></script>
 <script>
 $(function(){
 	var vue=new Vue({
+      mixins: [custom],
   		el: '#vue_app',
   		data:{
         search:'',
+        product_id:'',
         config:{
           base_url: "{{ url('inventory/get-product-info/') }}",
           old_data_url: "{{ url('inventory/vue-old-products') }}",
@@ -226,45 +218,37 @@ $(function(){
         }
   		},
   		methods:{
-  			alert:function(event){
-  				alert('Working...');
-  				console.log(event.target);
-  			},
-  			fetch_product:function(slug){
+  			fetch_product:function(){
 
-  				var vm=this;
-          var loading = $.loading();
-          loading.open(3000);
-          vm.remote_data=null;
-          vm.reset_active_record();
+  				var ref=this;
+          ref.loading.open(3000);
+          ref.remote_data=null;
+          ref.reset_active_record();
 
           sender_working_unit_id=$('#sender_working_unit_id').val();
           product_status_id=$('#product_status_id').val();
           product_type_id=$('#product_type_id').val();
 
-          if(slug && sender_working_unit_id){
+          if(ref.product_id && sender_working_unit_id){
 
-            axios.get(this.config.base_url + '/' + sender_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' +slug).then(function(response){
+            axios.get(this.config.base_url + '/' + sender_working_unit_id + '/' + product_status_id + '/' + product_type_id + '/' +ref.product_id).then(function(response){
 
-              vm.remote_data=response.data;
-              vm.active_record=vm.remote_data;
-              vm.active_record.quantity=0
-                
-              loading.close();
+              ref.remote_data=response.data;
+              ref.active_record=ref.remote_data;
+              ref.active_record.quantity=0;                
+              ref.loading.close();
 
             }).catch(function(){
 
-              loading.close();
-              new PNotify({
-                'title': 'Failed!',
-                'text': 'Sorry!, searched product does not found.',
-                'type': 'error',
-                'styling': 'bootstrap3'
-              });
+              ref.loading.close();
+              ref.alert('Sorry!, found no result.')
 
             });
 
-          }else loading.close();
+          }else{
+            ref.loading.close();
+            ref.alert('Please!, select a product');
+          }
 
   			},
   			delete_product:function(product){
@@ -275,12 +259,13 @@ $(function(){
          },
          add_product:function(){
           if(this.active_record.quantity > 0){
+            this.product_id='';
             this.products.push(this.active_record);
             this.reset_active_record();
-          }
+          }else this.alert('Product quantity have to be more than zero.');
          },
          load_old:function(){
-            var vm=this;
+            var ref=this;
             var loading=$.loading();
 
             sender_working_unit_id=$('#sender_working_unit_id').val();
@@ -290,7 +275,7 @@ $(function(){
             loading.open(3000);
             axios.get(this.config.old_data_url + '/' + sender_working_unit_id + '/' + product_status_id + '/' + product_type_id).then(function(response){
 
-              vm.products=response.data;                
+              ref.products=response.data;                
               loading.close();
 
             }).catch(function(){
@@ -299,27 +284,6 @@ $(function(){
 
             });
          },
-         fetch_resource:function(url, reference, callback=null){
-
-            var loading=$.loading();
-            loading.open(3000);
-
-            axios.get(url).then(function(response){
-
-                reference.data=response.data.data;
-                loading.close();
-                if(typeof callback==='function'){
-                    callback();
-                }
-
-            }).catch(function(){
-
-                loading.close();
-                ref.alert('Sorry!, failed to fetch remote data.');
-
-            });
-
-        },
         add_product_from_list:function(index){
           var product=this.resource.products.data[index];
           this.products.push({
@@ -346,7 +310,10 @@ $(function(){
       beforeMount(){
         this.fetch_resource(this.config.resource + '/product', this.resource.products);
         this.load_old();
-      }
+      },//End of beforeMount
+      updated(){
+        $(this.$refs.product_id).selectpicker('refresh');
+      }//end of updated
 	})//End of vue js
 
 });

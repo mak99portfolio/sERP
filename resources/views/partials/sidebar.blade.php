@@ -34,6 +34,8 @@
             <ul class="nav child_menu">
               <li><a href="{{ route('vendor.index') }}">Vendor</a></li>
               <li><a href="{{ route('vendor-category.index') }}">Vendor Category</a></li>
+              <li><a href="{{ route('business-type.index') }}">Business Type</a></li>
+              <li><a href="{{ route('business-nature.index') }}">Business Nature</a></li>
               <li><a href="{{ route('requisition-purpose.index') }}">Requisition Purpose</a></li>
               <li><a href="{{ route('cost-particular.index') }}">Cost Particulars</a></li>
               <li><a href="{{ route('consignment-particular.index') }}">Consignmnet Particulars</a></li>

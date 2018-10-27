@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionSchedulesTable extends Migration
+class CreateBusinessTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCollectionSchedulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('collection_schedules', function (Blueprint $table) {
+        Schema::create('business_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
-            $table->string('collection_schedule_no');
-            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->string('name');
+            $table->string('short_name');
+            $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
@@ -34,6 +33,6 @@ class CreateCollectionSchedulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collection_schedules');
+        Schema::dropIfExists('business_types');
     }
 }

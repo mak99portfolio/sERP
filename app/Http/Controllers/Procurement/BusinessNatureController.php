@@ -1,83 +1,54 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Procurement;
+
+use App\Http\Controllers\Controller;
 
 use App\BusinessNature;
 use Illuminate\Http\Request;
 
 class BusinessNatureController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $view_root = 'modules/procurement/setting/business_nature/';
     public function index()
     {
-        //
+        $view = view($this->view_root . 'index');
+        $view->with('business_nature_list', BusinessNature::all());
+        return $view;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+        $view = view($this->view_root . 'create');
+        return $view;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BusinessNature  $businessNature
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(BusinessNature $businessNature)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\BusinessNature  $businessNature
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(BusinessNature $businessNature)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BusinessNature  $businessNature
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, BusinessNature $businessNature)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\BusinessNature  $businessNature
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(BusinessNature $businessNature)
     {
         //

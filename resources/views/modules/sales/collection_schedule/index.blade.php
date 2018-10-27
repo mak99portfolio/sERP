@@ -26,26 +26,24 @@
                                 <thead class="bg-primary">
                                     <tr>
                                     <th>#</th>
-                                        <th>Collection Id</th>
-                                        <th>Collection Date</th>
-                                        <th>Amount</th>
-                                        <th>Invoice Pending Amount</th>
+                                        <th>Customer</th>
+                                        <th>Collection No</th>
                                         <th>Status</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($collection_schedule_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td>01/03/2018</td>
-                                        <td>12000</td>
-                                        <td>1000</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->customer_id }}</td>
+                                        <td>{{ $item->collection_schedule_no }}</td>
                                         <td><span class="label label-success">Success Label</span></td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <a href="{{ route('collection-schedule.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

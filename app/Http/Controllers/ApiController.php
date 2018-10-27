@@ -16,13 +16,12 @@ use App\ProductGroup;
 use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
-use App\Stock;
 use App\Quotation;
-use App\VendorBank;
 use App\SalesInvoice;
-use Illuminate\Http\Request;
+use App\Stock;
+use App\VendorBank;
 use Carbon\Carbon;
-
+use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
@@ -355,7 +354,8 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getLocalRequisitionByDateForQuotationCompare(Request $request){
+    public function getLocalRequisitionByDateForQuotationCompare(Request $request)
+    {
         $date_range = explode(' - ', $request->date_range);
         $start_date = Carbon::parse($date_range[0])->format('Y-m-d');
         $end_date = Carbon::parse($date_range[1])->format('Y-m-d');
@@ -433,7 +433,7 @@ class ApiController extends Controller
 
     public function getInvoiceByCustomerId($id)
     {
-        $invoice_lists= SalesInvoice::where('customer_id', $id)->get();
+        $invoice_lists = SalesInvoice::where('customer_id', $id)->get();
         foreach ($invoice_lists as $invoice_list) {
             $invoice[] = [
                 'invoice_id' => $invoice_list->id,
@@ -441,10 +441,10 @@ class ApiController extends Controller
 
             ];
         }
-    // dd($invoice);
-     $data['invoices'] = $invoice;
-     $data['due'] = 10000;
-     return response()->json($data);
+        // dd($invoice);
+        $data['invoices'] = $invoice;
+        $data['due'] = 10000;
+        return response()->json($data);
     }
     public function getCiByCiId($id)
     {
@@ -604,6 +604,7 @@ class ApiController extends Controller
 
     public function getProductForSalesOrder($product_id, $customer_id)
     {
+        $physical_stock = Stock::where(['product_id'=> $product_id, 'product_status_id'=>1, 'product_type_id'=>1])->sum('receive_quantity') - Stock::where(['product_id'=> $product_id, 'product_status_id'=>1, 'product_type_id'=>1])->sum('issue_quantity');
 
         $discount_customer_wise = \App\DiscountCustomerWise::where('customer_id', $customer_id)->where('product_id', $product_id)->where('active', 'true')->first();
         $discount_generic = \App\DiscountGeneric::where('product_id', $product_id)->where('active', 'true')->first();
@@ -627,17 +628,64 @@ class ApiController extends Controller
             'hs_code' => $product->hs_code,
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
-            'available' => 100,
+            'available' => $physical_stock,
             'intransit' => 20,
             'pending' => $pending,
             'discount_type' => $discount_type,
-            'discount' => (int)$discount,
+            'discount' => (int) $discount,
         ];
         return response()->json($data);
     }
-    public function getBonusByProduct($quantity,$customer_id,$product_id)
+    public function getBonusByProduct($quantity, $customer_id, $product_id)
     {
-        return response()->json($product_id);
 
+        $free_bonus_customer_wise = \App\FreeBonusCustomerWise::where('customer_id', $customer_id)->where('product_id', $product_id)->where('active', 'true')->first();
+        $free_bonus_generic = \App\FreeBonusGeneric::where('product_id', $product_id)->where('active', 'true')->first();
+
+        if ($free_bonus_customer_wise) {
+            if ($free_bonus_customer_wise->bonus_type == 'fixed') {
+                $bonus_quantity = $free_bonus_customer_wise->bonus_value;
+            } else {
+                $bonus_quantity = floor($quantity / $free_bonus_customer_wise->quantity) * $free_bonus_customer_wise->bonus_value;
+            }
+        } else if ($free_bonus_generic) {
+
+            if ($free_bonus_generic->bonus_type == 'fixed') {
+                $bonus_quantity = $free_bonus_generic->bonus_value;
+            } else {
+                $bonus_quantity = floor($quantity / $free_bonus_generic->quantity) * $free_bonus_generic->bonus_value;
+            }
+
+        } else {
+            $bonus_quantity = 0;
+        }
+
+        return response()->json($bonus_quantity);
+
+    }
+    public function getWorkingUnitWiseProductAvailable($product_id){
+        $units=\App\WorkingUnit::all()->toArray();
+        /*
+        foreach($units as $index=>$row){
+            $units[$index]['items']=\App\Stock::with('product')->where(['working_unit_id', $row['id'])->selectRaw("(CAST(SUM(receive_quantity) AS FLOAT)-CAST(SUM(issue_quantity) AS FLOAT)) AS physical_quantity, product_id")->groupBy('product_id')->get()->toArray();
+        }
+        */
+
+        foreach($units as $index=>$row){
+            $units[$index]['physical_quantity']=\App\Stock::where([
+                'working_unit_id'=>$row['id'],
+                'product_id'=>$product_id,
+                'product_status_id'=>1,
+                'product_type_id'=>1
+            ])->sum('receive_quantity')-\App\Stock::where([
+                'working_unit_id'=>$row['id'],
+                'product_id'=>$product_id,
+                'product_status_id'=>1,
+                'product_type_id'=>1
+            ])->sum('issue_quantity');
+
+            $units[$index]['product']=\App\Product::find($product_id)->toArray();
+        }
+        return response()->json($units);
     }
 }

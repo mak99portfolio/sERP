@@ -1,0 +1,14 @@
+{
+  "name": "bundles",
+  "version": "1.0.0",
+  "description": "\"Dependencies for assets\"",
+  "main": "index.js",
+  "author": "\"Md. Asraful Islam\"",
+  "license": "none",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap-select": "^1.13.3",
+    "vue": "^2.5.17"
+  }
+}

@@ -77,6 +77,8 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');
+    Route::resource('business-nature', 'BusinessNatureController');
+    Route::resource('business-type', 'BusinessTypeController');
     Route::resource('requisition-purpose', 'RequisitionPurposeController');
     Route::resource('cost-particular', 'CostParticularController');
     Route::resource('consignment-particular', 'ConsignmentParticularController');
@@ -229,6 +231,7 @@ Route::get('/get-local-requisition-items-from-quotation/{id}', ['as' => 'get-loc
 Route::get('/get-all-employee-by-designation/{id}', ['as' => 'get-all-employee-by-designation', 'uses' => 'ApiController@getEmployeeByDesignation']);
 Route::get('/get-product-for-sales-order/{id}/{customer_id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
 Route::get('/get-product-bonus/{quantity}/{customer_id}/{product_id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
+Route::get('/get-working-unit-wise-product-available/{id}', ['as' => 'get-working-unit-wise-product-available', 'uses' => 'ApiController@getWorkingUnitWiseProductAvailable']);
 
 
 //ACL (Access Control Limit)

@@ -45,7 +45,8 @@ class IssueController extends Controller{
         $data=[
             'issue'=>new \App\InventoryIssue, 
             'forward_units'=>$forward_units,
-            'requested_depot'=>$requested_depot
+            'requested_depot'=>$requested_depot,
+            'requisitions'=>$requested_depot->incoming_requisitions->pluck('inventory_requisition_no', 'inventory_requisition_no')
         ];
 
         return view($this->path('create'), $data);
@@ -152,7 +153,8 @@ class IssueController extends Controller{
             'issue'=>$issue,
             'forward_units'=>$forward_units,
             'requested_depot'=>$requested_depot,
-            'edit'=>$this->populate_old_issue($issue)
+            'edit'=>$this->populate_old_issue($issue),
+            'requisitions'=>$requested_depot->incoming_requisitions->pluck('inventory_requisition_no', 'inventory_requisition_no')
         ];
 
         //dd($data['edit']);

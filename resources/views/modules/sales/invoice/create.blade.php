@@ -123,26 +123,12 @@
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.gate_pass_id }">
                                     <label for="gate_pass_id" class="control-label">Gate Pass</label>
                                     <select class="form-control input-sm bSelect"  ref="gate_pass_id" id="gate_pass_id" v-model="field.gate_pass_id">
-                                        <option v-for="(row, index) in resource.customer_addresses.data
-                                        " v-bind:value="row.id" v-html="row.address"></option>
+                                        <option v-for="(row, index) in resource.gate_passes.data
+                                        " v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
                                     <span
                                         class="help-block"
                                         v-for="row in errors.gate_pass_id"
-                                        v-html="row"
-                                    ></span>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
-                                    <label for="delivery_person_id" class="control-label">Delivery Person</label>
-                                    <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
-                                        <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
-                                    </select>
-                                    <span
-                                        class="help-block"
-                                        v-for="row in errors.delivery_person_id"
                                         v-html="row"
                                     ></span>
                                 </div>
@@ -158,6 +144,20 @@
                                     <span
                                         class="help-block"
                                         v-for="row in errors.shipping_address_id"
+                                        v-html="row"
+                                    ></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
+                                    <label for="delivery_person_id" class="control-label">Delivery Person</label>
+                                    <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
+                                        <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
+                                    </select>
+                                    <span
+                                        class="help-block"
+                                        v-for="row in errors.delivery_person_id"
                                         v-html="row"
                                     ></span>
                                 </div>
@@ -180,6 +180,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">Delivery Vehicles</div>
@@ -271,47 +272,86 @@
                                                 <thead>
                                                     <tr>
                                                         <th>Product Name</th>
-                                                        <th>Sales Order Quantity</th>
-                                                        <th>Receive Quantity</th>
-                                                        <th>Intransit</th>
-                                                        <th>Pending</th>
+                                                        <th>UOM</th>
                                                         <th>Challan Quantity</th>
+                                                        <th>Bonus Quantity</th>
+                                                        <th>Pending Bonus Quantity</th>
+                                                        <th>Bonus Quantity</th>
+                                                        <th>Pending Product Quantity</th>
+                                                        <th>Invoice Quantity</th>
+                                                        <th>Sub Total Quantity</th>
+                                                        <th>Unit Price</th>
+                                                        <th>Net Price</th>
+
+                                                        <th>Discount</th>
+                                                        <th>Sub total</th>
                                                         <th>Remove</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody v-for="(row, index) in field.sales_order_items">
-                                                    <tr>
-                                                        <td colspan="7" class="text-center" v-html="'Sales Order No: '+row.sales_order_no"></td>
-                                                    </tr>
-                                                    <tr v-for="(inner_row, inner_index) in row.items">
-                                                        <td v-html="inner_row.product.name"></td>
-                                                        <td v-html="inner_row.quantity"></td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>
-                                                            <input
-                                                                class="form-control input-sm"
-                                                                type="number"
-                                                                v-model="inner_row.challan_quantity"
-                                                                v-on:change="total_challan_quantity"
-                                                            />
-                                                        </td>
-                                                        <td>
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-default btn-sm"
-                                                                v-on:click="remove_order_item(index, inner_index)"
-                                                            >
-                                                                <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
+                                                <tbody v-for="(row, index) in field.sales_invoice_items">
+                                                    <td v-html="row.product.name"></td>
+                                                    <td v-html="row.product.unit_of_measurement.name"></td>
+                                                    <td v-html="row.challan_quantity"></td>
+                                                    <td v-html="row.sales_order_bonus_quantity"></td>
+                                                    <td v-html="row.pending_bonus_quantity"></td>
+                                                    <td>
+                                                        <input
+                                                            class="form-control input-sm"
+                                                            type="number"
+                                                            v-model="row.bonus_quantity"
+                                                            v-on:change="check_bonus_quantity(index)"
+                                                            min='0'
+                                                        />
+                                                    </td>
+                                                    <td v-html="row.pending_product_quantity"></td>
+                                                    <td>
+                                                        <input
+                                                            class="form-control input-sm"
+                                                            type="number"
+                                                            v-model="row.invoice_quantity"
+                                                            v-on:change="check_invoice_quantity(index)"
+                                                            min='0'
+                                                        />
+                                                    </td>
+                                                    <td v-html="sub_total_quantity(index)"></td>
+                                                    <td v-html="row.unit_price"></td>
+                                                    <td v-html="net_price(index)"></td>
+                                                    <td v-html="row.discount_amount"></td>
+                                                    <td v-html="sub_total(index)"></td>
+                                                    <td>
+                                                        <button
+                                                            type="button"
+                                                            class="btn btn-default btn-sm"
+                                                            v-on:click="remove_invoice_item(index)"
+                                                        >
+                                                            <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+                                                        </button>
+                                                    </td>
                                                 </tbody>
                                                 <tbody>
                                                     <tr>
-                                                        <td colspan="5" class="text-right">Total Challan Quantity</td>
-                                                        <td v-html="field.total_challan_quantity" colspan="2"></td>
+                                                        <td colspan="12" class="text-right">Total Quantity</td>
+                                                        <td colspan="2" v-html="field.total_quantity"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12" class="text-right">Total Amount</td>
+                                                        <td colspan="2" v-html="field.total_amount"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12" class="text-right">Total Vat</td>
+                                                        <td colspan="2" v-html="field.total_vat"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12" class="text-right">Total Discount</td>
+                                                        <td colspan="2" v-html="field.total_discount"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12" class="text-right">Grand Total</td>
+                                                        <td colspan="2" v-html="field.grand_total"></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="12" class="text-right">Previous Due</td>
+                                                        <td colspan="2" v-html="field.previous_due"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -319,6 +359,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
@@ -358,27 +399,31 @@ $(function(){
         data:{
             url:{
                 resource:"{{ url('api/resource') }}",
-                sales_orders:"{{ url('api/sales/challan/orders') }}",
                 delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}",
-                sales_order_items:"{{ url('api/sales/challan/sales-orders-items') }}",
+                sales_challan_items:"{{ url('api/sales/invoice/sales-challan-items') }}",
                 customer_addresses:"{{ url('api/sales/challan/customer-addresses') }}",
-                submit:"{{ route('sales-challan.store') }}"
+                submit:"{{ route('sales-invoice.store') }}"
             },
             field:{
+                sales_challan_id:'',
                 csrf_token: "{{ csrf_token() }}",
                 customer_name:'',
                 customer_id:'',
-                sales_orders:[],
                 challan_date: '',
                 invoice_date: Date.now(),
-                mushak_number_id:'',
+                gate_pass_id:'',
                 delivery_person_id:'',
                 delivery_vehicle:'',
                 delivery_vehicles:[],
-                sales_order_items:[],
-                total_challan_quantity:0,
+                sales_invoice_items:[],
                 shipping_address_id:'',
-                invoice_address_id:''
+                invoice_address_id:'',
+                total_quantity:0,
+                total_amount:0,
+                total_vat:0,
+                total_discount:0,
+                grand_total:0,
+                previous_due:0
             },
             resource:{
                 sales_challans:{
@@ -408,6 +453,9 @@ $(function(){
                 },
                 customer_addresses:{
                     data:[{id:0, address:'--Select Customer Address--'}]
+                },
+                gate_passes:{
+                    data:[{id:0, name:'--Select Gate Pass--'}]
                 }
             },
             temp:null,
@@ -478,12 +526,21 @@ $(function(){
                 this.field.customer_id='';
                 this.field.customer_name='';
 
+                this.resource.customer_addresses.data=[{id:0, address:'--Select Customer Address--'}];
+
                 if(related_customer){
+
                     this.field.customer_id=related_customer.id;
                     this.field.customer_name=related_customer.name;
+
+                    ref.fetch_resource(ref.url.resource + '/customer-address', ref.resource.customer_addresses, function(){
+                        ref.field.shipping_address_id='';
+                    }, {query:{customer_id:related_customer.id}});
+
                 }else this.alert('This challan does\'t associate with any customer');
 
                 //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
+                this.update_sales_challan_list();
 
             },
             fetch_reference:function(id){
@@ -492,39 +549,6 @@ $(function(){
                 })
 
                 return referer.name;
-            },
-            fetch_sales_orders:function(){
-
-                var ref=this;
-                var loading=$.loading();
-                loading.open(3000);
-
-                if(!ref.field.customer_id){
-                    ref.alert('Please!, select a challan.');
-                    loading.close();
-                    return false;
-                }
-
-                ref.fetch_resource(ref.url.resource + '/customer-address', ref.resource.customer_addresses, function(){
-                    ref.field.shipping_address_id='';
-                    ref.resource.customer_addresses.data=ref.resource.customer_addresses.data.filter(row=>{
-                        return row.customer_id==ref.field.customer_id;
-                    });
-                });
-
-                axios.get(ref.url.sales_orders + '/' + ref.field.customer_id).then(function(response){
-
-                    ref.resource.sales_orders=response.data;
-                    loading.close();
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
-                });
-
             },
             fetch_delivery_persons:function(){
                 var ref=this;
@@ -606,12 +630,63 @@ $(function(){
             remove_delivery_vehicle:function(index){
                 this.field.delivery_vehicles.splice(index, 1);
             },
-            remove_order_item:function(index, inner_index){
-                this.field.sales_order_items[index].items.splice(inner_index, 1);
-                if(this.field.sales_order_items[index].items.length < 1){
-                    this.field.sales_order_items.splice(index, 1);
+            remove_invoice_item:function(index){
+                this.field.sales_invoice_items.splice(index, 1);
+            },
+            sub_total_quantity:function(index){
+                return this.parse_num(this.field.sales_invoice_items[index].invoice_quantity)-this.parse_num(this.field.sales_invoice_items[index].bonus_quantity);
+            },
+            net_price:function(index){
+                return this.sub_total_quantity(index) * this.parse_num(this.field.sales_invoice_items[index].unit_price);
+            },
+            sub_total:function(index){
+
+                var sub_total=this.net_price(index) - this.parse_num(this.field.sales_invoice_items[index].discount_amount);
+                return sub_total < 0?0:sub_total;
+
+            },
+            total:function(){
+
+                var items=this.field.sales_invoice_items;
+                var ref=this;
+
+                ref.field.total_amount=0;
+                ref.field.total_discount=0;
+                ref.field.total_quantity=0;
+                ref.field.grand_total=0;
+
+                items.forEach(function(row, index){
+                    ref.field.total_amount+=ref.sub_total(index);
+                    ref.field.total_discount+=ref.parse_num(row.discount_amount);
+                    ref.field.total_quantity+=ref.sub_total_quantity(index);
+                });
+
+                ref.field.grand_total=ref.field.total_amount - ref.field.total_discount - ref.field.total_vat;
+
+            },
+            check_bonus_quantity:function(index){
+
+                var row=this.field.sales_invoice_items[index];
+
+                if(this.parse_num(row.sales_order_bonus_quantity) < this.parse_num(row.bonus_quantity)){
+                    this.alert('Sorry!, bonus quantity cant not exceed pending bonus quantity');
+                    this.field.sales_invoice_items[index].bonus_quantity=0;
                 }
-                this.total_challan_quantity();
+
+                this.total();
+
+            },
+            check_invoice_quantity:function(index){
+
+                var row=this.field.sales_invoice_items[index];
+
+                if(this.parse_num(row.pending_product_quantity) < this.parse_num(row.invoice_quantity)){
+                    this.alert('Sorry!, invoice quantity cant not exceed pending product quantity');
+                    this.field.sales_invoice_items[index].invoice_quantity=0;
+                }
+
+                this.total();
+                
             },
             update_own_vehicle:function(index){
 
@@ -629,24 +704,22 @@ $(function(){
                 this.field.delivery_vehicles[index].vehicle_no=own_vehicle.vehicle_no;
 
             },
-            update_sales_order_list:function(){
-                var ref=this;
-                var sales_order_ids=this.field.sales_orders;
+            update_sales_challan_list:function(){
 
-                //return console.log(sales_order_ids);
+                var ref=this;
 
                 var loading=$.loading();
                 loading.open(3000);
 
-                if(!sales_order_ids){
-                    ref.alert('Please!, select a sales order.');
+                if(!this.field.sales_challan_id){
+                    ref.alert('Please!, select a sales challan number.');
                     loading.close();
                     return false;
                 }
 
-                axios.get(ref.url.sales_order_items, {params: sales_order_ids}).then(function(response){
+                axios.get(ref.url.sales_challan_items + '/' + this.field.sales_challan_id).then(function(response){
 
-                    ref.field.sales_order_items=response.data;
+                    ref.field.sales_invoice_items=response.data;
                     loading.close();
 
                 }).catch(function(){
@@ -658,25 +731,9 @@ $(function(){
                 });
 
             },
-            total_challan_quantity:function(){
-
-                var ref=this;
-                ref.field.total_challan_quantity=0;
-                ref.field.sales_order_items.forEach(function(row){
-
-                    //console.log(row);
-                    row.items.forEach(function(inner_row){
-                        ref.field.total_challan_quantity+=ref.parse_num(inner_row.challan_quantity);
-                    });
-
-                });
-
-            },
             submit:function(){
 
                 var ref=this;
-
-                //if(ref.field.total_challan_quantity)
 
                 this.reset_error();
 
@@ -688,7 +745,7 @@ $(function(){
                 }).then(function(response){
 
                     ref.alert(response.data, 'success');
-                    window.location.replace("{{ route('sales-challan.index') }}");
+                    //window.location.replace("{{ route('sales-invoice.index') }}");
 
                     //console.log(response);
                 }).catch(function (error){
@@ -706,11 +763,13 @@ $(function(){
 
                 this.errors={
                     customer_id:false,
-                    sales_orders:false,
                     challan_date:false,
-                    mushak_number_id:false,
                     delivery_person_id:false,
-                    shipping_address_id:false
+                    shipping_address_id:false,
+                    sales_challan_id:false,
+                    invoice_date:false,
+                    invoice_address_id:false,
+                    gate_pass_id:false
                 }
 
             }
@@ -737,6 +796,7 @@ $(function(){
             this.fetch_resource(this.url.resource + '/employee-profile', this.resource.employees);
             this.fetch_resource(this.url.resource + '/vendor', this.resource.vendors);
             this.fetch_resource(this.url.resource + '/customer', this.resource.customers);
+            this.fetch_resource(this.url.resource + '/gate-pass', this.resource.gate_passes);
             //this.fetch_resource(this.url.resource + '/customer-address', this.resource.customer_addresses);
             this.fetch_delivery_persons();
             this.reset_error();
@@ -745,10 +805,11 @@ $(function(){
         },//End of beforeMount
         updated(){
             $(this.$refs.sales_challan_id).selectpicker('refresh');
-            $(this.$refs.sales_orders).selectpicker('refresh');
             $(this.$refs.delivery_person_id).selectpicker('refresh');
             $(this.$refs.delivery_vehicle).selectpicker('refresh');
             $(this.$refs.shipping_address_id).selectpicker('refresh');
+            $(this.$refs.invoice_address_id).selectpicker('refresh');
+            $(this.$refs.gate_pass_id).selectpicker('refresh');
         }//end of updated
     });//End of vue js
 

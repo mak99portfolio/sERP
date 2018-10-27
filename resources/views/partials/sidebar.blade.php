@@ -79,6 +79,8 @@
                 <li><a href="{{ route('sales-invoice-cancel.index') }}">Invoice Cancel</a></li>
                 <li><a href="{{ route('collection-schedule.index') }}">Collection Schedule</a></li>
                 <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
+                <li><a href="{{ route('delivery-schedule.index') }}">Delivery Schedule</a></li>
+                <li><a href="{{ route('invoice-schedule.index') }}">Invoice Schedule</a></li>
                 <li><a>Setting <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{ route('customer.index') }}">Customer Profile</a></li>

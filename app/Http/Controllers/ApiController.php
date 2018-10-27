@@ -17,9 +17,12 @@ use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Stock;
+use App\Quotation;
 use App\VendorBank;
 use App\SalesInvoice;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ApiController extends Controller
 {
@@ -352,6 +355,22 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
+    public function getLocalRequisitionByDateForQuotationCompare(Request $request){
+        $date_range = explode(' - ', $request->date_range);
+        $start_date = Carbon::parse($date_range[0])->format('Y-m-d');
+        $end_date = Carbon::parse($date_range[1])->format('Y-m-d');
+
+        $requisitions = LocalRequisition::whereBetween('issued_date', [$start_date, $end_date])->get();
+        $data['requisitions'] = $requisitions;
+        return response()->json($data);
+    }
+
+    public function getLocalRequisitionItemsFromQuotationByRequisitionId($id){
+        $quo = Quotation::where("local_requisition_id", $id)->first()->items;
+        // dd($quo);
+        return response()->json($quo);
+    }
+
     public function getRequisitionItemsForQuotationByLocalRequisitionId($id)
     {
         $req = LocalRequisition::find($id);
@@ -568,21 +587,40 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getProductForSalesOrder($id)
+    public function getProductForSalesOrder($product_id, $customer_id)
     {
-        $product = Product::find($id);
+
+        $discount_customer_wise = \App\DiscountCustomerWise::where('customer_id', $customer_id)->where('product_id', $product_id)->where('active', 'true')->first();
+        $discount_generic = \App\DiscountGeneric::where('product_id', $product_id)->where('active', 'true')->first();
+
+        if ($discount_customer_wise) {
+            $discount_type = $discount_customer_wise->discount_type;
+            $discount = $discount_customer_wise->discount_value;
+        } else if ($discount_generic) {
+            $discount_type = $discount_generic->discount_type;
+            $discount = $discount_generic->discount_value;
+        } else {
+            $discount_type = null;
+            $discount = 0;
+        }
+
+        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity');
+        $product = Product::find($product_id);
         $data = [
             'id' => $product->id,
             'name' => $product->name,
             'hs_code' => $product->hs_code,
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
-            'discount' => 10,
+            'available' => 100,
+            'intransit' => 20,
+            'pending' => $pending,
+            'discount_type' => $discount_type,
+            'discount' => (int)$discount,
         ];
         return response()->json($data);
     }
-
-    public function getBonusByProduct($product_id)
+    public function getBonusByProduct($quantity,$customer_id,$product_id)
     {
         return response()->json($product_id);
 

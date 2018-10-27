@@ -28,6 +28,12 @@ Route::namespace('Sales')->prefix('sales')->group(function(){
 		Route::get('delivery-persons', 'SalesChallanController@delivery_persons');
 		Route::get('sales-orders-items', 'SalesChallanController@sales_orders_items');
 		Route::post('store', 'SalesChallanController@store');
+
+		Route::get('sales-orders-items', 'SalesChallanController@sales_orders_items');
+	});
+
+	Route::prefix('invoice')->group(function(){		
+		Route::get('sales-challan-items/{sales_challan}', 'SalesInvoiceController@sales_challan_items');
 	});
 
 });

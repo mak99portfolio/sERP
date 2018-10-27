@@ -40,10 +40,12 @@ class FreeBonusGenericController extends Controller
             'product_id' => 'required|unique:free_bonus_generics',
             'bonus_type' => 'required',
             'bonus_value' => 'required',
+            "quantity" => "required_if:bonus_type,==,ratio"
         ]);
         $freeBonusCustomerWise = new FreeBonusGeneric;
         $freeBonusCustomerWise->product_id = $request->product_id;
         $freeBonusCustomerWise->bonus_type = $request->bonus_type;
+        $request->bonus_type == 'ratio' ? $freeBonusCustomerWise->quantity = $request->quantity : null;
         $freeBonusCustomerWise->bonus_value = $request->bonus_value;
         $freeBonusCustomerWise->active = isset($request->active);
         $freeBonusCustomerWise->creator_user_id = Auth::id();

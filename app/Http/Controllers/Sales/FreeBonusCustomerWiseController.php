@@ -37,6 +37,7 @@ class FreeBonusCustomerWiseController extends Controller
             $discountCustomerWise->customer_id = $request->customer_id;
             $discountCustomerWise->product_id = $item['product_id'];
             $discountCustomerWise->bonus_type = $item['bonus_type'];
+            $item['bonus_type'] == 'ratio' ? $discountCustomerWise->quantity = $item['quantity'] : null;
             $discountCustomerWise->bonus_value = $item['bonus_value'];
             $discountCustomerWise->active = isset($item['active']);
             $discountCustomerWise->creator_user_id = Auth::id();

@@ -103,6 +103,8 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
     Route::resource('collection-schedule', 'CollectionScheduleController');
     Route::resource('payment-schedule', 'PaymentScheduleController');
+    Route::resource('delivery-schedule', 'DeliveryScheduleController');
+    Route::resource('invoice-schedule', 'InvoiceScheduleController');
     // Setting
     Route::resource('customer', 'CustomerController');
     Route::resource('customer-zone', 'CustomerZoneController');
@@ -223,10 +225,12 @@ Route::get('/get-lc-to-ci-list/{id}', ['as' => 'get-lc-to-ci-list', 'uses' => 'A
 Route::get('/get-ci-by-ci-ids/{ids}', ['as' => 'get-ci-by-ci-ids', 'uses' => 'ApiController@getCIByCIIds']);
 Route::get('/get-requisition-items-by-requisition-id/{id}', ['as' => 'get-requisition-items-by-requisition-id', 'uses' => 'ApiController@getRequisitionItemsForQuotationByLocalRequisitionId']);
 Route::get('/get-vendor-wise-po/{id}', ['as' => 'get-vendor-wise-po', 'uses' => 'ApiController@getVendorWisePo']);
+Route::get('/get-local-requisition-by-date-range', ['as' => 'get-local-requisition-by-date-range', 'uses' => 'ApiController@getLocalRequisitionByDateForQuotationCompare']);
+Route::get('/get-local-requisition-items-from-quotation/{id}', ['as' => 'get-local-requisition-items-from-quotation', 'uses' => 'ApiController@getLocalRequisitionItemsFromQuotationByRequisitionId']);
 // Sales
 Route::get('/get-all-employee-by-designation/{id}', ['as' => 'get-all-employee-by-designation', 'uses' => 'ApiController@getEmployeeByDesignation']);
-Route::get('/get-product-for-sales-order/{id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
-Route::get('/get-product-bonus/{id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
+Route::get('/get-product-for-sales-order/{id}/{customer_id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
+Route::get('/get-product-bonus/{quantity}/{customer_id}/{product_id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
 
 
 //ACL (Access Control Limit)

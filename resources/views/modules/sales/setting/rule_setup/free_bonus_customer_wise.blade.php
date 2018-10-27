@@ -81,10 +81,9 @@
                                                                     <input type="text" class="form-control input-sm" name="items[<% $index %>][bonus_value]" ng-if="bonus_type[$index] == 'fixed'" required>
                                                                 </div>
                                                                 <div class="input-group item" ng-if="bonus_type[$index] == 'ratio'">
-                                                                    <input type="number" class="form-control input-sm" ng-model="free_quantity[$index]" placeholder="Free" required>
+                                                                    <input type="number" class="form-control input-sm" name="items[<% $index %>][bonus_value]" ng-model="bonus_value[$index]" placeholder="Free" required>
                                                                     <span class="input-group-addon">&ratio;</span>
-                                                                    <input type="number" class="form-control input-sm" ng-model="quantity[$index]" min="1" placeholder="Quantity" required>
-                                                                    <input type="hidden" value="<% free_quantity[$index]/quantity[$index] %>" name="items[<% $index %>][bonus_value]">
+                                                                    <input type="number" class="form-control input-sm" name="items[<% $index %>][quantity]" ng-model="quantity[$index]" min="1" placeholder="Quantity" required>
                                                                 </div>
                                                             </td>
                                                             <td>
@@ -127,7 +126,7 @@
                                                 <td>{{ $item->customer->name }}</td>
                                                 <td>{{ $item->product->name }}</td>
                                                 <td>{{ $item->bonus_type }}</td>
-                                                <td>{{ $item->bonus_value }}</td>
+                                                <td>{{ $item->bonus_value }}{{ $item->bonus_type == 'ratio' ? " :" . $item->quantity : null }}</td>
                                                 <td>{{ $item->active ? "active": "inactive" }}</td>
                                             </tr>
                                             @endforeach
@@ -155,7 +154,7 @@
     app.controller('myCtrl', function($scope, $http) {
         $scope.itemlist = [];
         $scope.bonus_type = [];
-        $scope.free_quantity = [];
+        $scope.bonus_quantity = [];
         $scope.quantity = [];
         $scope.addItem = function () {
             let url = "{{URL::to('get-product')}}/" + $scope.product_id;
@@ -168,7 +167,7 @@
         $scope.removeItem = function(index){
             $scope.itemlist.splice(index,1);
             $scope.bonus_type.splice(index,1);
-            $scope.free_quantity.splice(index,1);
+            $scope.bonus_quantity.splice(index,1);
             $scope.quantity.splice(index,1);
         }
         $scope.sum = function($arr){

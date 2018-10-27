@@ -19,6 +19,12 @@ class CreateSalesInvoicesTable extends Migration{
             $table->integer('gate_pass_id')->unsigned();
             $table->integer('shipping_address_id')->unsigned();
             $table->integer('delivery_person_id')->unsigned();
+            $table->integer('total_quantity')->unsigned()->default(0);
+            $table->decimal('total_amount', 12, 2)->default(0.00);
+            $table->decimal('total_vat', 12, 2)->default(0.00);
+            $table->decimal('total_discount', 12, 2)->default(0.00);
+            $table->decimal('grand_total', 12, 2)->default(0.00);
+            $table->decimal('previous_due', 12, 2)->default(0.00);
             $table->softDeletes();
             $table->timestamps();
             

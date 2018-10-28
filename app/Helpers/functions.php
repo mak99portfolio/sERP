@@ -299,7 +299,7 @@ function labels($loop, $type="success"){
 }
 
 function bundle($postfix, $type='js'){
-	$url=url("bundles/$postfix");
+	$url=url("bundles/node_modules/{$postfix}");
 	if($type=='js') return "<script src='{$url}.js'></script>";
 	return "<link rel='stylesheet' href='{$url}.css'>";
 }

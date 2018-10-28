@@ -178,4 +178,8 @@ ul.bar_tabs>li a {
     margin-top: 10px !important;
 }
 
+/* datatable-buttons-customoze */
+.dataTables_filter{
+    width: 45%;
+}
 

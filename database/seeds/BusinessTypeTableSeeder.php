@@ -12,8 +12,21 @@ class BusinessTypeTableSeeder extends Seeder
     public function run()
     {
         $data=[
-        	['creator_user_id'=>1, 'name'=>'Fixed1', 'short_name'=>'Fixed1'],
-        	['creator_user_id'=>1, 'name'=>'Percentage1', 'short_name'=>'Percentage1']
+        	[
+                'creator_user_id'=>1, 
+                'name'=>'Ltd. Company', 
+                'short_name'=>'Ltd. Company'
+            ],
+        	[
+                'creator_user_id'=>1, 
+                'name'=>'Partnership', 
+                'short_name'=>'Partnership'
+            ],
+            [
+                'creator_user_id'=>1, 
+                'name'=>'Proprietorship', 
+                'short_name'=>'Proprietorship'
+            ]
         ];
 
         \DB::table('business_types')->insert($data);

@@ -49,7 +49,7 @@ class CompanyBankController extends Controller
 
     public function show(CompanyBank $companyBank)
     {
-        $view = view($this->view_root . 'index');
+        $view = view($this->view_root . 'show');
         $view->with('companyBank', $companyBank);
         return $view;
     }

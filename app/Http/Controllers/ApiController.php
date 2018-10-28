@@ -28,7 +28,7 @@ class ApiController extends Controller
 
     public function searchProduct(Request $request)
     {
-        $products = Product::where('name', 'LIKE', '%' . $request->term . '%')
+        $products = Product::where('name', 'LIKE', '%' . $request->term . '%')->orWhere('hs_code', 'LIKE', '%' . $request->term . '%')
             ->take(10)
             ->get();
 
@@ -36,7 +36,7 @@ class ApiController extends Controller
         foreach ($products as $product) {
             $results[] = [
                 'id' => $product->id,
-                'value' => $product->name,
+                'value' => $product->name . " (". $product->hs_code . ")",
             ];
         }
         return response()->json($results);

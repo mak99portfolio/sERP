@@ -20,7 +20,7 @@ class Quotation extends Model
         return $this->hasMany('App\QuotationItem', 'quotation_id');
     }
     public function local_requisition(){
-        return $this->belongsTo('App\LocalRequisition');
+        return $this->belongsTo('App\LocalRequisition', 'local_requisition_id');
     }
     public function vendor(){
         return $this->belongsTo('App\Vendor');

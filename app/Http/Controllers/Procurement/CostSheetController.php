@@ -52,7 +52,7 @@ class CostSheetController extends Controller
             'percent_of_vat' => 'required',
             'amount_of_vat' => 'required',
             'round_amount_of_vat' => 'required',
-            'others'=>'array',
+            'others'=>'array'
 /*            'percent_of_swift' => 'required',
             'amount_of_swift' => 'required',
             'round_amount_of_swift' => 'required',
@@ -71,7 +71,6 @@ class CostSheetController extends Controller
             'percent_of_others' => 'required',
             'amount_of_others' => 'required',
             'round_amount_of_others' => 'required'*/
-            'note'=>'required'
         ]);
 
         $cost_sheet = new CostSheet;

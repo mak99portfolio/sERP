@@ -30,7 +30,8 @@ class ReceiveForeignPurchaseController extends Controller{
             'inventory_receive_no'=>uCode('inventory_receives.inventory_receive_no', 'IR00'),
             'working_units'=>\App\WorkingUnit::where('id', $working_unit->id)->pluck('name', 'id'), //Need to filter in future
             'product_statuses'=>\App\ProductStatus::pluck('name', 'id'), //Need to filter in future
-            'product_types'=>\App\ProductType::pluck('name', 'id'), //Need to filter in future
+            'product_types'=>\App\ProductType::pluck('name', 'id'), //Need to filter in future'
+            'commercial_invoices'=>\App\CommercialInvoice::pluck('commercial_invoice_no', 'commercial_invoice_no')
         ];
         
         return view($this->path('create'), $data);

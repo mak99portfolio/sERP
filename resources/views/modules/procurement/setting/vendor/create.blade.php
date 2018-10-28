@@ -190,13 +190,13 @@
                                 <div class="panel-heading">Acceptance of payment terms and other discounts (if applicable)</div>
                                 <div class="panel-body">
                                     <div class="row">
-                                        <div class="col-md-2 col-sm-2">
-                                            {{ BootForm::text('payment_term[net_days]','Net Day', null, ['class'=>'form-control input-sm']) }}
+                                        <div class="col-md-2 col-sm-2 item">
+                                            {{ BootForm::number('payment_term[net_days]','Net Day', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <div class="col-md-5 col-sm-5 col-xs-12 item">
                                             {{ BootForm::text('payment_term[payment_discount]','Prompt payment discount', null, ['class'=>'form-control input-sm']) }}
                                         </div>
-                                        <div class="col-md-5 col-sm-5 col-xs-12">
+                                        <div class="col-md-5 col-sm-5 col-xs-12 item">
                                             {{ BootForm::text('payment_term[other_discount]',' Other Discounts', null, ['class'=>'form-control input-sm']) }}
                                         </div>
                                         <div class="col-md-12 col-sm-12 col-xs-12">

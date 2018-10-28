@@ -56,8 +56,8 @@
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 
-                                                    <label>CI No</label>
-                                                    <!--<input class="form-control input-sm" type="text">-->
+                                                    {{-- <label>CI No</label>
+                                                    
                                                     <div class="input-group">
                                                         {{ Form::text('commercial_invoice_no', null, ['class'=>'form-control input-sm', 'placeholder'=>'Insert CI Number', "v-model"=>"commercial_invoice_no", "v-on:change"=>"fetch_commercial_invoice(commercial_invoice_no)", "v-on:keydown.enter.prevent"=>"fetch_commercial_invoice(commercial_invoice_no)"]) }}
                                                         <span class="input-group-btn">
@@ -65,7 +65,11 @@
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
-                                                    </div><!-- /input-group -->
+                                                    </div> --}}
+
+                                                <div class="form-group">
+                                                    {{ BootForm::select('commercial_invoice_no', null, $commercial_invoices, null,['v-model'=>'commercial_invoice_no', 'v-on:change'=>'fetch_commercial_invoice', 'class'=>'form-control input-sm bSelect', 'ref'=>'commercial_invoice_no']) }}
+                                                </div>
                                                 
                                             </div>
                                             
@@ -91,18 +95,18 @@
 
 
                             <hr>
-                            <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
+
+                            {{-- <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Search Product</label>
-                                            <!--<input class="form-control input-sm" type="text">-->
                                             <div class="input-group">
                                             <input type="text" class="form-control input-sm" placeholder="Search Product" v-model='active_record.name' v-on:change='fetch_product(active_record.name)' v-on:keydown.enter.prevent="fetch_product(active_record.name)"/>
                                             <span class="input-group-btn">
                                                 <button class="btn btn-default btn-sm" type="button" v-on:click='fetch_product(active_record.name)'><i class="fa fa-search" aria-hidden="true"></i></button>
                                             </span>
-                                        </div><!-- /input-group -->
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-2 col-md-6 col-sm-6">
@@ -115,7 +119,8 @@
                                         <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
                                     <tr>
@@ -180,10 +185,15 @@
 </div>
 @endsection
 
+@section('style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+@endsection
+
 @section('script')
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
 <script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
 <script>
 $(function(){
     var vue=new Vue({
@@ -208,7 +218,7 @@ $(function(){
         },
         methods:{
 
-            fetch_commercial_invoice:function(slug){
+            fetch_commercial_invoice:function(){
 
                 var vm=this;
                 var loading = $.loading();
@@ -216,6 +226,7 @@ $(function(){
 
                 //reset models
                 vm.products=[];
+                var slug=vm.commercial_invoice_no;
                 vm.commercial_invoice_no='';
                 vm.letter_of_credit_no='';
 
@@ -331,7 +342,10 @@ $(function(){
         },
         beforeMount(){
             this.load_old();
-        }
+        },//End of beforeMount
+        updated(){
+            $(this.$refs.commercial_invoice_no).selectpicker('refresh');
+        }//end of updated
     })//End of vue js
 
     $('.datepicker').daterangepicker({
@@ -340,6 +354,11 @@ $(function(){
         locale: {
             format: 'DD-MM-YYYY'
         }
+    });
+
+    $('.bSelect').selectpicker({
+        liveSearch:true,
+        size:5
     });
 
 });//End of jquery

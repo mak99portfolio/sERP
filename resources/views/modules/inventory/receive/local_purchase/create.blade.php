@@ -56,7 +56,7 @@
 
                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 
-                                                    <label>Purchase Order No</label>
+                                                    {{-- <label>Purchase Order No</label>
                                                     <!--<input class="form-control input-sm" type="text">-->
                                                     <div class="input-group">
                                                         {{ Form::text('purchase_order_no', null, ['class'=>'form-control input-sm', "v-model"=>"local_order.purchase_order_no", "v-on:change"=>"fetch_local_order(local_order.purchase_order_no)", "v-on:keydown.enter.prevent"=>"fetch_local_order(local_order.purchase_order_no)"]) }}
@@ -65,7 +65,11 @@
                                                                 <i class="fa fa-search" aria-hidden="true"></i>
                                                             </button>
                                                         </span>
-                                                    </div><!-- /input-group -->
+                                                    </div><!-- /input-group --> --}}
+
+                                                <div class="form-group">
+                                                    {{ BootForm::select('purchase_order_no', null, $local_purchase_orders, null,['v-model'=>'local_order.purchase_order_no', 'v-on:change'=>'fetch_local_order', 'class'=>'form-control input-sm bSelect', 'ref'=>'purchase_order_no']) }}
+                                                </div>
                                                 
                                             </div>
                                             
@@ -88,7 +92,7 @@
 
 
                             <hr>
-                            <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
+                            {{-- <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
                                     <div class="col-lg-2 col-md-6 col-sm-6">
                                         <div class="form-group">
@@ -114,7 +118,7 @@
                                         <button type="button" class="btn btn-success btn-md m-t-20" v-on:click="add_product" v-bind:disabled="!active_record.id">Add</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
                                     <tr>

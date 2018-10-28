@@ -52,4 +52,12 @@ class WorkingUnit extends Model{
 		return $this->hasMany('App\InventoryRequisition', 'requested_working_unit_id');
 	}
 
+	public function inventory_issueses(){
+		return $this->hasMany('App\InventoryIssue', 'requested_working_unit_id');
+	}
+
+	public function inventory_challans(){
+		return $this->hasMany('App\InventoryIssue', 'sender_working_unit_id');
+	}
+
 }

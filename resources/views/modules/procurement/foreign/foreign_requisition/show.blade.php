@@ -50,9 +50,6 @@
                                         <td><strong>Requisition Purpose :</strong> {{$foreignRequisition->purpose->name}}</td>
                                         <td scope="row"><strong>Requisition Priority :</strong> {{$foreignRequisition->priority->name}}</td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row" colspan="2">Reference No : req-11</th>
-                                    </tr>
 
                                 </tbody>
                             </table>

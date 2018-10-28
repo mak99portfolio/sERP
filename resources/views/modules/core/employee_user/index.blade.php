@@ -26,7 +26,7 @@
             @include('partials.paginate_header')
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
-                    <thead>
+                    <thead class="bg-primary">
                         <tr class='primary'>
                             <th width="25">ID</th>
                             <th>Name</th>

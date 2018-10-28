@@ -49,13 +49,22 @@ class BusinessNatureController extends Controller
     
     public function edit(BusinessNature $businessNature)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('businessNature',$businessNature);
+        return $view;
     }
 
     
     public function update(Request $request, BusinessNature $businessNature)
     {
-        //
+        $request->validate([  
+            'name' => 'required'
+        ]);
+       
+        $businessNature->fill($request->input());
+        $businessNature->update();
+        Session::put('alert-success', $businessNature->name . ' updated successfully');
+        return redirect()->route('business-nature.index');
     }
 
    

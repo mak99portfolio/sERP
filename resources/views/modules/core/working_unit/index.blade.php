@@ -25,7 +25,7 @@
                         {{-- @include('partials.paginate_header') --}}
                         <div class="table-responsive">
                             <table id="datatable-buttons" class="table table-hover table-striped table-bordered">
-                                <thead>
+                                <thead class="bg-primary">
                                     <tr class='primary'>
                                         <th>Name</th>
                                         <th>Short Name</th>
@@ -56,6 +56,9 @@
                                         <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                                         <td>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                                <div class="btn-group" role="group">
+                                                    {!! btnEdit(['url'=>route('working-unit.show', ['working_unit'=>$row->id])]) !!}
+                                                </div>
                                                 <div class="btn-group" role="group">
                                                     {!! btnEdit(['url'=>route('working-unit.edit', ['working_unit'=>$row->id])]) !!}
                                                 </div>

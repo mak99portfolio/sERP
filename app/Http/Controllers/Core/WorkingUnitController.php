@@ -75,7 +75,8 @@ class WorkingUnitController extends Controller{
 
     public function show(WorkingUnit $workingUnit)
     {
-
+        $data['workingUnit']=$workingUnit;
+        return view($this->path('show'), $data);
     }
 
 

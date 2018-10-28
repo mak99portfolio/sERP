@@ -38,7 +38,7 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->short_name}}</td>
                                         <td class="text-center">
-                                        <a href="{{route('business-type.show', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">View</a>
+                                        <a href="{{route('business-type.edit', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach

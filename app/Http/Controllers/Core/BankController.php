@@ -75,7 +75,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
-        //
+        dd('fff');
     }
 
     /**

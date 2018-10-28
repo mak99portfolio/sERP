@@ -14,7 +14,7 @@
                     <div class="x_content" id="popup_area">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
@@ -31,7 +31,10 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->country->name }}</td>
-                                        <td class="text-center"><a href="{{ route('company-profile.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                        <td class="text-center">
+                                            <a href="{{ route('company-profile.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                            <a href="{{ route('company-profile.show',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> View</a>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

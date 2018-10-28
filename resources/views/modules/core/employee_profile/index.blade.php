@@ -26,7 +26,7 @@
                         @include('partials.paginate_header')
                         <div class="table-responsive">
                             <table class="table table-hover table-striped table-bordered">
-                                <thead>
+                                <thead class="bg-primary">
                                     <tr class='primary'>
                                         <th width="25">Employee No</th>
                                         <th>Name</th>
@@ -52,6 +52,9 @@
                                         <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
                                         <td>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                                <div class="btn-group" role="group">
+                                                    {!! btnEdit(['url'=>route('employee-profile.show', ['employee_profile'=>$row->id])]) !!}
+                                                </div>
                                                 <div class="btn-group" role="group">
                                                     {!! btnEdit(['url'=>route('employee-profile.edit', ['employee_profile'=>$row->id])]) !!}
                                                 </div>

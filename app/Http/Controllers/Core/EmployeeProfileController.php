@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\Paginate;
+use App\EmployeeProfile;
 
 class EmployeeProfileController extends Controller{
 
@@ -80,7 +81,12 @@ class EmployeeProfileController extends Controller{
 
 
     public function show($id){
-        
+      
+       $data['EmployeeProfile']=EmployeeProfile::find($id);
+      
+        return view($this->path('show'), $data);
+
+       
     }
 
 

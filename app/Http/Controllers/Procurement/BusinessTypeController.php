@@ -51,27 +51,25 @@ class BusinessTypeController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\BusinessType  $businessType
-     * @return \Illuminate\Http\Response
-     */
+    
     public function edit(BusinessType $businessType)
     {
-        //
+        $view = view($this->view_root.'edit');
+        $view->with('businessType',$businessType);
+        return $view;
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BusinessType  $businessType
-     * @return \Illuminate\Http\Response
-     */
+    
     public function update(Request $request, BusinessType $businessType)
     {
-        //
+        $request->validate([  
+            'name' => 'required'
+        ]);
+       
+        $businessType->fill($request->input());
+        $businessType->update();
+        Session::put('alert-success', $businessType->name . ' updated successfully');
+        return redirect()->route('business-type.index');
     }
 
     /**

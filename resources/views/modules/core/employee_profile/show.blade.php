@@ -8,6 +8,8 @@
                 <h3>Procurement</h3>
             </div>
         </div>
+        {{$EmployeeProfile}}
+        
         <div class="clearfix"></div>
     </div>
 </div>

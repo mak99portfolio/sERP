@@ -53,6 +53,9 @@
                                         <td>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                                 <div class="btn-group" role="group">
+                                                    {!! btnEdit(['url'=>route('employee-profile.show', ['employee_profile'=>$row->id])]) !!}
+                                                </div>
+                                                <div class="btn-group" role="group">
                                                     {!! btnEdit(['url'=>route('employee-profile.edit', ['employee_profile'=>$row->id])]) !!}
                                                 </div>
                                                 <div class="btn-group" role="group">

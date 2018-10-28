@@ -173,3 +173,9 @@ ul.bar_tabs>li a {
 /*end dashboard*/
 
 
+/* panel margin-top */
+.panel{
+    margin-top: 10px !important;
+}
+
+

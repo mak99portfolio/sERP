@@ -14,7 +14,7 @@
                 <div class="x_content" id="popup_area">
                     <br />
                     <div class="table-responsive">
-                        <table class="table table-bordered">
+                        <table id="datatable-buttons" class="table table-bordered">
                             <thead class="bg-primary">
                             <tr>
                                 <th width="25">#</th>

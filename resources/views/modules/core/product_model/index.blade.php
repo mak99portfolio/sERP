@@ -22,7 +22,7 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table id="datatable-buttons" class="table table-bordered table-hover">
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>

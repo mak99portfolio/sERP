@@ -77,6 +77,8 @@ Route::middleware('auth')->namespace('Procurement')->prefix('procurement')->grou
     //Procurement Setting
     Route::resource('vendor', 'VendorController');
     Route::resource('vendor-category', 'VendorCategoryController');
+    Route::resource('business-nature', 'BusinessNatureController');
+    Route::resource('business-type', 'BusinessTypeController');
     Route::resource('requisition-purpose', 'RequisitionPurposeController');
     Route::resource('cost-particular', 'CostParticularController');
     Route::resource('consignment-particular', 'ConsignmentParticularController');

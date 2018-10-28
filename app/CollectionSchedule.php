@@ -10,9 +10,9 @@ class CollectionSchedule extends Model
     use SoftDeletes;
     protected $guarded = ['id'];
     protected $fillable = [
-        'invoice_id',
-        'collection_date',
-        'amount'
-       
-    ];
+        'customer_id'
+        ];
+    function items() {
+        return $this->hasMany('App\CollectionScheduleItem');
+    }
 }

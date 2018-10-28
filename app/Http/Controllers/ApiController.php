@@ -365,11 +365,25 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getLocalRequisitionItemsFromQuotationByRequisitionId($id)
-    {
-        $quo = Quotation::where("local_requisition_id", $id)->first()->items;
-        // dd($quo);
-        return response()->json($quo);
+    public function getLocalRequisitionItemsFromQuotationByRequisitionId($id){
+        $quotations = Quotation::where("local_requisition_id", $id)->with('items')->get()->toArray();
+
+        foreach ($quotations as $index=>$quotation){
+
+            $total_price = 0;
+
+            foreach ($quotation['items'] as $item){
+                $total_price += $item['unit_price'];
+            }
+
+            $quotations[$index]['total_price']=$total_price;
+        }
+
+        usort($quotations, function($next, $now){
+            return $now['total_price'] < $next['total_price'];
+        });
+
+        return response()->json(['quotations'=>$quotations]);
     }
 
     public function getRequisitionItemsForQuotationByLocalRequisitionId($id)

@@ -31,7 +31,7 @@
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
                                     <label>Requisition No</label>
-                                    <select name="local_requisition_id" ng-model="local_requisition_id" class="form-control input-sm select2" data-placeholder="Select Requisition">
+                                    <select name="local_requisition_id" ng-model="local_requisition_id" class="form-control input-sm select2" data-placeholder="Select Requisition" ng-change="searchQuotation()">
                                         <option value=""></option>
                                         <option value="<% req.id %>" ng-repeat="req in requisition_list"><% req.requisition_no %></option>
                                     </select>
@@ -45,8 +45,6 @@
                                                 <th width="25">#</th>
                                                 <th>Product Name</th>
                                                 <th>Vendor-01</th>
-                                                <th>Vendor-02</th>
-                                                <th>Vendor-03</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -60,25 +58,9 @@
                                                         </label>
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" class="flat" name="iCheck"> 221
-                                                        </label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="radio">
-                                                        <label>
-                                                            <input type="radio" class="flat" name="iCheck"> 734
-                                                        </label>
-                                                    </div>
-                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">Total</td>
-                                                <td>125</td>
-                                                <td>125</td>
                                                 <td>125</td>
                                             </tr>
                                         </tbody>
@@ -111,6 +93,7 @@
     app.controller('myCtrl', function($scope, $http) {
 
         $scope.requisition_list = [];
+        $scope.quotations = [];
 
         $scope.searchReq = function(){
             // var from_date = new Date($scope.date_range.split(' - ')[0]).getMonth();
@@ -118,6 +101,17 @@
             $http.get(url)
                     .then(function(response) {
                         $scope.requisition_list = response.data.requisitions;
+                    });
+        }
+
+        $scope.searchQuotation = function(){
+            $scope.compareQuotation($scope.local_requisition_id);
+        }
+        $scope.compareQuotation = function(local_requisition_id){
+            let url = "{{ URL::to('get-local-requisition-by-date-range') }}" + local_requisition_id;
+            $http.get(url)
+                    .then(function(response) {
+                        $scope.quotations = response.data;
                     });
         }
 

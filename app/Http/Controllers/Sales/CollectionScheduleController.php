@@ -37,7 +37,8 @@ class CollectionScheduleController extends Controller
         $collection_schedule = new CollectionSchedule;
         $collection_schedule->fill($request->input());
         $collection_schedule->creator_user_id = Auth::id();
-        $collection_schedule->collection_schedule_no = 999;
+        $collection_schedule->collection_schedule_no = 'SC001';
+      //  $collection_schedule->collection_schedule_no = uCode('collection_schedules.collection_schedule_no',"SC001");
         $collection_schedule->save();
 
         foreach ($request->collection_amounts as $collection_amount){

@@ -8,26 +8,41 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Company Bank Information</h2>
-                            <a href="" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i>  See Company Bank Information List</a>
+                            <a href="{{route('company-bank.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i>  See Company Bank Information List</a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
                                     <tbody>
-                                    <tr>
-                                        <td><strong>Company:</strong>125</td>
-                                        <td><strong>Account No:</strong>125</td>
-                                        <td><strong>Account Name:</strong>125</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Bank:</strong>125</td>
-                                        <td><strong>Branch Name:</strong>125</td>
-                                        <td><strong>Swift Code:</strong>125</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3"><strong>Bank Address:</strong>125</td>
-                                    </tr>
+                                        <tr>
+                                            <th width="300">Company:</th>
+                                            <td>{{$companyBank->company->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Account No:</th>
+                                            <td>{{$companyBank->account_no}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Account Name:</th>
+                                            <td>{{$companyBank->account_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Bank:</th>
+                                            <td>{{$companyBank->bank->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Branch Name:</th>
+                                            <td>{{$companyBank->branch_name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Swift Code:</th>
+                                            <td>{{$companyBank->swift_code}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Bank Address:</th>
+                                            <td>{{$companyBank->address}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

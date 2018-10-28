@@ -8,7 +8,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>Employee Profile</h2>
-                            <a href="" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i>  See Employee Profile List</a>
+                        <a href="{{route("employee-profile.index")}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i>  See Employee Profile List</a>
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
@@ -16,27 +16,32 @@
                                 <table class="table table-bordered">
                                     <tbody>
                                     <tr>
-                                        <td><strong>Employee ID:</strong>125</td>
-                                        <td><strong>National ID (NID):</strong>125</td>
-                                        <td><strong>Present Address:</strong>125</td>
+                                        <th width="300">Employee ID:</th>
+                                        <td>{{$EmployeeProfile->employee_id}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Name:</strong>125</td>
-                                        <td><strong>Blood Group:</strong>125</td>
-                                        <td><strong>Permanent Address:</strong>125</td>
+                                        <th>National ID (NID):</th>
+                                        <td>{{$EmployeeProfile->national_id}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Nationality:</strong>125</td>
-                                        <td><strong>Select Company:</strong>125</td>
-                                        <td><strong>Select Designation:</strong>125</td>
+                                        <th>Present Address:</th>
+                                        <td>{{$EmployeeProfile->present_address}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Select Status:</strong>125</td>
-                                        <td><strong>Select Department:</strong>125</td>
-                                        <td><strong>Select Working Unit:</strong>125</td>
+                                        <th>Name:</th>
+                                        <td>{{$EmployeeProfile->name}}</td>
                                     </tr>
                                     <tr>
-                                        <td><strong>Select Type:</strong>125</td>
+                                        <th>Blood Group:</th>
+                                        <td>{{$EmployeeProfile->blood_group->name}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Permanent Address:</th>
+                                        <td>{{$EmployeeProfile->permanent_address}}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nationality:</th>
+                                        <td>{{$EmployeeProfile->nationality}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

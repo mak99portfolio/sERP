@@ -17,8 +17,10 @@ use App\ProformaInvoice;
 use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Quotation;
+use App\QuotationItem;
 use App\SalesInvoice;
 use App\Stock;
+use App\Vendor;
 use App\VendorBank;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -366,24 +368,48 @@ class ApiController extends Controller
     }
 
     public function getLocalRequisitionItemsFromQuotationByRequisitionId($id){
-        $quotations = Quotation::where("local_requisition_id", $id)->with('items')->get()->toArray();
+        // $quotations = Quotation::where("local_requisition_id", $id)->with('items')->get()->toArray();
 
-        foreach ($quotations as $index=>$quotation){
+        // foreach ($quotations as $index=>$quotation){
 
+        //     $total_price = 0;
+
+        //     foreach ($quotation['items'] as $item){
+        //         $total_price += $item['unit_price'];
+        //     }
+
+        //     $quotations[$index]['total_price']=$total_price;
+        // }
+
+        // usort($quotations, function($next, $now){
+        //     return $now['total_price'] < $next['total_price'];
+        // });
+
+        // return response()->json(['quotations'=>$quotations]);
+        $requisition = LocalRequisition::find($id);
+        $quotations = Quotation::where("local_requisition_id", $id)->get();
+        $vendors = Vendor::find($quotations->pluck('vendor_id'));
+        $data = [];
+        foreach($requisition->items as $key => $item){
+            $items[$key] = [
+                'product_id' => $item->product_id,
+                'product_name' => $item->product->name,
+            ];
             $total_price = 0;
-
-            foreach ($quotation['items'] as $item){
-                $total_price += $item['unit_price'];
+            foreach($quotations as $quotation){
+                $items[$key]['unit_prices'][] = QuotationItem::where('quotation_id', $quotation->id)->where('product_id', $item->product_id)->first()->unit_price;
             }
 
-            $quotations[$index]['total_price']=$total_price;
         }
+        foreach($quotations as $quotation){
+            $data['vendors'][] = [
+                'vendor_name' => Vendor::find($quotation->vendor_id)->name,
+                'total_price' => QuotationItem::where('quotation_id', $quotation->id)->sum('unit_price'),
+            ];
+        }
+        $data['items'] = $items;
+        return response()->json($data);
 
-        usort($quotations, function($next, $now){
-            return $now['total_price'] < $next['total_price'];
-        });
-
-        return response()->json(['quotations'=>$quotations]);
     }
 
     public function getRequisitionItemsForQuotationByLocalRequisitionId($id)

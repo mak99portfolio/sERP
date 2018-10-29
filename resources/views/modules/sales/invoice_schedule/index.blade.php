@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Invoice Schedule')
+@section('title', 'Collection Schedule')
 @section('content')
 
 <!-- page content -->
@@ -22,30 +22,28 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table id="datatable-buttons" class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover datatable-buttons">
                                 <thead class="bg-primary">
                                     <tr>
-                                    <th>#</th>
-                                        <th>invoice Id</th>
-                                        <th>invoice Date</th>
-                                        <th>Amount</th>
-                                        <th>Invoice Pending Amount</th>
-                                        <th>Status</th>
+                                        <th>#</th>
+                                        <th>Customer</th>
+                                        <th>Sales Order No</th>
+                                        <th>IS No</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($invoice_schedule_list as $item)
                                     <tr>
-                                        <td>01</td>
-                                        <td>01</td>
-                                        <td>01/03/2018</td>
-                                        <td>12000</td>
-                                        <td>1000</td>
-                                        <td><span class="label label-success">Success Label</span></td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->customer->name }}</td>
+                                        <td>{{ $item->sales_order->sales_order_no }}</td>
+                                        <td>{{ $item->invoice_schedule_no }}</td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <a href="{{ route('invoice-schedule.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

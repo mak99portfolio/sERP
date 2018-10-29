@@ -2527,6 +2527,7 @@ if (typeof NProgress != 'undefined') {
 				
 			};
 	   
+		
 		/* DATA TABLES */
 			
 			function init_DataTables() {
@@ -2537,8 +2538,8 @@ if (typeof NProgress != 'undefined') {
 				console.log('init_DataTables');
 				
 				var handleDataTableButtons = function() {
-				  if ($("#datatable-buttons").length) {
-					$("#datatable-buttons").DataTable({
+				  if ($(".datatable-buttons").length) {
+					$(".datatable-buttons").DataTable({
 					  dom: "Blfrtip",
 					  buttons: [
 						{

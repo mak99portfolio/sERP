@@ -24,7 +24,7 @@
                         {{-- Main content area --}}
                         {{-- @include('partials.paginate_header') --}}
                         <div class="table-responsive">
-                            <table id="datatable-buttons" class="table table-hover table-striped table-bordered">
+                            <table class="table table-hover table-striped table-bordered datatable-buttons">
                                 <thead class="bg-primary">
                                     <tr class='primary'>
                                         <th>Name</th>

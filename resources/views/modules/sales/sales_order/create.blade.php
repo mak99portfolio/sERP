@@ -224,8 +224,11 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::number('conversion_rate','Conversion Rate', null, ['class'=>'form-control input-sm']) }}
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                {{ BootForm::select('customer_id','Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'customer_id','data-placeholder'=>'Select Customer','style'=>"width: 100%;",'required']) }}
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-show="itemlist.length < 1">
+                                {{ BootForm::select('customer_id','Customer',$customer_list, null, ['class'=>'form-control input-sm select2','ng-model'=>'customer_id','data-placeholder'=>'Select Customer','style'=>"width: 100%;",'required']) }}
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12" ng-show="itemlist.length > 0">
+                                {{ BootForm::text('customer_name','Customer', '<% customer_name %>' , ['class'=>'form-control input-sm', 'readonly']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                     {{ BootForm::select('designation','Designation',$designations_list,null, ['class'=>'form-control input-sm select2','ng-model'=>'designation_id','ng-change'=>'getEmployee()','data-placeholder'=>"Select Designation",'style'=>"width: 100%;",'required']) }}
@@ -370,8 +373,8 @@
                                             <input ng-if="item.discount_type=='fixed'" type="text" class="form-control input-sm" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
                                             
                                             <div class="input-group" ng-if="item.discount_type =='percent'">
-                                                <input type="text" class="form-control input-sm"  name="items[<% $index %>][discount]"  value="<% item.discount %>" readonly aria-describedby="basic-addon2">
-                                                <span class="input-group-addon" id="basic-addon2">%</span>
+                                                <input type="text" class="form-control input-sm"  name="items[<% $index %>][discount]"  value="<% total_discount[$index] =(quantity[$index] * item.unit_price)*item.discount/100 %>" readonly aria-describedby="basic-addon2">
+                                                <span class="input-group-addon" id="basic-addon2"><% item.discount %>%</span>
                                             </div>
                                             
                                             <input ng-if="item.discount_type=='null'" type="text" class="form-control input-sm" min="1" name="items[<% $index %>][discount]" value="<% item.discount %>" readonly> 
@@ -420,10 +423,16 @@
                                             </td>
                                      </tr>
                                     <tr>
+                                        <td colspan="12" class="text-right" >Discount</td>
+                                        <td colspan="2"> 
+                                                <input type="number" name="extra_discount" value="" min="0" ng-model="extra_discount"  class="form-control input-sm">
+                                       </td>
+                                     </tr>
+                                    <tr>
                                         <td colspan="12" class="text-right" >Grand Total</td>
                                         <td colspan="2"> 
                                            
-                                            <span ng-if="(totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount)"> <% (totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount) %>  </span>
+                                            <span ng-if="(totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount)"> <% (totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount)-extra_discount %>  </span>
                                             <span ng-if="!((totalNetPrice(total_net_price) + totalNetPrice(total_net_price)*10/100)-totalDiscount(total_discount))">0</span>
                                         </td>
                                      </tr>
@@ -612,6 +621,7 @@
                 $http.get(url)
                         .then(function(response) {
                             $scope.itemlist.push(response.data);
+                            $scope.customer_name=response.data.customer_name.name;
                         });
                 PNotify.removeAll();
             }else{

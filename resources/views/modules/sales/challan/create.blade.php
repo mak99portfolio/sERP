@@ -33,7 +33,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group " v-bind:class="{ 'has-error': errors.customer_id }">
                                     <label for="customer_id" class="control-label">Customer</label>
-                                    <select class="form-control input-sm bSelect" ref="customer_id" id="customer_id" name="customer_id" v-model="field.customer_id" v-on:change="fetch_sales_orders">
+                                    <select class="form-control input-sm bSelect" id="customer_id" name="customer_id" v-model="field.customer_id" v-on:change="fetch_sales_orders">
                                           <option v-for="(customer, index) in resource.customers.data" v-bind:value="customer.id" v-html="customer.name"></option>
                                     </select>
                                     <span
@@ -46,7 +46,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.sales_orders }">
                                     <label for="sales_orders[]" class="control-label">Sales Orders</label>
-                                    <select class="form-control input-sm bSelect" id="sales_orders" ref='sales_orders' name="sales_orders" v-model="field.sales_orders" v-on:change="update_sales_order_list" multiple>
+                                    <select class="form-control input-sm bSelect" id="sales_orders" name="sales_orders" v-model="field.sales_orders" v-on:change="update_sales_order_list" multiple data-max-options="1">
                                         <option v-for="(row, index) in resource.sales_orders" v-bind:value="row.id" v-html="row.sales_order_no"></option>
                                     </select>
                                     <span
@@ -59,7 +59,6 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.challan_date }">
                                     <label for="challan_date" class="control-label">Challan Date</label>
-                                    {{-- <input type="text" class="form-control input-sm datepicker" ref="challan_date" v-model="field.challan_date"/> --}}
                                     <vuejs-datepicker v-model="field.challan_date" input-class="form-control input-sm"></vuejs-datepicker>
                                     <span
                                         class="help-block"
@@ -71,7 +70,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.mushak_number_id }">
                                     <label for="mushak_number_id" class="control-label">Mushak No</label>
-                                    <select class="form-control input-sm bSelect" ref="mushak_number_id" id="mushak_number_id" name="mushak_number_id" v-model="field.mushak_number_id">
+                                    <select class="form-control input-sm bSelect" id="mushak_number_id" name="mushak_number_id" v-model="field.mushak_number_id">
                                         <option v-for="(row, index) in resource.mushak_numbers.data" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
                                     <span
@@ -84,7 +83,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
                                     <label for="delivery_person_id" class="control-label">Delivery Person</label>
-                                    <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
+                                    <select class="form-control input-sm bSelect" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
                                         <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
                                     <span
@@ -98,7 +97,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.shipping_address_id }">
                                     <label for="shipping_address_id" class="control-label">Shipping Address</label>
-                                    <select class="form-control input-sm bSelect"  ref="shipping_address_id" id="shipping_address_id" v-model="field.shipping_address_id">
+                                    <select class="form-control input-sm bSelect" id="shipping_address_id" v-model="field.shipping_address_id">
                                         <option v-for="(row, index) in resource.customer_addresses.data
                                         " v-bind:value="row.id" v-html="row.address"></option>
                                     </select>
@@ -115,7 +114,7 @@
                                     <label for="">Delivery Vehicle</label>
                                     <div class="input-group">
 
-                                        <select name="delivery_vehicle" class="form-control input-sm bSelect" ref="delivery_vehicle" v-model="field.delivery_vehicle">
+                                        <select name="delivery_vehicle" class="form-control input-sm bSelect" v-model="field.delivery_vehicle">
                                             <option v-for="(row, index) in resource.delivery_vehicles" v-bind:value="row.id" v-html="row.name"></option>
                                         </select>
 
@@ -282,22 +281,12 @@
 </div>
 @endsection
 
-@section('style')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
-@endsection
-
 @section('script')
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
-<script src="{{ asset('assets/vendors/ajax_loading/ajax-loading.js') }}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vuejs-datepicker@1.5.3/dist/vuejs-datepicker.min.js"></script>
-{{-- <script src="https://unpkg.com/vue-select@latest"></script> --}}
-
 <script>
 $(function(){
     //Vue.component('v-select', VueSelect.VueSelect);
     var vue=new Vue({
+        mixins: [custom],
         el: '#main',
         components:{
             vuejsDatepicker
@@ -315,7 +304,7 @@ $(function(){
                 csrf_token: "{{ csrf_token() }}",
                 customer_id:'',
                 sales_orders:[],
-                challan_date: Date.now(),
+                challan_date: moment().format('DD-MMM-YYYY'),
                 mushak_number_id:'',
                 delivery_person_id:'',
                 delivery_vehicle:'',
@@ -357,43 +346,6 @@ $(function(){
             errors:null
         },
         methods:{
-            parse_num:function(val){
-                if(typeof val=='undefined'){
-                    return 0.00;
-                }else if(parseFloat(val)){
-                    return parseFloat(val);
-                }else return 0.00;
-            },
-            alert:function(msg='Sorry!, try again later.', type='error'){
-                new PNotify({
-                  title: 'Message',
-                  text: msg,
-                  type: type,
-                  styling: 'bootstrap3'
-                });
-            },
-            fetch_resource:function(url, reference, callback=null){
-
-                var loading=$.loading();
-                loading.open(3000);
-
-                axios.get(url).then(function(response){
-
-                    reference.data=response.data.data;
-                    loading.close();
-                    if(typeof callback==='function'){
-                        callback();
-                    }
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
-                });
-
-            },
             fetch_sales_orders:function(){
 
                 var ref=this;
@@ -644,23 +596,9 @@ $(function(){
             //this.model.customers=this.temp;
         },//End of beforeMount
         updated(){
-            $(this.$refs.customer_id).selectpicker('refresh');
-            $(this.$refs.mushak_number_id).selectpicker('refresh');
-            $(this.$refs.sales_orders).selectpicker('refresh');
-            $(this.$refs.delivery_person_id).selectpicker('refresh');
-            $(this.$refs.delivery_vehicle).selectpicker('refresh');
-            $(this.$refs.shipping_address_id).selectpicker('refresh');
+            $('.bSelect').selectpicker('refresh');
         }//end of updated
     });//End of vue js
-
-    $('.datepicker').daterangepicker({
-      singleDatePicker: true,
-      singleClasses: "picker_3",
-      locale: {
-          format: 'DD-MMM-YYYY'
-      }
-    });
-    //$('.datepicker').datetimepicker();
 
     $('.bSelect').selectpicker({
         liveSearch:true,

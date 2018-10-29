@@ -298,8 +298,22 @@ function labels($loop, $type="success"){
 
 }
 
-function bundle($postfix, $type='js'){
-	$url=url("bundles/node_modules/{$postfix}");
-	if($type=='js') return "<script src='{$url}.js'></script>";
-	return "<link rel='stylesheet' href='{$url}.css'>";
+function cdn($url){
+	if(preg_match("/\.css$/", $url)) return "<link rel='stylesheet' type='text/css' href='{$url}'>";
+	elseif(preg_match("/\.js$/", $url)) return "<script src='{$url}'></script>";
+}
+
+function bundle($path, $prefix='bundles/node_modules'){
+
+	if($prefix) $base=asset($prefix).'/';
+	else $base=asset('/');
+
+	if(is_array($path)){
+		$cdns='';
+		foreach($path as $cdn) $cdns.=cdn($base.$cdn);
+		return $cdns;
+	}
+
+	return cdn($base.$path);
+
 }

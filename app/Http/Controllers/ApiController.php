@@ -18,6 +18,7 @@ use App\PurchaseOrder;
 use App\PurchaseOrderItem;
 use App\Quotation;
 use App\SalesInvoice;
+use App\SalesOrder;
 use App\Stock;
 use App\VendorBank;
 use Carbon\Carbon;
@@ -444,6 +445,30 @@ class ApiController extends Controller
         // dd($invoice);
         $data['invoices'] = $invoice;
         $data['due'] = 10000;
+        return response()->json($data);
+    }
+    public function getSalesOrderByCustomerId($id)
+    {
+        $sales_order_lists = SalesOrder::where('customer_id', $id)->get();
+      //  dd($sales_order_lists);
+        foreach ($sales_order_lists as $sales_order_list) {
+            $sales_order[] = [
+                'sales_order_id' => $sales_order_list->id,
+                'sales_order_no' => $sales_order_list->sales_order_no,
+
+            ];
+        }
+        // dd($sales_order);
+        $data['sales_order'] = $sales_order;
+        $data['due'] = 10000;
+        return response()->json($data);
+    }
+    public function getSalesOrderBySalesOrderId($id)
+    {
+        $sales_order_info = SalesOrder::where('id', $id)->get();
+      //dd($sales_order_info);
+      
+        $data['total_amount'] = 50000;
         return response()->json($data);
     }
     public function getCiByCiId($id)

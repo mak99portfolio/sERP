@@ -224,12 +224,12 @@
     app.controller('myCtrl', function($scope, $http) {
         $scope.itemlist = [];
         $('#search_product').autocomplete({
-        source: "{{route('search-product')}}",
-                minlength: 1,
-                autoFocus: true,
-                select: function (e, ui) {
-                    $scope.product_id = ui.item.id;
-                }
+            source: "{{route('search-product')}}",
+            minlength: 1,
+            autoFocus: true,
+            select: function (e, ui) {
+                $scope.product_id = ui.item.id;
+            }
         });
         $scope.searchProduct = function(){
             $('#search_product').val(null);

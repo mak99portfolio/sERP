@@ -183,3 +183,8 @@ ul.bar_tabs>li a {
     width: 45%;
 }
 
+.dataTables_length {
+    width: 35%;
+    float: left;
+}
+

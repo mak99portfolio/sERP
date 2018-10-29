@@ -215,7 +215,6 @@ Route::get('/get-pi/{id}', ['as' => 'get-pi', 'uses' => 'ApiController@getPiByPi
 Route::get('/get-lc/{id}', ['as' => 'get-lc', 'uses' => 'ApiController@getLcByLcId']);
 Route::get('/get-all-product/{product_group_id}', ['as' => 'get-all-product', 'uses' => 'ApiController@getAllProduct']);
 Route::get('/get-ci/{id}', ['as' => 'get-ci', 'uses' => 'ApiController@getCiByCiId']);
-Route::get('/get-invoice/{id}', ['as' => 'get-invoice', 'uses' => 'ApiController@getInvoiceByCustomerId']);
 Route::get('/get-all-by-bl-no/{bl_no}', ['as' => 'get-all-by-bl-no', 'uses' => 'ApiController@getAllByBlNo']);
 Route::get('/get-bl-by-bl-id/{id}', ['as' => 'get-bl-by-bl-id', 'uses' => 'ApiController@getBlByBlId']);
 Route::get('/get-bank-info/{id}', ['as' => 'get-bank-info', 'uses' => 'ApiController@getBankInfoById']);
@@ -232,7 +231,9 @@ Route::get('/get-all-employee-by-designation/{id}', ['as' => 'get-all-employee-b
 Route::get('/get-product-for-sales-order/{id}/{customer_id}', ['as' => 'get-product-for-sales-order', 'uses' => 'ApiController@getProductForSalesOrder']);
 Route::get('/get-product-bonus/{quantity}/{customer_id}/{product_id}', ['as' => 'get-product-bonus', 'uses' => 'ApiController@getBonusByProduct']);
 Route::get('/get-working-unit-wise-product-available/{id}', ['as' => 'get-working-unit-wise-product-available', 'uses' => 'ApiController@getWorkingUnitWiseProductAvailable']);
-
+Route::get('/get-invoice/{id}', ['as' => 'get-invoice', 'uses' => 'ApiController@getInvoiceByCustomerId']);
+Route::get('/get-sales-order/{id}', ['as' => 'get-sales-order', 'uses' => 'ApiController@getSalesOrderByCustomerId']);
+Route::get('/get-sales-order-info/{id}', ['as' => 'get-sales-order-info', 'uses' => 'ApiController@getSalesOrderBySalesOrderId']);
 
 //ACL (Access Control Limit)
 Route::middleware(['auth', 'hasPermission:access_to_acl'])

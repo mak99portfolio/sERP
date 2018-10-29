@@ -52,7 +52,7 @@
                                     {{ BootForm::close() }}
                                 </div>
                                 <div class="table-responsive m-t-30">
-                                    <table id="datatable-buttons" class="table table-bordered table-hover">
+                                    <table class="table table-bordered table-hover datatable-buttons">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th width="40">#</th>

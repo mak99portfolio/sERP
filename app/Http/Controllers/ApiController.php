@@ -19,6 +19,7 @@ use App\PurchaseOrderItem;
 use App\Quotation;
 use App\QuotationItem;
 use App\SalesInvoice;
+use App\SalesOrder;
 use App\Stock;
 use App\Vendor;
 use App\VendorBank;
@@ -472,6 +473,30 @@ class ApiController extends Controller
         $data['due'] = 10000;
         return response()->json($data);
     }
+    public function getSalesOrderByCustomerId($id)
+    {
+        $sales_order_lists = SalesOrder::where('customer_id', $id)->get();
+      //  dd($sales_order_lists);
+        foreach ($sales_order_lists as $sales_order_list) {
+            $sales_order[] = [
+                'sales_order_id' => $sales_order_list->id,
+                'sales_order_no' => $sales_order_list->sales_order_no,
+
+            ];
+        }
+        // dd($sales_order);
+        $data['sales_order'] = $sales_order;
+        $data['due'] = 10000;
+        return response()->json($data);
+    }
+    public function getSalesOrderBySalesOrderId($id)
+    {
+        $sales_order_info = SalesOrder::where('id', $id)->get();
+      //dd($sales_order_info);
+      
+        $data['total_amount'] = 50000;
+        return response()->json($data);
+    }
     public function getCiByCiId($id)
     {
         $ci = CommercialInvoice::find($id);
@@ -645,8 +670,10 @@ class ApiController extends Controller
             $discount_type = null;
             $discount = 0;
         }
-
-        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity');
+        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity') - \App\SalesChallanItem::where('product_id', $product_id)->sum('challan_quantity');
+        $si_ids = \App\SalesInvoice::where('sales_invoice_status', 'in_transit')->pluck('id');
+        $intransit = \App\SalesInvoiceItem::whereIn('sales_invoice_id', $si_ids)->where('product_id', $product_id)->sum('invoice_quantity');
+        
         $product = Product::find($product_id);
         $data = [
             'id' => $product->id,
@@ -655,11 +682,12 @@ class ApiController extends Controller
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
             'available' => $physical_stock,
-            'intransit' => 20,
+            'intransit' => $intransit,
             'pending' => $pending,
             'discount_type' => $discount_type,
             'discount' => (int) $discount,
         ];
+        $data['customer_name'] = \App\Customer::find($customer_id);
         return response()->json($data);
     }
     public function getBonusByProduct($quantity, $customer_id, $product_id)

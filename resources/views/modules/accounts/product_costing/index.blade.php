@@ -13,7 +13,7 @@
                         <div class="x_content">
                             <br />
                             <div class="table-responsive">
-                                <table id="datatable-buttons" class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover datatable-buttons">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>#</th>
@@ -45,7 +45,7 @@
                         <div class="x_content">
                             <br />
                             <div class="table-responsive">
-                                <table class="table table-bordered table-hover">
+                                <table class="table table-bordered table-hover datatable-buttons">
                                     <thead class="bg-primary">
                                         <tr>
                                             <th>#</th>

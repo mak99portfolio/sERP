@@ -17,7 +17,7 @@
                 <div class="x_content" id="popup_area">
                     <br />
                     <div class="table-responsive">
-                        <table id="datatable-buttons" class="table table-bordered">
+                        <table class="table table-bordered datatable-buttons">
                             <thead class="bg-primary">
                             <tr>
                                 <th>Product Category Name</th>

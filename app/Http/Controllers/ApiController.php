@@ -619,8 +619,10 @@ class ApiController extends Controller
             $discount_type = null;
             $discount = 0;
         }
-
-        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity');
+        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity') - \App\SalesChallanItem::where('product_id', $product_id)->sum('challan_quantity');
+        $si_ids = \App\SalesInvoice::where('sales_invoice_status', 'in_transit')->pluck('id');
+        $intransit = \App\SalesInvoiceItem::whereIn('sales_invoice_id', $si_ids)->where('product_id', $product_id)->sum('invoice_quantity');
+        
         $product = Product::find($product_id);
         $data = [
             'id' => $product->id,
@@ -629,11 +631,12 @@ class ApiController extends Controller
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
             'available' => $physical_stock,
-            'intransit' => 20,
+            'intransit' => $intransit,
             'pending' => $pending,
             'discount_type' => $discount_type,
             'discount' => (int) $discount,
         ];
+        $data['customer_name'] = \App\Customer::find($customer_id);
         return response()->json($data);
     }
     public function getBonusByProduct($quantity, $customer_id, $product_id)

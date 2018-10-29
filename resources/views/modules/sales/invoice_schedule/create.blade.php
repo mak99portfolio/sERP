@@ -122,6 +122,11 @@
         }
        $scope.add_payment = function(){
            var payment = {};
+             if(!$scope.payment_amount){
+                $scope.warning('Invoice Amount is Empty');
+                return;
+            }
+
             payment.payment_amount = $scope.payment_amount;
             payment.payment_date = $scope.payment_date;
             $scope.payment_list.push(payment);
@@ -129,6 +134,15 @@
         }
         $scope.removePayment = function(index){
             $scope.payment_list.splice(index, 1);
+        }
+        $scope.warning = function(msg){
+            var data = {
+                'title': 'Warning!',
+                'text': msg,
+                'type': 'notice',
+                'styling': 'bootstrap3',
+            };
+            new PNotify(data);
         }
 
 

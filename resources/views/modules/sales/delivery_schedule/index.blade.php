@@ -22,12 +22,12 @@
                     <div class="x_content">
                         <br />
                         <div class="table-responsive">
-                            <table id="datatable-buttons" class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover datatable-buttons">
                                 <thead class="bg-primary">
                                     <tr>
                                     <th>#</th>
-                                        <th>delivery Id</th>
-                                        <th>delivery Date</th>
+                                        <th>Delivery Id</th>
+                                        <th>Delivery Date</th>
                                         <th>Amount</th>
                                         <th>Invoice Pending Amount</th>
                                         <th>Status</th>

@@ -9,33 +9,46 @@
 
         <title>@yield('title')</title>
         <link rel="shortcut icon" href="{{asset('assets/build/images/magnum.ico')}}" type="image/x-icon" />
-        {!! bundle([
-            'bootstrap/dist/css/bootstrap.min.css',
-            'font-awesome/css/font-awesome.min.css',
-            'nprogress/nprogress.css',
-            'icheck/skins/flat/green.css',
-            'google-code-prettify/bin/prettify.min.css',
-            'select2/dist/css/select2.min.css',
-            'switchery/standalone/switchery.css',
-            'starrr/dist/starrr.css',
-            'pnotify/dist/pnotify.css',
-            'pnotify/dist/pnotify.buttons.css',
-            'pnotify/dist/pnotify.nonblock.css',
-            'datatables.net-bs/css/dataTables.bootstrap.css',
-            'datatables.net-buttons-bs/css/buttons.bootstrap.css',
-            'datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.css',
-            'datatables.net-responsive-bs/css/responsive.bootstrap.css',
-            'datatables.net-scroller-bs/css/scroller.bootstrap.css',
-            'bootstrap-select/dist/css/bootstrap-select.min.css'
-        ]) !!}
-
-        <!-- bootstrap-daterangepicker edited in local-->
+        <!-- Bootstrap -->
+        <link href="{{asset('assets/vendors/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="{{asset('assets/vendors/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="{{asset('assets/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="{{asset('assets/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+        <!-- bootstrap-wysiwyg -->
+        <link href="{{asset('assets/vendors/google-code-prettify/bin/prettify.min.css')}}" rel="stylesheet">
+        <!-- Select2 -->
+        <link href="{{asset('assets/vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet">
+        <!-- Switchery -->
+        <link href="{{asset('assets/vendors/switchery/dist/switchery.min.css')}}" rel="stylesheet">
+        <!-- starrr -->
+        <link href="{{asset('assets/vendors/starrr/dist/starrr.css')}}" rel="stylesheet">
+        <!-- bootstrap-daterangepicker -->
         <link href="{{asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet">
+        <!-- PNotify -->
+        <link href="{{asset('assets/vendors/pnotify/dist/pnotify.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.css')}}" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="{{asset('assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+
         
         <!-- Custom Theme Style -->
         <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
         <link href="{{asset('assets/style.css')}}" rel="stylesheet">
+
+        {!! bundle([
+            'bootstrap-select/dist/css/bootstrap-select.min.css'
+        ]) !!}
+
+
         <style>
             .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {min-height: 30px!important;}
             .select2-container--default .select2-selection--single .select2-selection__rendered {padding-top: 0px!important;}
@@ -120,40 +133,45 @@
             </div>
         </div>
 
-
-        {!! bundle([
-            'jquery/dist/jquery.min.js',
-            'bootstrap/dist/js/bootstrap.min.js',
-            'google-code-prettify/bin/prettify.min.js',
-            'nprogress/nprogress.js',
-            'icheck/icheck.min.js',
-            'select2/dist/js/select2.full.min.js',
-            'fastclick/lib/fastclick.js',
-            'bootstrap-progressbar/bootstrap-progressbar.min.js',
-            'moment/min/moment.min.js',
-            'switchery/standalone/switchery.js',
-            'bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js',
-            'jquery.hotkeys/jquery.hotkeys.js',
-            'starrr/dist/starrr.js',
-            'pnotify/dist/pnotify.js',
-            'pnotify/dist/pnotify.buttons.js',
-            'pnotify/dist/pnotify.nonblock.js',
-            'parsleyjs/dist/parsley.min.js',
-            'autosize/dist/autosize.min.js',
-            'devbridge-autocomplete/dist/jquery.autocomplete.min.js',
-            'angular/angular.min.js',
-            'bootstrap-select/dist/js/bootstrap-select.min.js',
-            'vue/dist/vue.js',
-            'axios/dist/axios.min.js',
-            'vuejs-datepicker/dist/vuejs-datepicker.min.js'
-        ]) !!}
-
-        <!-- bootstrap-daterangepicker edited in local-->
+        <!-- jQuery -->
+        <script src="{{asset('assets/vendors/jquery/dist/jquery.min.js')}}"></script>
+        <!-- Bootstrap -->
+        <script src="{{asset('assets/vendors/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <!-- FastClick -->
+        <script src="{{asset('assets/vendors/fastclick/lib/fastclick.js')}}"></script>
+        <!-- NProgress -->
+        <script src="{{asset('assets/vendors/nprogress/nprogress.js')}}"></script>
+        <!-- bootstrap-progressbar -->
+        <script src="{{asset('assets/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js')}}"></script>
+        <!-- iCheck -->
+        <script src="{{asset('assets/vendors/iCheck/icheck.min.js')}}"></script>
+        <!-- bootstrap-daterangepicker -->
+        <script src="{{asset('assets/vendors/moment/min/moment.min.js')}}"></script>
         <script src="{{asset('assets/vendors/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
-
-        <!-- Not found in node modules-->
+        <!-- bootstrap-wysiwyg -->
+        <script src="{{asset('assets/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js')}}"></script>
+        <script src="{{asset('assets/vendors/jquery.hotkeys/jquery.hotkeys.js')}}"></script>
+        <script src="{{asset('assets/vendors/google-code-prettify/src/prettify.js')}}"></script>
+        <!-- jQuery Tags Input -->
         <script src="{{asset('assets/vendors/jquery.tagsinput/src/jquery.tagsinput.js')}}"></script>
-
+        <!-- Switchery -->
+        <script src="{{asset('assets/vendors/switchery/dist/switchery.min.js')}}"></script>
+        <!-- Select2 -->
+        <script src="{{asset('assets/vendors/select2/dist/js/select2.full.min.js')}}"></script>
+        <!-- Parsley -->
+        <script src="{{asset('assets/vendors/parsleyjs/dist/parsley.min.js')}}"></script>
+        <!-- Autosize -->
+        <script src="{{asset('assets/vendors/autosize/dist/autosize.min.js')}}"></script>
+        <!-- jQuery autocomplete -->
+        <script src="{{asset('assets/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js')}}"></script>
+        <!-- starrr -->
+        <script src="{{asset('assets/vendors/starrr/dist/starrr.js')}}"></script>
+        <!-- angularjs -->
+        <script src="{{asset('assets/vendors/angular/angular.min.js')}}"></script>
+        <!-- PNotify -->
+        <script src="{{asset('assets/vendors/pnotify/dist/pnotify.js')}}"></script>
+        <script src="{{asset('assets/vendors/pnotify/dist/pnotify.buttons.js')}}"></script>
+        <script src="{{asset('assets/vendors/pnotify/dist/pnotify.nonblock.js')}}"></script>
         <!-- validator -->
         <script src="{{asset('assets/vendors/validator/validator.js')}}"></script>
         <!-- Datatables -->
@@ -177,8 +195,18 @@
         <!-- Custom Theme Scripts -->
         <script src="{{asset('assets/build/js/custom.js')}}"></script>
         <script src="{{asset('assets/build/js/init.js')}}"></script>
+
+
+        {!! bundle([
+            'bootstrap-select/dist/js/bootstrap-select.min.js',
+            'vue/dist/vue.js',
+            'axios/dist/axios.min.js',
+            'vuejs-datepicker/dist/vuejs-datepicker.min.js'
+        ]) !!}
+
         {!! bundle(['js/vue-mixing.js', 'assets/vendors/ajax_loading/ajax-loading.js'], null) !!}
-        
+
+
         @yield('script')
 
         <script>
@@ -253,3 +281,4 @@ $('form .alert').remove();
         </script>
     </body>
 </html>
+

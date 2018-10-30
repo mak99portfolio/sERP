@@ -119,25 +119,41 @@
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th colspan="3">Bank Information</th>
+                                        <th colspan="3"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td><strong>A/C No:</strong> {{ $vendor->bank->ac_no }}</td>
-                                        <td><strong>A/C Name :</strong> {{ $vendor->bank->ac_name }}</td>
-                                        <td><strong>Bank:</strong> {{ $vendor->bank->bank_name }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>Branch:</strong> {{ $vendor->bank->branch_name }}</td>
-                                        <td><strong>SWIFT Code :</strong> {{ $vendor->bank->swift_code }}</td>
-                                        <td><strong></strong></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3"><strong>Bank Address :</strong> {{ $vendor->bank->address }}</td>
-                                    </tr>
+
                                 </tbody>
                             </table>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th colspan="4">Bank Information</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($vendor->banks as $bank)
+                                        <tr>
+                                            <td rowspan="4">Bank {{ $loop->iteration }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>A/C No:</strong> {{$bank->ac_no}}</td>
+                                            <td><strong>A/C Name :</strong> {{$bank->ac_name }}</td>
+                                            <td><strong>Bank:</strong> {{$bank->bank_name }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Branch:</strong> {{$bank->branch_name }}</td>
+                                            <td><strong>SWIFT Code :</strong> {{$bank->swift_code }}</td>
+                                            <td><strong></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"><strong>Bank Address :</strong> {{$bank->address }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>

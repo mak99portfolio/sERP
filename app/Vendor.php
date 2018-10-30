@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vendor extends Model
 {
-    // protected $table = 'vendors';
-    // protected $guarded = ['id'];
     protected $fillable = [
             'vendor_id',
             'name',
@@ -33,7 +31,7 @@ class Vendor extends Model
             'credit_limit',
     ];
     public function country(){
-        return $this->belongsTo('App\Country');
+        return $this->belongsTo('App\Model\Core\Country');
     }
     public function category(){
         return $this->belongsTo('App\VendorCategory', 'vendor_category_id');
@@ -44,9 +42,9 @@ class Vendor extends Model
         return $this->hasOne('App\VendorPaymentTerm');
     }
 
-    public function bank()
+    public function banks()
     {
-        return $this->hasOne('App\VendorBank');
+        return $this->hasMany('App\VendorBank');
     }
 
     public function contacts()
@@ -58,9 +56,5 @@ class Vendor extends Model
     {
         return $this->hasMany('App\EnclosureVendor');
     }
-    public function proforma_invoice()
-    {
-        return $this->hasMany('App\ProformaInvoice');
-    }
-    
+
 }

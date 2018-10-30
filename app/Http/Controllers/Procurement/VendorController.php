@@ -55,7 +55,7 @@ class VendorController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            // 'vendor_id' => 'required|unique:vendors',
+            'vendor_id' => 'required|unique:vendors',
             'name' => 'required',
             'country_id' => 'required',
             'vendor_category_id' => 'required',

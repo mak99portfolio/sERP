@@ -30,6 +30,7 @@ Route::namespace('Sales')->prefix('sales')->group(function(){
 		Route::post('store', 'SalesChallanController@store');
 
 		Route::get('sales-orders-items', 'SalesChallanController@sales_orders_items');
+		Route::get('stock-distributions/{product}', 'SalesChallanController@stock_distributions');
 	});
 
 	Route::prefix('invoice')->group(function(){		

@@ -96,9 +96,41 @@
                                                     <td>{{ $row->product->name }}</td>
                                                     <td>{{ $row->sales_order->sales_order_no }}</td>
                                                     <td class="text-right">{{ $row->sales_order->items()->where('product_id', $row->product_id)->sum('quantity') }}</td>
-                                                    <td class="text-right">0</td>
-                                                    <td class="text-right">0</td>
-                                                    <td class="text-right">0</td>
+                                                    <td class="text-right">{{ 
+                                                        $sales_invoice_items->where([
+                                                            'product_id'=>$row->product_id
+                                                        ])->whereIn(
+                                                            'sales_order_id',
+                                                            $sales_order_ids
+                                                        )->whereHas('sales_invoice', function($query){
+                                                            $query->where('sales_invoice_status', 'delivered');
+                                                        })->sum('invoice_quantity')
+                                                     }}</td>
+                                                    <td class="text-right">{{ 
+                                                        $sales_invoice_items->where([
+                                                            'product_id'=>$row->product_id
+                                                        ])->whereIn(
+                                                            'sales_order_id',
+                                                            $sales_order_ids
+                                                        )->whereHas('sales_invoice', function($query){
+                                                            $query->where('sales_invoice_status', 'in_transit');
+                                                        })->sum('invoice_quantity')
+                                                     }}</td>
+                                                    <td class="text-right">{{ 
+                                                        $sales_order_items->whereIn(
+                                                            'sales_order_id',
+                                                            $sales_order_ids
+                                                        )->where([
+                                                            'product_id'=>$row->product_id
+                                                        ])->sum('quantity') - $sales_challan_items->where([
+                                                            'product_id'=>$row->product_id
+                                                        ])->whereIn(
+                                                            'sales_order_id',
+                                                            $sales_order_ids
+                                                        )->whereHas('sales_challan', function($query){
+                                                            $query->where('sales_challan_status', '!=', 'cancelled');
+                                                        })->sum('challan_quantity')
+                                                     }}</td>
                                                     <td class="text-right">{{ $row->challan_quantity }}</td>
                                                 </tr>
                                             @endforeach

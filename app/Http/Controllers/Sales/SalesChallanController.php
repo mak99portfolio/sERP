@@ -31,7 +31,9 @@ class SalesChallanController extends Controller{
 
     public function store(Request $request){
 
-        //\Log::info(print_r($request->all(), true));
+/*        \Log::info(print_r($request->all(), true));
+
+        die;*/
 
         $validation = \Validator::make($request->all(),[ 
             'customer_id'=>'required|integer|exists:customers,id',
@@ -43,7 +45,8 @@ class SalesChallanController extends Controller{
             'sales_order_items'=>'required|array',
             'shipping_address_id'=>'required|integer|exists:customer_addresses,id',
             'total_challan_quantity'=>'required|numeric|min:1',
-            'sales_orders'=>'required|array'
+            'sales_orders'=>'required|array',
+            'sales_order_items.*.items.*.booking_distributions'=>'required|array'
         ]);
 
         if($validation->fails()){
@@ -77,6 +80,33 @@ class SalesChallanController extends Controller{
             foreach($request->get('sales_order_items') as $row){
 
                 $sales_challan->items()->createMany($row['items']);
+
+                foreach($row['items'] as $item){
+
+                    foreach ($item['booking_distributions'] as $booking_distribution){
+                        
+                        \App\SalesChallanBookingDistribution::create([
+                            'sales_order_id'=>$row['id'],
+                            'sales_challan_id'=>$sales_challan->id,
+                            'working_unit_id'=>$booking_distribution['id'],
+                            'product_id'=>$item['id'],
+                            'booking_quantity'=>$booking_distribution['booking_quantity']
+                        ]);
+
+                        //To issue product from stock for booking
+                        \App\Stock::create([
+                            'working_unit_id'=>$booking_distribution['id'],
+                            'product_id'=>$item['id'],
+                            'product_status_id'=>1,
+                            'product_type_id'=>1,
+                            'sales_challan_id'=>$sales_challan->id,
+                            'issue_quantity'=>$booking_distribution['booking_quantity'],
+                            'booked_quantity'=>$booking_distribution['booking_quantity']
+                        ]);
+
+                    }
+                    
+                }
                 
             }
 
@@ -94,7 +124,11 @@ class SalesChallanController extends Controller{
 
         $data=[
             'sales_challan'=>$sales_challan,
-            'carbon'=>new \Carbon\Carbon
+            'carbon'=>new \Carbon\Carbon,
+            'sales_order_items'=>new \App\SalesOrderItem,
+            'sales_challan_items'=>new \App\SalesChallanItem,
+            'sales_invoice_items'=>new \App\SalesInvoiceItem,
+            'sales_order_ids'=>$sales_challan->sales_orders->pluck('id')
         ];
 
         return view($this->path('show'), $data);
@@ -138,9 +172,72 @@ class SalesChallanController extends Controller{
     }
 
     public function sales_orders_items(){
-        return \App\SalesOrder::whereIn('id', request()->all())->with(['items'=>function($query){
+
+        $sales_orders=\App\SalesOrder::whereIn('id', request()->all())->with(['items'=>function($query){
             $query->with('product');
-        }])->get();
+        }])->get()->toArray();
+
+        foreach ($sales_orders as $key=>$order){
+
+            foreach ($order['items'] as $inner_key=>$item){
+
+                $sales_orders[$key]['items'][$inner_key]['receive_quantity']=\App\SalesInvoiceItem::where([
+                    'sales_order_id'=>$order['id'],
+                    'product_id'=>$item['product_id']
+                ])->whereHas('sales_invoice', function($query){
+                    $query->where('sales_invoice_status', 'delivered');
+                })->sum('invoice_quantity');
+
+                $sales_orders[$key]['items'][$inner_key]['in_transit']=\App\SalesInvoiceItem::where([
+                    'sales_order_id'=>$order['id'],
+                    'product_id'=>$item['product_id']
+                ])->whereHas('sales_invoice', function($query){
+                    $query->where('sales_invoice_status', 'in_transit');
+                })->sum('invoice_quantity');
+
+                $sales_orders[$key]['items'][$inner_key]['pending']=$item['quantity']-\App\SalesChallanItem::where([
+                    'sales_order_id'=>$order['id'],
+                    'product_id'=>$item['product_id']
+                ])->whereHas('sales_challan', function($query){
+                    $query->where('sales_challan_status', '!=', 'cancelled');
+                })->sum('challan_quantity');
+
+                if($sales_orders[$key]['items'][$inner_key]['pending'] < 1){
+                    unset($sales_orders[$key]['items'][$inner_key]);
+                }
+                
+            }
+            
+        }
+
+        return $sales_orders;
+    }
+
+    public function stock_distributions(\App\Product $product){
+
+        $units=\App\WorkingUnit::all()->toArray();
+
+        foreach($units as $index=>$row){
+
+            $units[$index]['stock_quantity']=\App\Stock::where([
+            'working_unit_id'=>$row['id'],
+            'product_id'=>$product->id,
+            'product_status_id'=>1,
+            'product_type_id'=>1
+            ])->sum('receive_quantity')-\App\Stock::where([
+            'working_unit_id'=>$row['id'],
+            'product_id'=>$product->id,
+            'product_status_id'=>1,
+            'product_type_id'=>1
+            ])->sum('issue_quantity');
+
+            $units[$index]['booking_quantity']=0;
+            $units[$index]['product']=\App\Product::find($product->id)->toArray();
+
+        }
+
+        return $units;
+
     }
 
 }

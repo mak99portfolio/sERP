@@ -14,6 +14,49 @@
                 <div class="x_content">
                     <div class="form-horizontal form-label-left input_mask" id='main'>
 
+
+                      {{-- Product Modal --}}
+                      <div class="modal fade in" id="stock_distributions" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+                         <div class="modal-dialog">
+                            <div class="modal-content">
+                               <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  <h4 class="modal-title" id="myModalLabel">
+                                     Booked Product For Challan
+                                  </h4>
+                               </div>
+                               <div class="modal-body" style="height: 75vh; overflow-y: auto">
+                                <div class="table-responsive m-t-20">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th>Depot Name</th>
+                                            <th>Stock Quantity</th>
+                                            <th>Booking Quantity</th>
+                                        </tr>
+                                        <tr v-for="(row, index) in stock_distributions">
+                                          <td v-html='row.name'></td>
+                                          <td v-html='row.stock_quantity'></td>
+                                          <td>
+                                              <div class="form-group">
+                                                  <input type="number" class="input-sm form-control" v-model="row.booking_quantity" v-on:change="calculate_distribution(index)">
+                                              </div>
+                                          </td>
+                                        </tr>
+                                         <tr>
+                                             <td colspan="3">
+                                                <button type="button" class="btn btn-default btn-sm pull-right" v-on:click="combine_distribution">
+                                                  <i class="fa fa-flag fa-lg text-primary" aria-hidden="true"></i> Submit
+                                                </button>
+                                             </td>
+                                         </tr>
+                                    </table>
+                                </div>
+                               </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal-dialog -->
+                      </div><!-- /.modal -->
+
+
                         <div class="row" v-show="errors_msg">
                             <div class="col-md-12">
                                     <div class="alert bg-danger text-danger">
@@ -232,16 +275,25 @@
                                                     <tr v-for="(inner_row, inner_index) in row.items">
                                                         <td v-html="inner_row.product.name"></td>
                                                         <td v-html="inner_row.quantity"></td>
-                                                        <td>0</td>
-                                                        <td>0</td>
-                                                        <td>0</td>
+                                                        <td v-html="inner_row.receive_quantity"></td>
+                                                        <td v-html="inner_row.in_transit"></td>
+                                                        <td v-html="inner_row.pending"></td>
                                                         <td>
-                                                            <input
-                                                                class="form-control input-sm"
-                                                                type="number"
-                                                                v-model="inner_row.challan_quantity"
-                                                                v-on:change="total_challan_quantity"
-                                                            />
+                                                            <div class="input-group">
+                                                                <input
+                                                                    class="form-control input-sm"
+                                                                    type="number"
+                                                                    v-model="inner_row.challan_quantity"
+                                                                    v-on:change="total_challan_quantity"
+                                                                    readonly
+                                                                />
+                                                               <span class="input-group-btn">
+                                                                 <button type="button" class="btn btn-default btn-sm" v-on:click="fetch_stock_distributions(index, inner_index)">
+                                                                        <i class="fa fa-cubes text-primary"></i>
+                                                                        Allocate
+                                                                    </button>
+                                                               </span>
+                                                            </div>
                                                         </td>
                                                         <td>
                                                             <button
@@ -298,6 +350,7 @@ $(function(){
                 delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}",
                 sales_order_items:"{{ url('api/sales/challan/sales-orders-items') }}",
                 customer_addresses:"{{ url('api/sales/challan/customer-addresses') }}",
+                stock_distributions:"{{ url('api/sales/challan/stock-distributions') }}",
                 submit:"{{ route('sales-challan.store') }}"
             },
             field:{
@@ -343,7 +396,9 @@ $(function(){
             },
             temp:null,
             errors_msg:false,
-            errors:null
+            errors:null,
+            stock_distributions:[],
+            active_record:null
         },
         methods:{
             fetch_sales_orders:function(){
@@ -401,9 +456,11 @@ $(function(){
 
                 var ref=this;
 
-                var medium_name=ref.resource.delivery_vehicles.find(row=>{
-                    return row.id==ref.field.delivery_vehicle;
-                }).name;
+                if(ref.field.delivery_vehicle){
+                    var medium_name=ref.resource.delivery_vehicles.find(row=>{
+                        return row.id==ref.field.delivery_vehicle;
+                    }).name;
+                }else ref.alert('Please!, select a delivary vehicle type');
 
                 if(this.field.delivery_vehicle=='own_vehicle'){
 
@@ -451,7 +508,7 @@ $(function(){
                         driver_name: '',
                         phone_no: ''
                     });
-                }
+                };
 
                 this.field.delivery_vehicle='';
 
@@ -499,6 +556,7 @@ $(function(){
 
                 axios.get(ref.url.sales_order_items, {params: sales_order_ids}).then(function(response){
 
+                    ref.total_challan_quantity();
                     ref.field.sales_order_items=response.data;
                     loading.close();
 
@@ -519,6 +577,14 @@ $(function(){
 
                     //console.log(row);
                     row.items.forEach(function(inner_row){
+
+                        //console.log(inner_row);
+
+                        if(ref.parse_num(inner_row.challan_quantity) > ref.parse_num(inner_row.pending)){
+                            ref.alert('Sorry!, challan quantity can\'t exceed pending quantity');
+                            inner_row.challan_quantity=0;
+                        }
+
                         ref.field.total_challan_quantity+=ref.parse_num(inner_row.challan_quantity);
                     });
 
@@ -546,9 +612,10 @@ $(function(){
                     //console.log(response);
                 }).catch(function (error){
 
-                    ref.errors_msg=true;
-                    ref.errors=error.response.data;
-                    //ref.alert('Sorry!, form submit validation failed.');
+                    if(error.response.status==422){
+                        ref.errors_msg=true;
+                        ref.errors=error.response.data;                        
+                    }else ref.alert('Sorry!, form submit failed internal server error.');
 
                 });
 
@@ -566,8 +633,61 @@ $(function(){
                     shipping_address_id:false
                 }
 
-            }
+            },
+            fetch_stock_distributions:function(index, inner_index){
 
+                //console.log(this.field.sales_order_items[index].items[inner_index]);
+                var ref=this;
+                ref.active_record=null;
+                ref.active_record=this.field.sales_order_items[index].items[inner_index];
+                var product_id=this.field.sales_order_items[index].items[inner_index].product_id;
+
+                //return console.log(sales_order_ids);
+
+                var loading=$.loading();
+                loading.open(3000);
+
+                axios.get(ref.url.stock_distributions+ '/' + product_id).then(function(response){
+
+                    ref.stock_distributions=response.data;
+                    loading.close();
+                    $('#stock_distributions').modal('show');
+
+                }).catch(function(){
+
+                    loading.close();
+                    ref.alert('Sorry!, failed to fetch remote data.');
+
+
+                });
+            },
+            calculate_distribution:function(index){
+
+                var booking_quantity=this.parse_num(this.stock_distributions[index].booking_quantity);
+                var stock_quantity=this.parse_num(this.stock_distributions[index].stock_quantity);
+
+                if(booking_quantity > stock_quantity){
+                    this.alert('Sorry! booking quantity can\'t exceed stock quantity');
+                    this.stock_distributions[index].booking_quantity=0;
+                }
+
+            },
+            combine_distribution:function(){
+
+
+                var ref=this;
+                ref.active_record.challan_quantity=0;
+                ref.active_record.booking_distributions=ref.stock_distributions.filter(function(row){
+                    return row.booking_quantity > 0;
+                });
+                ref.stock_distributions.forEach(function(row){
+                    ref.active_record.challan_quantity+=ref.parse_num(row.booking_quantity);
+                });
+                ref.total_challan_quantity();
+
+                $('#stock_distributions').modal('hide');
+
+            }
 
         },
         watch:{

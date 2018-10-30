@@ -456,9 +456,11 @@ $(function(){
 
                 var ref=this;
 
-                var medium_name=ref.resource.delivery_vehicles.find(row=>{
-                    return row.id==ref.field.delivery_vehicle;
-                }).name;
+                if(ref.field.delivery_vehicle){
+                    var medium_name=ref.resource.delivery_vehicles.find(row=>{
+                        return row.id==ref.field.delivery_vehicle;
+                    }).name;
+                }else ref.alert('Please!, select a delivary vehicle type');
 
                 if(this.field.delivery_vehicle=='own_vehicle'){
 
@@ -506,7 +508,7 @@ $(function(){
                         driver_name: '',
                         phone_no: ''
                     });
-                }
+                };
 
                 this.field.delivery_vehicle='';
 

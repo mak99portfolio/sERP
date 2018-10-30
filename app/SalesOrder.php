@@ -62,4 +62,10 @@ class SalesOrder extends Model
         return $this->belongsToMany('App\SalesChallan', 'sales_challan_sales_order', 'sales_order_id', 'sales_challan_id');
     }
 
+    public function amount(){
+        $amount =  $this->items->sum(function ($item) {
+            return $item->quantity * $item->unit_price - $item->discount;
+        });
+        return $amount*(1 + $this->vat/100) - $this->extra_discount;
+    }
 }

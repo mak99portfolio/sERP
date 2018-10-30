@@ -24,7 +24,7 @@
                             @csrf
                             <div class="row">
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('vendor_id','Vendor Id', $vendor_id, ['class'=>'form-control input-sm', 'readonly']) }}
+                                    {{ BootForm::text('vendor_id','Vendor Id', $vendor_id, ['class'=>'form-control input-sm']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('name','Vendor Name', null, ['class'=>'form-control input-sm','required']) }}
@@ -205,31 +205,38 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel panel-default m-t-20">
-                                <div class="panel-heading">Bank Information</div>
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::text('bank[ac_no]','A/C No', null, ['class'=>'form-control input-sm']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::text('bank[ac_name]','A/C Name', null, ['class'=>'form-control input-sm']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::text('bank[bank_name]','Bank', null, ['class'=>'form-control input-sm']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::text('bank[branch_name]','Branch', null, ['class'=>'form-control input-sm']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::text('bank[swift_code]','SWIFT Code', null, ['class'=>'form-control input-sm']) }}
-                                        </div>
-                                        <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::textarea('bank[address]','Bank Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
+                            <fieldset>
+                                <legend>Bank Information</legend>
+                                <div class="panel panel-default" ng-repeat="i in bank track by $index">
+                                    <div class="panel-heading" ng-bind="'Bank-' + (1+$index)"></div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::text('banks[<% $index %>][ac_no]','A/C No', null, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::text('banks[<% $index %>][ac_name]','A/C Name', null, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::text('banks[<% $index %>][bank_name]','Bank', null, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::text('banks[<% $index %>][branch_name]','Branch', null, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::text('banks[<% $index %>][swift_code]','SWIFT Code', null, ['class'=>'form-control input-sm']) }}
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                                {{ BootForm::textarea('banks[<% $index %>][address]','Bank Address', null, ['class'=>'form-control input-sm', 'rows'=>2]) }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="text-center">
+                                    <button ng-disabled="bank.length>=5" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="increaseBank()"><i class="fa fa-plus"></i> Add Bank</button>
+                                    <button ng-disabled="bank.length<=1" type="button" class="btn btn-default btn-sm" style="margin-top: 5px" ng-click="decreaseBank()"><i class="fa fa-minus"></i> Remove Bank</button>
+                                </div>
+                            </fieldset>
                             <fieldset>
                                 <legend>Contact Person Information</legend>
                                 <div class="panel panel-default" ng-repeat="i in person track by $index">
@@ -326,9 +333,10 @@
             $interpolateProvider.endSymbol('%>');
         });
         app.controller('myCtrl',function($scope){
+           
+            // Person 
             $scope.minPerson = 1;
             $scope.maxPerson = 5;
-
             $scope.getNumber = function(num) {
                 $scope.person = new Array(num);
             }
@@ -343,6 +351,26 @@
                     $scope.getNumber($scope.person.length-1);
                 }
             }
+             // Person 
+            // Bakn 
+            $scope.minBank = 1;
+            $scope.maxBank = 5;
+            $scope.getBank = function(num) {
+                $scope.bank = new Array(num);
+            }
+            $scope.getBank(1);
+            $scope.increaseBank = function(){
+                if($scope.bank.length < $scope.maxBank){
+                    $scope.getBank($scope.bank.length+1);
+                }
+            }
+            $scope.decreaseBank = function(){
+                if($scope.bank.length > $scope.minBank){
+                    $scope.getBank($scope.bank.length-1);
+                }
+            }
+             // Bank 
+
         });
         $(function(){
 

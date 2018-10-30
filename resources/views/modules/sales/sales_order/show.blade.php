@@ -138,7 +138,7 @@
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td><strong>Remarks:</strong>125</td>
+                                            <td><strong>Remarks:</strong>{{$sales_order->remarks}}</td>
                                         </tr>
                                         </tbody>
                                     </table>

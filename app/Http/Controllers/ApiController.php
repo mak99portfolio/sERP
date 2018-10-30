@@ -20,6 +20,7 @@ use App\Quotation;
 use App\QuotationItem;
 use App\SalesInvoice;
 use App\SalesOrder;
+use App\SalesOrderItem;
 use App\Stock;
 use App\Vendor;
 use App\VendorBank;
@@ -491,8 +492,8 @@ class ApiController extends Controller
     }
     public function getSalesOrderBySalesOrderId($id)
     {
-        $sales_order_info = SalesOrder::where('id', $id)->get();
-      //dd($sales_order_info);
+        $sales_order_info = SalesOrder::find($id);
+     dd($sales_order_info->amount);
       
         $data['total_amount'] = 50000;
         return response()->json($data);

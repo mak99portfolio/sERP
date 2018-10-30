@@ -37,31 +37,31 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="itemlist.length > 0">
                                 <div class="table-responsive m-t-15">
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
                                                 <th width="25">#</th>
                                                 <th>Product Name</th>
-                                                <th>Vendor-01</th>
+                                                <th ng-repeat="vendor in vendorlist"><% vendor.vendor_name %></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>01</td>
-                                                <td>Tyre</td>
-                                                <td>
+                                            <tr ng-repeat="item in itemlist">
+                                                <td><% $index+1 %></td>
+                                                <td><% item.product_name %></td>
+                                                <td ng-repeat="unit_price in item.unit_prices track by $index">
                                                     <div class="radio">
                                                         <label>
-                                                            <input type="radio" class="flat" name="iCheck"> 422
+                                                            <input type="radio" class="flat" name="iCheck"> <% unit_price %>
                                                         </label>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2">Total</td>
-                                                <td>125</td>
+                                                <td ng-repeat="vendor in vendorlist"><% vendor.total_price %></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -103,15 +103,12 @@
                         $scope.requisition_list = response.data.requisitions;
                     });
         }
-
         $scope.searchQuotation = function(){
-            $scope.compareQuotation($scope.local_requisition_id);
-        }
-        $scope.compareQuotation = function(local_requisition_id){
-            let url = "{{ URL::to('get-local-requisition-by-date-range') }}" + local_requisition_id;
+            let url = "{{ URL::to('get-local-requisition-items-from-quotation') }}/" + $scope.local_requisition_id;
             $http.get(url)
                     .then(function(response) {
-                        $scope.quotations = response.data;
+                        $scope.itemlist = response.data.items;
+                        $scope.vendorlist = response.data.vendors;
                     });
         }
 

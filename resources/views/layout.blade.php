@@ -43,6 +43,12 @@
         <link href="{{asset('assets/build/css/custom.min.css')}}" rel="stylesheet">
 
         <link href="{{asset('assets/style.css')}}" rel="stylesheet">
+
+        {!! bundle([
+            'bootstrap-select/dist/css/bootstrap-select.min.css'
+        ]) !!}
+
+
         <style>
             .select2-container--default .select2-selection--multiple, .select2-container--default .select2-selection--single {min-height: 30px!important;}
             .select2-container--default .select2-selection--single .select2-selection__rendered {padding-top: 0px!important;}
@@ -191,6 +197,16 @@
         <script src="{{asset('assets/build/js/init.js')}}"></script>
 
 
+        {!! bundle([
+            'bootstrap-select/dist/js/bootstrap-select.min.js',
+            'vue/dist/vue.js',
+            'axios/dist/axios.min.js',
+            'vuejs-datepicker/dist/vuejs-datepicker.min.js'
+        ]) !!}
+
+        {!! bundle(['js/vue-mixing.js', 'assets/vendors/ajax_loading/ajax-loading.js'], null) !!}
+
+
         @yield('script')
 
         <script>
@@ -265,3 +281,4 @@ $('form .alert').remove();
         </script>
     </body>
 </html>
+

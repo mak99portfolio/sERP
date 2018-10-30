@@ -104,9 +104,9 @@
                                                 <td>{{$item->quantity * $item->unit_price}}</td>
                                                 <td>{{$item->discount}}</td>
                                                 @php
-                                                $total_discount+=($item->quantity * $item->unit_price)*$item->discount/100;
+                                                $total_discount+=$item->discount;
                                                 @endphp
-                                                <td>{{($item->quantity * $item->unit_price)-(($item->quantity * $item->unit_price)*$item->discount/100)}}</td>
+                                                <td>{{($item->quantity * $item->unit_price)-$item->discount}}</td>
                                             </tr>
                                             @endforeach
                                             <tr>
@@ -126,15 +126,19 @@
                                                     <td colspan="2"> {{$total_vat=$sales_order->items->sum(function($query){return $query->quantity*$query->unit_price;})*$sales_order->vat/100}}</td>
                                                  </tr>
                                                 <tr>
+                                                    <td colspan="9" class="text-right" >Extra Discount</td>
+                                                    <td colspan="2">{{$sales_order->extra_discount}}  </td>
+                                                 </tr>
+                                                <tr>
                                                     <td colspan="9" class="text-right" >Grand Total</td>
-                                                    <td colspan="2">{{($total_net_price+$total_vat)-$total_discount}}  </td>
+                                                    <td colspan="2">{{($total_net_price+$total_vat)-($total_discount+$sales_order->extra_discount)}}  </td>
                                                  </tr>
                                         </tbody>
                                     </table>
                                     <table class="table table-bordered">
                                         <tbody>
                                         <tr>
-                                            <td><strong>Remarks:</strong>125</td>
+                                            <td><strong>Remarks:</strong>{{$sales_order->remarks}}</td>
                                         </tr>
                                         </tbody>
                                     </table>

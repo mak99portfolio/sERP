@@ -57,7 +57,7 @@
                                         <td>
                                             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                                                 <div class="btn-group" role="group">
-                                                    {!! btnEdit(['url'=>route('working-unit.show', ['working_unit'=>$row->id])]) !!}
+                                                    {!! btnCustom(['icon'=>'fa-eye fa-lg text-warning', 'url'=>route('working-unit.show', ['working_unit'=>$row->id])]) !!}
                                                 </div>
                                                 <div class="btn-group" role="group">
                                                     {!! btnEdit(['url'=>route('working-unit.edit', ['working_unit'=>$row->id])]) !!}

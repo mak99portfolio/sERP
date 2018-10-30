@@ -15,7 +15,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Insurance Cover Note List</h2>
-                        <a href="{{ route('insurance-cover-note.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Insurance Cover Note</a>
+                        <a href="{{ route('insurance-cover-note.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Insurance Cover Note</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -24,13 +24,13 @@
                             <table class="table table-bordered datatable-buttons">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th scope="col">#</th>
+                                        <th width="30px" scope="col">#</th>
                                         <th scope="col">LC No</th>
                                         <th scope="col">Icn No</th>
                                         <th scope="col">Icn Date</th>
                                         <th scope="col">Icn Agency Name</th>
                                         <th scope="col">Icn Bank Account No</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="40px" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

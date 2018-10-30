@@ -13,6 +13,7 @@
                 </div>
                 <div class="x_content" ng-controller="myCtrl">
                     <br />
+                    @include('partials/flash_msg')
                     <form class="form-horizontal form-label-left" action="{{route('invoice-schedule.store')}}" method="POST" autocomplete="off">
                     @csrf
                         <div class="row">

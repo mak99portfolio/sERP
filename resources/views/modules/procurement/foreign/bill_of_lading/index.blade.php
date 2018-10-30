@@ -15,7 +15,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Bill of Lading List</h2>
-                        <a href="{{route('bill-of-lading.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Bill of Lading</a>
+                        <a href="{{route('bill-of-lading.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Bill of Lading</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -24,12 +24,12 @@
                             <table class="table table-bordered datatable-buttons">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th width="25">#</th>
+                                        <th width="35">#</th>
                                         <th>Bill OF lading Issue Date </th>
                                         <th>BL No</th>
                                         <th>Moder Of Transport</th>
                                         <th>Container No</th>
-                                        <th width="30">Action</th>
+                                        <th width="40" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

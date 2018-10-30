@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Lc details')
+@section('title', 'LC Details')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -124,7 +124,7 @@
                                             <div class="input-group">
                                                 <input type="text" class="form-control input-sm" ng-model="lca_no">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default btn-sm" type="button" ng-click="addLca()">Add</button>
+                                                    <button class="btn btn-primary btn-sm" type="button" ng-click="addLca()">Add</button>
                                                 </span>
                                             </div>
                                         </div>
@@ -134,16 +134,16 @@
                                         <table class="table table-bordered table.order-list" id="lca_no_table">
                                             <thead>
                                                 <tr>
-                                                    <th>SL No.</th>
+                                                    <th width="30px" class="text-center">#</th>
                                                     <th>LCA No</th>
-                                                    <th class="text-right">Delete</th>
+                                                    <th width="30px" class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr ng-repeat="lca in lcalist">
                                                     <td scope="row"><% $index+1 %></td>
                                                     <td><% lca.lca_no %><input type="hidden" value="<% lca.lca_no %>" name="lca_nos[<% $index %>][lca_no]"></td>
-                                                    <td class="text-right"><a href="" class="btn btn-danger  btn-xs" ng-click="removeLca($index)"><i class="fa fa-trash"></i></a></td>
+                                                    <td class="text-center"><a href="" class="btn btn-danger  btn-xs" ng-click="removeLca($index)"><i class="fa fa-trash"></i></a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -173,7 +173,7 @@
                                                 <tr>
                                                     <th>SL No.</th>
                                                     <th>PI No</th>
-                                                    <th>Delete</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -201,7 +201,7 @@
                                                     {{-- <th>D.Rate</th> --}}
                                                     {{-- <th>Discount</th> --}}
                                                     {{-- <th>Vat(%)</th> --}}
-                                                    <th>Amount (USD)</th>
+                                                    <th class="text-center">Amount (USD)</th>
                                                 </tr>
 
                                         </thead>
@@ -237,7 +237,7 @@
                                                     <td colspan="2"></td>
                                                 </tr> --}}
                                                 <tr>
-                                                    <td colspan="6" class="text-right"><strong>Grand Total</strong></td>
+                                                    <td colspan="6"><strong>Grand Total</strong></td>
 
                                                     <td colspan="1" class="text-right"><strong><% grandSum(total)|number:2 %></strong></td>
                                                 </tr>
@@ -251,15 +251,17 @@
                                     </table>
                                 </div>
                             </fieldset>
-
+                                <div class="row">
                             <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
 
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">Save</button>
+                                    <a class="btn btn-default" href="{{route('letter-of-credit.index')}}">Cancel</a>
                                 </div>
                             </div>
+                                </div>
                         </form>
                     </div>
                 </div>

@@ -33,7 +33,8 @@ class InvoiceScheduleController extends Controller
     {
        //dd($request->input());
        $request->validate([  
-        'customer_id' => 'required'
+        'customer_id' => 'required',
+        'sales_order_id' => 'required'
     ]);
     $invoice_schedule = new InvoiceSchedule;
     $invoice_schedule->fill($request->input());

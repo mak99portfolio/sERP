@@ -24,12 +24,12 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             {{ BootForm::text('short_name', 'Short Name', null, ['class'=>'form-control input-sm']) }}
                         </div>
-                        <div class="col-md-12 col-xs-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
                             <br />
                             <div class="ln_solid"></div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                <a class="btn btn-default btn-sm" href="{{route('unit-of-measurement.index')}}">Cancel</a>
+                                <button type="submit" class="btn btn-success">Save</button>
+                                <a class="btn btn-default" href="{{route('unit-of-measurement.index')}}">Cancel</a>
                             </div>
                         </div>
                     </form>

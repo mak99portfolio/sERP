@@ -71,8 +71,8 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Approve</button>
-                                    <a href="{{ route('quotation-compare.index') }}" class="btn btn-default btn-sm">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                    <a href="{{ route('quotation-compare.index') }}" class="btn btn-default">Cancel</a>
                                 </div>
                             </div>
                         </div>

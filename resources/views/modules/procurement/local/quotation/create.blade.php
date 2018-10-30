@@ -62,7 +62,7 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3">
                                             <div class="form-group">
-                                                <label data-popup = "{{ route('payment-type.index') }}">Payment Type</label>
+                                                <label data-popup = "{{ route('payment-type.index') }}" class="link">Payment Type</label>
                                                 <select class="form-control input-sm select2" ng-model="payment_type"  required>
                                                     <option value="" disabled>--Select Payment Type--</option>
                                                     @foreach($payment_type_list as $item)
@@ -90,7 +90,7 @@
                                                             <th>
                                                                 {{ BootForm::number('payment_terms_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
                                                             </th>
-                                                            <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-primary">Add</button></th>
+                                                            <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-primary m-b-15">Add</button></th>
                                                         </tr>
                                                     </thead>
                                                 </table>
@@ -127,7 +127,7 @@
                                         </fieldset>
                                         <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
                                             <div class="form-group">
-                                                <label data-popup = "{{ route('terms-and-condition-type.index') }}">Terms and Conditions Type</label>
+                                                <label data-popup = "{{ route('terms-and-condition-type.index') }}" class="link">Terms and Conditions Type</label>
                                                 <select class="form-control input-sm select2" ng-model="terms_and_condition_type"  required>
                                                     <option value="" disabled>--Select Terms and Conditions Type--</option>
                                                     @foreach($terms_conditions_type_list as $item)
@@ -140,7 +140,7 @@
                                             {{ BootForm::textarea(null,'Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
                                         </div>
                                         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                            <button type="button" ng-click="add_condition()" class="btn btn-sm btn-primary m-t-20"><strong>Add</strong></button>
+                                            <button type="button" ng-click="add_condition()" class="btn btn-sm btn-primary m-t-25"><strong>Add</strong></button>
                                         </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="conditions.length >=1">
                                             <div class="table-responsive">
@@ -165,12 +165,15 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="form-group">
-                                            <button type="submit" class="btn btn-success btn-sm" ng-disabled="(conditions.length < 1 || payment_terms.length < 1)">Save</button>
-                                            <a href="{{ route('quotation.index') }}" class="btn btn-default btn-sm">Cancel</a>
-                                        </div>
+                                    <br />
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-success" ng-disabled="itemlist.length < 1">Save</button>
+                                        <a class="btn btn-default" href="{{route('quotation.index')}}">Cancel</a>
                                     </div>
+                                </div>
                                 </div>
                             </form>
                         </div>

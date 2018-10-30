@@ -17,7 +17,7 @@
                     <form class="form-horizontal form-label-left" action="{{ route('company-license.store') }}" method="POST" autocomplete="off">
                         @csrf
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ BootForm::select('company_profile_id','Company Name', $company_profile_list,null, ['class'=>'form-control input-sm select2']) }}
+                            {{ BootForm::select('company_profile_id','Company Name', $company_profile_list,null, ['class'=>'form-control input-sm select2','data-popup'=> route('company-profile.index')]) }}
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             {{ BootForm::text('license_name','License Name', null, ['class'=>'form-control input-sm']) }}

@@ -108,7 +108,7 @@
                                             <td><% item.goods_in_transit %></td>
                                             <td><% item.pending %></td>
                                             <td><% item.total_quantity %></td>
-                                            <td class="item"><input type="number" class="form-control" min="1" name="items[<% $index %>][quantity]" required></td>
+                                            <td class="item"><input type="number" class="form-control input-sm" min="1" name="items[<% $index %>][quantity]" required></td>
                                             <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                         </tr>
                                     </tbody>

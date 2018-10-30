@@ -68,4 +68,7 @@ class SalesOrder extends Model
         });
         return $amount*(1 + $this->vat/100) - $this->extra_discount;
     }
+    public function invoice_schedules(){
+        return $this->hasMany('App\InvoiceSchedule');
+    }
 }

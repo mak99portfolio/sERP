@@ -188,3 +188,11 @@ ul.bar_tabs>li a {
     float: left;
 }
 
+
+/* pop-up link */
+
+.link{
+    cursor: pointer;
+    text-decoration: underline;
+}
+

@@ -476,26 +476,35 @@ class ApiController extends Controller
     }
     public function getSalesOrderByCustomerId($id)
     {
-        $sales_order_lists = SalesOrder::where('customer_id', $id)->get();
-      //  dd($sales_order_lists);
-        foreach ($sales_order_lists as $sales_order_list) {
-            $sales_order[] = [
-                'sales_order_id' => $sales_order_list->id,
-                'sales_order_no' => $sales_order_list->sales_order_no,
-
-            ];
+        $sales_order_list = SalesOrder::where('customer_id', $id)->get();
+        $so = [];
+        foreach ($sales_order_list as $sales_order) { 
+            $total_invoice_amount = 0;
+            foreach ($sales_order->invoice_schedules as $invoice_schedule) { 
+               $total_invoice_amount += $invoice_schedule->items->sum('payment_amount');
+            }
+            if($total_invoice_amount < $sales_order->amount()){
+                $so[] = [
+                    'sales_order_id' => $sales_order->id,
+                    'sales_order_no' => $sales_order->sales_order_no,
+                ];
+            }
+          
         }
-        // dd($sales_order);
-        $data['sales_order'] = $sales_order;
+         
+        $data['sales_order'] = $so;
         $data['due'] = 10000;
         return response()->json($data);
     }
     public function getSalesOrderBySalesOrderId($id)
     {
-        $sales_order_info = SalesOrder::find($id);
-     dd($sales_order_info->amount);
-      
-        $data['total_amount'] = 50000;
+    
+        $sales_order = SalesOrder::find($id);
+        $total_invoice_amount = 0;
+            foreach ($sales_order->invoice_schedules as $invoice_schedule) { 
+               $total_invoice_amount += $invoice_schedule->items->sum('payment_amount');
+            }
+        $data['total_amount'] = $sales_order->amount()-$total_invoice_amount;
         return response()->json($data);
     }
     public function getCiByCiId($id)

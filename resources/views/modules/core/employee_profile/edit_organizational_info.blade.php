@@ -111,10 +111,10 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('company_id', 'Select Company', $companies, null, ['class'=>'input-sm select2']) }}
-                        </div>
+                            {{ BootForm::select('company_id', 'Select Company', $companies, null, ['class'=>'input-sm select2','data-popup'=> route('company-profile.index')]) }}
+                        </div> 
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('department_id', 'Select Department', $depatrments, null, ['class'=>'input-sm select2']) }}
+                            {{ BootForm::select('department_id', 'Select Department', $depatrments, null, ['class'=>'input-sm select2','data-popup'=> route('department.index')]) }}
                         </div>
                     </div>
                 </div>
@@ -122,10 +122,10 @@
                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('designation_id', 'Select Designation', $designations, null, ['class'=>'input-sm select2']) }}
+                            {{ BootForm::select('designation_id', 'Select Designation', $designations, null, ['class'=>'input-sm select2','data-popup'=> route('designation.index')]) }}
                         </div>
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            {{ BootForm::select('working_unit_id', 'Select Working Unit', $workingUnits,null, ['class'=>'input-sm select2']) }}
+                            {{ BootForm::select('working_unit_id', 'Select Working Unit', $workingUnits,null, ['class'=>'input-sm select2','data-popup'=> route('working-unit.index')]) }}
                         </div>
                     </div>
 

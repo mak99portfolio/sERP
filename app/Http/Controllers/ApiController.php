@@ -682,8 +682,8 @@ class ApiController extends Controller
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
             'available' => $physical_stock,
-            'intransit' => $intransit,
-            'pending' => $pending,
+            'intransit' => (int)$intransit,
+            'pending' => (int)$pending,
             'discount_type' => $discount_type,
             'discount' => (int) $discount,
         ];

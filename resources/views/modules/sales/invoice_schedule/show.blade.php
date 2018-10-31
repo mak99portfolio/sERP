@@ -27,7 +27,7 @@
                                         </tr>
                                         <tr>
                                             <th>Total Amount:</th>
-                                            <td>50000</td>
+                                            <td>{{ $invoiceSchedule->sales_order->amount()}}</td>
                                         </tr>
                                         <tr>
                                             <th>Invoice Schedule No:</th>
@@ -55,11 +55,18 @@
       <tr>
         <td>{{ $loop->iteration }}</td>
         <td>{{ $item->invoice_schedule->sales_order->sales_order_no }}</td>
-        <td>{{ $item->payment_amount }}</td>
+        <td class="text-right">{{ $item->payment_amount }}</td>
         <td>{{ $item->payment_date }}</td>
        
       </tr>
       @endforeach
+      <tr>
+        <td></td>
+        <td class="text-right">Total</td>
+        <td class="text-right">{{$invoiceSchedule->items->sum('payment_amount')}}</td>
+        <td></td>
+       
+      </tr>
     </tbody>
   </table>
   </div>

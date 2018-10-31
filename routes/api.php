@@ -35,6 +35,7 @@ Route::namespace('Sales')->prefix('sales')->group(function(){
 
 	Route::prefix('invoice')->group(function(){		
 		Route::get('sales-challan-items/{sales_challan}', 'SalesInvoiceController@sales_challan_items');
+		Route::get('sales-challan-vehicles/{sales_challan}', 'SalesInvoiceController@sales_challan_vehicle');
 	});
 
 });

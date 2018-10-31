@@ -392,7 +392,8 @@ $(function(){
                 delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}",
                 sales_challan_items:"{{ url('api/sales/invoice/sales-challan-items') }}",
                 customer_addresses:"{{ url('api/sales/challan/customer-addresses') }}",
-                submit:"{{ route('sales-invoice.store') }}"
+                submit:"{{ route('sales-invoice.store') }}",
+                sales_challan_vehicles:"{{ url('api/sales/invoice/sales-challan-vehicles') }}"
             },
             field:{
                 sales_challan_id:'',
@@ -492,6 +493,18 @@ $(function(){
                 }else this.alert('This challan does\'t associate with any customer');
 
                 //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
+
+                //fetch challan delivery vehicles list
+                this.fetch_remote(this.url.sales_challan_vehicles + '/' + selected_challan.id, function(){
+                    ref.field.delivery_vehicles=ref.response;
+                    ref.field.delivery_vehicles.forEach(function(row, index){
+                        var medium_name=ref.resource.delivery_vehicles.find(inner_row=>{
+                            return inner_row.id==row.delivery_medium;
+                        }).name;
+                        ref.field.delivery_vehicles[index].medium_name=medium_name;
+                    });
+                });
+
                 this.update_sales_challan_list();
 
             },
@@ -503,22 +516,13 @@ $(function(){
                 return referer.name;
             },
             fetch_delivery_persons:function(){
+
                 var ref=this;
-                var loading=$.loading();
-                loading.open(3000);
 
-                axios.get(ref.url.delivery_persons).then(function(response){
-
-                    ref.resource.delivery_persons=response.data;
-                    loading.close();
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
+                ref.fetch_remote(ref.url.delivery_persons, function(){
+                    ref.resource.delivery_persons=ref.response;
                 });
+
             },
             add_delivery_vehicle:function(){
 
@@ -660,26 +664,14 @@ $(function(){
 
                 var ref=this;
 
-                var loading=$.loading();
-                loading.open(3000);
-
                 if(!this.field.sales_challan_id){
                     ref.alert('Please!, select a sales challan number.');
                     loading.close();
                     return false;
                 }
 
-                axios.get(ref.url.sales_challan_items + '/' + this.field.sales_challan_id).then(function(response){
-
-                    ref.field.sales_invoice_items=response.data;
-                    loading.close();
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
+                ref.fetch_remote(ref.url.sales_challan_items + '/' + this.field.sales_challan_id, function(){
+                    ref.field.sales_invoice_items=ref.response;
                 });
 
             },

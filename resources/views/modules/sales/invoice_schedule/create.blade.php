@@ -37,7 +37,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model' => 'payment_date']) }}
+                                                {{ BootForm::text('date','Date', null, ['id'=>'date_expected','class'=>'form-control input-sm datepicker', 'ng-model' => 'payment_date']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::number('invoice_amount','Invoice Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_amount']) }}

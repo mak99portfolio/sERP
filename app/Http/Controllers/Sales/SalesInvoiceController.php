@@ -152,4 +152,10 @@ class SalesInvoiceController extends Controller{
 
     }
 
+    public function sales_challan_vehicle(\App\SalesChallan $sales_challan){
+
+        return $sales_challan->vehicles;
+
+    }
+
 }

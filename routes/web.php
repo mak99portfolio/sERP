@@ -234,6 +234,7 @@ Route::get('/get-working-unit-wise-product-available/{id}', ['as' => 'get-workin
 Route::get('/get-invoice/{id}', ['as' => 'get-invoice', 'uses' => 'ApiController@getInvoiceByCustomerId']);
 Route::get('/get-sales-order/{id}', ['as' => 'get-sales-order', 'uses' => 'ApiController@getSalesOrderByCustomerId']);
 Route::get('/get-sales-order-info/{id}', ['as' => 'get-sales-order-info', 'uses' => 'ApiController@getSalesOrderBySalesOrderId']);
+Route::get('/get-sales-order-items/{id}', ['as' => 'get-sales-order-items', 'uses' => 'ApiController@getSalesOrderItemsBySalesOrderId']);
 
 //ACL (Access Control Limit)
 Route::middleware(['auth', 'hasPermission:access_to_acl'])

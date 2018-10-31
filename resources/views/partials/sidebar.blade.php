@@ -132,7 +132,7 @@
           <li><a href="{{ route('own-vehicle.index') }}">Own Vehicle</a></li>
         </ul>
       </li>
-      {{-- @can('view_developer_menu') --}}
+      @can('view_developer_menu')
       <li><a><i class="fa fa-key"></i> Access Control <span class="fa fa-chevron-down"></span></a>
         <ul class="nav child_menu">
           <li><a href="{{ Route('user.index') }}">User List</a></li>
@@ -143,7 +143,7 @@
           <li><a href="{{ Route('user-permission-matrix') }}">User Direct Permissions</a></li>
         </ul>
       </li>
-      {{-- @endcan --}}
+      @endcan
     </ul>
   </div>
   <div class="menu_section">

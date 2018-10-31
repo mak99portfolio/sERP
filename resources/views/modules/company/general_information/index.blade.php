@@ -21,7 +21,7 @@
                                         <th>Company Name</th>
                                         <th>Phone Number</th>
                                         <th>Country</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

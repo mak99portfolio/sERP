@@ -37,13 +37,13 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="itemlist.length >=1">
                                         <div class="table-responsive">
                                             <table class="table table-bordered">
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Product Name</th>
-                                                    <th>UOM</th>
-                                                    <th>Unit Price</th>
-                                                </tr>
+                                                <thead class="bg-primary">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Product Name</th>
+                                                        <th>UOM</th>
+                                                        <th>Unit Price</th>
+                                                    </tr>
                                                 </thead>
                                                 <tbody>
                                                 <tr ng-repeat='item in itemlist'>
@@ -59,8 +59,9 @@
                                             </table>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3">
+                                </div>
+                                <div class="row m-t-15">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3">
                                             <div class="form-group">
                                                 <label data-popup = "{{ route('payment-type.index') }}" class="link">Payment Type</label>
                                                 <select class="form-control input-sm select2" ng-model="payment_type"  required>
@@ -74,12 +75,14 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="table-responsive">
                                                 <table class="table table-bordered table-hover">
-                                                    <thead>
+                                                    <thead class="bg-primary">
                                                         <tr>
                                                             <th>Date</th>
                                                             <th>Description</th>
                                                             <th colspan="2">% or Fixed Amount</th>
                                                         </tr>
+                                                        </thead>
+                                                        <tbody>
                                                         <tr>
                                                             <th>
                                                                 {{ BootForm::text('payment_date','Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'payment_terms_date']) }}
@@ -90,18 +93,20 @@
                                                             <th>
                                                                 {{ BootForm::number('payment_terms_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
                                                             </th>
-                                                            <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-primary m-b-15">Add</button></th>
+                                                            <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-sm btn-primary m-t-10">Add</button></th>
                                                         </tr>
-                                                    </thead>
+                                                        </tbody>
                                                 </table>
-                                                <table class="table table-bordered table-hover">
-                                                    <thead ng-if="payment_terms.length >=1">
+                                            </div>
+                                            <div class="table-responsive">
+                                                <table class="table table-bordered table-hover m-t-15">
+                                                    <thead class="bg-primary" ng-if="payment_terms.length >=1">
                                                         <tr>
                                                             <th width="40">#</th>
                                                             <th>Payment term</th>
                                                             <th>Date</th>
                                                             <th>Description</th>
-                                                            <th>% or Fixed Payment Amount</th>
+                                                            <th class="text-center">% or Fixed Payment Amount</th>
                                                             <th width="40" class="text-center">Action</th>
                                                         </tr>
                                                     </thead>
@@ -111,7 +116,7 @@
                                                             <td><% terms.name %> <input name="payment_terms[<% $index %>][payment_type_id]" type="hidden" value="<% terms.id %>"></td>
                                                             <td><% terms.date %> <input name="payment_terms[<% $index %>][payment_date]" type="hidden" value="<% terms.date %>"></td>
                                                             <td><% terms.description %> <input name="payment_terms[<% $index %>][description]" type="hidden" value="<% terms.description %>"></td>
-                                                            <td><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
+                                                            <td class="text-right"><% terms.amount %> <input name="payment_terms[<% $index %>][amount]" type="hidden" value="<% terms.amount %>"></td>
                                                             <td  class="text-center">
                                                                 <button type="button" class="btn btn-xs btn-danger" ng-click="removeTerms($index)"><i class="fa fa-times"></i></button>
                                                             </td>
@@ -121,31 +126,32 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <fieldset>
-                                            <legend>Terms and Conditions</legend>
-                                        </fieldset>
-                                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label data-popup = "{{ route('terms-and-condition-type.index') }}" class="link">Terms and Conditions Type</label>
-                                                <select class="form-control input-sm select2" ng-model="terms_and_condition_type"  required>
-                                                    <option value="" disabled>--Select Terms and Conditions Type--</option>
-                                                    @foreach($terms_conditions_type_list as $item)
-                                                    <option value="{{$item}}">{{$item->name}}</option>
-                                                    @endforeach
-                                                </select>
+                                    <fieldset>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                                <legend>Terms and Conditions</legend>
+                                            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <label data-popup = "{{ route('terms-and-condition-type.index') }}" class="link">Terms and Conditions Type</label>
+                                                    <select class="form-control input-sm select2" ng-model="terms_and_condition_type"  required>
+                                                        <option value="" disabled>--Select Terms and Conditions Type--</option>
+                                                        @foreach($terms_conditions_type_list as $item)
+                                                        <option value="{{$item}}">{{$item->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-                                            {{ BootForm::textarea(null,'Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                                            <button type="button" ng-click="add_condition()" class="btn btn-sm btn-primary m-t-25"><strong>Add</strong></button>
-                                        </div>
+                                            <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                                                {{ BootForm::textarea(null,'Description',null,['id'=>'description','class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'condition_description']) }}
+                                            </div>
+                                            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+                                                <button type="button" ng-click="add_condition()" class="btn btn-sm btn-primary m-t-25"><strong>Add T.C.</strong></button>
+                                            </div>
+                                            </div>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="conditions.length >=1">
-                                            <div class="table-responsive">
+                                            <div class="table-responsive m-t-15">
                                                 <table class="table table-bordered">
-                                                    <thead>
+                                                    <thead class="bg-primary">
                                                         <tr>
                                                             <th width="40">#</th>
                                                             <th>Term & Condition</th>
@@ -164,17 +170,18 @@
                                                 </table>
                                             </div>
                                         </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <br />
+                                            <div class="ln_solid"></div>
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-success" ng-disabled="itemlist.length < 1">Save</button>
+                                                <a class="btn btn-default" href="{{route('quotation.index')}}">Cancel</a>
+                                            </div>
+                                        </div>     
                                     </div>
-                                    <hr>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <br />
-                                    <div class="ln_solid"></div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-success" ng-disabled="itemlist.length < 1">Save</button>
-                                        <a class="btn btn-default" href="{{route('quotation.index')}}">Cancel</a>
-                                    </div>
-                                </div>
-                                </div>
                             </form>
                         </div>
                 </div>

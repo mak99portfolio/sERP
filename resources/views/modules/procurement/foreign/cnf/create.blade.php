@@ -116,7 +116,6 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">Particulars of Consignments Table</div>
                                         <div class="panel-body">
-
                                             <div class="row">
                                                 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                                                     <div class="form-group">
@@ -129,16 +128,13 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                                                    <div class="form-group">
-                                                        <label for="">Consignment Amount</label>
+                                                <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                                                    <label for="">Consignment Amount</label>
+                                                    <div class="input-group">
                                                         <input type="text" class="form-control input-sm" name="amount" ng-model="amount">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                                                    <div class="form-group">
-                                                        <label for=""></label>
-                                                        <button type="button" class="form-control btn btn-primary  btn-sm" ng-click="addParticular()">Add</button>
+                                                        <span class="input-group-btn">
+                                                          <button class="btn btn-primary btn-sm" type="button" ng-click="addParticular()">Add</button>
+                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -150,7 +146,7 @@
                                                             <th scope="col" class="text-center">#</th>
                                                             <th scope="col" class="text-center">Particulars of Consignments</th>
                                                             <th scope="col" class="text-center">Taka</th>
-                                                            <th scope="col" class="text-center"><i class="fa fa-trash"></i></th>
+                                                            <th scope="col" class="text-center">Action</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -206,16 +202,18 @@
                                         <input type="text" class="form-control input-sm" name="amount_in_word">
                                     </div>
                                 </div> --}}
-                                <div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="form-group">
                                         <label for="">Notes</label>
                                         <textarea name="note" class="form-control input-sm" id="" cols="30" rows="2"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-success" ng-disabled="particularlist.length < 1">Save</button>
-                                        <a href="{{route('cnf.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                        <a href="{{route('cnf.index')}}" class="btn btn-default">Cancel</a>
                                     </div>
                                 </div>
                             </div>

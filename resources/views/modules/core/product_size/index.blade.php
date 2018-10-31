@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Name</th>
                                         <th>Short Name</th>
-                                        <th  class="text-center">Action</th>
+                                        <th  class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 @foreach($product_size_list as $product_size)
@@ -36,7 +36,7 @@
                                             <th>{{$loop->iteration}}</th>
                                             <th>{{$product_size->name}}</th>
                                             <th>{{$product_size->short_name}}</th>
-                                            <td class="text-center"><a href="{{ route('product-size.edit',$product_size) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                            <td class="text-center"><a href="{{ route('product-size.edit',$product_size) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                    
                                         </tr>
                                 @endforeach

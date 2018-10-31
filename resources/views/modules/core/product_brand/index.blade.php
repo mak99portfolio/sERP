@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Brand Name</th>
                                         <th>Short Name</th>
-                                        <th class="text-center" width="30">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +38,7 @@
                                         <td>{{$brand->name}}</td>
                                         <td>{{$brand->short_name}}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('product-brand.edit',$brand) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                                            <a href="{{ route('product-brand.edit',$brand) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a>
                                         </td>
                                    
                                     </tr>

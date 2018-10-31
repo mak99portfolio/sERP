@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Name</th>
                                         <th>Short Name</th>
-                                        <th  class="text-center">Action</th>
+                                        <th  class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 @foreach($product_model_list as $product_model)
@@ -36,7 +36,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$product_model->name}}</td>
                                             <td>{{$product_model->short_name}}</td>
-                                            <td class="text-center"><a href="{{ route('product-model.edit',$product_model) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                            <td class="text-center"><a href="{{ route('product-model.edit',$product_model) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                    
                                         </tr>
                                 @endforeach

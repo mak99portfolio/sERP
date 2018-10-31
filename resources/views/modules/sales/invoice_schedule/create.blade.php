@@ -22,12 +22,12 @@
                            </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                <div class="form-group">
-                                                    <label for="">Sales Order No</label>
-                                                    <select name="sales_order_id" id="" ng-change="getTotalAmount()" ng-model ="sales_order_id" class="form-control input-sm select2" data-placeholder="Select Sales Order">
-                                                        <option value=""></option>
-                                                        <option value="<% sales_order.sales_order_id %>" ng-repeat="sales_order in sales_order_list"><% sales_order.sales_order_no %></option>
-                                                    </select>
-                                                </div>
+                                    <label for="">Sales Order No</label>
+                                    <select name="sales_order_id" id="" ng-change="getTotalAmount()" ng-model ="sales_order_id" class="form-control input-sm select2" data-placeholder="Select Sales Order">
+                                        <option value=""></option>
+                                        <option value="<% sales_order.sales_order_id %>" ng-repeat="sales_order in sales_order_list"><% sales_order.sales_order_no %></option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('total_amount','Total Amount', null, ['class'=>'form-control input-sm','ng-model'=>'total_amount', 'readonly'])}}

@@ -2,7 +2,8 @@ var custom={
 	data:function(){
 
 		return {
-			loading:$.loading()
+			loading:$.loading(),
+			response:null
 		}
 		
 	},
@@ -37,6 +38,27 @@ var custom={
                 }
 
             }).catch(function(){
+
+                ref.loading.close();
+                ref.alert('Sorry!, failed to fetch remote data.');
+
+
+            });
+
+        },
+        fetch_remote:function(url, callback=null, params=null){
+
+        	var ref=this;
+            ref.loading.open(3000);
+
+            axios.get(url, {params: params}).then(function(response){
+
+                ref.response=response.data;
+                ref.loading.close();
+                if(typeof callback==='function') callback();
+                ref.response=null;
+
+            }).catch(function(error){
 
                 ref.loading.close();
                 ref.alert('Sorry!, failed to fetch remote data.');

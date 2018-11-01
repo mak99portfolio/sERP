@@ -86,7 +86,7 @@
                 <li><a>Setting <span class="fa fa-chevron-down"></span></a>
                   <ul class="nav child_menu">
                     <li><a href="{{ route('customer.index') }}">Customer Profile</a></li>
-                    <li><a href="{{ route('credit-rule.index') }}">Rule Setup</a></li>
+                    <li><a href="{{ route('rule-setup') }}">Rule Setup</a></li>
                     <li><a href="{{ route('customer-zone.index') }}">Customer Zone</a></li>
                     <li><a href="{{ route('sales-order-cancel-reason.index') }}">Order Cancel Reasons</a></li>
                   </ul>

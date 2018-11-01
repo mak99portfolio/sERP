@@ -24,11 +24,12 @@ class RuleSetupController extends Controller
     }
     public function index()
     {
-        $view = view($this->view_root . 'index');
-        $view->with('credit_rule', new CreditRule);
-        $view->with('customer_list', Customer::pluck('name', 'id')->prepend('',''));
-        $view->with('credit_rule_list', CreditRule::orderBy('id', 'desc')->get());
-        return $view;
+        return redirect()->route('credit-rule.index');
+        // $view = view($this->view_root . 'index');
+        // $view->with('credit_rule', new CreditRule);
+        // $view->with('customer_list', Customer::pluck('name', 'id')->prepend('',''));
+        // $view->with('credit_rule_list', CreditRule::orderBy('id', 'desc')->get());
+        // return $view;
     }
 
     public function store(Request $request)

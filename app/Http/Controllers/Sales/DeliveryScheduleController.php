@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Sales;
 use App\DeliverySchedule;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Customer;
+use Auth;
+use Session;
 
 class DeliveryScheduleController extends Controller
 {
@@ -19,7 +22,8 @@ class DeliveryScheduleController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-          return $view;
+        $view->with('customer_list', Customer::pluck('name','id')->prepend('-- Select Customer --', '')); 
+        return $view;
     }
 
     /**

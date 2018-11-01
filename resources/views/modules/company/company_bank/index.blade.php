@@ -22,7 +22,8 @@
                                         <th>Account Name</th>
                                         <th>Bank Name</th>
                                         <th>Branch Name</th>
-                                        <th>Swift Code</th> <th class="text-center">Action</th>
+                                        <th>Swift Code</th> 
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

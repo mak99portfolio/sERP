@@ -67,16 +67,14 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="input-group m-b">
+                                        <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-search"></i> Search
                                             </span>
                                             <input type="text" class="form-control input-lg" placeholder="Please type to find product" id="search_product">
-                                            <span class="input-group-addon">
-                                                <a href="#" ng-click="searchProduct()"><i class="fa fa-plus"></i> Add</a>
-                                            </span>
-                                            <span class="input-group-addon">
-                                                <a href="#" data-toggle="modal" data-target="#myModal" ng-click="getAllProduct()"><i class="fa fa-list-ul"></i> Product List</a>
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-default btn-lg" ng-click="searchProduct()" type="button"><i class="fa fa-plus"></i> Add</button>
+                                              <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" ng-click="getAllProduct()" type="button"><i class="fa fa-list-ul"></i> Product List</button>
                                             </span>
                                         </div>
                                     </div>

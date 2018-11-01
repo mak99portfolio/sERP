@@ -507,6 +507,16 @@ class ApiController extends Controller
         $data['total_amount'] = $sales_order->amount()-$total_invoice_amount;
         return response()->json($data);
     }
+    public function getSalesOrderItemsBySalesOrderId($id)
+    {
+    
+        $sales_order = SalesOrder::find($id);
+        dd( $sales_order->items);
+            foreach ($sales_order->items as $item) { 
+              
+            }
+        return response()->json($data);
+    }
     public function getCiByCiId($id)
     {
         $ci = CommercialInvoice::find($id);

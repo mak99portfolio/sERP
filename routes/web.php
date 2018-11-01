@@ -105,16 +105,20 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('payment-schedule', 'PaymentScheduleController');
     Route::resource('delivery-schedule', 'DeliveryScheduleController');
     Route::resource('invoice-schedule', 'InvoiceScheduleController');
+    Route::resource('sales-order-return', 'SalesOrderReturnController');
     // Setting
     Route::resource('customer', 'CustomerController');
     Route::resource('customer-zone', 'CustomerZoneController');
-    Route::resource('rule-setup', 'RuleSetupController');
-    Route::resource('credit-rule', 'CreditRuleController');
-    Route::resource('discount-customer-wise', 'DiscountCustomerWiseController');
-    Route::resource('discount-generic', 'DiscountGenericController');
-    Route::resource('free-bonus-customer-wise', 'FreeBonusCustomerWiseController');
-    Route::resource('free-bonus-generic', 'FreeBonusGenericController');
-    Route::resource('sales-order-cancel-reason', 'SalesOrderCancelReasonController');
+    Route::resource('sales-return-reason', 'SalesReturnReasonController');
+    Route::prefix('rule-setup')->group(function(){
+        Route::get('/', 'RuleSetupController@index')->name('rule-setup');
+        Route::resource('credit-rule', 'CreditRuleController');
+        Route::resource('discount-customer-wise', 'DiscountCustomerWiseController');
+        Route::resource('discount-generic', 'DiscountGenericController');
+        Route::resource('free-bonus-customer-wise', 'FreeBonusCustomerWiseController');
+        Route::resource('free-bonus-generic', 'FreeBonusGenericController');
+        Route::resource('sales-order-cancel-reason', 'SalesOrderCancelReasonController');   
+    });
 
 });
 
@@ -234,6 +238,7 @@ Route::get('/get-working-unit-wise-product-available/{id}', ['as' => 'get-workin
 Route::get('/get-invoice/{id}', ['as' => 'get-invoice', 'uses' => 'ApiController@getInvoiceByCustomerId']);
 Route::get('/get-sales-order/{id}', ['as' => 'get-sales-order', 'uses' => 'ApiController@getSalesOrderByCustomerId']);
 Route::get('/get-sales-order-info/{id}', ['as' => 'get-sales-order-info', 'uses' => 'ApiController@getSalesOrderBySalesOrderId']);
+Route::get('/get-sales-order-items/{id}', ['as' => 'get-sales-order-items', 'uses' => 'ApiController@getSalesOrderItemsBySalesOrderId']);
 
 //ACL (Access Control Limit)
 Route::middleware(['auth', 'hasPermission:access_to_acl'])

@@ -36,9 +36,13 @@
                       </div>
                         <br>
                         <hr>
-                        <div class="col-md-12">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <br />
+                          <div class="ln_solid"></div>
+                          <div class="form-group">
                             <button type="submit" class="btn btn-success btn-sm">Save</button>
                             <a class="btn btn-default btn-sm" href="{{route('company-license.index')}}">Cancel</a>
+                          </div>  
                         </div>
                     </form>
 

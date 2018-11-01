@@ -34,7 +34,7 @@ class DeliveryScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd('trtrtr');
     }
 
     /**

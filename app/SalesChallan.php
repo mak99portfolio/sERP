@@ -50,4 +50,8 @@ class SalesChallan extends Model{
     	return $this->belongsTo('App\CustomerAddress', 'shipping_address_id');
     }
 
+    public function invoices(){
+    	return $this->hasMany('App\SalesInvoice', 'sales_challan_id');
+    }
+
 }

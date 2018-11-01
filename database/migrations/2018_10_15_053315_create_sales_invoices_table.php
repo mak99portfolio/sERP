@@ -23,14 +23,19 @@ class CreateSalesInvoicesTable extends Migration{
             $table->decimal('total_amount', 12, 2)->default(0.00);
             $table->decimal('total_vat', 12, 2)->default(0.00);
             $table->decimal('total_discount', 12, 2)->default(0.00);
+            $table->decimal('extra_discount', 12, 2)->unsigned()->default(0);
             $table->decimal('grand_total', 12, 2)->default(0.00);
-            $table->decimal('previous_due', 12, 2)->default(0.00);
+            $table->decimal('invoiced_amount', 12, 2)->default(0.00);
+            $table->integer('creator_user_id')->unsigned()->nullable();
+            $table->integer('updator_user_id')->unsigned()->nullable();
             $table->softDeletes();
             $table->timestamps();
             
             $table->foreign('delivery_person_id')->references('id')->on('employee_profiles')->onDelete('cascade');
             $table->foreign('sales_challan_id')->references('id')->on('sales_challans')->onDelete('cascade');
             $table->foreign('gate_pass_id')->references('id')->on('gate_passes')->onDelete('cascade');
+            $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

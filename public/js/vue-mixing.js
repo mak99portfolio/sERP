@@ -3,7 +3,7 @@ var custom={
 
 		return {
 			loading:$.loading(),
-			response:null
+			//response:null
 		}
 		
 	},
@@ -55,7 +55,7 @@ var custom={
 
                 ref.response=response.data;
                 ref.loading.close();
-                if(typeof callback==='function') callback();
+                if(typeof callback==='function') callback(response);
                 ref.response=null;
 
             }).catch(function(error){

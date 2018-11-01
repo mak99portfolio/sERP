@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Local Requisition List</h2>
-                        <a href="{{route('local-requisition.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Requisition</a>
+                        <h2>Local Requisition</h2>
+                        <a href="{{route('local-requisition.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Requisition No</th>
                                         <th>Requisition Title</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

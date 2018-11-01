@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Local Purchase order List</h2>
-                    <a href="{{ route('local-purchase-order.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Purchase</a>
+                        <h2>Local Purchase Order</h2>
+                    <a href="{{ route('local-purchase-order.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -30,7 +30,7 @@
                                         <th>Purchase Order Date</th>
                                         <th>Create time</th>
                                         <th>Vendor</th>
-                                        <th width="30">Action</th>
+                                        <th width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

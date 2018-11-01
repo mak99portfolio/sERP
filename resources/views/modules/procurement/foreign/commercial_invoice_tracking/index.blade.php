@@ -38,7 +38,7 @@
                                     <tr>
                                         <th scope="col">Title</th>
                                         <th scope="col" class="text-center">Date</th>
-                                        <th scope="col" class="text-center">Status</th>
+                                        <th scope="col" class="text-center" width="40">Status</th>
                                     </tr>
                                     </thead>
                                     <tbody>

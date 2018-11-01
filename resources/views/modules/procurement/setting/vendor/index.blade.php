@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Vendor List</h2>
-                        <a href="{{route('vendor.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Vendor</a>
+                        <h2>Vendor</h2>
+                        <a href="{{route('vendor.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" id="popup_area">
@@ -31,7 +31,7 @@
                                         <th>Status</th>
                                         <th>Country</th>
                                         <!-- <th>Vendor Category</th> -->
-                                        <th width="30">Action</th>
+                                        <th width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,7 +43,7 @@
                                         <td>{{$item->status_id}}</td>
                                         <td>{{$item->country->name}}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('vendor.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block">View</a>
+                                            <a href="{{ route('vendor.show', $item) }}" class="btn btn-sm btn-default btn-xs btn-block"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

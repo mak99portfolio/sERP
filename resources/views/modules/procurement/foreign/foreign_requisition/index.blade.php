@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Foreign Requisition List</h2>
-                        <a href="{{route('foreign-requisition.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Requisition</a>
+                        <a href="{{route('foreign-requisition.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Requisition No</th>
                                         <th>Requisition Title</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,7 +37,7 @@
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->requisition_no}}</td>
                                         <td>{{$item->requisition_title}}</td>
-                                        <td  width="30" class="text-center">
+                                        <td class="text-center">
                                             <a href="{{ route('foreign-requisition.show',$item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>

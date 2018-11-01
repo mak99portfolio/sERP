@@ -14,8 +14,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Duty TAX, VAT and CNF Bill List</h2>
-                        <a href="{{ route('cnf.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Duty TAX, VAT and CNF Bill</a>
+                        <h2>Duty TAX, VAT and CNF Bill</h2>
+                        <a href="{{ route('cnf.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -30,7 +30,7 @@
                                         <th>Bill Date</th>
                                         <th>B/E No</th>
                                         <th>B/E Date</th>
-                                        <th width="30">Action</th>
+                                        <th width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

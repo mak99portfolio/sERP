@@ -16,7 +16,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Local Purchase Order</h2>
-                        <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> List Local Purchase</a>
+                        <a href="{{route('local-purchase-order.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list" aria-hidden="true"></i> Local Purchase Order List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -84,14 +84,14 @@
                             <fieldset class="m-t-15">
                                 <legend>Ship To Information:</legend>
                                 <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                                         <div class="radio">
                                             <label>
                                                 <input type="radio" ng-model="ship_info"  name="ship_info" value="MAGNUM Enterprise Ltd." ng-init="ship_info = 'MAGNUM Enterprise Ltd.'"> MAGNUM Enterprise Ltd.
                                             </label>
                                         </div>
                                     </div>
-                                    <div class="col-lg-9 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
                                         <div class="col-md-3 col-sm-4">
                                             <div class="radio pull-right">
                                                 <label>
@@ -130,7 +130,7 @@
                                             <table class="table table-bordered table-hover" ng-if="requisitions.length >=1">
                                                 <thead class="bg-primary">
                                                     <tr>
-                                                        <th>SL NO</th>
+                                                        <th width="35px" class="text-center">#</th>
                                                         <th>Purchase Requisition No</th>
                                                         <th>Requisition Date</th>
                                                         <th>Purchase Requisition Title</th>
@@ -157,7 +157,9 @@
                             <!----------PO Product Details-------->
                             <fieldset class="m-t-15" ng-if="itemlist.length >=1">
                                 <legend>PO Product Details:</legend>
-                                <div class="table-responsive">
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="table-responsive">
                                     <table class="table table-bordered table-hover">
                                         <thead class="bg-primary">
                                             <tr>
@@ -228,6 +230,9 @@
                                     </table>
                                 </div>
                                 <!--end table-->
+                                    </div>
+                                </div>
+                                
                             </fieldset>
                             <!----------PO Product Details end-------->
                             <!----------Payment Terms-------->
@@ -248,35 +253,37 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                         <div class="table-responsive">
                                             <table class="table table-bordered table-hover">
-                                                <thead>
+                                                <thead class="bg-primary">
                                                     <tr>
                                                         <th>Date</th>
                                                         <th>Description</th>
                                                         <th colspan="2">% or Fixed Amount</th>
                                                     </tr>
-                                                    <tr>
-                                                        <th>
-                                                            {{ BootForm::text('payment_date','Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'payment_terms_date']) }}
-                                                        </th>
-                                                        <th>
-                                                            {{ BootForm::text('payment_terms_description','Payment Description',null,['class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'payment_terms_description']) }}
-                                                        </th>
-                                                        <th>
-                                                            {{ BootForm::number('payment_terms_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
-                                                        </th>
-                                                        <th  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-default m-b-15">Add</button></th>
-                                                    </tr>
                                                 </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            {{ BootForm::text('payment_date','Date', null, ['class'=>'form-control input-sm datepicker','ng-model'=>'payment_terms_date']) }}
+                                                        </td>
+                                                        <td>
+                                                            {{ BootForm::text('payment_terms_description','Payment Description',null,['class'=>'form-control input-sm','rows'=>'1', 'ng-model' => 'payment_terms_description']) }}
+                                                        </td>
+                                                        <td>
+                                                            {{ BootForm::number('payment_terms_amount','Payment Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_terms_amount']) }}
+                                                        </td>
+                                                        <td  class="text-center"><button type="button" ng-click="add_terms()" class="btn btn-xs btn-primary m-t-15">Add</button></td>
+                                                    </tr>
+                                                </tbody>
                                             </table>
                                             <table class="table table-bordered table-hover">
-                                                <thead ng-if="payment_terms.length >=1">
+                                                <thead class="bg-primary" ng-if="payment_terms.length >=1">
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Payment term</th>
                                                         <th>Date</th>
                                                         <th>Description</th>
                                                         <th>% or Fixed Payment Amount</th>
-                                                        <th class="text-center">Action</th>
+                                                        <th width="35px" class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -324,10 +331,10 @@
                                             <table id="mytable1" class="table table-bordered table-hover">
                                                 <thead class="bg-primary">
                                                     <tr>
-                                                        <th>#</th>
+                                                        <th width="40px">#</th>
                                                         <th>Terms and Condition</th>
                                                         <th>Description</th>
-                                                        <th class="text-center">Action</th>
+                                                        <th width="35px" class="text-center">Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="mytable1">
@@ -345,6 +352,7 @@
                                 </div>
                             </fieldset>
                             <!---------Terms and Condition end-------->
+                            <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
@@ -352,6 +360,7 @@
                                     <button type="submit" class="btn btn-success" ng-disabled="(conditions.length < 1 || payment_terms.length < 1)">Save</button>
                                     <a href="{{ route('local-purchase-order.index') }}" class="btn btn-default">Cancel</a>
                                 </div>
+                            </div>
                             </div>
                         </form>
                     </div>

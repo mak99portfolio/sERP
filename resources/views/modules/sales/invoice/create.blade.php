@@ -346,13 +346,18 @@
                                                         <td colspan="2" v-html="field.total_discount"></td>
                                                     </tr>
                                                     <tr>
+                                                        <td colspan="12" class="text-right">Extra Discount</td>
+                                                        <td colspan="2" v-html="field.extra_discount"></td>
+                                                    </tr>
+                                                    <tr>
                                                         <td colspan="12" class="text-right">Grand Total</td>
                                                         <td colspan="2" v-html="field.grand_total"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="12" class="text-right">Previous Due</td>
-                                                        <td colspan="2" v-html="field.previous_due"></td>
-                                                    </tr>
+                                                        <td colspan="12" class="text-right">Invoiced Amount</td>
+                                                        <td colspan="2" v-html="field.invoiced_amount"></td>
+                                                   </tr>
+
                                                 </tbody>
                                             </table>
                                         </div>
@@ -393,7 +398,8 @@ $(function(){
                 sales_challan_items:"{{ url('api/sales/invoice/sales-challan-items') }}",
                 customer_addresses:"{{ url('api/sales/challan/customer-addresses') }}",
                 submit:"{{ route('sales-invoice.store') }}",
-                sales_challan_vehicles:"{{ url('api/sales/invoice/sales-challan-vehicles') }}"
+                sales_challan_vehicles:"{{ url('api/sales/invoice/sales-challan-vehicles') }}",
+                invoiced_amount:"{{ url('api/sales/invoice/invoiced-amount') }}"
             },
             field:{
                 sales_challan_id:'',
@@ -401,7 +407,7 @@ $(function(){
                 customer_name:'',
                 customer_id:'',
                 challan_date: '',
-                invoice_date: Date.now(),
+                invoice_date: moment().format('DD MMM YYYY'),
                 gate_pass_id:'',
                 delivery_person_id:'',
                 delivery_vehicle:'',
@@ -413,8 +419,9 @@ $(function(){
                 total_amount:0,
                 total_vat:0,
                 total_discount:0,
+                extra_discount:0,
                 grand_total:0,
-                previous_due:0
+                invoiced_amount:0
             },
             resource:{
                 sales_challans:{
@@ -495,14 +502,19 @@ $(function(){
                 //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
 
                 //fetch challan delivery vehicles list
-                this.fetch_remote(this.url.sales_challan_vehicles + '/' + selected_challan.id, function(){
-                    ref.field.delivery_vehicles=ref.response;
+                ref.field.delivery_vehicles=[];
+                this.fetch_remote(this.url.sales_challan_vehicles + '/' + selected_challan.id, function(response){
+                    ref.field.delivery_vehicles=response.data;
                     ref.field.delivery_vehicles.forEach(function(row, index){
                         var medium_name=ref.resource.delivery_vehicles.find(inner_row=>{
                             return inner_row.id==row.delivery_medium;
                         }).name;
                         ref.field.delivery_vehicles[index].medium_name=medium_name;
                     });
+                });
+
+                this.fetch_remote(this.url.invoiced_amount + '/' + selected_challan.id, function(response){
+                    ref.field.invoiced_amount=response.data;
                 });
 
                 this.update_sales_challan_list();
@@ -519,8 +531,8 @@ $(function(){
 
                 var ref=this;
 
-                ref.fetch_remote(ref.url.delivery_persons, function(){
-                    ref.resource.delivery_persons=ref.response;
+                ref.fetch_remote(ref.url.delivery_persons, function(response){
+                    ref.resource.delivery_persons=response.data;
                 });
 
             },
@@ -588,16 +600,18 @@ $(function(){
             },
             remove_invoice_item:function(index){
                 this.field.sales_invoice_items.splice(index, 1);
+                this.total();
             },
             sub_total_quantity:function(index){
-                return this.parse_num(this.field.sales_invoice_items[index].invoice_quantity)-this.parse_num(this.field.sales_invoice_items[index].bonus_quantity);
+                return this.parse_num(this.field.sales_invoice_items[index].invoice_quantity)+this.parse_num(this.field.sales_invoice_items[index].bonus_quantity);
             },
             net_price:function(index){
-                return this.sub_total_quantity(index) * this.parse_num(this.field.sales_invoice_items[index].unit_price);
+                return (this.sub_total_quantity(index) * this.parse_num(this.field.sales_invoice_items[index].unit_price))-(this.parse_num(this.field.sales_invoice_items[index].bonus_quantity) * this.parse_num(this.field.sales_invoice_items[index].unit_price));
             },
             sub_total:function(index){
 
-                var sub_total=this.net_price(index) - this.parse_num(this.field.sales_invoice_items[index].discount_amount);
+                //var sub_total=this.net_price(index) - this.parse_num(this.field.sales_invoice_items[index].discount_amount);
+                var sub_total=this.net_price(index);
                 return sub_total < 0?0:sub_total;
 
             },
@@ -610,6 +624,8 @@ $(function(){
                 ref.field.total_discount=0;
                 ref.field.total_quantity=0;
                 ref.field.grand_total=0;
+                ref.field.extra_discount=0;
+                ref.field.total_vat=0;
 
                 items.forEach(function(row, index){
                     ref.field.total_amount+=ref.sub_total(index);
@@ -617,7 +633,42 @@ $(function(){
                     ref.field.total_quantity+=ref.sub_total_quantity(index);
                 });
 
-                ref.field.grand_total=ref.field.total_amount - ref.field.total_discount - ref.field.total_vat;
+
+                //Process to fetch sales order pre extra discount amount
+
+                var total_sales_order_amount=0;
+                var sales_orders={
+                    data:[]
+                };
+
+                ref.fetch_resource(ref.url.resource + '/sales-order', sales_orders, function(){
+
+                    sales_orders.data.forEach(function(row, index){
+
+                        row.items.forEach(function(inner_row){
+                            total_sales_order_amount+=((ref.parse_num(inner_row.total_quantity) * ref.parse_num(inner_row.unit_price)) - ref.parse_num(inner_row.discount));
+                        });
+
+                        total_sales_order_amount-=ref.parse_num(row.vat);
+
+                    });
+
+                    ref.resource.sales_orders.data.forEach(function(row, index){
+                        ref.field.extra_discount=ref.parse_num(row.extra_discount);
+                    });
+
+                    if(ref.field.extra_discount && total_sales_order_amount){
+                        var pre_extra_discount_total=ref.field.total_amount - ref.field.total_discount;
+                        ref.field.extra_discount=((ref.field.extra_discount*pre_extra_discount_total)/total_sales_order_amount).toFixed(2);
+                    }
+
+                    ref.field.grand_total=ref.field.total_amount - ref.field.total_discount - ref.field.extra_discount - ref.field.total_vat;
+
+                }, {
+                    field: 'id',
+                    where_in:ref.resource.sales_orders.data.map(row => row.id),
+                    with:['items']
+                });
 
             },
             check_bonus_quantity:function(index){
@@ -637,9 +688,11 @@ $(function(){
                 var row=this.field.sales_invoice_items[index];
 
                 if(this.parse_num(row.pending_product_quantity) < this.parse_num(row.invoice_quantity)){
-                    this.alert('Sorry!, invoice quantity cant not exceed pending product quantity');
+                    this.alert('Sorry!, invoice quantity can\'t not exceed pending product quantity');
                     this.field.sales_invoice_items[index].invoice_quantity=0;
                 }
+
+                this.field.sales_invoice_items[index].discount_amount=((row.sales_order_discount*(row.invoice_quantity*row.unit_price))/(row.sales_order_quantity*row.unit_price)).toFixed(2);
 
                 this.total();
                 
@@ -670,8 +723,8 @@ $(function(){
                     return false;
                 }
 
-                ref.fetch_remote(ref.url.sales_challan_items + '/' + this.field.sales_challan_id, function(){
-                    ref.field.sales_invoice_items=ref.response;
+                ref.fetch_remote(ref.url.sales_challan_items + '/' + this.field.sales_challan_id, function(response){
+                    ref.field.sales_invoice_items=response.data;
                 });
 
             },
@@ -689,14 +742,15 @@ $(function(){
                 }).then(function(response){
 
                     ref.alert(response.data, 'success');
-                    //window.location.replace("{{ route('sales-invoice.index') }}");
+                    window.location.replace("{{ route('sales-invoice.index') }}");
 
-                    //console.log(response);
                 }).catch(function (error){
 
-                    ref.errors_msg=true;
-                    ref.errors=error.response.data;
-                    //ref.alert('Sorry!, form submit validation failed.');
+                    if(error.response.status==422){
+                        ref.errors_msg=true;
+                        ref.errors=error.response.data;                        
+                    }else ref.alert('Sorry!, form submit failed internal server error.');
+
 
                 });
 

@@ -7,13 +7,19 @@
 
 <div class="right_col" role="main">
   <div class="">
+      <div class="page-title">
+          <div class="title_left">
+              <h3>Master Data</h3>
+          </div>
+      </div>
+      <div class="clearfix"></div>
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Product Category </h2>
                     <div class="btn-group pull-right">
-                        <a href="{{route('product-category.index')}}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Product Category</a>
+                        <a href="{{route('product-category.index')}}" class="btn btn-primary btn-sm pull-right"><i class="fa fa-list" aria-hidden="true"></i> Product Category</a>
                     </div>
                     <div class="clearfix"></div>
                     <div class="clearfix"></div>
@@ -57,8 +63,8 @@
                             <br />
                             <div class="ln_solid"></div>
                             <div class="form-group">
-                                <a class="btn btn-default btn-sm" href="{{route('product-category.index')}}">Cancel</a>
                                 <button type="submit" class="btn btn-success btn-sm">Update</button>
+                                <a class="btn btn-default btn-sm" href="{{route('product-category.index')}}">Cancel</a>
                             </div>
                         </div>
                     </form>

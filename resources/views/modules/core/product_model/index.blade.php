@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Product Model</h2>
-                        <a href="{{ route('product-model.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+                        <a href="{{ route('product-model.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -36,7 +36,7 @@
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$product_model->name}}</td>
                                             <td>{{$product_model->short_name}}</td>
-                                            <td class="text-center"><a href="{{ route('product-model.edit',$product_model) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                            <td class="text-center"><a href="{{ route('product-model.edit',$product_model) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a></td>
                                    
                                         </tr>
                                 @endforeach

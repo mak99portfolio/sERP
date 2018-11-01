@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>District</h2>
-                        <a href="{{ route('designation.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+                        <h2>Designation</h2>
+                        <a href="{{ route('designation.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" id="popup_area">
@@ -43,7 +43,7 @@
                                         <td>{{ $row->short_name }}</td>
                                         <td>{{ $row->creator->name ?? 'Not Specified' }}</td>
                                         <td>{{ empty($row->created_at)?'Not Specified':$row->created_at->diffForHumans() }}</td>
-                                        <td class="text-center"><a href="{{ route('designation.edit', $row) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                        <td class="text-center"><a href="{{ route('designation.edit', $row) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

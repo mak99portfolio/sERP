@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Master Data</h3>
+                <h3>Procurement</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Product Brand</h2>
-                        <a href="{{route('vendor-category.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Category Lists</a>
+                        <h2>Vendor Category</h2>
+                        <a href="{{route('vendor-category.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list" aria-hidden="true"></i> Category List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

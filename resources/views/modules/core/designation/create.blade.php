@@ -3,12 +3,18 @@
 @section('content')
 <div class="right_col" role="main">
     <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Master Data</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Core<small>Create / Edit Designation</small></h2>
-                        <a class="btn btn-primary btn-sm pull-right" href="{{route("$route_name.index")}}"><i class="fa fa-list-ul"></i> {{ $title }}</a>
+                        <h2>Designation</h2>
+                        <a class="btn btn-primary btn-sm pull-right" href="{{route("$route_name.index")}}"><i class="fa fa-list"></i> {{ $title }}</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

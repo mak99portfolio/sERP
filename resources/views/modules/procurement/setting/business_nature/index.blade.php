@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Business Nature List</h2>
-                        <a href="{{route('business-nature.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New</a>
+                        <h2>Business Nature</h2>
+                        <a href="{{route('business-nature.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" id="popup_area">
@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Name</th>
                                         <th>Short Name</th>
-                                        <th width="30">Action</th>
+                                        <th width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -38,7 +38,7 @@
                                         <td>{{$item->name}}</td>
                                         <td>{{$item->short_name}}</td>
                                         <td class="text-center">
-                                        <a href="{{route('business-nature.edit', $item)}}" class="btn btn-block btn-sm btn-default btn-xs">Edit</a>
+                                        <a href="{{route('business-nature.edit', $item)}}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach

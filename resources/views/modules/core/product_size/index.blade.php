@@ -36,7 +36,7 @@
                                             <th>{{$loop->iteration}}</th>
                                             <th>{{$product_size->name}}</th>
                                             <th>{{$product_size->short_name}}</th>
-                                            <td class="text-center"><a href="{{ route('product-size.edit',$product_size) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                            <td class="text-center"><a href="{{ route('product-size.edit',$product_size) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a></td>
                                    
                                         </tr>
                                 @endforeach

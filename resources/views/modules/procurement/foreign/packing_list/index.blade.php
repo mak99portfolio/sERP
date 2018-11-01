@@ -1,8 +1,7 @@
 @extends('layout')
 @section('title', 'Packing List')
 @section('content')
-<div class="right_col" role="main">
-    <div class="">
+    <div class="right_col" role="main">
         <div class="page-title">
             <div class="title_left">
                 <h3>Procurement</h3>
@@ -15,7 +14,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Packing List</h2>
-                        <a href="{{route('packing-list.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Packing List</a>
+                        <a href="{{route('packing-list.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -51,8 +50,6 @@
                 </div>
             </div>
         </div>
-
         {{--end content here--}}
     </div>
-</div>
 @endsection

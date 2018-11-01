@@ -16,7 +16,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Cost Sheet List</h2>
-                        <a href="{{route('cost-sheet.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Cost Sheet</a>
+                        <a href="{{route('cost-sheet.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -32,7 +32,7 @@
                                         <th>L/C Amount</th>
                                         <th>Exchange Rate</th>
                                         <th>BDT Amount</th>
-                                        <th width="30">Action</th>
+                                        <th width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

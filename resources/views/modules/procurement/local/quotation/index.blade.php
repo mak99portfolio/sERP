@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Quotation List</h2>
-                        <a href="{{route('quotation.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Quotation</a>
+                        <h2>Quotation</h2>
+                        <a href="{{route('quotation.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -30,7 +30,7 @@
                                         <th>Vendor</th>
                                         <th>Requisition No</th>
                                         <th>Delivery Date</th>
-                                        <th width="30">Action</th>
+                                        <th width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

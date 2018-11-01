@@ -2,7 +2,6 @@
 @section('title', 'Insurance Cover Note List')
 @section('content')
 <div class="right_col" role="main">
-    <div class="">
         <div class="page-title">
             <div class="title_left">
                 <h3>Procurement</h3>
@@ -14,8 +13,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Insurance Cover Note List</h2>
-                        <a href="{{ route('insurance-cover-note.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Insurance Cover Note</a>
+                        <h2>Insurance Cover Note</h2>
+                        <a href="{{ route('insurance-cover-note.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -30,7 +29,7 @@
                                         <th scope="col">Icn Date</th>
                                         <th scope="col">Icn Agency Name</th>
                                         <th scope="col">Icn Bank Account No</th>
-                                        <th width="40px" class="text-center">Action</th>
+                                        <th width="40" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,8 +54,5 @@
                 </div>
             </div>
         </div>
-
-        {{--end content here--}}
-    </div>
 </div>
 @endsection

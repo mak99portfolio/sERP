@@ -2,6 +2,8 @@
 namespace App\Http\Controllers\Sales;
 use App\Http\Controllers\Controller;
 use App\SalesOrderReturn;
+use App\SalesOrder;
+use App\SalesReturnReason;
 use Illuminate\Http\Request;
 
 class SalesOrderReturnController extends Controller
@@ -17,7 +19,8 @@ class SalesOrderReturnController extends Controller
     public function create()
     {
         $view = view($this->view_root . 'create');
-        // $view->with('sales_order_list', SalesOrder::all());
+        $view->with('sales_order_list', SalesOrder::pluck('sales_order_no', 'id')->prepend('',''));
+        $view->with('sales_return_reason_list', SalesReturnReason::pluck('reason', 'id')->prepend('',''));
         return $view;
     }
 

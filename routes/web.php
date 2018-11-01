@@ -109,6 +109,7 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     // Setting
     Route::resource('customer', 'CustomerController');
     Route::resource('customer-zone', 'CustomerZoneController');
+    Route::resource('sales-return-reason', 'SalesReturnReasonController');
     Route::prefix('rule-setup')->group(function(){
         Route::get('/', 'RuleSetupController@index')->name('rule-setup');
         Route::resource('credit-rule', 'CreditRuleController');

@@ -90,6 +90,7 @@
                     <li><a href="{{ route('rule-setup') }}">Rule Setup</a></li>
                     <li><a href="{{ route('customer-zone.index') }}">Customer Zone</a></li>
                     <li><a href="{{ route('sales-order-cancel-reason.index') }}">Order Cancel Reasons</a></li>
+                    <li><a href="{{ route('sales-return-reason.index') }}">Sales Return Reasons</a></li>
                   </ul>
                 </li>
               </ul>

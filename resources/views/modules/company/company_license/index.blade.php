@@ -23,7 +23,7 @@
                                         <th>License No</th>
                                         <th>Renewed Date</th>
                                         <th>Expire Date</th>
-                                        <th width="30" class="text-center">Action</th>
+                                        <th width="40" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

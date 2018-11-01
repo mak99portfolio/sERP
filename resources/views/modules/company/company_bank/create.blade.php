@@ -17,7 +17,7 @@
                     <form class="form-horizontal form-label-left" action="{{ route('company-bank.store') }}" method="POST" autocomplete="off">
                         @csrf
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                            {{ BootForm::select('company_id', 'Company', $company_list, null, ['class'=>'form-control input-sm select2']) }}
+                            {{ BootForm::select('company_id', 'Company', $company_list, null, ['class'=>'form-control input-sm select2','data-popup'=> route('company-profile.index')]) }}
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             {{ BootForm::text('account_no','Account No', null, ['class'=>'form-control input-sm']) }}
@@ -40,9 +40,13 @@
                       </div>
                         <br>
                         <hr>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-success btn-sm">Save</button>
-                            <a class="btn btn-default btn-sm" href="{{route('company-bank.index')}}">Cancel</a>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                          <br />
+                          <div class="ln_solid"></div>
+                          <div class="form-group">
+                            <button type="submit" class="btn btn-success">Save</button>
+                            <a class="btn btn-default" href="{{route('company-bank.index')}}">Cancel</a>
+                          </div>
                         </div>
                     </form>
 

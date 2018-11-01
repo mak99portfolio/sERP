@@ -35,8 +35,8 @@
                                 <br />
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a class="btn btn-default btn-sm" href="{{route('business-type.index')}}">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <a class="btn btn-default" href="{{route('business-type.index')}}">Cancel</a>
                                 </div>
                             </div>
                         {{ BootForm::close() }}

@@ -15,7 +15,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Insurance Cover Note</h2>
-                        <a href="{{ route('insurance-cover-note.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Insurance Cover Note</a>
+                        <a href="{{ route('insurance-cover-note.index') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Insurance Cover Note List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -87,9 +87,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 {{ BootForm::textarea('note','Notes', null, ['class'=>'form-control input-sm','rows'=>2]) }}
                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -140,7 +138,7 @@
                                             <tr>
                                                 <td colspan="2">Grand Total</td>
                                                 <td>Tk</td>
-                                                <td><% amount_of_grand_total() %></td>
+                                                <td class="text-right"><% amount_of_grand_total() %></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -148,10 +146,13 @@
                             </div>
                             <!--end table-->
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <br />
+                                <div class="ln_solid"></div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                    <a href="{{route('insurance-cover-note.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <a href="{{route('insurance-cover-note.index')}}" class="btn btn-default">Cancel</a>
                                 </div>
+                            </div>
                             </div>
                         </form>
                     </div>

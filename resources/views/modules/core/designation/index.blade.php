@@ -31,7 +31,7 @@
                                         <th>Short Name</th>
                                         <th>Creator</th>
                                         <th>Created At</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

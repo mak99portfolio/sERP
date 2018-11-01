@@ -28,7 +28,7 @@
                                         <th width="25">#</th>
                                         <th>Enclosure Name</th>
                                         <th>Short Name</th>    
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,7 +37,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->short_name }}</td>
-                                        <td class="text-center"><a href="{{ route('enclosure.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                        <td class="text-center"><a href="{{ route('enclosure.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                  
                                     </tr>
                                     @endforeach

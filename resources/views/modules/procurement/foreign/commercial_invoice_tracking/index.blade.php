@@ -48,8 +48,8 @@
                                             <form action="{{route('save-tracking-date')}}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{ $ci->id }}">
-                                                    <input type="text" name="commercial_invoice_issue_date" value="{{ \Carbon\Carbon::parse($ci->date)->format('d-m-Y') }}" class="form-control" readonly>
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{ $ci->id }}" class="form-control input-sm" >
+                                                    <input type="text" name="commercial_invoice_issue_date" value="{{ \Carbon\Carbon::parse($ci->date)->format('d-m-Y') }}" class="form-control input-sm" readonly>
                                                 </div>
                                             </form>
                                         </td>
@@ -71,7 +71,7 @@
                                             <form action="{{route('save-tracking-date')}}" method="POST">
                                                 @csrf
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci->bill_of_ladings->first() ? \Carbon\Carbon::parse($ci->bill_of_ladings->first()->bill_of_lading_date)->format('d-m-Y') : null }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci->bill_of_ladings->first() ? \Carbon\Carbon::parse($ci->bill_of_ladings->first()->bill_of_lading_date)->format('d-m-Y') : null }}">
                                                 </div>
                                             </form>
                                         </td>
@@ -94,14 +94,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->document_arrived_at_bank_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->document_arrived_at_bank_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->document_arrived_at_bank_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="document_arrived_at_bank_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="document_arrived_at_bank_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset
@@ -126,14 +126,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->document_send_at_port_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->document_send_at_port_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->document_send_at_port_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="document_send_at_port_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="document_send_at_port_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset
@@ -158,14 +158,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->document_value_payment_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->document_value_payment_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->document_value_payment_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="document_value_payment_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="document_value_payment_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset
@@ -190,14 +190,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->container_arrived_at_port_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->container_arrived_at_port_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->container_arrived_at_port_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="container_arrived_at_port_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="container_arrived_at_port_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset
@@ -222,14 +222,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->container_birth_at_port_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->container_birth_at_port_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->container_birth_at_port_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="container_birth_at_port_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="container_birth_at_port_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset
@@ -254,14 +254,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->container_delivery_at_port_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->container_delivery_at_port_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->container_delivery_at_port_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="container_delivery_at_port_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="container_delivery_at_port_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset
@@ -286,14 +286,14 @@
                                                 @csrf
                                                 @isset($ci_tracking->receive_at_warehouse_date)
                                                 <div>
-                                                    <input type="text" class="form-control" readonly value="{{ $ci_tracking->receive_at_warehouse_date }}">
+                                                    <input type="text" class="form-control input-sm"  readonly value="{{ $ci_tracking->receive_at_warehouse_date }}">
                                                 </div>
                                                 @else
                                                 <div class="input-group">
-                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}">
-                                                    <input type="text" name="receive_at_warehouse_date" class="form-control datepicker" autocomplete="off">
+                                                    <input type="hidden" name="commercial_invoice_id" value="{{$ci->id}}" class="form-control input-sm" >
+                                                    <input type="text" name="receive_at_warehouse_date" class="form-control input-sm datepicker" autocomplete="off">
                                                     <span class="input-group-btn">
-                                                            <button class="btn btn-success" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
+                                                            <button class="btn btn-success btn-sm" type="submit" onclick="return confirm('Confirm to save date')">Save</button>
                                                         </span>
                                                 </div>
                                                 @endisset

@@ -34,7 +34,7 @@
                                         <th>Pattern</th>
                                         <th>Set</th>
                                         <th>Brand</th>
-                                        <th class="text-center" width="30">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

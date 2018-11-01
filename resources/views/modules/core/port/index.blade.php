@@ -31,7 +31,7 @@
                                         <th>Contact Person Phone Number</th>
                                         <th>Country</th>
                                         <th>City</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -43,7 +43,7 @@
                                         <td>{{ $item->contact_person_number }}</td>
                                         <td>{{ $item->country->name }}</td>
                                         <td>{{ $item->city->name }}</td>
-                                        <td class="text-center"><a href="{{ route('port.edit',$item) }}" type="button" class="btn btn-default btn-sm"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
+                                        <td class="text-center"><a href="{{ route('port.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a></td>
                                     </tr>
                                     @endforeach
                                 </tbody>

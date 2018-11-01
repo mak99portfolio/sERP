@@ -12,8 +12,8 @@ class ProductBrandTableSeeder extends Seeder
     public function run()
     {
         $data=[
-        	['name'=>"Nokia", 'short_name'=>'NO', 'creator_user_id'=>1],
-        	['name'=>"Samsung", 'short_name'=>'SA', 'creator_user_id'=>1]
+        	['name'=>"MRF Tyre", 'short_name'=>'MT', 'creator_user_id'=>1],
+        	['name'=>"Oman Oil", 'short_name'=>'OL', 'creator_user_id'=>1]
         ];
 
         \DB::table('product_brands')->insert($data);

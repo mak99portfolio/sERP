@@ -15,7 +15,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Bill of Lading</h2>
-                        <a href="{{route('bill-of-lading.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Bill of Lading List</a>
+                        <a href="{{route('bill-of-lading.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Bill of Lading List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -38,8 +38,6 @@
                                 </div>
 
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-
-
                                         <div class="form-group">
                                                 <label>Commercial Invoice</label>
                                                 <select class="form-control input-sm select2" data-placeholder="-- Select CI --" multiple name="commercial_invoice_ids[]" ng-model="commercial_invoice_ids" ng-change="getCI()">
@@ -47,13 +45,11 @@
                                                     <option ng-repeat="ci in ci_list" value="<% ci.id %>"><% ci.commercial_invoice_no %></option>
                                                 </select>
                                         </div>
-
                                     {{-- {{ BootForm::select('commercial_invoice_ids', 'Commercial Invoice', $commercial_invoice_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'ng-model'=>'bl_no','ng-change'=>'searchBL()','required', 'data-popup'=> route('commercial-invoice.index')]) }} --}}
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('letter_of_credit_no','LC No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'letter_of_credit_no','required']) }}
                                 </div>
-
 
                                 {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::text('commercial_invoice_no','Commercial Invoice No', null, ['class'=>'form-control input-sm','required']) }}
@@ -62,14 +58,14 @@
                                     {{ BootForm::text('commercial_invoice_date','Commercial Invoice Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div> --}}
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive m-t-15">
                                             <table class="table table-bordered">
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th scope="col" colspan="3">Commercial Invoice List</th>
                                                     </tr>
                                                     <tr >
-                                                        <th scope="col">#</th>
+                                                        <th width="35px" scope="col">#</th>
                                                         <th scope="col">Commercial Invoice No</th>
                                                         <th scope="col">Commercial Invoice Date</th>
                                                     </tr>
@@ -87,18 +83,18 @@
                                         </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive m-t-15">
                                             <table class="table table-bordered">
                                                 <thead class="bg-primary">
                                                     <tr>
                                                         <th scope="col" colspan="5">Product List</th>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="col">#</th>
+                                                        <th width="35px" scope="col">#</th>
                                                         <th scope="col">Product Name</th>
                                                         <th scope="col">UOM</th>
-                                                        <th scope="col">Quantity</th>
-                                                        <th scope="col">Unit Price</th>
+                                                        <th class="text-center" scope="col">Quantity</th>
+                                                        <th class="text-center" scope="col">Unit Price</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -106,8 +102,8 @@
                                                         <td scope="col"><% $index+1 %></td>
                                                         <td scope="col"><% item.name %><input type="hidden" class="form-control" name="items[<% $index %>][product_id]" value="<% item.product_id %>"></td>
                                                         <td scope="col"><% item.uom %></td>
-                                                        <td scope="col"><% item.quantity %><input type="hidden" class="form-control" name="items[<% $index %>][quantity]" value="<% item.quantity %>"></td>
-                                                        <td scope="col"><% item.unit_price %><input type="hidden" class="form-control" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>"></td>
+                                                        <td class="text-right" scope="col"><% item.quantity %><input type="hidden" class="form-control" name="items[<% $index %>][quantity]" value="<% item.quantity %>"></td>
+                                                        <td class="text-right" scope="col"><% item.unit_price %><input type="hidden" class="form-control" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>"></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -123,7 +119,7 @@
                                     {{ BootForm::text('container_size','Container Size', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::text('number_of_box','Number Of Box', null, ['class'=>'form-control input-sm','required']) }}
+                                    {{ BootForm::number('number_of_box','Number Of Box', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('shipping_agency_vendor_id', 'Shipping Agency Name', $exporter_list, null, ['class'=>'form-control input-sm select2','style'=>"width: 100%;",'required', 'data-popup'=> route('vendor.index')]) }}
@@ -141,16 +137,16 @@
                                     <div class="panel panel-default">
                                         <div class="panel-heading">LC Issue Bank</div>
                                         <div class="panel-body">
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('issue_ac_no','A/C No', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_no']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('issue_ac_name','A/C Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_ac_name']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('issue_branch_name','Branch Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_branch_name']) }}
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::text('issue_bank_name','Bank Name', null, ['class'=>'form-control input-sm','readonly','ng-model'=>'issue_bank_name']) }}
                                             </div>
                                         </div>
@@ -189,17 +185,17 @@
                                     {{ BootForm::text('number_of_mtd','Number Of MTD', null, ['class'=>'form-control input-sm','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                        {{ BootForm::text('packaging_qty','Packaging Qty', null, ['class'=>'form-control input-sm','required']) }}
+                                    {{ BootForm::text('packaging_qty','Packaging Qty', null, ['class'=>'form-control input-sm','required']) }}
                                     </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                            {{ BootForm::text('gross_weight','Gross Weight', null, ['class'=>'form-control input-sm','required']) }}
-                                        </div>
-
-
+                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
+                                    {{ BootForm::text('gross_weight','Gross Weight', null, ['class'=>'form-control input-sm','required']) }}
+                                </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                        <a href="{{route('bill-of-lading.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <a href="{{route('bill-of-lading.index')}}" class="btn btn-default">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -208,8 +204,6 @@
                 </div>
             </div>
         </div>
-
-
         {{--end Content here --}}
     </div>
 </div>

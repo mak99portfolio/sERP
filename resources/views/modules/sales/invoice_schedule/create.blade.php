@@ -13,6 +13,7 @@
                 </div>
                 <div class="x_content" ng-controller="myCtrl">
                     <br />
+                    @include('partials/flash_msg')
                     <form class="form-horizontal form-label-left" action="{{route('invoice-schedule.store')}}" method="POST" autocomplete="off">
                     @csrf
                         <div class="row">
@@ -21,12 +22,12 @@
                            </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                <div class="form-group">
-                                                    <label for="">Sales Order No</label>
-                                                    <select name="sales_order_id" id="" ng-change="getTotalAmount()" ng-model ="sales_order_id" class="form-control input-sm select2" data-placeholder="Select Sales Order">
-                                                        <option value=""></option>
-                                                        <option value="<% sales_order.sales_order_id %>" ng-repeat="sales_order in sales_order_list"><% sales_order.sales_order_no %></option>
-                                                    </select>
-                                                </div>
+                                    <label for="">Sales Order No</label>
+                                    <select name="sales_order_id" id="" ng-change="getTotalAmount()" ng-model ="sales_order_id" class="form-control input-sm select2" data-placeholder="Select Sales Order">
+                                        <option value=""></option>
+                                        <option value="<% sales_order.sales_order_id %>" ng-repeat="sales_order in sales_order_list"><% sales_order.sales_order_no %></option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 {{ BootForm::text('total_amount','Total Amount', null, ['class'=>'form-control input-sm','ng-model'=>'total_amount', 'readonly'])}}
@@ -36,7 +37,7 @@
                                     <div class="panel-body">
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
-                                                {{ BootForm::text('date','Date', null, ['class'=>'form-control input-sm datepicker', 'ng-model' => 'payment_date']) }}
+                                                {{ BootForm::text('date','Date', null, ['id'=>'date_expected','class'=>'form-control input-sm datepicker', 'ng-model' => 'payment_date']) }}
                                             </div>
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 item">
                                                 {{ BootForm::number('invoice_amount','Invoice Amount', null, ['class'=>'form-control input-sm', 'ng-model' => 'payment_amount']) }}

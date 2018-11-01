@@ -306,9 +306,8 @@
                                 </div>
                             </fieldset>
 
-                            <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <br />
-
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success">Save</button>

@@ -25,7 +25,7 @@
                             <table class="table table-bordered table-hover datatable-buttons">
                                 <thead class="bg-primary">
                                     <tr>
-                                        <th>#</th>
+                                        <th width="25">#</th>
                                         <th>Cost Particular Name</th>
                                         <th>Short Name</th>
                                     </tr>

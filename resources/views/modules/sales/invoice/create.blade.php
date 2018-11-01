@@ -33,7 +33,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group " v-bind:class="{ 'has-error': errors.sales_challan_id }">
                                     <label for="sales_challan_id" class="control-label">Sales Challan</label>
-                                    <select class="form-control input-sm bSelect" ref="sales_challan_id" id="sales_challan_id" v-model="field.sales_challan_id" v-on:change="update_sales_challan">
+                                    <select class="form-control input-sm bSelect" id="sales_challan_id" v-model="field.sales_challan_id" v-on:change="update_sales_challan">
                                           <option v-for="(row, index) in resource.sales_challans.data" v-bind:value="row.id" v-html="row.sales_challan_no"></option>
                                     </select>
                                     <span
@@ -46,7 +46,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.challan_date }">
                                     <label for="challan_date" class="control-label">Challan Date</label>
-                                    <input type="text" class="form-control input-sm" ref="challan_date" v-model="field.challan_date" readonly/>
+                                    <input type="text" class="form-control input-sm" v-model="field.challan_date" readonly/>
                                     <span
                                         class="help-block"
                                         v-for="row in errors.challan_date"
@@ -95,7 +95,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.customer_id }">
                                     <label for="customer_name" class="control-label">Customer <span class="text-danger hide">*</span></label>
-                                    <input type="text" class="form-control input-sm " ref="customer_name" id="customer_name" v-model="field.customer_name" readonly/>
+                                    <input type="text" class="form-control input-sm " id="customer_name" v-model="field.customer_name" readonly/>
                                     <span
                                         class="help-block"
                                         v-for="row in errors.customer_name"
@@ -107,7 +107,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.invoice_address_id }">
                                     <label for="invoice_address_id" class="control-label">Invoice Address</label>
-                                    <select class="form-control input-sm bSelect"  ref="invoice_address_id" id="invoice_address_id" v-model="field.invoice_address_id">
+                                    <select class="form-control input-sm bSelect" id="invoice_address_id" v-model="field.invoice_address_id">
                                         <option v-for="(row, index) in resource.customer_addresses.data
                                         " v-bind:value="row.id" v-html="row.address"></option>
                                     </select>
@@ -122,7 +122,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.gate_pass_id }">
                                     <label for="gate_pass_id" class="control-label">Gate Pass</label>
-                                    <select class="form-control input-sm bSelect"  ref="gate_pass_id" id="gate_pass_id" v-model="field.gate_pass_id">
+                                    <select class="form-control input-sm bSelect" id="gate_pass_id" v-model="field.gate_pass_id">
                                         <option v-for="(row, index) in resource.gate_passes.data
                                         " v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
@@ -137,7 +137,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.shipping_address_id }">
                                     <label for="shipping_address_id" class="control-label">Shipping Address</label>
-                                    <select class="form-control input-sm bSelect"  ref="shipping_address_id" id="shipping_address_id" v-model="field.shipping_address_id">
+                                    <select class="form-control input-sm bSelect" id="shipping_address_id" v-model="field.shipping_address_id">
                                         <option v-for="(row, index) in resource.customer_addresses.data
                                         " v-bind:value="row.id" v-html="row.address"></option>
                                     </select>
@@ -152,7 +152,7 @@
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group" v-bind:class="{ 'has-error': errors.delivery_person_id }">
                                     <label for="delivery_person_id" class="control-label">Delivery Person</label>
-                                    <select class="form-control input-sm bSelect"  ref="delivery_person_id" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
+                                    <select class="form-control input-sm bSelect" id="delivery_person_id" name="delivery_person_id" v-model="field.delivery_person_id">
                                         <option v-for="(row, index) in resource.delivery_persons" v-bind:value="row.id" v-html="row.name"></option>
                                     </select>
                                     <span
@@ -168,7 +168,7 @@
                                     <label for="">Delivery Vehicle</label>
                                     <div class="input-group">
 
-                                        <select name="delivery_vehicle" class="form-control input-sm bSelect" ref="delivery_vehicle" v-model="field.delivery_vehicle">
+                                        <select name="delivery_vehicle" class="form-control input-sm bSelect" v-model="field.delivery_vehicle">
                                             <option v-for="(row, index) in resource.delivery_vehicles" v-bind:value="row.id" v-html="row.name"></option>
                                         </select>
 
@@ -381,6 +381,7 @@
 $(function(){
     //Vue.component('v-select', VueSelect.VueSelect);
     var vue=new Vue({
+        mixins: [custom],
         el: '#main',
         components:{
             vuejsDatepicker
@@ -391,7 +392,8 @@ $(function(){
                 delivery_persons:"{{ url('api/sales/challan/delivery-persons') }}",
                 sales_challan_items:"{{ url('api/sales/invoice/sales-challan-items') }}",
                 customer_addresses:"{{ url('api/sales/challan/customer-addresses') }}",
-                submit:"{{ route('sales-invoice.store') }}"
+                submit:"{{ route('sales-invoice.store') }}",
+                sales_challan_vehicles:"{{ url('api/sales/invoice/sales-challan-vehicles') }}"
             },
             field:{
                 sales_challan_id:'',
@@ -452,46 +454,6 @@ $(function(){
             errors:null
         },
         methods:{
-            dFormat:function(val){
-                return moment(val).format('DD MMM YYYY');
-            },
-            parse_num:function(val){
-                if(typeof val=='undefined'){
-                    return 0.00;
-                }else if(parseFloat(val)){
-                    return parseFloat(val);
-                }else return 0.00;
-            },
-            alert:function(msg='Sorry!, try again later.', type='error'){
-                new PNotify({
-                  title: 'Message',
-                  text: msg,
-                  type: type,
-                  styling: 'bootstrap3'
-                });
-            },
-            fetch_resource:function(url, reference, callback=null, params=null){
-
-                var loading=$.loading();
-                loading.open(3000);
-
-                axios.get(url, {params: params}).then(function(response){
-
-                    reference.data=response.data.data;
-                    loading.close();
-                    if(typeof callback==='function'){
-                        callback();
-                    }
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
-                });
-
-            },
             update_sales_challan:function(){
 
                 var ref=this;
@@ -504,6 +466,8 @@ $(function(){
                 var selected_challan=this.resource.sales_challans.data.find(row=>{
                     return row.id==this.field.sales_challan_id;
                 });
+
+                //console.log(selected_challan);
 
                 this.resource.sales_orders.data=selected_challan.sales_orders;
                 this.field.challan_date=moment(selected_challan.challan_date).format('DD MMM YYYY');
@@ -529,6 +493,18 @@ $(function(){
                 }else this.alert('This challan does\'t associate with any customer');
 
                 //this.fetch_resource(this.resource + '/sales-orders', this.resource.sales_orders);
+
+                //fetch challan delivery vehicles list
+                this.fetch_remote(this.url.sales_challan_vehicles + '/' + selected_challan.id, function(){
+                    ref.field.delivery_vehicles=ref.response;
+                    ref.field.delivery_vehicles.forEach(function(row, index){
+                        var medium_name=ref.resource.delivery_vehicles.find(inner_row=>{
+                            return inner_row.id==row.delivery_medium;
+                        }).name;
+                        ref.field.delivery_vehicles[index].medium_name=medium_name;
+                    });
+                });
+
                 this.update_sales_challan_list();
 
             },
@@ -540,22 +516,13 @@ $(function(){
                 return referer.name;
             },
             fetch_delivery_persons:function(){
+
                 var ref=this;
-                var loading=$.loading();
-                loading.open(3000);
 
-                axios.get(ref.url.delivery_persons).then(function(response){
-
-                    ref.resource.delivery_persons=response.data;
-                    loading.close();
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
+                ref.fetch_remote(ref.url.delivery_persons, function(){
+                    ref.resource.delivery_persons=ref.response;
                 });
+
             },
             add_delivery_vehicle:function(){
 
@@ -697,26 +664,14 @@ $(function(){
 
                 var ref=this;
 
-                var loading=$.loading();
-                loading.open(3000);
-
                 if(!this.field.sales_challan_id){
                     ref.alert('Please!, select a sales challan number.');
                     loading.close();
                     return false;
                 }
 
-                axios.get(ref.url.sales_challan_items + '/' + this.field.sales_challan_id).then(function(response){
-
-                    ref.field.sales_invoice_items=response.data;
-                    loading.close();
-
-                }).catch(function(){
-
-                    loading.close();
-                    ref.alert('Sorry!, failed to fetch remote data.');
-
-
+                ref.fetch_remote(ref.url.sales_challan_items + '/' + this.field.sales_challan_id, function(){
+                    ref.field.sales_invoice_items=ref.response;
                 });
 
             },
@@ -793,22 +748,10 @@ $(function(){
             //this.model.customers=this.temp;
         },//End of beforeMount
         updated(){
-            $(this.$refs.sales_challan_id).selectpicker('refresh');
-            $(this.$refs.delivery_person_id).selectpicker('refresh');
-            $(this.$refs.delivery_vehicle).selectpicker('refresh');
-            $(this.$refs.shipping_address_id).selectpicker('refresh');
-            $(this.$refs.invoice_address_id).selectpicker('refresh');
-            $(this.$refs.gate_pass_id).selectpicker('refresh');
+            $('.bSelect').selectpicker('refresh');
         }//end of updated
     });//End of vue js
 
-    $('.datepicker').daterangepicker({
-      singleDatePicker: true,
-      singleClasses: "picker_3",
-      locale: {
-          format: 'DD-MMM-YYYY'
-      }
-    });
     //$('.datepicker').datetimepicker();
 
     $('.bSelect').selectpicker({

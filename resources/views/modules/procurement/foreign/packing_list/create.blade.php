@@ -15,7 +15,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Packing List</h2>
-                        <a href="{{route('packing-list.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Packing List</a>
+                        <a href="{{route('packing-list.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Packing List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -45,28 +45,23 @@
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="table-responsive">
+                                <div class="table-responsive m-t-15">
                                         <table class="table table-bordered" ng-if="piinfo.length>0">
                                             <thead class="bg-primary">
-                                               
                                                 <tr>
-                                                    <th>#</th>
+                                                    <th width="30px">#</th>
                                                     <th>PI No</th>
                                                     <th>PI Date</th>
                                                     <th>Customer Code</th>
-              
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            <tr ng-repeat="info in piinfo">
-                                                 <td><% $index+1 %></td>
-                                                 <td><%info.proforma_invoice_no%></td>
-                                                 <td><%info.proforma_invoice_date%></td>
-                                                 <td><%info.customer_code%></td>
-                                                 
+                                                <tr ng-repeat="info in piinfo">
+                                                    <td><% $index+1 %></td>
+                                                    <td><%info.proforma_invoice_no%></td>
+                                                    <td><%info.proforma_invoice_date%></td>
+                                                    <td><%info.customer_code%></td>
                                                 </tr>
-                                             
-                                               
                                             </tbody>
                                         </table>
                                     </div>
@@ -124,8 +119,6 @@
                                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">    
                                                 {{ BootForm::select('currency', 'Currency', ['Dollar'=>'Dollar'], null, ['class'=>'form-control input-sm select2']) }}   
                                             </div>
-
-                                       
                                         </div>
                                     </fieldset>
                                 </div>
@@ -180,9 +173,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                        <a href="{{route('packing-list.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <a href="{{route('packing-list.index')}}" class="btn btn-default">Cancel</a>
                                     </div>
                                 </div>
                             </div>

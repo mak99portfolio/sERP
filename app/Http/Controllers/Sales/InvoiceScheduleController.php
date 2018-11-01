@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Sales;
 use App\InvoiceSchedule;
 use App\InvoiceScheduleItem;
 use App\Customer;
-use Illuminate\Http\Request;
+use App\Http\Requests\InvoiceScheduleRequest;
 use App\Http\Controllers\Controller;
 use Auth;
 use Session;
@@ -29,12 +29,11 @@ class InvoiceScheduleController extends Controller
     }
 
    
-    public function store(Request $request)
+    public function store(InvoiceScheduleRequest $request)
     {
-       //dd($request->input());
-       $request->validate([  
-        'customer_id' => 'required'
-    ]);
+        if(!$request->item_validate()){
+            return redirect()->back();
+        }
     $invoice_schedule = new InvoiceSchedule;
     $invoice_schedule->fill($request->input());
     $invoice_schedule->creator_user_id = Auth::id();

@@ -15,7 +15,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Commercial Invoice List</h2>
-                        <a href="{{route('commercial-invoice.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Commercial Invoice</a>
+                        <a href="{{route('commercial-invoice.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Commercial Invoice</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -29,7 +29,7 @@
                                         <th scope="col">Commercial Invoice Date</th>
                                         <th scope="col">Letter of Credit No</th>
                                         <th scope="col">Letter of Credit  Date</th>
-                                        <th class="text-center">Action</th>
+                                        <th width="40x" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

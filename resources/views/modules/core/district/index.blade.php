@@ -31,7 +31,7 @@
                                         <th>Country Name</th>
                                         <th>Latitute</th>
                                         <th>Longitude</th>
-                                        <th class="text-center">Action</th>
+                                        <th class="text-center" width="40">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

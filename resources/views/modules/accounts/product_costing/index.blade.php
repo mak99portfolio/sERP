@@ -16,7 +16,7 @@
                                 <table class="table table-bordered table-hover datatable-buttons">
                                     <thead class="bg-primary">
                                         <tr>
-                                            <th>#</th>
+                                            <th width="25">#</th>
                                             <th>BL No</th>
                                             <th class="text-center" style="width: 30px;">Action</th>
                                         </tr>
@@ -48,7 +48,7 @@
                                 <table class="table table-bordered table-hover datatable-buttons">
                                     <thead class="bg-primary">
                                         <tr>
-                                            <th>#</th>
+                                            <th width="25">#</th>
                                             <th>BL No</th>
                                             <th class="text-center" style="width: 30px;">Action</th>
                                         </tr>

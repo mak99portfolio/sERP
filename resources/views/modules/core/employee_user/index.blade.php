@@ -33,7 +33,7 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Assigned Roles</th>
-                            <th><center>Delete</center></th>
+                            <th width="40"><center>Delete</center></th>
                         </tr>
                     </thead>
                     <tbody>

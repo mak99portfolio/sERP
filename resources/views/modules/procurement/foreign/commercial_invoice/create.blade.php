@@ -15,7 +15,7 @@
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
                         <h2>Commercial Invoice</h2>
-                        <a href="{{route('commercial-invoice.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Commercial Invoice List</a>
+                        <a href="{{route('commercial-invoice.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> Commercial Invoice List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">
@@ -46,16 +46,16 @@
                                     {{ BootForm::text('letter_of_credit_date','LC Date', null, ['class'=>'form-control input-sm', 'ng-model'=>'letter_of_credit_date','readonly'=>'readonly']) }}
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                 <br />
                                 <div class="table-responsive">
                                         <table class="table table-bordered" ng-if="piinfo.length>0">
                                             <thead class="bg-primary">
 
                                                 <tr>
-                                                    <th>#</th>
+                                                    <th width="40px">#</th>
                                                     <th>PI No</th>
                                                     <th>PI Date</th>
                                                     <th>Customer Code</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -123,12 +123,10 @@
                                     </fieldset>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
                                     {{ BootForm::textarea('notes','Notes',null,['class'=>'form-control input-sm','rows'=>'2']) }}
-
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="table-responsive">
+                                    <div class="table-responsive m-t-20">
                                         <table class="table table-bordered" ng-if="itemlist.length>0">
                                             <thead class="bg-primary">
                                                 <tr>
@@ -182,9 +180,11 @@
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                        <a href="{{route('commercial-invoice.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <a href="{{route('commercial-invoice.index')}}" class="btn btn-default">Cancel</a>
                                     </div>
                                 </div>
                             </div>

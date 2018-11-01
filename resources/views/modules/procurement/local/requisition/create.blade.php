@@ -39,7 +39,7 @@
                                     {{ BootForm::text('date_expected','Expected Date', null, ['class'=>'form-control input-sm datepicker','required']) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
-                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Purpose','required']) }}
+                                    {{ BootForm::select('requisition_purpose_id', 'Requisition Purpose', $requisition_purpose_list , null,['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Purpose','required','data-popup'=> route('requisition-purpose.index')]) }}
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 item">
                                     {{ BootForm::select('requisition_priority_id', 'Requisition Priority', $requisition_priority_list , null,['class'=>'form-control input-sm select2', 'data-placeholder'=>'Select Priotity','required']) }}
@@ -67,16 +67,14 @@
                                 </div>
                                 <div class="panel-body">
                                     <div class="col-md-12 col-sm-12 col-xs-12">
-                                        <div class="input-group m-b">
+                                        <div class="input-group">
                                             <span class="input-group-addon">
                                                 <i class="fa fa-search"></i> Search
                                             </span>
                                             <input type="text" class="form-control input-lg" placeholder="Please type to find product" id="search_product">
-                                            <span class="input-group-addon">
-                                                <a href="#" ng-click="searchProduct()"><i class="fa fa-plus"></i> Add</a>
-                                            </span>
-                                            <span class="input-group-addon">
-                                                <a href="#" data-toggle="modal" data-target="#myModal" ng-click="getAllProduct()"><i class="fa fa-list-ul"></i> Product List</a>
+                                            <span class="input-group-btn">
+                                              <button class="btn btn-default btn-lg" ng-click="searchProduct()" type="button"><i class="fa fa-plus"></i> Add</button>
+                                              <button class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal" ng-click="getAllProduct()" type="button"><i class="fa fa-list-ul"></i> Product List</button>
                                             </span>
                                         </div>
                                     </div>
@@ -133,8 +131,8 @@
                                     <br />
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-success btn-sm" ng-disabled="itemlist.length < 1">Save</button>
-                                        <a class="btn btn-default btn-sm" href="{{route('local-requisition.index')}}">Cancel</a>
+                                        <button type="submit" class="btn btn-success" ng-disabled="itemlist.length < 1">Save</button>
+                                        <a class="btn btn-default" href="{{route('local-requisition.index')}}">Cancel</a>
                                     </div>
                                 </div>
                             </div>

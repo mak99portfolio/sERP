@@ -35,9 +35,13 @@
                                 {{ BootForm::text('longitude','Longitude', null, ['class'=>'form-control input-sm']) }}
                             </div>
                             <br>
-                            <div class="col-md-12">
-                                <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                <a class="btn btn-default btn-sm" href="{{route('district.index')}}">Cancel</a>
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <br />
+                                <div class="ln_solid"></div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                <a class="btn btn-default" href="{{route('district.index')}}">Cancel</a>
+                                </div>
                             </div>
                         </form>
 

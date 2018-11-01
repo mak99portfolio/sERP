@@ -81,7 +81,7 @@ function goBack($args=[]){
 		'title'=>'Go back'
 	];
 	$attr=array_merge($attr,$args);
-	return "<buton type='button' class='$attr[class]' onclick='window.history.back();'/><i class='fa $attr[icon]'></i> $attr[title]</buton>";
+	return "<button type='button' class='$attr[class]' onclick='window.history.back();'/><i class='fa $attr[icon]'></i> $attr[title]</button>";
 }
 
 function btnAddNew($args=[]){

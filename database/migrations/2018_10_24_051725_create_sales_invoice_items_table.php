@@ -14,9 +14,10 @@ class CreateSalesInvoiceItemsTable extends Migration{
             $table->integer('sales_challan_id')->unsigned();
             $table->integer('sales_order_id')->unsigned();
             $table->integer('product_id')->unsigned();
-            $table->integer('bonus_quantity')->default(0);
-            $table->integer('invoice_quantity')->default(0);
-            $table->integer('discount_amount')->default(0);
+            $table->decimal('unit_price', 12, 2)->default(0.00)->nullable();
+            $table->integer('bonus_quantity')->default(0)->nullable();
+            $table->integer('invoice_quantity')->default(0)->nullable();
+            $table->decimal('discount_amount', 12, 2)->default(0.00)->nullable();
             $table->timestamps();
 
             $table->foreign('sales_invoice_id')->references('id')->on('sales_invoices')->onDelete('cascade');

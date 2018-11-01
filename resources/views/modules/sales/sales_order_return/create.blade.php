@@ -14,31 +14,16 @@
                         </div>
                         <div class="x_content">
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Sales Order Return Date</label>
-                                    <input type="date" name="sales_order_return" class="form-control input-sm" required>
-                                </div>
+                                {{ BootForm::text('sales_order_return_date','Sales Order Return Date', date('Y-m-d'), ['class'=>'form-control input-sm','required','readonly']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Select Sales Order No</label>
-                                    <select name="salect_sales_order_no" id="" class="form-control input-sm select2" required>
-                                        <option value="">one</option>
-                                        <option value="">two</option>
-                                    </select>
-                                </div>
+                                {{ BootForm::select('sales_order_id','Sales Order No',$sales_order_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Sales Order No','style'=>"width: 100%;",'required']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Customer Name</label>
-                                    <input type="text" name="customer_name" class="form-control input-sm" required readonly>
-                                </div>
+                                {{ BootForm::text('customer_name','Customer Name', null, ['class'=>'form-control input-sm','required','readonly']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Sales Order Date</label>
-                                    <input type="date" name="sales_order_date" class="form-control input-sm" required>
-                                </div>
+                                {{ BootForm::text('sales_order_date','Sales Order Date', null, ['class'=>'form-control input-sm','required','readonly']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">
@@ -47,13 +32,7 @@
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Return Reason</label>
-                                    <select name="return_reason" id="" class="form-control input-sm select2" required>
-                                        <option value="">one</option>
-                                        <option value="">two</option>
-                                    </select>
-                                </div>
+                                {{ BootForm::select('seals_return_reason_id','Return Reason',$sales_return_reason_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Return Reason','style'=>"width: 100%;",'required']) }}
                             </div>
                             <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                                 <div class="form-group">

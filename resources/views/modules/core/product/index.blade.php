@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Product List')
+@section('title', 'Product')
 @section('content')
 
 <!-- page content -->

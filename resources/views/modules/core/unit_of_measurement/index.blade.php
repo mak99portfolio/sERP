@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Country')
+@section('title', 'Unit Of Measurement')
 @section('content')
 <div class="right_col" role="main">
   <div class="">

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Bill of Lading')
+@section('title', 'Enclosure')
 @section('content')
 <div class="right_col" role="main">
     <div class="">

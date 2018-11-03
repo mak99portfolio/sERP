@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Company General Information')
+@section('title', 'Company Bank Information')
 @section('content')
 <div class="right_col" role="main">
     <div class="">

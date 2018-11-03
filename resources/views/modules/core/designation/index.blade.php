@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'District')
+@section('title', 'Designation')
 @section('content')
 
 <!-- page content -->

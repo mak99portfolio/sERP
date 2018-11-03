@@ -22,6 +22,7 @@ class CreateSalesOrderReturnsTable extends Migration
             $table->foreign('seals_return_reason_id')->references('id')->on('sales_return_reasons')->onDelete('cascade');
             $table->integer('employee_id');
             $table->foreign('employee_id')->references('id')->on('employee_profiles')->onDelete('cascade');
+            $table->text('remark')->nullable();
             $table->integer('creator_user_id')->unsigned();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('updator_user_id')->unsigned()->nullable();

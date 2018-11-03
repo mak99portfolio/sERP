@@ -3,12 +3,17 @@
 @section('content')
 <div class="right_col" role="main">
     <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Company  Setting</h3>
+            </div>
+        </div>
       <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
                     <div class="x_title">
                         <h2>Company License</h2>
-                        <a href="{{ route('company-license.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Company License</a>
+                        <a href="{{ route('company-license.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -36,11 +41,9 @@
                                         <td>{{ $item->renewed_date }}</td>
                                         <td>{{ $item->expire_date }}</td>
                                         <td class="text-center">
+                                            <a href="{{ route('company-license.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a>
                                             <a href="{{route('company-license.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
-                                            <a href="{{ route('company-license.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a>
                                         </td>
-                                 
-                                    
                                     </tr>
                                     @endforeach
                                 </tbody>

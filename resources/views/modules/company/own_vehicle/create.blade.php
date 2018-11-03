@@ -3,12 +3,17 @@
 @section('content')
 <div class="right_col" role="main">
     <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Company Setting</h3>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Core<small>Add / Edit {{ $title }}</small></h2>
-                        <a class="btn btn-primary btn-sm pull-right" href="{{route("$route_name.index")}}"><i class="fa fa-list-ul"></i> {{ $title }}</a>
+                        <h2>Own Vehicle</h2>
+                        <a class="btn btn-primary btn-sm pull-right" href="{{route("$route_name.index")}}"><i class="fa fa-list"></i> Own Vehicle List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

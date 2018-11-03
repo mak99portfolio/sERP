@@ -3,6 +3,11 @@
 @section('content')
 <div class="right_col" role="main">
     <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Company  Setting</h3>
+            </div>
+        </div>
       <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
               <div class="x_panel">
@@ -33,13 +38,15 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             {{ BootForm::text('expire_date','Expire Date No', $companyLicense->expire_date, ['class'=>'form-control input-sm datepicker']) }}
                         </div>
-                        
-                      </div>
                         <br>
                         <hr>
-                        <div class="col-md-12">
-                            <button type="submit" class="btn btn-success btn-sm">Update</button>
-                            <a class="btn btn-default btn-sm" href="{{route('company-license.index')}}">Cancel</a>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <br />
+                            <div class="ln_solid"></div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-success btn-sm">Update</button>
+                                <a class="btn btn-default btn-sm" href="{{route('company-license.index')}}">Cancel</a>
+                            </div>
                         </div>
                     </form>
 

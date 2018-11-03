@@ -15,7 +15,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Employee Related User<small>List</small></h2>
+                <h2>Employee Related User</h2>
                 {!! btnAddNew(['url'=>route('employee-user.create')]) !!}
                 <div class="clearfix"></div>
             </div>
@@ -33,7 +33,7 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>Assigned Roles</th>
-                            <th width="40"><center>Delete</center></th>
+                            <th width="40">Delete</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Inventory Requisition')
+@section('title', 'Inventory Issue')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -23,17 +23,17 @@
                     <div class="x_content">
                         <br />
                         @include('partials.flash_msg')
-						              {{ BootForm::open(['model'=>$issue, 'store'=>'issue.store', 'update'=>'issue.update']) }}
+				{{ BootForm::open(['model'=>$issue, 'store'=>'issue.store', 'update'=>'issue.update']) }}
                               <div id="vue_app">
                             <div class="row">
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    {{ BootForm::select('inventory_requisition_no', 'Requisition No', $requisitions, null,['class'=>'input-sm bSelect', 'v-model'=>'inventory_requisition_no', 'v-on:change'=>'fetch_requisition', 'ref'=>'inventory_requisition_no']) }}
+                                    {{ BootForm::select('inventory_requisition_no', 'Requisition No', $requisitions, null,['class'=>'form-control input-sm bSelect', 'v-model'=>'inventory_requisition_no', 'v-on:change'=>'fetch_requisition', 'ref'=>'inventory_requisition_no']) }}
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    {{ BootForm::text('requisition[type][name]', 'Requisition Type', null, ['class'=>'input-sm', 'readonly'=>'true', 'v-model'=>'requisition.type.name']) }}
+                                    {{ BootForm::text('requisition[type][name]', 'Requisition Type', null, ['class'=>'form-control input-sm', 'readonly'=>'true', 'v-model'=>'requisition.type.name']) }}
                                 </div>
                                 <div class="col-md-4 col-sm-4 col-xs-12">
-                                    {{ BootForm::text('requisition[sender][name]', 'Requisition Sender Depot', null, ['class'=>'input-sm', 'readonly', 'v-model'=>'requisition.sender.name']) }}
+                                    {{ BootForm::text('requisition[sender][name]', 'Requisition Sender Depot', null, ['class'=>'form-control input-sm', 'readonly', 'v-model'=>'requisition.sender.name']) }}
                                 </div>
 
                                 {{-- {{ BootForm::hidden('requested_working_unit_id', $requested_depot->id) }} --}}
@@ -53,6 +53,7 @@
                             {{-- <div id="vue_app"> --}}
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
+                                        <thead class="bg-primary">
                                     <tr>
                                         <th>Item name</th>
                                         <th style="width: 150px;" class="text-center">Stock</th>
@@ -61,8 +62,10 @@
                                         <th style="width: 150px;">Issue Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
                                         <th style="width: 150px;" class="text-center">Check To Forward</th>
-                                        <th style="width: 125px;" class="text-center">Delete</th>
+                                        <th style="width: 125px;" class="text-center">Action</th>
                                     </tr>
+                                        </thead>
+                                        <tbody>
                                     <tr v-for="(product, index) in products">
   										                  <td v-html='product.name'></td>
   										                  <td v-html='product.stock' class="text-right"></td>
@@ -94,7 +97,8 @@
   	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
   	                                		</button>
                                       	</td>
-									                   </tr>
+					</tr>
+                                        </tbody>
                                 </table>
                             </div>
 
@@ -105,7 +109,7 @@
                             @elseif(!$issue->final_approver()->exists())
                             {{ BootForm::hidden('approval', 'final') }}
                             @endif
-
+                            <div class="row">
                             <div class="col-md-12">
                                 <br />
                                 <div class="ln_solid"></div>
@@ -118,6 +122,7 @@
                                     {!! btnSubmitGroup() !!}
                                   @endif
                                 </div>
+                            </div>
                             </div>
                           {{ BootForm::close() }}
                     </div>

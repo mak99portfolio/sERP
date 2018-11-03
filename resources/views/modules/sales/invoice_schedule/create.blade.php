@@ -139,6 +139,7 @@
             }
         }
        $scope.add_payment = function(){
+        PNotify.removeAll();
            var payment = {};
              if(!$scope.customer_id){
                 $scope.warning('Select Customer first');
@@ -147,13 +148,15 @@
                 $scope.warning('Select Sales Order No');
                 return;
             }else if(!$scope.payment_amount){
-                $scope.warning('Insert Inoice Amount');
+                $scope.warning('Insert a positive Inoice Amount');
                 return;
             }else if($scope.payment_amount > $scope.available_amount){
                 $scope.warning('Payment amount must be less than available amount');
                 return;
+            }else if($scope.payment_amount < 1){
+                $scope.warning('Payment amount must be a positive number');
+                return;
             }
-            console.log();
             payment.payment_amount = $scope.payment_amount;
             payment.payment_date = $scope.payment_date;
             $scope.payment_list.push(payment);
@@ -167,6 +170,7 @@
             $scope.available_amount = $scope.total_amount - $scope.total_invoice_amount;
         }
         $scope.warning = function(msg){
+            PNotify.removeAll();
             var data = {
                 'title': 'Warning!',
                 'text': msg,

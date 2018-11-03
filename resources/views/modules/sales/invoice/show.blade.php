@@ -105,23 +105,32 @@
                                                 </tr>
                                             @endforeach
                                             <tr>
-                                                <td colspan="4" class="text-right">Total:</td>
+                                                <td colspan="8" class="text-right">Net Total:</td>
                                                 <td class="text-right">
-                                                    {{ $sales_invoice->items()->sum('bonus_quantity') }}
+                                                    {{ number_format($sales_invoice->items->sum(function($inner_row){
+                                                        return $inner_row->invoice_quantity * $inner_row->unit_price;
+                                                    }), 2) }}
                                                 </td>
-                                                <td class="text-right">
-                                                    {{ $sales_invoice->items()->sum('discount_amount') }}
-                                                </td>
-                                                <td class="text-right">
-                                                    {{ $sales_invoice->items()->sum('invoice_quantity') }}
-                                                </td>
-                                                <td></td>
-                                                <td></td>
-                                                {{-- <td class="text-right">
-                                                    {{ $sales_invoice->items()->sum(function($inner_row){
-                                                        return $inner_row->invoice_quantity * $inner_row->bonus_quantity;
-                                                    }) }}
-                                                </td> --}}
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-right">Total Vat:</td>
+                                                <td class="text-right">{{ number_format($sales_invoice->total_vat, 2) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-right">Total Discount:</td>
+                                                <td class="text-right">{{ number_format($sales_invoice->total_discount, 2) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-right">Extra Discount:</td>
+                                                <td class="text-right">{{ number_format($sales_invoice->extra_discount, 2) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-right">Grand Total:</td>
+                                                <td class="text-right">{{ number_format($sales_invoice->grand_total, 2) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="8" class="text-right">Invoiced Amount:</td>
+                                                <td class="text-right">{{ number_format($sales_invoice->invoiced_amount, 2) }}</td>
                                             </tr>
                                         </tbody>
                                     </table>

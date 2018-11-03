@@ -94,6 +94,8 @@ class DatabaseSeeder extends Seeder
         $this->call(SalesChallansTableSeeder::class);
         $this->call(GatePassesTableSeeder::class);
         $this->call(SalesInvoicesTableSeeder::class);
+        $this->call(DeliveryScheduleTableSeeder::class);
+        $this->call(DeliveryScheduleItemTableSeeder::class);
 
     }
 }

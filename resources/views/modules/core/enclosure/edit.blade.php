@@ -14,7 +14,7 @@
                 <div class="x_panel">
                     <div class="x_title">
                         <h2>Enclosure</h2>
-                        <a class="btn btn-primary btn-sm pull-right" href="{{route('enclosure.index')}}"><i class="fa fa-list-ul"></i> Enclosure List</a>
+                        <a class="btn btn-primary btn-sm pull-right" href="{{route('enclosure.index')}}"><i class="fa fa-list"></i> Enclosure List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

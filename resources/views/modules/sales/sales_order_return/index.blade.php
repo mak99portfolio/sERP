@@ -25,9 +25,10 @@
                                     </tr>
                                     </thead>
                                     <body>
+                                    @foreach ($sales_order_return_list as $item)
                                     <tr>
-                                        <td>1</td>
-                                        <td>125</td>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->sales_order_return_date}}</td>
                                         <td>125</td>
                                         <td>125</td>
                                         <td>125</td>
@@ -35,6 +36,8 @@
                                             <a href="" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
+
                                     </body>
                                 </table>
                             </div>

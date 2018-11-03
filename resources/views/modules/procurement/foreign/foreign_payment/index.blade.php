@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Payment List</h2>
-                        <a href="{{route('foreign-payment.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add New Payment</a>
+                        <h2>Payment</h2>
+                        <a href="{{route('foreign-payment.create')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
@@ -46,7 +46,6 @@
                                         </td>
                                     </tr>
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>

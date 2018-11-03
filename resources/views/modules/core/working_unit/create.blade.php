@@ -3,19 +3,20 @@
 @section('content')
 <div class="right_col" role="main">
   <div class="">
-    <div class="page-title">
-      <div class="title_left">
-    </div>
-</div>
-<div class="clearfix"></div>
+      <div class="page-title">
+          <div class="title_left">
+              <h3>Company Setting</h3>
+          </div>
+      </div>
+      <div class="clearfix"></div>
 {{-- Content here --}}
 
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Working Unit <small>Form</small></h2>
-                <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;Working Unit List</a>
+                <h2>Working Unit</h2>
+                <a href="{{route('working-unit.index')}}" class="mb-xs mt-xs mr-xs  btn btn-primary btn-sm pull-right"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Working Unit List</a>
 
                 <div class="clearfix"></div>
             </div>

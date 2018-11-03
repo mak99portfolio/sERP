@@ -40,7 +40,7 @@ class ApiController extends Controller
         foreach ($products as $product) {
             $results[] = [
                 'id' => $product->id,
-                'value' => $product->name . " (". $product->hs_code . ")",
+                'value' => $product->name . " (" . $product->hs_code . ")",
             ];
         }
         return response()->json($results);
@@ -369,7 +369,8 @@ class ApiController extends Controller
         return response()->json($data);
     }
 
-    public function getLocalRequisitionItemsFromQuotationByRequisitionId($id){
+    public function getLocalRequisitionItemsFromQuotationByRequisitionId($id)
+    {
         // $quotations = Quotation::where("local_requisition_id", $id)->with('items')->get()->toArray();
 
         // foreach ($quotations as $index=>$quotation){
@@ -392,18 +393,18 @@ class ApiController extends Controller
         $quotations = Quotation::where("local_requisition_id", $id)->get();
         $vendors = Vendor::find($quotations->pluck('vendor_id'));
         $data = [];
-        foreach($requisition->items as $key => $item){
+        foreach ($requisition->items as $key => $item) {
             $items[$key] = [
                 'product_id' => $item->product_id,
                 'product_name' => $item->product->name,
             ];
             $total_price = 0;
-            foreach($quotations as $quotation){
+            foreach ($quotations as $quotation) {
                 $items[$key]['unit_prices'][] = QuotationItem::where('quotation_id', $quotation->id)->where('product_id', $item->product_id)->first()->unit_price;
             }
 
         }
-        foreach($quotations as $quotation){
+        foreach ($quotations as $quotation) {
             $data['vendors'][] = [
                 'vendor_name' => Vendor::find($quotation->vendor_id)->name,
                 'total_price' => QuotationItem::where('quotation_id', $quotation->id)->sum('unit_price'),
@@ -478,43 +479,79 @@ class ApiController extends Controller
     {
         $sales_order_list = SalesOrder::where('customer_id', $id)->get();
         $so = [];
-        foreach ($sales_order_list as $sales_order) { 
+        foreach ($sales_order_list as $sales_order) {
             $total_invoice_amount = 0;
-            foreach ($sales_order->invoice_schedules as $invoice_schedule) { 
-               $total_invoice_amount += $invoice_schedule->items->sum('payment_amount');
+            foreach ($sales_order->invoice_schedules as $invoice_schedule) {
+                $total_invoice_amount += $invoice_schedule->items->sum('payment_amount');
             }
-            if($total_invoice_amount < $sales_order->amount()){
+            if ($total_invoice_amount < $sales_order->amount()) {
                 $so[] = [
                     'sales_order_id' => $sales_order->id,
                     'sales_order_no' => $sales_order->sales_order_no,
                 ];
             }
-          
+
         }
-         
+
         $data['sales_order'] = $so;
         $data['due'] = 10000;
         return response()->json($data);
     }
     public function getSalesOrderBySalesOrderId($id)
     {
-    
+
         $sales_order = SalesOrder::find($id);
         $total_invoice_amount = 0;
-            foreach ($sales_order->invoice_schedules as $invoice_schedule) { 
-               $total_invoice_amount += $invoice_schedule->items->sum('payment_amount');
-            }
-        $data['total_amount'] = $sales_order->amount()-$total_invoice_amount;
+        foreach ($sales_order->invoice_schedules as $invoice_schedule) {
+            $total_invoice_amount += $invoice_schedule->items->sum('payment_amount');
+        }
+        $data['total_amount'] = $sales_order->amount() - $total_invoice_amount;
         return response()->json($data);
     }
     public function getSalesOrderItemsBySalesOrderId($id)
     {
-    
+
         $sales_order = SalesOrder::find($id);
-        dd( $sales_order->items);
-            foreach ($sales_order->items as $item) { 
-              
-            }
+       
+            foreach ($sales_order->items as $item) 
+            { 
+
+                $items[] = [
+                    'product_id' => $item->product_id,  
+                    'name' => $item->product->name,
+                    'quantity' => $item->quantity,
+                    'unit_price' => $item->unit_price,
+                    'bonus_quantity' => $item->bonus_quantity,
+                    'total_quantity' => $item->total_quantity,
+                    'net_price' => $item->net_price,
+                    'discount' => $item->discount,
+                  
+                ];
+            }  
+        
+
+            foreach ($sales_order->delivery_schedules as $delivery_schedule) 
+            { 
+                foreach ($delivery_schedule->items as $pre_item) 
+                { 
+                  // dd( $pre_item);
+                   $previous_items[] = [
+                    'product_id' => $pre_item->product_id,  
+                    'name' => $pre_item->product->name,
+                    'total_quantity' => $pre_item->total_quantity,
+                    'delivery_quantity' => $pre_item->delivery_quantity,
+                    'delivery_date' => $pre_item->delivery_date
+                   
+                ];
+                } 
+            }  
+        $data['items'] = $items;
+        if(isset($previous_items)){
+           $data['previous_items'] = $previous_items; 
+        }else{
+            $data['previous_items'] = null; 
+        }
+        
         return response()->json($data);
     }
     public function getCiByCiId($id)
@@ -675,7 +712,7 @@ class ApiController extends Controller
 
     public function getProductForSalesOrder($product_id, $customer_id)
     {
-        $physical_stock = Stock::where(['product_id'=> $product_id, 'product_status_id'=>1, 'product_type_id'=>1])->sum('receive_quantity') - Stock::where(['product_id'=> $product_id, 'product_status_id'=>1, 'product_type_id'=>1])->sum('issue_quantity');
+        $physical_stock = Stock::where(['product_id' => $product_id, 'product_status_id' => 1, 'product_type_id' => 1])->sum('receive_quantity') - Stock::where(['product_id' => $product_id, 'product_status_id' => 1, 'product_type_id' => 1])->sum('issue_quantity');
 
         $discount_customer_wise = \App\DiscountCustomerWise::where('customer_id', $customer_id)->where('product_id', $product_id)->where('active', 'true')->first();
         $discount_generic = \App\DiscountGeneric::where('product_id', $product_id)->where('active', 'true')->first();
@@ -690,10 +727,10 @@ class ApiController extends Controller
             $discount_type = null;
             $discount = 0;
         }
-        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity') - \App\SalesChallanItem::where('product_id', $product_id)->sum('challan_quantity');
+        $pending = \App\SalesOrderItem::where('product_id', $product_id)->sum('quantity')-\App\SalesChallanItem::where('product_id', $product_id)->sum('challan_quantity');
         $si_ids = \App\SalesInvoice::where('sales_invoice_status', 'in_transit')->pluck('id');
         $intransit = \App\SalesInvoiceItem::whereIn('sales_invoice_id', $si_ids)->where('product_id', $product_id)->sum('invoice_quantity');
-        
+
         $product = Product::find($product_id);
         $data = [
             'id' => $product->id,
@@ -702,8 +739,8 @@ class ApiController extends Controller
             'unit_price' => $product->mrp_rate,
             'uom' => $product->unit_of_measurement->name,
             'available' => $physical_stock,
-            'intransit' => (int)$intransit,
-            'pending' => (int)$pending,
+            'intransit' => (int) $intransit,
+            'pending' => (int) $pending,
             'discount_type' => $discount_type,
             'discount' => (int) $discount,
         ];
@@ -737,29 +774,40 @@ class ApiController extends Controller
         return response()->json($bonus_quantity);
 
     }
-    public function getWorkingUnitWiseProductAvailable($product_id){
-        $units=\App\WorkingUnit::all()->toArray();
+    public function getWorkingUnitWiseProductAvailable($product_id)
+    {
+        $units = \App\WorkingUnit::all()->toArray();
         /*
         foreach($units as $index=>$row){
-            $units[$index]['items']=\App\Stock::with('product')->where(['working_unit_id', $row['id'])->selectRaw("(CAST(SUM(receive_quantity) AS FLOAT)-CAST(SUM(issue_quantity) AS FLOAT)) AS physical_quantity, product_id")->groupBy('product_id')->get()->toArray();
+        $units[$index]['items']=\App\Stock::with('product')->where(['working_unit_id', $row['id'])->selectRaw("(CAST(SUM(receive_quantity) AS FLOAT)-CAST(SUM(issue_quantity) AS FLOAT)) AS physical_quantity, product_id")->groupBy('product_id')->get()->toArray();
         }
-        */
+         */
 
-        foreach($units as $index=>$row){
-            $units[$index]['physical_quantity']=\App\Stock::where([
-                'working_unit_id'=>$row['id'],
-                'product_id'=>$product_id,
-                'product_status_id'=>1,
-                'product_type_id'=>1
+        foreach ($units as $index => $row) {
+            $units[$index]['physical_quantity'] = \App\Stock::where([
+                'working_unit_id' => $row['id'],
+                'product_id' => $product_id,
+                'product_status_id' => 1,
+                'product_type_id' => 1,
             ])->sum('receive_quantity')-\App\Stock::where([
-                'working_unit_id'=>$row['id'],
-                'product_id'=>$product_id,
-                'product_status_id'=>1,
-                'product_type_id'=>1
+                'working_unit_id' => $row['id'],
+                'product_id' => $product_id,
+                'product_status_id' => 1,
+                'product_type_id' => 1,
             ])->sum('issue_quantity');
 
-            $units[$index]['product']=\App\Product::find($product_id)->toArray();
+            $units[$index]['product'] = \App\Product::find($product_id)->toArray();
         }
         return response()->json($units);
+    }
+    public function getSalesInfo($sales_order_id)
+    {
+        $sales_order=SalesOrder::find($sales_order_id); 
+        $data  = [
+            'customer_name'=>$sales_order->customer->name,
+            'sales_date'=>$sales_order->sales_date,
+            'sales_reference'=>$sales_order->sales_reference->name,
+        ];
+        return response()->json($data);
     }
 }

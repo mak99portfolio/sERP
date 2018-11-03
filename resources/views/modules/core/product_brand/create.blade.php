@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Product Brand List</h2>
-                        <a href="{{route('product-brand.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list-ul" aria-hidden="true"></i> See Product Brand Lists</a>
+                        <h2>Product Brand</h2>
+                        <a href="{{route('product-brand.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list" aria-hidden="true"></i> Product Brand List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">

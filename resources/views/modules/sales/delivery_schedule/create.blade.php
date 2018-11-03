@@ -102,6 +102,35 @@
                                     </table>
                                 </div>
                             </div>
+                            <div class="col-lg-12 col-sm-12 col-sm-12"  ng-if="previousitemlist.length > 0">
+                                <div class="table-responsive m-t-20">
+                                <h3>Previous Delivery</h3>
+                                <table class="table table-bordered">
+                                        <thead class="bg-primary">
+                                            <tr>
+                                                <th width="25">#</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="text-center">Remaining Quantity</th>
+                                                <th class="text-center">Delivery Quantity</th>
+                                                <th class="text-center">Date</th>
+                                                <th width="30">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="item in previousitemlist">
+                                                <th>1</th>
+                                                <td class="">Product 1</td>
+                                                <td class="">12</td>
+                                                <td class="">2</td>
+                                                <td class="text-center">10</td>
+                                                <td class="text-center">10/11/2018</td>
+                                                <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
@@ -128,6 +157,7 @@
         });
     app.controller('myCtrl', function($scope, $http) {
         $scope.itemlist = [];
+        $scope.previousitemlist = [];
         $scope.sales_order_list = [];
       
 
@@ -135,6 +165,7 @@
         $scope.getSalesOrder = function () {
           //  alert($scope.customer_id);
             $scope.itemlist = [];
+            $scope.previousitemlist = [];
             let url = "{{URL::to('get-sales-order')}}/" + $scope.customer_id;
             $http.get(url)
                 .then(function(response) {
@@ -146,6 +177,7 @@
         $scope.getSalesOrderItems = function () {
             $scope.delivery_list = [];  
             $scope.itemlist = [];
+            $scope.previousitemlist = [];
             if($scope.sales_order_id){
                 let url = "{{URL::to('get-sales-order-items')}}/" + $scope.sales_order_id;
           //   alert($scope.sales_order_id);
@@ -154,6 +186,9 @@
                         console.log(response.data.items);
                         angular.forEach(response.data.items, function(value, key) {
                             $scope.itemlist.push(value);
+                        });
+                        angular.forEach(response.data.previous_items, function(value, key) {
+                            $scope.previousitemlist.push(value);
                         });
                    
                 });

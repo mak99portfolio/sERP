@@ -60,14 +60,14 @@
 
                                         </div>
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 {{ BootForm::textarea('remarks', null, null, ['rows'=>2]) }}
                                             </div>
                                         </div>
 
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
-
+                                    <thead class="bg-primary">
                                     <tr>
                                         <th>SL</th>
                                         <th>HS Code</th>
@@ -75,9 +75,10 @@
                                         <th style="width: 150px;">Issue Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
                                         <th style="width: 150px;">Return Quantity</th>
-                                        <th style="width: 150px;">Return Status</th>
+                                        <th class="text-center" style="width: 150px;">Return Status</th>
                                     </tr>
-
+                                    </thead>
+                                    <tbody>
                                     <tr v-for="(product, index) in products">
                                         <td v-html='index+1'></td>
                                         <td v-html='product.hs_code'></td>
@@ -107,16 +108,19 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    </tbody>
+                                    
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
-
+                                <div class="row">
                                 <div class="col-md-12">
                                     <br />
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         {!! btnSubmitGroup() !!}
                                     </div>
+                                </div>
                                 </div>
                                 {{ BootForm::close() }}
                                 </div>

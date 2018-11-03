@@ -14,6 +14,10 @@ class SalesInvoiceReceived extends Model{
 		'remarks'
 	];
 
+	protected $dates=[
+		'sales_invoice_received_date'
+	];
+
 	public function customer(){
 		return $this->belongsTo('App\Customer', 'customer_id');
 	}
@@ -29,5 +33,5 @@ class SalesInvoiceReceived extends Model{
     public function editor(){
     	return $this->belongsTo('App\User', 'updator_user_id');
     }
-    
+
 }

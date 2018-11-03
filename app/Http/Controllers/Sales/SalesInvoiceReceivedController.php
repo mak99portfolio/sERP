@@ -14,7 +14,7 @@ class SalesInvoiceReceivedController extends Controller{
     public function index(){
 
         $data=[
-            'sales_invoices'=>\App\SalesInvoice::where('sales_invoice_status', 'delivered')->get()
+            'sales_invoice_receiveds'=>\App\SalesInvoiceReceived::all()
         ];
 
         return view($this->path('index'), $data);

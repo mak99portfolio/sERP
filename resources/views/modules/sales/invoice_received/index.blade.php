@@ -26,24 +26,22 @@
                                 <thead class="bg-primary">
                                     <tr>
                                         <th width="25">#</th>
+                                        <th>Related Customer</th>
                                         <th>Invoice No</th>
-                                        <th>Challan No</th>
-                                        <th>Challan Date</th>
-                                        <th>Sales Order No</th>
-                                        <th width="30">Action</th>
+                                        <th>Invoice Amount</th>
+                                        <th>Received Date</th>
+                                        <th>Remarks</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($sales_invoices as $key=>$row)
+                                    @foreach($sales_invoice_receiveds as $key=>$row)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
-                                        <td>{{ $row->sales_invoice_no }}</td> 
-                                        <td>{{ $row->sales_challan->sales_challan_no }}</td>
-                                        <td>{{ $row->sales_challan->challan_date->toFormattedDateString() }}</td>
-                                        <td>{!! labels($row->sales_challan->sales_orders->pluck('sales_order_no')) !!}</td>
-                                        <td class="text-center">
-                                        <a href="{{ route('sales-invoice.show', ['sales_invoice'=>$row]) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
-                                        </td>
+                                        <td>{{ $row->customer->name }}</td> 
+                                        <td>{{ $row->sales_invoice->sales_challan->sales_challan_no }}</td>
+                                        <td>{{ $row->sales_invoice_amount }}</td>
+                                        <td>{{ $row->sales_invoice_received_date->toFormattedDateString() }}</td>
+                                        <td>{{ $row->remarks }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>

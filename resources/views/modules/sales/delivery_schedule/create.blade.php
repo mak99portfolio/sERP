@@ -15,7 +15,7 @@
                     <br />
                     @include('partials/flash_msg')
                     <form class="form-horizontal form-label-left" action="{{route('delivery-schedule.store')}}" method="POST" autocomplete="off">
-
+                    @csrf
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             {{ BootForm::select('customer_id', 'Customer',$customer_list,null, ['class'=>'form-control input-sm select2','ng-model'=>"customer_id",'ng-change'=>"getSalesOrder()",'data-placeholder'=>"Select Customer"]) }}
@@ -29,9 +29,9 @@
                                     </select>
                                 </div>
                              </div>
-                            <div class="col-lg-12 col-sm-12 col-sm-12">
+                            <div class="col-lg-12 col-sm-12 col-sm-12"  ng-if="itemlist.length > 0">
                                 <div class="table-responsive m-t-20">
-                                    <table class="table table-bordered">
+                                <table class="table table-bordered">
                                         <thead class="bg-primary">
                                             <tr>
                                                 <th width="25">#</th>
@@ -44,26 +44,60 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           
+                                            <tr ng-repeat="item in itemlist">
+                                                <th><% $index+1 %> <input  value="<%item.product_id%>"type="hidden" name="items[<%$index%>][product_id]"></th>
+                                                <td class=""> <% item.name %></td>
+                                                <td class=""> <% item.total_quantity %><input ng-model ="total_quantity"  value="<%item.total_quantity%>"type="hidden" name="items[<%$index%>][total_quantity]"></td>
+                                                <td class=""> <% item.total_quantity %></td>
+                                                <td class="text-center"><input type="text" class="form-control input-sm"></td>
+                                                <td class="text-center"><input type="text" id="date_expected" class="form-control input-sm datepicker"></td>
+                                                <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
+                                            </tr>
                                           
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" ng-click="add_delivery()" class="btn btn-default btn-sm" style="margin-top: 5px"><i class="fa fa-plus"></i> Add More</button>
+                                 </div>
+                            </div>
+                            <div class="col-lg-12 col-sm-12 col-sm-12">
+                               
+                            </div>
+                            <div class="col-lg-12 col-sm-12 col-sm-12">
+                                <div class="table-responsive m-t-20">
+                                <table class="table table-bordered">
+                                        <thead class="bg-primary">
                                             <tr>
-                                                <td>01</td>
-                                                <td class="text-center">Product 1</td>
-                                                <td class="text-right">300</td>
-                                                <td class="text-right">300</td>
-                                                <td class="text-center"><input type="text" class="form-control input-sm"></td>
-                                                <td class="text-center"><input type="text" id="date_expected" class="form-control input-sm datepicker"></td>
-                                                <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove"><i class="fa fa-trash text-danger"></i></button></td>
+                                                <th width="25">#</th>
+                                                <th class="text-center">Name</th>
+                                                <th class="text-center">Quantity</th>
+                                                <th class="text-center">Remaining Quantity</th>
+                                                <th class="text-center">Delivery Quantity</th>
+                                                <th class="text-center">Date</th>
+                                                <th width="30">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>1</th>
+                                                <td class="">Product 1</td>
+                                                <td class="">12</td>
+                                                <td class="">2</td>
+                                                <td class="text-center">10</td>
+                                                <td class="text-center">10/11/2018</td>
+                                                <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                             </tr>
                                             <tr>
-                                                <td>02</td>
-                                                <td class="text-center">Product 2</td>
-                                                <td class="text-right">320</td>
-                                                <td class="text-right">320</td>
-                                                <td class="text-center"><input type="text" class="form-control input-sm"></td>
-                                                <td class="text-center"><input type="text" id="date_expected" class="form-control input-sm datepicker"></td>
-                                                <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove"><i class="fa fa-trash text-danger"></i></button></td>
+                                                <th>2</th>
+                                                <td class="">Product 2</td>
+                                                <td class="">12</td>
+                                                <td class="">0</td>
+                                                <td class="text-center">12</td>
+                                                <td class="text-center">11/11/2018</td>
+                                                <td class="text-center"><button type="button" class="btn btn-default btn-sm" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                             </tr>
+                                          
                                         </tbody>
                                     </table>
                                 </div>
@@ -73,7 +107,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-sm">Save</button>
-                                    <a href="{{ route('collection-schedule.index')}}" class="btn btn-default btn-sm">Cancel</a>
+                                    <a href="{{ route('delivery-schedule.index')}}" class="btn btn-default btn-sm">Cancel</a>
                                 </div>
                             </div>
                         </div>
@@ -93,15 +127,14 @@
             $interpolateProvider.endSymbol('%>');
         });
     app.controller('myCtrl', function($scope, $http) {
-        $scope.payment_list = [];
+        $scope.itemlist = [];
         $scope.sales_order_list = [];
-        $scope.total_amount = [];
-        $scope.total_invoice_amount = 0;
+      
 
 
         $scope.getSalesOrder = function () {
           //  alert($scope.customer_id);
-            $scope.payment_list = [];
+            $scope.itemlist = [];
             let url = "{{URL::to('get-sales-order')}}/" + $scope.customer_id;
             $http.get(url)
                 .then(function(response) {
@@ -111,46 +144,47 @@
            
         }
         $scope.getSalesOrderItems = function () {
-            $scope.payment_list = [];
+            $scope.delivery_list = [];  
+            $scope.itemlist = [];
             if($scope.sales_order_id){
                 let url = "{{URL::to('get-sales-order-items')}}/" + $scope.sales_order_id;
           //   alert($scope.sales_order_id);
                 $http.get(url)
-                    .then(function(response) {
-                        $scope.total_amount = response.data.total_amount;
-                    
+                    .then(function(response) { 
+                        console.log(response.data.items);
+                        angular.forEach(response.data.items, function(value, key) {
+                            $scope.itemlist.push(value);
+                        });
+                   
                 });
             }else{
-                $scope.total_amount = null;
+                $scope.itemlist = null;
             }
         }
-       $scope.add_payment = function(){
-           var payment = {};
+       $scope.add_delivery = function(){
+           var delivery = {};
              if(!$scope.customer_id){
                 $scope.warning('Select Customer first');
                 return;
             }else if(!$scope.sales_order_id){
                 $scope.warning('Select Sales Order No');
                 return;
-            }else if(!$scope.payment_amount){
-                $scope.warning('Insert Inoice Amount');
+            }else if(!$scope.total_quantity){
+                $scope.warning('Insert Total Quantity');
                 return;
             }else if($scope.payment_amount > $scope.available_amount){
                 $scope.warning('Payment amount must be less than available amount');
                 return;
             }
             console.log();
-            payment.payment_amount = $scope.payment_amount;
-            payment.payment_date = $scope.payment_date;
-            $scope.payment_list.push(payment);
-            $scope.total_invoice_amount = $scope.sum_of_property($scope.payment_list,'payment_amount');
-            $scope.available_amount = $scope.total_amount - $scope.total_invoice_amount;
-            $scope.payment_amount = null;
+            delivery.payment_amount = $scope.payment_amount;
+            delivery.payment_date = $scope.payment_date;
+            $scope.delivery_list.push(delivery);
+          
         }
-        $scope.removePayment = function(index){
-            $scope.payment_list.splice(index, 1);
-            $scope.total_invoice_amount = $scope.sum_of_property($scope.payment_list,'payment_amount');
-            $scope.available_amount = $scope.total_amount - $scope.total_invoice_amount;
+        $scope.removeItem = function(index){
+            $scope.itemlist.splice(index, 1);
+            
         }
         $scope.warning = function(msg){
             var data = {

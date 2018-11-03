@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <table id="datatable-buttons" class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class='primary'>
+                        <tr class='bg-primary'>
                             <th>Requisition No</th>
                             <th>Type</th>
                             <th>Sender</th>

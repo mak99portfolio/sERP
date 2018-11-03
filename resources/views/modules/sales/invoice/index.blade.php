@@ -34,16 +34,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($sales_invoices as $key=>$row)
                                     <tr>
-                                        <td>01</td>
-                                        <td>231</td> 
-                                        <td>011</td>
-                                        <td>01/03/2018</td>
-                                        <td>01</td>
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $row->sales_invoice_no }}</td> 
+                                        <td>{{ $row->sales_challan->sales_challan_no }}</td>
+                                        <td>{{ $row->sales_challan->challan_date->toFormattedDateString() }}</td>
+                                        <td>{!! labels($row->sales_challan->sales_orders->pluck('sales_order_no')) !!}</td>
                                         <td class="text-center">
-                                        <a href="#" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                        <a href="{{ route('sales-invoice.show', ['sales_invoice'=>$row]) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

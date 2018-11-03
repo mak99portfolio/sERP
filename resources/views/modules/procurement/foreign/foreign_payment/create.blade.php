@@ -15,8 +15,8 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" ng-app="myApp">
                     <div class="x_title">
-                        <h2> Payment</h2>
-                        <a href="{{route('foreign-payment.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-eye" aria-hidden="true"></i> List Foreign Payment</a>
+                        <h2>Payment</h2>
+                        <a href="{{route('foreign-payment.index')}}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-list" aria-hidden="true"></i> Payment List</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" ng-controller="myCtrl">

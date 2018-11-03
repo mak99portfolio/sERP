@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Requisition Purpose</h3>
+                <h3>Procurement</h3>
             </div>
         </div>
         <div class="clearfix"></div>
@@ -17,7 +17,7 @@
                     <div class="x_title">
                         <h2>Requisition Purpose</h2>
 
-                         {!! goBack(['url'=>route('requisition-purpose.index')]) !!}
+                         {!! goBack(['url'=>route('requisition-purpose.index'), 'icon'=>'fa-list', 'title'=>'Requisition Purpose List']) !!}
                        
                         <div class="clearfix"></div>
                     </div>

@@ -8,8 +8,8 @@
         <div class="col-md-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Compare Quotation</h2>
-                    <a href="{{ route('quotation-compare.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Compare Quotation </a>
+                    <h2>Quotation Compare</h2>
+                    <a href="{{ route('quotation-compare.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New </a>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -22,7 +22,7 @@
                                     <th>Requisition Title</th>
                                     <th>Requisition Date</th>
                                     <th>Approval Date</th>
-                                    <th class="text-center">Action</th>
+                                    <th class="text-center" width="40">Action</th>
                                 </tr>
                             </thead>
                             <tbody>

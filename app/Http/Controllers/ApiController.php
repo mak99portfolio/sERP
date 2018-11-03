@@ -512,10 +512,23 @@ class ApiController extends Controller
     {
 
         $sales_order = SalesOrder::find($id);
-        dd($sales_order->items);
-        foreach ($sales_order->items as $item) {
+       
+            foreach ($sales_order->items as $item) { 
 
-        }
+                $items[] = [
+                    'product_id' => $item->product_id,  
+                    'name' => $item->product->name,
+                    'quantity' => $item->quantity,
+                    'unit_price' => $item->unit_price,
+                    'bonus_quantity' => $item->bonus_quantity,
+                    'total_quantity' => $item->total_quantity,
+                    'net_price' => $item->net_price,
+                    'discount' => $item->discount,
+                  
+                ];
+            }  
+         //   dd( $items);
+        $data['items'] = $items;
         return response()->json($data);
     }
     public function getCiByCiId($id)

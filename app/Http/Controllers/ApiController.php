@@ -513,7 +513,8 @@ class ApiController extends Controller
 
         $sales_order = SalesOrder::find($id);
        
-            foreach ($sales_order->items as $item) { 
+            foreach ($sales_order->items as $item) 
+            { 
 
                 $items[] = [
                     'product_id' => $item->product_id,  
@@ -527,8 +528,30 @@ class ApiController extends Controller
                   
                 ];
             }  
-         //   dd( $items);
+        
+
+            foreach ($sales_order->delivery_schedules as $delivery_schedule) 
+            { 
+                foreach ($delivery_schedule->items as $pre_item) 
+                { 
+                  // dd( $pre_item);
+                   $previous_items[] = [
+                    'product_id' => $pre_item->product_id,  
+                    'name' => $pre_item->product->name,
+                    'total_quantity' => $pre_item->total_quantity,
+                    'delivery_quantity' => $pre_item->delivery_quantity,
+                    'delivery_date' => $pre_item->delivery_date
+                   
+                ];
+                } 
+            }  
         $data['items'] = $items;
+        if(isset($previous_items)){
+           $data['previous_items'] = $previous_items; 
+        }else{
+            $data['previous_items'] = null; 
+        }
+        
         return response()->json($data);
     }
     public function getCiByCiId($id)

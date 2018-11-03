@@ -79,6 +79,7 @@
                 <li><a href="{{ route('sales-challan.index') }}">Challan</a></li>
                 <li><a href="{{ route('sales-invoice.index') }}">Invoice</a></li>
                 <li><a href="{{ route('sales-invoice-cancel.index') }}">Invoice Cancel</a></li>
+                <li><a href="{{ route('sales-invoice-received.index') }}">Invoice Received</a></li>
                 <li><a href="{{ route('collection-schedule.index') }}">Collection Schedule</a></li>
                 <li><a href="{{ route('payment-schedule.index') }}">Payment Schedule</a></li>
                 <li><a href="{{ route('delivery-schedule.index') }}">Delivery Schedule</a></li>

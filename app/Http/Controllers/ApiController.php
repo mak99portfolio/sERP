@@ -808,6 +808,16 @@ class ApiController extends Controller
             'sales_date'=>$sales_order->sales_date,
             'sales_reference'=>$sales_order->sales_reference->name,
         ];
+    foreach($sales_order->items as $key=>$item){
+       
+        $data['items'][$key]=[
+            'product_id'=>$item->product_id,
+            'product_name'=>$item->product->name,
+            'sales_order_quantity'=>$item->quantity,
+            'remaining_sales_order_quantity'=>$item->quantity - \App\SalesChallanItem::where('sales_challan_id',$sales_order_id)->where('product_id',$item->product_id)->sum('challan_quantity'),
+            'unit_price'=>(int)$item->unit_price,
+        ];
+    }
         return response()->json($data);
     }
 }

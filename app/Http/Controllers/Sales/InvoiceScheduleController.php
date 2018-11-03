@@ -34,21 +34,21 @@ class InvoiceScheduleController extends Controller
         if(!$request->item_validate()){
             return redirect()->back();
         }
-    $invoice_schedule = new InvoiceSchedule;
-    $invoice_schedule->fill($request->input());
-    $invoice_schedule->creator_user_id = Auth::id();
-   // $collection_schedule->collection_schedule_no = 'SC001';
-   $invoice_schedule->invoice_schedule_no = uCode('invoice_schedules.invoice_schedule_no',"IS00");
-    $invoice_schedule->save();
+        $invoice_schedule = new InvoiceSchedule;
+        $invoice_schedule->fill($request->input());
+        $invoice_schedule->creator_user_id = Auth::id();
+        // $collection_schedule->collection_schedule_no = 'SC001';
+        $invoice_schedule->invoice_schedule_no = uCode('invoice_schedules.invoice_schedule_no',"IS00");
+        $invoice_schedule->save();
 
-    foreach ($request->collection_amounts as $invoice_amount){
-        //dd($collection_amount);
-        $cs_items[] = new InvoiceScheduleItem($invoice_amount);
-    }
-    $invoice_schedule->items()->saveMany($cs_items);
+        foreach ($request->collection_amounts as $invoice_amount){
+            //dd($collection_amount);
+            $cs_items[] = new InvoiceScheduleItem($invoice_amount);
+        }
+        $invoice_schedule->items()->saveMany($cs_items);
 
-    Session::put('alert-success', 'Invoice Schedule created successfully');
-    return redirect()->route('invoice-schedule.index');
+        Session::put('alert-success', 'Invoice Schedule created successfully');
+        return redirect()->route('invoice-schedule.index');
     }
 
   

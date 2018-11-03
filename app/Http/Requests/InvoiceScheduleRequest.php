@@ -24,7 +24,7 @@ class InvoiceScheduleRequest extends FormRequest
         if(isset($this->collection_amounts)){
             foreach($this->collection_amounts as $item){
                 if($item['payment_amount']){
-                    if(is_numeric($item['payment_amount']) || $item['payment_amount'] < 0){
+                    if(is_numeric($item['payment_amount']) && $item['payment_amount'] > 0){
                         return true;
                     }else{
                         Session::put('alert-danger', 'Invoice Amount Must be a Positive Number');

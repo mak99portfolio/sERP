@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Inventory Requisition')
+@section('title', 'Status Adjustment')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -66,10 +66,12 @@
                                 </div>
                             </div>
 
+                            <div class="row">
                             <div class="col-md-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 {!! btnSubmitGroup() !!}
+                            </div>
                             </div>
                             {{ BootForm::close() }}
                         </form>

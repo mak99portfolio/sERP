@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Working Unit')
+@section('title', 'Status Adjustment ')
 @section('content')
 <div class="right_col" role="main">
   <div class="">
@@ -26,7 +26,7 @@
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class='primary'>
+                        <tr class='bg-primary'>
                         	<th>Adjustment No</th>
                         	<th>Working Unit</th>
                             <th>Product Id</th>

@@ -93,7 +93,7 @@
 
                             <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
                                 <div class="row">
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label for='product_id'>Products</label>
                                               <select class="form-control input-sm" data-live-search="true" data-size='5' id="product_id" ref='product_id' v-model='product_id' v-on:change="fetch_product">
@@ -128,40 +128,42 @@
                                 <table class="table table-bordered">
                                     <tr>
                                         <th>Item name</th>
-                                        <th>Stock</th>
+                                        <th class="text-center">Stock</th>
                                         <th>Quantity</th>
-                                        <th>Delete</th>
+                                        <th class="text-center">Action</th>
                                     </tr>
                                     <tr v-for="(product, index) in products">
-  										                <td v-html='product.name'></td>
-  										                <td v-html='product.stock'></td>
-  										                <td>
-	                                        <div class="form-group">
+  					<td v-html='product.name'></td>
+                                        <td class="text-center" v-html='product.stock'></td>
+  					<td>
+	                                    <div class="form-group">
                                             <input v-bind:name="'products['+index+'][id]'" class="form-control input-sm" type="hidden" v-bind:value='product.id'/>
                                             <input v-bind:name="'products['+index+'][quantity]'" class="form-control input-sm" type="number" v-model='product.quantity' min="0"/>
-	                                        </div>
-  										                </td>
-                                    	<td>
-  	                                		<button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
-  	                                			<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
-  	                                		</button>
+	                                    </div>
+  					</td>
+                                        <td class="text-center">
+                                            <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
+  	                                	<i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
+                                            </button>
                                     	</td>
-									                   </tr>
+                                    </tr>
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
-
-                            <div class="col-md-12">
-                                <br />
-                                <div class="ln_solid"></div>
-                                <div class="form-group">
-                                  @if($inventory_requisition->initial_approver()->exists())
-                                    <button type="submit" class="btn btn-warning btn-sm">Submit Final Approval</button>
-                                  @else
-                                    {!! btnSubmitGroup() !!}
-                                  @endif
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <br />
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                      @if($inventory_requisition->initial_approver()->exists())
+                                        <button type="submit" class="btn btn-warning btn-sm">Submit Final Approval</button>
+                                      @else
+                                        {!! btnSubmitGroup() !!}
+                                      @endif
+                                    </div>
                                 </div>
                             </div>
+                            
                             {{ BootForm::close() }}
                         </form>
                     </div>

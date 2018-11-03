@@ -3,12 +3,18 @@
 @section('content')
 <div class="right_col" role="main">
     <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Company Setting</h3>
+            </div>
+        </div>
+        <div class="clearfix"></div>
       <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
           <div class="x_panel">
                     <div class="x_title">
-                        <h2>Company</h2>
-                        <a href="{{ route('company-profile.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add Company</a>
+                        <h2>General Information</h2>
+                        <a href="{{ route('company-profile.create') }}" class="btn btn-sm btn-primary btn-addon pull-right"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content" id="popup_area">
@@ -32,8 +38,8 @@
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->country->name }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('company-profile.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                                            <a href="{{ route('company-profile.show',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o"></i> View</a>
+                                            <a href="{{ route('company-profile.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a>
+                                            <a href="{{ route('company-profile.show',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

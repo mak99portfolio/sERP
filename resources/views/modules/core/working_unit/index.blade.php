@@ -37,7 +37,7 @@
                                         <th>Division</th>
                                         <th>District</th>
                                         <th>Created At</th>
-                                        <th width="100">Edit / Delete</th>
+                                        <th class="text-center" width="100">Edit / Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -54,8 +54,8 @@
                                         <td>{{ $row->division->name ?? 'Not Specified' }}</td>
                                         <td>{{ $row->district->name ?? 'Not Specified' }}</td>
                                         <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
-                                        <td>
-                                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                        <td class="text-center">
+                                            <div class="btn-group" role="group" aria-label="...">
                                                 <div class="btn-group" role="group">
                                                     {!! btnCustom(['icon'=>'fa-eye fa-lg text-warning', 'url'=>route('working-unit.show', ['working_unit'=>$row->id])]) !!}
                                                 </div>

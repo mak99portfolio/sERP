@@ -36,7 +36,7 @@
                                         <th>Present Address</th>
                                         <th>Permanent Address</th>
                                         <th>Created At</th>
-                                        <th width="100">Edit/Delete</th>
+                                        <th class="text-center" width="130">Edit /Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -50,8 +50,8 @@
                                         <td>{{ $row->present_address }}</td>
                                         <td>{{ $row->permanent_address }}</td>
                                         <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
-                                        <td>
-                                            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                                        <td class="text-center">
+                                            <div class="btn-group" role="group" aria-label="...">
                                                 <div class="btn-group" role="group">
                                                     {!! btncustom(['icon'=>'fa fa-eye text-warning', 'url'=>route('employee-profile.show', ['employee_profile'=>$row->id])]) !!}
                                                 </div>

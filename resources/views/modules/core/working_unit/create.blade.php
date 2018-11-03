@@ -78,7 +78,7 @@
                         </div>
                     
                     </div>
-                 
+                    <div class="row">
                     <div class="col-md-12">
                         <br />
                         <div class="ln_solid"></div>
@@ -86,6 +86,8 @@
                           {!! btnSubmitGroup() !!}
                        </div>
                    </div>
+                    </div>
+                    
                {{ BootForm::close() }}
 
            </div>

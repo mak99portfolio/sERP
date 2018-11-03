@@ -89,14 +89,14 @@ class SalesChallanController extends Controller{
                             'sales_order_id'=>$row['id'],
                             'sales_challan_id'=>$sales_challan->id,
                             'working_unit_id'=>$booking_distribution['id'],
-                            'product_id'=>$item['id'],
+                            'product_id'=>$item['product_id'],
                             'booking_quantity'=>$booking_distribution['booking_quantity']
                         ]);
 
                         //To issue product from stock for booking
                         \App\Stock::create([
                             'working_unit_id'=>$booking_distribution['id'],
-                            'product_id'=>$item['id'],
+                            'product_id'=>$item['product_id'],
                             'product_status_id'=>1,
                             'product_type_id'=>1,
                             'sales_challan_id'=>$sales_challan->id,

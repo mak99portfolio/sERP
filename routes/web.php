@@ -98,9 +98,8 @@ Route::middleware('auth')->namespace('Sales')->prefix('sales')->group(function()
     Route::resource('sales-order-cancel', 'SalesOrderCancelController');
     Route::resource('sales-challan', 'SalesChallanController');
     Route::resource('sales-invoice', 'SalesInvoiceController');
-    Route::get('sales-invoice-ui', 'SalesInvoiceController@ui');
-
     Route::resource('sales-invoice-cancel', 'SalesInvoiceCancelController');
+    Route::resource('sales-invoice-received', 'SalesInvoiceReceivedController');
     Route::resource('collection-schedule', 'CollectionScheduleController');
     Route::resource('payment-schedule', 'PaymentScheduleController');
     Route::resource('delivery-schedule', 'DeliveryScheduleController');

@@ -49,11 +49,11 @@ class SalesInvoiceController extends Controller{
             'delivery_person_id'=>'required|integer|exists:employee_profiles,id',
             'delivery_vehicles'=>'required|array',
             'sales_invoice_items'=>'required|array',
-            'total_quantity'=>'required|numeric|min:0',
-            'total_amount'=>'required|numeric|min:0',
+            'total_quantity'=>'required|numeric|min:1',
+            'total_amount'=>'required|numeric|min:1',
             'total_vat'=>'required|numeric|min:0',
             'total_discount'=>'required|numeric|min:0',
-            'grand_total'=>'required|numeric|min:0'
+            'grand_total'=>'required|numeric|min:1'
         ]);
 
         if($validation->fails()){

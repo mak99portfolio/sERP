@@ -121,6 +121,7 @@
                             </div> --}}
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
+                                    <thead class="bg-primary">
                                     <tr>
                                         <th>SL</th>
                                         <th>HS Code</th>
@@ -128,8 +129,10 @@
                                         <th style="width: 150px;">Quantity</th>
                                         <th style="width: 150px;">Batch No</th>
                                         <th style="width: 150px;">Expiration Date</th>
-                                        <th style="width: 150px;">Delete</th>
+                                        <th class="text-center" style="width: 150px;">Delete</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <tr v-for="(product, index) in products">
                                         <td v-html='index+1'></td>
                                         <td v-html='product.hs_code'></td>
@@ -150,29 +153,27 @@
                                                 <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="date" v-model='product.expiration_date' min="0"/>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
                                                 <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
                                             </button>
                                         </td>
                                     </tr>
+                                    </tbody>
+                                    
+                                    
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
-
-
-
-
-
-
-
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <br />
                                             <div class="ln_solid"></div>
                                             <div class="form-group">
-                                                {!! btnSubmitGroup() !!}
+                                            {!! btnSubmitGroup() !!}
                                             </div>
                                         </div>
+                                    </div>
                                         {{ BootForm::close() }}
                                     </form>
                                 </div>

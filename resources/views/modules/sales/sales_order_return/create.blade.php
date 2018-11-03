@@ -38,17 +38,12 @@
                                  {{ BootForm::select('employee_id','Return Person',$employee_list,null, ['class'=>'form-control input-sm select2','data-placeholder'=>'Select Return Person','style'=>"width: 100%;",'required']) }}
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="form-group">
-                                    <label for="">Remark</label>
-                                    <textarea name="remark" id="" cols="30" rows="2" class="form-control input-sm"></textarea>
-                                </div>
-                            </div>
+
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <fieldset>
                                     <legend>Sales Order Return Table</legend>
                                 </fieldset>
-                                <table class="table table-bordered">
+                                <table class="table table-bordered" ng-if="items.length >=1">
                                     <thead>
                                     <tr>
                                         <th>Product Name</th>
@@ -57,18 +52,26 @@
                                         <th>Return Quantity</th>
                                         <th>Unit Price</th>
                                         <th>Ner Price</th>
+                                        <th>Action </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>125</td>
-                                        <td class="text-right">125</td>
-                                        <td class="text-right">125</td>
-                                        <td class="text-right"><input type="text" class="form-control input-sm"></td>
-                                        <td class="text-right">125</td>
-                                        <td class="text-right">125</td>
+                                    <tr ng-repeat="item in items">
+                                        <td class="text-right">
+                                            <% item.product_name %>
+                                            <input type="hidden" class="form-control input-sm" name="items[<% $index %>][product_id]" value="<% item.product_id %>">
+                                        </td>
+                                        <td class="text-right"><% item.sales_order_quantity %></td>
+                                        <td class="text-right"><% item.remaining_sales_order_quantity %></td>
+                                        <td class="text-right"><input type="text" class="form-control input-sm" name="items[<% $index %>][quantity]" ng-model="return_quantitu"></td>
+                                        <td class="text-right">
+                                            <% item.unit_price %>
+                                            <input type="hidden" class="form-control input-sm" name="items[<% $index %>][unit_price]" value="<% item.unit_price %>">
+                                        </td>
+                                        <td class="text-right"><% item.unit_price * return_quantitu %></td>
+                                        <td class="text-right"><button type="button" class="btn btn-default btn-xs" title="Remove" ng-click="removeItem($index)"><i class="fa fa-trash text-danger"></i></button></td>
                                     </tr>
-                                    <tr>
+                                    {{-- <tr>
                                         <td colspan="5" class="text-right">Total Return Quantity</td>
                                         <td></td>
                                     </tr>
@@ -83,10 +86,13 @@
                                     <tr>
                                         <td colspan="5" class="text-right">Grand Total</td>
                                         <td></td>
-                                    </tr>
+                                    </tr> --}}
                                     </tbody>
                                 </table>
                             </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {{ BootForm::textarea('remark','Remark', null, ['class'=>'form-control input-sm','cols'=>"30" ,'rows'=>"2"]) }}
+                             </div>
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <br />
                                 <div class="ln_solid"></div>
@@ -118,7 +124,11 @@
                             $scope.customer_name = response.data.customer_name;
                             $scope.sales_date = response.data.sales_date;
                             $scope.sales_reference = response.data.sales_reference;
+                            $scope.items = response.data.items;
                         });
+        }
+        $scope.removeItem = function(index){
+            $scope.items.splice(index,1);
         }
 
     });

@@ -26,13 +26,13 @@
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class='primary'>
+                        <tr class='bg-primary'>
                             <th>Receive No</th>
                             <th>Type</th>
                             <th>Working Unit</th>
                             <th>Receive Date</th>
                             <th>Details</th>
-                            <th>Edit</th>
+                            <th class="text-center">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,7 +53,7 @@
                                 {!! btnCustom(['title'=>'Show', 'url'=>route('receive-return.show', ['receive_return'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
                             @endif
                             </td>
-                            <td>
+                            <td class="text-center">
                             @if($row->receive_type=='foreign_purchase')
                                 {!! btnCustom(['title'=>'Edit', 'url'=>route('receive-foreign-purchase.edit', ['receive_foreign_purchase'=>$row->id]), 'btnClass'=>'btn btn-default btn-sm']) !!}
                             @elseif($row->receive_type=='local_purchase')

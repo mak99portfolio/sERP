@@ -15,6 +15,16 @@ class CreateDeliverySchedulesTable extends Migration
     {
         Schema::create('delivery_schedules', function (Blueprint $table) {
             $table->increments('id');
+                $table->integer('customer_id')->unsigned();
+                $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+                $table->integer('sales_order_id')->unsigned();
+                $table->foreign('sales_order_id')->references('id')->on('sales_orders')->onDelete('cascade');
+                $table->string('delivery_schedule_no')->nullable();
+                $table->integer('creator_user_id')->unsigned()->nullable();
+                $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->integer('updator_user_id')->unsigned()->nullable();
+                $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
+                $table->softDeletes();
             $table->timestamps();
         });
     }

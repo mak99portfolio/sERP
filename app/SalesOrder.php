@@ -42,7 +42,6 @@ class SalesOrder extends Model
     public function items(){
         return $this->hasMany('App\SalesOrderItem');
     }
-
     public function generateSalesOrderNumber(){
 
         $serial = $this->count_last_serial() + 1;
@@ -70,5 +69,8 @@ class SalesOrder extends Model
     }
     public function invoice_schedules(){
         return $this->hasMany('App\InvoiceSchedule');
+    }
+    public function delivery_schedules(){
+        return $this->hasMany('App\DeliverySchedule');
     }
 }

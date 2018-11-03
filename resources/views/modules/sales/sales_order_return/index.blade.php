@@ -29,11 +29,11 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->sales_order_return_date}}</td>
-                                        <td>125</td>
-                                        <td>125</td>
-                                        <td>125</td>
+                                        <td>{{$item->sales_order->sales_order_no}}</td>
+                                        <td>{{$item->sales_order->customer->name}}</td>
+                                        <td>{{$item->sales_order->sales_date}}</td>
                                         <td  width="40" class="text-center">
-                                            <a href="" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <a href="{{ route('sales-order-return.show', $item) }}" class="btn btn-block btn-sm btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
                                         </td>
                                     </tr>
                                     @endforeach

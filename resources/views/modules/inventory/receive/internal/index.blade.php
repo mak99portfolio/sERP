@@ -25,7 +25,7 @@
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class='primary'>
+                        <tr class='bg-primary'>
                             <th>Name</th>
                             <th>Short Name</th>
                             <th>Company</th>

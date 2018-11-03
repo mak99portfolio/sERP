@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Working Unit')
+@section('title', 'Return ReasonList')
 @section('content')
 <div class="right_col" role="main">
   <div class="">
@@ -26,15 +26,15 @@
             <div class="table-responsive">
                 <table class="table table-hover table-striped table-bordered">
                     <thead>
-                        <tr class='primary'>
+                        <tr class='bg-primary'>
                             <th>ID</th>
                             <th>Name</th>
                             <th>Short Name</th>
                             <th>Creator</th>
                             <th>Editor</th>
                             <th>Created At</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <th class="text-center">Edit</th>
+                            <th class="text-center">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,8 +46,8 @@
                             <td>{{ $row->creator->name }}</td>
                             <td>{{ $row->editor->name ?? 'Not Specified' }}</td>
                             <td>{{ $carbon->parse($row->created_at)->diffForHumans() }}</td>
-                            <td>{!! btnEdit(['url'=>route('return-reason.edit', ['return_reason'=>$row->id])]) !!}</td>
-                            <td>{!! btnDelete(['url'=>route('return-reason.destroy', ['return_reason'=>$row->id])]) !!}</td>
+                            <td class="text-center">{!! btnEdit(['url'=>route('return-reason.edit', ['return_reason'=>$row->id])]) !!}</td>
+                            <td class="text-center">{!! btnDelete(['url'=>route('return-reason.destroy', ['return_reason'=>$row->id])]) !!}</td>
                         </tr>
                     @endforeach
                     </tbody>

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Inventory Requisition')
+@section('title', 'Stock Adjustment')
 @section('content')
 <div class="right_col" role="main">
     <div class="">
@@ -46,9 +46,9 @@
                             </div>
                             <hr>
                             <div id="vue_app">
-                            <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 5px;">
+                            <div class="border_1" style="border: 1px solid #ddd;margin: 5px 0px;padding: 10px;">
                                 <div class="row">
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>HS Code</label>
                                             <!--<input class="form-control input-sm" type="text">-->
@@ -60,7 +60,7 @@
                                         </div><!-- /input-group -->
                                         </div>
                                     </div>
-                                    <div class="col-lg-2 col-md-6 col-sm-6">
+                                    <div class="col-lg-3 col-md-6 col-sm-6">
                                         <div class="form-group">
                                             <label>Product Name</label>
                                             <!--<input class="form-control input-sm" type="text">-->
@@ -91,6 +91,7 @@
                             </div>
                             <div class="table-responsive m-t-20">
                                 <table class="table table-bordered">
+                                    <thead class="bg-primary">
                                     <tr>
                                         <th style="width: 100px;">ID</th>
                                         <th>Item name</th>
@@ -98,8 +99,10 @@
                                         <th style="width: 175px;">Adjusted Quantity</th>
                                         <th style="width: 175px;">Batch No</th>
                                         <th style="width: 175px;">Expiration Date</th>
-                                        <th style="width: 100px;">Delete</th>
+                                        <th class="text-center" style="width: 100px;">Delete</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <tr v-for="(product, index) in products">
                                       <td v-html='product.id'></td>
                                       <td v-html='product.name'></td>
@@ -120,21 +123,24 @@
                                           <input v-bind:name="'products['+index+'][expiration_date]'" class="form-control input-sm" type="date" v-model='product.expiration_date' min="0" placeholder="Optional" />
                                        </div>
                                      </td>
-                                     <td>
+                                     <td class="text-center">
                                        <button type="button" class="btn btn-default btn-sm" v-on:click="delete_product(product)">
                                         <i class="fa fa-times-circle fa-lg text-danger" aria-hidden="true"></i>
                                       </button>
                                     </td>
                                   </tr>
+                                  </tbody>
                                 </table>
                             </div>
                             </div> {{-- End of vue app --}}
-
+                            <div class="row">
                             <div class="col-md-12">
                                 <br />
                                 <div class="ln_solid"></div>
                                 {!! btnSubmitGroup() !!}
                             </div>
+                            </div>
+                            
                             {{ BootForm::close() }}
                         </form>
                     </div>

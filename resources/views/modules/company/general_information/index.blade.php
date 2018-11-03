@@ -27,7 +27,7 @@
                                         <th>Company Name</th>
                                         <th>Phone Number</th>
                                         <th>Country</th>
-                                        <th class="text-center" width="40">Action</th>
+                                        <th class="text-center" width="75px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -37,9 +37,16 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->phone }}</td>
                                         <td>{{ $item->country->name }}</td>
+                                        
                                         <td class="text-center">
-                                            <a href="{{ route('company-profile.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a>
-                                            <a href="{{ route('company-profile.show',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                            <div class="btn-group" role="group" aria-label="...">
+                                                <div class="btn-group" role="group">
+                                                <a href="{{ route('company-profile.edit',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-pencil"></i>Edit</a>
+                                                </div>
+                                                <div class="btn-group" role="group">
+                                                <a href="{{ route('company-profile.show',$item) }}" type="button" class="btn btn-default btn-xs"><i class="fa fa-eye"></i>View</a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach

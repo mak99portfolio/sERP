@@ -16,7 +16,7 @@
             <div class="x_panel">
                 <div class="x_title">
                     <h2>Employee Profile<small>Form</small></h2>
-                    <a href="{{route('employee-profile.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-bars" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
+                    <a href="{{route('employee-profile.index')}}" class="mb-xs mt-xs mr-xs  btn btn-primary btn-sm pull-right"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;Employee Profile List</a>
 
                     <div class="clearfix"></div>
                 </div>

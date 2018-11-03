@@ -15,8 +15,8 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Employee Login Registration<small>Form</small></h2>
-                <a href="{{route('employee-user.index')}}" class="mb-xs mt-xs mr-xs  btn btn-success btn-sm pull-right"><i class="fa fa-eye" aria-hidden="true"></i>&nbsp;User List</a>
+                <h2>Employee Login Registration</h2>
+                <a href="{{route('employee-user.index')}}" class="mb-xs mt-xs mr-xs  btn btn-primary btn-sm pull-right"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;User List</a>
 
                 <div class="clearfix"></div>
             </div>
